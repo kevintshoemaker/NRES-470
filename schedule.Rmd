@@ -1,0 +1,27 @@
+---
+title: "Schedule, Fall 2016"
+author: "NRES 746"
+date: "August 23, 2016"
+output: 
+  html_document: 
+    theme: cerulean
+    toc: no
+    toc_float: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Becuase this is the first time this course is being taught, this schedule is highly subject to change!!! Please check for updates frequently!
+
+```{r include=FALSE}
+courseSchedule <- read.csv("CourseSchedule.csv")
+
+```
+
+```{r results='asis', echo=FALSE}
+knitr::kable(courseSchedule,caption="")
+
+```
+

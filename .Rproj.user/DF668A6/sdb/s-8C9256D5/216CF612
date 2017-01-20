@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "name: \"NRES_470/670\"\noutput_dir: \".\"\nnavbar:\n  title: \"NRES 470/670\"\n  left:\n    - text: \"Home\"\n      href: index.html\n    - text: \"Schedule\"\n      href: schedule.html\n    - text: \"Syllabus\"\n      href: Syllabus.pdf\n    - text: \"Lectures\"\n      menu:\n        - text: \"Introduction to NRES 470\"\n          href: INTRO.html\n        - text: \"A whole-systems approach to population ecology\"\n          href: LECTURE1.html\n        - text: \"Introduction to population ecology\"\n          href: LECTURE2.html\n    - text: \"Links\"\n      href: Links.html\n      ",
+    "created" : 1484611099659.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3518244995",
+    "id" : "216CF612",
+    "lastKnownWriteTime" : 1484880010,
+    "last_content_update" : 1484880010341,
+    "path" : "E:/GIT/NRES-470/_site.yml",
+    "project_path" : "_site.yml",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

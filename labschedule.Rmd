@@ -1,0 +1,29 @@
+---
+title: "Lab Schedule"
+author: "NRES 746"
+date: "August 23, 2016"
+output: 
+  html_document: 
+    theme: cerulean
+    toc: no
+    toc_float: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Laboratory Topics 
+The three-hour laboratory period will typically begin with a short presentation by the instructor (perhaps longer if lots of R demonstration is necessary). Students can work on their laptops or can work on the desktop computers provided in the lab classroom. Students can work on labs individually or in groups, but will produce lab “short reports” individually. Groups can be from 2 – 3 people for independent projects. 
+
+
+```{r include=FALSE}
+labSchedule <- read.csv("LabSchedule.csv")
+
+```
+
+```{r results='asis', echo=FALSE}
+knitr::kable(labSchedule,caption="")
+
+```
+

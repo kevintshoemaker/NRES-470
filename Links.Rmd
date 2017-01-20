@@ -1,0 +1,26 @@
+---
+title: "Links"
+author: "NRES 746"
+date: "August 23, 2016"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Please let me know if there are other links that you think should be included on this page!
+
+## Software  
+
+- [InsightMaker- free web-based systems modeling tool](https://insightmaker.com/)    
+- [R- free statistical programming language](https://cran.r-project.org/)
+- [Program MARK](http://warnercnr.colostate.edu/~gwhite/mark/mark.htm)
+
+[Weekly math/bio "Stats chats"](https://kevintshoemaker.github.io/StatsChats/)
+
+

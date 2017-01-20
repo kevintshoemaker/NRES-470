@@ -1,0 +1,47 @@
+Week,Dates,Topic,Text Readings
+Week 1,1/24/17,"LECTURE 1: Course overview, and review: exponential growth, density dependent population regulation","Gotelli Chapters 1,2"
+,1/26/17,"LECTURE 2: A taxonomy of models in ecology (e.g., individual-based models vs population models)",
+,1/27/17,"LAB: Introduction to simulation modeling  in Excel, InsightMaker, and R",
+Week 2,1/31/17,LECTURE 1: Life tables. Age/stage structured population models. ,Gotelli Chapter 3
+,2/2/17,LECTURE 2: Stochastic processes- environmental and demographic stochasticity,
+,2/3/17,LAB: Life tables (in Excel),
+Week 3,2/7/17,LECTURE 1: Parameter estimation for population ecology: census data,Amstrup et al. Chap. 1
+,2/9/17,LECTURE 2: Data needs for population ecology: capture-recapture,"Cooch and White Chaps 1,2"
+,2/10/17,LAB: Estimate survival with open-population capture-recapture (program MARK),
+Week 4,2/14/17,LECTURE 1: Capture-recapture analysis  (continued),"Cooch and White Chaps 3,4"
+,2/16/17,LECTURE 2: Population Viability Analysis,
+,2/17/17,LAB: Estimate survival with open-population capture-recapture (program MARK) (continued),
+Week 5,2/21/17,LECTURE 1: Population Viability Analysis (continued),Brook et al. 2006
+,2/23/17,LECTURE 2: MIDTERM #1,Beissinger and Westphal 1998
+,2/24/17,"LAB: PVA: Construct density-regulated, stochastic population model in R",
+Week 6,2/28/17,LECTURE 1: Detecting density dependence in natural populations ,Regan et al 2002
+,3/2/17,"LECTURE 2: Assessing model performance and handling model uncertainty (e.g., sensitivity analysis, cross-validation)",Akçakaya et al 2005
+,3/3/17,"LAB: PVA lab (continued): scenario testing, sensitivity analysis",
+Week 7,3/7/17,"LECTURE 1: Mitigating threats to populations: ""declining population paradigm""",Gotelli Chapter 4
+,3/9/17,LECTURE 2: Metapopulations ,Caughley 1988
+,3/10/17,LAB: Metapopulation modeling in R ,
+Week 8,3/14/17,"LECTURE 1: Data needs for population ecology: Presence-absence data, presence-only data.",Mackenzie 2005
+,3/16/17,LECTURE 2: Site-occupancy models,Knapp et al. 2003
+,3/17/17,LAB: Metapopulation modeling in R (continued),
+Week 9,3/21/17,LECTURE 1: Modeling habitat suitability: species distribution models,Elith and Leathwick. 2009
+,3/23/17,LECTURE 2: Modeling habitat: defining patches and populations,Larson et al. 2004
+,3/24/17,LAB: Species Distribution Modeling in R. Defining habitat.,
+Week 10,3/28/17,LECTURE 1: Estimating and modeling dispersal processes,Frair et al 2008
+,3/30/17,LECTURE 2: MIDTERM #2,Trakhtenbrot et al. 2005
+,3/31/17,LAB: Species Distribution Modeling in R. Defining habitat (continued). Cross-validation,
+Week 11,4/4/17,LECTURE 1: Estimating and modeling dispersal processes (continued),"Stearns 1992 Chapters 1,2"
+,4/6/17,LECTURE 2: The evolutionary context: life-history theory. ,
+,4/7/17,LAB: Group projects- getting started,
+Week 12,4/11/17,"LECTURE 1: Species interactions: prey-predator models, competition models,","Gotelli Chapters 5,6"
+,4/13/17,"LECTURE 2: Commensalism, mutualism, Parasite-host and disease-host interactions",Nichols et al. (2010)
+,4/14/17,LAB: Modeling disease spread impacts on spatially explicit populations: individual-based models,
+Week 13,4/18/17,LECTURE 1: Modeling disease spread in wildlife populations,Shoemaker et al. 2014
+,4/20/17,"LECTURE 2: Invasive species, reintroductions, assisted colonization",Hoegh-Goldberg et al 2008
+,4/21/17,LAB: Group projects,
+Week 14,4/25/17,LECTURE 1: Case study: assessing the species-level impact of climate change,Pearson and Dawson (2003)
+,4/27/17,LECTURE 2: Case study: assessing the species-level impact of climate change,Keith et al (2008)
+,4/28/17,LAB: Group projects,
+Week 15,5/2/17,LECTURE 1: Student presentations,
+,5/4/17,LECTURE 2: Student presentations,
+,5/5/17,LAB: Student presentations / review for final,
+Week 16,TBD,FINAL EXAM,

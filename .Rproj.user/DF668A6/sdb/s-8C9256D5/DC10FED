@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Intro to NRES 470/670\"\noutput: \n  html_document: \n    theme: spacelab\n    toc: yes\n    toc_float: yes\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n\n![](prairie_dogs2.jpg)    \n\n## Summary\n\nIn this class we will explore how the concepts of population ecology can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart's class in wildlife ecology and management (NRES 310). This class is in some ways a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers Program MARK in detail. This class is closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers -- quantitative population and habitat models!    \n\n## Syllabus:\nFirst let's take a walk through the online syllabus:\n\n[Go to syllabus](index.html)\n[Go to schedule](schedule.html)\n\n## Final projects\nIt is never too early to start thinking about final project ideas and datasets. I will begin compiling a list of online databases that you could use for your projects (e.g., [GBIF](gbif.org)) that I will post to the course website.  \n\n## Making up classes and labs\nLectures and laboratory exercises will be posted online in enough detail to complete and study on your own time. That said, much of the benefit of this course will come from interactions with peers and the instructor during class and lab periods and I expect you to do your best to be a full participant in this class.  \n\nSpeaking of which...\n\n## Introductions\nLet's take some time go around the room and introduce each other and what we are hoping to get out of this course. \n\nPlease take the time to introduce yourself in more detail on the \"WebCampus\" site -- I posted a question on the discussion board.  \n\nRemember, I need your frequent and honest feedback in order to make sure that the level is appropriate and the topics are useful!\n\n## Textbook\nPlease order the course textbook (A Primer of Ecology, by Nick Gotelli) as soon as possible. You can purchase the textbook on [Amazon](https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&ie=UTF8&qid=1484867155&sr=1-1&keywords=a+primer+of+ecology). All other readings will be posted on WebCampus.  \n\n## Software\nSkills with specialized software and even computer programming is valuable in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with using some specialized tools (e.g., Program MARK) and some computer programming (e.g., InsightMaker, R) and I hope by the end of this class you will understand how powerful and useful these tools can be!\n\nSee the [links page](https://kevintshoemaker.github.io/NRES-470/) for some useful references.\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1484863121343.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1759299974",
+    "id" : "DC10FED",
+    "lastKnownWriteTime" : 1484871034,
+    "last_content_update" : 1484871034469,
+    "path" : "E:/GIT/NRES-470/INTRO.Rmd",
+    "project_path" : "INTRO.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

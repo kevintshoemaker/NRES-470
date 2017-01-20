@@ -1,0 +1,137 @@
+---
+title: "Intro to population ecology"
+author: "NRES 470/670"
+date: "Jan 19, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+![](Human_population_growth_from_1800_to_2000.png)
+
+## Central Questions of Population Ecology
+
+-Why are some species more abundant than others?   
+-What causes population densities to vary in space and time?   
+-What causes populations to become extirpated?   
+-How do differences in individual traits and behaviors affect population dynamics?   
+-What processes regulate population dynamics?   
+-Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)   
+-What are the implications for species conservation? Game management?    
+-Maximum sustainable yield   
+-What prevents predator-prey relationships from collapsing?   
+-What factors allow competitors to coexist?   
+
+
+## Exponential growth: the fundamental principle of population ecology
+
+![](puffball1.png)
+
+Giant puffballs produce 7 trillion offspring in one reproductive event
+... If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!
+
+The reason? Populations grow geometrically, a process called **exponential growth**. This is the most basic concept in population ecology. 
+
+
+
+
+## Mathematics and Population Ecology
+
+"Mathematics seems to endow one with a new sense."    
+  - Charles Darwin   
+  
+“Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown.”   
+  - Charles Elton, in reference to a work by Alfred Lotka   
+
+The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated, and we look forward to seeing the further volumes of Lotka’s studies.       
+  - Charles Elton    
+  
+  
+## Population ecology is central to many of the most pressing questions in modern day ecology
+
+-What are the evolutionary consequences of species becoming less connected through fragmentation or more connected through globalization?   
+-What are the relative contributions of different levels of selection (gene, individual, group) to life-history evolution and the resulting population dynamics?   
+-How do the strength and form of density dependence inﬂuence feedbacks between population dynamics and life-history evolution?    
+-What are the evolutionary and ecological mechanisms that govern species’ range margins?       
+-How can we upscale detailed processes at the level of individuals into patterns at the population scale?    
+-How do species and population traits and landscape conﬁguration interact to determine realized dispersal distances?    
+-Do different demographic rates vary predictably over different spatial scales, and how do they then combine to inﬂuence spatio-temporal population dynamics?    
+-How does demographic and spatial structure modify the effects of environmental stochasticity on population dynamics?    
+-How does environmental stochasticity and environmental change interact with density dependence to generate population dynamics and species distributions?    
+-To what degree do trans-generational effects on life histories, such as maternal effects, impact on population dynamics?    
+-What are the magnitudes and durations of carry-over effects of previous environmental experiences on an individual’s subsequent life history and consequent population dynamics?    
+-What causes massive variability in recruitment in some marine systems?    
+-How does covariance among life-history traits affect their contributions to population dynamics?    
+-What is the relative importance of direct (consumption, competition) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?    
+-How important is individual variation to population, community and ecosystem dynamics?    
+-What demographic traits determine the resilience of natural populations to disturbance and perturbation?    
+-In what ecological settings are parasites key regulators of population dynamics?    
+-How does species loss affect the extinction risk of the remaining species?    
+-How important are dynamical extinction-recolonization equilibria to the persistence of species assemblages in fragmented landscapes?    
+-How do resource pulses affect resource use and interactions between organisms?    
+-How important are rare species in the functioning of ecological communities?    
+-What is the magnitude of the ‘extinction debt’ following the loss and fragmentation of natural habitats, and when will it be paid?    
+-To what extent will climate change uncouple trophic links due to phenological change?    
+-How do natural populations and communities respond to increased frequencies of extreme weather events predicted under global climate change?    
+-In the face of rapid environmental change, what determines whether species adapt, shift their ranges or go extinct?    
+-What determines the rate at which species distributions respond to climate change?    
+-Under what circumstances do landscape structures such as corridors and stepping stones play important roles in the distribution and abundance of species?    
+-How do interspeciﬁc interactions affect species responses to global change?    
+-To what extent are widely studied ecological patterns (species-abundance distribution, species-area relationship, etc.) the outcomes of statistical rather than ecological processes?    
+-How much does modelling feedbacks from the observation process, such as the responses of organisms to data collectors, improve our ability to infer ecological processes?    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

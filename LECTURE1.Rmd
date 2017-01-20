@@ -1,0 +1,99 @@
+---
+title: "A whole-systems approach to population ecology"
+author: "NRES 470/670"
+date: "Jan 19, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+![](FoodWeb1.jpg)
+
+## Systems ecology: a way of thinking   
+Ecology is messy. When we work in nature, we are dealing with *inherently complex systems*. _All elements in a natural system are connected_, full of dynamic interactions. Interactions among organisms, between organisms and their environment to meet basic needs -- these linkages are what makes ecology messy, but also endlessly fascinating. 
+
+We can think of humans as just another element in these complex systems. And wildlife conservation and mangement is the task of manipulating or tweaking these linkages to meet societal objectives for natural systems.  
+
+This is not a systems ecology class! 
+
+BUT, systems ecology provides a great framework for thinking about natural populations and how to manage them. 
+
+## Emergent properties
+This is one of the most powerful ideas in whole-systems thinking -- when you put many interacting parts together, systems often behave in new and unexpected ways! 
+
+Take a classic predator-prey system...
+
+[Insightmaker Lynx-Hare example](https://insightmaker.com/insight/68437/)  
+
+This is a classic example in population ecology, which we will revisit- but for now it serves as an example of an interacting system that exhibits an emergent property -- regular oscillations!  
+
+And here's a more abstract example that illustrates some cool emergent properties.
+
+[Lorenz attractor](https://insightmaker.com/insight/1829/Lorenz-Attractor)
+
+[Lorenz attractor video!](https://www.youtube.com/watch?v=iu4RdmBVdps)
+
+## InsightMaker: a modeling framework for systems thinking!
+
+[InsightMaker](insightmaker.com) is a flexible web-based software for defining interacting systems and for modeling the behavior of these systems. 
+
+Both of the above examples were made in InsightMaker.
+
+We will make extensive use of InsightMaker, both in class and in lab- this will give you a chance to play around with complex systems!
+
+## Computer programming and systems thinking
+
+Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result computational algorithms are a critical component to modern whole-systems analysis, including **ecosystems** analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available.  **In this course, we will learn to harness the power of computer programming for understanding and managing natural populations**.  
+
+By the end of this course, students will have the ability to program their own whole-systems models in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK)
+
+**The course motto**: *Get messy*!  Don't be afraid to be wrong- that attitude is the enemy of successful computer programming, and therefore the enemy of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! 
+
+Of course, getting messy means not just reading and listening to lectures, it means learning by doing! Instructor-led lectures will be kept to a minimum, and we will spend significant class time and lab time on our computers, working through problems.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

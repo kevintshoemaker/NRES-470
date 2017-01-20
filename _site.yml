@@ -1,0 +1,22 @@
+name: "NRES_470/670"
+output_dir: "."
+navbar:
+  title: "NRES 470/670"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Schedule"
+      href: schedule.html
+    - text: "Syllabus"
+      href: Syllabus.pdf
+    - text: "Lectures"
+      menu:
+        - text: "Introduction to NRES 470"
+          href: INTRO.html
+        - text: "A whole-systems approach to population ecology"
+          href: LECTURE1.html
+        - text: "Introduction to population ecology"
+          href: LECTURE2.html
+    - text: "Links"
+      href: Links.html
+      
