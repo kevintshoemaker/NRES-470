@@ -102,15 +102,41 @@ Feedbacks occur when the inflows and outflows (e.g., births and deaths) depend u
 
 Feedbacks are what lead to complex ("interesting") system behaviors.  
 
-A positive feedback (often called a "vicious circle") leads to exponential growth, leading often to craziness!
+A reinforcing, or **positive feedback** (often called a "vicious circle") leads to _exponential growth_, leading often to craziness! If you don't understand this yet, you will see soon enough!
 
-A negative feedback is stabilizing, leading to nice regulated systems (and homeostasis in organismal biology!).
+A **negative feedback** is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!).
 
 In the previous in-class exercise the model structure produced straight line growth as the [Flow] added to the [Stock].
 
-1) What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?  
+1. What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?  
 
 Let's model this to better understand this process. 
+
+This model adds a **feedback** using a [Link] from the [Stock] to the [Flow]. The [Link] communicates the value of the [Stock] to the [Flow]. A [Link] only communicates value, it doesn't change the value of the [Stock] (that is what a [Flow] does).
+
+2. Open InsightMaker. Create an accumulator with a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and name them [Stock] and [Flow] for now.  
+
+3. If you mouse over a [Stock] or a [Flow] a small [$=$ Sign] will appear. If you click this it will open the [Equation] window where you can set values. Open this window for the [Stock], enter a value of 1, then close the window.
+
+4. The value of the [factor] is communicated to the [Flow] with a [Link]. To create a link, click [Link] in the Connections part of the toolbar. When you mouse over the [Stock] click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the [Shift Key] and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn't directly on the [Flow]. Create a few more nodes on the [Link] and move them to create something more like a curve.
+
+5. Usually there is some type of factor governing the rate the [Stock] influences the [Flow]. Let's introduce a variable named [factor]. To create a variable, right-click on the canvas and select [Variable] from the drop-down. While the [Variable] is still selected rename it [factor]. Now draw a [Link] from [factor] to [Flow]. Open the [Equation] window for [factor] and set it to 0.5. 
+
+6. Open the [Equation] window for [Flow] and set it to [Stock]*[factor].That is, the rate of inflow into the [Stock] is equal to the value of [Stock] multiplied by the value of [factor].
+
+7. Now you're going to add the [Link] from the [Stock] to [Flow]. 
+
+8. Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model.
+
+9. Finally, if [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of [factor]? Rename your variables accordingly and change the parameters to make the more biologically realistic. Run the simulation again. 
+
+Starting with [Stock] = 1 and [Flow] = [Stock] the value of [Stock] grows slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
+
+10. Just like in the last exercise, set the "Show Value Slider" to Yes for all stocks and flows. Now you can play around with the values, re-running the simulation each time. Think about question 1 while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities. Pick 2 or more of these and try it out!
+
+
+And just for fun, here is a [video](https://www.youtube.com/watch?v=DZCm2QQZVYk) about exponential growth you might want to check out..
+
 
 
 
