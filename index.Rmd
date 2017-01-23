@@ -17,15 +17,15 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 **Office**: FA 220E			 		 
 **Phone**: (775) 682-7449			  		
 **Email**: kshoemaker_at_cabnr.unr.edu	
-**Office hours**:     
+**Office hours**:    
 - Shoemaker: Tuesdays from 1 to 3pm (FA 220E)    
 - Walden: Thursdays from 11am to 1pm (FA 235)  
 **Website**: [naes.unr.edu/shoemaker/teaching/NRES-470](http://naes.unr.edu/shoemaker/teaching/NRES-470/index.html)  
 
 ### Course Meeting Times
-**Lecture & Discussion**: T, Th at 9:30am (50 mins) (NOTE: please bring your laptop to class!)
-**Lab**: F at 11am (3 hours)    
-**Office hours** Tues from 1 to 3pm     
+**Lecture & Discussion**: T, Th at 9:30am (50 mins) (NOTE: please bring your laptop to class!)   
+**Lab**: F at 11am (3 hours)      
+**Office hours** Tues from 1 to 3pm      
   
 - Lectures will be held in **OB 203**    
 - Labs will be held in the NRES computer lab (**FA 234**)    
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 - [InsightMaker- free web-based systems modeling tool](https://insightmaker.com/)     
 - [R- free statistical programming language](https://cran.r-project.org/)  
 - [Program MARK](http://warnercnr.colostate.edu/~gwhite/mark/mark.htm)  
-- MS Excel
+- MS Excel (hopefully you already have this or equivalent spreadsheet software on your computer!)
 
 ### Prerequisites    
 - BIOL 314 or NRES 217 (Basic Ecology)  
@@ -59,7 +59,7 @@ This class will explore how concepts of population ecology (e.g., covered in BIO
 ### Grading: 
 The course grade will be based on the following components:
 
-Lab projects (8 projects total)	 25% (80 pts)    
+Lab exercises (8 total)	         25% (80 pts)    
 Final group project              25% (80 pts)    
 Midterm exam # 1 (date TBD)	     12.5% (40 pts)    
 Midterm exam # 2 (date TBD)   	 12.5% (40 pts)    
@@ -78,11 +78,8 @@ Lecture grades will be based primarily on participation and occasional short qui
 ### Labs  
 Lab exercises will focus on applying concepts and methods introduced in lectures, and will involve real data and problems in wildlife conservation and management wherever possible. Graded lab assignments will involve figures, tables, InsightMaker models and R code (when applicable) and responses to questions in short-answer format. Laboratory write-ups will be due the following lab period, unless otherwise specified. 
 
-### Field Trips
-We will be taking 1-2 field trips to collect wildlife population data. One field trip will be full-day, on a weekend: bring breakfast, lunch, and plenty of water. Bring any appropriate gear for spending the day in the field including: binoculars, spotting scopes, and field guides, and wear appropriate clothing for hiking. Be prepared for inclement weather.
-
-### Group project 
-Students will work in groups of ~3-4 people and together address a problem in applied population ecology using real-world data (e.g., collected by a UNR ecology lab). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations. 
+### Final group project 
+Students will work in groups of ~3-4 people to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations. 
 
 ### Graduate credit (for those enrolled in NRES670) 
 Graduate students will be subject to additional expectations in order to receive graduate credit for this course. In particular, graduate student final group projects are expected to be more in-depth than undergraduate group projects. To this end, graduate student presentations will be longer, and project write-ups will be expected to be of publication-quality (and formatted in the style of an appropriate journal). Graduate students will also be expected to achieve a deeper understanding of the course material, and therefore will be assigned additional readings from the scientific literature.
@@ -94,7 +91,7 @@ Missed exams and labs cannot be made up, except in the case of emergencies. If y
 Any student with a disability needing academic adjustments or accommodations is requested to speak with the Disability Resource Center (Thompson Building, Suite 101) as soon as possible to arrange for appropriate accommodations.
 
 ### Statement on Academic Dishonesty
-Cheating, plagiarism or otherwise obtaining grades under false pretenses constitute academic dishonesty according to the code of this university. Plagiarism is using the ideas or words of another person without giving credit to the original source; this includes copying another student in class. Always cite the source of your information. This includes copying or paraphrasing from a book, journal, or unpublished material without giving credit to the author(s), and submitting a term paper that was used in another course. Students who plagiarize will receive a final course grade of F and will be subject to University level disciplinary action.
+Cheating, plagiarism or otherwise obtaining grades under false pretenses constitute academic dishonesty according to the code of this university. Plagiarism is using the ideas or words of another person without giving credit to the original source; this includes copying another student in class. Always cite the source of your information. This includes copying or paraphrasing from a book, journal, or unpublished material without giving credit to the author(s), and submitting a term paper that was used in another course. Academic dishonesty will not be tolerated and penalties can include filing a final grade of "F"; reducing the student's final course grade one or two full grade points; awarding a failing mark on the coursework in question; or requiring the student to retake or resubmit the coursework. For more details, see the [University of Nevada, Reno General Catalog](http://catalog.unr.edu/).
 
 ### Statement on Audio and Video Recording
 Surreptitious or covert video-taping of class or unauthorized audio recording of class is prohibited by law and by Board of Regents policy. This class may be videotaped or audio recorded only with the written permission of the instructor. In order to accommodate students with disabilities, some students may have been given permission to record class lectures and discussions. Therefore, students should understand that their comments during class may be recorded.
@@ -102,12 +99,20 @@ Surreptitious or covert video-taping of class or unauthorized audio recording of
 ### Statement for Academic Success Services
 Your student fees cover usage of the University Math Center [(775) 784-4433], University Tutoring Center [(775) 784-6801], and [University Writing Center (775) 784-6030]. These centers support your classroom learning; it is your responsibility to take advantage of their services.
 
+### This is a safe space
+The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the University’s Equal Opportunity & Title IX Office at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit: http://www.unr.edu/equal-opportunity-title-ix .”
+
 ### Class protocol
 All electronic devices are to be turned off during class unless the instructor gives advance permission.
 
 
 ```{r echo=FALSE, eval=FALSE}
 rmarkdown::render('index.Rmd', 'word_document')
+rmarkdown::render('schedule.Rmd', 'word_document')
+
+
+### Field Trips
+# We will be taking 1-2 field trips to collect wildlife population data. One field trip will be full-day, on a weekend: bring breakfast, lunch, and plenty of water. Bring any appropriate gear for spending the day in the field including: binoculars, spotting scopes, and field guides, and wear appropriate clothing for hiking. Be prepared for inclement weather.
 
 ```
 

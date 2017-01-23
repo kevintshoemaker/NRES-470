@@ -37,27 +37,55 @@ And here's a more abstract example that illustrates some cool emergent propertie
 
 [Lorenz attractor](https://insightmaker.com/insight/1829/Lorenz-Attractor)
 
-[Lorenz attractor video!](https://www.youtube.com/watch?v=iu4RdmBVdps)
-
 ## InsightMaker: a modeling framework for systems thinking!
 
 [InsightMaker](insightmaker.com) is a flexible web-based software for defining interacting systems and for modeling the behavior of these systems. 
 
 Both of the above examples were made in InsightMaker.
 
-We will make extensive use of InsightMaker, both in class and in lab- this will give you a chance to play around with complex systems!
+We will make extensive use of InsightMaker, both in class and in lab- this will give you a chance to play around with complex systems without needing a background in computer programming!
 
 ## Computer programming and systems thinking
 
 Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result computational algorithms are a critical component to modern whole-systems analysis, including **ecosystems** analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available.  **In this course, we will learn to harness the power of computer programming for understanding and managing natural populations**.  
 
-By the end of this course, students will have the ability to program their own whole-systems models in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK)
+By the end of this course, students will have the ability to program their own whole-systems models in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, various **R** packages)
 
-**The course motto**: *Get messy*!  Don't be afraid to be wrong- that attitude is the enemy of successful computer programming, and therefore the enemy of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! 
+**The course motto**: *Get messy*! This might sound funny for a computer-based class. But just as ecological systems are complex and messy, models sometimes get messy. 
+Don't be afraid to model messy systems. And above all, don't be afraid to be wrong- that attitude is the enemy of successful computer programming, and therefore the enemy of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! 
 
-Of course, getting messy means not just reading and listening to lectures, it means learning by doing! Instructor-led lectures will be kept to a minimum, and we will spend significant class time and lab time on our computers, working through problems.
+Of course, getting messy means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time and lab time on our computers, working through problems.
 
 
+
+## In-class Exercise: InsightMaker
+
+A [Stock] of stuff increases over time via what [Flows In]. Imagine our stock represents Moose! [Moose Births] would then be [Flows In] to the population of [Moose] over time. Remember the "over time" part as it's very important.
+
+A [Stock] of stuff decreases over time via what [Flows Out]. For example, [Moose Deaths] could represent [Flows Out] of the population of [Moose].
+
+If the [Flows In] is larger than the [Flows Out] then the [Stock] increases over time. 
+
+If the [Flows Out] is larger than the [Flows In] then the [Stock] decreases over time.
+
+If the [Flows Out] equals the [Flows In] then the exact content of the [Stock] changes over time _though the amount doesn't_.
+
+The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn't change instantaneously, with hand waving, magic, or smoke and mirrors.
+
+1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
+2. Create a new Insight (the button to do this should be obvious!) and clear the demo model. 
+3. Right click in the center of the screen and select [Create Stock] from the popup. Notice that the name is [New Stock] and is selected. Type in a name for what this is an accumulation of. Note the [Configuration Panel] on the right is now for a [Stock]. 
+4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the [Reverse] button in the [Connections] menu. Please do that now. You can name the [Flow] as you wish. Also in the [Configuration Panel] set [Flow Rate] = 1.
+5. Now click [Run Simulation] and you have just finished your first simulation model.
+6. Can you figure out how to change the settings to run the model for 50 years? Try this and click [Run Simulation].
+7. Use the same methods as *step 4* to create a [Flow Out], representing moose deaths. Re-run the model. Is the population increasing or declining? Why? 
+8. Take a few minutes to check out "insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of insights. We can (and will) add to this database as part of this class!
+9. Change the [Configuration Panel] for the [Stock] and for the [Flow In] and [Flow Out] so that "Show Value Slider" is set to "Yes"  
+
+
+Finally, just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!
+
+[Lorenz attractor video!](https://www.youtube.com/watch?v=iu4RdmBVdps)
 
 
 

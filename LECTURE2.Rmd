@@ -17,16 +17,24 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Central Questions of Population Ecology
 
--Why are some species more abundant than others?   
--What causes population densities to vary in space and time?   
--What causes populations to become extirpated?   
--How do differences in individual traits and behaviors affect population dynamics?   
--What processes regulate population dynamics?   
--Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)   
--What are the implications for species conservation? Game management?    
--Maximum sustainable yield   
--What prevents predator-prey relationships from collapsing?   
--What factors allow competitors to coexist?   
+-Ecological
+  -Why are some species more abundant than others?   
+  -What causes population densities to vary in space and time?   
+  -What causes populations to become extirpated? Recolonized?  
+  -What processes regulate population growth?   
+    -Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)
+  -What prevents predator-prey relationships from collapsing?   
+  -What factors allow competitors to coexist?
+  -What factors allow metapopulations to be stable?
+  
+![](White-tailed_deer.jpg)
+
+-Conservation and Management
+  - What is the conservation status of a focal species or population?
+  - How do anthropogenic structures and land uses affect populations?
+  - What is the *Maximum Sustainable Yield* for a focal game species?
+  - How can pest species be most effectively controlled?
+  - What land areas are most important for preserving at-risk populations?
 
 
 ## Exponential growth: the fundamental principle of population ecology
@@ -37,8 +45,6 @@ Giant puffballs produce 7 trillion offspring in one reproductive event
 ... If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!
 
 The reason? Populations grow geometrically, a process called **exponential growth**. This is the most basic concept in population ecology. 
-
-
 
 
 ## Mathematics and Population Ecology
@@ -85,6 +91,26 @@ The importance of the method is this: if we know certain variables, mostly desir
 -How do interspeciﬁc interactions affect species responses to global change?    
 -To what extent are widely studied ecological patterns (species-abundance distribution, species-area relationship, etc.) the outcomes of statistical rather than ecological processes?    
 -How much does modelling feedbacks from the observation process, such as the responses of organisms to data collectors, improve our ability to infer ecological processes?    
+
+
+![](positivefeedback1.gif)
+
+## In-class Exercise: Feedbacks
+
+
+Feedbacks occur when the inflows and outflows (e.g., births and deaths) depend upon the value of the stock (e.g., a wildlife population!). 
+
+Feedbacks are what lead to complex ("interesting") system behaviors.  
+
+A positive feedback (often called a "vicious circle") leads to exponential growth, leading often to craziness!
+
+A negative feedback is stabilizing, leading to nice regulated systems (and homeostasis in organismal biology!).
+
+In the previous in-class exercise the model structure produced straight line growth as the [Flow] added to the [Stock].
+
+1) What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?  
+
+Let's model this to better understand this process. 
 
 
 

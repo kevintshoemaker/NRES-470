@@ -24,4 +24,3 @@ courseSchedule <- read.csv("CourseSchedule.csv")
 knitr::kable(courseSchedule,caption="")
 
 ```
-
