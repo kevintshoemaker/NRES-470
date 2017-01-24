@@ -357,28 +357,46 @@ div.tocify {
 - Charles Darwin</p>
 <p>“Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown.”<br />
 - Charles Elton, in reference to a work by Alfred Lotka</p>
+<div class="figure">
+<img src="1976_Elton.jpg" />
+
+</div>
 <p>The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated, and we look forward to seeing the further volumes of Lotka’s studies.<br />
 - Charles Elton</p>
 </div>
 <div id="population-ecology-is-central-to-many-of-the-most-pressing-questions-in-modern-day-ecology" class="section level2">
 <h2>Population ecology is central to many of the most pressing questions in modern day ecology</h2>
-<p>-What are the evolutionary consequences of species becoming less connected through fragmentation or more connected through globalization?<br />
--What are the relative contributions of different levels of selection (gene, individual, group) to life-history evolution and the resulting population dynamics?<br />
--How do the strength and form of density dependence inﬂuence feedbacks between population dynamics and life-history evolution?<br />
--What are the evolutionary and ecological mechanisms that govern species’ range margins?<br />
--How can we upscale detailed processes at the level of individuals into patterns at the population scale?<br />
--How do species and population traits and landscape conﬁguration interact to determine realized dispersal distances?<br />
--Do different demographic rates vary predictably over different spatial scales, and how do they then combine to inﬂuence spatio-temporal population dynamics?<br />
--How does demographic and spatial structure modify the effects of environmental stochasticity on population dynamics?<br />
--How does environmental stochasticity and environmental change interact with density dependence to generate population dynamics and species distributions?<br />
--To what degree do trans-generational effects on life histories, such as maternal effects, impact on population dynamics?<br />
--What are the magnitudes and durations of carry-over effects of previous environmental experiences on an individual’s subsequent life history and consequent population dynamics?<br />
--What causes massive variability in recruitment in some marine systems?<br />
--How does covariance among life-history traits affect their contributions to population dynamics?<br />
--What is the relative importance of direct (consumption, competition) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?<br />
--How important is individual variation to population, community and ecosystem dynamics?<br />
--What demographic traits determine the resilience of natural populations to disturbance and perturbation?<br />
--In what ecological settings are parasites key regulators of population dynamics?<br />
+<p>These questions are from <a href="http://onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025/full">Sutherland et al. 2012</a>. This paper is on WebCampus (optional). Of course there are many more interesting questions- limited only by your imagination.</p>
+<p>You may not understand all these questions now- we will revisit this list at the end of the semester!</p>
+<div class="figure">
+<img src="Fragmentation1.jpg" />
+
+</div>
+<p>-What are the evolutionary consequences of species becoming less connected through <strong>fragmentation</strong> or more connected through globalization?</p>
+<div class="figure">
+<img src="Juniperus_range_map.gif" />
+
+</div>
+<p>-What are the evolutionary and ecological mechanisms that govern species’ <strong>range margins</strong>?</p>
+<p>-How does <strong>environmental stochasticity</strong> and environmental change interact with density-dependence to generate population dynamics and species distributions?</p>
+<p>-How can we upscale detailed processes at the level of individuals into patterns at the population scale?</p>
+<p>-How important is <strong>individual variation</strong> to population, community and ecosystem dynamics?</p>
+<p>-How do species and population traits and landscape conﬁguration interact to determine realized <strong>dispersal distances</strong>?</p>
+<p>-To what degree do trans-generational effects on life histories, such as <strong>maternal effects</strong>, impact on population dynamics?</p>
+<p>-How does covariance among life-history traits affect their contributions to population dynamics?</p>
+<div class="figure">
+<img src="Wolves_and_bones.jpg" />
+
+</div>
+<p>-What is the relative importance of direct (<strong>predation, competition</strong>) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?</p>
+<div class="figure">
+<img src="Gopherus_agassizii.jpg" />
+
+</div>
+<p>-What demographic traits determine the resilience of natural populations to disturbance and perturbation?</p>
+<div id="and-many-more" class="section level4">
+<h4>And many more!</h4>
+<p>-In what ecological settings are parasites key regulators of population dynamics?<br />
 -How does species loss affect the extinction risk of the remaining species?<br />
 -How important are dynamical extinction-recolonization equilibria to the persistence of species assemblages in fragmented landscapes?<br />
 -How do resource pulses affect resource use and interactions between organisms?<br />
@@ -397,17 +415,34 @@ div.tocify {
 
 </div>
 </div>
+</div>
 <div id="in-class-exercise-feedbacks" class="section level2">
 <h2>In-class Exercise: Feedbacks</h2>
 <p>Feedbacks occur when the inflows and outflows (e.g., births and deaths) depend upon the value of the stock (e.g., a wildlife population!).</p>
 <p>Feedbacks are what lead to complex (“interesting”) system behaviors.</p>
-<p>A positive feedback (often called a “vicious circle”) leads to exponential growth, leading often to craziness!</p>
-<p>A negative feedback is stabilizing, leading to nice regulated systems (and homeostasis in organismal biology!).</p>
+<p>A reinforcing, or <strong>positive feedback</strong> (often called a “vicious circle”) leads to <em>exponential growth</em>, leading often to craziness! If you don’t understand this yet, you will see soon enough!</p>
+<p>A <strong>negative feedback</strong> is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!).</p>
 <p>In the previous in-class exercise the model structure produced straight line growth as the [Flow] added to the [Stock].</p>
 <ol style="list-style-type: decimal">
 <li>What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?</li>
 </ol>
 <p>Let’s model this to better understand this process.</p>
+<p>This model adds a <strong>feedback</strong> using a [Link] from the [Stock] to the [Flow]. The [Link] communicates the value of the [Stock] to the [Flow]. A [Link] only communicates value, it doesn’t change the value of the [Stock] (that is what a [Flow] does).</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Open InsightMaker. Create an accumulator with a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and name them [Stock] and [Flow] for now.</p></li>
+<li><p>If you mouse over a [Stock] or a [Flow] a small [<span class="math inline">\(=\)</span> Sign] will appear. If you click this it will open the [Equation] window where you can set values. Open this window for the [Stock], enter a value of 1, then close the window.</p></li>
+<li><p>The value of the [factor] is communicated to the [Flow] with a [Link]. To create a link, click [Link] in the Connections part of the toolbar. When you mouse over the [Stock] click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the [Shift Key] and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn’t directly on the [Flow]. Create a few more nodes on the [Link] and move them to create something more like a curve.</p></li>
+<li><p>Usually there is some type of factor governing the rate the [Stock] influences the [Flow]. Let’s introduce a variable named [factor]. To create a variable, right-click on the canvas and select [Variable] from the drop-down. While the [Variable] is still selected rename it [factor]. Now draw a [Link] from [factor] to [Flow]. Open the [Equation] window for [factor] and set it to 0.5.</p></li>
+<li><p>Open the [Equation] window for [Flow] and set it to [Stock]*[factor].That is, the rate of inflow into the [Stock] is equal to the value of [Stock] multiplied by the value of [factor].</p></li>
+<li><p>Now you’re going to add the [Link] from the [Stock] to [Flow].</p></li>
+<li><p>Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model.</p></li>
+<li><p>Finally, if [Stock] is a population – say, rabbits – then what is the interpretation of [Flow]? What is the interpretation of [factor]? Rename your variables accordingly and change the parameters to make the more biologically realistic. Run the simulation again.</p></li>
+</ol>
+<p>Starting with [Stock] = 1 and [Flow] = [Stock] the value of [Stock] grows slowly at first and then very rapidly. This is referred to as <em>exponential growth</em>. If you’ve read the first chapter of the Gotelli book, you will recognize this as the <em>foundational concept of population ecology</em>!</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Just like in the last exercise, set the “Show Value Slider” to Yes for all stocks and flows. Now you can play around with the values, re-running the simulation each time. Think about question 1 while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities. Pick 2 or more of these and try it out!</li>
+</ol>
+<p>And just for fun, here is a <a href="https://www.youtube.com/watch?v=DZCm2QQZVYk">video</a> about exponential growth you might want to check out..</p>
 </div>
 
 
