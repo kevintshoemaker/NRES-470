@@ -1,0 +1,189 @@
+---
+title: "Lab 1: exponential growth"
+author: "NRES 470/670"
+date: "Jan 24, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+In this lab we will have an opportunity to play around with the three main software packages we will use in this course: MS Excel, R, and InsightMaker. 
+
+## Nomenclature for Population Ecology
+
+First of all, we need a symbol to represent the population size. This is $N$!
+
+$\Delta N$ represents the change in population size, ${N_{t+1}}-{N_t}$
+
+The famous "BIDE" equation is a way to break down $\Delta N$ into components. 
+
+$\Delta N = B + I - D - E$                           (Eq. 1)
+
+where $B$ represents the number of births, $I$ reprents the number of immigrants, $D$ represents the number of deaths, and $E$ represents the number of emigrants. 
+
+If we ignore immigration and emigratrion, then the BIDE equation simplifies to:
+
+$\Delta N = B - D$                                   (Eq. 2)
+
+Now let's focus on $B$ and $D$. The important thing to recognize is that the number of births and deaths in a population is not constant. 
+
+What does the number of births depend on? 
+
+What **is** more likely to be constant is the per-capita rate of producing offspring, or dying. Does this make sense? These per-capita rates are often expressed as lower case letters. So $b$  represents per-capita births, and $d$ represents per-capita deaths. 
+
+$b = \frac {B_t}{N_t}$                              (Eq. 3)
+
+--or--
+
+$B_t = b \cdot N_t$
+
+The letter $t$ of course represents time, which could be years, or minutes, or decades, or whatever! So the above equation could be described as follows: "the number of births at a given time is equal to the per-capita birth rate times the total population size at that time"
+
+Similarly, 
+
+$D_t = d \cdot N_t$                                 (Eq. 4)
+
+Okay, we're almost there.
+
+If $\Delta N = B - D$                               (Eq. 5)
+
+then
+
+$\Delta N = b \cdot N_t - d \cdot N_t$                 (Eq. 6)
+
+which is equal to 
+
+$\Delta N = (b - d) \cdot N_t$                       (Eq. 7)
+
+which could also be written:
+
+$\Delta N = r \cdot N_t$                           (Eq. 8)
+
+Where $r$ represents the difference between births and deaths. If $r$ is positive, then births are greater than deaths and the population grows. If $r$ is negative then deaths exceed births and the population declines. 
+
+We can use *calculus notation* to consider the instantaneous change in population size:
+
+$\frac{\partial N}{\partial t} = r \cdot N$             (Eq. 9)
+
+This is probably the most fundamental equation of population ecology. 
+
+If you integrate this equation, you get an equation that describes the population size at any time $t$:
+
+$N_t = N_0 e^{rt}$                               (Eq. 10)
+
+That is, population size at time $t$ is equal to the population size at time zero (initial abundance) multiplied by the root of the natural logarithm, $e$ to the $rt$ power. 
+
+There you have it! Now you can compute population growth!
+
+A couple more quick notes:
+
+The greek symbol lambda ($\lambda$), is used to represent the finite rate of growth, or $\frac {N_{t+1}}{N_t}$. Lambda is what you multiply the current population size by to compute the population size in the next time step. Sometimes this is also called "big-R", or $R$. 
+
+$N_{t+1}=N_t + B - D$                                       (Eq. 11)
+
+$N_{t+1}=N_t + b \cdot N_t - d \cdot N_t$                   (Eq. 12)
+
+$N_{t+1}=N_t + (b - d) \cdot N_t$                         (Eq. 13)
+
+$N_{t+1}=N_t + r \cdot N_t$                                 (Eq. 14)
+
+$N_{t+1}=N_t \cdot (1 + r)$                                (Eq. 15)
+
+$N_{t+1}=\lambda \cdot N_t$                                 (Eq. 16)
+
+
+Okay now that we got that over with let's start the lab. The first software we will use is our old friend, Excel!
+
+## Exponential growth in Excel
+
+1.	Open the Excel spreadsheet [ExpGrowthExcel.xlsx](ExpGrowthExcel.xlsx). In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size ($N_0$) of 100 individuals.  We also have a per-capita rate of increase ($r$) that is currently set at 0.1.
+
+
+2.	To generate $N_t$ for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), typing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the “functions bar”
+ 
+
+3.	You can fill the remainder of the cells using the same equation for the other time steps by clicking and dragging the small square at the bottom of the N(2) cell that appears when the cell is selected.
+ 
+
+4.	What happened?  We are not seeing a growing population here- actually it seems quite flat… this is surely not what we want!  Click on the N(3) cell to see what equation is being used to calculate the cell value.  The equation is B3*(1+D4).  The B3 part is correct – we want to calculate the N(3) population size using the $N$ from the previous timestep – but the D4 part is incorrect.  We always want to use the same $r$ which is always in the same cell.  You can see that when you drag down an equation as we have done, Excel adds 1 for each row so that the equation references the same relative positions in the spreadsheet for each new cell you want to calculate.  We like that Excel did that for $N$, but not for $r$, so we can tell Excel to stay in the same row for $r$ by inserting a dollar sign in our equation.
+
+5.	In the N(2) cell, edit the equation in the “functions bar” so that there is a dollar sign in D3 (or just use the F4 shortcut). 
+ 
+6.	Now drag the equation down again, and you should have a population size in row 31 of 1586.31
+
+7.	Now we will plot our population against time.  Select both columns of data, and select the scatter plot under the Insert banner. A plot of N by Time will automatically appear.  You can change the $r$ value, the data and chart will automatically adjust.
+
+### Exercise 1 (Excel-related problems)
+Please provide short answers to the following questions, and provide your Excel spreadsheet to back up your answers.  
+
+a. Apply equation 10 (above) to compute expected population size in year 30. Do you get the same answer? Why or why not?  What about year 100?  
+
+b. What are the *units* of the per-capita rate of population growth, $r$? What if the time step were months instead of years? Would $r$ change? Try it! Use both methods (eq 15 vs equation 10) to compute population size in year 30. Do you see any difference? Is the difference than it was with a 1-year time step. Why or why not? 
+
+c. What is the difference between continuous population growth and discrete population growth? Can you think of at least one case where continuous and discrete growth (respectively) would be a more biologically realistic model than the other? Explain.
+
+
+## Exponential growth in R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

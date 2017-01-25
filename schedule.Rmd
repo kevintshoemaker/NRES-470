@@ -17,7 +17,6 @@ Becuase this is the first time this course is being taught, this schedule is hig
 
 ```{r include=FALSE}
 courseSchedule <- read.csv("CourseSchedule.csv")
-
 ```
 
 ```{r results='asis', echo=FALSE}
