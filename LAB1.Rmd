@@ -23,13 +23,13 @@ $\Delta N$ represents the change in population size, ${N_{t+1}}-{N_t}$
 
 The famous "BIDE" equation is a way to break down $\Delta N$ into components. 
 
-$\Delta N = B + I - D - E$                           (Eq. 1)
+$\Delta N = B + I - D - E \qquad \text{(Eq. 1)}$
 
 where $B$ represents the number of births, $I$ reprents the number of immigrants, $D$ represents the number of deaths, and $E$ represents the number of emigrants. 
 
 If we ignore immigration and emigratrion, then the BIDE equation simplifies to:
 
-$\Delta N = B - D$                                   (Eq. 2)
+$\Delta N = B - D \qquad \text{(Eq. 2)}$
 
 Now let's focus on $B$ and $D$. The important thing to recognize is that the number of births and deaths in a population is not constant. 
 
@@ -37,7 +37,7 @@ What does the number of births depend on?
 
 What **is** more likely to be constant is the per-capita rate of producing offspring, or dying. Does this make sense? These per-capita rates are often expressed as lower case letters. So $b$  represents per-capita births, and $d$ represents per-capita deaths. 
 
-$b = \frac {B_t}{N_t}$                              (Eq. 3)
+$b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}$
 
 --or--
 
@@ -47,35 +47,35 @@ The letter $t$ of course represents time, which could be years, or minutes, or d
 
 Similarly, 
 
-$D_t = d \cdot N_t$                                 (Eq. 4)
+$D_t = d \cdot N_t \qquad \text{(Eq. 4)}$
 
 Okay, we're almost there.
 
-If $\Delta N = B - D$                               (Eq. 5)
+If $\Delta N = B - D \qquad \text{(Eq. 5)}$ 
 
 then
 
-$\Delta N = b \cdot N_t - d \cdot N_t$                 (Eq. 6)
+$\Delta N = b \cdot N_t - d \cdot N_t\qquad \text{(Eq. 6)}$
 
 which is equal to 
 
-$\Delta N = (b - d) \cdot N_t$                       (Eq. 7)
+$\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 7)}$
 
 which could also be written:
 
-$\Delta N = r \cdot N_t$                           (Eq. 8)
+$\Delta N = r \cdot N_t\qquad \text{(Eq. 8)}$  
 
 Where $r$ represents the difference between births and deaths. If $r$ is positive, then births are greater than deaths and the population grows. If $r$ is negative then deaths exceed births and the population declines. 
 
 We can use *calculus notation* to consider the instantaneous change in population size:
 
-$\frac{\partial N}{\partial t} = r \cdot N$             (Eq. 9)
+$\frac{\partial N}{\partial t} = r \cdot N  \qquad \text{(Eq. 9)}$ 
 
 This is probably the most fundamental equation of population ecology. 
 
 If you integrate this equation, you get an equation that describes the population size at any time $t$:
 
-$N_t = N_0 e^{rt}$                               (Eq. 10)
+$N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$      
 
 That is, population size at time $t$ is equal to the population size at time zero (initial abundance) multiplied by the root of the natural logarithm, $e$ to the $rt$ power. 
 
@@ -85,17 +85,17 @@ A couple more quick notes:
 
 The greek symbol lambda ($\lambda$), is used to represent the finite rate of growth, or $\frac {N_{t+1}}{N_t}$. Lambda is what you multiply the current population size by to compute the population size in the next time step. Sometimes this is also called "big-R", or $R$. 
 
-$N_{t+1}=N_t + B - D$                                       (Eq. 11)
+$N_{t+1}=N_t + B - D  \qquad \text{(Eq. 11)}$         
 
-$N_{t+1}=N_t + b \cdot N_t - d \cdot N_t$                   (Eq. 12)
+$N_{t+1}=N_t + b \cdot N_t - d \cdot N_t  \qquad \text{(Eq. 12)}$ 
 
-$N_{t+1}=N_t + (b - d) \cdot N_t$                         (Eq. 13)
+$N_{t+1}=N_t + (b - d) \cdot N_t \qquad \text{(Eq. 13)}$       
 
-$N_{t+1}=N_t + r \cdot N_t$                                 (Eq. 14)
+$N_{t+1}=N_t + r \cdot N_t  \qquad \text{(Eq. 14)}$   
 
-$N_{t+1}=N_t \cdot (1 + r)$                                (Eq. 15)
+$N_{t+1}=N_t \cdot (1 + r)  \qquad \text{(Eq. 15)} $         
 
-$N_{t+1}=\lambda \cdot N_t$                                 (Eq. 16)
+$N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 16)}$           
 
 
 Okay now that we got that over with let's start the lab. The first software we will use is our old friend, Excel!
@@ -130,6 +130,110 @@ c. What is the difference between continuous population growth and discrete popu
 
 
 ## Exponential growth in R
+
+R is probably the most common software used by modern ecologists for data analysis and simulation. There is a little bit of a learning curve with R, and I think InsightMaker is better in some ways for teaching this class, but I would be remiss if I didn't introduce you to R. We will do more with R when we get into data analysis!
+
+
+### SET UP
+Log onto computers using your assigned login and initial password (instructor will provide). Open the R software from the program menu or desktop.     
+
+## PROCEDURE  
+### STEP I: Set up R!
+Go to website [http://cran.r-project.org/](http://cran.r-project.org/). This is the source for the free, public-domain R software and where you can access R packages, find help, access the user community, etc. The instructor will walk you through this website and provide some discussion on the R software program.
+
+### STEP II. Take some time to get familiar with R
+Take a quick look at the R manual, [Introduction to R](http://cran.r-project.org/doc/manuals/R-intro.html). To jump into the deep end of the pool, try to implement the steps in Appendix A, located [here](http://cran.r-project.org/doc/manuals/R-intro.html#A-sample-session). You might not understand everything right away, but you have the link, so you can return to this!  
+
+If you already have basic R expertise, this is your opportunity to help your peers to develop the level of comfort and familiarity with R that they will need to perform data analysis and programming tasks in this course.     
+
+Depending on whether you are already familiar with R, you may also find the remainder of this document useful as you work your way through the course (and there are many other good introductory R resources available online... let me know if there is one you particularly like and I will add it to the course website (Links page). As you work your way through this tutorial (on your own pace), please ask the instructor or your peers if you are uncertain about anything. 
+
+### Set up the workspace
+
+The first thing we usually do when we start an R session is we set up the workspace. That is, we load **packages**, assign key parameters and initialize variables. 
+
+In this case, setting up the workspace is easy. We just need to define our parameter of interest - $r$ -, and set up a **vector** to represent the years of interest. 
+
+We can store data in memory by assigning it to an "object" using the assignment operator **<-**. For example, this would assign the object "x" the value of 5. 
+
+```{r eval=FALSE}
+x <- 5
+x
+```
+
+Let's assign our per-capita population growth rate, $r$ (but this could be called anything), and our initial population size to an object called **N0**, and the number of years to simulate.
+
+```{r}
+r <- 0.1
+N0 <- 100
+nyears <- 50
+```
+
+If we want to know what the population size is at the next time step, we can simply multiply N0 by (1+r).
+```{r}
+N0 * (1+r)
+```
+
+How can we find the population size for the next 50 years? Let's first make an object that is a vector of years using the **seq()** or "sequence" function.
+```{r}
+years <- seq(from=0, to=nyears, by=1)
+years
+```
+
+Now, let's build a storage structure to store simulated population size over this time period
+
+```{r}
+N <- numeric(nyears+1)    # make an empty storage vector
+N
+```
+
+
+### Run the simulation!
+
+Then we can use a **for loop** (a very powerful computer programming trick) to automatically generate the population size for each of those years (note the similarity in the equation inside the for loop to Expression 1.15 in Gotelli).
+```{r}
+N[1] <- N0
+lambda <- 1 + r           # (1 + r) is equal to lambda, the finite rate of growth 
+for (i in 2:(nyears+1)){
+  N[i] <- lambda*N[i-1]
+}
+N
+```
+
+
+### Plotting
+
+Let's plot our population size against time. We only want the first 100 data points in N, so we use **indexing** to specify that. You may have noticed the square brackets inside the for loop...
+
+```{r}
+plot(N~years)
+```
+
+### Exercise 2 (R-related problems)
+
+Please provide short answers to the following questions, and provide your R code to back up your answers.
+
+Tweak the above code to run for 100 years. Plot your results. What is the final population size? 
+
+Change r to 0.5 and run again for 100 years (and plot the results). What is the final population size now?
+
+Try to tweak the value of $r$ such that the final population size after 100 years is 1000. What is the value of $r$? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above? 
+
+Change the value of $r$ to -0.1. How long until the population goes extinct? Explain your answer. 
+
+## Exponential growth in InsightMaker
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
