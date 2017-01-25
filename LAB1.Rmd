@@ -217,11 +217,54 @@ Tweak the above code to run for 100 years. Plot your results. What is the final 
 
 Change r to 0.5 and run again for 100 years (and plot the results). What is the final population size now?
 
-Try to tweak the value of $r$ such that the final population size after 100 years is 1000. What is the value of $r$? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above? 
+Try to tweak the value of $r$ such that the final population size after 100 years is 1000. What is the value of $r$? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above? Show your work!
 
 Change the value of $r$ to -0.1. How long until the population goes extinct? Explain your answer. 
 
 ## Exponential growth in InsightMaker
+
+You should already have created a (free) account in [insightmaker](https://insightmaker.com/), and you should already know the basics about how to set up and run a model. 
+
+1.	Click “Create New Insight” to start a new model (click “Clear this Demo” to clear the canvas and have an open workspace). Save the blank model by clicking the Save button.
+
+2.	Create a new [Stock] named *Population* using the “**Add Primitive**” button at top left ("Primitive" is just a computer-sciencey term referring to basic building blocks). You can name the [Stock] and configure it in the properties tab at the right.
+
+![](IM1.png)
+ 
+3.	Change the Initial Value of *Population* to 100.
+
+4.	Create a new [Flow] going from empty space to the primitive *Population* (make sure the **Flow/Transitions** button is activated instead of **Links** at the top, hover over *Population* until an arrow appears, click and drag to create the [Flow], use the **Reverse Connection Direction** button to change the flow direction). Name the flow *Births*.
+
+5.	Create a new [Flow] going from *Population* to empty space. Name the flow *Deaths*.
+
+6.	The model diagram should now look something like this:
+
+![](IM2.png)
+ 
+7.	Change the **Flow Rate** property of *Births* to 0.16 * [Population]. This represents the total number of individuals entering [Population] in each time step.
+
+8.	Change the **Flow Rate** property of *Deaths* to 0.10 * [Population]. This represents the total number of individuals leaving [Population] in each time step.
+
+Can you already tell whether this is a growing or declining population? (just a quick thought question, not part of the written lab!)
+
+9.	Run the model by clicking the **Simulate** button.  We can change how the simulation is run by clicking the **Settings** button (left of Save).  We can also change the settings of how the plot is created by clicking the **Configure** button within the simulation results window.
+
+### Exercise 3 (InsightMaker problems)
+
+Please provide short answers to the following questions, and (when prompted) provide your "Insights" to back up your answers (easiest would just be to share them with me using InsightMaker- we will go over this in class).
+
+First, tweak the above model so that per-capita birth rate (b) and death rate (d) are separate elements of the model (using the "Variable" primitive). Your Insight should look something like this:
+
+![](IM3.png)
+
+To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Margarete. 
+
+Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer. 
+
+The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of **stochasticity** (randomness).  Let’s add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + Rand(-0.05,0.05).  The Rand()  function generates a uniformly distributed random number between the minimum and maximum values provided. This means that in each time step we have a slightly different vital rate.   Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA. 
+
+Is it possible to have a declining population even when *Birth Rate* and *Death Rate* are the same on average? Is it possible to have a declining population when *Birth Rate* is greater than *Death Rate* on average? Explain your reasoning!
+
 
 
 

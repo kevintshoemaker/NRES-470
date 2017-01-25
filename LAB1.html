@@ -23,11 +23,12 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -154,6 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -179,7 +181,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -238,9 +240,8 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
+  font-size: 0.9em;
+  padding-left: 5px;
 }
 
 .tocify .list-group-item {
@@ -477,12 +478,52 @@ N</code></pre>
 <p>Please provide short answers to the following questions, and provide your R code to back up your answers.</p>
 <p>Tweak the above code to run for 100 years. Plot your results. What is the final population size?</p>
 <p>Change r to 0.5 and run again for 100 years (and plot the results). What is the final population size now?</p>
-<p>Try to tweak the value of <span class="math inline">\(r\)</span> such that the final population size after 100 years is 1000. What is the value of <span class="math inline">\(r\)</span>? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above?</p>
+<p>Try to tweak the value of <span class="math inline">\(r\)</span> such that the final population size after 100 years is 1000. What is the value of <span class="math inline">\(r\)</span>? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above? Show your work!</p>
 <p>Change the value of <span class="math inline">\(r\)</span> to -0.1. How long until the population goes extinct? Explain your answer.</p>
 </div>
 </div>
 <div id="exponential-growth-in-insightmaker" class="section level2">
 <h2>Exponential growth in InsightMaker</h2>
+<p>You should already have created a (free) account in <a href="https://insightmaker.com/">insightmaker</a>, and you should already know the basics about how to set up and run a model.</p>
+<ol style="list-style-type: decimal">
+<li><p>Click “Create New Insight” to start a new model (click “Clear this Demo” to clear the canvas and have an open workspace). Save the blank model by clicking the Save button.</p></li>
+<li><p>Create a new [Stock] named <em>Population</em> using the “<strong>Add Primitive</strong>” button at top left (“Primitive” is just a computer-sciencey term referring to basic building blocks). You can name the [Stock] and configure it in the properties tab at the right.</p></li>
+</ol>
+<div class="figure">
+<img src="IM1.png" />
+
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Change the Initial Value of <em>Population</em> to 100.</p></li>
+<li><p>Create a new [Flow] going from empty space to the primitive <em>Population</em> (make sure the <strong>Flow/Transitions</strong> button is activated instead of <strong>Links</strong> at the top, hover over <em>Population</em> until an arrow appears, click and drag to create the [Flow], use the <strong>Reverse Connection Direction</strong> button to change the flow direction). Name the flow <em>Births</em>.</p></li>
+<li><p>Create a new [Flow] going from <em>Population</em> to empty space. Name the flow <em>Deaths</em>.</p></li>
+<li><p>The model diagram should now look something like this:</p></li>
+</ol>
+<div class="figure">
+<img src="IM2.png" />
+
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li><p>Change the <strong>Flow Rate</strong> property of <em>Births</em> to 0.16 * [Population]. This represents the total number of individuals entering [Population] in each time step.</p></li>
+<li><p>Change the <strong>Flow Rate</strong> property of <em>Deaths</em> to 0.10 * [Population]. This represents the total number of individuals leaving [Population] in each time step.</p></li>
+</ol>
+<p>Can you already tell whether this is a growing or declining population? (just a quick thought question, not part of the written lab!)</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Run the model by clicking the <strong>Simulate</strong> button. We can change how the simulation is run by clicking the <strong>Settings</strong> button (left of Save). We can also change the settings of how the plot is created by clicking the <strong>Configure</strong> button within the simulation results window.</li>
+</ol>
+<div id="exercise-3-insightmaker-problems" class="section level3">
+<h3>Exercise 3 (InsightMaker problems)</h3>
+<p>Please provide short answers to the following questions, and (when prompted) provide your “Insights” to back up your answers (easiest would just be to share them with me using InsightMaker- we will go over this in class).</p>
+<p>First, tweak the above model so that per-capita birth rate (b) and death rate (d) are separate elements of the model (using the “Variable” primitive). Your Insight should look something like this:</p>
+<div class="figure">
+<img src="IM3.png" />
+
+</div>
+<p>To enable easy manipulation of these variables, change the <strong>Show Value</strong> Slider option of <em>Birth Rate</em> (in the properties window) to Yes. Change the <strong>Slider Max value</strong> to 1, the <strong>Slider Min value</strong> to 0, and the <strong>Slider Step value</strong> to 0.01. Do the same for <em>Death Rate</em> and <em>Population</em> (initial abundance <span class="math inline">\(N_0\)</span>). Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username “kevintshoemaker”) and Margarete.</p>
+<p>Starting with a growing population, can you come up with two different scenarios in which <em>Population</em> is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer.</p>
+<p>The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of <strong>stochasticity</strong> (randomness). Let’s add some randomness to our vital rates! Change the <strong>Show Value Slider</strong> option of the Birth Rate primitive to No. Change the Equation to 0.1 + Rand(-0.05,0.05). The Rand() function generates a uniformly distributed random number between the minimum and maximum values provided. This means that in each time step we have a slightly different vital rate. Do the same for <em>Death Rate</em>. Run multiple simulations (at least 10) and look for patterns. Use the <strong>Compare Results</strong> tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA.</p>
+<p>Is it possible to have a declining population even when <em>Birth Rate</em> and <em>Death Rate</em> are the same on average? Is it possible to have a declining population when <em>Birth Rate</em> is greater than <em>Death Rate</em> on average? Explain your reasoning!</p>
+</div>
 </div>
 
 
@@ -495,11 +536,8 @@ N</code></pre>
 <script>
 
 // add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
 $(document).ready(function () {
-  bootstrapStylePandocTables();
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
 
 
