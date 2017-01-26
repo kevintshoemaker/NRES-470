@@ -93,7 +93,7 @@ $N_{t+1}=N_t + (b - d) \cdot N_t \qquad \text{(Eq. 13)}$
 
 $N_{t+1}=N_t + r \cdot N_t  \qquad \text{(Eq. 14)}$   
 
-$N_{t+1}=N_t \cdot (1 + r)  \qquad \text{(Eq. 15)} $         
+$N_{t+1}=N_t \cdot (1 + r)  \qquad \text{(Eq. 15)}$         
 
 $N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 16)}$           
 
@@ -105,28 +105,28 @@ Okay now that we got that over with let's start the lab. The first software we w
 1.	Open the Excel spreadsheet [ExpGrowthExcel.xlsx](ExpGrowthExcel.xlsx). In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size ($N_0$) of 100 individuals.  We also have a per-capita rate of increase ($r$) that is currently set at 0.1.
 
 
-2.	To generate $N_t$ for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), typing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the “functions bar”
+2.	To generate $N_t$ for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), typing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the "functions bar".
  
 
 3.	You can fill the remainder of the cells using the same equation for the other time steps by clicking and dragging the small square at the bottom of the N(2) cell that appears when the cell is selected.
  
 
-4.	What happened?  We are not seeing a growing population here- actually it seems quite flat… this is surely not what we want!  Click on the N(3) cell to see what equation is being used to calculate the cell value.  The equation is B3*(1+D4).  The B3 part is correct – we want to calculate the N(3) population size using the $N$ from the previous timestep – but the D4 part is incorrect.  We always want to use the same $r$ which is always in the same cell.  You can see that when you drag down an equation as we have done, Excel adds 1 for each row so that the equation references the same relative positions in the spreadsheet for each new cell you want to calculate.  We like that Excel did that for $N$, but not for $r$, so we can tell Excel to stay in the same row for $r$ by inserting a dollar sign in our equation.
+4.	What happened?  We are not seeing a growing population here- actually it seems quite flat! this is surely not what we want!  Click on the N(3) cell to see what equation is being used to calculate the cell value.  The equation is B3*(1+D4).  The B3 part is correct - we want to calculate the N(3) population size using the $N$ from the previous timestep - but the D4 part is incorrect.  We always want to use the same $r$ which is always in the same cell.  You can see that when you drag down an equation as we have done, Excel adds 1 for each row so that the equation references the same relative positions in the spreadsheet for each new cell you want to calculate.  We like that Excel did that for $N$, but not for $r$, so we can tell Excel to stay in the same row for $r$ by inserting a dollar sign in our equation.
 
-5.	In the N(2) cell, edit the equation in the “functions bar” so that there is a dollar sign in D3 (or just use the F4 shortcut). 
+5.	In the N(2) cell, edit the equation in the "functions bar" so that there is a dollar sign in D3 (or just use the F4 shortcut). 
  
 6.	Now drag the equation down again, and you should have a population size in row 31 of 1586.31
 
-7.	Now we will plot our population against time.  Select both columns of data, and select the scatter plot under the Insert banner. A plot of N by Time will automatically appear.  You can change the $r$ value, the data and chart will automatically adjust.
+7.	Now we will plot our population against time.  Select both columns of data, and select the scatter plot under the Insert banner. A plot of $N$ by Time will automatically appear.  You can change the $r$ value, the data and chart will automatically adjust.
 
 ### Exercise 1 (Excel-related problems)
 Please provide short answers to the following questions, and provide your Excel spreadsheet to back up your answers.  
 
-a. Apply equation 10 (above) to compute expected population size in year 30. Do you get the same answer? Why or why not?  What about year 100?  
+*  ***Short answer (1a.)*** Apply equation 10 (above) to compute expected population size in year 30. Do you get the same answer? Why or why not?  What about year 100?  
 
-b. What are the *units* of the per-capita rate of population growth, $r$? What if the time step were months instead of years? Would $r$ change? Try it! Use both methods (eq 15 vs equation 10) to compute population size in year 30. Do you see any difference? Is the difference than it was with a 1-year time step. Why or why not? 
+*  ***Short answer (1b.)*** What are the *units* of the per-capita rate of population growth, $r$? What if the time step were months instead of years? Would $r$ change? Try it! Use both methods (eq 15 vs equation 10) to compute population size in year 30. Do you see any difference? Is the difference greater or less than it was with a 1-year time step? Why or why not? 
 
-c. What is the difference between continuous population growth and discrete population growth? Can you think of at least one case where continuous and discrete growth (respectively) would be a more biologically realistic model than the other? Explain.
+*  ***Short answer (1c.)*** What is the difference between continuous population growth and discrete population growth? Can you think of at least one case where continuous and discrete growth (respectively) would be a more biologically realistic model than the other? Explain.
 
 
 ## Exponential growth in R
@@ -157,34 +157,34 @@ In this case, setting up the workspace is easy. We just need to define our param
 We can store data in memory by assigning it to an "object" using the assignment operator **<-**. For example, this would assign the object "x" the value of 5. 
 
 ```{r eval=FALSE}
-x <- 5
-x
+x <- 5     #Assign the value of 5 to the object "x"
+x          #Print the value of the object "x"
 ```
 
 Let's assign our per-capita population growth rate, $r$ (but this could be called anything), and our initial population size to an object called **N0**, and the number of years to simulate.
 
 ```{r}
-r <- 0.1
-N0 <- 100
-nyears <- 50
+r <- 0.1     #Assign the value of 0.1 to the object "r"
+N0 <- 100    #Assign the value of 100 to the object "N0"
+nyears <- 50 #Assign the value of 50 to the object "nyears"
 ```
 
 If we want to know what the population size is at the next time step, we can simply multiply N0 by (1+r).
 ```{r}
-N0 * (1+r)
+N0 * (1+r)   #Multiplies the value stored in the object "N0" by 1 plus the value stored in the object "r". As soon as you run this line of code, the result of the calculation is printed.
 ```
 
 How can we find the population size for the next 50 years? Let's first make an object that is a vector of years using the **seq()** or "sequence" function.
 ```{r}
-years <- seq(from=0, to=nyears, by=1)
-years
+years <- seq(from=0, to=nyears, by=1)   #Creates a sequence of numbers from 0 to the value stored in the object "nyears" (in this case, 50). Because you've told this sequence to increase by 1, you've created a string of numbers from 0 - 50 that contains 51 elements. A single series of elements (e.g., a single column of numbers) is called a vector. You then assign this vector to the object "years".
+years                                   #Print the value of the object "years" that you just created.
 ```
 
 Now, let's build a storage structure to store simulated population size over this time period
 
 ```{r}
-N <- numeric(nyears+1)    # make an empty storage vector
-N
+N <- numeric(nyears+1)    #Make an empty storage vector. The numeric() function takes the contents within the parentheses and converts those contents to the "numeric" class. Don't worry if this doesn't make sense -- what you need to know is that the value within the parentheses (in this case, 50+1=51) is used to tell this function how many zeros to create. So, this line of code creates a vector of 51 zeros, and assigns that vector to the object "N".
+N                         #Prints the contents of the object "N".
 ```
 
 
@@ -192,12 +192,12 @@ N
 
 Then we can use a **for loop** (a very powerful computer programming trick) to automatically generate the population size for each of those years (note the similarity in the equation inside the for loop to Expression 1.15 in Gotelli).
 ```{r}
-N[1] <- N0
-lambda <- 1 + r           # (1 + r) is equal to lambda, the finite rate of growth 
-for (i in 2:(nyears+1)){
-  N[i] <- lambda*N[i-1]
-}
-N
+N[1] <- N0                # The brackets [] are used to indicate the position of an element within a vector. This line of code assigns the value of the object "N0" (100) to the first element in the "N" object. Remember, the "N" object is a vector of 51 zeros. Now, the first zero is changed to 100.
+lambda <- 1 + r           # (1 + r) is equal to lambda, the finite rate of growth.  This stores the result of the calculation (1 + 0.1 = 1.1) in the object "lambda".
+for (i in 2:(nyears+1)){  # This for-loop will run through the line of code between the curly brackets {}. "i" is simply the name of a variable (you can use "j", or "k", instead -- any variable name will do). "i" changes each time the loop iterates; basically, it will increase by 1 each time the loop is run, starting at "2" up until the specified maximum number of loops "50+1". 
+  N[i] <- lambda*N[i-1]   # This takes the [ith - 1] element of "N", multiplies that element by the value of lambda, then assigns that calculated result to the [ith] element of "N".
+}                         # This ends the for-loop.
+N                         # Now print the contents of the object "N".
 ```
 
 
@@ -206,28 +206,28 @@ N
 Let's plot our population size against time. We only want the first 100 data points in N, so we use **indexing** to specify that. You may have noticed the square brackets inside the for loop...
 
 ```{r}
-plot(N~years)
+plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "years" is the x variable (independent variable). The tilda "~" stands for "by". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
 ```
 
 ### Exercise 2 (R-related problems)
 
 Please provide short answers to the following questions, and provide your R code to back up your answers.
 
-Tweak the above code to run for 100 years. Plot your results. What is the final population size? 
+*  ***Short answer (2a.)*** Tweak the above code to run for 100 years. Plot your results. What is the final population size? 
 
-Change r to 0.5 and run again for 100 years (and plot the results). What is the final population size now?
+*  ***Short answer (2b.)*** Change r to 0.5 and run again for 100 years (and plot the results). What is the final population size now?
 
-Try to tweak the value of $r$ such that the final population size after 100 years is 1000. What is the value of $r$? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above? Show your work!
+*  ***Short answer (2c.)*** Try to tweak the value of $r$ such that the final population size after 100 years is 1000. What is the value of $r$? After you solve it by trial and error, can you solve this problem analytically using Eq. 10 above? Show your work!
 
-Change the value of $r$ to -0.1. How long until the population goes extinct? Explain your answer. 
+*  ***Short answer (2d.)*** Change the value of $r$ to -0.1. How long until the population goes extinct? Explain your answer. 
 
 ## Exponential growth in InsightMaker
 
 You should already have created a (free) account in [insightmaker](https://insightmaker.com/), and you should already know the basics about how to set up and run a model. 
 
-1.	Click “Create New Insight” to start a new model (click “Clear this Demo” to clear the canvas and have an open workspace). Save the blank model by clicking the Save button.
+1.	Click "Create New Insight" to start a new model (click "Clear this Demo" to clear the canvas and have an open workspace). Save the blank model by clicking the "Save" button.
 
-2.	Create a new [Stock] named *Population* using the “**Add Primitive**” button at top left ("Primitive" is just a computer-sciencey term referring to basic building blocks). You can name the [Stock] and configure it in the properties tab at the right.
+2.	Create a new [Stock] named *Population* using the "**Add Primitive**" button at top left ("Primitive" is just a computer-sciencey term referring to basic building blocks). You can name the [Stock] and configure it in the properties tab at the right.
 
 ![](IM1.png)
  
@@ -241,9 +241,9 @@ You should already have created a (free) account in [insightmaker](https://insig
 
 ![](IM2.png)
  
-7.	Change the **Flow Rate** property of *Births* to 0.16 * [Population]. This represents the total number of individuals entering [Population] in each time step.
+7.	Change the **Flow Rate** property of *Births* to 0.16 $*$ [Population]. This represents the total number of individuals entering [Population] in each time step.
 
-8.	Change the **Flow Rate** property of *Deaths* to 0.10 * [Population]. This represents the total number of individuals leaving [Population] in each time step.
+8.	Change the **Flow Rate** property of *Deaths* to 0.10 $*$ [Population]. This represents the total number of individuals leaving [Population] in each time step.
 
 Can you already tell whether this is a growing or declining population? (just a quick thought question, not part of the written lab!)
 
@@ -257,15 +257,52 @@ First, tweak the above model so that per-capita birth rate (b) and death rate (d
 
 ![](IM3.png)
 
-To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Margarete. 
+To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Margarete (username "Margarete"). 
 
-Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer. 
+*  ***Short answer (3a.)*** Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer. 
 
-The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of **stochasticity** (randomness).  Let’s add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + Rand(-0.05,0.05).  The Rand()  function generates a uniformly distributed random number between the minimum and maximum values provided. This means that in each time step we have a slightly different vital rate.   Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA. 
+The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don't grow in this manner because of **stochasticity** (randomness).  Let's add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + Rand(-0.05,0.05).  The Rand()  function generates a uniformly distributed random number between the minimum and maximum values provided. This means that in each time step we have a slightly different vital rate.   Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA. 
 
-Is it possible to have a declining population even when *Birth Rate* and *Death Rate* are the same on average? Is it possible to have a declining population when *Birth Rate* is greater than *Death Rate* on average? Explain your reasoning!
+*  ***Short answer (3b.)*** Is it possible to have a declining population even when *Birth Rate* and *Death Rate* are the same on average? Is it possible to have a declining population when *Birth Rate* is greater than *Death Rate* on average? Explain your reasoning!
 
 
+##Checklist for Lab 1 completion
+*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden. The InsightMaker models can be shared directly in InsightMaker (preferred) or you can take screenshots and bundle those pictures into the Zip file.
+
+***Due Feb. 3 at 11 am.***
+
+*  Word document with short answers
+    +  **Exercise 1**
+        -  *Short answer (1a.)*
+        -  *Short answer (1b.)*
+        -  *Short answer (1c.)*
+
+    +  **Exercise 2**
+        -  *Short answer (2a.)*
+        -  *Short answer (2b.)*
+        -  *Short answer (2c.)*
+        -  *Short answer (2d.)*
+
+    +  **Exercise 3**
+        -  *Short answer (3a.)*
+        -  *Short answer (3b.)*
+
+*  Excel file
+    +  **Exercise 1**
+        -  Your Excel file should show that you were able to successfully use formulas to calculate $N_t$ for each time step and show a plot of $N$ by Time.
+
+*  R file
+    +  **Exercise 2**
+        -  Your R code should show that you were able to (a) adapt the given code to run for 100 years, and can display a plot of the results;
+        -  (b) change $r$ to 0.5 and run for 100 years and plot the results;
+        -  (c) find the value of $r$  that gives a population size of 1000 after 100 years; and
+        -  (d) change $r$ to -0.1 and run until the population goes extinct.
+
+*  InsightMaker models
+    +  **Exercise 3**
+        -  Your first model should show that you were able to alter the given model as instructed so that the simulation runs correctly. This should be shared with "kevintshoemaker" and "Margarete".
+
+        -  Your second model should include the Rand() function for the *Birth Rate* and *Death Rate*. This should be shared with "kevintshoemaker" and "Margarete".
 
 
 
