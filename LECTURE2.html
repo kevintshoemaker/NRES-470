@@ -23,12 +23,11 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/default.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -155,7 +154,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -181,7 +179,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -240,8 +238,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -342,8 +341,9 @@ div.tocify {
 </div>
 <div id="central-questions-of-population-ecology" class="section level2">
 <h2>Central Questions of Population Ecology</h2>
+<div id="ecological" class="section level3">
+<h3>Ecological</h3>
 <ul>
-<li>Ecological</li>
 <li>Why are some species more abundant than others?<br />
 </li>
 <li>What causes population densities to vary in space and time?<br />
@@ -363,14 +363,17 @@ div.tocify {
 <img src="White-tailed_deer.jpg" />
 
 </div>
+</div>
+<div id="conservation-and-management" class="section level3">
+<h3>Conservation and Management</h3>
 <ul>
-<li>Conservation and Management</li>
 <li>What is the conservation status of a focal species or population?</li>
 <li>How do anthropogenic structures and land uses affect populations?</li>
 <li>What is the <em>Maximum Sustainable Yield</em> for a focal game species?</li>
 <li>How can pest species be most effectively controlled?</li>
 <li>What land areas are most important for preserving at-risk populations?</li>
 </ul>
+</div>
 </div>
 <div id="what-is-a-population" class="section level2">
 <h2>What is a population?</h2>
@@ -516,8 +519,11 @@ div.tocify {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

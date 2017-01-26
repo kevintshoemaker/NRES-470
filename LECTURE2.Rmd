@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Central Questions of Population Ecology
 
-- Ecological
+### Ecological
   - Why are some species more abundant than others?   
   - What causes population densities to vary in space and time?   
   - What causes populations to become extirpated? Recolonized?  
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
   
 ![](White-tailed_deer.jpg)
 
-- Conservation and Management
+### Conservation and Management
   - What is the conservation status of a focal species or population?
   - How do anthropogenic structures and land uses affect populations?
   - What is the *Maximum Sustainable Yield* for a focal game species?
