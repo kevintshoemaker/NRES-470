@@ -58,27 +58,37 @@ Of course, getting messy means not just reading and listening to lectures, it me
 
 ## In-class Exercise: InsightMaker
 
-A [Stock] of stuff increases over time via what [Flows In]. Imagine our stock represents Moose! [Moose Births] would then be [Flows In] to the population of [Moose] over time. Remember the "over time" part as it's very important.
+A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents *Moose*! *Moose Births* would then be the input [Flow] to the population of *Moose* over time. 
 
-A [Stock] of stuff decreases over time via what [Flows Out]. For example, [Moose Deaths] could represent [Flows Out] of the population of [Moose].
+A [Stock] of stuff decreases over time via what [Flows] out. For example, *Moose Deaths* could represent the [Flow] out of the population of *Moose*.
 
-If the [Flows In] is larger than the [Flows Out] then the [Stock] increases over time. 
+If the [Flow] in is larger than the [Flow] out then the [Stock] increases over time. 
 
-If the [Flows Out] is larger than the [Flows In] then the [Stock] decreases over time.
+If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over time.
 
-If the [Flows Out] equals the [Flows In] then the exact content of the [Stock] changes over time _though the amount doesn't_.
+If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time.
 
 The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn't change instantaneously, with hand waving, magic, or smoke and mirrors.
 
 1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
+
 2. Create a new Insight (the button to do this should be obvious!) and clear the demo model. 
-3. Right click in the center of the screen and select [Create Stock] from the popup. Notice that the name is [New Stock] and is selected. Type in a name for what this is an accumulation of. Note the [Configuration Panel] on the right is now for a [Stock]. 
-4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the [Reverse] button in the [Connections] menu. Please do that now. You can name the [Flow] as you wish. Also in the [Configuration Panel] set [Flow Rate] = 1.
-5. Now click [Run Simulation] and you have just finished your first simulation model.
-6. Can you figure out how to change the settings to run the model for 50 years? Try this and click [Run Simulation].
+
+3. Right click in the center of the screen and select **Create Stock** from the popup. Notice that the name is *New Stock* and is selected. Type in a name for what this is an accumulation of. Note the **Configuration Panel** on the right is now for a [Stock]. 
+
+4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the **Reverse** button in the **Connections** menu. Please do that now. You can name the [Flow] as you wish. Also in the **Configuration Panel** set **Flow Rate** = 1.
+
+5. Now click **Run Simulation** and you have just finished your first simulation model.
+
+6. Can you figure out how to change the settings to run the model for 50 years? Try this and click **Run Simulation**.
+
 7. Use the same methods as *step 4* to create a [Flow Out], representing moose deaths. Re-run the model. Is the population increasing or declining? Why? 
-8. Take a few minutes to check out "insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of insights. We can (and will) add to this database as part of this class!
-9. Change the [Configuration Panel] for the [Stock] and for the [Flow In] and [Flow Out] so that "Show Value Slider" is set to "Yes"  
+
+8. Change the **Configuration Panel** for the [Stock] and for the [Flow In] and [Flow Out] so that "Show Value Slider" is set to "Yes". You can change the model parameterization easily using these sliders. Try it a couple times, re-running the simulation after each change. 
+
+**Q**: Is this Moose model realistic? What is the first thing you would like to change to make the model more realistic?
+
+9. Take a few minutes to check out "Insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of Insights. We can (and will) add to this database as part of this class!
 
 
 Finally, just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!

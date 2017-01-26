@@ -17,25 +17,33 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Central Questions of Population Ecology
 
--Ecological
-  -Why are some species more abundant than others?   
-  -What causes population densities to vary in space and time?   
-  -What causes populations to become extirpated? Recolonized?  
-  -What processes regulate population growth?   
-    -Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)
-  -What prevents predator-prey relationships from collapsing?   
-  -What factors allow competitors to coexist?
-  -What factors allow metapopulations to be stable?
+- Ecological
+  - Why are some species more abundant than others?   
+  - What causes population densities to vary in space and time?   
+  - What causes populations to become extirpated? Recolonized?  
+  - What processes regulate population growth?   
+    - Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)
+  - What prevents predator-prey relationships from collapsing?   
+  - What factors allow competitors to coexist?
+  - What factors allow metapopulations to be stable?
   
 ![](White-tailed_deer.jpg)
 
--Conservation and Management
+- Conservation and Management
   - What is the conservation status of a focal species or population?
   - How do anthropogenic structures and land uses affect populations?
   - What is the *Maximum Sustainable Yield* for a focal game species?
   - How can pest species be most effectively controlled?
   - What land areas are most important for preserving at-risk populations?
 
+## What is a population?
+
+From Krebs (1972):
+“A population is defined as a group of organisms of the same species occupying a particular space at a particular time, with the potential to breed with each other"
+
+Spatial boundaries defining populations sometimes are easily definte, but more typically are vague and difficult to determine.
+
+Population size, or abundance, is often represented as $N$, and is the most basic measurement of a wild population. 
 
 ## Exponential growth: the fundamental principle of population ecology
 
@@ -44,7 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 Giant puffballs produce 7 trillion offspring in one reproductive event
 ... If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!
 
-The reason? Populations grow geometrically, a process called **exponential growth**. This is the most basic concept in population ecology. 
+The reason? Populations grow geometrically, a process called **exponential growth**. This is the most basic concept in population ecology. We will go over this concept in detail in upcoming in-class activities and labs.  
 
 
 ## Mathematics and Population Ecology
@@ -60,7 +68,9 @@ The reason? Populations grow geometrically, a process called **exponential growt
 The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated, and we look forward to seeing the further volumes of Lotka’s studies.       
   - Charles Elton    
   
-## Population ecology is central to many of the most pressing questions in modern day ecology
+## Population ecology is central to many of the most pressing questions in modern day ecology and evolution
+
+This class is mostly about how important Population Ecology is to wildlife conservation and management. But it is worth mentioning that Population Ecology is a very active field of basic science, and that population ecology is at the core of many of the central questions of ecology and evolution. 
 
 These questions are from [Sutherland et al. 2012](http://onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025/full). This paper is on WebCampus (optional). Of course there are many more interesting questions- limited only by your imagination. 
 
@@ -68,55 +78,56 @@ You may not understand all these questions now- we will revisit this list at the
 
 ![](Fragmentation1.jpg)
 
--What are the evolutionary consequences of species becoming less connected through **fragmentation** or more connected through globalization?  
+- What are the evolutionary consequences of species becoming less connected through **fragmentation** or more connected through globalization?   
 
 ![](Juniperus_range_map.gif)
 
--What are the evolutionary and ecological mechanisms that govern species’ **range margins**?  
+- What are the evolutionary and ecological mechanisms that govern species’ **range margins**?  
 
--How does **environmental stochasticity** and environmental change interact with density-dependence to generate population dynamics and species distributions?
+- How does **environmental stochasticity** and environmental change interact with density-dependence to generate population dynamics and species distributions?
 
--How can we upscale detailed processes at the level of individuals into patterns at the population scale?
+- How can we upscale detailed processes at the level of individuals (e.g., behavioral interactions) into patterns at the population scale?
 
--How important is **individual variation** to population, community and ecosystem dynamics?
+- How important is **individual variation** to population, community and ecosystem dynamics?
 
--How do species and population traits and landscape conﬁguration interact to determine realized **dispersal distances**?  
+- How do species and population traits and landscape conﬁguration interact to determine realized **dispersal distances**?  
 
--To what degree do trans-generational effects on life histories, such as **maternal effects**, impact on population dynamics?
+- To what degree do trans-generational effects on life histories, such as **maternal effects**, impact on population dynamics?
 
--How does covariance among life-history traits affect their contributions to population dynamics?   
+- How does covariance among life-history traits affect their contributions to population dynamics?   
 
 ![](Wolves_and_bones.jpg)
 
--What is the relative importance of direct (**predation, competition**) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?    
+- What is the relative importance of direct (**predation, competition**) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?    
 
 ![](Gopherus_agassizii.jpg)
 
--What demographic traits determine the resilience of natural populations to disturbance and perturbation?  
+- What demographic traits determine the **resilience** of natural populations to disturbance and perturbation?  
 
 #### And many more!  
 
--In what ecological settings are parasites key regulators of population dynamics?    
--How does species loss affect the extinction risk of the remaining species?    
--How important are dynamical extinction-recolonization equilibria to the persistence of species assemblages in fragmented landscapes?    
--How do resource pulses affect resource use and interactions between organisms?    
--How important are rare species in the functioning of ecological communities?    
--What is the magnitude of the ‘extinction debt’ following the loss and fragmentation of natural habitats, and when will it be paid?    
--To what extent will climate change uncouple trophic links due to phenological change?    
--How do natural populations and communities respond to increased frequencies of extreme weather events predicted under global climate change?    
--In the face of rapid environmental change, what determines whether species adapt, shift their ranges or go extinct?    
--What determines the rate at which species distributions respond to climate change?    
--Under what circumstances do landscape structures such as corridors and stepping stones play important roles in the distribution and abundance of species?    
--How do interspeciﬁc interactions affect species responses to global change?    
--To what extent are widely studied ecological patterns (species-abundance distribution, species-area relationship, etc.) the outcomes of statistical rather than ecological processes?    
--How much does modelling feedbacks from the observation process, such as the responses of organisms to data collectors, improve our ability to infer ecological processes?    
+- In what ecological settings are **parasites** key regulators of population dynamics?    
+- How does species loss affect the extinction risk of the remaining species?    
+- How important are **dynamical extinction-recolonization equilibria** to the persistence of species assemblages in fragmented landscapes?    
+- How do **resource pulses** affect resource use and interactions between organisms?    
+- How important are rare species in the functioning of ecological communities?    
+- What is the magnitude of the **‘extinction debt’** following the loss and fragmentation of natural habitats, and when will it be paid?    
+- To what extent will climate change uncouple trophic links due to phenological change?    
+- How do natural populations and communities respond to increased frequencies of **extreme weather events** predicted under global climate change?    
+- In the face of rapid environmental change, what determines whether species adapt, shift their ranges or go extinct?    
+- What determines the rate at which species distributions respond to climate change?    
+- Under what circumstances do landscape structures such as **corridors** and **stepping stones** play important roles in the distribution and abundance of species?    
+- How do **interspeciﬁc interactions** affect species responses to global change?    
+- To what extent are widely studied ecological patterns (species-abundance distribution, **species-area relationship**, etc.) the outcomes of statistical rather than ecological processes?    
+
+- How much does modelling **feedbacks** from the observation process, such as the responses of organisms to data collectors, improve our ability to infer ecological processes?    
 
 
 ![](positivefeedback1.gif)
 
 ## In-class Exercise: Feedbacks
 
-Feedbacks occur when the inflows and outflows (e.g., births and deaths) depend upon the value of the stock (e.g., a wildlife population!). 
+**Feedbacks** occur when the inflows and outflows (e.g., births and deaths) depend upon the value of the stock (e.g., a wildlife population!). 
 
 Feedbacks are what lead to complex ("interesting") system behaviors.  
 
@@ -132,26 +143,27 @@ Let's model this to better understand this process.
 
 This model adds a **feedback** using a [Link] from the [Stock] to the [Flow]. The [Link] communicates the value of the [Stock] to the [Flow]. A [Link] only communicates value, it doesn't change the value of the [Stock] (that is what a [Flow] does).
 
-2. Open InsightMaker. Create an accumulator with a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and name them [Stock] and [Flow] for now.  
+2. Open InsightMaker. Create an accumulator with a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and name them *Stock* and *Flow* for now.  
 
-3. If you mouse over a [Stock] or a [Flow] a small [$=$ Sign] will appear. If you click this it will open the [Equation] window where you can set values. Open this window for the [Stock], enter a value of 1, then close the window.
+3. If you mouse over *Stock* or *Flow* a small [$=$ Sign] will appear. If you click this it will open the **Equation** window where you can set values. Open this window for the [Stock], enter a value of 1, then close the window.
 
-4. The value of the [factor] is communicated to the [Flow] with a [Link]. To create a link, click [Link] in the Connections part of the toolbar. When you mouse over the [Stock] click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the [Shift Key] and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn't directly on the [Flow]. Create a few more nodes on the [Link] and move them to create something more like a curve.
+4. The value of the [Stock] can be communicated to the [Flow] with a [Link]. To create a [Link], click **Link** in the **Connections** part of the toolbar. When you mouse over the [Stock] click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn't directly on the [Flow]. Create a few more nodes on the [Link] and move them to create something more like a curve.
 
-5. Usually there is some type of factor governing the rate the [Stock] influences the [Flow]. Let's introduce a variable named [factor]. To create a variable, right-click on the canvas and select [Variable] from the drop-down. While the [Variable] is still selected rename it [factor]. Now draw a [Link] from [factor] to [Flow]. Open the [Equation] window for [factor] and set it to 0.5. 
+5. Usually there is some type of factor governing the rate the [Stock] influences the [Flow]. Let's introduce a variable named *factor*. To create a variable, right-click on the canvas and select **Variable** from the drop-down. While the [Variable] is still selected rename it *factor*. Now draw a [Link] from *factor* to the [Flow]. Open the [Equation] window for *factor* and set it to 0.5. 
 
-6. Open the [Equation] window for [Flow] and set it to [Stock]*[factor].That is, the rate of inflow into the [Stock] is equal to the value of [Stock] multiplied by the value of [factor].
+6. Open the **Equation** window for the [Flow] and set it to [Stock]x[factor]. That is, the rate of inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of *factor*.
 
-7. Now you're going to add the [Link] from the [Stock] to [Flow]. 
+7. Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model!
 
-8. Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model.
-
-9. Finally, if [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of [factor]? Rename your variables accordingly and change the parameters to make the more biologically realistic. Run the simulation again. 
-
-Starting with [Stock] = 1 and [Flow] = [Stock] the value of [Stock] grows slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
+**Q:** If [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of [factor]? Rename your variables accordingly and change the parameters to make the more biologically realistic. Run the simulation again. 
 
 10. Just like in the last exercise, set the "Show Value Slider" to Yes for all stocks and flows. Now you can play around with the values, re-running the simulation each time. Think about question 1 while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities. Pick 2 or more of these and try it out!
 
+You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
+
+**Q** Can you model the puffball example from earlier in the lecture? How many puffballs are in the population after two generations??
+
+**Q** Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate of the human population??
 
 And just for fun, here is a [video](https://www.youtube.com/watch?v=DZCm2QQZVYk) about exponential growth you might want to check out..
 
