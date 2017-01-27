@@ -23,12 +23,11 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/default.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -155,7 +154,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -181,7 +179,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -240,8 +238,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -369,7 +368,7 @@ div.tocify {
 <p>This is probably the most fundamental equation of population ecology.</p>
 <p>If you integrate this equation, you get an equation that describes the population size at any time <span class="math inline">\(t\)</span>:</p>
 <p><span class="math inline">\(N_t = N_0 e^{rt} \qquad \text{(Eq. 10)}\)</span></p>
-<p>That is, population size at time <span class="math inline">\(t\)</span> is equal to the population size at time zero (initial abundance) multiplied by the root of the natural logarithm, <span class="math inline">\(e\)</span> to the <span class="math inline">\(rt\)</span> power.</p>
+<p>That is, population size at time <span class="math inline">\(t\)</span> is equal to the population size at time zero (initial abundance) multiplied by the base of the natural logarithm, <span class="math inline">\(e\)</span> to the <span class="math inline">\(rt\)</span> power.</p>
 <p>There you have it! Now you can compute population growth!</p>
 <p>A couple more quick notes:</p>
 <p>The greek symbol lambda (<span class="math inline">\(\lambda\)</span>), is used to represent the finite rate of growth, or <span class="math inline">\(\frac {N_{t+1}}{N_t}\)</span>. Lambda is what you multiply the current population size by to compute the population size in the next time step. Sometimes this is also called “big-R”, or <span class="math inline">\(R\)</span>.</p>
@@ -384,8 +383,8 @@ div.tocify {
 <div id="exponential-growth-in-excel" class="section level2">
 <h2>Exponential growth in Excel</h2>
 <ol style="list-style-type: decimal">
-<li><p>Open the Excel spreadsheet <a href="ExpGrowthExcel.xlsx" class="uri">ExpGrowthExcel.xlsx</a>. In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size (<span class="math inline">\(N_0\)</span>) of 100 individuals. We also have a per-capita rate of increase (<span class="math inline">\(r\)</span>) that is currently set at 0.1.</p></li>
-<li><p>To generate <span class="math inline">\(N_t\)</span> for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), typing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the “functions bar”.</p></li>
+<li><p>Open the Excel spreadsheet <a href="ExpGrowthExcel.xlsx" class="uri">ExpGrowthExcel.xlsx</a>. To download this file, right click on the link and select “<em>Save link as..</em>” and In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size (<span class="math inline">\(N_0\)</span>) of 100 individuals. We also have a per-capita rate of increase (<span class="math inline">\(r\)</span>) that is currently set at 0.1.</p></li>
+<li><p>To generate <span class="math inline">\(N_t\)</span> for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), completing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the “functions bar”.</p></li>
 <li><p>You can fill the remainder of the cells using the same equation for the other time steps by clicking and dragging the small square at the bottom of the N(2) cell that appears when the cell is selected.</p></li>
 <li><p>What happened? We are not seeing a growing population here- actually it seems quite flat! this is surely not what we want! Click on the N(3) cell to see what equation is being used to calculate the cell value. The equation is B3*(1+D4). The B3 part is correct - we want to calculate the N(3) population size using the <span class="math inline">\(N\)</span> from the previous timestep - but the D4 part is incorrect. We always want to use the same <span class="math inline">\(r\)</span> which is always in the same cell. You can see that when you drag down an equation as we have done, Excel adds 1 for each row so that the equation references the same relative positions in the spreadsheet for each new cell you want to calculate. We like that Excel did that for <span class="math inline">\(N\)</span>, but not for <span class="math inline">\(r\)</span>, so we can tell Excel to stay in the same row for <span class="math inline">\(r\)</span> by inserting a dollar sign in our equation.</p></li>
 <li><p>In the N(2) cell, edit the equation in the “functions bar” so that there is a dollar sign in D3 (or just use the F4 shortcut).</p></li>
@@ -429,6 +428,7 @@ div.tocify {
 <p>We can store data in memory by assigning it to an “object” using the assignment operator <strong>&lt;-</strong>. For example, this would assign the object “x” the value of 5.</p>
 <pre class="r"><code>x &lt;- 5     #Assign the value of 5 to the object &quot;x&quot;
 x          #Print the value of the object &quot;x&quot;</code></pre>
+<p>Note that any text after a pound sign (#) is not evaluated by R. These are <em>comments</em> and are intended to help you follow the code. You should always include comments in any code that you write- we humans tend to read and understand written language better than computer code!</p>
 <p>Let’s assign our per-capita population growth rate, <span class="math inline">\(r\)</span> (but this could be called anything), and our initial population size to an object called <strong>N0</strong>, and the number of years to simulate.</p>
 <pre class="r"><code>r &lt;- 0.1     #Assign the value of 0.1 to the object &quot;r&quot;
 N0 &lt;- 100    #Assign the value of 100 to the object &quot;N0&quot;
@@ -470,7 +470,7 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <div id="plotting" class="section level3">
 <h3>Plotting</h3>
 <p>Let’s plot our population size against time. We only want the first 100 data points in N, so we use <strong>indexing</strong> to specify that. You may have noticed the square brackets inside the for loop…</p>
-<pre class="r"><code>plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. &quot;N&quot; is the y variable (dependent variable), and &quot;years&quot; is the x variable (independent variable). The tilda &quot;~&quot; stands for &quot;by&quot;. There are many ways to customize the appearance of a plot in R - for now, just use the defaults.</code></pre>
+<pre class="r"><code>plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. &quot;N&quot; is the y variable (dependent variable), and &quot;years&quot; is the x variable (independent variable). The tilda &quot;~&quot; stands for &quot;as a function of&quot;. There are many ways to customize the appearance of a plot in R - for now, just use the defaults.</code></pre>
 <p><img src="LAB1_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="exercise-2-r-related-problems" class="section level3">
@@ -521,11 +521,11 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <img src="IM3.png" />
 
 </div>
-<p>To enable easy manipulation of these variables, change the <strong>Show Value</strong> Slider option of <em>Birth Rate</em> (in the properties window) to Yes. Change the <strong>Slider Max value</strong> to 1, the <strong>Slider Min value</strong> to 0, and the <strong>Slider Step value</strong> to 0.01. Do the same for <em>Death Rate</em> and <em>Population</em> (initial abundance <span class="math inline">\(N_0\)</span>). Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username “kevintshoemaker”) and Margarete (username “Margarete”).</p>
+<p>To enable easy manipulation of these variables, change the <strong>Show Value</strong> Slider option of <em>Birth Rate</em> (in the properties window) to Yes. Change the <strong>Slider Max value</strong> to 1, the <strong>Slider Min value</strong> to 0, and the <strong>Slider Step value</strong> to 0.01. Do the same for <em>Death Rate</em> and <em>Population</em> (initial abundance <span class="math inline">\(N_0\)</span>). For abundance, set the step size to 1 so we don’t have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username “kevintshoemaker”) and Margarete (username “Margarete”).</p>
 <ul>
 <li><strong><em>Short answer (3a.)</em></strong> Starting with a growing population, can you come up with two different scenarios in which <em>Population</em> is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer.</li>
 </ul>
-<p>The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of <strong>stochasticity</strong> (randomness). Let’s add some randomness to our vital rates! Change the <strong>Show Value Slider</strong> option of the Birth Rate primitive to No. Change the Equation to 0.1 + Rand(-0.05,0.05). The Rand() function generates a uniformly distributed random number between the minimum and maximum values provided. This means that in each time step we have a slightly different vital rate. Do the same for <em>Death Rate</em>. Run multiple simulations (at least 10) and look for patterns. Use the <strong>Compare Results</strong> tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA.</p>
+<p>The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of <strong>stochasticity</strong> (randomness). Let’s add some randomness to our vital rates! Change the <strong>Show Value Slider</strong> option of the Birth Rate primitive to No. Change the Equation to 0.1 + RandNormal(0, 0.1). The RandNormal() function generates a normally distributed random number with mean equal to the first argument and standard deviation equal to the second argument. This means that in each time step we have a slightly different birth rate. Do the same for <em>Death Rate</em>. Run multiple simulations (at least 10) and look for patterns. Use the <strong>Compare Results</strong> tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA.</p>
 <ul>
 <li><strong><em>Short answer (3b.)</em></strong> Is it possible to have a declining population even when <em>Birth Rate</em> and <em>Death Rate</em> are the same on average? Is it possible to have a declining population when <em>Birth Rate</em> is greater than <em>Death Rate</em> on average? Explain your reasoning!</li>
 </ul>
@@ -601,8 +601,11 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

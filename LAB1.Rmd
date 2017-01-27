@@ -77,7 +77,7 @@ If you integrate this equation, you get an equation that describes the populatio
 
 $N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$      
 
-That is, population size at time $t$ is equal to the population size at time zero (initial abundance) multiplied by the root of the natural logarithm, $e$ to the $rt$ power. 
+That is, population size at time $t$ is equal to the population size at time zero (initial abundance) multiplied by the base of the natural logarithm, $e$ to the $rt$ power. 
 
 There you have it! Now you can compute population growth!
 
@@ -102,10 +102,10 @@ Okay now that we got that over with let's start the lab. The first software we w
 
 ## Exponential growth in Excel
 
-1.	Open the Excel spreadsheet [ExpGrowthExcel.xlsx](ExpGrowthExcel.xlsx). In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size ($N_0$) of 100 individuals.  We also have a per-capita rate of increase ($r$) that is currently set at 0.1.
+1.	Open the Excel spreadsheet [ExpGrowthExcel.xlsx](ExpGrowthExcel.xlsx). To download this file, right click on the link and select "*Save link as..*" and In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size ($N_0$) of 100 individuals.  We also have a per-capita rate of increase ($r$) that is currently set at 0.1.
 
 
-2.	To generate $N_t$ for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), typing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the "functions bar".
+2.	To generate $N_t$ for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15, above. Do this by clicking in the empty N(2) cell (position B3), typing =, clicking on N(1), completing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the "functions bar".
  
 
 3.	You can fill the remainder of the cells using the same equation for the other time steps by clicking and dragging the small square at the bottom of the N(2) cell that appears when the cell is selected.
@@ -161,6 +161,8 @@ x <- 5     #Assign the value of 5 to the object "x"
 x          #Print the value of the object "x"
 ```
 
+Note that any text after a pound sign (#) is not evaluated by R. These are *comments* and are intended to help you follow the code. You should always include comments in any code that you write- we humans tend to read and understand written language better than computer code!
+
 Let's assign our per-capita population growth rate, $r$ (but this could be called anything), and our initial population size to an object called **N0**, and the number of years to simulate.
 
 ```{r}
@@ -206,7 +208,7 @@ N                         # Now print the contents of the object "N".
 Let's plot our population size against time. We only want the first 100 data points in N, so we use **indexing** to specify that. You may have noticed the square brackets inside the for loop...
 
 ```{r}
-plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "years" is the x variable (independent variable). The tilda "~" stands for "by". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
+plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "years" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
 ```
 
 ### Exercise 2 (R-related problems)
@@ -257,11 +259,11 @@ First, tweak the above model so that per-capita birth rate (b) and death rate (d
 
 ![](IM3.png)
 
-To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Margarete (username "Margarete"). 
+To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). For abundance, set the step size to 1 so we don't have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Margarete (username "Margarete"). 
 
 *  ***Short answer (3a.)*** Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer. 
 
-The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don't grow in this manner because of **stochasticity** (randomness).  Let's add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + Rand(-0.05,0.05).  The Rand()  function generates a uniformly distributed random number between the minimum and maximum values provided. This means that in each time step we have a slightly different vital rate.   Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA. 
+The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don't grow in this manner because of **stochasticity** (randomness).  Let's add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + RandNormal(0, 0.1).  The RandNormal()  function generates a normally distributed random number with mean equal to the first argument and standard deviation equal to the second argument. This means that in each time step we have a slightly different birth rate.   Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA. 
 
 *  ***Short answer (3b.)*** Is it possible to have a declining population even when *Birth Rate* and *Death Rate* are the same on average? Is it possible to have a declining population when *Birth Rate* is greater than *Death Rate* on average? Explain your reasoning!
 
