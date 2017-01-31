@@ -484,7 +484,7 @@ div.tocify {
 <p>Feedbacks are what lead to complex (“interesting”) system behaviors.</p>
 <p>A reinforcing, or <strong>positive feedback</strong> (often called a “vicious circle”) leads to <em>exponential growth</em>, leading often to craziness! If you don’t understand this yet, you will see soon enough!</p>
 <p>A <strong>negative feedback</strong> is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!).</p>
-<p>In the previous in-class exercise the model structure produced straight line growth as the [Flow] added to the [Stock].</p>
+<p>In the previous in-class exercise the model structure produced linear growth as the [Flow] added to the [Stock].</p>
 <ol style="list-style-type: decimal">
 <li>What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?</li>
 </ol>
@@ -495,7 +495,7 @@ div.tocify {
 <li><p>If you mouse over <em>Stock</em> or <em>Flow</em> a small [<span class="math inline">\(=\)</span> Sign] will appear. If you click this it will open the <strong>Equation</strong> window where you can set values. Open this window for the [Stock], enter a value of 1, then close the window.</p></li>
 <li><p>The value of the [Stock] can be communicated to the [Flow] with a [Link]. To create a [Link], click <strong>Link</strong> in the <strong>Connections</strong> part of the toolbar. When you mouse over the [Stock] click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn’t directly on the [Flow]. Create a few more nodes on the [Link] and move them to create something more like a curve.</p></li>
 <li><p>Usually there is some type of factor governing the rate the [Stock] influences the [Flow]. Let’s introduce a variable named <em>factor</em>. To create a variable, right-click on the canvas and select <strong>Variable</strong> from the drop-down. While the [Variable] is still selected rename it <em>factor</em>. Now draw a [Link] from <em>factor</em> to the [Flow]. Open the [Equation] window for <em>factor</em> and set it to 0.5.</p></li>
-<li><p>Open the <strong>Equation</strong> window for the [Flow] and set it to [Stock]x[factor]. That is, the rate of inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of <em>factor</em>.</p></li>
+<li><p>Open the <strong>Equation</strong> window for the [Flow] and set it to [Stock] times [factor]. That is, the rate of inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of <em>factor</em>.</p></li>
 <li><p>Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model!</p></li>
 </ol>
 <p><strong>Q:</strong> If [Stock] is a population – say, rabbits – then what is the interpretation of [Flow]? What is the interpretation of [factor]? Rename your variables accordingly and change the parameters to make the more biologically realistic. Run the simulation again.</p>
@@ -503,7 +503,7 @@ div.tocify {
 <li>Just like in the last exercise, set the “Show Value Slider” to Yes for all stocks and flows. Now you can play around with the values, re-running the simulation each time. Think about question 1 while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities. Pick 2 or more of these and try it out!</li>
 </ol>
 <p>You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as <em>exponential growth</em>. If you’ve read the first chapter of the Gotelli book, you will recognize this as the <em>foundational concept of population ecology</em>!</p>
-<p><strong>Q</strong> Can you model the puffball example from earlier in the lecture? How many puffballs are in the population after two generations??</p>
+<p><strong>Q</strong> Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations??</p>
 <p><strong>Q</strong> Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate of the human population??</p>
 <p>And just for fun, here is a <a href="https://www.youtube.com/watch?v=DZCm2QQZVYk">video</a> about exponential growth you might want to check out..</p>
 <p><a href="LECTURE3.html">–go to next lecture–</a></p>

@@ -135,7 +135,7 @@ A reinforcing, or **positive feedback** (often called a "vicious circle") leads 
 
 A **negative feedback** is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!).
 
-In the previous in-class exercise the model structure produced straight line growth as the [Flow] added to the [Stock].
+In the previous in-class exercise the model structure produced linear growth as the [Flow] added to the [Stock].
 
 1. What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?  
 
@@ -151,7 +151,7 @@ This model adds a **feedback** using a [Link] from the [Stock] to the [Flow]. Th
 
 5. Usually there is some type of factor governing the rate the [Stock] influences the [Flow]. Let's introduce a variable named *factor*. To create a variable, right-click on the canvas and select **Variable** from the drop-down. While the [Variable] is still selected rename it *factor*. Now draw a [Link] from *factor* to the [Flow]. Open the [Equation] window for *factor* and set it to 0.5. 
 
-6. Open the **Equation** window for the [Flow] and set it to [Stock]x[factor]. That is, the rate of inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of *factor*.
+6. Open the **Equation** window for the [Flow] and set it to [Stock] times [factor]. That is, the rate of inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of *factor*.
 
 7. Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model!
 
@@ -161,7 +161,7 @@ This model adds a **feedback** using a [Link] from the [Stock] to the [Flow]. Th
 
 You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
 
-**Q** Can you model the puffball example from earlier in the lecture? How many puffballs are in the population after two generations??
+**Q** Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations??
 
 **Q** Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate of the human population??
 
