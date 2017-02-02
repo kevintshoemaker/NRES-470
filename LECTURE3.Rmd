@@ -61,11 +61,13 @@ In today's in-class exercise, we will implement the following conditional statem
 
 To implement this in InsightMaker, we need to use the following **syntax**:
 
-> If [Humans]>=[Limit] Then
+```
+If [Humans]>[Limit] Then
   0.99
 Else
   0.01
 End If
+```
 
 1. Put together a basic exponential-growth model for a new [Stock] named *Humans*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Humans* and per-capita rate constants, respectively called *Birth rate* and *Death rate* (each defined on the canvas as [Variables]). This model is identical to the one you made in lab last week. 
 

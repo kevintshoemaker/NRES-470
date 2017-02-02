@@ -302,6 +302,12 @@ div.tocify {
     <li>
       <a href="LECTURE3.html">Thomas Robert Malthus</a>
     </li>
+    <li>
+      <a href="LECTURE4.html">Population Regulation</a>
+    </li>
+    <li>
+      <a href="LECTURE5.html">Passenger Pigeon</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -377,9 +383,11 @@ div.tocify {
 <p>Conditional statements are also known as IF-THEN statements. In plain english: <em>IF some condition is true, THEN do something. ELSE if some other condition is true, THEN do something else. ELSE if none of the previous conditions are true, THEN do something else.</em></p>
 <p>In today’s in-class exercise, we will implement the following conditional statement (the “famine condition”): <em>IF human population is below the population limit, THEN the annual death rate is 0.01. ELSE if the population exceeds the population limit, a famine arises and the mortality rate jumps to 0.99</em></p>
 <p>To implement this in InsightMaker, we need to use the following <strong>syntax</strong>:</p>
-<blockquote>
-<p>If [Humans]&gt;=[Limit] Then 0.99 Else 0.01 End If</p>
-</blockquote>
+<pre><code>If [Humans]&gt;[Limit] Then
+  0.99
+Else
+  0.01
+End If</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Put together a basic exponential-growth model for a new [Stock] named <em>Humans</em>. This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>Humans</em> and per-capita rate constants, respectively called <em>Birth rate</em> and <em>Death rate</em> (each defined on the canvas as [Variables]). This model is identical to the one you made in lab last week.</p></li>
 <li><p>Initialize the population of <em>Humans</em> to 1000. Set the <em>Birth rate</em> to 0.1 (humans produced per human per year). Set the <em>Death rate</em> to 0.01. Change the settings so that the simulation runs for 100 years.</p></li>

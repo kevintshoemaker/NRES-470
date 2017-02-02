@@ -1,0 +1,112 @@
+---
+title: "Passenger Pigeon"
+author: "NRES 470/670"
+date: "Feb 1, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+![](PP2.jpg)
+
+The [passenger pigeon](https://en.wikipedia.org/wiki/Passenger_pigeon) was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three *billion*!
+
+Aldo Leopold once said,
+
+> “Men still live who, in their youth, remember pigeons; trees still live who, in their youth, were shaken by a living wind. But a few decades hence only the oldest oaks will remember, and at long last only the hills will know.”   —Aldo Leopold, “On a Monument to the Pigeon,” 1947
+
+What happened to the passenger pigeon? Well, first of all pigeons were hunted on a massive scale using wasteful methods. 
+
+![](PP1.jpg)
+
+What do passenger pigeons have to do with the Allee effect? Well, they were an extremely gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators. Allee effects are generally bad news for conservation!
+
+## In-class exercise: logistic growth
+
+First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!)
+
+
+Here is the scenario we will model: both *b* and *d* are **density-dependent**. We will replicate the model from the R code and figure above- this time in InsightMaker! 
+
+b_max <- 0.8  # maximum reproduction (at low densities)
+d_min <- 0.3  # minimum mortality 
+
+a <- 0.001    # D-D terms
+c <- 0.0005
+
+b <- b_max - a*Density
+d <- d_min + c*Density   
+
+```
+CONSTANTS
+- [Maximum per-capita birth rate] = 0.8 individuals per individual per year   
+- [Minimum per-capita death rate] = 0.3 individuals per individual per year    
+- [Density dependence on fecundity] (a) = 0.001    
+- [Density dependence on mortality] (c) = 0.0005  
+```
+
+```
+EQUATIONS
+- [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Turtles] 
+- [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Turtles] 
+```
+
+How can we do this in InsightMaker? 
+
+Your model should look something like this!
+
+![](IM5.jpg)
+
+1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
+
+2. Initialize the population of *Turtles* to 5.   
+
+3. Make 4 new [Variables] on the canvas, to represent the four constants from above. 
+
+4. Set the *Maximum per-capita birth rate* to 0.8 (turtles produced per turtle per year). Set the *Minimum per-capita Death rate* to 0.3. Set the *Density dependence on fecundity* to 0.001.  Set the *Density dependence on mortality* to 0.0005.
+
+5. Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct. 
+
+6. Change the settings so that the simulation runs for 100 years.  
+
+7. Run this model. Does the model behave as you would expect? 
+
+
+**Q:** What happens if population size starts out *at* carrying capacity?
+**Q:** What happens if population size starts out *above* carrying capacity?  
+**Q:** Is this a stable equilibrium?
+**Q:** Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?
+
+
+
+[--go to next lecture--](LECTURE5.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

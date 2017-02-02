@@ -109,6 +109,7 @@ All electronic devices are to be turned off during class unless the instructor g
 ```{r echo=FALSE, eval=FALSE}
 rmarkdown::render('index.Rmd', 'word_document')
 rmarkdown::render('schedule.Rmd', 'word_document')
+rmarkdown::render('LAB1.Rmd', 'word_document')
 
 
 ### Field Trips
