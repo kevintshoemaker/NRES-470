@@ -62,7 +62,7 @@ Please provide short answers to the following questions:
   
 For each graph, provide a short (1-2 sentences) description of why you think your hypothetical D-D mechanism would result in this relationship!  
 
-NOTE: you can use a web app like ["A web whiteboard"](https://awwapp.com/) to quickly and easily make and download sketches! I encourage you to use this method to embed your scetches in your submitted MS Word document.
+NOTE: you can use a web app like ["A web whiteboard"](https://awwapp.com/) to quickly and easily make and download sketches! I encourage you to use this method, and to embed your sketches in your submitted MS Word document.
 
 
 ## Exercise 2: Determining Peruvian anchovy optimal harvest levels!
@@ -124,7 +124,7 @@ legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth r
 
 8. One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property **Only Positive Rates** to "Yes". We don't want to harvest the population into negative numbers!!!
 
-9.  Finally, try to find the **maximum sustainable yield**. That is, find the maximum harvest rate that yields a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!!
+9.  Finally, try to find the **maximum sustainable yield**. That is, find the maximum harvest rate that yields a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! [Optional: I encourage you to play around with the "Sensitivity Analysis tool", which you could use to automate this process- that is, have Insightmaker run lots of different values for harvest rate at the same time! We will go over how to use this tool in lab next week or the week after]
 
 ### QUESTIONS, Exercise 2:
 
@@ -136,7 +136,8 @@ legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth r
 
 2d. Does the MSY point represent a **stable equilibrium**? That is, does it return to that equilibrium even if you perturb the system? Why? Why not? 
 
-2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY? Why or why not? (More generally, is the MSY really sustainable?) 
+2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY? Why or why not? (More generally, is the MSY really sustainable?)  
+
 2f. Think back to your Wildlife Ecology course (or refer to the Gotelli book!). If you know $K$ and $r$, how can you analytically solve for **Maximum Sustainable Yield**? Show your calculation. Does your computed MSY match the MSY you found by trial-and-error? (note that $r$ in this case is the difference between the maximum birth rate and the minimum death rate!) 
 
 
@@ -202,42 +203,39 @@ The "100" in this function is there just to help the simulation get started (at 
 
 ##Checklist for Lab 2 completion
 
-*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden. The InsightMaker models can be shared directly in InsightMaker (preferred) or you can take screenshots and bundle those pictures into the Zip file.
+*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden.
 
-***Due Feb. 3 at 11 am.***
+The InsightMaker models should be shared directly in InsightMaker. The first step (of course) is to save your model! After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, send me and Margarete an email (through Webcampus or regular email) with the URL for your InsightMaker model(s).
+
+***Due Feb. 10 at 11 am.***
 
 *  Word document with short answers
     +  **Exercise 1**
-        -  *Short answer (1a.)*
-        -  *Short answer (1b.)*
-        -  *Short answer (1c.)*
-
+        -  *Short answer (1a.)*   
+        -  *Short answer (1b.)*   
+ 
     +  **Exercise 2**
         -  *Short answer (2a.)*
         -  *Short answer (2b.)*
         -  *Short answer (2c.)*
-        -  *Short answer (2d.)*
-
+        -  *Short answer (2d.)* 
+        -  *Short answer (2e.)*
+        -  *Short answer (2f.)*
+ 
     +  **Exercise 3**
         -  *Short answer (3a.)*
         -  *Short answer (3b.)*
-
-*  Excel file
-    +  **Exercise 1**
-        -  Your Excel file should show that you were able to successfully use formulas to calculate $N_t$ for each time step and show a plot of $N$ by Time.
-
-*  R file
-    +  **Exercise 2**
-        -  Your R code should show that you were able to (a) adapt the given code to run for 100 years, and can display a plot of the results;
-        -  (b) change $r$ to 0.5 and run for 100 years and plot the results;
-        -  (c) find the value of $r$  that gives a population size of 1000 after 100 years; and
-        -  (d) change $r$ to -0.1 and run until the population goes extinct.
+        -  *Short answer (3c.)*
+        -  *Short answer (3d.)*
+        
+    +  **Exercise 4**
+        -  *Short answer (4a.)*
+        -  *Short answer (4b.)*
 
 *  InsightMaker models
-    +  **Exercise 3**
-        -  Your first model should show that you were able to alter the given model as instructed so that the simulation runs correctly. This should be shared with "kevintshoemaker" and "Margarete".
+    +  **Exercises 2,3 and 4**
+        -  Your models should show that you were able to create and specify your models correctly. This should be shared with "kevintshoemaker" and "Margarete", and the URLs should be shared via email.
 
-        -  Your second model should include the Rand() function for the *Birth Rate* and *Death Rate*. This should be shared with "kevintshoemaker" and "Margarete".
 
 
 
