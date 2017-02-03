@@ -320,6 +320,9 @@ div.tocify {
     <li>
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
+    <li>
+      <a href="LAB2.html">Lab 2: logistic growth</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -351,16 +354,17 @@ div.tocify {
 </div>
 <div id="regulation" class="section level2">
 <h2>Regulation!</h2>
-<p>First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increase mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That’s right- it is a <em>negative feedback</em>! And as we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa.</p>
+<p>First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increase mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That’s right- it is a <em>negative feedback</em>! Which is also known as a <em>stabilizing feedback</em>. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa.</p>
 <p>Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate. In population ecology, the latter is often called <em>compensatory growth</em>! You can’t have a regulated population without some kind of negative feedback.</p>
-<p><strong>thought Q</strong>: (not part of the written lab) Are all wild populations regulated?</p>
+<p><strong>thought Q</strong>: What are some possible mechanisms of density-dependence? That is, why could vital rates become less ideal at higher densities?</p>
+<p><strong>thought Q</strong>: Are all wild populations regulated?</p>
 </div>
 <div id="logistic-growth" class="section level2">
 <h2>Logistic growth</h2>
-<p>Logistic growth is described mathematically by the following equation:</p>
-<p>$N = r N_t ( 1 -  ) $</p>
-<p>This is probably the second most important equation of population ecology (after basic exponential growth!).</p>
-<p>Let’s break this equation down a bit.</p>
+<p>Logistic growth can be described mathematically by the following equation:</p>
+<p>$N = r N_{t} ( 1 -  ) $</p>
+<p>This is probably the <em>second most important equation of population ecology</em> (after basic exponential growth!).</p>
+<p>We will go into more detail in lab, but Let’s break this equation down a bit.</p>
 <p>The first part of this equation looks familiar, right?</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t\)</span></p>
 <p>What about the second part,</p>
@@ -378,12 +382,12 @@ div.tocify {
 <div id="carrying-capacity-is-an-equilibrium-point" class="section level2">
 <h2>Carrying capacity is an equilibrium point!</h2>
 <p>A stock-flow system is at <strong>equilibrium</strong> point is when [Flows In] are equal to [Flows Out]. That is opposing forces cancel each other out.</p>
-<p>As Gotelli shows, and we will go over in detail, you can derive the logistic growth equation by making <em>b</em> and <em>d</em> (from the standard population growth equation) linearly dependent on density:</p>
+<p>As Gotelli shows, and we will go over in detail, you can derive the logistic growth equation by making <em>b</em> and <em>d</em> (from the standard population growth equation) both linearly dependent on density:</p>
 <p><span class="math inline">\(b=b_{max}-a*[Density]\)</span></p>
-<p>where <span class="math inline">\(b_{max}\)</span> is the maximum per-capita birth rate and <span class="math inline">\(a\)</span> is the density dependence term.</p>
+<p>where <span class="math inline">\(b_{max}\)</span> is the maximum, or ideal, per-capita birth rate and <span class="math inline">\(a\)</span> is the density dependence term.</p>
 <p>Similarly,</p>
 <p><span class="math inline">\(d=d_{min}+c*[Density]\)</span></p>
-<p>where <span class="math inline">\(d_{min}\)</span> is the minimum per-capita death rate (1-maximum survival rate) and <span class="math inline">\(c\)</span> is the density dependence term.</p>
+<p>where <span class="math inline">\(d_{min}\)</span> is the minimum, or ideal, per-capita death rate (1-maximum survival rate) and <span class="math inline">\(c\)</span> is the density dependence term.</p>
 <p>We can plot these equations out in R:</p>
 <pre class="r"><code>Density &lt;- seq(0,500,1)  # create a sequence of numbers from 0 to 500, representing a range of population densities
 
@@ -420,11 +424,8 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 </div>
 <div id="in-class-exercise-logistic-growth" class="section level2">
 <h2>In-class exercise: logistic growth</h2>
-<p>First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don’t have to start from scratch every class!)</p>
+<p>First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don’t have to start from scratch every class!). To build off of a previous Insight, open a previous Insight (e.g., your basic exponential growth model) and choose “Clone Insight” in the upper right corner to create a copy that you can edit.</p>
 <p>Here is the scenario we will model: both <em>b</em> and <em>d</em> are <strong>density-dependent</strong>. We will replicate the model from the R code and figure above- this time in InsightMaker!</p>
-<p>b_max &lt;- 0.8 # maximum reproduction (at low densities) d_min &lt;- 0.3 # minimum mortality</p>
-<p>a &lt;- 0.001 # D-D terms c &lt;- 0.0005</p>
-<p>b &lt;- b_max - a<em>Density d &lt;- d_min + c</em>Density</p>
 <pre><code>CONSTANTS
 - [Maximum per-capita birth rate] = 0.8 individuals per individual per year   
 - [Minimum per-capita death rate] = 0.3 individuals per individual per year    
@@ -441,8 +442,8 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 </div>
 <ol style="list-style-type: decimal">
 <li><p>Load a basic exponential-growth model. Rename the main [Stock] <em>Turtles</em>. This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>turtles</em> and per-capita rates, respectively called <em>Births per capita</em> and <em>Deaths per capita</em> (each defined on the canvas as [Variables]). This model should be very familiar!!</p></li>
-<li><p>Initialize the population of <em>Turtles</em> to 5.</p></li>
-<li><p>Make 4 new [Variables] on the canvas, to represent the four constants from above.</p></li>
+<li><p>Initialize the population of <em>Turtles</em> to 5 (way below carrying capacity).</p></li>
+<li><p>Make four new [Variables] on the canvas, to represent the four constants in our model.</p></li>
 <li><p>Set the <em>Maximum per-capita birth rate</em> to 0.8 (turtles produced per turtle per year). Set the <em>Minimum per-capita Death rate</em> to 0.3. Set the <em>Density dependence on fecundity</em> to 0.001. Set the <em>Density dependence on mortality</em> to 0.0005.</p></li>
 <li><p>Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct.</p></li>
 <li><p>Change the settings so that the simulation runs for 100 years.</p></li>

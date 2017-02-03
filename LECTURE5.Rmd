@@ -13,6 +13,27 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+## Allee Effect
+
+![](prairie_dogs3.jpg)
+
+What happens if density dependence goes the other way? What if an increase in density changes vital rates to produce an *increase* in the population growth rate *r*? 
+
+Imagine a very social species, like prairie dogs. If the density is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems!
+
+This effect -- whereby population growth rate may **decrease** when population size decreases -- is called an **Allee effect**, named after ecologist [Warder Clyde Allee](https://en.wikipedia.org/wiki/Warder_Clyde_Allee) (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.
+
+Interestingly, Allee's interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was an anti-war activist!
+
+
+![](Allee1.jpg)
+
+
+
+One of the most famous examples of a possible Allee effect involves the passenger pigeon (*Ectopistes migratorius*).  
+
+
+
 ![](PP2.jpg)
 
 The [passenger pigeon](https://en.wikipedia.org/wiki/Passenger_pigeon) was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three *billion*!
@@ -30,7 +51,6 @@ What do passenger pigeons have to do with the Allee effect? Well, they were an e
 ## In-class exercise: logistic growth
 
 First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!)
-
 
 Here is the scenario we will model: both *b* and *d* are **density-dependent**. We will replicate the model from the R code and figure above- this time in InsightMaker! 
 

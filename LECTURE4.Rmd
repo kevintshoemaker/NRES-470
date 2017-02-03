@@ -21,21 +21,23 @@ Last week we went through the mathematics of exponential growth. This week we wi
 
 ## Regulation!
 
-First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increase mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That's right- it is a *negative feedback*! And as we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa. 
+First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increase mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That's right- it is a *negative feedback*! Which is also known as a *stabilizing feedback*. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa. 
 
 Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate. In population ecology, the latter is often called *compensatory growth*! You can't have a regulated population without some kind of negative feedback. 
 
-**thought Q**: (not part of the written lab) Are all wild populations regulated?
+**thought Q**: What are some possible mechanisms of density-dependence? That is, why could vital rates become less ideal at higher densities?
+
+**thought Q**: Are all wild populations regulated?
 
 ## Logistic growth
 
-Logistic growth is described mathematically by the following equation: 
+Logistic growth can be described mathematically by the following equation: 
 
-$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right ) $
+$\Delta N = r \cdot N_{t} \left ( 1 - \frac{N}{K}  \right ) $
 
-This is probably the second most important equation of population ecology (after basic exponential growth!). 
+This is probably the *second most important equation of population ecology* (after basic exponential growth!). 
 
-Let's break this equation down a bit. 
+We will go into more detail in lab, but Let's break this equation down a bit. 
 
 The first part of this equation looks familiar, right?
 
@@ -61,17 +63,17 @@ When carrying capacity is mostly used up, _population growth resembles_, well...
 
 A stock-flow system is at **equilibrium** point is when [Flows In] are equal to [Flows Out]. That is opposing forces cancel each other out.   
 
-As Gotelli shows, and we will go over in detail, you can derive the logistic growth equation by making *b* and *d* (from the standard population growth equation) linearly dependent on density:
+As Gotelli shows, and we will go over in detail, you can derive the logistic growth equation by making *b* and *d* (from the standard population growth equation) both linearly dependent on density:
 
 $b=b_{max}-a*[Density]$
 
-where $b_{max}$ is the maximum per-capita birth rate and $a$ is the density dependence term.
+where $b_{max}$ is the maximum, or ideal, per-capita birth rate and $a$ is the density dependence term.
 
 Similarly,
 
 $d=d_{min}+c*[Density]$
 
-where $d_{min}$ is the minimum per-capita death rate (1-maximum survival rate) and $c$ is the density dependence term.
+where $d_{min}$ is the minimum, or ideal, per-capita death rate (1-maximum survival rate) and $c$ is the density dependence term.
 
 We can plot these equations out in R:
 
@@ -118,23 +120,11 @@ What about **K**, or **carrying capacity**?
 
 Let's find out!
 
-
 ## In-class exercise: logistic growth
 
-First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!)
-
-
+First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!). To build off of a previous Insight, open a previous Insight (e.g., your basic exponential growth model) and choose "Clone Insight" in the upper right corner to create a copy that you can edit. 
 
 Here is the scenario we will model: both *b* and *d* are **density-dependent**. We will replicate the model from the R code and figure above- this time in InsightMaker! 
-
-b_max <- 0.8  # maximum reproduction (at low densities)
-d_min <- 0.3  # minimum mortality 
-
-a <- 0.001    # D-D terms
-c <- 0.0005
-
-b <- b_max - a*Density
-d <- d_min + c*Density   
 
 ```
 CONSTANTS
@@ -158,9 +148,9 @@ Your model should look something like this!
 
 1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
 
-2. Initialize the population of *Turtles* to 5.   
+2. Initialize the population of *Turtles* to 5 (way below carrying capacity).   
 
-3. Make 4 new [Variables] on the canvas, to represent the four constants from above. 
+3. Make four new [Variables] on the canvas, to represent the four constants in our model. 
 
 4. Set the *Maximum per-capita birth rate* to 0.8 (turtles produced per turtle per year). Set the *Minimum per-capita Death rate* to 0.3. Set the *Density dependence on fecundity* to 0.001.  Set the *Density dependence on mortality* to 0.0005.
 
@@ -170,12 +160,10 @@ Your model should look something like this!
 
 7. Run this model. Does the model behave as you would expect? 
 
-
 **Q:** What happens if population size starts out *at* carrying capacity?
 **Q:** What happens if population size starts out *above* carrying capacity?  
 **Q:** Is this a stable equilibrium?
 **Q:** Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?
-
 
 
 [--go to next lecture--](LECTURE5.html)
