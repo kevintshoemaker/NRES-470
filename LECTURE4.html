@@ -308,6 +308,9 @@ div.tocify {
     <li>
       <a href="LECTURE5.html">Passenger Pigeon</a>
     </li>
+    <li>
+      <a href="LECTURE6.html">Age-structured populations</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -362,7 +365,7 @@ div.tocify {
 <div id="logistic-growth" class="section level2">
 <h2>Logistic growth</h2>
 <p>Logistic growth can be described mathematically by the following equation:</p>
-<p>$N = r N_{t} ( 1 -  ) $</p>
+<p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K} \right )\)</span></p>
 <p>This is probably the <em>second most important equation of population ecology</em> (after basic exponential growth!).</p>
 <p>We will go into more detail in lab, but Let’s break this equation down a bit.</p>
 <p>The first part of this equation looks familiar, right?</p>
@@ -435,22 +438,39 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 - [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Turtles] 
 - [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Turtles] </code></pre>
 <p>How can we do this in InsightMaker?</p>
-<p>Your model should look something like this!</p>
-<div class="figure">
-<img src="IM5.jpg" />
-
-</div>
 <ol style="list-style-type: decimal">
-<li><p>Load a basic exponential-growth model. Rename the main [Stock] <em>Turtles</em>. This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>turtles</em> and per-capita rates, respectively called <em>Births per capita</em> and <em>Deaths per capita</em> (each defined on the canvas as [Variables]). This model should be very familiar!!</p></li>
+<li><p>Load a basic exponential-growth model. Rename the main [Stock] <em>Box Turtles</em>. This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>turtles</em> and per-capita rates, respectively called <em>Births per capita</em> and <em>Deaths per capita</em> (each defined on the canvas as [Variables]). This model should be very familiar!!</p></li>
 <li><p>Initialize the population of <em>Turtles</em> to 5 (way below carrying capacity).</p></li>
 <li><p>Make four new [Variables] on the canvas, to represent the four constants in our model.</p></li>
 <li><p>Set the <em>Maximum per-capita birth rate</em> to 0.8 (turtles produced per turtle per year). Set the <em>Minimum per-capita Death rate</em> to 0.3. Set the <em>Density dependence on fecundity</em> to 0.001. Set the <em>Density dependence on mortality</em> to 0.0005.</p></li>
 <li><p>Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct.</p></li>
 <li><p>Change the settings so that the simulation runs for 100 years.</p></li>
-<li><p>Run this model. Does the model behave as you would expect?</p></li>
 </ol>
-<p><strong>Q:</strong> What happens if population size starts out <em>at</em> carrying capacity? <strong>Q:</strong> What happens if population size starts out <em>above</em> carrying capacity?<br />
-<strong>Q:</strong> Is this a stable equilibrium? <strong>Q:</strong> Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?</p>
+<p>Your model should look something like this! (if you don’t already have a model like this, clone <a href="https://insightmaker.com/insight/70353/Logistic-Growth-1#">this model</a>)</p>
+<div class="figure">
+<img src="IM5.jpg" />
+
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li>Run this model. Does the model behave as you would expect?</li>
+</ol>
+<p><strong>Q:</strong> What happens if population size starts out <em>at</em> carrying capacity?<br />
+<strong>Q:</strong> What happens if population size starts out <em>above</em> carrying capacity?<br />
+<strong>Q:</strong> Is this a stable equilibrium?<br />
+<strong>Q:</strong> Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Consider the basic logistic growth equation:</li>
+</ol>
+<p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K} \right )\)</span></p>
+<p>Pull up your InsightMaker model for basic logistic growth with an <span class="math inline">\(r_{max}\)</span> term (double-headed arrow). Or you can clone it from <a href="https://insightmaker.com/insight/71146/Basic-logistic-growth-rmax">here</a>. It should look something like this:</p>
+<div class="figure">
+<img src="IM6.jpg" />
+
+</div>
+<p>Make your initial population size very small compared to carrying capacity.</p>
+<p><strong>Q:</strong> What happens if <span class="math inline">\(r\)</span> is zero? What happens to carrying capacity?<br />
+<strong>Q:</strong> Which population is more likely to be found at or near K in nature? A population with very large <span class="math inline">\(r\)</span> or very small <span class="math inline">\(r\)</span>?</p>
+<p><strong>Q:</strong> Is a high value of <span class="math inline">\(r\)</span> good or bad for conservation?</p>
 <p><a href="LECTURE5.html">–go to next lecture–</a></p>
 </div>
 

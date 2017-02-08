@@ -1,5 +1,5 @@
 ---
-title: "Passenger Pigeon"
+title: "Passenger Pigeon/Allee effect"
 author: "NRES 470/670"
 date: "Feb 1, 2017"
 output: 
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![](prairie_dogs3.jpg)
 
-What happens if density dependence goes the other way? What if an increase in density changes vital rates to produce an *increase* in the population growth rate *r*? 
+What happens if density dependence goes the other way? What if an decrease in density changes vital rates to produce an *decrease* in the population growth rate *r*? 
 
 Imagine a very social species, like prairie dogs. If the density is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems!
 
@@ -46,66 +46,72 @@ What happened to the passenger pigeon? Well, first of all pigeons were hunted on
 
 ![](PP1.jpg)
 
-What do passenger pigeons have to do with the Allee effect? Well, they were an extremely gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators. Allee effects are generally bad news for conservation!
+Secondly, hardwood forests were cleared on a massive scale, reducing habitat.   
 
-## In-class exercise: logistic growth
+But what do passenger pigeons have to do with the Allee effect? Well, they were an *extremely* gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators.   
 
-First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!)
+## In-class exercise: Allee effect
 
-Here is the scenario we will model: both *b* and *d* are **density-dependent**. We will replicate the model from the R code and figure above- this time in InsightMaker! 
+In this exercise we will explore the implications of **postitive density dependence** on vital rates. 
 
-b_max <- 0.8  # maximum reproduction (at low densities)
-d_min <- 0.3  # minimum mortality 
-
-a <- 0.001    # D-D terms
-c <- 0.0005
-
-b <- b_max - a*Density
-d <- d_min + c*Density   
-
-```
-CONSTANTS
-- [Maximum per-capita birth rate] = 0.8 individuals per individual per year   
-- [Minimum per-capita death rate] = 0.3 individuals per individual per year    
-- [Density dependence on fecundity] (a) = 0.001    
-- [Density dependence on mortality] (c) = 0.0005  
-```
-
-```
-EQUATIONS
-- [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Turtles] 
-- [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Turtles] 
-```
-
-How can we do this in InsightMaker? 
-
-Your model should look something like this!
+1. In InsightMaker, load up the logistic model with vital rates -- that is, where $b$ and $d$ are each modeled density-dependent.  It should look something like this (or if you don't already have this, load it from [here](https://insightmaker.com/insight/70353/Logistic-Growth-1#)):
 
 ![](IM5.jpg)
 
-1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
+2. Now add a new [Variable] called *Allee threshold*. Set this variable equal to 200.
 
-2. Initialize the population of *Turtles* to 5.   
+3. As for the other parameters, set them as follows:    
 
-3. Make 4 new [Variables] on the canvas, to represent the four constants from above. 
+- Initial abundance: 201 (just above the Allee threshold) 
+- Density dependence on birth rate: 0.004    
+- Density dependence on survival: 0.001   
+- Max birth rate: 0.8   
+- Min mortality: 0.3   
 
-4. Set the *Maximum per-capita birth rate* to 0.8 (turtles produced per turtle per year). Set the *Minimum per-capita Death rate* to 0.3. Set the *Density dependence on fecundity* to 0.001.  Set the *Density dependence on mortality* to 0.0005.
+4. Now let's use a *Conditional (IF-THEN-ELSE) statement* to specify an Allee effect. The population experiences maximum growth rate at the Allee threshold. If the population is above the Allee threshold, the population exhibits (stabilizing) negative density dependence. If the population is below the Allee threshold, then the population experiences positive density dependence- whereby individuals in smaller populations have *lower* overall fitness. 
 
-5. Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct. 
+To do this, define your *Births per Capita* using the following syntax:
 
-6. Change the settings so that the simulation runs for 100 years.  
+```
+If [Pigeons]<[Allee threshold] Then
+  [Max fecundity]-[Density dependence on fecundity]*([Allee threshold]-[Pigeons])
+Else
+  [Max fecundity]-[Density dependence on fecundity]*([Pigeons]-[Allee threshold])
+End If
+```
 
-7. Run this model. Does the model behave as you would expect? 
+Similarly, define your *Deaths per capita* using the following syntax:
+
+```
+If [Pigeons]<[Allee threshold] Then
+  [Min mortality]+[Density dependence on survival]*([Allee threshold]-[Pigeons])
+Else
+  [Min mortality]+[Density dependence on survival]*([Pigeons]-[Allee threshold])
+End If
+```
+
+5. If we are running out of time in class (which we probably will be!), load the model (and clone it!) using [this link](https://insightmaker.com/insight/71147/Allee-Effect-1#)!    
+
+Now you can try to answer the following questions:
 
 
-**Q:** What happens if population size starts out *at* carrying capacity?
-**Q:** What happens if population size starts out *above* carrying capacity?  
-**Q:** Is this a stable equilibrium?
-**Q:** Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?
+**Q**: What is the carrying capacity (K) for this population? 
+
+**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.   
+
+**Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? 
+
+**Q**: if you plot birth and death rates as a function of density in this model, can you identify the two equilibria?
+
+**Q:** Why do Allee effects generally spell bad news for wildlife conservation and management?  
 
 
+And just for fun, here is an article about [the passenger pigeon and its possible "de-extinction"](http://www.audubon.org/magazine/may-june-2014/why-passenger-pigeon-went-extinct)
 
-[--go to next lecture--](LECTURE5.html)
+**Q:** Do you support bringing back the passenger pigeon? Why or why not??
+
+
+[--go to next lecture--](LECTURE6.html)
 
 
 

@@ -33,7 +33,7 @@ Same with populations. In a regulated population, an increase in abundance will 
 
 Logistic growth can be described mathematically by the following equation: 
 
-$\Delta N = r \cdot N_{t} \left ( 1 - \frac{N}{K}  \right ) $
+$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
 
 This is probably the *second most important equation of population ecology* (after basic exponential growth!). 
 
@@ -142,28 +142,44 @@ EQUATIONS
 
 How can we do this in InsightMaker? 
 
-Your model should look something like this!
-
-![](IM5.jpg)
-
-1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
+1. Load a basic exponential-growth model. Rename the main [Stock] *Box Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
 
 2. Initialize the population of *Turtles* to 5 (way below carrying capacity).   
 
-3. Make four new [Variables] on the canvas, to represent the four constants in our model. 
+3. Make four new [Variables] on the canvas, to represent the four constants in our model.   
 
-4. Set the *Maximum per-capita birth rate* to 0.8 (turtles produced per turtle per year). Set the *Minimum per-capita Death rate* to 0.3. Set the *Density dependence on fecundity* to 0.001.  Set the *Density dependence on mortality* to 0.0005.
+4. Set the *Maximum per-capita birth rate* to 0.8 (turtles produced per turtle per year). Set the *Minimum per-capita Death rate* to 0.3. Set the *Density dependence on fecundity* to 0.001.  Set the *Density dependence on mortality* to 0.0005.  
 
-5. Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct. 
+5. Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct.   
 
-6. Change the settings so that the simulation runs for 100 years.  
+6. Change the settings so that the simulation runs for 100 years.   
 
-7. Run this model. Does the model behave as you would expect? 
+Your model should look something like this! (if you don't already have a model like this, clone [this model](https://insightmaker.com/insight/70353/Logistic-Growth-1#))
 
-**Q:** What happens if population size starts out *at* carrying capacity?
-**Q:** What happens if population size starts out *above* carrying capacity?  
-**Q:** Is this a stable equilibrium?
-**Q:** Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?
+![](IM5.jpg)
+
+
+7. Run this model. Does the model behave as you would expect?   
+
+**Q:** What happens if population size starts out *at* carrying capacity?    
+**Q:** What happens if population size starts out *above* carrying capacity?     
+**Q:** Is this a stable equilibrium?     
+**Q:** Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?    
+
+8. Consider the basic logistic growth equation:   
+
+$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
+
+Pull up your InsightMaker model for basic logistic growth with an $r_{max}$ term (double-headed arrow). Or you can clone it from [here](https://insightmaker.com/insight/71146/Basic-logistic-growth-rmax). It should look something like this:
+
+![](IM6.jpg)
+
+Make your initial population size very small compared to carrying capacity.     
+
+**Q:** What happens if $r$ is zero? What happens to carrying capacity?  
+**Q:** Which population is more likely to be found at or near K in nature? A population with very large $r$ or very small $r$?   
+
+**Q:** Is a high value of $r$ good or bad for conservation?
 
 
 [--go to next lecture--](LECTURE5.html)

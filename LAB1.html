@@ -308,6 +308,9 @@ div.tocify {
     <li>
       <a href="LECTURE5.html">Passenger Pigeon</a>
     </li>
+    <li>
+      <a href="LECTURE6.html">Age-structured populations</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -537,7 +540,7 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <ul>
 <li><strong><em>Short answer (3a.)</em></strong> Starting with a growing population, can you come up with two different scenarios in which <em>Population</em> is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer.</li>
 </ul>
-<p>The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of <strong>stochasticity</strong> (randomness). Let’s add some randomness to our vital rates! Change the <strong>Show Value Slider</strong> option of the Birth Rate primitive to No. Change the Equation to 0.1 + RandNormal(0, 0.1). The RandNormal() function generates a normally distributed random number with mean equal to the first argument and standard deviation equal to the second argument. This means that in each time step we have a slightly different birth rate. Do the same for <em>Death Rate</em>. Run multiple simulations (at least 10) and look for patterns. Use the <strong>Compare Results</strong> tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA.</p>
+<p>The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don’t grow in this manner because of <strong>stochasticity</strong> (randomness). Let’s add some randomness to our vital rates! Change the <strong>Show Value Slider</strong> option of the Birth Rate primitive to No. Change the Equation to 0.1 + RandNormal(0, 0.1). The RandNormal() function generates a normally distributed random number with <em>mean (average) equal to the first argument</em> and <em>standard deviation equal to the second argument</em>. This means that in each time step we have a slightly different birth rate. Since we specified a <em>mean</em> of zero, we are not actually changing the average birth rate! Do the same for <em>Death Rate</em>. Run multiple simulations (at least 10) and look for patterns. Use the <strong>Compare Results</strong> tool to compare and provide output. When you are confident the model is right, send it to your instructor/TA.</p>
 <ul>
 <li><strong><em>Short answer (3b.)</em></strong> Is it possible to have a declining population even when <em>Birth Rate</em> and <em>Death Rate</em> are the same on average? Is it possible to have a declining population when <em>Birth Rate</em> is greater than <em>Death Rate</em> on average? Explain your reasoning!</li>
 </ul>

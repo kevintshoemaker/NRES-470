@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Lab 2: Density-dependence and more!</title>
+<title>Lab 3: Age structure and Stochasticity</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -343,17 +343,21 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 2: Density-dependence and more!</h1>
+<h1 class="title toc-ignore">Lab 3: Age structure and Stochasticity</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
 <h4 class="date"><em>Jan 24, 2017</em></h4>
 
 </div>
 
 
-<p>In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are <em>density dependence</em>, <em>chaos</em> and <em>time delays</em>.</p>
+<p>In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are <em>age structure</em>, <em>parameter uncertainty</em>, <em>demographic stochasticity</em> and <em>environmental stochasticity</em>.</p>
+<div id="exercise-x" class="section level2">
+<h2>Exercise X</h2>
+<p>1c) relative role of demographic and environmental stochasticity as populations get bigger 1d) effects of different stochastic probability distributions.</p>
 <p>First let’s do some math!</p>
-<div id="mathematics-of-density-dependent-population-regulation" class="section level2">
-<h2>Mathematics of Density-Dependent population regulation</h2>
+</div>
+<div id="mathematics-of-age-structured-population-growth" class="section level2">
+<h2>Mathematics of age-structured population growth!</h2>
 <p>Recall the basic population growth equation:</p>
 <p><span class="math inline">\(\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 1)}\)</span></p>
 <p>Previously we considered <em>b</em> and <em>d</em> to be constants. Now we want them to be functions of abundance! In particular, as abundance goes up, <em>b</em> goes down:</p>
@@ -404,7 +408,7 @@ div.tocify {
 <ol start="4" style="list-style-type: decimal">
 <li><p>Next, you’ll need to update the equations to calculate the per-capita birth and death rates. Click on the <strong>=</strong> sign in the corner of each variable, and enter the appropriate equations for the appropriate rates (see above):</p></li>
 <li><p>Enter starting values for your variables. Let’s use 10,000 for the initial <em>Anchovy Population</em>, 1 for the <em>Ideal Birth Rate</em>, 0.00005 for <em>Density Dependence</em> for birth rate, 0.4 for <em>Ideal Death Rate</em>, and 0.00001 for <em>Density Dependence</em> for death rate.</p></li>
-<li><p>Use the <strong>Settings</strong> button to change the <strong>Simulation Length</strong> to 24 and the timescale to “Months”. Click <strong>Simulate</strong>. You may need to click <strong>Configure</strong> in order to clean up your plot to just show <strong>Time</strong> on the x-axis and <strong>Anchovy Population</strong> on the y-axis. Run the model to see if it is working. Since the abundance is initialized at carrying capacity, abundance should not change over time. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an “S-shaped” logistic growth curve.</p></li>
+<li><p>Use the <strong>Settings</strong> button to change the <strong>Simulation Length</strong> to 24 and the timescale to “Months”. Click <strong>Simulate</strong>. You may need to click <strong>Configure</strong> in order to clean up your plot to just show <strong>Time</strong> on the x-axis and <strong>Anchovy Population</strong> on the y-axis.</p></li>
 <li><p>Next, let’s add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let’s assume harvest is constant – that is, a given number are harvested, regardless of the size of the population (no feedback!).</p></li>
 <li><p>One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property <strong>Only Positive Rates</strong> to “Yes”. We don’t want to harvest the population into negative numbers!!!</p></li>
 <li><p>Finally, try to find the <strong>maximum sustainable yield</strong>. That is, find the maximum harvest rate that yields a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! [Optional: I encourage you to play around with the “Sensitivity Analysis tool”, which you could use to automate this process- that is, have Insightmaker run lots of different values for harvest rate at the same time! We will go over how to use this tool in lab next week or the week after]</p></li>

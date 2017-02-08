@@ -5,18 +5,18 @@ Week 1,1/24/2017,LECTURE 1: Course overview; Intro to Systems Thinking,Gotelli C
 Week 2,1/31/2017,LECTURE 1: Thomas Malthus; Density-dependent growth,Gotelli Chapter 2
 ,2/2/2017,LECTURE 2: Density-dependent growth,BCTD Chapter 2 (skim)
 ,2/3/2017,LAB: Density-dependent populations in InsightMaker; maximum sustainable yield (MSY) and more,
-Week 3,2/7/2017,LECTURE 1: Passenger pigeon/Allee Effect; Age-structured populations,Gotelli Chapter 3
-,2/9/2017,LECTURE 2: Age-structured populations; Stochasticity; Final projects,
+Week 3,2/7/2017,LECTURE 1: Passenger pigeon/Allee Effect,Gotelli Chapter 3
+,2/9/2017,LECTURE 2: Age-structured populations; Stochasticity,[Lande 1992](lande.pdf)
 ,2/10/2017,LAB: Age-structured populations and stochasticity in InsightMaker,
-Week 4,2/14/2017,LECTURE 1: Capture-recapture analysis  (continued),"Cooch and White Chaps 3,4"
-,2/16/2017,LECTURE 2: Population Viability Analysis,
-,2/17/2017,LAB: ,
-Week 5,2/21/2017,LECTURE 1: Population Viability Analysis (continued),Brook et al. 2006
+Week 4,2/14/2017,LECTURE 1: Final projects; Small-population paradigm,
+,2/16/2017,LECTURE 2: stage-structured populations; Matrix population models,
+,2/17/2017,"LAB: PVA: Construct density-regulated, age-structured, stochastic population model in InsightMaker",
+Week 5,2/21/2017,LECTURE 1: Population Viability Analysis; Small population paradigm,Brook et al. 2006
 ,2/23/2017,LECTURE 2: MIDTERM #1,Beissinger and Westphal 1998
-,2/24/2017,"LAB: PVA: Construct density-regulated, stochastic population model in InsightMaker",
+,2/24/2017,"LAB: Sensitivity testing, elasticity analysis",
 Week 6,2/28/2017,LECTURE 1: Detecting density dependence in natural populations ,Regan et al 2002
 ,3/2/2017,"LECTURE 2: Assessing model performance and handling model uncertainty (e.g., sensitivity analysis, cross-validation)",Akçakaya et al 2005
-,3/3/2017,"LAB: PVA lab (continued): scenario testing, sensitivity analysis",
+,3/3/2017,LAB: work on final projects,
 Week 7,3/7/2017,"LECTURE 1: Mitigating threats to populations: ""declining population paradigm""",Gotelli Chapter 4
 ,3/9/2017,LECTURE 2: Metapopulations ,Caughley 1988
 ,3/10/2017,LAB: Metapopulation modeling in InsightMaker,
@@ -44,11 +44,12 @@ Week 14,4/25/2017,LECTURE 1: Case study: assessing the species-level impact of c
 Week 15,5/2/2017,LECTURE 1: Student presentations,
 ,5/4/2017,LECTURE 2: Student presentations,
 ,5/5/2017,LAB: Student presentations / review for final,
-Week 16,TBD,FINAL EXAM,
-,,,Amstrup et al. Chap. 1
-,,,"Cooch and White Chaps 1,2"
+Week 16,5/16/2017,FINAL EXAM (2:30 PM),
 ,,,
-,,Data needs for population ecology,
-,,Parameter estimation; capture-recapture data,
-,,Estimate survival with open-population capture-recapture (program MARK),
-,,Estimate survival with open-population capture-recapture (program MARK) (continued),
+,,,
+,,,
+,,OTHER TOPICS,OTHER READINGS
+,,Parameter estimation; capture-recapture data,Amstrup et al. Chap. 1
+,,Estimate survival with open-population capture-recapture (program MARK),"Cooch and White Chaps 1,2"
+,,Estimate survival with open-population capture-recapture (program MARK) (continued),"Cooch and White Chaps 3,4"
+,,Capture-recapture analysis  (continued),
