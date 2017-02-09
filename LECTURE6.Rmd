@@ -1,7 +1,7 @@
 ---
-title: "Final projects"
+title: "Age-structured populations"
 author: "NRES 470/670"
-date: "Feb 4, 2017"
+date: "Feb 8, 2017"
 output: 
   html_document: 
     theme: spacelab
@@ -13,29 +13,145 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-## Final projects for NRES 470
+## When $d$ and $b$ depend on more than just density...
 
 
-## Requirements
+![](elephant1.jpg)
+
+Take this Indian elephant for example. How does reproductive rate depend on age in this case?
+
+We might imagine it looks something like this!
+
+```{r}
+Elephant_age <- seq(0,60,by=2)
+
+Birth_rate <- c(rep(0,times=7),seq(0,0.3,length=4),rep(0.3,times=15),seq(0.3,0,length=5))
+
+names(Birth_rate) <- Elephant_age
+
+barplot(Birth_rate,xlab="Age",ylab="b, per-capita birth rate",col="blue")
+
+```
+
+![](tortoise1.jpg)
+
+What about per-capita death rates for a tortoise? We might imagine something that looks like this...
+
+```{r}
+Tortoise_age <- seq(0,120,by=5)
+
+Death_rate <- c(seq(0.7,0.05,length=5),seq(0.05,0.05,length=16),seq(0.05,0.5,length=4))
+
+names(Death_rate) <- Tortoise_age
+
+barplot(Death_rate,xlab="Age",ylab="d, per-capita death rate",col="blue")
+
+```
+
+So, for many species per-capita birth rate and death rate are fundamentally dependent on age!
+
+![](spadefoot1.jpg)
+
+**Thought Q:** Imagine you were trying to re-establish a population of spadefoot toads. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm. What would population growth look like over the next few years, assuming the reintroduction strategy was successful? 
+
+![](tamarin1.jpg)
+
+**Thought Q:** Imagine a population of 100 golden-headed lion tamarins (*Leontopithecus chrysomelas*) that consists of all adult males and post-reproductive females. What is the conservation status of this population?  
+
+## Life table!
+
+Age structured populations are often represented by a table called a **life table**, which looks something like this:
+
+```{r include=FALSE}
+lifetable <- read.csv("life_table.csv")
+```
+
+```{r results='asis', echo=FALSE}
+knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)"))
+
+```
+
+### Fecundity schedule
+
+The fecundity component of the life table is called the "fedundity schedule"! The term $b(x)$ represents per-capita fecundity rate for females of age x.  
+
+### Survivorship schedule
+
+Fecundity is only half the story! The survival component of the life table is called the "survivorship schedule"! 
+
+The term **cohort** represents a bunch of individuals that were all born at the same time. In the life table, the term S(x) refers to the number of individuals from a particular cohort that are _still alive at age x_. From this raw data, we compute two terms, called **survivorship** and **survival rate**
+
+The term $l(x)$ represents the _probability of survival to age x from age 0_. This is called **survivorship**
+
+The term $g(x)$ represents the _probability of surviving from age x to age x+1_. This is called **survival rate** 
+
+### Types of survivorship schedules...
+
+There are three main types of survivorship schedules, classified as **Type I**, **Type II**, and **Type III**. 
+
+Survivorship curves describe how survivorship ($l(x)$) drops off with age. These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs. 
 
 
-## Timeline
+#### Type I
+![](human1.png)
+
+#### Type II
+![](songbird1.jpg)
+
+#### Type III
+![](frog1.jpg)
+
+![](Survivorship_Curves.jpg)
+
+**Thought Q:** Which survivorship curve is the most common in nature??
 
 
+## In-class exercise: age-structured population growth
+
+In this exercise we will explore some facets of **age-stuctured populations**. 
+
+1. Load up the life table from earlier in this lecture, by clicking [here](life_table.csv). Use this table to compute the **net reproductive rate, $R_0$**. This represents the mean number of female offspring produced per female over her entire lifetime. This is also known as *lifetime reproductive potential*! This can be computed as:
+
+$R_0 = \sum_{x=0}^k l(x)\cdot b(x)$
+
+Where $k$ is the maximum age. 
+
+**Q:** Can you implement this formula in Excel? What's the answer?
+
+2. If the net reproductive rate, $R_0$ is positive, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is negative, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$. 
+
+BUT, what is the time frame of $R_0$? What is the timeframe of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
+
+What is a **generation**? The most common definition is the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed from the life table as:
+
+$G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
+
+See if you can implement this in Excel (or whatever spreadsheet software you use!).
+
+**Q:** What is the *generation time* of the population in the table?
+
+3. Now, can you compute the *intrinsic rate of growth* ($r$) for this age-structured population? 
+
+To a first-order approximation, you can use this equation:
+
+$r = \frac{ln(R_0)}{G}$ 
+
+Just looking at this equation, you see that organisms with longer generation times ($G$) have slower intrinsic rates of growth, all else being equal. 
+
+**Q:** Implement this equation in Excel. Is this an exponentially growing population?
+
+4. Load up an age-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/70809/Age-structured-population). 
 
 
-## First project-related assignment: the proposal!
+    4a. Initialize the population like the spadefoot toad example from above- with only the first (juvenile) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
+    
+    4b. Can you tweak the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three age classes? This is called **Stable Age Distribution**
+    
+    4c. Now change the vital rates (*Juv mort rate*, *Sub mort rate*, *Transition rate to Subadult*, etc.). Is the population growth still smooth? If not, can you find the *Stable Age Distribution* now??
+    
+    4d. Now change the **Simulation time step** to 5 years, and return to an initial population with only juveniles. What happens? Is this a **stochastic** model? If not, why does it look like it has a random component?  
 
-Your project proposal will consist of:  *
-1. Title: should indicate what species you are modeling, and what question will be addressed
-2. Project participants: work in groups of 2-3. Obviously we won't have very many groups!
-3. Brief project description: Describe 
-4. Data sources:
-
-Proposals will be due XXX.
-
-
-
+[--go to next lecture--](LECTURE7.html)
 
 
 

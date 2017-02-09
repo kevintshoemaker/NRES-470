@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Final projects</title>
+<title>Age-structured populations</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -311,6 +311,9 @@ div.tocify {
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
     </li>
+    <li>
+      <a href="LECTURE7.html">Stochastic population models</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -343,26 +346,180 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Final projects</h1>
+<h1 class="title toc-ignore">Age-structured populations</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 4, 2017</em></h4>
+<h4 class="date"><em>Feb 8, 2017</em></h4>
 
 </div>
 
 
-<div id="final-projects-for-nres-470" class="section level2">
-<h2>Final projects for NRES 470</h2>
+<div id="when-d-and-b-depend-on-more-than-just-density" class="section level2">
+<h2>When <span class="math inline">\(d\)</span> and <span class="math inline">\(b\)</span> depend on more than just density…</h2>
+<div class="figure">
+<img src="elephant1.jpg" />
+
 </div>
-<div id="requirements" class="section level2">
-<h2>Requirements</h2>
+<p>Take this Indian elephant for example. How does reproductive rate depend on age in this case?</p>
+<p>We might imagine it looks something like this!</p>
+<pre class="r"><code>Elephant_age &lt;- seq(0,60,by=2)
+
+Birth_rate &lt;- c(rep(0,times=7),seq(0,0.3,length=4),rep(0.3,times=15),seq(0.3,0,length=5))
+
+names(Birth_rate) &lt;- Elephant_age
+
+barplot(Birth_rate,xlab=&quot;Age&quot;,ylab=&quot;b, per-capita birth rate&quot;,col=&quot;blue&quot;)</code></pre>
+<p><img src="LECTURE6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="figure">
+<img src="tortoise1.jpg" />
+
 </div>
-<div id="timeline" class="section level2">
-<h2>Timeline</h2>
+<p>What about per-capita death rates for a tortoise? We might imagine something that looks like this…</p>
+<pre class="r"><code>Tortoise_age &lt;- seq(0,120,by=5)
+
+Death_rate &lt;- c(seq(0.7,0.05,length=5),seq(0.05,0.05,length=16),seq(0.05,0.5,length=4))
+
+names(Death_rate) &lt;- Tortoise_age
+
+barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot;,col=&quot;blue&quot;)</code></pre>
+<p><img src="LECTURE6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>So, for many species per-capita birth rate and death rate are fundamentally dependent on age!</p>
+<div class="figure">
+<img src="spadefoot1.jpg" />
+
 </div>
-<div id="first-project-related-assignment-the-proposal" class="section level2">
-<h2>First project-related assignment: the proposal!</h2>
-<p>Your project proposal will consist of: * 1. Title: should indicate what species you are modeling, and what question will be addressed 2. Project participants: work in groups of 2-3. Obviously we won’t have very many groups! 3. Brief project description: Describe 4. Data sources:</p>
-<p>Proposals will be due XXX.</p>
+<p><strong>Thought Q:</strong> Imagine you were trying to re-establish a population of spadefoot toads. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm. What would population growth look like over the next few years, assuming the reintroduction strategy was successful?</p>
+<div class="figure">
+<img src="tamarin1.jpg" />
+
+</div>
+<p><strong>Thought Q:</strong> Imagine a population of 100 golden-headed lion tamarins (<em>Leontopithecus chrysomelas</em>) that consists of all adult males and post-reproductive females. What is the conservation status of this population?</p>
+</div>
+<div id="life-table" class="section level2">
+<h2>Life table!</h2>
+<p>Age structured populations are often represented by a table called a <strong>life table</strong>, which looks something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">x</th>
+<th align="right">S(x)</th>
+<th align="right">b(x)</th>
+<th align="right">l(x)</th>
+<th align="right">g(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">500</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">0.80</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">400</td>
+<td align="right">2</td>
+<td align="right">0.8</td>
+<td align="right">0.50</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">200</td>
+<td align="right">3</td>
+<td align="right">0.4</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">50</td>
+<td align="right">1</td>
+<td align="right">0.1</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div id="fecundity-schedule" class="section level3">
+<h3>Fecundity schedule</h3>
+<p>The fecundity component of the life table is called the “fedundity schedule”! The term <span class="math inline">\(b(x)\)</span> represents per-capita fecundity rate for females of age x.</p>
+</div>
+<div id="survivorship-schedule" class="section level3">
+<h3>Survivorship schedule</h3>
+<p>Fecundity is only half the story! The survival component of the life table is called the “survivorship schedule”!</p>
+<p>The term <strong>cohort</strong> represents a bunch of individuals that were all born at the same time. In the life table, the term S(x) refers to the number of individuals from a particular cohort that are <em>still alive at age x</em>. From this raw data, we compute two terms, called <strong>survivorship</strong> and <strong>survival rate</strong></p>
+<p>The term <span class="math inline">\(l(x)\)</span> represents the <em>probability of survival to age x from age 0</em>. This is called <strong>survivorship</strong></p>
+<p>The term <span class="math inline">\(g(x)\)</span> represents the <em>probability of surviving from age x to age x+1</em>. This is called <strong>survival rate</strong></p>
+</div>
+<div id="types-of-survivorship-schedules" class="section level3">
+<h3>Types of survivorship schedules…</h3>
+<p>There are three main types of survivorship schedules, classified as <strong>Type I</strong>, <strong>Type II</strong>, and <strong>Type III</strong>.</p>
+<p>Survivorship curves describe how survivorship (<span class="math inline">\(l(x)\)</span>) drops off with age. These three types of <strong>life history</strong> pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.</p>
+<div id="type-i" class="section level4">
+<h4>Type I</h4>
+<div class="figure">
+<img src="human1.png" />
+
+</div>
+</div>
+<div id="type-ii" class="section level4">
+<h4>Type II</h4>
+<div class="figure">
+<img src="songbird1.jpg" />
+
+</div>
+</div>
+<div id="type-iii" class="section level4">
+<h4>Type III</h4>
+<div class="figure">
+<img src="frog1.jpg" />
+
+</div>
+<div class="figure">
+<img src="Survivorship_Curves.jpg" />
+
+</div>
+<p><strong>Thought Q:</strong> Which survivorship curve is the most common in nature??</p>
+</div>
+</div>
+</div>
+<div id="in-class-exercise-age-structured-population-growth" class="section level2">
+<h2>In-class exercise: age-structured population growth</h2>
+<p>In this exercise we will explore some facets of <strong>age-stuctured populations</strong>.</p>
+<ol style="list-style-type: decimal">
+<li>Load up the life table from earlier in this lecture, by clicking <a href="life_table.csv">here</a>. Use this table to compute the <strong>net reproductive rate, <span class="math inline">\(R_0\)</span></strong>. This represents the mean number of female offspring produced per female over her entire lifetime. This is also known as <em>lifetime reproductive potential</em>! This can be computed as:</li>
+</ol>
+<p><span class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot b(x)\)</span></p>
+<p>Where <span class="math inline">\(k\)</span> is the maximum age.</p>
+<p><strong>Q:</strong> Can you implement this formula in Excel? What’s the answer?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>If the net reproductive rate, <span class="math inline">\(R_0\)</span> is positive, then the population is above the <strong>replacement rate</strong> of 1, and therefore the population will grow. If <span class="math inline">\(R_0\)</span> is negative, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, <span class="math inline">\(\lambda\)</span>.</li>
+</ol>
+<p>BUT, what is the time frame of <span class="math inline">\(R_0\)</span>? What is the timeframe of <span class="math inline">\(\lambda\)</span>? They are different right? The difference is that <span class="math inline">\(R_0\)</span> describes growth per <strong>generation</strong>!.</p>
+<p>What is a <strong>generation</strong>? The most common definition is the <em>Average age of the parents of all the offspring produced by a single cohort</em>. This can be computed from the life table as:</p>
+<p><span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}\)</span></p>
+<p>See if you can implement this in Excel (or whatever spreadsheet software you use!).</p>
+<p><strong>Q:</strong> What is the <em>generation time</em> of the population in the table?</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Now, can you compute the <em>intrinsic rate of growth</em> (<span class="math inline">\(r\)</span>) for this age-structured population?</li>
+</ol>
+<p>To a first-order approximation, you can use this equation:</p>
+<p><span class="math inline">\(r = \frac{ln(R_0)}{G}\)</span></p>
+<p>Just looking at this equation, you see that organisms with longer generation times (<span class="math inline">\(G\)</span>) have slower intrinsic rates of growth, all else being equal.</p>
+<p><strong>Q:</strong> Implement this equation in Excel. Is this an exponentially growing population?</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Load up an age-structured model in InsightMaker. You can clone <a href="https://insightmaker.com/insight/70809/Age-structured-population">this one, here</a>.</p>
+<p>4a. Initialize the population like the spadefoot toad example from above- with only the first (juvenile) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?</p>
+<p>4b. Can you tweak the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three age classes? This is called <strong>Stable Age Distribution</strong></p>
+<p>4c. Now change the vital rates (<em>Juv mort rate</em>, <em>Sub mort rate</em>, <em>Transition rate to Subadult</em>, etc.). Is the population growth still smooth? If not, can you find the <em>Stable Age Distribution</em> now??</p>
+<p>4d. Now change the <strong>Simulation time step</strong> to 5 years, and return to an initial population with only juveniles. What happens? Is this a <strong>stochastic</strong> model? If not, why does it look like it has a random component?</p></li>
+</ol>
+<p><a href="LECTURE7.html">–go to next lecture–</a></p>
 </div>
 
 
