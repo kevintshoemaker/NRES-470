@@ -1,7 +1,7 @@
 ---
-title: "Lab 2: Density-dependence and more!"
+title: "Lab 4: Stochastic populations (PVA 1)"
 author: "NRES 470/670"
-date: "Jan 24, 2017"
+date: "Feb 10, 2017"
 output: 
   html_document: 
     theme: spacelab
@@ -13,11 +13,18 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are *density dependence*, *chaos* and *time delays*.  
+In this lab we will continue to add complexity (and biological realism) to our population models in InsightMaker. Among the concepts we will play around with are *parameter uncertainty*, *demographic stochasticity* and *environmental stochasticity*.
+
+
+Are any populations likely to be in stable age distribution in nature?
+## Exercise X 
+
+1c) relative role of demographic and environmental stochasticity as populations get bigger
+1d) effects of different stochastic probability distributions. 
 
 First let's do some math!
 
-## Mathematics of Density-Dependent population regulation
+## Mathematics of age-structured population growth!
 
 Recall the basic population growth equation:
 
@@ -118,7 +125,7 @@ legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth r
 
 5.  Enter starting values for your variables. Let's use 10,000 for the initial *Anchovy Population*, 1 for the *Ideal Birth Rate*, 0.00005 for *Density Dependence* for birth rate, 0.4 for *Ideal Death Rate*, and 0.00001 for *Density Dependence* for death rate.
 
-6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis. Run the model to see if it is working. Since the abundance is initialized at carrying capacity, abundance should not change over time. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an "S-shaped" logistic growth curve. 
+6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis.
 
 7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a given number are harvested, regardless of the size of the population (no feedback!).
 
@@ -203,7 +210,7 @@ The "100" in this function is there just to help the simulation get started (at 
 
 ##Checklist for Lab 2 completion
 
-* Please bundle the materials into one Zip file and email to Professor Shoemaker and Margarete Walden.
+*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden.
 
 The InsightMaker models should be shared directly in InsightMaker. The first step (of course) is to save your model! After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, send me and Margarete an email (through Webcampus or regular email) with the URL for your InsightMaker model(s).
 

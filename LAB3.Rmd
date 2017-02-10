@@ -1,7 +1,7 @@
 ---
-title: "Lab 3: Age structure and Stochasticity"
+title: "Lab 3: Age-structured populations"
 author: "NRES 470/670"
-date: "Jan 24, 2017"
+date: "Feb 9, 2017"
 output: 
   html_document: 
     theme: spacelab
@@ -13,234 +13,168 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are *age structure*, *parameter uncertainty*, *demographic stochasticity* and *environmental stochasticity*.  
-
-
-## Exercise X 
-
-1c) relative role of demographic and environmental stochasticity as populations get bigger
-1d) effects of different stochastic probability distributions. 
+In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are *age structure*, *life tables*, and *age/stage matrices*.  
 
 First let's do some math!
 
-## Mathematics of age-structured population growth!
+## Mathematics of Age-structured populations
 
-Recall the basic population growth equation:
+### Life tables
 
-$\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 1)}$
+Let's start with some notation- population ecology, and life tables in particular, are full of notation. We should at least be aware of the major terms used in population ecology!
 
-Previously we considered *b* and *d* to be constants. Now we want them to be functions of abundance! In particular, as abundance goes up, *b* goes down:
+**Survivorship:** $l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$
 
-$b = b_{max}-a*N_t \qquad \text{(Eq. 2)}$
+**Survival rate:** $g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$
 
-For the death rate *d* we might expect it to go up as abundance goes up:
+**Birth rate:** $b(x)$ is simply the per-capita number of offspring produced by a given age class.
 
-$d = d_{min}+c*N_t \qquad \text{(Eq. 3)}$
+**Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum age.
 
-The above equations nicely illustrate the meaning of density dependence. That is, the vital rates are *dependent* on density!
+**Generation time** is defined as the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 4)}$
 
-**thought Q**: what do the *a* and *c* constants in the above equations really represent? You will have a chance to think more about this in the first exercise. 
+**Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 5)}$ 
 
-Okay, now we can substitute the above equations into **Eq. 1**:
+One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected present and future reproductive output of an individual of age x: $V(x) = b(x) + \sum_{t=x+1}^{k} \frac{l(t+1)}{l(t)} \cdot b(t)   \qquad \text{(Eq. 6)}$. This could also be expressed as: $V(x) = b(x) + \sum_{t=x+1}^{k} g(t) \cdot b(t)$. 
 
-$\Delta N = (b_{max}-a*N_t - d_{min}+c*N_t) \cdot N_t \qquad \text{(Eq. 4)}$
+## Exercise 1: basic life table analysis
 
-Using some tricks of algebra (see the Gotelli book), we can simplify this to:
+![](blackrobin.jpg)
 
-$\Delta N = r \cdot N_t \left [ 1 - \frac{a+c}{b-d} \cdot N_t  \right ]  \qquad \text{(Eq. 5)}$
+Let's imagine that we are following a *cohort* of reintroduced Chatham Island robins on a small island through time. 
 
-Which, if we define $\frac{b-d}{a+c}$ as a constant, $K$, we can re-write like this!
+- First, we establish fake nests and place 350 captive-laid eggs in them. 
+- All individuals are given a unique marking as soon as they hatch. These markings are permanent and not affected by tag loss!
+- We visit the island once per year, and we count all the individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it. If we do not see the individual we know with certainty that it is dead!
+- We record the following numbers of robins over 5 years revisiting the island (starting with 350 at year 0): 50, 25, 10, 2, and 0.
+- We record the following reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0
 
-$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )  \qquad \text{(Eq. 6)}$
+You can load these data in [this handy CSV file](life_table2.csv). It should look something like this:
 
-This is probably the second most important equation of population ecology, and it is called the **Logistic growth equation**. This lab will give us an opportunity to get to know this equation and its implications for population ecology!
+```{r include=FALSE}
+lifetable <- read.csv("life_table2.csv")
+```
 
-
-## Exercise 1: hypothetical mechanisms of density dependence
-
-Please provide short answers to the following questions:
-
-1a. Describe two possible density-dependence mechanisms -- that is, tell a plausible story about two hypothetical wildlife populations, one of which experiences *lower survival* (higher mortality) as densities increase and another that experiences *lower reproduction*.  Have fun and be creative- we will not grade these on whether these mechanisms actually occur in nature- we just want to give you a chance to think about the many possible mechanisms that could potentially regulate wild populations. You can use real-world examples if you would rather- that is up to you.   
-
-1b. For one of the above mechanisms, draw (on paper or electronically) two graphs to illustracte how this hypothetical mechanism might manifest at a population level:
-  i. Abundance (Y axis) over time (X axis).
-  ii. Vital rate (*b* or *d*) (Y axis) over abundance (X axis). 
-  
-For each graph, provide a short (1-2 sentences) description of why you think your hypothetical D-D mechanism would result in this relationship!  
-
-NOTE: you can use a web app like ["A web whiteboard"](https://awwapp.com/) to quickly and easily make and download sketches! I encourage you to use this method, and to embed your sketches in your submitted MS Word document.
-
-
-## Exercise 2: Determining Peruvian anchovy optimal harvest levels!
-
-Let's use InsightMaker to create a logistic growth model based on the collapse of the Peruvian anchovy fisheries (pages 45-47 in Gotelli).
-
-As you develop the logistic growth model for the Peruvian anchovy stock in InsightMaker, you might want to refer to the in-class example for [the logistic growth lecture](LECTURE4.html).
-
-**The Goal**: find the level of harvest that maximizes the total quantity harvested while maintaining a sustainable population!
-
-1.   In InsightMaker, open your basic exponential growth model and choose "Clone Insight" in the upper right corner to create a copy that you can edit for this exercise. It should look something like this (except for anchovies, not rabbits!): (note that it is not strictly necessary to have [Links] -- e.g., going from *Population* to the [Flows] (*Births* and *Deaths*). But it makes your models more visually explicit- you know which parts of the system are interacting!)
-
-![](basicexp1.png)
-
-2.  Now add the density-dependent components! Remember, the density-dependent birth and death rates in the logistic growth model can be expressed as the following: 
-
-$b = b_{max} - aN$, aka density-dependent birth rate = ideal (maximum) birth rate - (strength of density dependence * N)
-
-$d = d_{min} + cN$, aka density-dependent death rate = ideal (minimum) death rate + (strength of density dependence * N) 
-
-"Ideal" in this case means the birth and death rates in the absence of the effects of density.  So, make new [Variables] (Click on **Add Primitive** >> **Add Variable**) for *Ideal Birth Rate* and *Ideal Death Rate*.
-
-In addition, we need to add variables for the strength of density dependence (terms *a* and *c* in the equations).  Make sure the **Links** button is activated, and click and drag your mouse to create links from the new variables to the appropriate per-capita vital rates. Your final model should look something like this (except for anchovies, not box turtles!):
-
-![](IM5.jpg)
-
-
-
-```{r eval=FALSE, echo=FALSE}
-
-Density <- seq(0,10000,1)  # create a sequence of numbers from 0 to 500, representing a range of population densities
-
-## CONSTANTS
-
-b_max <- 1  # maximum reproduction (at low densities)
-d_min <- 0.4  # minimum mortality 
-
-a <- 0.00005    # D-D terms
-c <- 0.00001
-
-b <- b_max - a*Density
-d <- d_min + c*Density
-
-plot(Density,b,type="l",col="green",lwd=2,ylim=c(0,2),main="Density-Dependence!")
-points(Density,d,type="l",col="red",lwd=2)
-legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate","per-capita mortality"),bty="n")
-
-  
+```{r results='asis', echo=FALSE}
+knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 
 ```
 
-4.  Next, you'll need to update the equations to calculate the per-capita birth and death rates.  Click on the **=** sign in the corner of each variable, and enter the appropriate equations for the appropriate rates (see above):
+### QUESTIONS, Exercise 1 (basic life tables):
 
-5.  Enter starting values for your variables. Let's use 10,000 for the initial *Anchovy Population*, 1 for the *Ideal Birth Rate*, 0.00005 for *Density Dependence* for birth rate, 0.4 for *Ideal Death Rate*, and 0.00001 for *Density Dependence* for death rate.
+1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the "correct" way!). Does this population most closely resemble type I, II, or III survivorship? Explain your reasoning. Does the log-transformation change your answer? 
 
-6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis.
+1b. Describe *Equation 3* above in plain English in a way that makes sense to you. What is the net reproductive output, $R_0$ for this population? Is this population growing, declining or stable?    
 
-7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a given number are harvested, regardless of the size of the population (no feedback!).
+1c. What is the generation time, $G$ for this population? What happens to your generation time estimate if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?
 
-8. One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property **Only Positive Rates** to "Yes". We don't want to harvest the population into negative numbers!!!
+1d. What is the reproductive value($V$) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?  
 
-9.  Finally, try to find the **maximum sustainable yield**. That is, find the maximum harvest rate that yields a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! [Optional: I encourage you to play around with the "Sensitivity Analysis tool", which you could use to automate this process- that is, have Insightmaker run lots of different values for harvest rate at the same time! We will go over how to use this tool in lab next week or the week after]
-
-### QUESTIONS, Exercise 2:
-
-2a. What is the (approximate) MSY for this population?
-
-2b. Does the harvest process change the **carrying capacity** for the Peruvian sardines? Explain your reasoning. 
-
-2c. Does the MSY change if you reduce the initial population size down to 1,000 instead of 10,000? If so, what is the new MSY? 
-
-2d. Does the MSY point represent a **stable equilibrium**? That is, does it return to that equilibrium even if you perturb the system? Why? Why not? 
-
-2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY? Why or why not? (More generally, is the MSY really sustainable?)  
-
-2f. Think back to your Wildlife Ecology course (or refer to the Gotelli book!). If you know $K$ and $r$, how can you analytically solve for **Maximum Sustainable Yield**? Show your calculation. Does your computed MSY match the MSY you found by trial-and-error? (note that $r$ in this case is the difference between the maximum birth rate and the minimum death rate!) 
+1e. Are the vital rates in this population **Density-dependent**? If so, explain your reasoning. If not, explain what additional information you would need to evaluate this question.
 
 
-## Exercise 3: fun with logistic growth
+## Exercise 2: more complex life table analysis
 
-For this exercise we will set up a simpler model in InsightMaker- this time, we will replicate the second-most important equation of population ecology (**Eq. 6**, above.
+![](uinta.jpg)
 
-1. Starting from a blank canvas, add a [Stock] called *Population*. This population should be initialized at 10 individuals, and the *Allow Negatives* field in the properties window should be set to "No". Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 1000. 
+Let's take the Uinta ground squirrel example from the Gotelli book. Take a minute to read the description in Gotelli (end of Ch. 3)... 
 
-2. Make a new [Flow] coming out of *Population*, called *Delta N*. In the properties window, set *Only Positive Rates* to "No". You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in *Population* each time step, which can either be positive or negative!
+This is *real data* from a long-term experimental study. 
 
-3. Make a new [Variable] called *Max growth rate* (also known as $r_{max}$), and set it at 0.1. Make a link from *Max growth rate* to *Delta N*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5. 
+The first life table (on the left) represents a cohort of ground squirrels in a population at typical densities.
 
-4. Make a new [Variable] called *Carrying capacity* (also known as $K$), and set it at 500. Make a link from *Carrying Capacity* to *Delta N*.
+The second life table (right) represents a cohort of ground squirrels in a population at lower-than-average densities (many conspecifics removed prior to the start of the experiment). 
 
-5. Finally, open the equation editor for *Delta N* and type in the logistic growth equation (**Eq. 6**). 
+Load up the [Uinta ground squirrel life table data](life_table3.csv) given to us by Gotelli (reproduced from Slade and Balph 1974). 
 
-6. Run the simulation for 100 years (1 year time step) and make sure it behaves as expected- that is, it should exhibit logistic (S-shaped) growth and should level off at carrying capacity. 
+### QUESTIONS, Exercise 2 (more advanced life table analysis):
 
+2a. Compare the two life tables using the following major life-table metrics: $R0$, $G$, $r$, and $V$. What changes do you notice between these two life tables? 
 
-### QUESTIONS, Exercise 3:
+2b. Is generation time ($G$) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how it affected generation time.  
 
-3a. What happens if you initialize the *Population* at above carrying capacity? Do you still see "S-shaped" (logistic) growth? What if you initialize abundance **at** carrying capacity? Is carrying capacity a **stable equilibrium**? Explain your reasoning. 
-
-3b. Return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes as the growth rate increases from 1 to 5. You should be able to identify at least four unique patterns! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as **Chaos** (yes, that is the technical name)!! Can you figure out which pattern is known as chaos??
-
-3c. Try changing the **Simulation Time Step** in the **Settings** menu. Note that you can set the simulation time step to fractional values- for example, try setting it to 0.1. What if you change it to 2, or 5? Does this change the patterns and thresholds from the previous question? Can you figure out why these patterns emerge?
-
-3d. Think of at least two hypothetical or real-world cases where **chaos** could emerge as a result of density-dependence. Explain your reasoning!
+2c. [return to the black robin example] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the 6 age classes next year? Try it, and explain how you got your answer! 
 
 
-## Exercise 4: delayed density-dependence!
+## Exercise 3: age-structured models in InsightMaker
 
-What happens when the effects of resource competition are delayed? In this case, the effects of competition (reduction in fitness) will not manifest immediately- but emerge later down the road!
+Let's build an age-structured model from scratch. To do this, you can follow these steps:
 
-Let's build on the previous model...
+1. Open a blank workspace and save it. 
 
-1. First, add a new [Variable] to the system, called *Delayed Abundance*, which will store a previous abundance value. Draw a new link from *Population* to *Delayed abundance* and from *Delayed abundance* to *Delta N*. 
+2. Make three new stocks: *Age 1*, *Age 2* and *Age 3*. 
 
-2. Add a new [Variable] to the system, called *Time Delay*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5, and *Slider Step* to 1. Make a new link from *Time Delay* to *Delayed Abundance*
+3. Make a new flow called *Recruitment*. This should represent new *Age 1* individuals. We will ignore immigration for now, so new recruiment into the "Age 1" stock represents the only way new individuals can be added to the population. We will assume that *Age 2* and *Age 3* are the only reproductive ages. Therefore, draw links from *Age 2* and *Age 3* to *Recruitment*. 
 
-3. Open the equation window for *Delayed abundance*. This variable will store a previous value of *Abundance*, with the time delay set by *Time Delay*. To do this, use the following syntax:
+4. Make new flows from _Age 1 to Age 2_ and from _Age 2 to Age 3_, called *Transition to Age 2* and *Transition to Age 3*, respectively. These flows represent **growth**, or advancement from *Age 1* to *Age 2* is dependent on the number of individuals in *Age 1*. Therefore, draw a link from *Age 1* to *Transition to Age 2*. Do the same for *Transition to Age 3*.   
+5. Make three new flows representing, emerging respectively from each stock and called *Age 1 mortality*, *Age 2 mortality*, and *Age 3 mortality*. The total number of deaths is dependent on the numbers in each stock, so draw links from each stock to the respective *mortality* outflow.  
 
-```
-Delay([Population], [Time delay], 100)
-```
-The "100" in this function is there just to help the simulation get started (at the first time step(s), there are no previous values of *Abundance*, so InsightMaker will use this value instead).
+Your new insight should look something like this: 
 
-4. Finally, modify the equation for *Delta N* so that *Delayed abundance* (not *Population*) is used in the density-dependent portion of the equation. Your equation should now look something like this:
+![](IM7.jpg)
 
-```
-[Max growth rate]*[Population]*(1-[Delayed abundance]/[Carrying Capacity])
-```
+6. Parameterize your new age-structured population!
+    6a. For recruitment, make new variables called *Recruitment rate, age 2* and *Recruitment rate, age 3*, representing the per-capita recruitment rate for age 2 and age 3, respectively. Draw links from these variables to *Recruitment*, and set these variables at 1.1 and 1.8, respectively. Click on the equation editor for *Recruitment* and set the equation appropriately (see questions below)
+    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Set these rates at 0.4 and 0.3, respectively. Now click on the equation editors for the transition rates, and specify the transition rates appropriately.   
+    6c. For the mortality rates, note that all individual in the *Age 1* stock must either transition to *Age 2* or die. In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately. 
 
-
-### QUESTIONS, Exercise 4:
-
-4a. Run the model with different values for the time delay. How does the system behave with a time delay? Do you see any similarities with exercise 3? 
-
-4b. Parasitoid wasps help to keep many lepidopteran populations in check. The wasps lay their eggs in caterpillars, and the caterpillars end up dying a horrific death as the wasp larva grows. Wasp-regulation on caterpillars often exhibits delayed density-dependence, resulting in oscillations in caterpillar populations. Can you think of why this might be the case?  
+7. Explore the model- make sure you understand how it works! 
 
 
+### QUESTIONS, Exercise 3 (age-structured model in InsightMaker):
 
-##Checklist for Lab 2 completion
+3a. What is the equation for *Recruitment* in the above model? Copy and paste your equation from InsightMaker. Now explain this equation in plain english!
 
-*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden.
+3b. What is the equation for *Age 1 Mortality* in the above model? Copy and paste the equation from InsightMaker. Now explain this equation in plain english! What about *Age 3 mortality*? 
 
-The InsightMaker models should be shared directly in InsightMaker. The first step (of course) is to save your model! After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, send me and Margarete an email (through Webcampus or regular email) with the URL for your InsightMaker model(s).
+3c. Initialize the population like the spadefoot toad example from lecture- so that the population consists of only individuals in the first (*Age 1*) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation? How do the dynamics change if you change the simulation time step to 0.1? 
 
-***Due Feb. 10 at 11 am.***
+3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the **Stable Age Distribution** for this population? Would the stable age distribution change if you changed the vital rates (recruitment rates, transition rates etc.)?
+
+3e. Is this a growing or declining population? Imagine you could enact a predator-control program and reduce the mortality of *Age 1* individuals. How much would you have to reduce mortality of this age class to make a growing population? What if you could only reduce *Age 2* mortality? 
+    
+
+## Exercise 4: more complex age-structured models in InsightMaker!
+
+Try to implement the following model (adding onto the previous age-structured model in InsightMaker). _If the total population (all three age classes combined!) exceeds 75 individuals, then recruitment rates drop to 25% of normal rates._ 
+
+4a. Please provide your full InsightMaker model (share with instructors and send as a link).   
+    
+4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model? If not, why does it look like it has a random component?  
+
+
+##Checklist for Lab 3 completion
+
+* Please bundle the materials into one Word document and submit to Professor Shoemaker and Margarete Walden _using WebCampus_!
+
+The InsightMaker model (Q 4a) should be shared directly in InsightMaker (share with the instructors and send the URLs). 
+
+***Due Feb. 17 at 11 am.***
 
 *  Word document with short answers
     +  **Exercise 1**
         -  *Short answer (1a.)*   
-        -  *Short answer (1b.)*   
+        -  *Short answer (1b.)* 
+        -  *Short answer (1c.)*
+        -  *Short answer (1d.)*
+        -  *Short answer (1e.)*
  
     +  **Exercise 2**
         -  *Short answer (2a.)*
         -  *Short answer (2b.)*
         -  *Short answer (2c.)*
-        -  *Short answer (2d.)* 
-        -  *Short answer (2e.)*
-        -  *Short answer (2f.)*
  
     +  **Exercise 3**
         -  *Short answer (3a.)*
         -  *Short answer (3b.)*
         -  *Short answer (3c.)*
         -  *Short answer (3d.)*
+        -  *Short answer (3e.)*
         
     +  **Exercise 4**
-        -  *Short answer (4a.)*
+        -  *InsightMaker model (4a.)*
         -  *Short answer (4b.)*
 
-*  InsightMaker models
-    +  **Exercises 2,3 and 4**
-        -  Your models should show that you were able to create and specify your models correctly. This should be shared with "kevintshoemaker" and "Margarete", and the URLs should be shared via email.
 
 
 
