@@ -31,11 +31,13 @@ Let's start with some notation- population ecology, and life tables in particula
 
 **Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum age.
 
-**Generation time** is defined as the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 4)}$
+**Average lifespan** is defined as: $L = \frac{\sum_{x=0}^{k}l(x)\cdot x}{\sum_{x=0}^{k}l(x)}  \qquad \text{(Eq. 4)}$ 
 
-**Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 5)}$ 
+**Generation time** is defined as the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
 
-One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected present and future reproductive output of an individual of age x: $V(x) = b(x) + \sum_{t=x+1}^{k} \frac{l(t+1)}{l(t)} \cdot b(t)   \qquad \text{(Eq. 6)}$. This could also be expressed as: $V(x) = b(x) + \sum_{t=x+1}^{k} g(t) \cdot b(t)$. 
+**Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$ 
+
+One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected present and future reproductive output of an individual of age x: $V(x) = b(x) + \sum_{t=x+1}^{k} \frac{l(t+1)}{l(t)} \cdot b(t)   \qquad \text{(Eq. 7)}$. This could also be expressed as: $V(x) = b(x) + \sum_{t=x+1}^{k} g(t) \cdot b(t)$. 
 
 ## Exercise 1: basic life table analysis
 
@@ -66,7 +68,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 
 1b. Describe *Equation 3* above in plain English in a way that makes sense to you. What is the net reproductive output, $R_0$ for this population? Is this population growing, declining or stable?    
 
-1c. What is the generation time, $G$ for this population? What happens to your generation time estimate if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?
+1c. What is the mean lifespan, $L$, and generation time, $G$ for this population? What happens to your generation time estimate if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?
 
 1d. What is the reproductive value($V$) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?  
 
