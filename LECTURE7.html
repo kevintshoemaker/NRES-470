@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Passenger Pigeon/Allee effect</title>
+<title>Matrix population models</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -312,7 +312,10 @@ div.tocify {
       <a href="LECTURE6.html">Age-structured populations</a>
     </li>
     <li>
-      <a href="LECTURE7.html">Stochastic population models</a>
+      <a href="LECTURE7.html">Matrix population models</a>
+    </li>
+    <li>
+      <a href="LECTURE8.html">Stochastic population models</a>
     </li>
   </ul>
 </li>
@@ -349,19 +352,33 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Passenger Pigeon/Allee effect</h1>
+<h1 class="title toc-ignore">Matrix population models</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 1, 2017</em></h4>
+<h4 class="date"><em>Feb 11, 2017</em></h4>
 
 </div>
 
 
-<div id="allee-effect" class="section level2">
-<h2>Allee Effect</h2>
+<div id="why-matrices" class="section level2">
+<h2>Why matrices?</h2>
+<div id="reason-1-simplify" class="section level3">
+<h3>Reason 1: simplify!</h3>
 <div class="figure">
-<img src="prairie_dogs3.jpg" />
+<img src="IM8.jpg" />
 
 </div>
+<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? How many lines would you have to draw, how many equations would you have to put in different flows. It would be tedious, and you could easily run into errors that would be very hard to de-bug!</p>
+<div class="figure">
+<img src="teasel1.jpg" />
+
+</div>
+<p>Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? There MUST be an easier way!</p>
+<div class="figure">
+<img src="gotelli3_6.jpg" />
+
+</div>
+<p>The population vital rates for pretty much any age-structured or stage-structured population can be represented by a <strong>transition matrix</strong>, which summarizes all the information about mortality, birth rates, and transitions between stages!</p>
+<p>For example, the teasel vital rates can be summarized in this matrix:</p>
 <p>What happens if density dependence goes the other way? What if an decrease in density changes vital rates to produce an <em>decrease</em> in the population growth rate <em>r</em>?</p>
 <p>Imagine a very social species, like prairie dogs. If the density is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher <em>d</em>. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems!</p>
 <p>This effect – whereby population growth rate may <strong>decrease</strong> when population size decreases – is called an <strong>Allee effect</strong>, named after ecologist <a href="https://en.wikipedia.org/wiki/Warder_Clyde_Allee">Warder Clyde Allee</a> (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.</p>
@@ -387,6 +404,7 @@ div.tocify {
 </div>
 <p>Secondly, hardwood forests were cleared on a massive scale, reducing habitat.</p>
 <p>But what do passenger pigeons have to do with the Allee effect? Well, they were an <em>extremely</em> gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators.</p>
+</div>
 </div>
 <div id="in-class-exercise-allee-effect" class="section level2">
 <h2>In-class exercise: Allee effect</h2>
