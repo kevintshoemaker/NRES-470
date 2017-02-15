@@ -280,9 +280,6 @@ div.tocify {
 <li>
   <a href="schedule.html">Schedule</a>
 </li>
-<li>
-  <a href="Syllabus.pdf">Syllabus</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Lectures
@@ -335,6 +332,9 @@ div.tocify {
     <li>
       <a href="LAB3.html">Lab 3: age-structured population growth</a>
     </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -359,6 +359,26 @@ div.tocify {
 </div>
 
 
+<div id="upcoming-midterm-exam" class="section level3">
+<h3>Upcoming midterm exam</h3>
+<p><strong>when and where</strong> The first midterm exam (out of two) is coming up on <strong>February 23</strong>. You will have the whole 50 minute class period to take the exam. Margarete and I will be at a meeting- one of my graduate students will fill in. The exam will be in our regular classroom.</p>
+<p><strong>what</strong> The exam will cover:</p>
+<ul>
+<li>All material in Chapters 1-3 of the Gotelli book.<br />
+</li>
+<li>All material covered in lectures up to the “Stochasticity and Uncertainty” lecture (right after matrix population models).<br />
+</li>
+<li>All material covered in labs 1-4.<br />
+</li>
+<li>All additional assigned readings, including Ch. 1 of “Beyond Connecting the Dots”, Lande 1992, Heppell 1998 and Regan et al. 2002.</li>
+</ul>
+<p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
+<p>Any questions?</p>
+</div>
+<div id="final-projects" class="section level3">
+<h3>Final projects:</h3>
+<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a></p>
+</div>
 <div id="why-matrices" class="section level2">
 <h2>Why matrices?</h2>
 <div id="reason-1-simplify" class="section level3">
@@ -367,96 +387,273 @@ div.tocify {
 <img src="IM8.jpg" />
 
 </div>
-<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? How many lines would you have to draw, how many equations would you have to put in different flows. It would be tedious, and you could easily run into errors that would be very hard to de-bug!</p>
+<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? How many lines would you have to draw, how many equations would you have to put in different flows. It would be tedious, and you could easily run into errors that would be very hard to debug!</p>
 <div class="figure">
 <img src="teasel1.jpg" />
 
 </div>
-<p>Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? There MUST be an easier way!</p>
+<p>Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in “age”. There MUST be an easier way!</p>
 <div class="figure">
 <img src="gotelli3_6.jpg" />
 
 </div>
-<p>The population vital rates for pretty much any age-structured or stage-structured population can be represented by a <strong>transition matrix</strong>, which summarizes all the information about mortality, birth rates, and transitions between stages!</p>
+<p>The population vital rates for pretty much any age-structured or stage-structured population can be represented by a <strong>transition matrix</strong>, which summarizes all the information about mortality, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)</p>
 <p>For example, the teasel vital rates can be summarized in this matrix:</p>
-<p>What happens if density dependence goes the other way? What if an decrease in density changes vital rates to produce an <em>decrease</em> in the population growth rate <em>r</em>?</p>
-<p>Imagine a very social species, like prairie dogs. If the density is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher <em>d</em>. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems!</p>
-<p>This effect – whereby population growth rate may <strong>decrease</strong> when population size decreases – is called an <strong>Allee effect</strong>, named after ecologist <a href="https://en.wikipedia.org/wiki/Warder_Clyde_Allee">Warder Clyde Allee</a> (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.</p>
-<p>Interestingly, Allee’s interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was an anti-war activist!</p>
-<div class="figure">
-<img src="Allee1.jpg" />
-
+<pre><code>##           Seed1 seed2  ros1  ros2  ros3 flowering
+## Seed1     0.000  0.00 0.000 0.000 0.000   322.380
+## seed2     0.966  0.00 0.000 0.000 0.000     0.000
+## ros1      0.013  0.01 0.125 0.000 0.000     3.448
+## ros2      0.007  0.00 0.125 0.238 0.000    30.170
+## ros3      0.008  0.00 0.000 0.245 0.167     0.862
+## flowering 0.000  0.00 0.000 0.023 0.750     0.000</code></pre>
+<p>Isn’t that <em>elegant</em>!!</p>
+<p>We’ll go into more detail about matrices later!</p>
 </div>
-<p>One of the most famous examples of a possible Allee effect involves the passenger pigeon (<em>Ectopistes migratorius</em>).</p>
-<div class="figure">
-<img src="PP2.jpg" />
+<div id="reason-2-projection" class="section level3">
+<h3>Reason 2: projection!</h3>
+<p>In one of the questions in Lab 3, your were asked to use a life table to project the age structure of a population one time step in the future. Was it simple and straightforward to do this? (no!)</p>
+<p>Life tables are great for summarizing the vital rates of age-structured populations. But <em>life tables are not great for projecting age-structured abundance into the future</em>!</p>
+<p>You know what <em>is</em> great for projecting age-structured abundance into the future?</p>
+<p>For example, let’s project a teasel population 1 year into the future:</p>
+<p>First of all, we need to begin with a teasel population…</p>
+<pre><code>##           Abundance
+## Seed1          1000
+## seed2          1500
+## ros1            200
+## ros2            300
+## ros3            600
+## flowering        25</code></pre>
+<p>Then all we need to do is matrix-multiply this <strong>vector</strong> of abundances by the <strong>transition matrix</strong> from above! Each time we do this multiplication step, we advance one year!</p>
+<p>Here’s how we can do this in R!</p>
+<pre class="r"><code>Year1 &lt;- teasel_matrix %*% Initial_teasel
+Year1</code></pre>
+<pre><code>##           Abundance
+## Seed1       8059.50
+## seed2        966.00
+## ros1         139.20
+## ros2         857.65
+## ros3         203.25
+## flowering    456.90</code></pre>
+<p>How easy is that!</p>
+<p>To compute teasel abundance in year 2, we can simply repeat:</p>
+<pre class="r"><code>thisYear &lt;- Year1
+nextYear &lt;- teasel_matrix %*% thisYear
+nextYear</code></pre>
+<pre><code>##             Abundance
+## Seed1     147295.4220
+## seed2       7785.4770
+## ros1        1707.2247
+## ros2       14062.6102
+## ros3         702.3908
+## flowering    172.1635</code></pre>
+<p>We could use this strategy to simulate for ten years for example…</p>
+<p>Notice the use of a <strong>for loop</strong> here!</p>
+<pre class="r"><code>nYears &lt;- 10
+tenYears &lt;- matrix(0,nrow=6,ncol=nYears+1)
+rownames(tenYears) &lt;- rownames(Initial_teasel)
+colnames(tenYears) &lt;- seq(0,10)
+tenYears[,1] &lt;- Initial_teasel 
 
+for(t in 2:(nYears+1)){
+  tenYears[,t] &lt;-  teasel_matrix %*% tenYears[,t-1]
+}
+
+tenYears</code></pre>
+<pre><code>##              0       1           2           3          4           5
+## Seed1     1000 8059.50 147295.4220  55502.0530 274098.158 1254742.541
+## seed2     1500  966.00   7785.4770 142287.3777  53614.983  264778.821
+## ros1       200  139.20   1707.2247   2799.7179   5425.969   18197.711
+## ros2       300  857.65  14062.6102   9785.5436  28718.972  126857.393
+## ros3       600  203.25    702.3908   4889.4070   4390.907   13317.225
+## flowering   25  456.90    172.1635    850.2331   3892.123    3953.716
+##                    6          7           8          9         10
+## Seed1     1274599.05 4160519.75 12493783.29 19821259.9 54739267.1
+## seed2     1212081.29 1231262.68  4019062.08 12068994.7 19147337.1
+## ros1        34866.57   77547.56   209719.50   440822.1  1018930.3
+## ros2       160533.59  440850.62  1312972.86  2281135.7  5859547.7
+## ros3        46750.08   68459.45   186131.95   505712.0   948267.5
+## flowering   12905.64   38754.83    61484.15   169797.3   431750.1</code></pre>
+<p>Finally, we can plot out the abundance of each stage over 10 years!</p>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>So projection is easy!</p>
 </div>
-<p>The <a href="https://en.wikipedia.org/wiki/Passenger_pigeon">passenger pigeon</a> was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three <em>billion</em>!</p>
-<p>Aldo Leopold once said,</p>
+<div id="reason-3-linear-algebra-tricks" class="section level3">
+<h3>Reason 3: Linear algebra tricks!</h3>
+<p>There is a clear similarity between the finite population growth equation:</p>
+<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t\)</span>,</p>
+<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
+<p>… and the matrix population growth equation:</p>
+<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}\)</span>,</p>
+<p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
+<p><strong>Q:</strong> Can you see the similarity between these two equations?</p>
+<p>Both equations describe simple exponential growth or decline!</p>
+<p><strong>Q:</strong> Can you see the difference between these two equations?</p>
+<p>Note that <span class="math inline">\(N\)</span> in the first equation is a <strong>scalar</strong> – that is, it is just a naked number with no additional components.</p>
+<p>WHEREAS,</p>
+<p><span class="math inline">\(\mathbf{N}\)</span> in the second equation is a <strong>vector</strong>, a set of abundances structured by age or stage class.</p>
+<p>Similarly, the finite population growth rate, <span class="math inline">\(\lambda\)</span> is a scalar,</p>
+<p>WHEREAS,</p>
+<p><span class="math inline">\(\mathbf{A}\)</span> is a <strong>matrix</strong></p>
+<div id="what-about-those-tricks" class="section level4">
+<h4>What about those tricks??</h4>
+<p>Okay one of the nifty tricks is this:</p>
 <blockquote>
-<p>“Men still live who, in their youth, remember pigeons; trees still live who, in their youth, were shaken by a living wind. But a few decades hence only the oldest oaks will remember, and at long last only the hills will know.” —Aldo Leopold, “On a Monument to the Pigeon,” 1947</p>
+<p>In one step, you can compute <span class="math inline">\(\lambda\)</span> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
 </blockquote>
-<p>What happened to the passenger pigeon? Well, first of all pigeons were hunted on a massive scale using wasteful methods.</p>
+<p>All you need to do is obtain the <em>first, or dominant, <strong>eigenvalue</strong> of <span class="math inline">\(\mathbf{A}\)</span></em>! This number is the finite rate of growth, <span class="math inline">\(\lambda\)</span>, for an age or stage-structured population.</p>
+<p>Let’s do this in R!</p>
+<p>What is the growth rate <span class="math inline">\(\lambda\)</span> for the teasel population. If you recall, it looked like it was growing, so it should be above 1…</p>
+<pre class="r"><code>Lambda &lt;- as.numeric(round(eigen(teasel_matrix)$values[1],2))
+Lambda</code></pre>
+<pre><code>## [1] 2.32</code></pre>
+<p>You don’t have to understand the math here- but I do want you to understand how simple that was- just one line of code and we computed the annual rate of growth from the teasel transition matrix!</p>
+<p>Here’s another nifty trick:</p>
+<blockquote>
+<p>In one step, you can compute <strong>stable age distribution</strong> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
+</blockquote>
+<p>All you need to do is obtain the <em>right-hand eigenvector of <span class="math inline">\(\mathbf{A}\)</span></em>! This vector represents the <em>relative abundances in each age class at the stable age distribution</em>.</p>
+<p>Let’s do this in R!</p>
+<p>What is the stable age distribution for the teasel population. If you recall, the first seed stage looked like it dominated in the figure above.</p>
+<pre class="r"><code>SAD &lt;- abs(as.numeric(round(eigen(teasel_matrix)$vectors[,1],3)))
+SAD/sum(SAD)</code></pre>
+<pre><code>## [1] 0.636615811 0.264909847 0.012482663 0.069348128 0.011789182 0.004854369</code></pre>
+<p>Or you can use the ‘popbio’ package in R:</p>
+<pre class="r"><code>library(popbio)</code></pre>
+<pre><code>## Warning: package &#39;popbio&#39; was built under R version 3.3.2</code></pre>
+<pre class="r"><code>stable.stage(teasel_matrix)</code></pre>
+<pre><code>##       Seed1       seed2        ros1        ros2        ros3   flowering 
+## 0.636901968 0.264978062 0.012174560 0.069281759 0.012076487 0.004587164</code></pre>
+<p><strong>Q:</strong> Does a stage-structured population grow at the rate of <span class="math inline">\(\lambda\)</span> per time step if it is NOT at stable age distribution?</p>
+<p>For more on this, the bible of matrix population models is <a href="https://www.amazon.com/gp/huc/view.html?ie=UTF8&amp;newItems=C1DH1414B1C6AK%2C1">this book by Hal Caswell</a>.</p>
+</div>
+</div>
+</div>
+<div id="mechanics-of-matrix-population-models" class="section level2">
+<h2>Mechanics of matrix population models</h2>
+<p>Let’s take a look at a basic age-structured population – specifically the in-class example from the last lecture (<a href="https://insightmaker.com/insight/70809/Age-structured-population">this one</a>.). In InsightMaker it looks like this:</p>
 <div class="figure">
-<img src="PP1.jpg" />
+<img src="IM9.jpg" />
 
 </div>
-<p>Secondly, hardwood forests were cleared on a massive scale, reducing habitat.</p>
-<p>But what do passenger pigeons have to do with the Allee effect? Well, they were an <em>extremely</em> gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators.</p>
+<p>Let’s convert the vital rates to a three-stage <strong>projection matrix</strong>. Projection matrices are <strong>square matrices</strong> where the number of rows and columns are equal to the number of life stages. In this case, that means three! Let’s make a blank matrix for now:</p>
+<pre class="r"><code>TMat &lt;- matrix(0,nrow=3,ncol=3)
+stagenames &lt;- c(&quot;Juveniles&quot;,&quot;Subadults&quot;,&quot;Adults&quot;)
+rownames(TMat) &lt;- stagenames
+colnames(TMat) &lt;- stagenames
+TMat</code></pre>
+<pre><code>##           Juveniles Subadults Adults
+## Juveniles         0         0      0
+## Subadults         0         0      0
+## Adults            0         0      0</code></pre>
+<p>You can read the <strong>elements</strong> of a transition matrix as follows:</p>
+<blockquote>
+<p>“The per-capita production of <em>(row name)</em> by <em>(col name)</em> is <em>(value of element)</em>”</p>
+</blockquote>
+<p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita production of Juveniles (row) by Juveniles (col). What is the value of this?</p>
+<p>How about the second row, first column. This represents the per-capita production of Subadults (row) by Juveniles (col). This is the transition rate from juvenile to subadult. The value from our model is 0.3.</p>
+<p>Let’s update our transition matrix:</p>
+<pre class="r"><code>TMat[2,1] &lt;- 0.3
+TMat</code></pre>
+<pre><code>##           Juveniles Subadults Adults
+## Juveniles       0.0         0      0
+## Subadults       0.3         0      0
+## Adults          0.0         0      0</code></pre>
+<p>If we keep going, we get the following matrix. See if you can understand what this matrix is saying about the transitions from and two the three life stages.</p>
+<pre class="r"><code>TMat[,1] &lt;- c(0.1,0.3,0)
+TMat[,2] &lt;- c(0,0.4,0.1)
+TMat[,3] &lt;- c(4,0,0.85)
+TMat</code></pre>
+<pre><code>##           Juveniles Subadults Adults
+## Juveniles       0.1       0.0   4.00
+## Subadults       0.3       0.4   0.00
+## Adults          0.0       0.1   0.85</code></pre>
+<p>Now we can run a 40-year projection and compare it with the InsightMaker model. It had better look the same!!</p>
+<p>First we must specify the initial abundances in each stage:</p>
+<pre class="r"><code>InitAbund &lt;- c(40,0,0)
+names(InitAbund) &lt;- colnames(TMat)
+InitAbund</code></pre>
+<pre><code>## Juveniles Subadults    Adults 
+##        40         0         0</code></pre>
+<p>So we are starting with only Juveniles…</p>
+<pre class="r"><code>nYears &lt;- 40
+allYears &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
+rownames(allYears) &lt;- rownames(TMat)
+colnames(allYears) &lt;- seq(0,nYears)
+allYears[,1] &lt;- InitAbund 
+
+for(t in 2:(nYears+1)){
+  allYears[,t] &lt;-  TMat %*% allYears[,t-1]
+}
+
+allYears</code></pre>
+<pre><code>##            0  1   2    3     4       5        6        7        8        9
+## Juveniles 40  4 0.4 4.84 6.964 7.21240 7.243840 7.497874 7.864454 8.246053
+## Subadults  0 12 6.0 2.52 2.460 3.07320 3.393000 3.530352 3.661503 3.823937
+## Adults     0  0 1.2 1.62 1.629 1.63065 1.693372 1.778667 1.864902 1.951317
+##                 10       11       12       13        14        15
+## Juveniles 8.629873 9.027040 9.443505 9.880158 10.337148 10.815176
+## Subadults 4.003391 4.190318 4.384239 4.586747  4.798746  5.020643
+## Adults    2.041013 2.135200 2.233952 2.337283  2.445365  2.558435
+##                  16        17        18        19        20        21
+## Juveniles 11.315258 11.838463 12.385866 12.958584 13.557784 14.184690
+## Subadults  5.252810  5.495701  5.749819  6.015688  6.293850  6.584875
+## Adults     2.676734  2.800505  2.929999  3.065481  3.207228  3.355529
+##                  22        23        24        25        26        27
+## Juveniles 14.840584 15.526807 16.244760 16.995910 17.781794 18.604017
+## Subadults  6.889357  7.207918  7.541209  7.889912  8.254738  8.636433
+## Adults     3.510687  3.673020  3.842859  4.020551  4.206459  4.400964
+##                  28        29        30        31        32        33
+## Juveniles 19.464258 20.364277 21.305913 22.291089 23.321820 24.400211
+## Subadults  9.035778  9.453589  9.890719 10.348061 10.826551 11.327166
+## Adults     4.604463  4.817371  5.040124  5.273178  5.517007  5.772111
+##                  34        35        36        37        38        39
+## Juveniles 25.528466 26.708891 27.943899 29.236013 30.587874 32.002244
+## Subadults 11.850930 12.398912 12.972232 13.572063 14.199629 14.856214
+## Adults     6.039011  6.318252  6.610406  6.916068  7.235864  7.570447
+##                  40
+## Juveniles 33.482014
+## Subadults 15.543159
+## Adults     7.920502</code></pre>
+<p>Now let’s plot it out!</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,50),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)
+cols &lt;- rainbow(3)
+for(s in 1:3){
+  points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)
+}
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
+legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</code></pre>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Does this look the same as the InsightMaker results?</p>
 </div>
+<div id="limitations-of-matrix-population-models" class="section level2">
+<h2>Limitations of matrix population models</h2>
+<p>Matrix population models are great, but they have some limitations too.</p>
+<div id="what-about-density-dependence" class="section level3">
+<h3>What about density-dependence?</h3>
+<p>In some ways, while introducing a new level of realism in our models – age-structure – we have been ignoring another type of realism that we introduced in earlier lectures- <strong>density-dependence</strong>!</p>
+<p>Which vital rates are density-dependent? All? Some? It depends? Are the data available?</p>
+<p>How do you incorporate density-dependence into a matrix population model?</p>
+<p>How do you incorporate predator-prey dynamics into a matrix population model?</p>
+<p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or other programming platform)</em></p>
+<p>The reverse is NOT true: <strong>you can not always convert InsightMaker models to matrix population models</strong></p>
+<p>Hmmm….</p>
 </div>
-<div id="in-class-exercise-allee-effect" class="section level2">
-<h2>In-class exercise: Allee effect</h2>
-<p>In this exercise we will explore the implications of <strong>postitive density dependence</strong> on vital rates.</p>
-<ol style="list-style-type: decimal">
-<li>In InsightMaker, load up the logistic model with vital rates – that is, where <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> are each modeled density-dependent. It should look something like this (or if you don’t already have this, load it from <a href="https://insightmaker.com/insight/70353/Logistic-Growth-1#">here</a>):</li>
-</ol>
+<div id="in-class-exercise-matrix-projection-models" class="section level3">
+<h3>In-class exercise: matrix projection models</h3>
+<p>Translate the following paragraph into a matrix population model. Remember a matrix population model has two components- an <strong>initial abundance vector</strong> and a <strong>transition matrix</strong>.</p>
 <div class="figure">
-<img src="IM5.jpg" />
+<img src="redtail1.jpg" />
 
 </div>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Now add a new [Variable] called <em>Allee threshold</em>. Set this variable equal to 200.</p></li>
-<li><p>As for the other parameters, set them as follows:</p></li>
-</ol>
-<ul>
-<li>Initial abundance: 201 (just above the Allee threshold)</li>
-<li>Density dependence on birth rate: 0.004<br />
-</li>
-<li>Density dependence on survival: 0.001<br />
-</li>
-<li>Max birth rate: 0.8<br />
-</li>
-<li>Min mortality: 0.3</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Now let’s use a <em>Conditional (IF-THEN-ELSE) statement</em> to specify an Allee effect. The population experiences maximum growth rate at the Allee threshold. If the population is above the Allee threshold, the population exhibits (stabilizing) negative density dependence. If the population is below the Allee threshold, then the population experiences positive density dependence- whereby individuals in smaller populations have <em>lower</em> overall fitness.</li>
-</ol>
-<p>To do this, define your <em>Births per Capita</em> using the following syntax:</p>
-<pre><code>If [Pigeons]&lt;[Allee threshold] Then
-  [Max fecundity]-[Density dependence on fecundity]*([Allee threshold]-[Pigeons])
-Else
-  [Max fecundity]-[Density dependence on fecundity]*([Pigeons]-[Allee threshold])
-End If</code></pre>
-<p>Similarly, define your <em>Deaths per capita</em> using the following syntax:</p>
-<pre><code>If [Pigeons]&lt;[Allee threshold] Then
-  [Min mortality]+[Density dependence on survival]*([Allee threshold]-[Pigeons])
-Else
-  [Min mortality]+[Density dependence on survival]*([Pigeons]-[Allee threshold])
-End If</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>If we are running out of time in class (which we probably will be!), load the model (and clone it!) using <a href="https://insightmaker.com/insight/71147/Allee-Effect-1#">this link</a>!</li>
-</ol>
-<p>Now you can try to answer the following questions:</p>
-<p><strong>Q</strong>: What is the carrying capacity (K) for this population?</p>
-<p><strong>Q</strong>: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.</p>
-<p><strong>Q</strong>: is this equilibrium a <em>stable equilibrium</em> or an <em>unstable equilibrium</em>?</p>
-<p><strong>Q</strong>: if you plot birth and death rates as a function of density in this model, can you identify the two equilibria?</p>
-<p><strong>Q:</strong> Why do Allee effects generally spell bad news for wildlife conservation and management?</p>
-<p>And just for fun, here is an article about <a href="http://www.audubon.org/magazine/may-june-2014/why-passenger-pigeon-went-extinct">the passenger pigeon and its possible “de-extinction”</a></p>
-<p><strong>Q:</strong> Do you support bringing back the passenger pigeon? Why or why not??</p>
-<p><a href="LECTURE6.html">–go to next lecture–</a></p>
+<blockquote>
+<p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
+</blockquote>
+<p><strong>Q:</strong> What does the transition matrix look like?</p>
+<p><strong>Q:</strong> What does the initial stage abundance vector look like?</p>
+<p><strong>Q:</strong> Is this at a stable stage-distribution?</p>
+<p><strong>Q:</strong> What is the growth rate of this population?</p>
+<p><a href="LECTURE8.html">–go to next lecture–</a></p>
+</div>
 </div>
 
 

@@ -7,8 +7,6 @@ navbar:
       href: index.html
     - text: "Schedule"
       href: schedule.html
-    - text: "Syllabus"
-      href: Syllabus.pdf
     - text: "Lectures"
       menu:
         - text: "Introduction to NRES 470"
@@ -37,6 +35,8 @@ navbar:
           href: LAB2.html
         - text: "Lab 3: age-structured population growth"
           href: LAB3.html
+        - text: "Final Projects!"
+          href: FINAL_PROJECTS.html
     - text: "Links"
       href: Links.html
       

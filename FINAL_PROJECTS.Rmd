@@ -1,5 +1,5 @@
 ---
-title: "Final projects"
+title: "Final projects!"
 author: "NRES 470/670"
 date: "Feb 4, 2017"
 output: 
@@ -15,24 +15,45 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Final projects for NRES 470
 
+Students will work in groups of ~2-3 people to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations.
 
-## Requirements
+## Overview
 
+- Select a species and management question of interest. 
+
+- Perform a thorough literature review on your species of interest- collect all information you can about life history, key vital rates and their variability. 
+
+- Construct a PVA model, parameterized using the best available information from the literature (free PVA software platforms: InsightMaker, Vortex, R). 
+
+- Use your PVA model to address a conservation or management question and write up the results. 
+
+- Present your results to the class!
 
 ## Timeline
 
+- **PROPOSAL:** Due March 3!
+- **PVA FULLY PARAMETERIZED** Due March 24: description of how your PVA model works and where the parameter estimates come from.
+- **DRAFT FINAL PAPER:** Due April 14
+- **FINAL FINAL PAPER:** Due May 5
+- **FINAL PRESENTATIONS:** May 5 in lab
 
-
+Remember that the semester will get crazy at the end. Plan ahead! 
 
 ## First project-related assignment: the proposal!
 
-Your project proposal will consist of:  *
-1. Title: should indicate what species you are modeling, and what question will be addressed
-2. Project participants: work in groups of 2-3. Obviously we won't have very many groups!
-3. Brief project description: Describe 
-4. Data sources:
+(Due March 3...) 
 
-Proposals will be due XXX.
+Your project proposal will consist of:  
+
+1. Title: should indicate what species you are modeling, and what question will be addressed   
+2. Project participants: work in groups of 2-3. Obviously we won't have very many groups this year!    
+3. Project rationale: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructors that your project is **interesting**!    
+4. Data sources: Describe what data sources you plan to use to guide PVA construction and parameterization. Convince your instructors that your project is **possible**!    
+
+
+[Additional instructions coming soon!]
+
+
 
 
 

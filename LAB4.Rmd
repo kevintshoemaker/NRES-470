@@ -16,6 +16,160 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 In this lab we will continue to add complexity (and biological realism) to our population models in InsightMaker. Among the concepts we will play around with are *parameter uncertainty*, *demographic stochasticity* and *environmental stochasticity*.
 
 
+But first, let's get back to age-structured populations: specifically, **matrix projection models**! Matrix population mod
+
+![](matrix1.jpg)
+
+## Mathematics of matrix population models: 
+
+We all remember the finite-population-growth equation:
+
+$N_{t+1}=\lambda \cdot N_t   \qquad \text{(Eq. 1)}$,
+
+where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multipicative growth rate over the time period $t \rightarrow t+1$
+
+The matrix population growth equation looks pretty much the same!
+
+$\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}   \qquad \text{(Eq. 2)}$,
+
+where $\mathbf{N}$ is a **vector** of abundances (abundance for all stages), and $\mathbf{A}$ is the **transition matrix**, which we have seen before.
+
+We can be more explicit about this if we re-write the above equation this way:
+
+$\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 & F_2 & F_3\\ P_{1 \rightarrow 2} & P_{2 \rightarrow 2} & 0\\ 0 & P_{2 \rightarrow 3} & P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
+
+Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2, and $F_2$ is the **fecundity** of stage 2.
+
+NOTE: _fecundity is NOT the same thing as birth rate, $b$. What's the difference?
+
+Birth rate, $b_t$, is the _per-capita rate of offspring production_ for stage   
+
+Fecundity, $F_t$, is the _per-capita rate by which an individual of stage $t$ contributes new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference??
+
+Fecundity also takes into account the survival rate from $t$ to $t+1$!!  For an adult of stage $t$ to contribute to the next generation, _it must both survive and reproduce_!.
+
+$F_t = P_{1 \rightarrow 2} \cdot  b_{t+1}    \qquad \text{(Eq. 4)}$
+
+### Matrix operations:
+
+There is a lot we can do with matrix population models. The most obvious one is *projection*:
+
+#### Projection:
+
+We have already seen the projection equation (Eq. 2, above). Here is how we can implement this in R:
+
+```{r eval=FALSE}
+
+Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
+  
+```
+
+Let's try it:
+
+First, build a projection matrix:
+
+```{r}
+
+projection_matrix <- matrix(
+  c(
+    0,     1.2,   3.1,
+    0.4,   0,     0,
+    0,     0.75,   0
+  )
+  ,nrow=3,ncol=3,byrow=T
+)
+
+projection_matrix
+
+```
+
+Next, let's build an initial abundance vector:
+
+```{r}
+Abundance_year0 <- c(1000,0,0)
+Abundance_year0
+```
+
+Now we can run the code for real!
+
+
+```{r}
+Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
+Year1
+```
+
+Now we have 300 individuals in stage 2!
+
+Let's project one more year:
+
+```{r}
+Year2 <- projection_matrix %*% Year1  # matrix multiplication!
+Year2
+```
+
+Finally, here is some code to project many years into the future!
+
+```{r}
+nYears <- 20                                            # set the number of years to project
+TMat <- projection_matrix                               # define the projection matrix
+InitAbund <- Abundance_year0                            # define the initial abundance
+
+  ## NOTE: the code below can be re-used without modification:
+allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+allYears[,1] <- InitAbund                                      
+for(t in 2:(nYears+1)){
+  allYears[,t] <-  TMat %*% allYears[,t-1]
+}
+plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
+cols <- rainbow(3)
+for(s in 1:3){
+  points(allYears[s,],col=cols[s],type="l",lwd=2)
+}
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
+legend("topleft",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))))
+```
+
+
+#### Compute lambda
+
+Clearly this is a growing population. But let's see exactly what $\lambda$ is!
+
+```{r}
+library(popbio)
+
+lambda(projection_matrix)
+```
+
+Pretty easy right?
+
+#### Compute stable-age distribution (S.A.D.)
+
+Clearly the population doesn't reach a stable age distribution until a few years into our simulation. What exactly is the stable age distribution here?  We can do this in R:
+
+```{r}
+stable.stage(projection_matrix)
+```
+
+And that is really all we need to know to get started with matrix-based population models!
+
+
+
+## Exercise 1: play with matrix projection models!
+
+
+
+## Exercise 2: translate InsightMaker to projection matrix!
+
+
+
+## Exercise 3: dealing with uncertainty
+
+
+## Exercise 4: stochastic population models
+
+
+
+
 Are any populations likely to be in stable age distribution in nature?
 ## Exercise X 
 
@@ -24,197 +178,22 @@ Are any populations likely to be in stable age distribution in nature?
 
 First let's do some math!
 
-## Mathematics of age-structured population growth!
 
-Recall the basic population growth equation:
+[clone this Insight and construct a matrix population model from this]
+[then open R and use matrix multiplication to compute abundance for each stage over the next 10 years]
 
-$\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 1)}$
 
-Previously we considered *b* and *d* to be constants. Now we want them to be functions of abundance! In particular, as abundance goes up, *b* goes down:
 
-$b = b_{max}-a*N_t \qquad \text{(Eq. 2)}$
 
-For the death rate *d* we might expect it to go up as abundance goes up:
+##Checklist for Lab 4 completion
 
-$d = d_{min}+c*N_t \qquad \text{(Eq. 3)}$
+* Please bundle the materials into one Word document and submit to Professor Shoemaker and Margarete Walden _using WebCampus_!
 
-The above equations nicely illustrate the meaning of density dependence. That is, the vital rates are *dependent* on density!
+* Insightmaker models should be shared with your instructors, and the URL for your Insights should be pasted in your lab submission (MS Word document). See details below...  
 
-**thought Q**: what do the *a* and *c* constants in the above equations really represent? You will have a chance to think more about this in the first exercise. 
+    * After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, copy and paste the URL into the Word document.
 
-Okay, now we can substitute the above equations into **Eq. 1**:
-
-$\Delta N = (b_{max}-a*N_t - d_{min}+c*N_t) \cdot N_t \qquad \text{(Eq. 4)}$
-
-Using some tricks of algebra (see the Gotelli book), we can simplify this to:
-
-$\Delta N = r \cdot N_t \left [ 1 - \frac{a+c}{b-d} \cdot N_t  \right ]  \qquad \text{(Eq. 5)}$
-
-Which, if we define $\frac{b-d}{a+c}$ as a constant, $K$, we can re-write like this!
-
-$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )  \qquad \text{(Eq. 6)}$
-
-This is probably the second most important equation of population ecology, and it is called the **Logistic growth equation**. This lab will give us an opportunity to get to know this equation and its implications for population ecology!
-
-
-## Exercise 1: hypothetical mechanisms of density dependence
-
-Please provide short answers to the following questions:
-
-1a. Describe two possible density-dependence mechanisms -- that is, tell a plausible story about two hypothetical wildlife populations, one of which experiences *lower survival* (higher mortality) as densities increase and another that experiences *lower reproduction*.  Have fun and be creative- we will not grade these on whether these mechanisms actually occur in nature- we just want to give you a chance to think about the many possible mechanisms that could potentially regulate wild populations. You can use real-world examples if you would rather- that is up to you.   
-
-1b. For one of the above mechanisms, draw (on paper or electronically) two graphs to illustracte how this hypothetical mechanism might manifest at a population level:
-  i. Abundance (Y axis) over time (X axis).
-  ii. Vital rate (*b* or *d*) (Y axis) over abundance (X axis). 
-  
-For each graph, provide a short (1-2 sentences) description of why you think your hypothetical D-D mechanism would result in this relationship!  
-
-NOTE: you can use a web app like ["A web whiteboard"](https://awwapp.com/) to quickly and easily make and download sketches! I encourage you to use this method, and to embed your sketches in your submitted MS Word document.
-
-
-## Exercise 2: Determining Peruvian anchovy optimal harvest levels!
-
-Let's use InsightMaker to create a logistic growth model based on the collapse of the Peruvian anchovy fisheries (pages 45-47 in Gotelli).
-
-As you develop the logistic growth model for the Peruvian anchovy stock in InsightMaker, you might want to refer to the in-class example for [the logistic growth lecture](LECTURE4.html).
-
-**The Goal**: find the level of harvest that maximizes the total quantity harvested while maintaining a sustainable population!
-
-1.   In InsightMaker, open your basic exponential growth model and choose "Clone Insight" in the upper right corner to create a copy that you can edit for this exercise. It should look something like this (except for anchovies, not rabbits!): (note that it is not strictly necessary to have [Links] -- e.g., going from *Population* to the [Flows] (*Births* and *Deaths*). But it makes your models more visually explicit- you know which parts of the system are interacting!)
-
-![](basicexp1.png)
-
-2.  Now add the density-dependent components! Remember, the density-dependent birth and death rates in the logistic growth model can be expressed as the following: 
-
-$b = b_{max} - aN$, aka density-dependent birth rate = ideal (maximum) birth rate - (strength of density dependence * N)
-
-$d = d_{min} + cN$, aka density-dependent death rate = ideal (minimum) death rate + (strength of density dependence * N) 
-
-"Ideal" in this case means the birth and death rates in the absence of the effects of density.  So, make new [Variables] (Click on **Add Primitive** >> **Add Variable**) for *Ideal Birth Rate* and *Ideal Death Rate*.
-
-In addition, we need to add variables for the strength of density dependence (terms *a* and *c* in the equations).  Make sure the **Links** button is activated, and click and drag your mouse to create links from the new variables to the appropriate per-capita vital rates. Your final model should look something like this (except for anchovies, not box turtles!):
-
-![](IM5.jpg)
-
-
-
-```{r eval=FALSE, echo=FALSE}
-
-Density <- seq(0,10000,1)  # create a sequence of numbers from 0 to 500, representing a range of population densities
-
-## CONSTANTS
-
-b_max <- 1  # maximum reproduction (at low densities)
-d_min <- 0.4  # minimum mortality 
-
-a <- 0.00005    # D-D terms
-c <- 0.00001
-
-b <- b_max - a*Density
-d <- d_min + c*Density
-
-plot(Density,b,type="l",col="green",lwd=2,ylim=c(0,2),main="Density-Dependence!")
-points(Density,d,type="l",col="red",lwd=2)
-legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate","per-capita mortality"),bty="n")
-
-  
-
-```
-
-4.  Next, you'll need to update the equations to calculate the per-capita birth and death rates.  Click on the **=** sign in the corner of each variable, and enter the appropriate equations for the appropriate rates (see above):
-
-5.  Enter starting values for your variables. Let's use 10,000 for the initial *Anchovy Population*, 1 for the *Ideal Birth Rate*, 0.00005 for *Density Dependence* for birth rate, 0.4 for *Ideal Death Rate*, and 0.00001 for *Density Dependence* for death rate.
-
-6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis.
-
-7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a given number are harvested, regardless of the size of the population (no feedback!).
-
-8. One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property **Only Positive Rates** to "Yes". We don't want to harvest the population into negative numbers!!!
-
-9.  Finally, try to find the **maximum sustainable yield**. That is, find the maximum harvest rate that yields a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! [Optional: I encourage you to play around with the "Sensitivity Analysis tool", which you could use to automate this process- that is, have Insightmaker run lots of different values for harvest rate at the same time! We will go over how to use this tool in lab next week or the week after]
-
-### QUESTIONS, Exercise 2:
-
-2a. What is the (approximate) MSY for this population?
-
-2b. Does the harvest process change the **carrying capacity** for the Peruvian sardines? Explain your reasoning. 
-
-2c. Does the MSY change if you reduce the initial population size down to 1,000 instead of 10,000? If so, what is the new MSY? 
-
-2d. Does the MSY point represent a **stable equilibrium**? That is, does it return to that equilibrium even if you perturb the system? Why? Why not? 
-
-2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY? Why or why not? (More generally, is the MSY really sustainable?)  
-
-2f. Think back to your Wildlife Ecology course (or refer to the Gotelli book!). If you know $K$ and $r$, how can you analytically solve for **Maximum Sustainable Yield**? Show your calculation. Does your computed MSY match the MSY you found by trial-and-error? (note that $r$ in this case is the difference between the maximum birth rate and the minimum death rate!) 
-
-
-## Exercise 3: fun with logistic growth
-
-For this exercise we will set up a simpler model in InsightMaker- this time, we will replicate the second-most important equation of population ecology (**Eq. 6**, above.
-
-1. Starting from a blank canvas, add a [Stock] called *Population*. This population should be initialized at 10 individuals, and the *Allow Negatives* field in the properties window should be set to "No". Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 1000. 
-
-2. Make a new [Flow] coming out of *Population*, called *Delta N*. In the properties window, set *Only Positive Rates* to "No". You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in *Population* each time step, which can either be positive or negative!
-
-3. Make a new [Variable] called *Max growth rate* (also known as $r_{max}$), and set it at 0.1. Make a link from *Max growth rate* to *Delta N*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5. 
-
-4. Make a new [Variable] called *Carrying capacity* (also known as $K$), and set it at 500. Make a link from *Carrying Capacity* to *Delta N*.
-
-5. Finally, open the equation editor for *Delta N* and type in the logistic growth equation (**Eq. 6**). 
-
-6. Run the simulation for 100 years (1 year time step) and make sure it behaves as expected- that is, it should exhibit logistic (S-shaped) growth and should level off at carrying capacity. 
-
-
-### QUESTIONS, Exercise 3:
-
-3a. What happens if you initialize the *Population* at above carrying capacity? Do you still see "S-shaped" (logistic) growth? What if you initialize abundance **at** carrying capacity? Is carrying capacity a **stable equilibrium**? Explain your reasoning. 
-
-3b. Return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes as the growth rate increases from 1 to 5. You should be able to identify at least four unique patterns! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as **Chaos** (yes, that is the technical name)!! Can you figure out which pattern is known as chaos??
-
-3c. Try changing the **Simulation Time Step** in the **Settings** menu. Note that you can set the simulation time step to fractional values- for example, try setting it to 0.1. What if you change it to 2, or 5? Does this change the patterns and thresholds from the previous question? Can you figure out why these patterns emerge?
-
-3d. Think of at least two hypothetical or real-world cases where **chaos** could emerge as a result of density-dependence. Explain your reasoning!
-
-
-## Exercise 4: delayed density-dependence!
-
-What happens when the effects of resource competition are delayed? In this case, the effects of competition (reduction in fitness) will not manifest immediately- but emerge later down the road!
-
-Let's build on the previous model...
-
-1. First, add a new [Variable] to the system, called *Delayed Abundance*, which will store a previous abundance value. Draw a new link from *Population* to *Delayed abundance* and from *Delayed abundance* to *Delta N*. 
-
-2. Add a new [Variable] to the system, called *Time Delay*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5, and *Slider Step* to 1. Make a new link from *Time Delay* to *Delayed Abundance*
-
-3. Open the equation window for *Delayed abundance*. This variable will store a previous value of *Abundance*, with the time delay set by *Time Delay*. To do this, use the following syntax:
-
-```
-Delay([Population], [Time delay], 100)
-```
-The "100" in this function is there just to help the simulation get started (at the first time step(s), there are no previous values of *Abundance*, so InsightMaker will use this value instead).
-
-4. Finally, modify the equation for *Delta N* so that *Delayed abundance* (not *Population*) is used in the density-dependent portion of the equation. Your equation should now look something like this:
-
-```
-[Max growth rate]*[Population]*(1-[Delayed abundance]/[Carrying Capacity])
-```
-
-
-### QUESTIONS, Exercise 4:
-
-4a. Run the model with different values for the time delay. How does the system behave with a time delay? Do you see any similarities with exercise 3? 
-
-4b. Parasitoid wasps help to keep many lepidopteran populations in check. The wasps lay their eggs in caterpillars, and the caterpillars end up dying a horrific death as the wasp larva grows. Wasp-regulation on caterpillars often exhibits delayed density-dependence, resulting in oscillations in caterpillar populations. Can you think of why this might be the case?  
-
-
-
-##Checklist for Lab 2 completion
-
-*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden.
-
-The InsightMaker models should be shared directly in InsightMaker. The first step (of course) is to save your model! After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, send me and Margarete an email (through Webcampus or regular email) with the URL for your InsightMaker model(s).
-
-***Due Feb. 10 at 11 am.***
+***Due Feb. 24 at 11 am.***
 
 *  Word document with short answers
     +  **Exercise 1**
@@ -239,9 +218,6 @@ The InsightMaker models should be shared directly in InsightMaker. The first ste
         -  *Short answer (4a.)*
         -  *Short answer (4b.)*
 
-*  InsightMaker models
-    +  **Exercises 2,3 and 4**
-        -  Your models should show that you were able to create and specify your models correctly. This should be shared with "kevintshoemaker" and "Margarete", and the URLs should be shared via email.
 
 
 
