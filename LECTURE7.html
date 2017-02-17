@@ -333,6 +333,12 @@ div.tocify {
       <a href="LAB3.html">Lab 3: age-structured population growth</a>
     </li>
     <li>
+      <a href="LAB4.html">Lab 4: matrix population models (short)</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty (short)</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
   </ul>
@@ -506,6 +512,10 @@ tenYears</code></pre>
 <pre class="r"><code>Lambda &lt;- as.numeric(round(eigen(teasel_matrix)$values[1],2))
 Lambda</code></pre>
 <pre><code>## [1] 2.32</code></pre>
+<p>Or we could use the handy “popbio” package in R:</p>
+<pre class="r"><code>library(popbio)
+lambda(teasel_matrix)</code></pre>
+<pre><code>## [1] 2.32188</code></pre>
 <p>You don’t have to understand the math here- but I do want you to understand how simple that was- just one line of code and we computed the annual rate of growth from the teasel transition matrix!</p>
 <p>Here’s another nifty trick:</p>
 <blockquote>
@@ -518,9 +528,8 @@ Lambda</code></pre>
 SAD/sum(SAD)</code></pre>
 <pre><code>## [1] 0.636615811 0.264909847 0.012482663 0.069348128 0.011789182 0.004854369</code></pre>
 <p>Or you can use the ‘popbio’ package in R:</p>
-<pre class="r"><code>library(popbio)</code></pre>
-<pre><code>## Warning: package &#39;popbio&#39; was built under R version 3.3.2</code></pre>
-<pre class="r"><code>stable.stage(teasel_matrix)</code></pre>
+<pre class="r"><code>library(popbio)
+stable.stage(teasel_matrix)</code></pre>
 <pre><code>##       Seed1       seed2        ros1        ros2        ros3   flowering 
 ## 0.636901968 0.264978062 0.012174560 0.069281759 0.012076487 0.004587164</code></pre>
 <p><strong>Q:</strong> Does a stage-structured population grow at the rate of <span class="math inline">\(\lambda\)</span> per time step if it is NOT at stable age distribution?</p>
@@ -549,13 +558,20 @@ TMat</code></pre>
 <blockquote>
 <p>“The per-capita production of <em>(row name)</em> by <em>(col name)</em> is <em>(value of element)</em>”</p>
 </blockquote>
-<p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita production of Juveniles (row) by Juveniles (col). What is the value of this?</p>
+<p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita transition rate from Juveniles (col) to Juveniles (row). What is the value of this?</p>
+<p>Let’s update our transition matrix:</p>
+<pre class="r"><code>TMat[1,1] &lt;- 0.1
+TMat</code></pre>
+<pre><code>##           Juveniles Subadults Adults
+## Juveniles       0.1         0      0
+## Subadults       0.0         0      0
+## Adults          0.0         0      0</code></pre>
 <p>How about the second row, first column. This represents the per-capita production of Subadults (row) by Juveniles (col). This is the transition rate from juvenile to subadult. The value from our model is 0.3.</p>
 <p>Let’s update our transition matrix:</p>
 <pre class="r"><code>TMat[2,1] &lt;- 0.3
 TMat</code></pre>
 <pre><code>##           Juveniles Subadults Adults
-## Juveniles       0.0         0      0
+## Juveniles       0.1         0      0
 ## Subadults       0.3         0      0
 ## Adults          0.0         0      0</code></pre>
 <p>If we keep going, we get the following matrix. See if you can understand what this matrix is saying about the transitions from and two the three life stages.</p>
@@ -622,7 +638,7 @@ for(s in 1:3){
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
 legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</code></pre>
-<p><img src="LECTURE7_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Does this look the same as the InsightMaker results?</p>
 </div>
 <div id="limitations-of-matrix-population-models" class="section level2">
@@ -652,6 +668,8 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p><strong>Q:</strong> What does the initial stage abundance vector look like?</p>
 <p><strong>Q:</strong> Is this at a stable stage-distribution?</p>
 <p><strong>Q:</strong> What is the growth rate of this population?</p>
+<p>And finally, check this out- this is a database of thousands of stage matrices for plants and animals around the world:</p>
+<p><a href="https://compadredb.wordpress.com/2015/10/05/introducing-the-comadre-animal-matrix-database/">COMADRE and COMPADRE databases</a></p>
 <p><a href="LECTURE8.html">–go to next lecture–</a></p>
 </div>
 </div>

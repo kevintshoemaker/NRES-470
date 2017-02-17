@@ -250,7 +250,14 @@ You can read the **elements** of a transition matrix as follows:
 
 > "The per-capita production of _(row name)_ by _(col name)_ is _(value of element)_"
 
-Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix. This represents the per-capita production of Juveniles (row) by Juveniles (col). What is the value of this? 
+Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix. This represents the per-capita transition rate from Juveniles (col) to Juveniles (row). What is the value of this? 
+
+Let's update our transition matrix:
+
+```{r}
+TMat[1,1] <- 0.1
+TMat
+```
 
 How about the second row, first column. This represents the per-capita production of Subadults (row) by Juveniles (col). This is the transition rate from juvenile to subadult. The value from our model is 0.3. 
 

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="NRES 470/670" />
+
+
+<title>Lab 5: Intro to stochastic models (short lab!)</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">NRES 470/670</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="INTRO.html">Introduction to NRES 470</a>
+    </li>
+    <li>
+      <a href="LECTURE1.html">A whole-systems approach to population ecology</a>
+    </li>
+    <li>
+      <a href="LECTURE2.html">Introduction to population ecology</a>
+    </li>
+    <li>
+      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+    </li>
+    <li>
+      <a href="LECTURE4.html">Population Regulation</a>
+    </li>
+    <li>
+      <a href="LECTURE5.html">Passenger Pigeon</a>
+    </li>
+    <li>
+      <a href="LECTURE6.html">Age-structured populations</a>
+    </li>
+    <li>
+      <a href="LECTURE7.html">Matrix population models</a>
+    </li>
+    <li>
+      <a href="LECTURE8.html">Stochastic population models</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="LAB1.html">Lab 1: exponential growth</a>
+    </li>
+    <li>
+      <a href="LAB2.html">Lab 2: logistic growth</a>
+    </li>
+    <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models (short)</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty (short)</a>
+    </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 5: Intro to stochastic models (short lab!)</h1>
+<h4 class="author"><em>NRES 470/670</em></h4>
+<h4 class="date"><em>Feb 15, 2017</em></h4>
+
+</div>
+
+
+<p>In this lab we will continue to add complexity (and biological realism) to our population models in InsightMaker. Among the concepts we will play around with are <em>parameter uncertainty</em>, <em>demographic stochasticity</em> and <em>environmental stochasticity</em>.</p>
+<div id="exercise-dealing-with-uncertainty-and-stochasticity" class="section level2">
+<h2>Exercise: dealing with uncertainty and stochasticity</h2>
+<p>Now we are going to shift focus from age-structured population models to <strong>stochasticity</strong> and <strong>uncertainty</strong>. We haven’t gotten to this in lecture yet, but I wanted you to have a chance to start playing around with these concepts in lab.</p>
+<p>We will go into more detail in lecture, but here are the concepts we need for this lab:</p>
+<ol style="list-style-type: decimal">
+<li>What if we don’t have enough data to specify our model (always the case!)? Another way of saying this is that we <em>lack sufficient knowledge</em> to parameterize our model. We can characterize this type of uncertainty as a <strong>confidence interval</strong> or simply upper and lower bounds. Some ways this uncertainty could be represented include:</li>
+</ol>
+<p><span class="math inline">\(b = [1.1,1.9]\)</span> –or–</p>
+<p><span class="math inline">\(b = 1.5 \pm 0.4\)</span></p>
+<p>The tool we use to deal with this type of uncertainty is called <strong>uncertainty analysis</strong>, or <strong>sensitivity analysis</strong>. Basically, we run the model for the extreme possible values (lower and upper bounds) and see what happens to our study system (e.g., does the population go extinct? decline?).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Second, we usually can’t predict whether an individual will live or die, breed or not breed (whether an <em>individual</em> will “get lucky” so to speak!)? We might know the per-capita <em>probability</em> of breeding, or the <em>probability</em> of dying, or the per-capita <em>rate</em> of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly who lives and dies, who gives birth and who doesn’t, how many females are born, we <em>just can’t know for sure</em>. In population ecology this type of uncertainty is called <strong>demographic stochasticity</strong>. In this case, the way we deal with this is we make the birth and death process <strong>stochastic</strong> (that is, we use a random-number generator!).</li>
+</ol>
+<p>For the number of births in a population, we usually use a <strong>Poisson distribution</strong>. The Poisson random number generator only produces whole numbers (we don’t like fractional individuals anyway) and doesn’t produce negative numbers. This makes it a good way to model births.</p>
+<p><span class="math inline">\(Births = Poisson(b*N_t) \qquad \text{(Eq. 5)}\)</span></p>
+<p>For example, let’s imagine population size is 100 and the birth rate is 0.8. Here is the <em>distribution</em> of Births:</p>
+<pre class="r"><code>hist(rpois(10000,(100*0.8)),main=&quot;&quot;,xlab=&quot;Births&quot;)</code></pre>
+<p><img src="LAB5_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Deaths are usually modeled using a <strong>Binomial distribution</strong>. The Binomial random number generator only produced whole numbers (which we like) and can only produce numbers that are greater than 0 and less than the total population size. These properties make it good for esimating mortalities!</p>
+<p><span class="math inline">\(Deaths = Binomial(size=N_t,prob=d) \qquad \text{(Eq. 6)}\)</span></p>
+<p>Let’s imagine population size is 100 and death rate is 0.2. Here is the distribution of deaths:</p>
+<pre class="r"><code>hist(rbinom(10000,100,0.2),main=&quot;&quot;,xlab=&quot;Deaths&quot;)</code></pre>
+<p><img src="LAB5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Third, we usually can’t predict whether next year or the year after will be a good one or a bad one- that is, whether the <strong>vital rates</strong> will be more or less optimal year-to-year (whether a <em>population</em> will “get lucky”, so to speak). In population ecology this is called <strong>environmental stochasticity</strong>. In this case, we make the vital rates <strong>stochastic</strong> (i.e., using a random number generator).</li>
+</ol>
+<p>For this type of variability, we often use a <strong>Normal distribution</strong> or a <strong>uniform distribution</strong>. These random number generators are not constrained to be whole integers, nor are they constrained to be positive.</p>
+<p>For example, let’s imagine birth rate <span class="math inline">\(b\)</span> varies between 0.8 and 1.7. Here is the distribution of birth rates from a uniform random number generator:</p>
+<pre class="r"><code>hist(runif(10000,0.8,1.7),main=&quot;&quot;,xlab=&quot;Per-capita birth rate&quot;)</code></pre>
+<p><img src="LAB5_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Or what if our mean birth rate is 1.1, with a standard deviation of 0.4:</p>
+<pre class="r"><code>hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Per-capita birth rate&quot;)</code></pre>
+<p><img src="LAB5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>In general, we use a normal distribution if we want our random numbers to have a <em>central tendency</em> (humped, or normal distribution) or if we want all possibilities to be equally probable (uniform distribution).</p>
+<p>Now let’s get to the actual lab activity!</p>
+<p>Start with a basic exponentially growing population that looks something like this:</p>
+<div class="figure">
+<img src="IM10.jpg" />
+
+</div>
+<p>Set <em>Birth rate</em> equal to 0.4 and <em>Death rate</em> equal to 0.3. Set initial abundance at 10. Under the “Settings” menu set the model to run for 10 years. Make sure your <em>Population</em> stock can not go negative (this is a setting in the configurations panel). Hit “Simulate”- you should see exponential growth!</p>
+<p>What if we have imperfect knowledge about birth rate. The data we have are consistent with a birth rate <span class="math inline">\(b\)</span> as low as 0.2 and as high as 0.5. Run the model with the lowest and the highest possible birth rate. Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> about birth rate.</p>
+<p>4a. Provide the plot you just made in your write-up. What is the range of possible final abundances after 10 years? Can we conclude that the population growth rate is positive in this population?</p>
+<p>4b. Another way to do <em>uncertainty analysis</em> is to use a <em>uniform distribution</em> to represent the range of uncertainty about the parameter value – in this case, we define Birth rate as a uniform random variable with minimum of 0.2 and maximum of 0.5. We can do this in InsightMaker in one of two ways. One is to define birth rate like this:</p>
+<pre><code>Rand(0.2, 0.5)</code></pre>
+<p>and the other is to define birth rate like this:</p>
+<pre><code>Fix(Rand(0.2, 0.5))</code></pre>
+<p>The next three questions relate to comparing these two methods.</p>
+<p>4c. Try both of these methods. What is the difference between these two methods? Explain your answer.</p>
+<p>4d. Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times using each of the two methods described above. Choose [Population] as the “Monitored Primitive” (otherwise use the default settings). Run the sensitivity testing module (using the “Run Analysis” button) and provide these two resulting plots as part of your write-up (one plot for each of the two methods). Look at the range of final abundances in the two plots. Which method results in the most uncertainty about the final abundance (after 10 years)? Can you explain this difference? (this last part is challenging, but give it a try!).</p>
+<p>4e. Let’s think through the problem one more time- we are uncertain about the <em>true</em> value of the per-capita birth rate, , <span class="math inline">\(b\)</span>, for a rare species. The birth rate could be anything from 0.2 to 0.5 - we really can’t say! Given this uncertainty, we want to know what the abundance will be after 10 years. If you were tasked with evaluating this question hich of the two plots you generated in 4d. would you</p>
+<div id="demographic-stochasticity" class="section level4">
+<h4><em>Demographic Stochasticity</em></h4>
+<ol style="list-style-type: decimal">
+<li>Set <em>Birth rate</em> back to 0.4. Hit “Simulate”- make sure you still see exponential growth!<br />
+</li>
+<li>We will use a <em>Binomial distribution</em> to represent the number of mortalities. That is, we flip a coin the same number of times as there are individuals in the population. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 30% of the time! The <em>Binomial distribution</em> essentially represents the number of times heads came up. To do this in InsightMaker, use the following formula for the <em>Deaths</em> flow:</li>
+</ol>
+<pre><code>RandBinomial([Population], [Death rate])</code></pre>
+<p>In plain english: the number of deaths is equal to the number of “coin flips” that come out heads if the probability of getting heads is equal to [Death rate].</p>
+<p>For the birth rate, we will use the <em>Poisson</em> distribution. The Poisson distribution is often use to represent births, because there could feasibly be more births than there are individuals currently in the population (e.g., if all individuals have two offspring!). However, the maximum number of “heads” is the total number of individuals. To do this in InsightMaker, use the following formula for the <em>Births</em> flow:</p>
+<pre><code>RandPoisson([Population]*[Birth rate])</code></pre>
+<p>In plain english: the number of births is a Poisson-distributed random number with mean equal to [Population]*[Birth rate].</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the simulation. What does it look like?</li>
+<li>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”.</li>
+<li>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</li>
+</ol>
+<p><strong>Q</strong> Is the effect of demographic stochasticity bigger at low or high abundances?</p>
+</div>
+<div id="environmental-stochasticity" class="section level4">
+<h4><em>Environmental Stochasticity</em></h4>
+<ol style="list-style-type: decimal">
+<li>Set <em>Births</em> back to what it was before ([Population]<em>[Birth rate]), and do the same for </em>Deaths*.</li>
+<li>We will use a <em>Normal distribution</em> to represent how the birth rate changes each year. This could represent climatic variablity – “good years” and “bad years”. The <em>Normal distribution</em> is commonly used for this type of variability- it is characterized by an average value (<strong>mean</strong>) and a variability measure (<strong>standard deviation</strong>). To do this in InsightMaker, use the following formula for the <em>Birth Rate</em> variable:</li>
+</ol>
+<pre><code>RandNormal(0.4, 0.4)</code></pre>
+<p>Similarly, use the following formula for the <em>Birth Rate</em> variable:</p>
+<pre><code>RandNormal(0.3, 0.3)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”.</p></li>
+<li><p>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</p></li>
+</ol>
+<p><strong>Q</strong> Is the effect of environmental stochasticity bigger at low or high abundances?</p>
+<p>1c) relative role of demographic and environmental stochasticity as populations get bigger 1d) effects of different stochastic probability distributions.</p>
+</div>
+</div>
+<div id="checklist-for-lab-4-completion" class="section level2">
+<h2>Checklist for Lab 4 completion</h2>
+<ul>
+<li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
+<li><p>URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below…</p>
+<ul>
+<li>After you save the model you should see a link on the top left-hand corner, “Insight Access”. Click on that link, and a new window will pop up. Under “allow update access”, add a username (i.e., kevintshoemaker or waldenTA). click on the “Add User” button, and then click on “Submit”. Finally, copy and paste the URL into the Word document.</li>
+</ul></li>
+</ul>
+<p><strong><em>Due Feb. 24 at 11 am.</em></strong></p>
+<ul>
+<li>Word document with short answers
+<ul>
+<li><strong>Exercise 1</strong>
+<ul>
+<li><em>Short answer (1a.)</em><br />
+</li>
+<li><em>Short answer (1b.)</em></li>
+</ul></li>
+<li><strong>Exercise 2</strong>
+<ul>
+<li><em>Short answer (2a.)</em></li>
+<li><em>Short answer (2b.)</em></li>
+<li><em>Short answer (2c.)</em></li>
+<li><em>Short answer (2d.)</em></li>
+<li><em>Short answer (2e.)</em></li>
+<li><em>Short answer (2f.)</em></li>
+</ul></li>
+<li><strong>Exercise 3</strong>
+<ul>
+<li><em>Short answer (3a.)</em></li>
+<li><em>Short answer (3b.)</em></li>
+<li><em>Short answer (3c.)</em></li>
+<li><em>Short answer (3d.)</em></li>
+</ul></li>
+<li><strong>Exercise 4</strong>
+<ul>
+<li><em>Short answer (4a.)</em></li>
+<li><em>Short answer (4b.)</em></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

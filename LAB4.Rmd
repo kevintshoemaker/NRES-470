@@ -1,5 +1,5 @@
 ---
-title: "Lab 4: Stochastic populations (PVA 1)"
+title: "Lab 4: Matrix population models (short lab)"
 author: "NRES 470/670"
 date: "Feb 10, 2017"
 output: 
@@ -13,12 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will continue to add complexity (and biological realism) to our population models in InsightMaker. Among the concepts we will play around with are *parameter uncertainty*, *demographic stochasticity* and *environmental stochasticity*.
-
-
-But first, let's get back to age-structured populations: specifically, **matrix projection models**! Matrix population mod
-
-![](matrix1.jpg)
+In this lab we will get back to age-structured populations: specifically, we will play with **matrix projection models**! Rememeber that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic exponential growth!
 
 ## Mathematics of matrix population models: 
 
@@ -107,7 +102,7 @@ Year2 <- projection_matrix %*% Year1  # matrix multiplication!
 Year2
 ```
 
-Finally, here is some code to project many years into the future!
+Finally, here is some code to project many years into the future! You may want to re-use some of this code for the exercises below. 
 
 ```{r}
 nYears <- 20                                            # set the number of years to project
@@ -142,6 +137,16 @@ lambda(projection_matrix)
 
 Pretty easy right?
 
+NOTE: we are using a "package" in R to make these analyses super easy! So if you don't already have the "popbio" package, go to the "Packages" tab in R studio (should be at the top of the lower right panel), click on "Install", and then type "popbio" in the "Packages" field in the pop-up window, then click on the "Install" button. 
+
+Or just use the following code:
+
+```{r eval=FALSE}
+install.packages("popbio")
+
+```
+
+
 #### Compute stable-age distribution (S.A.D.)
 
 Clearly the population doesn't reach a stable age distribution until a few years into our simulation. What exactly is the stable age distribution here?  We can do this in R:
@@ -153,43 +158,84 @@ stable.stage(projection_matrix)
 And that is really all we need to know to get started with matrix-based population models!
 
 
-
 ## Exercise 1: play with matrix projection models!
 
+In this exercise, you will have a chance to play around with a very simple matrix population model. But first, you need to translate a life table into a transition matrix!
+
+Here is a life table you may remember.
+
+```{r echo=FALSE}
+lifetable <- read.csv("life_table4.csv")
+lifetable
+```
+
+1a. Translate the above *life table* into a four-age-class transition matrix. In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds! 
+
+Keep the following points in mind: 
+
+- Individuals are in "age class 1" if they are between the ages of 0 and 1. They transition to "age-class 2" ($P_{1 \rightarrow 2}$) if they survive to age 1 (at which point they are now entering age class two!). Yes this can be confusing!   
+- For individuals of "Age class 1" to contribute new offpring (individuals of age-class 1) to the population in the next time step ($F_1$), they have to survive their first year of life ($P_{1 \rightarrow 2}$) AND produce offspring when they are exactly 1 year of age (which they do at the rate of $b$ at age 1).  
+
+- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age-class or they die. 
+
+1b. Use R to compute the finite rate of growth for the population ($\lambda$). Is this a growing or declining population? Show your R code!
+
+1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?
+
+1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the "Lambda" value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 
+1e. Why is the final abundance estimate different from your previous calculations? 
 
 
 ## Exercise 2: translate InsightMaker to projection matrix!
 
+Return to the InsightMaker model you created in Lab 3 (exercise 3 -- that is, the original model, without the carrying capacity component you implemented in Exercise 4 of Lab 3). Your model should look something like this:
 
+![](IM11.jpg)
 
-## Exercise 3: dealing with uncertainty
+Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e.)
 
+2a. Translate this InsightMaker model into a projection matrix. This is not quite as straightforward as it might sound. Pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix. 
 
-## Exercise 4: stochastic population models
+2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. You don't need to show your R code or the InsightMaker model this time- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same!  
 
+2c. Now let's go the other way around. Build an InsightMaker model that represents the same population as the stage matrix below. Share your InsightMaker model with your instructors and provide the URL in your write-up. 
 
+2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide the InsightMaker plot to show that the two models are identical.
 
+In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO! Let's build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let's build a model where *growth* (transition from one stage to the next) is density dependent but stage-specific survival does not change! Here is the scenario: 
 
-Are any populations likely to be in stable age distribution in nature?
-## Exercise X 
+> The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.   
 
-1c) relative role of demographic and environmental stochasticity as populations get bigger
-1d) effects of different stochastic probability distributions. 
+2e. Provide the URL for your new, density-dependent InsightMaker model. Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population *regulated*? Explain your reasoning.   
 
-First let's do some math!
+Use the following stage matrix to answer questions 2c-e
 
+```{r}
+stmat <- read.csv("stage_matrix1.csv")
+stmat <- as.matrix(stmat[,-1])
+rownames(stmat) <- colnames(stmat)
+stmat
 
-[clone this Insight and construct a matrix population model from this]
-[then open R and use matrix multiplication to compute abundance for each stage over the next 10 years]
+```
 
+## Exercise 3. Translate plain English to projection matrix!
 
+This should be quick and relatively painless! As a test of your understanding, try to implement the following passage as a matrix projection model:
+
+> We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. 
+
+3a. Provide your transition matrix in your write-up. 
+
+3b. Is this population at S.A.D. at time 0? If not, provide an example of an initial population structure that IS at S.A.D.
+
+3c. What is the finite growth rate, Lambda, for this population (at S.A.D.)? 
 
 
 ##Checklist for Lab 4 completion
 
-* Please bundle the materials into one Word document and submit to Professor Shoemaker and Margarete Walden _using WebCampus_!
+* Please bundle all your responses into a single Word document and submit _using WebCampus_!
 
-* Insightmaker models should be shared with your instructors, and the URL for your Insights should be pasted in your lab submission (MS Word document). See details below...  
+* URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below...  
 
     * After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, copy and paste the URL into the Word document.
 
@@ -197,26 +243,26 @@ First let's do some math!
 
 *  Word document with short answers
     +  **Exercise 1**
-        -  *Short answer (1a.)*   
-        -  *Short answer (1b.)*   
+        -  *Short answer (1a.)*    
+        -  *Short answer (1b.)*  
+        -  *Short answer (1c.)* 
+        -  *Short answer (1d.)* 
+        -  *Short answer (1e.)* 
  
     +  **Exercise 2**
-        -  *Short answer (2a.)*
-        -  *Short answer (2b.)*
-        -  *Short answer (2c.)*
-        -  *Short answer (2d.)* 
-        -  *Short answer (2e.)*
-        -  *Short answer (2f.)*
- 
+        -  *Short answer (2a.)* 
+        -  *Short answer (2b.)* 
+        -  *Short answer (2c.)* 
+        -  *Short answer (2d.)*  
+        -  *Short answer (2e.)*  
+
     +  **Exercise 3**
-        -  *Short answer (3a.)*
-        -  *Short answer (3b.)*
-        -  *Short answer (3c.)*
-        -  *Short answer (3d.)*
+        -  *Short answer (3a.)* 
+        -  *Short answer (3b.)* 
+        -  *Short answer (3c.)* 
         
-    +  **Exercise 4**
-        -  *Short answer (4a.)*
-        -  *Short answer (4b.)*
+        
+  
 
 
 

@@ -110,7 +110,6 @@ curve(dunif(x,lower,upper),0,10,ylab="Probability (density)",xlab="Possibilities
 
 This isn't a very intersting looking distribution. All possible numbers from 0 to 10 are equally probable.
 
-
 Another continuous distribution you should know is called the *Normal distribution*.
 
 ```{r}
@@ -133,7 +132,7 @@ Let's start with a basic exponentially growing population that looks something l
 
 #### _Parameter Uncertainty_    
 
-1. Set *Birth rate* equal to 0.4 and *Death rate* equal to 0.3. Set initial abundance at 10. Under the "Settings" menu set the model to run for 10 years. Make sure your *Population* stock can not go negative (in the ). Hit "Simulate"- you should see exponential growth! 
+1. Set *Birth rate* equal to 0.4 and *Death rate* equal to 0.3. Set initial abundance at 10. Under the "Settings" menu set the model to run for 10 years. Make sure your *Population* stock can not go negative (this is a setting in the configurations panel). Hit "Simulate"- you should see exponential growth! 
 
 2. **Parameter uncertainty:** What if we have imperfect knowledge about birth rate. The birth rate could be anything from 0.2 to 0.5. Run the model with the lowest and the highest possible birth rate. 
 
