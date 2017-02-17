@@ -1,5 +1,5 @@
 ---
-title: "Lab 4: Matrix population models (short lab)"
+title: "Lab 4: Matrix population models"
 author: "NRES 470/670"
 date: "Feb 10, 2017"
 output: 
@@ -35,9 +35,9 @@ $\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 & F_2 & F_3\
 
 Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2, and $F_2$ is the **fecundity** of stage 2.
 
-NOTE: _fecundity is NOT the same thing as birth rate, $b$. What's the difference?
+NOTE: _fecundity is NOT the same thing as birth rate_, $b$. What's the difference?
 
-Birth rate, $b_t$, is the _per-capita rate of offspring production_ for stage   
+Birth rate, $b_t$, is the _per-capita rate of offspring production_ for stage $t$  
 
 Fecundity, $F_t$, is the _per-capita rate by which an individual of stage $t$ contributes new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference??
 
@@ -111,17 +111,17 @@ InitAbund <- Abundance_year0                            # define the initial abu
 
   ## NOTE: the code below can be re-used without modification:
 allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
-allYears[,1] <- InitAbund                                      
-for(t in 2:(nYears+1)){
+allYears[,1] <- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
   allYears[,t] <-  TMat %*% allYears[,t-1]
 }
-plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
-cols <- rainbow(3)
+plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+cols <- rainbow(3)    # set up colors to use
 for(s in 1:3){
-  points(allYears[s,],col=cols[s],type="l",lwd=2)
+  points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
 }
-axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
-legend("topleft",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))))
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+legend("topleft",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))))  # put a legend on the plot
 ```
 
 
@@ -208,7 +208,7 @@ In this class we have stressed the importance of density dependence in determini
 
 2e. Provide the URL for your new, density-dependent InsightMaker model. Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population *regulated*? Explain your reasoning.   
 
-Use the following stage matrix to answer questions 2c-e
+#### Use the following stage matrix to answer questions 2c-e
 
 ```{r}
 stmat <- read.csv("stage_matrix1.csv")
@@ -221,6 +221,8 @@ stmat
 ## Exercise 3. Translate plain English to projection matrix!
 
 This should be quick and relatively painless! As a test of your understanding, try to implement the following passage as a matrix projection model:
+
+![](redtail1.jpg)
 
 > We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. 
 

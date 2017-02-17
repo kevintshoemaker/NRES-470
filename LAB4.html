@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Lab 4: Matrix population models (short lab)</title>
+<title>Lab 4: Matrix population models</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -358,7 +358,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 4: Matrix population models (short lab)</h1>
+<h1 class="title toc-ignore">Lab 4: Matrix population models</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
 <h4 class="date"><em>Feb 10, 2017</em></h4>
 
@@ -377,8 +377,8 @@ div.tocify {
 <p>We can be more explicit about this if we re-write the above equation this way:</p>
 <p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
 <p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2, and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2.</p>
-<p>NOTE: _fecundity is NOT the same thing as birth rate, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for stage</p>
+<p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
+<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for stage <span class="math inline">\(t\)</span></p>
 <p>Fecundity, <span class="math inline">\(F_t\)</span>, is the _per-capita rate by which an individual of stage <span class="math inline">\(t\)</span> contributes new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference??</p>
 <p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must both survive and reproduce</em>!.</p>
 <p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
@@ -431,17 +431,17 @@ InitAbund &lt;- Abundance_year0                            # define the initial 
 
   ## NOTE: the code below can be re-used without modification:
 allYears &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
-allYears[,1] &lt;- InitAbund                                      
-for(t in 2:(nYears+1)){
+allYears[,1] &lt;- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
   allYears[,t] &lt;-  TMat %*% allYears[,t-1]
 }
-plot(1,1,pch=&quot;&quot;,ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)
-cols &lt;- rainbow(3)
+plot(1,1,pch=&quot;&quot;,ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)  # set up blank plot
+cols &lt;- rainbow(3)    # set up colors to use
 for(s in 1:3){
-  points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)
+  points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
 }
-axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
-legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))))</code></pre>
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))))  # put a legend on the plot</code></pre>
 <p><img src="LAB4_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="compute-lambda" class="section level4">
@@ -505,7 +505,8 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;
 <p>The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.</p>
 </blockquote>
 <p>2e. Provide the URL for your new, density-dependent InsightMaker model. Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population <em>regulated</em>? Explain your reasoning.</p>
-<p>Use the following stage matrix to answer questions 2c-e</p>
+<div id="use-the-following-stage-matrix-to-answer-questions-2c-e" class="section level4">
+<h4>Use the following stage matrix to answer questions 2c-e</h4>
 <pre class="r"><code>stmat &lt;- read.csv(&quot;stage_matrix1.csv&quot;)
 stmat &lt;- as.matrix(stmat[,-1])
 rownames(stmat) &lt;- colnames(stmat)
@@ -515,9 +516,14 @@ stmat</code></pre>
 ## Stage2   0.45   0.20   0.00
 ## Stage3   0.00   0.65   0.70</code></pre>
 </div>
+</div>
 <div id="exercise-3.-translate-plain-english-to-projection-matrix" class="section level2">
 <h2>Exercise 3. Translate plain English to projection matrix!</h2>
 <p>This should be quick and relatively painless! As a test of your understanding, try to implement the following passage as a matrix projection model:</p>
+<div class="figure">
+<img src="redtail1.jpg" />
+
+</div>
 <blockquote>
 <p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
 </blockquote>

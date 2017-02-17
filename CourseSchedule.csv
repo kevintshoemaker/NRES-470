@@ -6,16 +6,16 @@ Week 2,1/31/2017,LECTURE 1: Thomas Malthus; Density-dependent growth,Gotelli Cha
 ,2/2/2017,LECTURE 2: Density-dependent growth,BCTD Chapter 2 (skim)
 ,2/3/2017,LAB: Density-dependent populations in InsightMaker; maximum sustainable yield (MSY) and more,
 Week 3,2/7/2017,LECTURE 1: Passenger pigeon/Allee Effect,Gotelli Chapter 3
-,2/9/2017,LECTURE 2: Age-structured populations,[Lande 1992](lande.pdf)
+,2/9/2017,LECTURE 2: Age-structured populations,
 ,2/10/2017,LAB: Age-structured populations and stochasticity in InsightMaker,
 Week 4,2/14/2017,LECTURE 1: Final projects; Matrix population models,[Heppell 1998](heppell1.pdf)
-,2/16/2017,LECTURE 2: Stochasticity and uncertainty,[Regan 2002](Regan_2002.pdf)
-,2/17/2017,"LAB: PVA1: Density-regulated, age-structured, stochastic population model",
-Week 5,2/21/2017,LECTURE 1: Population Viability Analysis; Small population paradigm,[Beissinger and Westphal 1998](beissinger1.pdf)
-,2/23/2017,MIDTERM #1,
-,2/24/2017,LAB: Group projects (instructors away- grad student will be present),
-Week 6,2/28/2017,LECTURE 1: Detecting density dependence in natural populations ,[Brook et al. 2006](brook1.pdf)
-,3/2/2017,"LECTURE 2: Assessing model performance and handling model uncertainty (e.g., sensitivity analysis, cross-validation)",Akçakaya et al 2005
+,2/16/2017,LECTURE 2: Matrix population models,
+,2/17/2017,LAB: Matrix population models in R and InsightMaker,
+Week 5,2/21/2017,LECTURE 1: Stochasticity and Uncertainty,[Lande 1992](lande.pdf) and [Regan 2002](Regan_2002.pdf)
+,2/23/2017,"MIDTERM #1 (instructors away, Danielle Miles will proctor)",
+,2/24/2017,LAB: Stochasticity (short) and Group projects (instructors away- Nathan Cook will be present),
+Week 6,2/28/2017,LECTURE 1: Population Viability Analysis; Small population paradigm,[Beissinger and Westphal 1998](beissinger1.pdf)
+,3/2/2017,LECTURE 2: Small-population paradigm,[MVP paper]
 ,3/3/2017,LAB: Group projects- getting started,
 Week 7,3/7/2017,"LECTURE 1: Mitigating threats to populations: ""declining population paradigm""",[Caughley 1988](caughley1.pdf)
 ,3/9/2017,LECTURE 2: Metapopulations ,Gotelli Chapter 4
@@ -53,6 +53,9 @@ Week 16,5/16/2017,FINAL EXAM (2:30 PM),
 ,,Estimate survival with open-population capture-recapture (program MARK),"Cooch and White Chaps 1,2"
 ,,Estimate survival with open-population capture-recapture (program MARK) (continued),"Cooch and White Chaps 3,4"
 ,,Capture-recapture analysis  (continued),
-,,Small-population paradigm,
+,,"Assessing model performance and handling model uncertainty (e.g., sensitivity analysis, cross-validation)",Akçakaya et al 2005
 ,,Species Distribution Modeling in R. Defining habitat.,
 ,,sensitivity and elasticity lab?,
+,,"PVA1: Density-regulated, age-structured, stochastic population model",
+,,,
+,,LECTURE 1: Detecting density dependence in natural populations ,[Brook et al. 2006](brook1.pdf)
