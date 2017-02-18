@@ -169,7 +169,7 @@ lifetable <- read.csv("life_table4.csv")
 lifetable
 ```
 
-1a. Translate the above *life table* into a four-age-class transition matrix. In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds! 
+1a. Translate the above *life table* into a five-age-class transition matrix. In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds! 
 
 Keep the following points in mind: 
 
