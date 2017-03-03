@@ -1,0 +1,165 @@
+---
+title: "Small-population paradigm"
+author: "NRES 470/670"
+date: "Feb 26, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+
+The final extinction of a population usually is probabilistic. That is, once the population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deal the final death knell to a population. In conservation biology the study of processes that disproportionately influence small populations is called the *small-population paradigm*. 
+
+That is: the small-population paradigm refers to the tendency in **conservation biology** to study those largely *stochastic* factors that can result in the extinction or degradation of small populations. 
+
+### Demographic stochasticity
+
+We have already been through this concept, which is central to the small population paradigm! 
+
+The simple fact is: _it's much more likely for all 10 individuals in a population to be **unlucky** in a given year than for all 1000 individuals in a population to be **unlucky** in a given year!!_ -- just as it is very unlikely for all coin flips out of 1000 to come up heads...
+
+This illustrates the very important concept, that small populations can go extinct due to demographic stochasticity alone, whereas this possibility is vanishingly small for large populations. 
+
+### Genetic drift
+
+![](geneticdrift1.png)
+
+The moral of the story for demographic stochasticity was: weird things (e.g., extinction) can happen in small populations!
+
+Weird things like random extinction just would **never happen** in large populations!
+
+Same goes for *genetic drift*! Genetic drift is a small-population phenomenon!
+
+In large populations, you could never randomly get **fixation** of a particular gene (this could happen via natural selection, but not through random reproductive processes). 
+
+Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). Finally, let's imagine that the red balls are individuals that are more likely to survive a rare drought (but have no selective advantage or disadvantage under normal circumstances). 
+
+Under these conditions, the number of births is completely random. And if this was a sexually reproducing diploid population, mating would be completely random too. 
+
+Just by random chance, the blue individuals happen to reproduce more than the red individuals- and the red individuals go extinct. Does this sound similar to a process we have already discussed in this class? 
+
+And now, by random chance, this population is now more susceptible to drought!
+
+
+### Inbreeding depression
+
+![](inbreeding1.jpg)
+
+Inbreeding depression is similar to genetic drift, but more specific! Again, inbreeding problems only occur in small populations.
+
+Most diploid populations have some "bad genes" floating around. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! 
+
+
+![](inbreeding2.jpg)
+
+Why is it more likely to get two copies of the same allele if your two parents are close relatives? 
+
+The above image of Charles II of Spain indicates what can happen when you inherit too many alleles that are identical by descent!
+
+Why is it more likely for your two parents to be close relatives if you are living in a small population?
+
+## Extinction vortex
+
+![](vortex1.jpg)
+
+
+One of the central ideas arising from the small population paradigm is the concept of the **extinction vortex**. This concept is illustrated in the above figure.
+
+Once a population gets small enough, it becomes subject to catastrophic declines due to demographic stochasticity, leading to inbreeding and random loss of useful genes, leading to reduced vital rates, leading to smaller population sizes, leading to further genetic degradation, leading to more possibility of catastrophic declines due to demographic stochasticity, leading to ... EXTINCTION!!
+
+## Minimum Viable Populations (MVP)
+
+We have seen this concept already, in the context of the Allee Effect. However, there is a more general definition, related to the extinction vortex. 
+
+**Minimum Viable Population** is defined as that *population size whereby the extinction vortex can be safely averted*! 
+
+## Population Viability Analysis (PVA)
+
+Population Viability Analysis (PVA) is often used to model the processes in the extinction vortex, including genetic drift. In this class, we won't get into modeling genetics (that's for a different class!)!
+
+The most widely-used PVA software, [Vortex](http://www.vortex10.org/Vortex10.aspx), gets its name from the extinction vortex concept. 
+
+![](vortex10.jpg)
+
+
+
+## Example: Aruba island rattlesnake
+
+The aruba island rattlesnake, or Cascabel (*Crotalus durissus unicolor*), is the top predator on the island of Aruba, and primarily consumes rodents. 
+
+![](aruba_rattlesnake1.jpg)
+
+The Aruba island rattlenake, as you might expect, occurs only on the island of Aruba.
+
+![](aruba1.png)
+
+The Aruba rattlesnake is listed as *Critically Endangered* by IUCN, and has several attributes that make it particularly susceptible to falling into the extinction vortex:
+
+- Range is limited to the small island of Aruba
+    **Q**: why does this matter?
+- Total abundance is estimated as 250 individuals
+- Population has been declining due to:
+    - loss and degradation of habitat (overgrazing, human encroachment, forest clearing)
+    - human persecution
+
+
+### Exercise: Minimum Viable Population
+
+Consider the following scenario: you are tasked with determining the minimum viable population size (MVP) for the Aruba Island rattlesnake. We define the minimum viable population as:
+
+> That abundance below which the probability of extinction is 5% or greater over the next 50 years.
+
+Here are the key parameters! (note that much of this is simplified and/or made up entirely!)
+
+- The starting abundance is 250 individuals.
+- No age/stage structure!
+- Mean birth rate $b$ is 0.70 (per-capita birth rate)
+- Mean death rate $d$ is 0.69 (per-capita death rate)
+- Density dependence:
+    - Carrying capacity is 500 individuals.
+    - Above carrying capacity, per-capita birth rate drops to 0.35
+- Environmental stochasticity:
+    - birth rate is approximately normally distributed with standard deviation of 0.15
+    - death rate does not change year to year.
+- Demographic stochasticity:
+    - total births are Poisson-distributed
+    - total deaths are Binomially distributed
+
+1. Set up an InsightMaker model to represent the above scenario. Run the model, what does it look like?
+2. Is the current population **viable**, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? 
+    Hint: use the *Sensitivity Testing* tool to run 500 replicates. Visualize the 95% quantile. For a viable population the 95% quantile should stay above 0 (extinction) up to at least year 50 of the simulation. 
+3. Find the **minimum viable population (MVP)**. 
+
+Congratulations, you have run your first PVA model!!
+
+[--go to next lecture--](LECTURE10.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

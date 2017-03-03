@@ -314,6 +314,12 @@ div.tocify {
     <li>
       <a href="LECTURE8.html">Stochastic population models</a>
     </li>
+    <li>
+      <a href="LECTURE9.html">Small population paradigm</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Declining population paradigm</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -336,7 +342,7 @@ div.tocify {
       <a href="LAB4.html">Lab 4: matrix population models (short)</a>
     </li>
     <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty (short)</a>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
@@ -476,7 +482,7 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;
 ## 4   3  10 4.7 0.028571429
 ## 5   4   2 3.3 0.005714286
 ## 6   5   0 0.0 0.000000000</code></pre>
-<p>1a. Translate the above <em>life table</em> into a four-age-class transition matrix. In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds!</p>
+<p>1a. Translate the above <em>life table</em> into a five-age-class transition matrix. In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds!</p>
 <p>Keep the following points in mind:</p>
 <ul>
 <li>Individuals are in “age class 1” if they are between the ages of 0 and 1. They transition to “age-class 2” (<span class="math inline">\(P_{1 \rightarrow 2}\)</span>) if they survive to age 1 (at which point they are now entering age class two!). Yes this can be confusing!<br />
@@ -486,7 +492,8 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;
 </ul>
 <p>1b. Use R to compute the finite rate of growth for the population (<span class="math inline">\(\lambda\)</span>). Is this a growing or declining population? Show your R code!</p>
 <p>1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?</p>
-<p>1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the “Lambda” value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 1e. Why is the final abundance estimate different from your previous calculations?</p>
+<p>1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the “Lambda” value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 1.</p>
+<p>1e. Why is the final abundance estimate different from your previous calculations?</p>
 </div>
 <div id="exercise-2-translate-insightmaker-to-projection-matrix" class="section level2">
 <h2>Exercise 2: translate InsightMaker to projection matrix!</h2>
@@ -540,7 +547,7 @@ stmat</code></pre>
 <li>After you save the model you should see a link on the top left-hand corner, “Insight Access”. Click on that link, and a new window will pop up. Under “allow update access”, add a username (i.e., kevintshoemaker or waldenTA). click on the “Add User” button, and then click on “Submit”. Finally, copy and paste the URL into the Word document.</li>
 </ul></li>
 </ul>
-<p><strong><em>Due Feb. 24 at 11 am.</em></strong></p>
+<p><strong><em>Due Mar. 3 at 11 am.</em></strong></p>
 <ul>
 <li>Word document with short answers
 <ul>

@@ -173,16 +173,17 @@ lifetable
 
 Keep the following points in mind: 
 
-- Individuals are in "age class 1" if they are between the ages of 0 and 1. They transition to "age-class 2" ($P_{1 \rightarrow 2}$) if they survive to age 1 (at which point they are now entering age class two!). Yes this can be confusing!   
-- For individuals of "Age class 1" to contribute new offpring (individuals of age-class 1) to the population in the next time step ($F_1$), they have to survive their first year of life ($P_{1 \rightarrow 2}$) AND produce offspring when they are exactly 1 year of age (which they do at the rate of $b$ at age 1).  
+- Individuals are in "age class 1" if they are between the ages of 0 and 1. They transition to "age-class 2" ($P_{1 \rightarrow 2}$) if they survive to age 1 (at which point they are now entering age class two!). Yes this can be confusing!     
+- For individuals of "Age class 1" to contribute new offpring (individuals of age-class 1) to the population in the next time step ($F_1$), they have to survive their first year of life ($P_{1 \rightarrow 2}$) AND produce offspring when they are exactly 1 year of age (which they do at the rate of $b$ at age 1).    
 
-- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age-class or they die. 
+- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age-class or they die.     
 
-1b. Use R to compute the finite rate of growth for the population ($\lambda$). Is this a growing or declining population? Show your R code!
+1b. Use R to compute the finite rate of growth for the population ($\lambda$). Is this a growing or declining population? Show your R code!   
 
-1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?
+1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?   
 
-1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the "Lambda" value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 
+1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the "Lambda" value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 1. 
+
 1e. Why is the final abundance estimate different from your previous calculations? 
 
 
@@ -194,19 +195,19 @@ Return to the InsightMaker model you created in Lab 3 (exercise 3 -- that is, th
 
 Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e.)
 
-2a. Translate this InsightMaker model into a projection matrix. This is not quite as straightforward as it might sound. Pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix. 
+2a. Translate this InsightMaker model into a projection matrix. This is not quite as straightforward as it might sound. Pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix.   
 
-2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. You don't need to show your R code or the InsightMaker model this time- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same!  
+2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. You don't need to show your R code or the InsightMaker model this time- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same!   
 
-2c. Now let's go the other way around. Build an InsightMaker model that represents the same population as the stage matrix below. Share your InsightMaker model with your instructors and provide the URL in your write-up. 
+2c. Now let's go the other way around. Build an InsightMaker model that represents the same population as the stage matrix below. Share your InsightMaker model with your instructors and provide the URL in your write-up.  
 
-2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide the InsightMaker plot to show that the two models are identical.
+2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide the InsightMaker plot to show that the two models are identical.    
 
-In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO! Let's build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let's build a model where *growth* (transition from one stage to the next) is density dependent but stage-specific survival does not change! Here is the scenario: 
+In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO! Let's build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let's build a model where *growth* (transition from one stage to the next) is density dependent but stage-specific survival does not change! Here is the scenario:   
 
-> The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.   
+> The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.    
 
-2e. Provide the URL for your new, density-dependent InsightMaker model. Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population *regulated*? Explain your reasoning.   
+2e. Provide the URL for your new, density-dependent InsightMaker model. Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population *regulated*? Explain your reasoning.     
 
 #### Use the following stage matrix to answer questions 2c-e
 
@@ -226,11 +227,11 @@ This should be quick and relatively painless! As a test of your understanding, t
 
 > We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. 
 
-3a. Provide your transition matrix in your write-up. 
+3a. Provide your transition matrix in your write-up.     
 
-3b. Is this population at S.A.D. at time 0? If not, provide an example of an initial population structure that IS at S.A.D.
+3b. Is this population at S.A.D. at time 0? If not, provide an example of an initial population structure that IS at S.A.D.     
 
-3c. What is the finite growth rate, Lambda, for this population (at S.A.D.)? 
+3c. What is the finite growth rate, Lambda, for this population (at S.A.D.)?     
 
 
 ##Checklist for Lab 4 completion
@@ -241,7 +242,7 @@ This should be quick and relatively painless! As a test of your understanding, t
 
     * After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, copy and paste the URL into the Word document.
 
-***Due Feb. 24 at 11 am.***
+***Due Mar. 3 at 11 am.***
 
 *  Word document with short answers
     +  **Exercise 1**

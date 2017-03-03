@@ -37,7 +37,7 @@ Students will work in groups of ~2-3 people to perform a population viability an
 - **FINAL FINAL PAPER:** Due May 5
 - **FINAL PRESENTATIONS:** May 5 in lab
 
-Remember that the semester will get crazy at the end. Plan ahead! 
+Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
 ## First project-related assignment: the proposal!
 
@@ -45,10 +45,98 @@ Remember that the semester will get crazy at the end. Plan ahead!
 
 Your project proposal will consist of:  
 
-1. Title: should indicate what species you are modeling, and what question will be addressed   
-2. Project participants: work in groups of 2-3. Obviously we won't have very many groups this year!    
-3. Project rationale: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructors that your project is **interesting**!    
-4. Data sources: Describe what data sources you plan to use to guide PVA construction and parameterization. Convince your instructors that your project is **possible**!    
+1. **Title**: should indicate what species you are modeling, and what question will be addressed   
+2. **Project participants**: work in groups of 2-3. Obviously we won't have very many groups this year!    
+3. **Project rationale**: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructors that your project is **interesting**!    
+4. **Data sources**: Describe what data/information sources you plan to use to guide PVA construction and parameterization. Convince your instructors that your project is **possible**!  
+
+**NOTE about data sources:** The most important parameters you need for a PVA model are *survival rates* (usually age-structured), *fecundity rates* (often age-structured as well), *stochasticity* (variability in those vital rates), *abundance*, and *carrying capacity*. We have gone over all these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven't yet gone over in class). If all else fails, you can use published records for similar species!
+
+
+## Potentially useful links!
+
+# Data links
+
+## Publicly available datasets, potentially for final project...  
+(many links courtesy Tom Langen) 
+
+### BIODIVERSITY DATA CLEARINGHOUSES /ARCHIVES
+[International Union for the Conservation of Nature (IUCN) Redlist](http://www.iucnredlist.org/) (Searchable list of the world’s threatened and endangered plants and animal species on the IUCN Redlist.)  
+
+[Conservation International Global Biodiversity Hotspots](http://www.biodiversityhotspots.org/Pages/default.aspx) (Detailed data on the attributes and threats to the world’s global biodiversity hotspots.)  
+
+[National Biological Information Infrastructure](http://www.nbii.gov/) (Data archive and clearinghouse for biological data from the US. Also provides standards for metadata.)  
+
+[Biological Inventories of the World’s Protected Areas](http://www.ice.ucdavis.edu/bioinventory/bioinventory.html) (Searchable species occurrence records and species lists for over 1,400 protected areas around the globe.)  
+
+[Global Biodiversity Information Facility](http://data.gbif.org/welcome.htm) (An enormous clearinghouse of biodiversity data) 
+
+[USGS avian data portal](https://migbirdapps.fws.gov/mbdc/databases/db_selection.html)     
+
+[Global Population Dynamics Data Base(GPDD)](http://www3.imperial.ac.uk/cpb/research/patternsandprocesses/gpdd) (5000 population size time series for 1400 species, most of which have at least ten years of data. There are data on the natural history of the organism and the location & method of sampling.)   
+
+[GPDD, alternative link](https://www.imperial.ac.uk/cpb/gpdd2/secure/login.aspx)     
+
+[USGS Breeding Bird Survey](http://www.pwrc.usgs.gov/BBS/) (Breeding bird survey data back to 1966)  
+
+[Bird Point Count Database](http://www.pwrc.usgs.gov/point/) (Depository of bird point-count data from across the US.)   
+
+[Bird Studies Canada Nature Counts](http://www.bsc-eoc.org/birdmon/default/main.jsp) (Bird survey data archive for Canada, includes point counts and many other types of surveys.)  
+
+[Avian Knowledge Network](http://www.avianknowledge.net/content/datasets)  (Archive of aggregated bird surveys from many organizations and studies across throughout the western hemisphere, including Latin America.)  
+
+[NatureServe](http://www.natureserve.org/getData/index.jsp)  (Data on species of plants and animals in the Western Hemisphere, including detailed range maps) 
+
+[USGS bat data portal](https://my.usgs.gov/bpd/)     
+ 
+[Comadre and Compadre matrix demography database](https://compadredb.wordpress.com/2015/10/05/introducing-the-comadre-animal-matrix-database/)    
+
+### GOVERNMENT AGENCY DATA PORTALS 
+
+[National Atlas](http://www.nationalatlas.gov/) (Geospatial data on the environment, economy, and people of the US).   
+
+[US Department of Agriculture Census of Agricultural Data](http://www.agcensus.usda.gov/) (Authoritative data on all aspects of agriculture in the US.)      
+
+[Centers for Disease Control & Prevention Data & Statistics](http://www.cdc.gov/datastatistics/) (Comprehensive data on all aspects of disease epidemiology.)     
+
+[USGS Water Data for the Nation](http://waterdata.usgs.gov/nwis) (Hydrological and water-quality data from across the US.)  
+
+[USGS Survey Disease Maps](http://diseasemaps.usgs.gov/index.html) (US County-scale maps of incidence patterns of various mosquito-vectored diseases)    
+
+[The Multi-resolution Land Characteristics Consortium (MRLC) National Land Cover Database](http://www.mrlc.gov/) (Land cover or land use, canopy cover, and impermeable surface area of the entire US, at a resolution of 30 m x 30 m, based on remote sensing data from satellite imagery.)  
+
+[US Fish & Wildlife Service National Wetlands Inventory](http://www.fws.gov/wetlands/) (Wetlands greater than 1 acre are mapped and classified throughout the US, Puerto Rico and US territories. Data can be examined using the [Wetland Mapper](http://www.fws.gov/wetlands/Data/Mapper.html) and then downloaded for use by a GIS application, or can by inspected directly using [Google Earth](http://www.fws.gov/wetlands/Data/GoogleEarth.html))   
+
+[USDA Forest Inventory and Analysis National Program](http://fia.fs.fed.us/) 
+[Forest Inventory Data Online (FIDO)](http://fia.fs.fed.us/tools-data/default.asp) (Highly-detailed periodic surveys of forest composition at sites throughout the US.)   
+
+[US Geological Survey](http://www.usgs.gov/) (Reports, data analysis, maps, and raw data on a diversity of topics related to environmental science, including biodiversity and emerging diseases.)
+
+[NOAA National Climate Data Center](http://www.ncdc.noaa.gov/oa/ncdc.html) (Extensive data archives of climate data, including paleoclimate.)
+
+### ENVIRONMENTAL DATA CLEARINGHOUSES
+[Ecotrends](http://www.ecotrends.info/EcoTrends/) (Data archive and data visualization tools for ecological data at sites distributed around the US.)  
+
+[NASA Global Change Master Directory](http://gcmd.nasa.gov/index.html) (Data on all aspects of global change, includes data on climate, land use, biodiversity and human dimensions.)  
+
+[Oak Ridge National Laboratory Distributed Active Archive Center for Biogeochemical Dynamics(ORNL DAAC)](http://daac.ornl.gov/index.shtml) (A NASA-sponsored source for biogeochemical and ecological data and models useful in environmental research.)  
+
+[Pole to Pole Ecological Research Lattice of Sites (P2ERLS)](http://www.p2erls.net/) (Portal to research stations and research networks, including their data archives.)  
+
+[Weatherspark](http://weatherspark.com/) (Visualized time-series data on local climate at sites around the globe.)  
+
+[Long Term Ecological Research (LTER) Network](http://www.lternet.edu/) (Network of research stations that have standardized monitoring programs as well as site-specific research. Sites are mandated to make data publicly available on the web.)  
+
+
+### RESEARCH PROJECT DATA ARCHIVES
+[Dryad](http://datadryad.org/) (Data archives for bioscience data from peer-reviewed journal articles from a large consortium of journals)   
+
+[Ecological Society of America (ESA) Data Registry](http://esapubs.org/archive/archive_D.htm)
+Archive of ecological and environmental data from ESA publications)  
+
+[National Center for Ecological Assessment & Synthesis (NCEAS) Data Repository](http://knb.ecoinformatics.org/knb/style/skins/nceas/index.jsp) (Data archive of contributed data sets of all types of ecological data.)  
+
+[NCEAS Scientific Computing Database](http://www.nceas.ucsb.edu/scicomp/) (Clearinghouse of climatological, geospatial, and other data. Also has shareware software for analysis.)
 
 
 [Additional instructions coming soon!]

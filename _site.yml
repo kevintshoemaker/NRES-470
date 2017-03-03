@@ -27,6 +27,10 @@ navbar:
           href: LECTURE7.html
         - text: "Stochastic population models"
           href: LECTURE8.html
+        - text: "Small population paradigm"
+          href: LECTURE9.html
+        - text: "Declining population paradigm"
+          href: LECTURE10.html
     - text: "Labs"
       menu:
         - text: "Lab 1: exponential growth"
@@ -37,7 +41,7 @@ navbar:
           href: LAB3.html
         - text: "Lab 4: matrix population models (short)"
           href: LAB4.html
-        - text: "Lab 5: stochasticity and uncertainty (short)"
+        - text: "Lab 5: stochasticity and uncertainty"
           href: LAB5.html
         - text: "Final Projects!"
           href: FINAL_PROJECTS.html
