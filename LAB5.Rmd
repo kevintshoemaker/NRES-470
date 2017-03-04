@@ -108,7 +108,7 @@ The next three questions relate to comparing these two methods:
 
 1d. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times using each of the two methods described above. Choose [Population] as the "Monitored Primitive" (otherwise use the default settings). Run the sensitivity testing module (using the "Run Analysis" button) and provide these two resulting plots as part of your write-up (one plot for each of the two methods). Look at the range of final abundances in the two plots. Which method results in the greatest uncertainty about the final abundance (after 10 years)? Can you explain this difference? (this last part is challenging, but give it a try!).  
 
-1e. Let's think through the problem one more time- we are uncertain about the *true* value of the per-capita birth rate, , $b$, for a rare species. The birth rate could be anything from 0.2 to 0.5 - we really can't say! Given this uncertainty, we want to know _what the abundance will be after 10 years_. If you were tasked with evaluating this question, which of the two plots you generated in (1d) would be most appropriate for answering this question? Why? 
+1e. Let's think through the problem one more time- we are uncertain about the *true* value of the per-capita birth rate, $b$, for a rare species. The birth rate could be anything from 0.2 to 0.5 - we really can't say! Given this uncertainty, we want to know _what the abundance will be after 10 years_. If you were tasked with evaluating this question, which of the two plots you generated in (1d) would be most appropriate for answering this question? Why? 
 
 
 ## Exercise 2: Demographic and Environmental Stochasticity  
