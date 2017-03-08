@@ -1,0 +1,120 @@
+---
+title: "Declining-population paradigm"
+author: "NRES 470/670"
+date: "Mar 6, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+
+**Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why???
+
+**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations declining despite the intrinsic ability to grow?
+
+## Threats to populations
+
+The answer of course is that the intrinsic ability to grow is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births *under present conditions* the population will decline. 
+
+In the "small-population paradigm" lecture we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.
+
+Large populations can be threatened though! Factors that threaten large populations are usually **deterministic**! 
+
+The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those deterministic processes that cause population decline, and how these processes may be reversed through effective conservation management*. 
+
+What are some factors that can *tip the balance* so to speak- so that growing or stable populations become declining populations? 
+
+### Harvest
+
+![](overharvest1.jpg)
+
+### Habitat loss
+
+![](habitatloss1.jpg)
+
+### Disease
+
+![](whitenose1.jpg)
+
+### Climate change
+
+![](climatechange1.jpg)
+
+### Invasive species
+
+![](bullfrog1.jpg)
+
+
+### Pollution
+
+![](pollution1.png)
+
+
+## The controversy in Conservation Biology!
+
+So, which one is more important for conservation? The declining-population paradigm or the small-population paradigm??
+
+This "controversy" was ignited by a very influential paper by Graeme Caughley in *Journal of Animal Ecology* in 1994.
+
+![](caughley1.jpg)
+
+In this paper, Caughley defines the two competing paradigms, and expresses a bias towards one and against the other...
+
+> Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.
+
+**Q**: Can you detect Caughley's bias in the above quote? 
+
+**Q**: What do you think? Do you agree with Caughley?
+
+### In-Class Exercise: Deterministic threats
+
+Let's try a worked example to illustrate the above points.
+
+Let's start with a basic scalar, density-dependent population, that should look something like this:
+
+
+![](IM5.jpg)
+
+
+Let's add a harvest process!
+
+1) 
+
+
+Let's add a habitat loss process!
+
+
+Let's add a ...
+
+
+[--go to next lecture--](LECTURE12.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -318,7 +318,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Declining population paradigm</a>
+      <a href="LECTURE10.html">Individual-based models</a>
+    </li>
+    <li>
+      <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
   </ul>
 </li>
@@ -426,8 +429,8 @@ div.tocify {
 </div>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
-<p>Population Viability Analysis (PVA) is often used to model the processes in the extinction vortex, including genetic drift. In this class, we won’t get into modeling genetics (that’s for a different class!)!</p>
-<p>The most widely-used PVA software, <a href="http://www.vortex10.org/Vortex10.aspx">Vortex</a>, gets its name from the extinction vortex concept.</p>
+<p>Population Viability Analysis (PVA) is often used to model the processes in the extinction vortex, including genetic drift. In this class, we won’t get into modeling genetics (that’s for a different course!)</p>
+<p>The most widely-used PVA software, <a href="http://www.vortex10.org/Vortex10.aspx">Vortex</a>, gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.</p>
 <div class="figure">
 <img src="Vortex10.jpg" />
 
@@ -455,42 +458,7 @@ div.tocify {
 <li>human persecution</li>
 </ul></li>
 </ul>
-<div id="exercise-minimum-viable-population" class="section level3">
-<h3>Exercise: Minimum Viable Population</h3>
-<p>Consider the following scenario: you are tasked with determining the minimum viable population size (MVP) for the Aruba Island rattlesnake. We define the minimum viable population as:</p>
-<blockquote>
-<p>That abundance below which the probability of extinction is 5% or greater over the next 50 years.</p>
-</blockquote>
-<p>Here are the key parameters! (note that much of this is simplified and/or made up entirely!)</p>
-<ul>
-<li>The starting abundance is 250 individuals.</li>
-<li>No age/stage structure!</li>
-<li>Mean birth rate <span class="math inline">\(b\)</span> is 0.70 (per-capita birth rate)</li>
-<li>Mean death rate <span class="math inline">\(d\)</span> is 0.69 (per-capita death rate)</li>
-<li>Density dependence:
-<ul>
-<li>Carrying capacity is 500 individuals.</li>
-<li>Above carrying capacity, per-capita birth rate drops to 0.35</li>
-</ul></li>
-<li>Environmental stochasticity:
-<ul>
-<li>birth rate is approximately normally distributed with standard deviation of 0.15</li>
-<li>death rate does not change year to year.</li>
-</ul></li>
-<li>Demographic stochasticity:
-<ul>
-<li>total births are Poisson-distributed</li>
-<li>total deaths are Binomially distributed</li>
-</ul></li>
-</ul>
-<ol style="list-style-type: decimal">
-<li>Set up an InsightMaker model to represent the above scenario. Run the model, what does it look like?</li>
-<li>Is the current population <strong>viable</strong>, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? Hint: use the <em>Sensitivity Testing</em> tool to run 500 replicates. Visualize the 95% quantile. For a viable population the 95% quantile should stay above 0 (extinction) up to at least year 50 of the simulation.</li>
-<li>Find the <strong>minimum viable population (MVP)</strong>.</li>
-</ol>
-<p>Congratulations, you have run your first PVA model!!</p>
 <p><a href="LECTURE10.html">–go to next lecture–</a></p>
-</div>
 </div>
 
 

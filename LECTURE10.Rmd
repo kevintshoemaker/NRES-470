@@ -1,0 +1,161 @@
+---
+title: "Intro to individual-based models (IBM)"
+author: "NRES 470/670"
+date: "Mar 6, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+
+![](birds1.jpg)
+
+So far in this class we have looked at the **population** as the fundamental unit that we are interested in modeling. This makes sense for a population ecology class! But we are all aware that populations consist of **individuals** that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the *individual level*. 
+
+In some ways a population is hard to define- it can be a bit of an artificial concept. The individual is (mostly) a straightforward, biologically meaningful concept. 
+
+Before we define how individual-based models differ from the population-level stock-flow models we have already been using, let's first point out the similarities. 
+
+First of all, the basic modeling workflow is ALWAYS the same, no matter what kind of model we want to use!
+
+![](model_wkflow1.jpg)
+
+All models are a way to **formalize our understanding about our study system**. 
+
+**Population-based models** (PBM; i.e., models of $N$) are the main type of model we consider in this class- because it is the most direct way to think about population dynamics: $N$ is our main variable of interest, and it is controlled by intrinsic (e.g., density-dependence, demographic stochasticity) and extrinsic (e.g., environmental stochasticity, harvest) factors. 
+
+**Age/stage structured population-based models** and **sex structured population models** (i.e., models of $\mathbf{N}$, i.e., vector-structured $N$) are a type of population model in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.
+
+**Individual-based models** (IBM; also known as "agent-based" models) is a way of modeling populations such that all individuals are considered explicitly! We no longer need to put individuals into groups- each individual can potentially have a different survival probability, or chance of breeding, or movement propensity! In this case, we don't model $N$ directly at all -- in fact, $N$ is an **emergent property** of individual organisms interacting with each other, with predators and competitors, and with their abiotic environment.
+
+### Which model structure should I use? IBM or PBM??
+
+In general, models are tools- you should use the model structure that best fits with the questions you are asking and your understanding of the study system!
+
+And also, if two different model structures are equally appropriate, you should usually use the **simplest approach**! This idea is often called the *Principle of Parsimony* (or, *Occam's Razor*). 
+
+**Q**: All populations are composed of individuals. Why then don't we always model populations using individual-based models?
+
+![](occam1.jpg)
+
+
+**Q**: What are some questions that might be best addressed using **individual-based models (IBM)**?
+
+**Q**: What are some questions that might be best addressed using **population-based models (PBM)**?
+
+
+_Individual-based models are powerful- but with power comes great responsibility!_
+
+
+## Demo: Individual-based models!
+
+The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (made-up) ecological system. 
+
+### The scenario
+The laphlag island archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock. 
+
+However, without wolves, populations of the native sheep skyrocketed, and the famous lush green grass is quickly being lost to overgrazing by the native sheep. 
+
+The locals now realize: *They need to reintroduce wolves to the islands*!
+
+You have been hired as a research ecologist to help the locals and biologists address the following questions:
+
+- How are reintroduced wolves going to affect grass biomass and distribution? 
+
+- How many wolves are needed to effectively restore lush green grass to the islands?
+
+The local management agency is about to start an experimental wolf reintroduction, but they want to know what to expect before making the final decision to go ahead with it.  
+
+They give you some information to get a first guess but promise that you’ll be able to come study the experimental setup once it’s underway.
+
+The hypothesis is that presence of wolves affects sheep population and behavior in such a way that grass growth is promoted.
+
+
+![](sheep1.png)
+
+
+### The details!
+
+The enclosure is deployed after the breeding season and the experiment is run for 100 days. 
+
+#### Sheep
+
+- There are a total of 50 sheep in the experimental enclosure
+- Each sheep eats 0.2 units of grass per day
+- Each sheep gives birth to 3 lambs approximately every 20 days of the experiment.
+- Sheep tend to stay in place unless either they run out of food to eat or there is a wolf in the vicinity
+
+#### Wolves
+
+- There are a total of 5 wolves in the experimental enclosure
+- Wolves are solitary hunters, at least on this imaginary island!
+- Wolves have a 10% probability of finding and killing any sheep within 500 m of its location in any given day.
+- Wolves tend to move approximately 500 m per day on average. 
+- Wolves can kill a maximum of one sheep a day. 
+
+#### Grass
+
+- The experimental enclosure is one large grassy pasture. For the purposes of this exercise, we will this pasture into a grid of approximately 100 units. Each unit starts off with 10 units of grass (enough to support 50 sheep for a day). 
+- Each grass unit can have a maximum of 15 units of grass. 
+- Each unit can grow approximately 0.05 units of grass per day. 
+
+
+
+### In-class exercise:
+
+First, go to InsightMaker and load up the demo individual-based model! [Here is the link!](https://insightmaker.com/insight/74158/ICE-Individual-based-model).
+
+1) Make sure you can run the model and interpret the figures. 
+
+2) Try to adjust the number of sheep and wolves to meet your management goals: 
+    - Maintain populations of both sheep and wolves
+    - Maintain lush grass!
+
+3) Does the model behave realistically?  Test it! What happens if you start with lots of sheep and no wolves? What happens if you start with no sheep, and a bunch of wolves? 
+
+4) Is it possible for the experimental plot to support sheep, wolves, and grass indefinitely?
+
+5) What if wolves were more efficient at killing sheep? Try doubling the "Prob of kill" variable and see how your answer changes.
+
+6) What if grass were more productive? Try doubling the "Grass Growth Rate" and see if more sheep can be supported sustainably. 
+
+7) What if the wolves don't actually kill the sheep, but just scare them (make them move)?? Does the presence of wolves affect grass growth in this case?
+
+
+**Q**: is there any stochasticity in this model? If so, what kind of stochasticity is there? Take an educated guess!
+
+
+
+
+
+[--go to next lecture--](LECTURE11.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

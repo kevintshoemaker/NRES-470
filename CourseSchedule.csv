@@ -14,23 +14,23 @@ Week 4,2/14/2017,LECTURE 1: Final projects; Matrix population models,[Heppell 19
 Week 5,2/21/2017,LECTURE 1: Stochasticity and Uncertainty,[Lande 1992](lande.pdf)
 ,2/23/2017,"MIDTERM #1 (instructors away, Danielle Miles will proctor)",
 ,2/24/2017,LAB: Group projects (instructors away- Nathan Cook will be present),
-Week 6,2/28/2017,LECTURE 1: Stochasticity / Small population paradigm,[Regan 2002](Regan_2002.pdf)
-,3/2/2017,LECTURE 2: Small population paradigm / Population Viability Analysis (PVA),[Beissinger and Westphal 1998](beissinger1.pdf)
+Week 6,2/28/2017,LECTURE 1: Stochasticity and Uncertainty / Small population paradigm,[Regan 2002](Regan_2002.pdf)
+,3/2/2017,LECTURE 2: Small population paradigm,[Beissinger and Westphal 1998](beissinger1.pdf)
 ,3/3/2017,LAB: Stochasticity and uncertainty,
-Week 7,3/7/2017,"LECTURE 1: Mitigating threats to populations: ""declining population paradigm""",[Caughley 1988](caughley1.pdf)
-,3/9/2017,LECTURE 2: Metapopulations ,Gotelli Chapter 4
-,3/10/2017,LAB: Metapopulation modeling in InsightMaker,
-Week 8,3/14/2017,"LECTURE 1: Data needs for population ecology: Presence-absence data, presence-only data.",Mackenzie 2005
-,3/16/2017,LECTURE 2: Site-occupancy models,Knapp et al. 2003
-,3/17/2017,LAB: Metapopulation modeling in InsightMaker (continued),
-Week 9,3/21/2017,LECTURE 1: Modeling habitat suitability: species distribution models,Elith and Leathwick. 2009
-,3/23/2017,LECTURE 2: Modeling habitat: defining patches and populations,Larson et al. 2004
-,3/24/2017,LAB: Group projects (instructors away- grad student will be present),
-Week 10,3/28/2017,LECTURE 1: Estimating and modeling dispersal processes,Frair et al 2008
-,3/30/2017,LECTURE 2: MIDTERM #2,Trakhtenbrot et al. 2005
-,3/31/2017,LAB: Species Distribution Modeling in R. Defining habitat. Cross-validation,
+Week 7,3/7/2017,LECTURE 1: Individual based models ,BCTD Chapter 10
+,3/9/2017,LECTURE 2: Declining population paradigm / Population Viability Analysis (PVA),[Caughley 1988](caughley1.pdf) 
+,3/10/2017,LAB: Work on group PVA projects,
+Week 8,3/14/2017,LECTURE 1: PVA / Metapopulations,Gotelli Chapter 4
+,3/16/2017,LECTURE 2: Metapopulations,
+,3/17/2017,LAB: Metapopulation modeling in InsightMaker,
+Week 9,3/21/2017,SPRING BREAK,
+,3/23/2017,"""",
+,3/24/2017,"""",
+Week 10,3/28/2017,LECTURE 1: Dispersal,Frair et al 2008
+,3/30/2017,LECTURE 2: Estimating and modeling dispersal processes,
+,3/31/2017,LAB: Final projects (PVA models due),
 Week 11,4/4/2017,LECTURE 1: Estimating and modeling dispersal processes (continued),"Stearns 1992 Chapters 1,2"
-,4/6/2017,LECTURE 2: The evolutionary context: life-history theory. ,
+,4/6/2017,LECTURE 2: MIDTERM #2,BCTD Chapter 10
 ,4/7/2017,LAB: Group projects,
 Week 12,4/11/2017,"LECTURE 1: Species interactions: prey-predator models, competition models,","Gotelli Chapters 5,6"
 ,4/13/2017,"LECTURE 2: Commensalism, mutualism, Parasite-host and disease-host interactions",Nichols et al. (2010)
@@ -38,7 +38,7 @@ Week 12,4/11/2017,"LECTURE 1: Species interactions: prey-predator models, compet
 Week 13,4/18/2017,LECTURE 1: Modeling disease spread in wildlife populations,Shoemaker et al. 2014
 ,4/20/2017,"LECTURE 2: Invasive species, reintroductions, assisted colonization",Hoegh-Goldberg et al 2008
 ,4/21/2017,LAB: Group projects,
-Week 14,4/25/2017,LECTURE 1: Case study: assessing the species-level impact of climate change,Pearson and Dawson (2003)
+Week 14,4/25/2017,LECTURE 1: Case study: modeling tortoise repatriation in Galapagos,Pearson and Dawson (2003)
 ,4/27/2017,LECTURE 2: Case study: assessing the species-level impact of climate change,Keith et al (2008)
 ,4/28/2017,LAB: Group projects,
 Week 15,5/2/2017,LECTURE 1: Student presentations,
@@ -59,3 +59,9 @@ Week 16,5/16/2017,FINAL EXAM (2:30 PM),
 ,,"PVA1: Density-regulated, age-structured, stochastic population model",
 ,,,
 ,,LECTURE 1: Detecting density dependence in natural populations ,[Brook et al. 2006](brook1.pdf)
+,,"Data needs for population ecology: Presence-absence data, presence-only data.",Mackenzie 2005
+,,,Elith and Leathwick. 2009
+,,The evolutionary context: life-history theory. ,Larson et al. 2004
+,,Species Distribution Modeling in R. Defining habitat. Cross-validation,
+,,,Trakhtenbrot et al. 2005
+,,,Knapp et al. 2003

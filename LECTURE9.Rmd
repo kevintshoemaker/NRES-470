@@ -81,9 +81,9 @@ We have seen this concept already, in the context of the Allee Effect. However, 
 
 ## Population Viability Analysis (PVA)
 
-Population Viability Analysis (PVA) is often used to model the processes in the extinction vortex, including genetic drift. In this class, we won't get into modeling genetics (that's for a different class!)!
+Population Viability Analysis (PVA) is often used to model the processes in the extinction vortex, including genetic drift. In this class, we won't get into modeling genetics (that's for a different course!)
 
-The most widely-used PVA software, [Vortex](http://www.vortex10.org/Vortex10.aspx), gets its name from the extinction vortex concept. 
+The most widely-used PVA software, [Vortex](http://www.vortex10.org/Vortex10.aspx), gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.  
 
 ![](vortex10.jpg)
 
@@ -108,35 +108,6 @@ The Aruba rattlesnake is listed as *Critically Endangered* by IUCN, and has seve
     - loss and degradation of habitat (overgrazing, human encroachment, forest clearing)
     - human persecution
 
-
-### Exercise: Minimum Viable Population
-
-Consider the following scenario: you are tasked with determining the minimum viable population size (MVP) for the Aruba Island rattlesnake. We define the minimum viable population as:
-
-> That abundance below which the probability of extinction is 5% or greater over the next 50 years.
-
-Here are the key parameters! (note that much of this is simplified and/or made up entirely!)
-
-- The starting abundance is 250 individuals.
-- No age/stage structure!
-- Mean birth rate $b$ is 0.70 (per-capita birth rate)
-- Mean death rate $d$ is 0.69 (per-capita death rate)
-- Density dependence:
-    - Carrying capacity is 500 individuals.
-    - Above carrying capacity, per-capita birth rate drops to 0.35
-- Environmental stochasticity:
-    - birth rate is approximately normally distributed with standard deviation of 0.15
-    - death rate does not change year to year.
-- Demographic stochasticity:
-    - total births are Poisson-distributed
-    - total deaths are Binomially distributed
-
-1. Set up an InsightMaker model to represent the above scenario. Run the model, what does it look like?
-2. Is the current population **viable**, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? 
-    Hint: use the *Sensitivity Testing* tool to run 500 replicates. Visualize the 95% quantile. For a viable population the 95% quantile should stay above 0 (extinction) up to at least year 50 of the simulation. 
-3. Find the **minimum viable population (MVP)**. 
-
-Congratulations, you have run your first PVA model!!
 
 [--go to next lecture--](LECTURE10.html)
 
