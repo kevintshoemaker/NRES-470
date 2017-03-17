@@ -16,11 +16,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 **Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why???
 
-**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations declining despite the intrinsic ability to grow?
+**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations declining despite their intrinsic ability to grow?
 
 ## Threats to populations
 
-The answer of course is that the intrinsic ability to grow is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births *under present conditions* the population will decline. 
+The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births *under present conditions* the population will decline. 
 
 In the "small-population paradigm" lecture we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.
 
@@ -60,11 +60,11 @@ What are some factors that can *tip the balance* so to speak- so that growing or
 
 So, which one is more important for conservation? The declining-population paradigm or the small-population paradigm??
 
-This "controversy" was ignited by a very influential paper by Graeme Caughley in *Journal of Animal Ecology* in 1994.
+This "controversy" was ignited by a [very influential paper by Graeme Caughley](caughley1.pdf) in *Journal of Animal Ecology* in 1994.
 
 ![](caughley1.jpg)
 
-In this paper, Caughley defines the two competing paradigms, and expresses a bias towards one and against the other...
+In this paper, Caughley defines the two competing paradigms, and expresses a bias towards one paradigm and against the other...
 
 > Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.
 
@@ -76,21 +76,50 @@ In this paper, Caughley defines the two competing paradigms, and expresses a bia
 
 Let's try a worked example to illustrate the above points.
 
-Let's start with a basic scalar, density-dependent population, that should look something like this:
+Let's start with a basic scalar, density-dependent population -- should look something like this:
+
+You can clone this model by clicking [here](https://insightmaker.com/insight/74417/ICE-declining-population-paradigm)
 
 
 ![](IM5.jpg)
 
+You should see logistic growth if you hit the simulate button.  
 
-Let's add a harvest process!
+For this exercise, let's change the initial population to 200 (near K).
 
-1) 
+Also, make sure that the time step is 1 year, and the model should run for 30 years.
 
+Before adding any threats, let's add **demographic stochasticity** into this model!
 
-Let's add a habitat loss process!
+**Let's add a harvest process!**
 
+- Assume that harvest is limited to 10% of the population each year. However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%.    
 
-Let's add a ...
+**Q**: is the variation in harvest rates best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?    
+
+**Q**: why doesn't the population decline to extinction? What has the harvest process done in this case?    
+
+**Let's add a habitat loss process!**
+
+- Assume that habitat loss results in larger density-dependence terms- that is, because there is less habitat, the effects of crowding are more pronounced.   
+
+- Let's model the case where both density dependence terms are multiplied by 1.1 each year (simulating 10% habitat loss each year). You can do this in InsightMaker using the following formula (for both density dependence terms):    
+
+```
+0.001 * 1.1^Years()
+```
+
+- Add a new variable to represent carrying capacity. Recall that K is defined as:
+
+$\frac{b-d}{a+c}$
+
+- Run the simulation to visually track K along with population dynamics! Does it look right?  
+
+- Try running the model with only habitat loss (no harvest - set harvest to zero).    
+
+- Try changing the harvest process to be 10 individuals per year instead of 10% of the population per year. How does this change the results?    
+
+- What would happen if the habitat loss process were better represented by a *linear* versus *exponential* decline in K??     
 
 
 [--go to next lecture--](LECTURE12.html)

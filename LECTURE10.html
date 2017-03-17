@@ -323,6 +323,12 @@ div.tocify {
     <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
+    <li>
+      <a href="LECTURE12.html">Population Viability Analysis</a>
+    </li>
+    <li>
+      <a href="LECTURE13.html">Metapopulations</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -342,13 +348,19 @@ div.tocify {
       <a href="LAB3.html">Lab 3: age-structured population growth</a>
     </li>
     <li>
-      <a href="LAB4.html">Lab 4: matrix population models (short)</a>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
     </li>
     <li>
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
+      <a href="LAB6.html">Lab 6: metapopulations!</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+    <li>
+      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
 </li>
@@ -394,7 +406,14 @@ div.tocify {
 <h3>Which model structure should I use? IBM or PBM??</h3>
 <p>In general, models are tools- you should use the model structure that best fits with the questions you are asking and your understanding of the study system!</p>
 <p>And also, if two different model structures are equally appropriate, you should usually use the <strong>simplest approach</strong>! This idea is often called the <em>Principle of Parsimony</em> (or, <em>Occam’s Razor</em>).</p>
-<p><strong>Q</strong>: All populations are composed of individuals. Why then don’t we always model populations using individual-based models?</p>
+<p>Both IBM and PBM can be used to address questions at the population or metapopulation level</p>
+<div id="rules-of-thumb" class="section level4">
+<h4>Rules of thumb</h4>
+<ul>
+<li><p>In general, you should use IBM if your <em>primary information at the individual level</em> (e.g., telemetry data)– allowing you to build informed models of how individuals interact with members of their own species, possibly other species, and their local environment – in which case the principle of parsimony dictates that you should build models at the individual level!</p></li>
+<li><p>You should use PBM if your <em>primary information is at the population level</em> (e.g., the results of most mark-recapture analyses) – in which case the principle of parsimony dictates that you should build models at the population level!</p></li>
+</ul>
+<p><strong>Q</strong>: All populations are composed of individuals. Why then don’t we always model populations using individual-based models? (this could be a good exam question…)</p>
 <div class="figure">
 <img src="occam1.jpg" />
 
@@ -403,22 +422,23 @@ div.tocify {
 <p><strong>Q</strong>: What are some questions that might be best addressed using <strong>population-based models (PBM)</strong>?</p>
 <p><em>Individual-based models are powerful- but with power comes great responsibility!</em></p>
 </div>
+</div>
 <div id="demo-individual-based-models" class="section level2">
 <h2>Demo: Individual-based models!</h2>
-<p>The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (made-up) ecological system.</p>
+<p>The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (real, not made-up by my postdoc I swear!) ecological system.</p>
 <div id="the-scenario" class="section level3">
 <h3>The scenario</h3>
-<p>The laphlag island archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock.</p>
-<p>However, without wolves, populations of the native sheep skyrocketed, and the famous lush green grass is quickly being lost to overgrazing by the native sheep.</p>
+<p>The <em>laphlag island</em> archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock.</p>
+<p>However, without wolves, populations of the native sheep skyrocketed, and the famous laphlagian lush green grass is quickly being lost to overgrazing by the native sheep.</p>
 <p>The locals now realize: <em>They need to reintroduce wolves to the islands</em>!</p>
 <p>You have been hired as a research ecologist to help the locals and biologists address the following questions:</p>
 <ul>
-<li><p>How are reintroduced wolves going to affect grass biomass and distribution?</p></li>
-<li><p>How many wolves are needed to effectively restore lush green grass to the islands?</p></li>
+<li><p>How are reintroduced wolves likely to affect grass biomass and distribution?</p></li>
+<li><p>How many wolves are needed to effectively restore that characteristic lush green grass to the islands?</p></li>
 </ul>
 <p>The local management agency is about to start an experimental wolf reintroduction, but they want to know what to expect before making the final decision to go ahead with it.</p>
-<p>They give you some information to get a first guess but promise that you’ll be able to come study the experimental setup once it’s underway.</p>
-<p>The hypothesis is that presence of wolves affects sheep population and behavior in such a way that grass growth is promoted.</p>
+<p>They give you some information to get a first guess but they promise that you’ll be able to come study the experimental setup once it’s underway.</p>
+<p>The hypothesis is that presence of wolves affects sheep populations in such a way that grass growth is promoted.</p>
 <div class="figure">
 <img src="sheep1.png" />
 
@@ -426,13 +446,13 @@ div.tocify {
 </div>
 <div id="the-details" class="section level3">
 <h3>The details!</h3>
-<p>The enclosure is deployed after the breeding season and the experiment is run for 100 days.</p>
+<p>The enclosure is deployed after the breeding season and the experiment is run for 365 days.</p>
 <div id="sheep" class="section level4">
 <h4>Sheep</h4>
 <ul>
 <li>There are a total of 50 sheep in the experimental enclosure</li>
 <li>Each sheep eats 0.2 units of grass per day</li>
-<li>Each sheep gives birth to 3 lambs approximately every 20 days of the experiment.</li>
+<li>Each sheep gives birth to 3 lambs approximately every 100 days of the experiment.</li>
 <li>Sheep tend to stay in place unless either they run out of food to eat or there is a wolf in the vicinity</li>
 </ul>
 </div>
@@ -444,14 +464,15 @@ div.tocify {
 <li>Wolves have a 10% probability of finding and killing any sheep within 500 m of its location in any given day.</li>
 <li>Wolves tend to move approximately 500 m per day on average.</li>
 <li>Wolves can kill a maximum of one sheep a day.</li>
+<li>Wolves give birth with a probability of 1% per day.</li>
 </ul>
 </div>
 <div id="grass" class="section level4">
 <h4>Grass</h4>
 <ul>
-<li>The experimental enclosure is one large grassy pasture. For the purposes of this exercise, we will this pasture into a grid of approximately 100 units. Each unit starts off with 10 units of grass (enough to support 50 sheep for a day).</li>
-<li>Each grass unit can have a maximum of 15 units of grass.</li>
-<li>Each unit can grow approximately 0.05 units of grass per day.</li>
+<li>The experimental enclosure is one large grassy pasture. For the purposes of this exercise, we will turn this pasture into a grid of approximately 100 equivalent plots. Each plot starts off with 10 units of grass (enough to support 50 sheep for a day).</li>
+<li>Each grass plot can have a maximum of 15 units of grass.</li>
+<li>Each plot can grow approximately 0.1 units of grass per day.</li>
 </ul>
 </div>
 </div>
@@ -459,17 +480,17 @@ div.tocify {
 <h3>In-class exercise:</h3>
 <p>First, go to InsightMaker and load up the demo individual-based model! <a href="https://insightmaker.com/insight/74158/ICE-Individual-based-model">Here is the link!</a>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Make sure you can run the model and interpret the figures.</p></li>
+<li><p>Make sure you can run the model and interpret the resulting figures.</p></li>
 <li>Try to adjust the number of sheep and wolves to meet your management goals:
 <ul>
-<li>Maintain populations of both sheep and wolves</li>
+<li>Maintain viable populations of both sheep and wolves</li>
 <li>Maintain lush grass!</li>
 </ul></li>
 <li><p>Does the model behave realistically? Test it! What happens if you start with lots of sheep and no wolves? What happens if you start with no sheep, and a bunch of wolves?</p></li>
 <li><p>Is it possible for the experimental plot to support sheep, wolves, and grass indefinitely?</p></li>
 <li><p>What if wolves were more efficient at killing sheep? Try doubling the “Prob of kill” variable and see how your answer changes.</p></li>
 <li><p>What if grass were more productive? Try doubling the “Grass Growth Rate” and see if more sheep can be supported sustainably.</p></li>
-<li><p>What if the wolves don’t actually kill the sheep, but just scare them (make them move)?? Does the presence of wolves affect grass growth in this case?</p></li>
+<li><p>What if the wolves don’t actually kill the sheep, but just scare them (make them move)?? Does the presence of wolves affect grass growth in this case? (hint- you might need to set sheep birth rate to 0 to see an effect)</p></li>
 </ol>
 <p><strong>Q</strong>: is there any stochasticity in this model? If so, what kind of stochasticity is there? Take an educated guess!</p>
 <p><a href="LECTURE11.html">–go to next lecture–</a></p>

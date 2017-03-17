@@ -12,6 +12,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+
+[Quiz #2](https://unr.instructure.com/courses/15896/quizzes/24149)
+
 **Instructor:** Kevin Shoemaker   
 **Teaching Assistant** Margarete Walden   
 **Office**: FA 220E			 		 
@@ -114,6 +117,7 @@ rmarkdown::render('LAB2.Rmd', 'word_document')
 rmarkdown::render('LAB3.Rmd', 'word_document')
 rmarkdown::render('LAB4.Rmd', 'word_document')
 rmarkdown::render('LAB5.Rmd', 'word_document')
+rmarkdown::render('LAB6.Rmd', 'word_document')
 
 
 ## [Quiz #1](https://unr.instructure.com/courses/15896/quizzes/21572)
