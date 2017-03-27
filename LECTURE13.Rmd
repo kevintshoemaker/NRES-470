@@ -13,7 +13,162 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+
+### Upcoming midterm exam
+
+**when and where** The second midterm exam (out of two) is coming up on **April 6**. You will have the whole 50 minute class period to take the exam. The exam will take place in our regular classroom, unless you make prior arrangements. 
+
+**what** The exam will cover:
+
+- Everything from the first midterm
+- Stochasticity and Uncertainty, including [Lande 1992](lande.pdf), [Regan 2002](Regan_2002.pdf) and all material covered in lecture and lab.
+- Small-population paradigm and declining-population paradigm, including [Beissinger and Westphal 1998](beissinger1.pdf), [Caughley 1988](caughley1.pdf), and and all material covered in lecture and lab.  
+- Individual-based models (IBM), inlcluding Ch. 10 of "Beyond Connecting the Dots" and all material covered in lecture and lab.
+- Metapopulations, including Chapter 4 of the Gotelli book, and all material covered in lecture and lab. Suggested reading: [Griffin et al. 2008](griffin1.pdf).   
+    
+*The exam will consist of a mixture of multiple-choice and short-answer questions.*  
+
+### Final projects:
+
+Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due this Friday, March 31*!
+
+And now back to your regular scheduled program!
+
 ## Metapopulations
+
+Metapopulation ecology remains one of the most dynamic and active areas of population ecology - both applied and theoretical!
+
+A **metapopulation** is a *spatially structured* population. What does that mean??
+
+1. Just like with an age-structured population, in which vital rates can vary by age or stage, _vital rates can vary over space_. Some areas might have better habitat, with higher overall population growth rates! On the other hand, some areas might have poor habitat- and these areas may be associated with lower vital rates...
+
+2. Now that we are thinking about animals living in particular areas in space, we need to start thinking about **movements** as well! In a metapopulation, we often think about **dispersal** among populations. This dispersal process allows us (finally!) to think about the whole "BIDE" equation!
+
+$\Delta N = B + I - D - E$
+
+## What is a metapopulation?
+
+The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about **occupancy**. However, a metapopulation is simply a *population of populations*. We can keep track of patch abundance in a metapopultion model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model. Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends. 
+
+**Q**: Is it still a metapopulation if there is no dispersal among patches? 
+
+## "Classical" metapopulation
+
+The simplest type of spatially structured population model is the "classical" metapopulation model. 
+
+The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski) throughout his career.  
+
+In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
+
+![](MP1.jpg)
+
+In a classical metapopulation, we don't think about population dynamics any more -- instead we think about **metapopulation dynamics**.
+
+**Q**: how does a metapopulation grow?
+
+**Q**: how does a metapopulation shrink?
+
+**colonization** is the process of a patch transitioning from non-occupied to occupied!
+
+**Q**: How can a patch become colonized? The answer is **immigration** of course. That part of the "BIDE" equation that we have been ignoring up until now! 
+
+**extirpation** (or extinction) is the process of a patch transitioning from occupied to non-occupied.
+
+**regional extinction** represents extinction of all populations in the metapopulation. 
+
+More formally, here are some terms we will consider:
+
+$I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate) 
+
+$E$ is the total fraction of patches that go extinct per time period (extirpation rate)
+
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy rate**
+
+Therefore, the change in occupancy can be expressed as:
+
+$\Delta f = I - E$
+
+$p_i$ is the probability of colonization for any given (non-occupied) population.
+
+$p_e$ is the probability of extinction for any given (occupied) population.
+
+Now that we have the basic terms defined, we can build a basic model of metapopulation dynamics! Refer to the [metapopulation lab](LAB6.html) for more details!
+
+### Dynamic stability
+
+In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equlibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the metapopulation is stable and not at risk of **regional extinction**!  
+
+### Assumptions of the classical metapopulation model:
+
+- Homogeneous patches (basic model parameters do not vary among patches)
+- Time-invarying extinction and colonization rates across time (basic model parameters are constant across time).
+- No spatial dependence of extinction and colonization (spatial context, or "neighborhood effects", do not affect $p_e$ and $p_i$).
+- No time lags (metapopulation growth responds instantaneously to any changes in $f$, $p_e$ and $p_i$).
+- Very large number of patches (even when the fraction of occupied patches is infinitely small, the classical metapopulation still persists!)
+
+
+#### Variant #1: island-mainland model
+
+Colonization occurs via immigration from a constant external source -- a constant **propagule rain**
+
+This is the simplest metapopulation model. $p_i$ and $p_e$ are fixed, totally constant.
+
+#### Variant #2: internal colonization
+
+Now, colonization can only happen via immigration from within the metapopulation itself. So when few populations are colonized, colonization is low because of a lack of potential immigrants in the metapopultion. 
+
+$p_i = if$
+
+$i$ represents the strength of internal immigration (how much the probability of colonization increases with each new occupied patch in the metapopulation.
+
+#### Variant #3: rescue effect. 
+
+Now, the extinction rate can be reduced by immigration from other populations in the metapopulation!
+
+$p_e = e(1-f)$
+
+$e$ represents the strength of the rescue effect.
+
+
+#### Variant #4: both internal colonization AND rescue effect!
+
+
+### Spreading the risk!
+
+Let's consider a system in which a species occupies only a single patch, and there is a probability of extinction $p_e$ of 0.15. 
+
+What is the probability of regional extinction after 10 years? The probability of persistence for 1 year is $1-p_e$, so the probability of persistence for 10 years is $(1-p_e)^{10}$ and the probability of regional extinction is $1-((1-p_e)^{10})$
+
+which works out to be about 80%. There is a substantial probability of regional extinction over 10 years!
+
+What if there were two patches instead of just one? 
+
+Let's assume that the patches are **independent** -- that is, the extinction of one patch doesn't influence whether or not the other patch goes extinct!
+
+Regional extirpation therefore depends upon both populations going extinct- which can be computed as $p_e^2$. So the probability of persistence for one year is $1-p_e^2$. The probability of persisting for 10 years is $(1-p_e^2)^{10}$. Finally, the probability of regional extinction is $1-((1-p_e^2)^{10})$. 
+
+Which works out to about 20%. So the chance of regional extirpation is far reduced now!!
+
+This is an example of **spreading the risk**. 
+
+What if there are 5 independent populations instead of two? Then what is the chance of regional extirpation over 10 years?
+
+$(1-p_e^5)^{10}$ 
+
+_This works out to be effectively zero!!!_
+
+
+## Sources and sinks!
+
+One important concept related to metapopulations is that of **source-sink dynamics**
+
+In reality, patches vary in quality.  
+
+
+## In-class exercise: sources and sinks!
+
+
+### An ecological trap!
 
 
 
