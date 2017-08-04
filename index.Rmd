@@ -116,6 +116,7 @@ rmarkdown::render('LAB3.Rmd', 'word_document')
 rmarkdown::render('LAB4.Rmd', 'word_document')
 rmarkdown::render('LAB5.Rmd', 'word_document')
 rmarkdown::render('LAB6.Rmd', 'word_document')
+rmarkdown::render('LAB7.Rmd', 'word_document')
 
 
 ## [Quiz #1](https://unr.instructure.com/courses/15896/quizzes/21572)

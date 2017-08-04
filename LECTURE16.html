@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="NRES 470/670" />
+
+
+<title>Species interactions: competition!</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">NRES 470/670</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="INTRO.html">Introduction to NRES 470</a>
+    </li>
+    <li>
+      <a href="LECTURE1.html">A whole-systems approach to population ecology</a>
+    </li>
+    <li>
+      <a href="LECTURE2.html">Introduction to population ecology</a>
+    </li>
+    <li>
+      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+    </li>
+    <li>
+      <a href="LECTURE4.html">Population Regulation</a>
+    </li>
+    <li>
+      <a href="LECTURE5.html">Passenger Pigeon</a>
+    </li>
+    <li>
+      <a href="LECTURE6.html">Age-structured populations</a>
+    </li>
+    <li>
+      <a href="LECTURE7.html">Matrix population models</a>
+    </li>
+    <li>
+      <a href="LECTURE8.html">Stochastic population models</a>
+    </li>
+    <li>
+      <a href="LECTURE9.html">Small population paradigm</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
+    </li>
+    <li>
+      <a href="LECTURE11.html">Declining population paradigm</a>
+    </li>
+    <li>
+      <a href="LECTURE12.html">Population Viability Analysis</a>
+    </li>
+    <li>
+      <a href="LECTURE13.html">Metapopulations</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
+      <a href="LECTURE15.html">Parameter estimation</a>
+    </li>
+    <li>
+      <a href="LECTURE16.html">Species interactions: competition</a>
+    </li>
+    <li>
+      <a href="LECTURE17.html">Species interactions: prey-predator</a>
+    </li>
+    <li>
+      <a href="LECTURE18.html">Wrap-up</a>
+    </li>
+    <li>
+      <a href="PVA1_421.html">NRES421: PVA basics</a>
+    </li>
+    <li>
+      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
+    </li>
+    <li>
+      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="LAB1.html">Lab 1: exponential growth</a>
+    </li>
+    <li>
+      <a href="LAB2.html">Lab 2: logistic growth</a>
+    </li>
+    <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
+    </li>
+    <li>
+      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
+    </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+    <li>
+      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Species interactions: competition!</h1>
+<h4 class="author"><em>NRES 470/670</em></h4>
+<h4 class="date"><em>Apr 13, 2017</em></h4>
+
+</div>
+
+
+<div id="species-interactions" class="section level2">
+<h2>Species interactions</h2>
+<p>PVA, as you may recall, tends to be very single-species focused.</p>
+<p>BUT population ecology doesn’t have to be single-species focused. There are many cases where we would do well to think about species interactions specifically.</p>
+<p>From a modeling standpoint, this is where things really get interesting! That is, with species interactions, we really start to see some unexpected emergent properties!</p>
+</div>
+<div id="competition" class="section level2">
+<h2>Competition</h2>
+<div id="what-is-competition" class="section level3">
+<h3>What is competition?</h3>
+<p>Competition is defined a type of inter-species interaction by which the <em>population vital rates of each species is negatively influenced by the presence of the other</em>.</p>
+<p>There is not much essential difference between within-species competition and among-species competition for resources!</p>
+<div id="exploitation" class="section level4">
+<h4>Exploitation</h4>
+<p>This is the kind of competition we probably think about first- all individuals are competing for resources and all have similar competitive abilities. It’s a free-for-all: everyone gets some piece of a limited pie!</p>
+<p>Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed in detail! Within species, this is often called “<em>scramble competition</em>”.</p>
+</div>
+<div id="interference" class="section level4">
+<h4>Interference</h4>
+<p>Sometimes the negative effect of one actor (individual of the same or another species) on another actor is due to direct behavioral exclusion. This is the case with birds that maintain territories and keep other birds off the territory.</p>
+<p>Some plants engage in interference competition in a process called “allelopathy”.</p>
+<div class="figure">
+<img src="allelopathy.jpg" />
+
+</div>
+</div>
+</div>
+<div id="modeling-competition-extending-the-logistic-growth-equations-to-more-than-one-species" class="section level3">
+<h3>Modeling competition: extending the logistic growth equations to more than one species!</h3>
+<p>If <em>intra-species competition</em> and <em>inter-species competition</em> are essentially the same, maybe we can model these processes the same!!</p>
+<ol style="list-style-type: decimal">
+<li>Recall the logistic growth equation!</li>
+</ol>
+<p><span class="math inline">\(\Delta N = r\cdot N_t \cdot (1-\frac{N}{K})\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Now consider the case where we have two species that experience logistic growth:</li>
+</ol>
+<p>Species 1: <span class="math inline">\(\Delta N1 = r\cdot N1_t \cdot (1-\frac{N1}{K1})\)</span></p>
+<p>Species 2: <span class="math inline">\(\Delta N2 = r\cdot N2_t \cdot (1-\frac{N2}{K2})\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Now imagine that population growth for each species is further depressed by the presence of the other! We can envision a scenario where (e.g.,) the presence of one species helps to <em>fill up</em> the carrying capacity for the other species, and vice versa!</li>
+</ol>
+<p>Species 1: <span class="math inline">\(\Delta N1 = r\cdot N1_t \cdot (1-\frac{N1+\alpha N2}{K1})\)</span></p>
+<p>Species 2: <span class="math inline">\(\Delta N2 = r\cdot N2_t \cdot (1-\frac{N2+\beta N1}{K2})\)</span></p>
+<p>The constants <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are measures of the effect of one species on the growth of the other species.</p>
+<p><strong>Q</strong>: what does it mean if <span class="math inline">\(\alpha\)</span> is equal to 1?</p>
+<p><strong>Q</strong>: what does it mean if <span class="math inline">\(\alpha\)</span> is equal to 5?</p>
+<p><strong>Q</strong>: what does it mean if <span class="math inline">\(\alpha\)</span> is equal to <span class="math inline">\(\frac{1}{5}\)</span>?</p>
+<p><strong>Q</strong>: what does it mean if <span class="math inline">\(\alpha\)</span> is equal to zero?</p>
+</div>
+<div id="lets-explore-this-model-in-insightmaker" class="section level3">
+<h3>Let’s explore this model in InsightMaker!</h3>
+<p><strong>Step 1</strong>: clone a basic (non-interacting) two-species model <a href="https://insightmaker.com/insight/77729/Base-2-species-model">here</a>. Try some different parameter settings, to make sure the model is doing what you expect!</p>
+<p><strong>Step 2</strong>: Now add the “alpha” and “beta” terms to represent the degree to which species 1 competes with species 2, and vice versa. Put slider bars on these parameters, with bounds of 0 to 10. <em>What should “alpha” and “beta” link to??</em></p>
+<p><strong>NOTE</strong> I ran into some strange error where the term “alpha” means something to InsightMaker, and so naming a variable “alpha” generated an error. Took me like an hour to figure this out. So maybe name it “Alpha1” instead…</p>
+<p><strong>Step 3</strong>: Change the parameter values around and see how the model behaves.</p>
+<p>This model is known as <em>Lotka-Volterra competition</em>! The model is named after mathematicians Alfred Lotka and Vito Volterra</p>
+<p><strong>Q</strong>: what happens if one species is a superior competitor? Can one species go extinct?</p>
+<p><strong>Q</strong>: what conditions are necessary for coexistence in this model?</p>
+<p><strong>Q</strong>: what if you change the time step? Less than 1? Greater than 1?</p>
+<p><strong>Q</strong>: can you identify any equilibria?</p>
+</div>
+</div>
+<div id="phase-plane" class="section level2">
+<h2>Phase plane!</h2>
+<p>In the study of dynamic systems (such as the lotka-volterra competition system) it can be very useful to visualize the system on the <strong>phase plane</strong>.</p>
+<p>To do this, we first envision the abundance of each interacting species as a dimension, forming a 2-D surface (phase plane).</p>
+<p>Then, each time step in the model, we plot out where we are in the phase plane.</p>
+<p>For example:</p>
+<p>Let’s build the basic lotka-volterra competion model in R.</p>
+<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
+
+## Params
+
+Alpha &lt;- 1.1
+Beta &lt;- 0.5
+InitN1 &lt;- 100
+InitN2 &lt;- 300
+K1 &lt;- 1000
+K2 &lt;- 450
+Rmax1 &lt;- 0.05
+Rmax2 &lt;- 0.3
+Nyears &lt;- 1000
+
+System &lt;- data.frame(n1 = rep(InitN1,(Nyears+1)),n2 = InitN2)
+
+doYear &lt;- function(prevyear){
+  n1 &lt;- prevyear[1] + prevyear[1] * Rmax1 * (1-((prevyear[1]+Alpha*prevyear[2])/(K1)))
+  n2 &lt;- prevyear[2] + prevyear[2] * Rmax2 * (1-((prevyear[2]+Beta*prevyear[1])/(K2)))
+  return(c(n1,n2))
+}
+
+## Do simulation
+for(i in 1:(Nyears+1)){
+  System[1+i,] &lt;- doYear(System[i,])
+}</code></pre>
+<p>Now let’s visualize year zero in <em>phase space</em>:</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(System[1,],col=&quot;green&quot;,pch=20,cex=2)</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>How about the first 5 years…</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(System[1:6,],col=&quot;green&quot;,pch=20,cex=2)</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>And the entire simulation?</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(System,col=&quot;green&quot;,pch=20,cex=2)</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Okay, so species 1 is outcompeting species 2. As abundance of species 1 goes up, the abundance of species 2 declines, and we end up with just species 1!</p>
+<p>Here is another example…</p>
+<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
+
+## Params
+
+Alpha &lt;- 0.3
+Beta &lt;- 0.2
+InitN1 &lt;- 100
+InitN2 &lt;- 300
+K1 &lt;- 1000
+K2 &lt;- 450
+Rmax1 &lt;- 0.05
+Rmax2 &lt;- 0.3
+Nyears &lt;- 1000
+
+System &lt;- data.frame(n1 = rep(InitN1,(Nyears+1)),n2 = InitN2)
+
+doYear &lt;- function(prevyear){
+  n1 &lt;- prevyear[1] + prevyear[1] * Rmax1 * (1-((prevyear[1]+Alpha*prevyear[2])/(K1)))
+  n2 &lt;- prevyear[2] + prevyear[2] * Rmax2 * (1-((prevyear[2]+Beta*prevyear[1])/(K2)))
+  return(c(n1,n2))
+}
+
+## Do simulation
+for(i in 1:(Nyears+1)){
+  System[1+i,] &lt;- doYear(System[i,])
+}</code></pre>
+<p>With these new parameters, phase space looks like this (with jittering to indicate concentration of points:</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
+abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>You can see that this sytem has arrived at an equilibrium at the end, just below the carrying capacity for species 1.</p>
+<p>Finally, let’s consider multiple starting points and see how the system behaves!</p>
+<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
+
+## Params
+
+
+InitN1 &lt;- 1200
+InitN2 &lt;- 25
+System1 &lt;- data.frame(n1 = rep(InitN1,(Nyears+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears+1)){
+  System1[1+i,] &lt;- doYear(System1[i,])
+}
+
+InitN1 &lt;- 500
+InitN2 &lt;- 100
+System2 &lt;- data.frame(n1 = rep(InitN1,(Nyears+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears+1)){
+  System2[1+i,] &lt;- doYear(System2[i,])
+}
+
+
+InitN1 &lt;- 800
+InitN2 &lt;- 600
+System3 &lt;- data.frame(n1 = rep(InitN1,(Nyears+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears+1)){
+  System3[1+i,] &lt;- doYear(System3[i,])
+}</code></pre>
+<p>Now, phase space looks like this (with jittering to indicate concentration of points:</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
+points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
+points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.3)
+points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)
+abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><strong>Q</strong>: Does this two-species system have a stable equilibrium?</p>
+<pre><code>## Warning: package &#39;deSolve&#39; was built under R version 3.3.3</code></pre>
+<div id="working-in-phase-space" class="section level3">
+<h3>Working in phase space!</h3>
+<p>There is a lot you can do with phase space.</p>
+<p>First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system is expected to go from that point in phase space.</p>
+<p>So, imagine we start at the initial abundance in the above figures. Where does the arrow point in phase space?</p>
+<p>The <em>length</em> of the arrow represents the speed at which the system will move in the direction of the arrow.</p>
+<p>Now imagine we draw arrows throughout phase space, representing where the system would be expected to go.</p>
+<p>Note: this example uses R code from <a href="http://www.pauljhurtado.com/">Paul Hurtado</a></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Take any arbitrary starting point. Now we can trace the trajectory that the system will take in phase space.</p>
+<p>Try it!!</p>
+<p>You will see that there are some key thresholds in phase space that we should consider. For example, arrows can reverse direction!</p>
+</div>
+<div id="isoclines" class="section level3">
+<h3>Isoclines!</h3>
+<p>Isoclines help to delineate those key features in phase space - kind of like ridgetops on mountains. The place beyond which up arrows turn to down arrows!</p>
+<p>Here is one example:</p>
+<div id="species-1-isocline" class="section level4">
+<h4>Species 1 isocline…</h4>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
+phasearrows.draw(new)
+abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
+abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 1</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The red line represents the conditions under which the growth rate of species 1 is zero.</p>
+<p><strong>Q</strong>: how many equilibrium solutions are there for species 1?</p>
+<p><strong>Q</strong>: under what conditions is carrying capacity “used up” for species 1??</p>
+<p>That is, it represents that case where carrying capacity is “filled up”, by either species 1 or species 2.</p>
+<p>Below the red line, species 1 will tend to increase.</p>
+<p>Above the red line, species 1 will tend to decrease.</p>
+<p>The blue line represents the conditions under which carrying capacity is used up for species 2!</p>
+<p><strong>Q</strong>: under what conditions is carrying capacity “used up” for species 2??</p>
+<p>Below the red line, species 2 will tend to increase.</p>
+<p>Above the red line, species 2 will tend to decrease.</p>
+<p><strong>Q</strong>: consider the point where the two isoclines cross. What does this point represent?</p>
+<p>Let’s consider the following case…</p>
+<pre class="r"><code>Rmax1 &lt;- 0.2
+Alpha &lt;- 1.1
+K1 &lt;- 1000
+Rmax2 &lt;- 0.2
+Beta &lt;- 0.9
+K2 &lt;- 500
+
+parms=c(Rmax1,Alpha,K1,Rmax2,Beta,K2)
+
+# toggle(100,100,parms)
+
+xlim = c(5,1500)
+ylim = c(5,1000)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
+phasearrows.draw(new)
+abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
+abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Follow the trajectories from any point in this phase space. What is the outcome here?</p>
+<p><strong>Q</strong>: Is there a system-wide equilibrium?</p>
+<p><strong>Q</strong>: Is there any point in this phase space where the population growth goes negative for species 1 and positive for species 2?</p>
+<p><strong>Q</strong>: What happens to the system when carrying capacity is used up for species 2?</p>
+<p>How about this example?</p>
+<pre class="r"><code>Rmax1 &lt;- 0.5
+Alpha &lt;- 1.05
+K1 &lt;- 890
+Rmax2 &lt;- 0.2
+Beta &lt;- 0.5
+K2 &lt;- 890
+
+parms=c(Rmax1,Alpha,K1,Rmax2,Beta,K2)
+
+# toggle(100,100,parms)
+
+xlim = c(5,1500)
+ylim = c(5,1000)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
+phasearrows.draw(new)
+abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
+abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Follow the trajectories from any point in this phase space. What is the outcome here?</p>
+<p><strong>Q</strong>: Is there a system-wide equilibrium?</p>
+<p>What about this case(going back to the earlier example…):</p>
+<pre class="r"><code>Alpha &lt;- 0.3
+Beta &lt;- 0.2
+K1 &lt;- 1000
+K2 &lt;- 450
+Rmax1 &lt;- 0.05
+Rmax2 &lt;- 0.3
+Nyears &lt;- 1000
+ylim=c(0,K2*1.5)
+xlim=c(0,K1*1.5)
+plot(1,1,pch=&quot;&quot;,ylim=ylim,xlim=xlim,xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.4)
+points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.4)
+points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.4)
+points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.4)
+
+parms=c(Rmax1,Alpha,K1,Rmax2,Beta,K2)
+xlim = c(5,1500)
+ylim = c(5,1000)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=15,parms=parms)
+phasearrows.draw(new)
+abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)
+abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=2)   # species 1
+abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=2)   # species 2</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>Q</strong>: Where in this figure does the system “move” the fastest? (Magnetic field analogy: strongest repulsion)</p>
+<p>Finally consider this example:</p>
+<pre class="r"><code>Rmax1 &lt;- 0.2
+Alpha &lt;- 1.5
+K1 &lt;- 1000
+Rmax2 &lt;- 0.2
+Beta &lt;- 2
+K2 &lt;- 1500
+
+parms=c(Rmax1,Alpha,K1,Rmax2,Beta,K2)
+
+# toggle(100,100,parms)
+
+xlim = c(5,1500)
+ylim = c(5,1000)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
+phasearrows.draw(new)
+abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
+abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><strong>Q</strong>: is the point where the two isoclines cross an <em>equilibrium</em>?</p>
+<p><strong>Q</strong>: is the point where the two isoclines cross a <em>stable equilibrium</em>?</p>
+<p><strong>Q</strong>: in nature, what would happen in this case?</p>
+</div>
+</div>
+<div id="phase-space-in-insightmaker" class="section level3">
+<h3>Phase space in InsightMaker</h3>
+<p>You can visualize populations moving through the phase plane in InsightMaker! To do this, just click on “Add Display” in the graphics window (which comes up automatically when you hit “Simulate”) and create a “Scatter Plot”. For the “Data” field, select the two stocks (species abundances).</p>
+<p>If you are having trouble, you can load up the basic competition model <a href="https://insightmaker.com/insight/77730/Competition-1#">here</a></p>
+<p><strong>Step 1</strong>: Set the key parameters (alpha, beta, K1, K2) to arbitrary values</p>
+<p><strong>Step 2</strong>: Draw out the phase space with isoclines for both competing species.. Also draw out the expected direction of growth in each quadrant/region of the phase space.</p>
+<p><strong>Step 3</strong>: Pick an arbitrary starting value. What do you think the trajectory is going to look like?</p>
+<p><strong>Step 4</strong>: Run this model in InsightMaker. Does the system behave as you expected?</p>
+<p><strong>Step 5</strong>: Evaluate the following statement (from the Gotelli Book):</p>
+<blockquote>
+<p>“the more similar species are in their use of shared resources, the more precarious their coexistence”</p>
+</blockquote>
+<p><strong>Q</strong>: imagine that species 1 is an exotic species- a possible invader of an ecosystem dominated by species 2 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species?</p>
+<p><strong>Q</strong>: Does <span class="math inline">\(r_{max}\)</span> have any role to play in determining system stability for the lotka-volterra competition model?</p>
+<p><a href="LECTURE17.html">–go to next lecture–</a></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

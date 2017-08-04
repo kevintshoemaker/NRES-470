@@ -30,9 +30,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Final projects:
 
-Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due this Friday, March 31*!
+Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due next Monday, April 3*!
 
-And now back to your regular scheduled program!
+Any questions? 
 
 ## Metapopulations
 
@@ -48,31 +48,50 @@ $\Delta N = B + I - D - E$
 
 ## What is a metapopulation?
 
-The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about **occupancy**. However, a metapopulation is simply a *population of populations*. We can keep track of patch abundance in a metapopultion model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model. Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends. 
+In *metapopulation ecology*, we are generally considering a **landscape** with a certain number of habitable **patches**.  
+
+![](patch1.jpg)
+
+A metapopulation is simply a *population of populations*. Generally these populations are connected via **dispersal**. 
+
+![](MP2.gif)
+
+Metapopulation ecology generally focuses on the case where there is *some* dispersal, but not complete **panmyxia**. For our purposes, the island-mainland model is a type of metapopulation model (following Gotelli).  
+
+![](MP1.jpg)
+
+Although the term "metapopulation" is often used to refer to models where we don't care about abundance (we only care about **occupancy**), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model. 
+
+We played around with such a metapopulation model in lab!
+
+[Link to metapopulation model with explicit abundance](https://insightmaker.com/insight/74948/Agent-based-metapopulation-model)
+
+Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends. 
 
 **Q**: Is it still a metapopulation if there is no dispersal among patches? 
+
+**Q**: Is it still a metapopulation if there are no local extinctions?
+
 
 ## "Classical" metapopulation
 
 The simplest type of spatially structured population model is the "classical" metapopulation model. 
 
-The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski) throughout his career.  
+The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski).  
 
-In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
+In a classical metapopulation, patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.   
 
-![](MP1.jpg)
-
-In a classical metapopulation, we don't think about population dynamics any more -- instead we think about **metapopulation dynamics**.
+In a classical metapopulation, we don't think about population dynamics any more -- instead we think only about **metapopulation dynamics**. That is, how the number of occupied patches (or the fraction of patches occupied) changes over time.
 
 **Q**: how does a metapopulation grow?
 
 **Q**: how does a metapopulation shrink?
 
-**colonization** is the process of a patch transitioning from non-occupied to occupied!
+**colonization** is the process of a patch transitioning from unoccupied to occupied!
 
 **Q**: How can a patch become colonized? The answer is **immigration** of course. That part of the "BIDE" equation that we have been ignoring up until now! 
 
-**extirpation** (or extinction) is the process of a patch transitioning from occupied to non-occupied.
+**extirpation** (or extinction) is the process of a patch transitioning from occupied to unoccupied.
 
 **regional extinction** represents extinction of all populations in the metapopulation. 
 
@@ -96,7 +115,9 @@ Now that we have the basic terms defined, we can build a basic model of metapopu
 
 ### Dynamic stability
 
-In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equlibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the metapopulation is stable and not at risk of **regional extinction**!  
+In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equlibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the metapopulation is stable and not at risk of **regional extinction**!
+
+Really, there is no fundamental difference between the concept of metapopulation stability- in which extinctions and colonizations balance out - and the dynamic stability of a single population at carrying capacity - in which deaths and births balance out! 
 
 ### Assumptions of the classical metapopulation model:
 
@@ -106,16 +127,15 @@ In the classical metapopulation model, extinction is not necessarily uncommon. P
 - No time lags (metapopulation growth responds instantaneously to any changes in $f$, $p_e$ and $p_i$).
 - Very large number of patches (even when the fraction of occupied patches is infinitely small, the classical metapopulation still persists!)
 
-
 #### Variant #1: island-mainland model
 
-Colonization occurs via immigration from a constant external source -- a constant **propagule rain**
+Colonization occurs via immigration from a constant external source -- a constant **propagule rain**.
 
 This is the simplest metapopulation model. $p_i$ and $p_e$ are fixed, totally constant.
 
 #### Variant #2: internal colonization
 
-Now, colonization can only happen via immigration from within the metapopulation itself. So when few populations are colonized, colonization is low because of a lack of potential immigrants in the metapopultion. 
+Now, colonization can only happen via immigration from within the metapopulation itself. So when few populations are colonized, colonization is low because of a lack of potential immigrants in the metapopulation. 
 
 $p_i = if$
 
@@ -129,13 +149,9 @@ $p_e = e(1-f)$
 
 $e$ represents the strength of the rescue effect.
 
-
-#### Variant #4: both internal colonization AND rescue effect!
-
-
 ### Spreading the risk!
 
-Let's consider a system in which a species occupies only a single patch, and there is a probability of extinction $p_e$ of 0.15. 
+Let's consider a system in which a species occupies only a single patch, and there is a probability of extinction $p_e$ of 0.15 per year. 
 
 What is the probability of regional extinction after 10 years? The probability of persistence for 1 year is $1-p_e$, so the probability of persistence for 10 years is $(1-p_e)^{10}$ and the probability of regional extinction is $1-((1-p_e)^{10})$
 
@@ -157,19 +173,111 @@ $(1-p_e^5)^{10}$
 
 _This works out to be effectively zero!!!_
 
+**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. 
+
 
 ## Sources and sinks!
 
 One important concept related to metapopulations is that of **source-sink dynamics**
 
-In reality, patches vary in quality.  
+![](sourcesink1.gif)
 
+In the real world, patches vary in size and quality. That is, the assumption of homogeneity (inherent to the classical metapopulation framework) is unlikely to be met in most real metapopulations! 
+
+In fact, some patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., $r$ below zero, or $\lambda$ less than 1). Other patches may represent perfect conditions, in which population growth is highly positive, at least at low densities!
+
+A **source population** is defined as a patch that provides a *net donation of immigrants** to nearby patches with poor-quality habitat (sink populations). A source population should persist indefinitely as a solitary, isolated patch. 
+
+A **sink population** is defined as a patch that would go exinct if it were not for the constant input of immigrants from nearby **source populations**.
+
+**Q**: how is the concept of a sink population related to the *rescue effect*?
+
+A **pseudo-sink population** is defined as a patch that is *artifically augmented* by immigrants from nearby source populations. In isolation (in the absence of a nearby source population) a psuedo-sink would not go extinct (a true sink would go extinct!), but would settle down at a much lower equilibrium abundance. 
 
 ## In-class exercise: sources and sinks!
 
+In this exercise, we will explore source-sink dynamics!
 
-### An ecological trap!
+1. First click on this [link](https://insightmaker.com/insight/75973/Source-Sink-1) and clone a population-based source-sink model in InsightMaker. This model represents four different patches- one source population, and three sink populations. The sink populations are located at various distances from the source population. You can imagine the following spatial configuration:
 
+![](sourcesink1.png)
+
+
+2. Make sure the model parameters are at default values. The default parameters should be:
+
+Initial abundance in source: 100     
+Initial abundance in nearby sink: 10     
+Initial abundance in mid-range sink: 10     
+Initial abundance in distant sink: 10    
+Lambda (discrete growth rate) for sink populations: 0.8     
+Lambda for source population: 2.1      
+Dispersal rate: 10% per year       
+K for source population: 100    
+K for nearby sink: 50    
+K for mid-range sink: 25    
+K for distant sink: 15    
+
+3. Run the model, view the results and make sure you understand how the model works.
+
+4. Change the dispersal rate to zero and run the model. What happens? 
+
+NOTE: you will notice that the stochasticity in the model disappears when the metapopulation reaches an equilibrium in this scenario- this is because demographic stochasticity affects the inflows and outflows. When the inflows and outflows are zero, then demographic stochasticity disappears (okay this isn't terribly realistic, but it's just a demo!). 
+
+5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the lowest dispersal rate that generally ensures that the distant sink is consistently occupied? 
+
+6. Change the dispersal rate back to 10%. Now change the population growth rate in the source population to 1.1. What happens now? Does the source population still operate as an effective source? What if the growth rate in the source patch was set to 1? 
+
+#### A pseudo-sink!
+
+7. Change the source lambda back to 2.1. Now change the sink lambda to 1.1. Also, change the max dispersal rate to 25%. What is the approximate equilibrium abundance of the distant sink? How does this relate to its carrying capacity? Make a figure (using InsightMaker) that illustrates the abundance of the distant sink vs. carrying capacity. How does this illustrate the concept of a **pseudo-sink**. 
+
+#### An ecological trap!
+
+8. Change all params back to their default values. Now consider the following scenario:
+
+> The nearby sink patch is now extremely attractive to our species- since it contains abundant food resources and what seems like good shelter! However, in this habitat there is also a novel, introduced disease that the species is unable to detect. Therefore, dispersal rates to the sink habitat are very high, but mortality rates are also very high.    
+
+To force a disproportionate number of individuals into the nearby sink, open the equation editor for the flow from the source to the nearby sink. Change the first line to read:
+
+```
+disp <- 0.01*[nearby sink] - 0.5*[SOURCE]
+```
+
+This will force 50% of the source population to try to move to the sink habitat each year! Those that are in the sink habitat try to stay. 
+
+Also, change the lambda for the nearby sink to 0.25, (meaning 75% of the sink population dies each year due to disease). To do this, replace the [lambda bad] term in the births/deaths flow for the nearby sink to 0.25. Open the equation editor for this flow- after you change, it should look something like this:
+
+```
+growth <- [nearby sink]*Ln(0.25)
+
+If [lambda bad]>=1 Then
+  growth <- [nearby sink]*Ln(0.25)*(1-([nearby sink]/[K sink1]))
+End If
+
+If growth>=0 Then
+  RandPoisson(growth+0.0001)
+Else
+  -1*RandPoisson(-1*growth)
+End If
+```
+
+**Q**: in what way is the nearby sink now an *ecological trap*?
+
+**Q**: are all sink populations really *ecological traps*?
+
+**Q**: are metapopulations better off without sink populations?
+
+**Q**: in this scenario, a fixed percentage of each population disperses to each other population each year. Is this biologically realistic? Can you think of biologically realistic scenarios that would lead to different dispersal patterns? 
+
+**Q**: what data sources might be helpful in understanding dispersal rates in a metapopulation?
+
+#### Benefits of sink populations!
+
+Sink populations may not always be so bad for conservation! Consider the following scenario:
+
+> A large source population is able to maintain a set of 3 satellite populations, each of which would not persist in the absence of dispersal from the source population. Very occasionally, a catastrophic fire eradicates the source population. However, the source population is then colonized by individuals migrating from the satellite (sink) populations. In the absence of the sink populations, the entire metapopulation would go extinct!
+
+**Q** could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? How does this relate to the concept of *density-dependence?
 
 
 [--go to next lecture--](LECTURE14.html)

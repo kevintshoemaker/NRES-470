@@ -1,0 +1,376 @@
+---
+title: "Loggerhead PVA example"
+author: "NRES 421/621"
+date: "Mar 26, 2017"
+output: 
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+# PVA for loggerhead turtles!
+
+This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 17 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant **scenario testing**
+
+NOTE: the Excel exercise below is *optional*! 
+
+
+## Constructing a demographic (matrix) model data for loggerhead turtles
+
+If you would like more background information on loggerhead turtles, visit these websites:     
+
+[](http://ecos.fws.gov/species_profile/servlet/gov.doi.species_profile.servlets.SpeciesProfile?spcode=C00U)       
+[](http://www.nmfs.noaa.gov/prot_res/species/turtles/loggerhead.html)       
+[](http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml)       
+
+### Background
+
+![](loggerhead2.jpg)
+
+The loggerhead turtle, *C. caretta*, is a large marine turtle that nests along the Atlantic coast from New Jersey to Texas, but is also found along the Pacific coast and in Hawaii.  
+
+![](loggerhead4.jpg)
+
+The species has been federally listed as 'threatened' since 1978.  When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.
+
+![](loggerhead3.jpg)
+
+### Threats
+
+Biologists have identified two key types of threats facing loggerheads that stem from a long lifespan (30-55 years) linking terrestrial and marine environments. 
+
+1. **Threats to nesting beaches**
+
+![](loggerhead5.jpg)
+
+Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.  
+Because beaches are popular sites for human recreation and development, arriving female turtles and hatching juveniles face risks including 
+
+- *poaching* (eggs or adults)
+- *beach erosion* or beach fortification to prevent erosion
+- *artificial lighting*
+- *recreational vehicles*
+- ... and many others.
+
+2. **Incidental mortality due to marine fisheries**
+
+Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.  
+
+- Hatchlings and juveniles feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common.  
+
+![](trawl1.png)
+
+- Moreover, during cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries.  While dormant they can be killed by periodic *dredging* to maintain bays and waterways.  
+
+- Moreover, human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause *entanglement*, stranding, and drowning.
+
+- In addition to these primary threats, seagoing juveniles and adults face mortality due to *bycatch* in longline, hook-and-line, and trap fisheries targeting tuna and other species.  
+
+- Shallow swimming turtles may also collide with *boat propellers*.  
+
+- Toxins (*pesticides and heavy metals*) and oil spills may harm turtle physiology and decrease fecundity, but their impact has not been quantified.  
+
+- Finally, although rare in the US, *illegal harvest* of eggs  as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras).  Turtle eggs are occasionally seen in open-air markets in Panama.
+
+### Step 1: Building a size-structured Model
+
+The loggerhead is a long-lived species -- sexual maturity often doesn't occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct **stage classes** defined by body size (carapace (shell) length).
+
+Once turtle life-stages with similar vital rates have been identified, three pieces of data (*transition rates*) must be collected to construct the size-structured model:
+
+1.  fraction of turtles surviving each year but not advancing to the next larger size-class;
+2.  fraction of turtles surviving each year and advancing to the next larger size-class; and
+3.  average number of eggs produced by females of each size-class per year.
+
+### Step 2: parameterize the model
+
+Transition rates for turtles and other species are often estimated on the basis of *capture-mark-recapture* (CMR) data. 
+
+Here are some estimates, from [this paper](crowder1994.pdf):
+
+*Transition from stage 1-2*: 0.675    
+*Transition from stage 2-3*: 0.047   
+*Transition from stage 3-4*: 0.019      
+*Transition from stage 4-5*: 0.061     
+*Transition from stage 2-2*: 0.703     
+*Transition from stage 3-3*: 0.657      
+*Transition from stage 4-4*: 0.682     
+*Transition from stage 5-5*: 0.809     
+*Transition from stage 4-1*: 4.67     
+*Transition from stage 5-1*: 61.90     
+
+
+```{r echo=FALSE}
+
+projection_matrix <- matrix(
+  c(
+    0,     1.2,   3.1,
+    0.4,   0,     0,
+    0,     0.75,   0
+  )
+  ,nrow=3,ncol=3,byrow=T
+)
+
+#projection_matrix
+
+```
+
+
+```{r echo=FALSE}
+Abundance_year0 <- c(1000,0,0)
+#Abundance_year0
+```
+
+```{r echo=FALSE}
+Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
+#Year1
+```
+
+```{r echo=FALSE}
+Year2 <- projection_matrix %*% Year1  # matrix multiplication!
+#Year2
+```
+
+```{r echo=FALSE}
+
+nYears <- 20                                            # set the number of years to project
+TMat <- projection_matrix                               # define the projection matrix
+InitAbund <- Abundance_year0                            # define the initial abundance
+
+  ## NOTE: the code below can be re-used without modification:
+allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+allYears[,1] <- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
+  allYears[,t] <-  TMat %*% allYears[,t-1]
+}
+# plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+# cols <- rainbow(3)    # set up colors to use
+# for(s in 1:3){
+#   points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
+# }
+# axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+# legend("topleft",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))))  # put a legend on the plot
+```
+
+### Step 3: spatial structure
+
+We are not modeling spatial structure, so we can skip this one!
+
+### Step 4: simulate!
+
+We can project the loggerhead population into the future using *matrix multiplication* (for more background on matrix projections, look at the [lecture notes](PVA1_421.html) on "PVA basics")!
+
+We can do this using any number of tools- including R, Excel, or Insightmaker. 
+
+Since you probably are most familiar with Excel, let's do it in Excel first! 
+
+## OPTIONAL: population projection in Excel!
+
+You can load the base Excel model [here](Loggerhead2017.xlsx)
+
+#### Build the baseline loggerhead projection matrix [A]
+
+- Your initial spreadsheet should look something like this:
+
+![](loggerhead6.jpg.png)
+
+- Use the transition rates to complete the baseline projection matrix for the loggerhead turtles. For example, the yearly transition probability from large juveniles to large juveniles ($S_3$) is 0.657. Recall that the transition rates are:
+
+*Transition from stage 1-2*: 0.675    
+*Transition from stage 2-3*: 0.047   
+*Transition from stage 3-4*: 0.019      
+*Transition from stage 4-5*: 0.061     
+*Transition from stage 2-2*: 0.703     
+*Transition from stage 3-3*: 0.657      
+*Transition from stage 4-4*: 0.682     
+*Transition from stage 5-5*: 0.809     
+*Transition from stage 4-1*: 4.67     
+*Transition from stage 5-1*: 61.90     
+
+- Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero.
+
+- Make sure you understand what the matrix telling you.  
+
+**Q**: How many  large-juveniles out of 1000 will survive AND grow to be subadults the following year?
+
+**Q**: what is the total survival rate for, e.g., large juveniles?
+
+Your projection matrix should look like this!
+
+```{r}
+
+projection_matrix <- matrix(
+  c(
+    0,     0,      0,      4.665,      61.896,
+    0.675, 0.703,  0,      0,          0,
+    0,     0.047,  0.657,  0,          0,
+    0,     0,      0.019,  0.682,      0,
+    0,     0,      0,      0.061,      0.809
+  )
+  ,nrow=5,ncol=5,byrow=T
+)
+
+projection_matrix
+
+```
+
+```{r echo=FALSE}
+Abundance_year0 <- c(2000,500,300,300,20)
+Abundance_year0
+```
+
+
+#### Forecast the population into the future in Excel
+
+The projection matrix can be used to project future loggerhead population size assuming the transition probabilities (the $F_i$, $S_i$, and $G_i$) do not change over time. 
+
+**Q**: Is this model *deterministic* or *stochastic*? 
+
+Let's use the following initial densities in our model!
+
+- 2000	size-class 1 (Hatchlings)
+- 500	size-class 2 (Sm. juveniles)
+- 300	size-class 3 (Lg. juveniles)
+- 300	size-class 4 (Subadults)
+- 20	size-class 5 (Adults)
+
+So your EXCEL file should look something like the one below (but with the transition rates filled in!):
+
+![](loggerhead7.png)
+
+Using the 'size-distribution vector', we can project the population size of each size-class next year using the matrix formula: $\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}$ . 
+
+This formula calculates the size distribution next year (i.e., in year *t + 1*) based on the projection matrix $\mathbf{A}$ and the size distribution this year $\mathbf{N}_{t}$.  
+
+For example, to calculate the first row of [n]t +1, the number of hatchlings:
+
+*hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42*     
+
+We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values.  The first entry in row 1 is multiplied by the first entry of the column vector.  The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for.
+
+**Q**: Using actual numbers as for hatchlings above, write out the equation for calculating the number of small juveniles (sm juv) in year 1 based on $\mathbf{A}$ and $\mathbf{N}_{0}$:
+
+**Number of small juveniles in year 1 = **
+
+Now we can enter formulas in Excel to calculate the stage distribution vector for year 1.  
+
+For example, our formula for computing the number of hatchlings in year 1 might look something like this:
+
+```
+	= B$4*B12 + C$4*C12 + D$4*D12 + E$4*E12 + F$4*F12
+	
+```
+
+And the projected number of small juveniles (SJ) in year 1 might look like this:
+
+```
+	= B$5*B12 + C$5*C12 + D$5*D12 + E$5*E12 + F$5*F12
+```
+
+**Q**: What is the formula for the projected number of large juveniles in year 1?
+
+Finally, create an additional formula in (f) [cells H12-H13] which calculates the total population size in a year (the sum of all size-classes):
+
+In Excel, this will look something like this:
+	
+```	
+=SUM(B12:F12)
+```
+
+You should note two things about the formulas:
+
+1. The references to the rows of the [A] matrix should be absolute, i.e., have a '$' in front of the row number.  This is because when we drag these formulas down, we want them to continue to refer to the correct row of the [A] matrix.
+
+2. The references to the size distribution vector should *not* be absolute (should not contain the '$').  
+
+**Q**: Why?  (Hint:  what are we going to do with this model?)
+
+ADDITIONAL NOTE:  If your data are in different columns and rows than described above, you will not be able to copy the above formulas exactly, as they will not be referring to the proper cells in your file.  So make sure your formulas are correct for your particular EXCEL file.
+
+**Q**: Use your [A] matrix and skills in EXCEL to project the loggerhead population 100 years in the future.  This will require dragging formulas down. This is equivalent to iterating (i.e., repeating) the matrix multiplication process 100 times.
+
+
+Your results should look similar to this (which was done in R):
+
+```{r}
+nYears <- 100                                            # set the number of years to project
+TMat <- projection_matrix                               # define the projection matrix
+InitAbund <- Abundance_year0                            # define the initial abundance
+
+  ## NOTE: the code below can be re-used without modification:
+allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+allYears[,1] <- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
+  allYears[,t] <-  TMat %*% allYears[,t-1]
+}
+plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+cols <- rainbow(5)    # set up colors to use
+for(s in 1:5){
+  points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
+}
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+legend("topright",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))),bty="n")  # put a legend on the plot
+```
+
+## Projecting the loggerhead population in InsightMaker
+
+First, clone the baseline loggerhead PVA model [here](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model)
+
+Hit "Simulate". Make sure that the model results look the same as the above figure! 
+
+Look over the model, and make sure that you understand the inner workings!
+
+### Group exercise (in class!): loggerhead management
+
+Working in groups of 2-3, investigate three management scenarios for the loggerhead turtle population:
+
+1. Improve fecundity via nest-site protection!
+    - Improve by 50%
+    - Improve by 100%
+2. Improve hatchling survival via nest monitoring
+    - Improve _to_ 90%
+    - Improve _to_ 100%
+3. Improve large juvenile survival using Turtle Excluder Devices (TEDs)
+    - Improve by 15%
+    - Improve by 25%
+4. Improve adult/subadult survival by restricting longline fisheries.
+    - Improve by 5%
+    - Improve by 10%
+    
+    
+![turtle excluder device](ted1.jpg)    
+
+For each scenario, consider:
+
+- The short-term outlook (4-6 years out)
+- The longer-term outlook (25 years out)
+- The long-term outlook (100 years out)
+
+**Q**: What is your management recommendation for this population??
+
+**Q**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if it ultimately declines?
+
+**Q**: What is the *stable stage distribution*?
+
+**Q**: In what year is the *stable stage distribution* reached? What if you play around with the initial abundances to make it start closer to stable stage distribution?
+
+
+#### References
+
+Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy.  1996.  Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set.  Conservation Biology 10 (3), 863-873.  doi: 10.1046/j.1523-1739.1996.10030863.x
+
+Morris, W. F. and D. F. Doak.  2002.  Quantitative conservation biology:  Theory and practice of population viability analysis.  Sinauer, Sunderland, MA.
+
+Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson.  1999. A practical handbook for population viability analysis.  The Nature Conservancy, Wash., DC.
+
+
+
+
+
+
+

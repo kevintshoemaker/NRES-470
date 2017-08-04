@@ -330,6 +330,30 @@ div.tocify {
     <li>
       <a href="LECTURE13.html">Metapopulations</a>
     </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
+      <a href="LECTURE15.html">Parameter estimation</a>
+    </li>
+    <li>
+      <a href="LECTURE16.html">Species interactions: competition</a>
+    </li>
+    <li>
+      <a href="LECTURE17.html">Species interactions: prey-predator</a>
+    </li>
+    <li>
+      <a href="LECTURE18.html">Wrap-up</a>
+    </li>
+    <li>
+      <a href="PVA1_421.html">NRES421: PVA basics</a>
+    </li>
+    <li>
+      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
+    </li>
+    <li>
+      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -355,7 +379,16 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
-      <a href="LAB6.html">Lab 6: metapopulations!</a>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
+    </li>
+    <li>
+      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
     </li>
     <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
@@ -389,20 +422,20 @@ div.tocify {
 
 <div id="some-definitions" class="section level2">
 <h2>Some definitions</h2>
-<p>In this lab we will have an opportunity to build spatially structured population models for the first time. The simplest type of spatially structured population model is the classical metapopulation model. In this model, we have a <strong>landscape</strong> with a certain number of habitable <strong>patches</strong>. Patches are either <strong>occupied</strong> (coded as 1) or not (coded as 0). We are not keeping track of abundance (<span class="math inline">\(N\)</span>) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.</p>
+<p>In this lab we will have an opportunity to build spatially structured population models for the first time. The simplest type of spatially structured population model is the <strong>classical metapopulation model</strong>. In this model, we have a <strong>landscape</strong> with a certain number of habitable <strong>patches</strong>. Patches are either <strong>occupied</strong> (coded as 1) or not (coded as 0). We are not keeping track of abundance (<span class="math inline">\(N\)</span>) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.</p>
 <p>A metapopulation is best considered <strong>a population of populations</strong>. If a population is composed of individuals, a metapopulation is composed of populations!</p>
-<p><strong>colonization</strong> is the process of a population going from non-occupied to occupied!</p>
+<p><strong>colonization</strong> is the process of a population going from unoccupied to occupied!</p>
 <p>How can a metapopulation become colonized? The answer is <strong>immigration</strong> of course. That part of the “BIDE” equation that we have been ignoring up until now!</p>
-<p><strong>extirpation</strong> (or extinction) is the process of a population going from occupied to non-occupied.</p>
-<p><strong>regional extinction</strong> represents extinction of all populations in the metapopulation.</p>
+<p><strong>extirpation</strong> (or extinction) is the process of a patch going from occupied to unoccupied.</p>
+<p><strong>regional extinction</strong> represents extinction of all patches in the metapopulation.</p>
 <p>More formally, here are some terms we will consider:</p>
 <p><span class="math inline">\(I\)</span> is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or “immigration” rate)</p>
 <p><span class="math inline">\(E\)</span> is the total fraction of patches that go extinct per time period (extirpation rate)</p>
 <p><span class="math inline">\(f_t\)</span> is the fraction, or proportion, of patches that are occupied at time <span class="math inline">\(t\)</span>. This is also known as the <strong>occupancy rate</strong></p>
 <p>Therefore, the change in occupancy can be expressed as:</p>
 <p><span class="math inline">\(\Delta f = I - E \qquad \text{(Eq. 1)}\)</span></p>
-<p><span class="math inline">\(p_i\)</span> is the probability of colonization for any given (non-occupied) population.</p>
-<p><span class="math inline">\(p_e\)</span> is the probability of extinction for any given (occupied) population.</p>
+<p><span class="math inline">\(p_i\)</span> is the probability of colonization for any given (unoccupied) patch.</p>
+<p><span class="math inline">\(p_e\)</span> is the probability of extinction for any given (occupied) patch.</p>
 </div>
 <div id="a-basic-metapopulation-model" class="section level2">
 <h2>A basic metapopulation model:</h2>
@@ -414,11 +447,10 @@ div.tocify {
 <p><span class="math inline">\(\Delta f = p_i(1-f)-p_ef \qquad \text{(Eq. 4)}\)</span></p>
 <p>This model assumes the following:</p>
 <ul>
-<li>Homogeneous patches</li>
-<li>No spatial dependence of extinction and colonization (spatial context does not affect extinction and colonization).</li>
-<li>No time lags,</li>
-<li>Constant extinction and colonization rates across space (island-mainland model).</li>
-<li>Constant extinction and colonization rates across time.</li>
+<li>Homogeneous patches (all patches are created equal)</li>
+<li>No spatial dependence of extinction and colonization (spatial context does not affect extinction and colonization parameters)</li>
+<li>No time lags</li>
+<li>Constant extinction and colonization rates across time (extinction and colonization parameters do not change over time)</li>
 <li>Very large number of patches</li>
 </ul>
 <div id="variant-1-island-mainland-model" class="section level3">
@@ -445,7 +477,7 @@ div.tocify {
 </div>
 <div id="what-is-a-metapopulation" class="section level2">
 <h2>What is a metapopulation?</h2>
-<p>The term <em>metapopulation</em> is often used to refer to models where we don’t care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a <em>population of populations</em>. We can keep track of patch abundance in a metapopultion model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want!</p>
+<p>The term <em>metapopulation</em> is often used to refer to models where we don’t care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a <em>population of populations</em>. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want!</p>
 <p>Just as we can use metapopulation models to study the probability of <strong>regional extinction</strong>, we can also study <strong>regional abundance</strong> and regional abundance trends.</p>
 </div>
 <div id="exercise-1-play-with-metapopulation-terms-and-concepts" class="section level2">

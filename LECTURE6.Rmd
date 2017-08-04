@@ -122,7 +122,7 @@ Where $k$ is the maximum age.
 
 BUT, what is the time frame of $R_0$? What is the timeframe of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
 
-What is a **generation**? The most common definition is the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed from the life table as:
+What is a **generation**? The most common definition (for generation time) is the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed from the life table as:
 
 $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
 

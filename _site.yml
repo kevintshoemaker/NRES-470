@@ -37,6 +37,22 @@ navbar:
           href: LECTURE12.html
         - text: "Metapopulations"
           href: LECTURE13.html
+        - text: "PVA example: pdogs and ferrets"
+          href: LECTURE14.html
+        - text: "Parameter estimation"
+          href: LECTURE15.html
+        - text: "Species interactions: competition"
+          href: LECTURE16.html
+        - text: "Species interactions: prey-predator"
+          href: LECTURE17.html
+        - text: "Wrap-up"
+          href: LECTURE18.html
+        - text: "NRES421: PVA basics"
+          href: PVA1_421.html
+        - text: "NRES421: grizzly PVA"
+          href: PVA2_421.html
+        - text: "NRES421: loggerhead PVA"
+          href: PVA3_421.html
     - text: "Labs"
       menu:
         - text: "Lab 1: exponential growth"
@@ -49,8 +65,14 @@ navbar:
           href: LAB4.html
         - text: "Lab 5: stochasticity and uncertainty"
           href: LAB5.html
-        - text: "Lab 6: metapopulations!"
+        - text: "Lab 6: metapopulations"
           href: LAB6.html
+        - text: "Lab 7: capture-mark-recapture"
+          href: LAB7.html
+        - text: "Lab 8: mule deer PVA"
+          href: Lab8_muledeer.docx
+        - text: "Lab 8: mule deer MARK file"
+          href: PDH_KnownFate.zip
         - text: "Final Projects!"
           href: FINAL_PROJECTS.html
         - text: "Extra Credit!"

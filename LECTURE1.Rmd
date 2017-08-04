@@ -74,7 +74,7 @@ The important takeaway is that a [Stock] represents a quantity of something. The
 
 2. Create a new Insight (the button to do this should be obvious!) and clear the demo model. 
 
-3. Right click in the center of the screen and select **Create Stock** from the popup. Notice that the name is *New Stock* and is selected. Type in a name for what this is an accumulation of. Note the **Configuration Panel** on the right is now for a [Stock]. 
+3. Right click in the center of the screen and select **Create Stock** from the popup. Notice that the name is *New Stock* and is selected. Type in a name for what this is an accumulation of. Note the **Configuration Panel** on the right is now for a [Stock]. In the configuration panel, set the *Initial Value* to 50. That is, there will be 50 moose at the start of the simulation! 
 
 4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the **Reverse** button in the **Connections** menu. Please do that now. You can name the [Flow] as you wish. Also in the **Configuration Panel** set **Flow Rate** = 1.
 

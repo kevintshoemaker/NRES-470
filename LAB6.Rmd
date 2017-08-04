@@ -15,17 +15,17 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Some definitions
 
-In this lab we will have an opportunity to build spatially structured population models for the first time. The simplest type of spatially structured population model is the classical metapopulation model. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
+In this lab we will have an opportunity to build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
 
 A metapopulation is best considered **a population of populations**. If a population is composed of individuals, a metapopulation is composed of populations!
 
-**colonization** is the process of a population going from non-occupied to occupied!
+**colonization** is the process of a population going from unoccupied to occupied!
 
 How can a metapopulation become colonized? The answer is **immigration** of course. That part of the "BIDE" equation that we have been ignoring up until now! 
 
-**extirpation** (or extinction) is the process of a population going from occupied to non-occupied.
+**extirpation** (or extinction) is the process of a patch going from occupied to unoccupied.
 
-**regional extinction** represents extinction of all populations in the metapopulation. 
+**regional extinction** represents extinction of all patches in the metapopulation. 
 
 More formally, here are some terms we will consider:
 
@@ -39,11 +39,9 @@ Therefore, the change in occupancy can be expressed as:
 
 $\Delta f = I - E  \qquad \text{(Eq. 1)}$
 
+$p_i$ is the probability of colonization for any given (unoccupied) patch.
 
-$p_i$ is the probability of colonization for any given (non-occupied) population.
-
-$p_e$ is the probability of extinction for any given (occupied) population.
-
+$p_e$ is the probability of extinction for any given (occupied) patch.
 
 ## A basic metapopulation model:
 
@@ -62,11 +60,10 @@ $\Delta f = p_i(1-f)-p_ef  \qquad \text{(Eq. 4)}$
 
 This model assumes the following:   
 
-- Homogeneous patches
-- No spatial dependence of extinction and colonization (spatial context does not affect extinction and colonization).
-- No time lags,
-- Constant extinction and colonization rates across space (island-mainland model).
-- Constant extinction and colonization rates across time.
+- Homogeneous patches (all patches are created equal)
+- No spatial dependence of extinction and colonization (spatial context does not affect extinction and colonization parameters)
+- No time lags
+- Constant extinction and colonization rates across time (extinction and colonization parameters do not change over time)
 - Very large number of patches
 
 
@@ -99,7 +96,7 @@ This one is pretty self-explanatory!
 
 ## What is a metapopulation?
 
-The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *population of populations*. We can keep track of patch abundance in a metapopultion model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
+The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *population of populations*. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
 
 Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends. 
 

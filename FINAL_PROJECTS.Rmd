@@ -32,10 +32,10 @@ Students will work in groups of ~2-3 people to perform a population viability an
 ## Timeline
 
 - **PROPOSAL:** Due March 3!
-- **INITIAL PVA** Due March 31: description of how your PVA model works and where the parameter estimates come from.
-- **DRAFT FINAL PAPER:** Due April 14
-- **FINAL FINAL PAPER:** Due May 5
-- **FINAL PRESENTATIONS:** May 5 in lab
+- **INITIAL PVA** Due April 3: description of how your PVA model works and where the parameter estimates come from.
+- **DRAFT FINAL PAPER:** Due April 28
+- **FINAL FINAL PAPER:** Due May 17
+- **FINAL PRESENTATIONS:** May 5 in lab!
 
 Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
@@ -54,7 +54,7 @@ Your project proposal will consist of:
 
 ## Second project-related assignment: the initial PVA!
 
-(Due March 3...) 
+(Due April 3...) 
 
 Your inital parameterized PVA will consist of:  
 
@@ -63,6 +63,84 @@ Your inital parameterized PVA will consist of:
 2. A description of parameter estimates and rationale/evidence for these estimates. 
     a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source of this information). Decisions include: how many populations, how many stages, how density-dependence operates for your species, allee effects, survival and fecundity rates, environmental stochasticity, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.
     b. Literature cited (format not important, as long as it includes all key information).
+    
+## Third project-related assignment: the written project (rough draft)!
+
+Your final written paper is expected to be in the style of a **scientific manuscript**. That is, it should have an *introduction*, *methods*, *results* and *discussion* sections, and should cite relevant literature. 
+
+### Introduction
+This is where you introduce the topic and describe why it's important. You can recycle and flesh out the material from your proposal! 
+
+Remember to cite lots of literature here!
+
+### Methods
+This is where you describe your PVA in enough detail that it could be replicated by another wildlife researcher! You can recycle much of your "initial PVA" assignment here.
+
+Remember to justify all your decisions in terms of parameterization. 
+
+Also, you should describe how you addressed your main questions
+
+- What different scenarios did you run?
+- How did you use the simulation results to address your questions? How did you visualize the results? Did you perform any statistical analyses?
+
+### Results
+This is where you describe and present the relevant outputs from your model. Provide figures and tables to summarize your *relevant* results. 
+
+With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it *relevant* to your main quesitonS??
+
+### Discussion
+This is where you describe what your results really tell us with respect to your main questions.
+
+Also, you should:
+
+- Describe any new questions that came up in the process of building and running your PVA
+- Describe any potential flaws with your PVA and how you might improve this in the future
+- Describe any future research that could be helpful in addressing your main questions 
+
+A rubric for the final written presentation can be found [here](WrittenProject_rubric.docx). 
+
+
+## Fourth project-related assignment: the oral presentation!
+
+Your group presentation should be in the style of an oral presentation at a conference. 
+
+Presentations will take place during our final lab period (Friday, May 5 starting at 11). Since this is a small class, we will probably end early!
+
+You will have 15 minutes to give your presentation, with at least 5 additional minutes for presenations.  
+
+We will hand out a simple peer-review form so you can give feedback to your peers. 
+
+A rubric for the presentations can be found [here](presentationProject_rubric.docx)
+
+## Final paper peer review/feedback session
+
+In class on Thurs May 4 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
+
+The way it will work is as follows:
+
+1. By the end of the day on May 2, you will receive another group's draft manuscript via WebCampus (see list below). 
+
+2. Before class on May 4, please read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
+
+3. In class, you will first get together with the other students that were also assigned to review the same manuscript. You will have 25 minutes to compare notes and prepare a written "peer review" of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! *Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA*
+
+4. At the end of class, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person.
+
+### In-class peer review: manuscript drafts
+
+The following students will review the draft manuscript by the Pintail group (Cathryn and Bryce): *Ashley and Kristin*
+
+The following students will review the draft manuscript by the Cutthroat trout group (Thomas and Jason): *Bryce and Rachel*
+
+The following students will review the draft manuscript by the Axlotl group (Kenny and Ashley): *Cathryn and Thomas*
+
+The following students will review the draft manuscript by the desert tortoise group (Rachel and Kristin): *Jason and Kenny*
+
+Bring your laptops to class as usual so you can write, save and share your peer-review electronically with your classmates/instructors. 
+
+### In-class peer review: presentations
+
+During the final project presentations, please provide feedback to your classmates using [this form](presentation_handout_for_students.docx) (these will be handed out in class on the day of the final project presentaitons)
 
 ## Potentially useful links!
 
@@ -148,7 +226,7 @@ Archive of ecological and environmental data from ESA publications)
 [NCEAS Scientific Computing Database](http://www.nceas.ucsb.edu/scicomp/) (Clearinghouse of climatological, geospatial, and other data. Also has shareware software for analysis.)
 
 
-[Additional instructions coming soon!]
+
 
 
 

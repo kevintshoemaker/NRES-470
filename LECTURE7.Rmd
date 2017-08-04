@@ -77,7 +77,6 @@ For example, let's project a teasel population 1 year into the future:
 First of all, we need to begin with a teasel population...
 
 ```{r echo=F}
-
 Initial_teasel <- matrix(c(1000,1500,200,300,600,25),ncol=1)
 rownames(Initial_teasel) <- rownames(teasel_matrix)
 colnames(Initial_teasel) <- "Abundance"

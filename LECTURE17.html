@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="NRES 470/670" />
+
+
+<title>Species interactions: prey-predator!</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">NRES 470/670</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="INTRO.html">Introduction to NRES 470</a>
+    </li>
+    <li>
+      <a href="LECTURE1.html">A whole-systems approach to population ecology</a>
+    </li>
+    <li>
+      <a href="LECTURE2.html">Introduction to population ecology</a>
+    </li>
+    <li>
+      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+    </li>
+    <li>
+      <a href="LECTURE4.html">Population Regulation</a>
+    </li>
+    <li>
+      <a href="LECTURE5.html">Passenger Pigeon</a>
+    </li>
+    <li>
+      <a href="LECTURE6.html">Age-structured populations</a>
+    </li>
+    <li>
+      <a href="LECTURE7.html">Matrix population models</a>
+    </li>
+    <li>
+      <a href="LECTURE8.html">Stochastic population models</a>
+    </li>
+    <li>
+      <a href="LECTURE9.html">Small population paradigm</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
+    </li>
+    <li>
+      <a href="LECTURE11.html">Declining population paradigm</a>
+    </li>
+    <li>
+      <a href="LECTURE12.html">Population Viability Analysis</a>
+    </li>
+    <li>
+      <a href="LECTURE13.html">Metapopulations</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
+      <a href="LECTURE15.html">Parameter estimation</a>
+    </li>
+    <li>
+      <a href="LECTURE16.html">Species interactions: competition</a>
+    </li>
+    <li>
+      <a href="LECTURE17.html">Species interactions: prey-predator</a>
+    </li>
+    <li>
+      <a href="LECTURE18.html">Wrap-up</a>
+    </li>
+    <li>
+      <a href="PVA1_421.html">NRES421: PVA basics</a>
+    </li>
+    <li>
+      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
+    </li>
+    <li>
+      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="LAB1.html">Lab 1: exponential growth</a>
+    </li>
+    <li>
+      <a href="LAB2.html">Lab 2: logistic growth</a>
+    </li>
+    <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
+    </li>
+    <li>
+      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
+    </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+    <li>
+      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Species interactions: prey-predator!</h1>
+<h4 class="author"><em>NRES 470/670</em></h4>
+<h4 class="date"><em>Apr 24, 2017</em></h4>
+
+</div>
+
+
+<div id="predation" class="section level2">
+<h2>Predation</h2>
+<div class="figure">
+<img src="predation1.jpg" />
+
+</div>
+<div class="figure">
+<img src="predation2.jpg" />
+
+</div>
+<p>In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one species actually benefits from the interaction and the other species loses out!</p>
+<p>Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:</p>
+<p><span class="math inline">\(\Delta V = rV^* - f(V,P)*P\)</span></p>
+<p>AND</p>
+<p><span class="math inline">\(\Delta P = g(V,P)*P - qP^*\)</span></p>
+<p>Where</p>
+<p><span class="math inline">\(V\)</span> is the total prey abundance (V for victims!), and</p>
+<p><span class="math inline">\(P\)</span> is the total predator abundance, and</p>
+<p><span class="math inline">\(rV^*\)</span> represents the growth of the prey population <em>in the absence of predators</em> – usually, this is some form of the standard single-species population growth models we have considered throughout most of this course (possibly density-dependent),</p>
+<p><span class="math inline">\(qP^*\)</span> represents the growth of the predator population <em>in the absence of prey</em> – usually this is simply exponential decline!,</p>
+<p>AND</p>
+<p><span class="math inline">\(f(V,P)\)</span> is known as the <strong>functional response</strong> – that is, the rate of prey consumption per predator, usually a function of the prey and possibly predator densities.</p>
+<p>AND</p>
+<p><span class="math inline">\(g(V,P)\)</span> is known as the <strong>numerical response</strong> – that is, the per-capita rate of predator population growth, usually as a function of the prey and possibly predator densities.</p>
+<p>There are many different types of possible functional response curves and numerical response curves. Let’s start simple!</p>
+<div id="the-classical-prey-predator-model" class="section level3">
+<h3>The classical prey-predator model</h3>
+<p>Let’s look at predation mathematically, starting with the simplest possible model…</p>
+<div id="the-victims" class="section level4">
+<h4>The victims…</h4>
+<p>We will consider the prey, or “victims” first:</p>
+<p>In the absence of predators, let’s assume that the victim population grows according to the basic equation of population ecology:</p>
+<p><span class="math inline">\(\Delta V = rV\)</span></p>
+<p>We will assume that the intrinsic rate of growth, <span class="math inline">\(r\)</span>, is positive! In the absence of predators, the population grows exponentially.</p>
+<p>If predators are present, the population growth rate of the victims will go down…</p>
+<p>What expression could define the rate at which prey are consumed by predators?</p>
+<p>First of all, let’s assume that predators and prey walk randomly through their common environment, bumping into each other randomly. Every time the predator bumps into a prey item, the predator has some chance of consuming that prey item.</p>
+<p>This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way.</p>
+<p>Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a constant amount of prey in a given time period, depending on prey availability.</p>
+<p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator.</p>
+<p><strong>Q</strong>: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant rate of prey consumption in this example (<span class="math inline">\(\alpha\)</span>)?</p>
+<p><strong>Q</strong> what is the shape of the functional response in this case?</p>
+<p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
+<pre class="r"><code>LVfuncresp &lt;- function(V,alpha){
+  alpha*V
+}
+
+curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Note the intercept- does the functional response need to have an intercept of zero?</p>
+<p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the competition models!</p>
+<p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just randomly bumping into prey.</p>
+<p>The <em>total rate of predation</em> now is:</p>
+<p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
+<p>Does this make sense?</p>
+<p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of the available prey per time step? Which predator is more efficient?</p>
+<p><strong>Q</strong> what are the units of <em>alpha</em>?</p>
+<p><strong>Q</strong> Can <em>alpha</em> go above 1?</p>
+<p><strong>Q</strong> Can <em>alpha</em> go below 0?</p>
+<p>Now, the (instantaneous) prey growth rate can be defined by the following equation:</p>
+<p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
+<p>This model is one half of what is known as the <strong>Lotka-Volterra</strong> prey-predator model.</p>
+<p>The other half is the predator population growth model, of course!!</p>
+</div>
+<div id="the-predators" class="section level4">
+<h4>The predators…</h4>
+<p>In the absence of prey, let’s assume that the predator population grows just how we might imagine it grows- BADLY!</p>
+<p><span class="math inline">\(\Delta P = -qP\)</span></p>
+<p>In the absence of prey, the predator population declines exponentially.</p>
+<p>If prey are present, the population growth rate of the predators will go up…</p>
+<p>Recall that predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:</p>
+<p><span class="math inline">\(f(V) = \alpha V\)</span></p>
+<p>The numerical response is the population-level response of the <em>predators</em> given the amount of prey that they have consumed.</p>
+<p>We can think of this as a function of the total prey consumption per predator:</p>
+<p><span class="math inline">\(some.function(f(V))\)</span></p>
+<p>The simplest numerical response is that for every increase in prey consumed per capita, predator population growth increases by a fixed amount, <span class="math inline">\(\beta\)</span></p>
+<p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
+<p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
+<pre class="r"><code>LVnumresp &lt;- function(V,beta){
+  beta*V
+}
+
+curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Note the intercept- does the numerical response need to have an intercept of zero?</p>
+<p>The <em>predator growth rate due to prey consumption</em> now is:</p>
+<p><span class="math inline">\(g(V) \cdot P = \beta VP\)</span></p>
+<p>Does this make sense?</p>
+<p>The term <span class="math inline">\(\beta\)</span> is also known as the <strong>conversion efficiency</strong>. Does this make sense? Consider a case where every predator consumes 100 prey per time step, but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1… Which predator is more <em>efficient</em> at converting prey biomass into population growth?</p>
+<p><strong>Q</strong> what are the units of <em>beta</em>?</p>
+<p><strong>Q</strong> Can <em>beta</em> go above 1?</p>
+<p><strong>Q</strong> Can <em>beta</em> go below 0?</p>
+<p>Now, the (instantaneous) PREDATOR growth rate can be defined by the following equation:</p>
+<p><span class="math inline">\(\Delta P = \beta VP - qP\)</span></p>
+<p>This model is the other half of what is known as the <strong>Lotka-Volterra</strong> prey-predator model.</p>
+<p>Taken together, the model can be described as follows:</p>
+<p><span class="math inline">\(\Delta P = \beta VP - qP\)</span></p>
+<p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
+</div>
+</div>
+<div id="l-v-predation-model-in-insightmaker" class="section level3">
+<h3>L-V predation model in InsightMaker</h3>
+<p>Before we go deeper into predation modeling, let’s simulate prey and predator population growth under the L-V predation model. As always, you can work in groups!</p>
+<p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/78356/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
+<p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”&quot; and “numerical response”.</p>
+<p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator mortality”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
+<p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)”.</p>
+<p><strong>Step 5</strong>: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.</p>
+<p><strong>Step 6</strong>: Add a new display to represent <strong>state space</strong>: Choose the “scatter plot” type, and under “Data” select <em>Prey</em> first, then <em>Predator</em>. What does this system look like in phase space.</p>
+<p><strong>Q</strong> What happens if you change the initial abundances?</p>
+<p><strong>Q</strong> What happens if you change initial abundance of both species to 100? Is this an <strong>equilibrium</strong>? If so, is it <strong>stable</strong>?</p>
+<p><strong>Step 7</strong>: Try some other parameter values for alpha, beta, r, and q…</p>
+<p><strong>Q</strong> Does the prey or predator ever go extinct?</p>
+<p><strong>Q</strong> Can you find some settings that make very slow oscillations?</p>
+<p><strong>Q</strong> Can you find some settings that make very fast oscillations?</p>
+<p><strong>Q</strong> Can you find some settings that make very shallow oscillations?</p>
+</div>
+</div>
+<div id="prey-predator-models-on-the-phase-plane" class="section level2">
+<h2>Prey-Predator models on the phase plane!</h2>
+<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
+
+## Params
+
+Alpha &lt;- 0.001
+Beta &lt;- 0.001
+InitPrey &lt;- 100
+InitPred &lt;- 75
+r &lt;- 0.1
+q &lt;- 0.1
+Nyears &lt;- 100
+step &lt;- 0.1
+
+System &lt;- data.frame(prey = rep(InitPrey,(Nyears+1)*10),pred = InitPred)
+
+doYear &lt;- function(prevyear){
+  n1 &lt;- prevyear[1] + r*prevyear[1]*step - Alpha*prevyear[1]*prevyear[2]*step
+  n2 &lt;- prevyear[2] + Beta*prevyear[1]*prevyear[2]*step - q*prevyear[2]*step 
+  return(c(n1,n2))
+}
+
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System[1+i,] &lt;- doYear(System[i,])
+}</code></pre>
+<p>Now let’s visualize this basic L-V system in <em>phase space</em>:</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;prey&quot;,ylab=&quot;predators&quot;)
+points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,cex=0.85)
+points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Okay, so as prey get more abundant, predators start increasing, but as predators increase, prey abundance goes down. And repeat!</p>
+<p>Here is another example…</p>
+<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
+
+## Params
+
+Alpha &lt;- 0.005
+Beta &lt;- 0.005
+InitPrey &lt;- 100
+InitPred &lt;- 75
+r &lt;- 0.2
+q &lt;- 0.1
+Nyears &lt;- 100
+step &lt;- 0.1
+
+System &lt;- data.frame(prey = rep(InitPrey,(Nyears+1)*10),pred = InitPred)
+
+doYear &lt;- function(prevyear){
+  n1 &lt;- prevyear[1] + r*prevyear[1]*step - Alpha*prevyear[1]*prevyear[2]*step
+  n2 &lt;- prevyear[2] + Beta*prevyear[1]*prevyear[2]*step - q*prevyear[2]*step 
+  return(c(n1,n2))
+}
+
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System[1+i,] &lt;- doYear(System[i,])
+}
+
+
+plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;prey&quot;,ylab=&quot;predators&quot;)
+points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,cex=0.85)
+points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>With some jittering, we can visualize the amount of time the system spends in various parts of phase space…</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(jitter(System[,1],200),jitter(System[,2],200),col=&quot;brown&quot;,pch=20,cex=0.3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
+<p>You can see that this system spends much more time near the origin, where abundances are low for both prey and predator!</p>
+<p>Finally, let’s consider multiple starting points and see how the system behaves!</p>
+<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
+
+## Params
+
+
+InitN1 &lt;- 120
+InitN2 &lt;- 25
+System1 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System1[1+i,] &lt;- doYear(System1[i,])
+}
+
+InitN1 &lt;- 200
+InitN2 &lt;- 100
+System2 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System2[1+i,] &lt;- doYear(System2[i,])
+}
+
+
+InitN1 &lt;- 50
+InitN2 &lt;- 200
+System3 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System3[1+i,] &lt;- doYear(System3[i,])
+}</code></pre>
+<p>Now, phase space looks like this (with jittering to indicate concentration of points:</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,400),xlim=c(0,400),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
+points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
+points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.3)
+points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
+<p><strong>Q</strong>: Does this predator-prey system have a stable equilibrium?</p>
+<p><strong>Q</strong>: Does this predator-prey system have an equilibrium at all?</p>
+<p><strong>Q</strong>: How do these dynamics look like when visualized as time series?</p>
+<pre class="r"><code>plot(seq(1,100,length=nrow(System)), System[,1], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;orange&quot;,lwd=2,ylim=c(0,160),xlim=c(0,95))
+points(seq(1,100,length=nrow(System)), System[,2], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,lty=2)
+legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;green&quot;),legend=c(&quot;prey&quot;,&quot;predator&quot;),bty=&quot;n&quot;)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div id="more-with-the-l-v-predator-prey-phase-space" class="section level3">
+<h3>More with the L-V predator-prey phase space!</h3>
+<p>Just like before, let’s draw arrows throughout phase space, representing where the system would be expected to go from each point in phase space.</p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Are there any other possible outcomes of this simple L-V model?</p>
+<p>Well, let’s plot out the isoclines then!!</p>
+</div>
+<div id="isoclines" class="section level3">
+<h3>Isoclines!</h3>
+<p>Again, it can be helpful to plot out the isoclines in phase space – that is, the conditions under which the predator and prey populations do NOT grow!</p>
+<p>If we set the L-V prey growth equation to zero, we find that the victim population is stable under the following conditions in phase space:</p>
+<p><span class="math inline">\(\hat{P} =\frac{r}{\alpha}\)</span></p>
+<p>If we set the L-V predator equation to zero, we find that the victim population is stable under the following conditions in phase space:</p>
+<p><span class="math inline">\(\hat{V} =\frac{q}{\beta}\)</span></p>
+<p>That is, the prey population is stable only if there are just enough predators to bump into (and subsequently eat up) any excess individuals produced each year</p>
+<p>And the predator population is stable only if there are just enough prey to offset natural mortality.</p>
+<p>Let’s visualize this in phase space.</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
+phasearrows.draw(new)
+abline(h=r/Alpha,col=&quot;red&quot;,lwd=3)   # prey
+abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="assumptions-of-the-l-v-prey-predator-model" class="section level2">
+<h2>Assumptions of the L-V prey-predator model</h2>
+<ul>
+<li>Victim population is limited only by predation</li>
+<li>Predator feeds only on one species of prey</li>
+<li>Individual predators can consume infinity prey items per time step theoretically</li>
+<li>No interference among predators</li>
+<li>Victims have no refuge from predatpors</li>
+</ul>
+</div>
+<div id="more-realistic-prey-predator-models" class="section level2">
+<h2>More realistic prey-predator models</h2>
+<p>Let’s see what happens if we relax some of these assumptions!</p>
+<ul>
+<li>give the prey a carrying capacity!</li>
+<li>modify the functional response!</li>
+<li>add a refuge for prey!</li>
+<li>add a predator carrying capacity!</li>
+</ul>
+<p>We can play around with these scenarios in InsightMaker. But it can be instructive to visualize in phase space first. For example, let’s incorporate a victim carrying capacity.</p>
+<div id="victim-k-in-phase-space" class="section level3">
+<h3>victim K in phase space</h3>
+<pre><code>## Warning in arrows(c(x), c(y), c(x + dx * z1/((lens2) + 0.1)), c(y + dx * :
+## zero-length arrow is of indeterminate angle and so skipped</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Adding isoclines, it looks something like this:</p>
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
+phasearrows.draw(new)</code></pre>
+<pre><code>## Warning in arrows(c(x), c(y), c(x + dx * z1/((lens2) + 0.1)), c(y + dx * :
+## zero-length arrow is of indeterminate angle and so skipped</code></pre>
+<pre class="r"><code>abline((r/Alpha),-(c/Alpha),col=&quot;red&quot;,lwd=3)   # prey
+abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Follow the arrows. What do you think the system dynamics will look like?</p>
+<pre class="r"><code>## Params
+
+Alpha &lt;- 0.001
+Beta &lt;- 0.005
+r &lt;- 0.2
+q &lt;- 0.1
+c &lt;- 0.008
+InitPrey &lt;- 100
+InitPred &lt;- 75
+Nyears &lt;- 100
+step &lt;- 0.1
+
+System &lt;- data.frame(prey = rep(InitPrey,(Nyears+1)*10),pred = InitPred)
+
+doYear &lt;- function(prevyear){
+  n1 &lt;- prevyear[1] + r*prevyear[1]*step - Alpha*prevyear[1]*prevyear[2]*step - c*prevyear[1]^2*step
+  n2 &lt;- prevyear[2] + Beta*prevyear[1]*prevyear[2]*step - q*prevyear[2]*step 
+  return(c(n1,n2))
+}
+
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System[1+i,] &lt;- doYear(System[i,])
+}
+
+##### LOTKA VOLTERRA PREDATION EXAMPLE
+
+## Params
+
+
+InitN1 &lt;- 100
+InitN2 &lt;- 200
+System1 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System1[1+i,] &lt;- doYear(System1[i,])
+}
+
+InitN1 &lt;- 100
+InitN2 &lt;- 100
+System2 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System2[1+i,] &lt;- doYear(System2[i,])
+}
+
+
+InitN1 &lt;- 50
+InitN2 &lt;- 20
+System3 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
+## Do simulation
+for(i in 1:(Nyears*10+1)){
+  System3[1+i,] &lt;- doYear(System3[i,])
+}
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
+phasearrows.draw(new)</code></pre>
+<pre><code>## Warning in arrows(c(x), c(y), c(x + dx * z1/((lens2) + 0.1)), c(y + dx * :
+## zero-length arrow is of indeterminate angle and so skipped</code></pre>
+<pre class="r"><code>abline((r/Alpha),-(c/Alpha),col=&quot;red&quot;,lwd=3)   # prey
+abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred
+points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
+points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
+points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.3)
+points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Now, does the system have a stable equilibrium???</p>
+<p>Let’s visualize as a time series!</p>
+<pre class="r"><code>plot(seq(1,100,length=nrow(System)), System[,1], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;orange&quot;,lwd=2,ylim=c(0,160),xlim=c(0,95))
+points(seq(1,100,length=nrow(System)), System[,2], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,lty=2)
+legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;green&quot;),legend=c(&quot;prey&quot;,&quot;predator&quot;),bty=&quot;n&quot;)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="alternative-functional-responses" class="section level3">
+<h3>Alternative functional responses</h3>
+<p>The L-V prey-predator model assumes that prey consumption per predator increases linearly with an increase in prey abundance. Following C.S. “Buzz” Holling, this is known as a <strong>“Type I” functional response</strong>.</p>
+<p>The Type I functional response makes several unrealistic assumptions – for example, that predators never get full and stop eating!</p>
+<p>As we have seen before, the type I functional response looks something like this!</p>
+<p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
+<pre class="r"><code>TypeIfuncresp &lt;- function(V,alpha){
+  alpha*V
+}
+
+curve(TypeIfuncresp(x,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div id="type-ii-functional-response" class="section level4">
+<h4>Type II functional response</h4>
+<p>The <strong>Type II functional response</strong> takes prey saturation into account- the predators will consume more prey with increasing prey densities, but only up to a point!</p>
+<p>The type II functional response is described mathematically as:</p>
+<p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha hV}\)</span>,</p>
+<p>where <em>f(V,P)</em> is the functional response (prey consumed per predator).</p>
+<p>Similar to the Type I functional response, <span class="math inline">\(\alpha\)</span> is the “attack rate” (rate at which a predator-prey encounters increase as prey densities increase)</p>
+<p>The new term, <em>h</em>, describes the handling time (average time a predator spends processing a single prey item).</p>
+<p>The term <em>h</em> is probably best understood as the <em>inverse of the maximum prey consumption rate</em>!</p>
+<p>Let’s visualize it!</p>
+<pre class="r"><code>TypeIIfuncresp &lt;- function(V,alpha,h){
+  (alpha*V)/(1+alpha*h*V)
+}
+
+curve(TypeIIfuncresp(x,0.1,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="type-iii-functional-response" class="section level4">
+<h4>Type III functional response</h4>
+<p>The <strong>Type III functional response</strong> takes predator learning into account- as prey become more abundant (relative to other potential prey) the predators will develop a <em>search image</em> and the capture efficiency will increase with increasing prey abundance up to a certain point.</p>
+<p>Conversely, as prey densities get really low, predators will stop even bothering to look for the prey, so capture efficiency will be depressed.</p>
+<p>The type III functional response can be described mathematically as:</p>
+<p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha hV}\)</span>,</p>
+<p>where <em>f(V,P)</em> is the functional response (prey consumed per predator).</p>
+<p>Similar to the Type I functional response, <span class="math inline">\(\alpha\)</span> is the “attack rate” (rate at which a predator-prey encounters increase as prey densities increase)</p>
+<p>The new term, <em>h</em>, describes the handling time (average time a predator spends processing a single prey item).</p>
+<p>The term <em>h</em> is probably best understood as the <em>inverse of the maximum prey consumption rate</em>!</p>
+<p>Let’s visualize it!</p>
+<pre class="r"><code>TypeIIIfuncresp &lt;- function(V,alpha,h,k){
+  (alpha*V^k)/(1+alpha*h*V^k)
+}
+
+curve(TypeIIIfuncresp(x,0.0005,0.1,1.6),0,1000,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="final-insightmaker-activity-on-your-own" class="section level2">
+<h2>Final InsightMaker activity (on your own)!!</h2>
+<p><strong>Step 1</strong> Add prey density-dependence to your basic predator-prey model, using the equations in the Gotelli book. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with prey density dependence? Is this model more stable than the base L-V model?</p>
+<p><strong>Step 2</strong> Change the functional response to a type-II functional response. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with this model? Is this model more stable than the base L-V model?</p>
+<p><strong>Step 3</strong> Change the model to account for prey refuges. That is, there is a segment of the prey population that is not accessible to predators. How does this change the system dynamics?</p>
+<p><strong>Step 4</strong> Change the model to include a type II functional response AND prey density-dependence. How does this change the system dynamics? Is this system stable? Under what conditions?</p>
+<p><strong>Step 5</strong> Evaluate the following statement (from the Gotelli Book):</p>
+<blockquote>
+<p>“the more independent the predator and the prey are of one another, the more stable the interaction”</p>
+</blockquote>
+<p><a href="LECTURE18.html">–go to next lecture–</a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

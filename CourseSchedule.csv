@@ -18,50 +18,32 @@ Week 6,2/28/2017,LECTURE 1: Stochasticity and Uncertainty / Small population par
 ,3/2/2017,LECTURE 2: Small population paradigm,[Beissinger and Westphal 1998](beissinger1.pdf)
 ,3/3/2017,LAB: Stochasticity and uncertainty,
 Week 7,3/7/2017,LECTURE 1: Individual based models ,BCTD Chapter 10
-,3/9/2017,LECTURE 2: Declining population paradigm / Population Viability Analysis (PVA),[Caughley 1988](caughley1.pdf) 
+,3/9/2017,LECTURE 2: Declining population paradigm ,[Caughley 1988](caughley1.pdf) 
 ,3/10/2017,LAB: Work on group PVA projects,
-Week 8,3/14/2017,LECTURE 1: PVA / Metapopulations,Gotelli Chapter 4
-,3/16/2017,LECTURE 2: Metapopulations,
+Week 8,3/14/2017,LECTURE 1: Declining population paradigm,
+,3/16/2017,LECTURE 2: Population Viability Analysis (PVA),
 ,3/17/2017,LAB: Metapopulation modeling in InsightMaker,
 Week 9,3/21/2017,SPRING BREAK,
 ,3/23/2017,"""",
 ,3/24/2017,"""",
-Week 10,3/28/2017,LECTURE 1: Dispersal,Frair et al 2008
-,3/30/2017,LECTURE 2: Estimating and modeling dispersal processes,
-,3/31/2017,LAB: Final projects (PVA models due),
-Week 11,4/4/2017,LECTURE 1: Estimating and modeling dispersal processes (continued),"Stearns 1992 Chapters 1,2"
-,4/6/2017,LECTURE 2: MIDTERM #2,BCTD Chapter 10
-,4/7/2017,LAB: Group projects,
-Week 12,4/11/2017,"LECTURE 1: Species interactions: prey-predator models, competition models,","Gotelli Chapters 5,6"
-,4/13/2017,"LECTURE 2: Commensalism, mutualism, Parasite-host and disease-host interactions",Nichols et al. (2010)
-,4/14/2017,LAB: Modeling disease spread impacts on spatially explicit populations:agent-based models,
-Week 13,4/18/2017,LECTURE 1: Modeling disease spread in wildlife populations,Shoemaker et al. 2014
-,4/20/2017,"LECTURE 2: Invasive species, reintroductions, assisted colonization",Hoegh-Goldberg et al 2008
-,4/21/2017,LAB: Group projects,
-Week 14,4/25/2017,LECTURE 1: Case study: modeling tortoise repatriation in Galapagos,Pearson and Dawson (2003)
-,4/27/2017,LECTURE 2: Case study: assessing the species-level impact of climate change,Keith et al (2008)
-,4/28/2017,LAB: Group projects,
-Week 15,5/2/2017,LECTURE 1: Student presentations,
-,5/4/2017,LECTURE 2: Student presentations,
-,5/5/2017,LAB: Student presentations / review for final,
-Week 16,5/16/2017,FINAL EXAM (2:30 PM),
-,,,
-,,,
-,,,[Hedrick and Kalinowski 2000](hedrick2000.pdf)
-,,OTHER TOPICS,OTHER READINGS
-,,Parameter estimation; capture-recapture data,Amstrup et al. Chap. 1
-,,Estimate survival with open-population capture-recapture (program MARK),"Cooch and White Chaps 1,2"
-,,Estimate survival with open-population capture-recapture (program MARK) (continued),"Cooch and White Chaps 3,4"
-,,Capture-recapture analysis  (continued),
-,,"Assessing model performance and handling model uncertainty (e.g., sensitivity analysis, cross-validation)",Akçakaya et al 2005
-,,Species Distribution Modeling in R. Defining habitat.,
-,,sensitivity and elasticity lab?,
-,,"PVA1: Density-regulated, age-structured, stochastic population model",
-,,,
-,,LECTURE 1: Detecting density dependence in natural populations ,[Brook et al. 2006](brook1.pdf)
-,,"Data needs for population ecology: Presence-absence data, presence-only data.",Mackenzie 2005
-,,,Elith and Leathwick. 2009
-,,The evolutionary context: life-history theory. ,Larson et al. 2004
-,,Species Distribution Modeling in R. Defining habitat. Cross-validation,
-,,,Trakhtenbrot et al. 2005
-,,,Knapp et al. 2003
+Week 10,3/28/2017,LECTURE 1: Metapopulations,Gotelli Chapter 4
+,3/30/2017,LECTURE 2: Source-sink dynamics,Optional: [Griffin et al](griffin1.pdf)
+,3/31/2017,LAB: Final projects (PVA models due next monday),
+Week 11,4/4/2017,LECTURE 1: Parameter estimation!,[Amstrup et al Chapter 1](amstrup1.pdf)
+,4/6/2017,LECTURE 2: MIDTERM #2,
+,4/7/2017,LAB: Parameter estimation: mark-recapture data,
+Week 12,4/11/2017,LECTURE 1: Galapagos case study (guest lecture: Elizabeth Hunter),Optional: [Gibbs et all 2014](gibbs1.pdf)
+,4/13/2017,LECTURE 2: Galapagos case study (guest lecture: Elizabeth Hunter),
+,4/14/2017,LAB: Work on group PVA projects,
+Week 13,4/18/2017,LECTURE 1: Species interactions: competition!,Gotelli Chapter 5
+,4/20/2017,LECTURE 2: Species interactions: competition!,
+,4/21/2017,LAB: Work on group PVA projects,
+Week 14,4/25/2017,LECTURE 1: Species interactions: competition!,
+,4/27/2017,LECTURE 2: Case study: desert mule deer management,
+,4/28/2017,LAB: Case study: mule deer management (led by Jerrod and Nathan) (FINAL PAPER DRAFT DUE),
+Week 15,5/2/2017,LECTURE 1: Predator-prey,Gotelli Chapter 6
+,5/4/2017,LECTURE 2: Predator-prey,
+,5/5/2017,LAB: STUDENT PRESENTATIONS,
+Week 16,5/9/2017,LECTURE 1: final class review,
+Week 17,5/16/2017,FINAL EXAM (12:30 to 2:30 PM),
+,5/17/2017,FINAL PAPERS DUE (last day of finals),

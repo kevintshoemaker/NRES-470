@@ -329,6 +329,30 @@ div.tocify {
     <li>
       <a href="LECTURE13.html">Metapopulations</a>
     </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
+      <a href="LECTURE15.html">Parameter estimation</a>
+    </li>
+    <li>
+      <a href="LECTURE16.html">Species interactions: competition</a>
+    </li>
+    <li>
+      <a href="LECTURE17.html">Species interactions: prey-predator</a>
+    </li>
+    <li>
+      <a href="LECTURE18.html">Wrap-up</a>
+    </li>
+    <li>
+      <a href="PVA1_421.html">NRES421: PVA basics</a>
+    </li>
+    <li>
+      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
+    </li>
+    <li>
+      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -354,7 +378,16 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
-      <a href="LAB6.html">Lab 6: metapopulations!</a>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
+    </li>
+    <li>
+      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
     </li>
     <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
@@ -404,10 +437,10 @@ div.tocify {
 <h2>Timeline</h2>
 <ul>
 <li><strong>PROPOSAL:</strong> Due March 3!</li>
-<li><strong>PVA FULLY PARAMETERIZED</strong> Due March 31: description of how your PVA model works and where the parameter estimates come from.</li>
-<li><strong>DRAFT FINAL PAPER:</strong> Due April 14</li>
-<li><strong>FINAL FINAL PAPER:</strong> Due May 5</li>
-<li><strong>FINAL PRESENTATIONS:</strong> May 5 in lab</li>
+<li><strong>INITIAL PVA</strong> Due April 3: description of how your PVA model works and where the parameter estimates come from.</li>
+<li><strong>DRAFT FINAL PAPER:</strong> Due April 28</li>
+<li><strong>FINAL FINAL PAPER:</strong> Due May 17</li>
+<li><strong>FINAL PRESENTATIONS:</strong> May 5 in lab!</li>
 </ul>
 <p>Remember that the semester will get crazy at the end (including for your instructors). Plan ahead!</p>
 </div>
@@ -425,6 +458,85 @@ div.tocify {
 <li><strong>Data sources</strong>: Describe what data/information sources you plan to use to guide PVA construction and parameterization. Convince your instructors that your project is <strong>possible</strong>!</li>
 </ol>
 <p><strong>NOTE about data sources:</strong> The most important parameters you need for a PVA model are <em>survival rates</em> (usually age-structured), <em>fecundity rates</em> (often age-structured as well), <em>stochasticity</em> (variability in those vital rates), <em>abundance</em>, <em>dispersal rates</em>, and <em>carrying capacity</em>. We have gone over all these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven’t yet gone over in class). If all else fails, you can use published records for similar species!</p>
+</div>
+<div id="second-project-related-assignment-the-initial-pva" class="section level2">
+<h2>Second project-related assignment: the initial PVA!</h2>
+<p>(Due April 3…)</p>
+<p>Your inital parameterized PVA will consist of:</p>
+<ol style="list-style-type: decimal">
+<li><p>A ready-to-run PVA model, in whatever software framework you are using (Vortex, InsightMaker, R). This model does not need to be the “final” model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).</p></li>
+<li>A description of parameter estimates and rationale/evidence for these estimates.
+<ol style="list-style-type: lower-alpha">
+<li>For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source of this information). Decisions include: how many populations, how many stages, how density-dependence operates for your species, allee effects, survival and fecundity rates, environmental stochasticity, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.</li>
+<li>Literature cited (format not important, as long as it includes all key information).</li>
+</ol></li>
+</ol>
+</div>
+<div id="third-project-related-assignment-the-written-project-rough-draft" class="section level2">
+<h2>Third project-related assignment: the written project (rough draft)!</h2>
+<p>Your final written paper is expected to be in the style of a <strong>scientific manuscript</strong>. That is, it should have an <em>introduction</em>, <em>methods</em>, <em>results</em> and <em>discussion</em> sections, and should cite relevant literature.</p>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>This is where you introduce the topic and describe why it’s important. You can recycle and flesh out the material from your proposal!</p>
+<p>Remember to cite lots of literature here!</p>
+</div>
+<div id="methods" class="section level3">
+<h3>Methods</h3>
+<p>This is where you describe your PVA in enough detail that it could be replicated by another wildlife researcher! You can recycle much of your “initial PVA” assignment here.</p>
+<p>Remember to justify all your decisions in terms of parameterization.</p>
+<p>Also, you should describe how you addressed your main questions</p>
+<ul>
+<li>What different scenarios did you run?</li>
+<li>How did you use the simulation results to address your questions? How did you visualize the results? Did you perform any statistical analyses?</li>
+</ul>
+</div>
+<div id="results" class="section level3">
+<h3>Results</h3>
+<p>This is where you describe and present the relevant outputs from your model. Provide figures and tables to summarize your <em>relevant</em> results.</p>
+<p>With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it <em>relevant</em> to your main quesitonS??</p>
+</div>
+<div id="discussion" class="section level3">
+<h3>Discussion</h3>
+<p>This is where you describe what your results really tell us with respect to your main questions.</p>
+<p>Also, you should:</p>
+<ul>
+<li>Describe any new questions that came up in the process of building and running your PVA</li>
+<li>Describe any potential flaws with your PVA and how you might improve this in the future</li>
+<li>Describe any future research that could be helpful in addressing your main questions</li>
+</ul>
+<p>A rubric for the final written presentation can be found <a href="WrittenProject_rubric.docx">here</a>.</p>
+</div>
+</div>
+<div id="fourth-project-related-assignment-the-oral-presentation" class="section level2">
+<h2>Fourth project-related assignment: the oral presentation!</h2>
+<p>Your group presentation should be in the style of an oral presentation at a conference.</p>
+<p>Presentations will take place during our final lab period (Friday, May 5 starting at 11). Since this is a small class, we will probably end early!</p>
+<p>You will have 15 minutes to give your presentation, with at least 5 additional minutes for presenations.</p>
+<p>We will hand out a simple peer-review form so you can give feedback to your peers.</p>
+<p>A rubric for the presentations can be found <a href="presentationProject_rubric.docx">here</a></p>
+</div>
+<div id="final-paper-peer-reviewfeedback-session" class="section level2">
+<h2>Final paper peer review/feedback session</h2>
+<p>In class on Thurs May 4 we will have a “peer review” session where we will have a chance to give each other feedback on draft manuscripts.</p>
+<p>The way it will work is as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p>By the end of the day on May 2, you will receive another group’s draft manuscript via WebCampus (see list below).</p></li>
+<li><p>Before class on May 4, please read the manuscript you have been assigned, and make comments, paying particular attention to the <a href="WrittenProject_rubric.docx">grading rubric</a>.</p></li>
+<li><p>In class, you will first get together with the other students that were also assigned to review the same manuscript. You will have 25 minutes to compare notes and prepare a written “peer review” of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! <em>Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA</em></p></li>
+<li><p>At the end of class, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person.</p></li>
+</ol>
+<div id="in-class-peer-review-manuscript-drafts" class="section level3">
+<h3>In-class peer review: manuscript drafts</h3>
+<p>The following students will review the draft manuscript by the Pintail group (Cathryn and Bryce): <em>Ashley and Kristin</em></p>
+<p>The following students will review the draft manuscript by the Cutthroat trout group (Thomas and Jason): <em>Bryce and Rachel</em></p>
+<p>The following students will review the draft manuscript by the Axlotl group (Kenny and Ashley): <em>Cathryn and Thomas</em></p>
+<p>The following students will review the draft manuscript by the desert tortoise group (Rachel and Kristin): <em>Jason and Kenny</em></p>
+<p>Bring your laptops to class as usual so you can write, save and share your peer-review electronically with your classmates/instructors.</p>
+</div>
+<div id="in-class-peer-review-presentations" class="section level3">
+<h3>In-class peer review: presentations</h3>
+<p>During the final project presentations, please provide feedback to your classmates using <a href="presentation_handout_for_students.docx">this form</a> (these will be handed out in class on the day of the final project presentaitons)</p>
+</div>
 </div>
 <div id="potentially-useful-links" class="section level2">
 <h2>Potentially useful links!</h2>
@@ -476,7 +588,6 @@ div.tocify {
 <p><a href="http://esapubs.org/archive/archive_D.htm">Ecological Society of America (ESA) Data Registry</a> Archive of ecological and environmental data from ESA publications)</p>
 <p><a href="http://knb.ecoinformatics.org/knb/style/skins/nceas/index.jsp">National Center for Ecological Assessment &amp; Synthesis (NCEAS) Data Repository</a> (Data archive of contributed data sets of all types of ecological data.)</p>
 <p><a href="http://www.nceas.ucsb.edu/scicomp/">NCEAS Scientific Computing Database</a> (Clearinghouse of climatological, geospatial, and other data. Also has shareware software for analysis.)</p>
-<p>[Additional instructions coming soon!]</p>
 </div>
 </div>
 
