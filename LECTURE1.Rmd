@@ -1,7 +1,7 @@
 ---
 title: "A whole-systems approach to population ecology"
 author: "NRES 470/670"
-date: "Jan 19, 2017"
+date: "Jan 19, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -31,7 +31,7 @@ Take a classic predator-prey system...
 
 [Insightmaker Lynx-Hare example](https://insightmaker.com/insight/68437/)  
 
-This is a classic example in population ecology, which we will revisit in great detail in this course - but for now it serves as an example of an interacting system that exhibits an emergent property -- regular oscillations!  
+This is a classic example in population ecology, which we will revisit in great detail in this course - but for now it serves as an example of an interacting system that exhibits an emergent property -- regular oscillations!
 
 And here's a more abstract example that illustrates some really cool and complex emergent properties.
 
@@ -52,7 +52,7 @@ Modern computers have reduced or eliminated many of the barriers to understandin
 By the end of this course, students will have the ability to program their own *whole-systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, various **R** packages)
 
 **The course motto**: *Get messy*! This might sound funny for a computer-based class. But just as ecological systems are complex and messy, models sometimes get messy. 
-Don't be afraid to model messy systems. And above all, don't be afraid to be wrong- that attitude is the enemy of successful computer programming, and therefore the enemy of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! 
+Don't be afraid to model messy systems. And above all, **don't be afraid to be wrong** (especially at first)- that attitude is the enemy of successful computer programming, and of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive!
 
 Of course, getting messy means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.
 

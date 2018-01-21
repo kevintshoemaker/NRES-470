@@ -14,48 +14,48 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 
 **Instructor:** Kevin Shoemaker   
-**Teaching Assistant** Margarete Walden   
-**Office**: FA 220E			 		 
+**Teaching Assistant** Ben Sedinger   
+**Instructor's Office**: FA 220E			 		 
 **Phone**: (775) 682-7449			  		
 **Email**: kshoemaker_at_cabnr.unr.edu	
-**Office hours**:    
-- Shoemaker: Tuesdays from 1 to 3pm (FA 220E)    
-- Walden: Thursdays from 11am to 1pm (FA 235)  
+ 
 **Website**: [naes.unr.edu/shoemaker/teaching/NRES-470](http://naes.unr.edu/shoemaker/teaching/NRES-470/index.html)  
 
 ### Course Meeting Times
-**Lecture & Discussion**: T, Th at 9:30am (50 mins) (NOTE: please bring your laptop to class!)   
-**Lab**: F at 11am (3 hours)      
-**Office hours** Tues from 1 to 3pm      
+**Lecture & Discussion**: M, W at 10am (50 mins) (NOTE: please bring your laptop to class!)   
+**Lab**: F at 10am (3 hours) 
+**Office hours**:    
+- Shoemaker: Wed from 11 to noon (FA 220E)    
+- Sedinger: TBD 
   
-- Lectures will be held in **OB 203**    
-- Labs will be held in the NRES computer lab (**FA 234**)    
+- Lectures and Labs will be held in **FA 301**    
+- Labs may occasionally be held in the NRES computer lab (**FA 234**)    
 
 ### Texts       
 - [Gotelli, N. J. (1995). A primer of ecology](https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182)      
 - [Beyond Connecting the Dots](http://beyondconnectingthedots.com/) (free download)   
-•	Additional readings from the primary literature will be assigned for discussion.    
+•	Additional readings from the primary literature will be assigned for discussion periodically.    
 
 ### Software
-- [InsightMaker- free web-based systems modeling tool](https://insightmaker.com/)     
+- [InsightMaker- free web-based systems modeling tool](https://insightmaker.com/)(no installation needed)    
 - [R- free statistical programming language](https://cran.r-project.org/)  
 - [Program MARK](http://warnercnr.colostate.edu/~gwhite/mark/mark.htm)  
-- MS Excel (hopefully you already have this or equivalent spreadsheet software on your computer!)
+- MS Excel (hopefully you already have this or equivalent spreadsheet software on your laptop!)
 
 ### Prerequisites    
-- BIOL 314 or NRES 217 (Basic Ecology)  
+- BIOL 314 or NRES 217 (Ecology)  
 - NRES 310 (Wildlife Ecology and Management)  
 
 ### Class description  
-This class will explore how concepts of population ecology (e.g., covered in BIOL 314) can be used to inform the conservation and management of natural populations and ecosystems. We will emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management via creative application of population ecology theory using simulation models and statistics. Topics will include population viability analysis (PVA), site-occupancy models, habitat suitability models, metapopulation models, species co-occurrence models, projecting population response to climate change and more. Laboratory exercises will provide students with hands-on experience with ecological models and their practical applications in the conservation and management of wild populations.
+This class will explore how concepts of population ecology (e.g., covered in BIOL 314) can be used to inform the conservation and management of natural populations and ecosystems. We will emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management via creative application of population ecology theory using simulation models and statistics. Topics will include population viability analysis (PVA), occupancy models, habitat-suitability models, metapopulation models, species co-occurrence models, projecting population response to climate change and more. Laboratory exercises will provide students with hands-on experience with ecological models and their practical applications in the conservation and management of wild populations.
 
 ### Learning outcomes
 1.	Identify the major classes of models used by ecologists (e.g., statistical vs mechanistic, quantitative vs heuristic, stochastic vs deterministic) and explain how and why ecologists use these models.   
-2.	Apply tools such as population viability analysis (PVA), site-occupancy models, and metapopulation models to address the conservation and management of natural populations.   
+2.	Apply tools such as population viability analysis (PVA), occupancy models, and metapopulation models to address the conservation and management of natural populations.   
 3.	Perform basic statistics, data visualization, simulation modeling and model validation with Excel, the statistical computing language “R”, and the web-based software, InsightMaker.  
 4.	Critically evaluate the strength of inferences drawn from ecological simulation models using tools such as cross-validation and sensitivity analysis.  
-5.	Explain how species interactions can influence predictions of species range shifts and the biodiversity response to global change, and formulate strategies for accounting for species interactions in ecological models.    
-6.	Communicate original research in applied population and community ecology via a professional oral presentation.   
+5.	Explain how species interactions can influence population dynamics (e.g., predictions of species range shifts), and formulate strategies for accounting for species interactions in ecological models.    
+6.	Communicate original research in applied population and community ecology via a professional-style oral presentation.   
 
 ### Grading: 
 The course grade will be based on the following components:
@@ -65,7 +65,7 @@ Quizzes and participation        10%  (40 points)
 Group project                    25%  (100 points)      
 Midterm exam # 1 (date TBD)	     10%  (40 points)    
 Midterm exam # 2 (date TBD)   	 10%  (40 points)    
-Final exam (16 May, 230pm)   	   25%  (100 points)    
+Final exam (5/11/2018)   	       25%  (100 points)    
 
 NOTE: Graduate students enrolled in NRES 670 will have an additional 50 pts used to calculate their grade (see below) of a total of 370 points. 
 Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82 to 80), C+ (79 to 77), C (76 to 73), C- (72 to 70), D+ (69 to 67), D (66 to 63), D- (62 to 60), F (below 60). 
@@ -80,10 +80,10 @@ Lecture grades will be based primarily on participation and occasional short qui
 Lab exercises will focus on applying concepts and methods introduced in lectures, and will involve real data and problems in wildlife conservation and management wherever possible. Graded lab assignments will involve figures, tables, InsightMaker models and R code (when applicable) and responses to questions in short-answer format. Laboratory write-ups will be due the following lab period, unless otherwise specified. 
 
 ### Final group project 
-Students will work in groups of ~2-3 people to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations. 
+Students will work in groups of ~2-3 to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations. 
 
-### Graduate credit (for those enrolled in NRES670) 
-Graduate students will be subject to additional expectations in order to receive graduate credit for this course. In particular, graduate student final group projects are expected to be more in-depth than undergraduate group projects. To this end, graduate student presentations will be longer, and project write-ups will be expected to be of publication-quality (and formatted in the style of an appropriate journal). Graduate students will also be expected to achieve a deeper understanding of the course material, and therefore will be assigned additional readings from the scientific literature.
+### Graduate credit (for students enrolled in NRES 670) 
+Graduate students will be subject to additional expectations in order to receive graduate credit for this course. In particular, graduate students will be expected to develop an original lecture and lead an original lab activity. Graduate students will also be expected to achieve a deeper understanding of the course material, and therefore will be assigned additional readings from the scientific literature and will be expected to participate as leaders in discussions and lab activities.
 
 ### Make-up policy and late work:
 Missed exams and labs cannot be made up, except in the case of emergencies. If you miss a class meeting, it is your responsibility to talk to one of your classmates about what you missed. If you miss a lab meeting, you are still responsible for completing the lab activities and write-up on your own time. You do not need to let me know in advance that you are going to miss class or lab.
@@ -104,7 +104,7 @@ Your student fees cover usage of the University Math Center [(775) 784-4433], Un
 The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the University’s Equal Opportunity & Title IX Office at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit: http://www.unr.edu/equal-opportunity-title-ix .”
 
 ### Class protocol
-All electronic devices are to be turned off during class unless the instructor gives advance permission.
+All mobile electronic devices are to be turned off during class unless the instructor gives advance permission (but laptop computers will be used in class regularly).
 
 
 ```{r echo=FALSE, eval=FALSE}

@@ -1,7 +1,7 @@
 ---
-title: "Schedule, Fall 2016"
-author: "NRES 746"
-date: "August 23, 2016"
+title: "Schedule, Spring 2018"
+author: "NRES 470"
+date: "January, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Because this is the first time this course is being taught, this schedule is highly subject to change!!! Please check for updates frequently!
+Please check for updates frequently!
 
 ```{r include=FALSE}
 courseSchedule <- read.csv("CourseSchedule.csv")
