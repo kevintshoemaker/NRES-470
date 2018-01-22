@@ -1,7 +1,7 @@
 ---
 title: "Lab 1: exponential growth"
 author: "NRES 470/670"
-date: "Jan 24, 2017"
+date: "Jan 24, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -259,7 +259,7 @@ First, tweak the above model so that per-capita birth rate (b) and death rate (d
 
 ![](IM3.png)
 
-To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). For abundance, set the step size to 1 so we don't have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Margarete (username "Margarete"). 
+To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). For abundance, set the step size to 1 so we don't have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with me (username "kevintshoemaker") and Ben (username "xxx"). 
 
 *  ***Short answer (3a.)*** Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer. 
 
@@ -269,7 +269,7 @@ The simulations that you ran above produced population growth curves that were v
 
 
 ##Checklist for Lab 1 completion
-*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Margarete Walden. The InsightMaker models can be shared directly in InsightMaker (preferred) or you can take screenshots and bundle those pictures into the Zip file.
+*Please bundle the Word, Excel, and R code files into one Zip file and email to Professor Shoemaker and Ben Sedinger. The InsightMaker models can be shared directly in InsightMaker (preferred) or you can take screenshots and bundle those pictures into the Zip file.
 
 ***Due Feb. 3 at 11 am.***
 
