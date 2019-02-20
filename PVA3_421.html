@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 421/621" />
 
 
-<title>Loggerhead PVA example</title>
+<title>Loggerhead PVA</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -412,23 +405,22 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Loggerhead PVA example</h1>
+<h1 class="title toc-ignore">Loggerhead PVA</h1>
 <h4 class="author"><em>NRES 421/621</em></h4>
-<h4 class="date"><em>Mar 26, 2017</em></h4>
+<h4 class="date"><em>Mar 15, 2018</em></h4>
 
 </div>
 
 
 <div id="pva-for-loggerhead-turtles" class="section level1">
 <h1>PVA for loggerhead turtles!</h1>
-<p>This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 17 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant <strong>scenario testing</strong></p>
-<p>NOTE: the Excel exercise below is <em>optional</em>!</p>
+<p>This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 3 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant <strong>scenario testing</strong>. Also make sure you have run through the Excel exercise- see below!</p>
 <div id="constructing-a-demographic-matrix-model-data-for-loggerhead-turtles" class="section level2">
 <h2>Constructing a demographic (matrix) model data for loggerhead turtles</h2>
 <p>If you would like more background information on loggerhead turtles, visit these websites:</p>
-<p><a href="http://ecos.fws.gov/species_profile/servlet/gov.doi.species_profile.servlets.SpeciesProfile?spcode=C00U"></a><br />
-<a href="http://www.nmfs.noaa.gov/prot_res/species/turtles/loggerhead.html"></a><br />
-<a href="http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml"></a></p>
+<p><a href="http://ecos.fws.gov/species_profile/servlet/gov.doi.species_profile.servlets.SpeciesProfile?spcode=C00U">USFWS site</a><br />
+<a href="http://www.nmfs.noaa.gov/prot_res/species/turtles/loggerhead.html">NMFS site</a><br />
+<a href="http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml">Texas site</a></p>
 <div id="background" class="section level3">
 <h3>Background</h3>
 <div class="figure">
@@ -470,7 +462,7 @@ Because beaches are popular sites for human recreation and development, arriving
 </ol>
 <p>Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.</p>
 <ul>
-<li>Hatchlings and juveniles feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence <em>accidental capture (“bycatch”)</em> and subsequent drowning in the nets and traps used by these vessels is common.</li>
+<li>Juveniles feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence <em>accidental capture (“bycatch”)</em> and subsequent drowning in the nets and traps used by these vessels is common.</li>
 </ul>
 <div class="figure">
 <img src="trawl1.png" />
@@ -479,7 +471,7 @@ Because beaches are popular sites for human recreation and development, arriving
 <ul>
 <li><p>Moreover, during cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries. While dormant they can be killed by periodic <em>dredging</em> to maintain bays and waterways.</p></li>
 <li><p>Moreover, human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause <em>entanglement</em>, stranding, and drowning.</p></li>
-<li><p>In addition to these primary threats, seagoing juveniles and adults face mortality due to <em>bycatch</em> in longline, hook-and-line, and trap fisheries targeting tuna and other species.</p></li>
+<li><p>In addition to these primary threats, sea-going juveniles and adults face mortality due to <em>bycatch</em> in longline, hook-and-line, and trap fisheries targeting tuna and other species.</p></li>
 <li><p>Shallow swimming turtles may also collide with <em>boat propellers</em>.</p></li>
 <li><p>Toxins (<em>pesticides and heavy metals</em>) and oil spills may harm turtle physiology and decrease fecundity, but their impact has not been quantified.</p></li>
 <li><p>Finally, although rare in the US, <em>illegal harvest</em> of eggs as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras). Turtle eggs are occasionally seen in open-air markets in Panama.</p></li>
@@ -498,7 +490,7 @@ Because beaches are popular sites for human recreation and development, arriving
 <div id="step-2-parameterize-the-model" class="section level3">
 <h3>Step 2: parameterize the model</h3>
 <p>Transition rates for turtles and other species are often estimated on the basis of <em>capture-mark-recapture</em> (CMR) data.</p>
-<p>Here are some estimates, from <a href="crowder1994.pdf">this paper</a>:</p>
+<p>Here are some estimates, from <a href="Crowder1994.pdf">this paper</a>:</p>
 <p><em>Transition from stage 1-2</em>: 0.675<br />
 <em>Transition from stage 2-3</em>: 0.047<br />
 <em>Transition from stage 3-4</em>: 0.019<br />
@@ -509,6 +501,7 @@ Because beaches are popular sites for human recreation and development, arriving
 <em>Transition from stage 5-5</em>: 0.809<br />
 <em>Transition from stage 4-1</em>: 4.67<br />
 <em>Transition from stage 5-1</em>: 61.90</p>
+<p>For this model we will assume no stochasticity or uncertainty in any of these parameters.</p>
 </div>
 <div id="step-3-spatial-structure" class="section level3">
 <h3>Step 3: spatial structure</h3>
@@ -516,16 +509,17 @@ Because beaches are popular sites for human recreation and development, arriving
 </div>
 <div id="step-4-simulate" class="section level3">
 <h3>Step 4: simulate!</h3>
-<p>We can project the loggerhead population into the future using <em>matrix multiplication</em> (for more background on matrix projections, look at the <a href="PVA1_421.html">lecture notes</a> on “PVA basics”)!</p>
+<p>We can project the loggerhead population into the future using <em>matrix multiplication</em>!</p>
 <p>We can do this using any number of tools- including R, Excel, or Insightmaker.</p>
-<p>Since you probably are most familiar with Excel, let’s do it in Excel first!</p>
+<p>See the end of this lecture for a review of matrix population models and how they work.</p>
+<p>Since you probably are most familiar with Excel, let’s do it in Excel first! Or if you’d like to do it in R instead, I’ve provided some code to get you started.</p>
 </div>
 </div>
-<div id="optional-population-projection-in-excel" class="section level2">
-<h2>OPTIONAL: population projection in Excel!</h2>
+<div id="population-projection-in-excel" class="section level2">
+<h2>Population projection in Excel</h2>
 <p>You can load the base Excel model <a href="Loggerhead2017.xlsx">here</a></p>
-<div id="build-the-baseline-loggerhead-projection-matrix-a" class="section level4">
-<h4>Build the baseline loggerhead projection matrix [A]</h4>
+<div id="build-the-baseline-loggerhead-projection-matrix" class="section level4">
+<h4>Build the baseline loggerhead projection matrix</h4>
 <ul>
 <li>Your initial spreadsheet should look something like this:</li>
 </ul>
@@ -536,21 +530,19 @@ Because beaches are popular sites for human recreation and development, arriving
 <ul>
 <li>Use the transition rates to complete the baseline projection matrix for the loggerhead turtles. For example, the yearly transition probability from large juveniles to large juveniles (<span class="math inline">\(S_3\)</span>) is 0.657. Recall that the transition rates are:</li>
 </ul>
-<p><em>Transition from stage 1-2</em>: 0.675<br />
-<em>Transition from stage 2-3</em>: 0.047<br />
-<em>Transition from stage 3-4</em>: 0.019<br />
-<em>Transition from stage 4-5</em>: 0.061<br />
-<em>Transition from stage 2-2</em>: 0.703<br />
-<em>Transition from stage 3-3</em>: 0.657<br />
-<em>Transition from stage 4-4</em>: 0.682<br />
-<em>Transition from stage 5-5</em>: 0.809<br />
-<em>Transition from stage 4-1</em>: 4.67<br />
-<em>Transition from stage 5-1</em>: 61.90</p>
+<p><em>Transition from stage 1-2 (hatchling to small juvenile)</em>: 0.675<br />
+<em>Transition from stage 2-3 (small to large juvenile)</em>: 0.047<br />
+<em>Transition from stage 3-4 (large juvenile to subadult)</em>: 0.019<br />
+<em>Transition from stage 4-5 (subadult to adult)</em>: 0.061<br />
+<em>Transition from stage 2-2 (stay small juvenile)</em>: 0.703<br />
+<em>Transition from stage 3-3 (stay large juvenile)</em>: 0.657<br />
+<em>Transition from stage 4-4 (stay subadult)</em>: 0.682<br />
+<em>Transition from stage 5-5 (stay adult)</em>: 0.809<br />
+<em>Transition from stage 4-1 (reproduction by subadults)</em>: 4.67<br />
+<em>Transition from stage 5-1 (reproduction by adults)</em>: 61.90</p>
 <ul>
-<li><p>Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero.</p></li>
-<li><p>Make sure you understand what the matrix telling you.</p></li>
+<li>Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero in the transition matrix.</li>
 </ul>
-<p><strong>Q</strong>: How many large-juveniles out of 1000 will survive AND grow to be subadults the following year?</p>
 <p><strong>Q</strong>: what is the total survival rate for, e.g., large juveniles?</p>
 <p>Your projection matrix should look like this!</p>
 <pre class="r"><code>projection_matrix &lt;- matrix(
@@ -564,13 +556,16 @@ Because beaches are popular sites for human recreation and development, arriving
   ,nrow=5,ncol=5,byrow=T
 )
 
+stagenames &lt;- c(&quot;Hatchling&quot;,&quot;Small Juv&quot;,&quot;Large Juv&quot;,&quot;Subadult&quot;,&quot;Adult&quot;)
+rownames(projection_matrix) &lt;- stagenames
+colnames(projection_matrix) &lt;- stagenames
 projection_matrix</code></pre>
-<pre><code>##       [,1]  [,2]  [,3]  [,4]   [,5]
-## [1,] 0.000 0.000 0.000 4.665 61.896
-## [2,] 0.675 0.703 0.000 0.000  0.000
-## [3,] 0.000 0.047 0.657 0.000  0.000
-## [4,] 0.000 0.000 0.019 0.682  0.000
-## [5,] 0.000 0.000 0.000 0.061  0.809</code></pre>
+<pre><code>##           Hatchling Small Juv Large Juv Subadult  Adult
+## Hatchling     0.000     0.000     0.000    4.665 61.896
+## Small Juv     0.675     0.703     0.000    0.000  0.000
+## Large Juv     0.000     0.047     0.657    0.000  0.000
+## Subadult      0.000     0.000     0.019    0.682  0.000
+## Adult         0.000     0.000     0.000    0.061  0.809</code></pre>
 <pre><code>## [1] 2000  500  300  300   20</code></pre>
 </div>
 <div id="forecast-the-population-into-the-future-in-excel" class="section level4">
@@ -632,40 +627,42 @@ for(s in 1:5){
   points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
-legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
-<p><img src="PVA3_421_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
+<p><img src="PVA3_421_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 </div>
 <div id="projecting-the-loggerhead-population-in-insightmaker" class="section level2">
 <h2>Projecting the loggerhead population in InsightMaker</h2>
 <p>First, clone the baseline loggerhead PVA model <a href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">here</a></p>
-<p>Hit “Simulate”. Make sure that the model results look the same as the above figure!</p>
+<p>Hit “Simulate”. Make sure that the model results look the same as the above figure! If not, make sure the parameters are correct!</p>
+<p>NOTE: here we use the term “survival” to refer to staying in the same stage class, and “growth” to refer to moving on to the next life stage.</p>
 <p>Look over the model, and make sure that you understand the inner workings!</p>
 <div id="group-exercise-in-class-loggerhead-management" class="section level3">
 <h3>Group exercise (in class!): loggerhead management</h3>
-<p>Working in groups of 2-3, investigate three management scenarios for the loggerhead turtle population:</p>
+<p>Working in groups of 2-3, investigate four management scenarios for the loggerhead turtle population:</p>
 <ol style="list-style-type: decimal">
-<li>Improve fecundity via nest-site protection!
+<li>Improve fecundity (transition rates to the hatchling stage) via <em>nest-site protection</em>!
 <ul>
 <li>Improve by 50%</li>
 <li>Improve by 100%</li>
 </ul></li>
-<li>Improve hatchling survival via nest monitoring
+<li>Improve hatchling survival via <em>nest monitoring</em>
 <ul>
 <li>Improve <em>to</em> 90%</li>
 <li>Improve <em>to</em> 100%</li>
 </ul></li>
-<li>Improve large juvenile survival using Turtle Excluder Devices (TEDs)
+<li>Improve large juvenile survival using <em>Turtle Excluder Devices (TEDs)</em>
 <ul>
 <li>Improve by 15%</li>
 <li>Improve by 25%</li>
 </ul></li>
-<li>Improve adult/subadult survival by restricting longline fisheries.
+<li>Improve adult/subadult survival by <em>restricting longline fisheries</em>.
 <ul>
 <li>Improve by 5%</li>
 <li>Improve by 10%</li>
 </ul></li>
 </ol>
+<p>NOTE: to alter parameters by (e.g.) 10% you can open the equation window and multiply the original parameter value by 1.1.</p>
 <div class="figure">
 <img src="TED1.jpg" alt="turtle excluder device" />
 <p class="caption">turtle excluder device</p>
@@ -678,14 +675,96 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot
 </ul>
 <p><strong>Q</strong>: What is your management recommendation for this population??</p>
 <p><strong>Q</strong>: In the base model, why does the population always seem to grow during the first few years of the simulation, even if it ultimately declines?</p>
-<p><strong>Q</strong>: What is the <em>stable stage distribution</em>?</p>
-<p><strong>Q</strong>: In what year is the <em>stable stage distribution</em> reached? What if you play around with the initial abundances to make it start closer to stable stage distribution?</p>
 <div id="references" class="section level4">
 <h4>References</h4>
 <p>Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy. 1996. Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set. Conservation Biology 10 (3), 863-873. doi: 10.1046/j.1523-1739.1996.10030863.x</p>
 <p>Morris, W. F. and D. F. Doak. 2002. Quantitative conservation biology: Theory and practice of population viability analysis. Sinauer, Sunderland, MA.</p>
 <p>Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson. 1999. A practical handbook for population viability analysis. The Nature Conservancy, Wash., DC.</p>
 </div>
+</div>
+</div>
+<div id="review-matrix-population-models" class="section level2">
+<h2>REVIEW: matrix population models:</h2>
+<p>We can present yearly fecundity and survival probabilities compactly in a <strong>projection matrix</strong> [A] which we use to project the population size year to year.</p>
+<p>We all remember the finite-population-growth equation:</p>
+<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 1)}\)</span>,</p>
+<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
+<p>The matrix population growth equation looks pretty much the same!</p>
+<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
+<p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
+<p>We can be more explicit about this if we re-write the above equation this way:</p>
+<p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
+<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2, and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2.</p>
+<p>There are three important types of transitions.</p>
+<ul>
+<li><span class="math inline">\(F_i\)</span> = Fecundities, or the number of new turtles (hatchlings) produced by an average individual of size-class <em>i</em> per year. This is the top row of the transition matrix.</li>
+<li><span class="math inline">\(S_i\)</span> = Stage Survival, or fraction of size <em>i</em> turtles surviving and staying in the same size-class per year. These are the diagonal elements of the matrix</li>
+<li><span class="math inline">\(G_i\)</span> = fraction of size <em>i</em> turtles surviving and growing to size-class <em>i + 1</em> per year. These are the subdiagonal elements of the matrix.</li>
+</ul>
+<p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
+<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for stage <span class="math inline">\(t\)</span></p>
+<p>Fecundity, <span class="math inline">\(F_t\)</span>, is the _per-capita rate by which an individual of stage <span class="math inline">\(t\)</span> contributes new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference??</p>
+<p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must both survive and reproduce</em>!.</p>
+<p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
+<p>There is a lot we can do with matrix population models. The most obvious one is <em>projection</em>:</p>
+<div id="projection" class="section level3">
+<h3>Projection:</h3>
+<p>We have already seen the projection equation (<em>Eq. 2</em>, above). Here is how we can implement this in R:</p>
+<pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!</code></pre>
+<p>Let’s try it!:</p>
+<p>First, let’s build a <em>projection matrix</em>:</p>
+<pre class="r"><code>projection_matrix &lt;- matrix(
+  c(
+    0,     1.2,   3.1,
+    0.4,   0,     0,
+    0,     0.75,   0
+  )
+  ,nrow=3,ncol=3,byrow=T
+)
+
+projection_matrix</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.0 1.20  3.1
+## [2,]  0.4 0.00  0.0
+## [3,]  0.0 0.75  0.0</code></pre>
+<p>Next, let’s build an initial abundance vector:</p>
+<pre class="r"><code>Abundance_year0 &lt;- c(1000,0,0)
+Abundance_year0</code></pre>
+<pre><code>## [1] 1000    0    0</code></pre>
+<p>Now we can run the code for real!</p>
+<pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!
+Year1</code></pre>
+<pre><code>##      [,1]
+## [1,]    0
+## [2,]  400
+## [3,]    0</code></pre>
+<p>Now we have 300 individuals in stage 2!</p>
+<p>Let’s project one more year:</p>
+<pre class="r"><code>Year2 &lt;- projection_matrix %*% Year1  # matrix multiplication!
+Year2</code></pre>
+<pre><code>##      [,1]
+## [1,]  480
+## [2,]    0
+## [3,]  300</code></pre>
+<p>Here is some R code to project many years into the future!</p>
+<pre class="r"><code>nYears &lt;- 20                                            # set the number of years to project
+TMat &lt;- projection_matrix                               # define the projection matrix
+InitAbund &lt;- Abundance_year0                            # define the initial abundance
+
+  ## NOTE: the code below can be re-used without modification:
+allYears &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+allYears[,1] &lt;- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
+  allYears[,t] &lt;-  TMat %*% allYears[,t-1]
+}
+plot(1,1,pch=&quot;&quot;,ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)  # set up blank plot
+cols &lt;- rainbow(3)    # set up colors to use
+for(s in 1:3){
+  points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
+}
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))))  # put a legend on the plot</code></pre>
+<p><img src="PVA3_421_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -715,7 +794,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

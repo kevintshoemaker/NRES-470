@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,46 +407,48 @@ div.tocify {
 
 <h1 class="title toc-ignore">Parameterizing models: estimation!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Apr 3, 2017</em></h4>
+<h4 class="date"><em>Apr 20, 2018</em></h4>
 
 </div>
 
 
 <div id="parameter-estimation-for-pva" class="section level1">
 <h1>Parameter estimation for PVA!</h1>
-<p>We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameters come from!</p>
+<p>We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!</p>
 <p>This is the focus of the current lecture!</p>
 <div id="data-requirements" class="section level2">
 <h2>Data requirements</h2>
 <div id="scalar-models" class="section level3">
 <h3>Scalar models</h3>
 <ul>
-<li>Abundance (population size)</li>
+<li>Initial abundance (<span class="math inline">\(N_0\)</span>)</li>
 <li>Population growth rate</li>
 <li>Temporal variation in population growth rate (environmentally induced fluctuations among years)</li>
-<li>Maximum rate of population growth</li>
-<li>Carrying capacity of the population (equilibrium abundance)</li>
+<li>Maximum rate of population growth (for logistic model)</li>
+<li>Carrying capacity of the population (equilibrium abundance of logistic model)</li>
 </ul>
 </div>
 <div id="stage-structured-life-history-models" class="section level3">
 <h3>Stage-structured (life history) models</h3>
 <ul>
-<li>Abundance (population size)</li>
-<li>Vital rates (fecundity, survival, dispersal)</li>
+<li>Initial abundance (<span class="math inline">\(\mathbf{N_0}\)</span>) (vector of initial abundances for all stages)</li>
+<li>Stage-specific vital rates (fecundity, survival, dispersal)</li>
 <li>Temporal variation in vital rates (environmentally induced fluctuations among years)</li>
-<li>Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)</li>
-<li>Maximum rate of population growth</li>
-<li>Carrying capacity of the population (equilibrium abundance)</li>
+<li>Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)
+<ul>
+<li>Which vital rates are density-dependent?</li>
+</ul></li>
 </ul>
 </div>
 <div id="metapopulation-spatial-models" class="section level3">
 <h3>Metapopulation (spatial) models</h3>
 <ul>
-<li>Spatial variation in vital rates (variation in different areas, subpopulations, or habitat patches)</li>
+<li>Spatial distributions of suitable habitat, local populations or individuals (define patches)</li>
+<li>Spatial variation in vital rates (variation in habitat quality among different patches)</li>
+<li>Correlation in temporal variation (environmental stochasticity) among patches</li>
 <li>Dispersal rates among habitat patches</li>
 <li>Habitat requirements of different life stages</li>
-<li>Spatial distributions of suitable habitat, local populations or individuals</li>
-<li>Patterns of occupancy and extinction in habitat patches, or presence-absence data</li>
+<li>For “classical” metapopulation models: rates of colonization and extinction in habitat patches</li>
 </ul>
 </div>
 </div>
@@ -461,8 +456,8 @@ div.tocify {
 <h2>Data sources!</h2>
 <div id="life-tables" class="section level3">
 <h3>Life tables</h3>
-<p>As you recall, life tables represent a single cohort that has been followed over time until the last one has died.</p>
-<p>NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the <strong>static life table</strong>, which compares population size from multiple different cohorts, across the entire range of ages, at a single point in time. Static tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation,</p>
+<p>As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died.</p>
+<p>NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the <strong>static life table</strong>, which compares population size from multiple different cohorts, across the entire range of ages, at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method is probably better than nothing!</p>
 <table>
 <thead>
 <tr class="header">
@@ -512,7 +507,7 @@ div.tocify {
 </tbody>
 </table>
 <p><strong>PROS</strong> - Summary of survival and fecundity, often available in the literature. Be careful when using data from captive populations!</p>
-<p><strong>CONS</strong> - Makes unrealistic assumptions (especially the <em>static life table</em> method). - Can not estimate environmental stochasticity - Can not estimate density dependence - Ignores <strong>imperfect detection</strong> (assumes perfect detection) - (remember, it’s not always perfectly straightforward to translate into population model- but it can be done!)</p>
+<p><strong>CONS</strong> - Makes unrealistic assumptions (especially the <em>static life table</em> method). - Can not be used to estimate environmental stochasticity - Can not be used to estimate density dependence - Ignores <strong>imperfect detection</strong> (assumes perfect detection) - Remember, it’s not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!</p>
 </div>
 <div id="census-data" class="section level3">
 <h3>Census data!</h3>
@@ -530,14 +525,14 @@ div.tocify {
 <img src="census3.png" />
 
 </div>
-<p><strong>PROS</strong> - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want!</p>
-<p><strong>CONS</strong> - Very rarely if ever available! - Ignores <strong>imperfect detection</strong> (assumes perfect detection), which is probably not realistic.</p>
+<p><strong>PROS</strong> - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!</p>
+<p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores <strong>imperfect detection</strong> (assumes perfect detection), which is almost always not realistic.</p>
 </div>
 <div id="capture-mark-recapture-cmr" class="section level3">
 <h3>Capture-mark-recapture (CMR)</h3>
-<p><strong>PROS</strong> - Can estimate survival, variation in survival, lambda, dispersal rates. - Probably the most widely used source of data for population models!</p>
-<p><strong>CONS</strong> - Few downsides, although the analytical techniques can be difficult to master - Emigration and survival can be difficult to tease apart</p>
-<p>See below for more! Also this is the main focus of the Population Dynamics course (the next course in the wildlife ecology and management sequence!)</p>
+<p><strong>PROS</strong> - Can estimate survival, variation in survival, lambda, recruitment, dispersal rates. - Probably the most widely used source of data for population models!</p>
+<p><strong>CONS</strong> - Few downsides, although the analytical techniques can be difficult to master - Mounting a proper CMR study can be very costly, and require many years of data. - Estimating landscape-scale movements can require an even more costly and time-consuming study. - Emigration and survival can be difficult to tease apart in many cases.</p>
+<p>See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and management sequence!)</p>
 </div>
 <div id="data-on-spatial-structurehabitat" class="section level3">
 <h3>Data on spatial structure/habitat</h3>
@@ -547,31 +542,46 @@ div.tocify {
 </div>
 <div id="what-if-theres-no-data" class="section level3">
 <h3>What if there’s “no data”?</h3>
-<p>Remember the <a href="https://en.wikipedia.org/wiki/Stone_Soup">“Stone Soup” analogy!</a></p>
+<p>Remember the <a href="https://en.wikipedia.org/wiki/Stone_Soup">“Stone Soup” analogy!</a> - even when you think there’s no data, there probably is more than there initially appears!</p>
 <ul>
-<li>Use algebra to construct a full life table from available information
+<li>Use algebra to construct a full age-structured transition matrix from available information
 <ul>
 <li>E.g., we are missing information on hatchling survival. We only know:
 <ul>
-<li>Juvenile and adult survival rates</li>
-<li>Nesting success</li>
-<li>Population growth (lambda) is 1.09</li>
-<li>Now we can solve for hatchling survival!</li>
+<li>Juvenile and adult survival rates<br />
+</li>
+<li>Nesting success<br />
+</li>
+<li>Population growth (lambda) is 1.09<br />
+</li>
+<li>Now we can solve for hatchling survival!<br />
+</li>
+<li>For an example of this, see <a href="congdon%20et%20al%201993.pdf">Congdon et al 1993</a><br />
+</li>
 </ul></li>
 </ul></li>
 <li>Simplify! (Models are always simplified representations of reality)
 <ul>
-<li>Ignore age structure? (i.e., use scalar model)</li>
-<li>Ignore density-dependence?</li>
-<li>Ignore trophic interactions (we usually make this simplification anyway!)</li>
+<li>Ignore age structure? (i.e., use scalar model)<br />
+</li>
+<li>Ignore density-dependence?<br />
+</li>
+<li>Ignore trophic interactions (we usually make this simplification anyway!)<br />
+</li>
+<li>Ignore abundance entirely (e.g., use classical metapopulation model)<br />
+</li>
 </ul></li>
-<li>Conservative strategies!
+<li>Conservative strategies (use <em>worst case scenario</em>)!
 <ul>
-<li>Density-independent is conservative</li>
-<li>Under uncertainty, use the <em>worst case</em></li>
-<li>Under decline trends, use the worst case</li>
+<li>Density-independent model is conservative, so if you don’t have data on D-D, then maybe just ignore it!<br />
+</li>
+<li>With parameter uncertainty, use the worst case scenario<br />
+</li>
+<li>Under decline trends, use the worst case scenario<br />
+</li>
 </ul></li>
-<li>Use data from similar species!</li>
+<li>Use data from similar species!<br />
+</li>
 <li>E.g., tamarin species have similar life histories, so use data on golden lion tamarins to model golden-headed lion tamarins.</li>
 <li>Expert Opinion
 <ul>
@@ -584,7 +594,7 @@ div.tocify {
 <li><a href="https://www.astronomyclub.xyz/maternal-effect/does-ecology-have-laws.html">Allometries</a>
 <ul>
 <li>e.g., Fenchel’s allometry</li>
-<li>(also known as “Macroecology”)</li>
+<li>This type of thinking is often called “Macroecology”</li>
 </ul></li>
 </ul>
 <div class="figure">
@@ -604,7 +614,7 @@ div.tocify {
 <li>That is what will be done in any case!</li>
 <li>And it is better to use it than to do nothing</li>
 <li>And it is better to document that expert opinion was used than to proceed with conservation planning in the absence of stating sources and assumptions</li>
-<li>It is a starting point (and sometimes a good one)</li>
+<li>It is a starting point (and sometimes a reasonable one)</li>
 </ul>
 </div>
 <div id="capture-mark-recapture-cmr-analysis" class="section level2">
@@ -616,12 +626,13 @@ div.tocify {
 <div id="pva-parameters-estimable-from-cmr-data" class="section level3">
 <h3>PVA Parameters estimable from CMR data</h3>
 <ul>
-<li>Survival rate</li>
-<li>Birth rate</li>
+<li>Survival rate (possibly age or size structured)</li>
+<li>Fecundity (entry of new individuals in the population)</li>
 <li>Abundance</li>
 <li>Lambda (rate of growth)</li>
-<li>Environmental effects on survival rate and fecundity</li>
-<li>Temporal process variance</li>
+<li>Environmental influences on survival rates and fecundity</li>
+<li>Temporal process variance (env. stochasticity)</li>
+<li>Dispersal rates</li>
 </ul>
 </div>
 <div id="the-data-needed-for-cmr-analysis-capture-histories" class="section level3">
@@ -640,13 +651,13 @@ div.tocify {
 <h3>Two main types of CMR analyses</h3>
 <div id="closed-population-models" class="section level4">
 <h4>Closed population models</h4>
-<p>We assume that the population is closed to BIDE processes. That is, abundance does not change! We attempt to estimate abundance!</p>
+<p>We assume that the population is closed (no BIDE processes!). That is, abundance does not change! We attempt to estimate abundance!</p>
 <ul>
 <li>No mortality</li>
 <li>No births</li>
 <li>No immigration</li>
 <li>No emigration</li>
-<li>All individuals are observable</li>
+<li>All individuals are observable (but not necessarily observed…)</li>
 </ul>
 <div class="figure">
 <img src="peterson1.png" />
@@ -661,13 +672,13 @@ div.tocify {
 C = total number of individuals captured in 2nd sample<br />
 R = number of individuals in 2nd sample that are marked</p>
 <p>We can use the following formula to estimate abundance (the <strong>lincoln-peterson estimator</strong>):</p>
-<p><span class="math inline">\(N = \frac{C*M}{R}\)</span></p>
+<p><span class="math inline">\(N = \frac{M \times C}{R}\)</span></p>
 </div>
 <div id="open-population-models" class="section level4">
 <h4>Open population models</h4>
 <p>We assume that the population is open to one or more of the BIDE processes. That is, abundance CAN change! We attempt to estimate the processes driving abundance change (often, survival rates)</p>
 <ul>
-<li>Populations open to birth, death, and migration (abundance can change during the study).</li>
+<li>Populations open to birth, death, and possibly even migration (abundance can change during the study).</li>
 <li>Enables estimation of the drivers of population dynamics over extended time periods</li>
 <li>Often of great interest to ecologists and managers.</li>
 </ul>
@@ -689,7 +700,6 @@ R = number of individuals in 2nd sample that are marked</p>
 <p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \phi_3p_4\)</span></p>
 <p>How about the following capture history for a single individual:</p>
 <pre><code>1 0 1 0</code></pre>
-<p>This individual was marked and released upon initial capture. It was then captured in the next survey, but was not detected in either of the final two surveys.</p>
 <p>What is the probability of observing this capture history?</p>
 <blockquote>
 <p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X</p>
@@ -712,8 +722,7 @@ R = number of individuals in 2nd sample that are marked</p>
 <div id="assumptions-of-the-cjs-model" class="section level4">
 <h4>Assumptions of the CJS model</h4>
 <ul>
-<li>All animals in population equally catchable at each sampling occasion (each sampling bout is a random sample from the population)</li>
-<li>All animals have same survival probability at each sampling occasion (<span class="math inline">\(\phi_t\)</span>)</li>
+<li>All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)</li>
 <li>Marks are not lost or missed by surveyors</li>
 <li>All emigration is permanent (equivalent to a mortality)</li>
 </ul>
@@ -747,7 +756,7 @@ head(dipper.data,10)</code></pre>
 ## 8   1  1  0  0  0  0  0     1       0
 ## 9   1  1  0  0  0  0  0     1       0
 ## 10  1  1  0  0  0  0  0     0       1</code></pre>
-<p>Here we use the “mra” package in R to do the ML parameter estimation!</p>
+<p>Here we use the “mra” package in R (instead of MARK) to do the ML parameter estimation!</p>
 <pre class="r"><code>data(dipper.histories)
 ct &lt;- as.factor( paste(&quot;T&quot;,1:ncol(dipper.histories), sep=&quot;&quot;))
 attr(ct,&quot;nan&quot;)&lt;-nrow(dipper.histories)
@@ -801,7 +810,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -1,7 +1,7 @@
 ---
 title: "Final projects!"
 author: "NRES 470/670"
-date: "Feb 4, 2017"
+date: "Spring, 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Final projects for NRES 470
 
-Students will work in groups of ~2-3 people to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations.
+Students will work in groups of ~3-4 people to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations.
 
 ## Overview
 
@@ -25,23 +25,23 @@ Students will work in groups of ~2-3 people to perform a population viability an
 
 - Construct a PVA model, parameterized using the best available information from the literature (free PVA software platforms: InsightMaker, Vortex, R). 
 
-- Use your PVA model to address a conservation or management question and write up the results. 
+- Use your PVA model to address a conservation or management question and _write up the results_. 
 
 - Present your results to the class!
 
 ## Timeline
 
-- **PROPOSAL:** Due March 3!
-- **INITIAL PVA** Due April 3: description of how your PVA model works and where the parameter estimates come from.
-- **DRAFT FINAL PAPER:** Due April 28
-- **FINAL FINAL PAPER:** Due May 17
-- **FINAL PRESENTATIONS:** May 5 in lab!
+- **PROPOSAL:** Due Tues March 5!
+- **INITIAL PVA** Due Fri April 5: description of how your PVA model works and where the parameter estimates come from.
+- **DRAFT FINAL PAPER:** Due Tues April 16
+- **FINAL FINAL PAPER:** Due Wed May 15
+- **FINAL PRESENTATIONS:** Fri Apr 26 and May 3 in lab!
 
 Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
 ## First project-related assignment: the proposal!
 
-(Due March 3...) 
+(Due March 1...) 
 
 Your project proposal will consist of:  
 
@@ -50,11 +50,11 @@ Your project proposal will consist of:
 3. **Project rationale**: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructors that your project is **interesting**!    
 4. **Data sources**: Describe what data/information sources you plan to use to guide PVA construction and parameterization. Convince your instructors that your project is **possible**!  
 
-**NOTE about data sources:** The most important parameters you need for a PVA model are *survival rates* (usually age-structured), *fecundity rates* (often age-structured as well), *stochasticity* (variability in those vital rates), *abundance*, *dispersal rates*, and *carrying capacity*. We have gone over all these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven't yet gone over in class). If all else fails, you can use published records for similar species!
+**NOTE about data sources:** The most important parameters you need for a PVA model are *survival rates* (usually age-structured), *fecundity rates* (often age-structured as well), *stochasticity* (variability in those vital rates), *initial abundance*, *dispersal rates*, and *carrying capacity*. We have gone over all these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven't yet gone over in class). If all else fails, you can use published records for similar species!
 
 ## Second project-related assignment: the initial PVA!
 
-(Due April 3...) 
+(Due April 5...) 
 
 Your inital parameterized PVA will consist of:  
 
@@ -74,19 +74,22 @@ This is where you introduce the topic and describe why it's important. You can r
 Remember to cite lots of literature here!
 
 ### Methods
-This is where you describe your PVA in enough detail that it could be replicated by another wildlife researcher! You can recycle much of your "initial PVA" assignment here.
+This is where you describe your PVA in enough detail that it *could be replicated* by another wildlife researcher! You can recycle much of your "initial PVA" assignment here.
 
 Remember to justify all your decisions in terms of parameterization. 
 
 Also, you should describe how you addressed your main questions
 
-- What different scenarios did you run?
-- How did you use the simulation results to address your questions? How did you visualize the results? Did you perform any statistical analyses?
+- What different scenarios did you run?    
+
+- How did you use the simulation results to address your questions?  
+    - How did you visualize the results?     
+    - Did you perform any statistical analyses?      
 
 ### Results
 This is where you describe and present the relevant outputs from your model. Provide figures and tables to summarize your *relevant* results. 
 
-With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it *relevant* to your main quesitonS??
+With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it *relevant* to your main questionS??
 
 ### Discussion
 This is where you describe what your results really tell us with respect to your main questions.
@@ -104,9 +107,9 @@ A rubric for the final written presentation can be found [here](WrittenProject_r
 
 Your group presentation should be in the style of an oral presentation at a conference. 
 
-Presentations will take place during our final lab period (Friday, May 5 starting at 11). Since this is a small class, we will probably end early!
+Presentations will take place during our final two lab periods. 
 
-You will have 15 minutes to give your presentation, with at least 5 additional minutes for presenations.  
+You will have 12 minutes to give your presentations, with at least 3 additional minutes for presenations.  
 
 We will hand out a simple peer-review form so you can give feedback to your peers. 
 
@@ -114,33 +117,105 @@ A rubric for the presentations can be found [here](presentationProject_rubric.do
 
 ## Final paper peer review/feedback session
 
-In class on Thurs May 4 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
+In lab on Fri Apr 19 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
 
 The way it will work is as follows:
 
-1. By the end of the day on May 2, you will receive another group's draft manuscript via WebCampus (see list below). 
+1. By mid-day on April 17 (Wed), you will receive another group's draft manuscript via WebCampus (see list below). 
 
-2. Before class on May 4, please read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
+2. Before class on April 19, please throroughly read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
 
-3. In class, you will first get together with the other students that were also assigned to review the same manuscript. You will have 25 minutes to compare notes and prepare a written "peer review" of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! *Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA*
+3. During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 25 minutes to compare notes and prepare a written "peer review" of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! *Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA*
 
-4. At the end of class, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person.
+4. After that, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person (and on paper).
+
+5. For the remaining time in lab, you will have a chance to work on your PVA write-ups and presentations!
 
 ### In-class peer review: manuscript drafts
 
-The following students will review the draft manuscript by the Pintail group (Cathryn and Bryce): *Ashley and Kristin*
+Here are the peer review assignments:
 
-The following students will review the draft manuscript by the Cutthroat trout group (Thomas and Jason): *Bryce and Rachel*
+```{r include=FALSE}
+#assignments <- read.csv("GroupAssignments.csv")
+```
 
-The following students will review the draft manuscript by the Axlotl group (Kenny and Ashley): *Cathryn and Thomas*
+```{r results='asis', echo=FALSE}
+#knitr::kable(assignments,caption="")
 
-The following students will review the draft manuscript by the desert tortoise group (Rachel and Kristin): *Jason and Kenny*
+```
 
-Bring your laptops to class as usual so you can write, save and share your peer-review electronically with your classmates/instructors. 
 
-### In-class peer review: presentations
 
-During the final project presentations, please provide feedback to your classmates using [this form](presentation_handout_for_students.docx) (these will be handed out in class on the day of the final project presentaitons)
+Bring your laptops to lab as usual so you can write, save and share your peer-review electronically with your classmates/instructors. 
+
+### Peer review: presentations
+
+During the final project presentations, please provide feedback to your classmates using [this form](presentation_handout_for_students.docx) (these will be handed out in class on the day of the final project presentations)
+
+### Tips for a great presentation!
+
+Here are some general notes about how to prepare and deliver a great presentation:   
+- For all slides: *Less words, more pictures*! Wordy slides often cause people to stop paying attention! All of you are working with charismatic species (cheatgrass may be questionable on that front!), so you shouldn't have trouble finding nice pictures that capture people's attention. As for words, 3-5 bullet points maximum! Complete sentences are NOT needed in a presentation. Use a large, sans-serif font to improve readability.  
+
+Note: make sure you give proper credit for all pictures (e.g., what website did it come from?)
+
+- Excitement is infectious- make sure you convey your excitement about the project. You all worked very hard, and you should be proud of what you were able to do. Now you can share this excitement with your colleagues! Many inexperienced presenters make the mistake of highlighting only what they were not able to accomplish. Try to avoid this pitfall- shortcomings should be limited to a single slide in the discussion section of the presentation. 
+
+- A good presentation should *tell a story*. It has a beginning, middle and an end. Every slide flows logically from what came before. 
+
+- Keep it simple- don't use excess jargon, acronyms etc. Good communication skills means getting your points across in the simplest and clearest way possible. 
+
+- Every presentation is a performance. Performance requires practice!! The real work comes before the performance- putting together the slides and practicing the delivery. When the time comes to actually give the performance, relax and have fun- the hard work is over!  
+
+Note: please don't use fancy backgrounds- keep your slides as clean as possible. Animations can be useful, but excessive animation is just a distraction!
+
+#### Title slide
+
+- Make a catchy title! 
+- Include the names and affiliations of all co-authors
+
+#### Introduction
+
+- Tell your audience why they should care!! All of you are working with interesting species, and all of you are asking interesting questions. All of your audience is interested in wildlife conservation and management. There is absolutely no reason why you shouldn't be able to convince your audience to care about what you have to say!!
+
+- Cite previous research as you set up your research question. Convince us that your research fills a key knowledge gap. What is the overall context of your research? 
+
+- After you have framed the problem, clearly state your research questions!
+
+#### Methods
+
+- Provide a very abbreviated summary of your PVA model. You don't have time to provide all the details that are in your written Methods section! So try to distill the key elements of your methods. Be careful you don't spend too much time on this section! The details you provide here must be clearly relevant to your research questions. All you need to do is convince your peers that your methods were appropriate for addressing your questions. 
+
+- You can include supplemental slides that provide more details on your methods (after the last "real" slide). It can be helpful to refer to supplemental slides if someone asks a question about your methods! 
+
+
+#### Results
+
+- Include key figures that relate to the main questions. 
+
+- For all graphs, make sure you explain what the axes represent! Also, make sure the axis labels are large enough to be readable from the back of the room!
+
+
+#### Discussion
+
+- Just one slide discussing shortcomings of your project and how you would improve your model and design if you had additional time. 
+
+- Summarize your key findings- what did you learn? 
+
+- Management implications- how could wildlife managers act upon your findings??
+
+- Describe what you or other researchers could do to expand upon your findings- what are the next steps? 
+
+
+#### Acknoweldgements   
+
+- Your final slide should acknowledge people who helped you with your project but who are not listed as a co-author.
+
+
+
+
+
+
 
 ## Potentially useful links!
 

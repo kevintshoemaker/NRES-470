@@ -1,7 +1,7 @@
 ---
 title: "Declining-population paradigm"
 author: "NRES 470/670"
-date: "Mar 6, 2017"
+date: "Mar 6, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -20,25 +20,25 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Threats to populations
 
-The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births *under present conditions* the population will decline. 
+The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births *under present conditions* the population will decline until these unfavorable conditions are reversed. 
 
 In the "small-population paradigm" lecture we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.
 
-Large populations can be threatened though! Factors that threaten large populations are usually **deterministic**! 
+Large populations can be threatened though! Factors that threaten large populations with large geographic ranges are generally **deterministic**! 
 
 The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those deterministic processes that cause population decline, and how these processes may be reversed through effective conservation management*. 
 
 What are some factors that can *tip the balance* so to speak- so that growing or stable populations become declining populations? 
 
-### Harvest
+### Over-harvest
 
 ![](overharvest1.jpg)
 
-### Habitat loss
+### Habitat loss and degradation
 
 ![](habitatloss1.jpg)
 
-### Disease
+### Pathogens and parasites
 
 ![](whitenose1.jpg)
 
@@ -46,7 +46,7 @@ What are some factors that can *tip the balance* so to speak- so that growing or
 
 ![](climatechange1.jpg)
 
-### Invasive species
+### Exotic nvasive species
 
 ![](bullfrog1.jpg)
 
@@ -83,44 +83,51 @@ You can clone this model by clicking [here](https://insightmaker.com/insight/744
 
 ![](IM5.jpg)
 
-You should see logistic growth if you hit the simulate button.  
+You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the model and make sure you understand how it works.
 
-For this exercise, let's change the initial population to 200 (near K).
+For this exercise, let's change the initial population to 200 (half of K).
 
-Also, make sure that the time step is 1 year, and the model should run for 30 years.
-
-Before adding any threats, let's add **demographic stochasticity** into this model!
+Also, make sure that the time step is 1 year, and the model should run for 50 years.
 
 **Let's add a harvest process!**
 
-- Assume that harvest is limited to 10% of the population each year. However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%.    
+- Assume that approximately 10% of the population is harvested each year. However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%. (here we are introducing stochasticity in a "deterministic" threat- don't think about that too hard!)  
+
+**Q**: what random number generator did you choose for simulating harvest rate?
 
 **Q**: is the variation in harvest rates best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?    
 
-**Q**: why doesn't the population decline to extinction? What has the harvest process done in this case?    
+**Q**: why doesn't the population decline to extinction? What has the harvest process done in this case?   
+
+**Q**: What if you change the harvest rate- make it even more extreme?
 
 **Let's add a habitat loss process!**
 
-- Assume that habitat loss results in larger density-dependence terms- that is, because there is less habitat, the effects of crowding are more pronounced.   
+- Assume that habitat loss results in larger density-dependence terms on survival and fecundity- that is, because there is less habitat, the effects of crowding are more pronounced (NOTE: this is already implemented for you! Do you understand why this works?).   
 
-- Let's model the case where both density dependence terms are multiplied by 1.1 each year (simulating 10% habitat loss each year). You can do this in InsightMaker using the following formula (for both density dependence terms):    
+- Let's first model the case where 10% of K is lost each year. 
 
-```
-0.001 * 1.1^Years()
-```
+- Run the simulation to visually track K along with population dynamics! 
 
-- Add a new variable to represent carrying capacity. Recall that K is defined as:
+**Q**: Does the loss of K look right? Is this what you expected?
 
-$\frac{b-d}{a+c}$
+**Q**: Does the reduction in K over time look realistic? Can you imagine other plausible shapes for this curve?
 
-- Run the simulation to visually track K along with population dynamics! Does it look right?  
+- Try running the model with only habitat loss (no harvest - set harvest to zero). 
 
-- Try running the model with only habitat loss (no harvest - set harvest to zero).    
+**Q**: Does anything look different? Are the results different from what you expected?  
 
-- Try changing the harvest process to be 10 individuals per year instead of 10% of the population per year. How does this change the results?    
+- Try changing the harvest process to be 10 individuals per year instead of 10% of the population per year. 
 
-- What would happen if the habitat loss process were better represented by a *linear* versus *exponential* decline in K??     
+**Q**: How does this change the results?    
 
+**Q**: What would happen if the habitat loss process were better represented by a *linear* versus *exponential* decline in K?? Try it!    
+
+**Q**: Try different combinations of deterministic threats (competing threats!). Can you identify some combinations that are *synergistic*- that is, that affect population decline or extinction risk more than simply adding the effects of each threat in isolation??  
+
+**Q**: Can you identify some combinations of threats that are *"antergistic"* (not a real word!)- that is, that affect population decline or extinction risk less than simply adding the effects of each threat in isolation??
+
+**Q**: Does stochasticity in harvest rates matter more than stochasticity in habitat loss? Or vice versa?
 
 [--go to next lecture--](LECTURE12.html)
 

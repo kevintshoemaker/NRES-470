@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -419,6 +412,10 @@ div.tocify {
 </div>
 
 
+<div id="final-projects" class="section level3">
+<h3>Final projects:</h3>
+<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a>. Working PVA and document justifying decisions is <em>due next Monday, April 2</em>!</p>
+</div>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
 <p>Population Viability Analysis (PVA) integrates everything we have studied so far and more. At its most basic level, PVA is the <em>process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options</em>.</p>
@@ -435,7 +432,7 @@ div.tocify {
 
 </div>
 <p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
-<p>For example – after running your model (step 4) you might realize that your results (step 5) are totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).</p>
+<p>For example – after running your model (step 4) and looking at your results (step 5) you might realize that the model is totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).</p>
 <div id="step-1-life-history" class="section level4">
 <h4>Step 1: Life history</h4>
 <p>The first step is to conceptualize the life history for your species of interest. This is where you might put together a life history diagram, and think about the following questions:</p>
@@ -461,12 +458,15 @@ div.tocify {
 <li>Effects of management actions.</li>
 <li>And more…</li>
 </ul>
+<p>[stone soup analogy to model parameterization!]</p>
 </div>
 <div id="step-3-spatial-structure" class="section level4">
 <h4>Step 3: Spatial structure!</h4>
 <p>If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:</p>
 <ul>
 <li>How many discrete populations?</li>
+<li>Do different populations have different mean vital rates?</li>
+<li>Is environmental stochasticity <strong>correlated</strong>?</li>
 <li>At what rate do individuals move among these populations?</li>
 <li>Can connectivity be enhanced via management?</li>
 <li>Are dispersal rates density-dependent?</li>
@@ -475,35 +475,35 @@ div.tocify {
 <div id="step-4-simulate" class="section level4">
 <h4>Step 4: Simulate!</h4>
 <p>You know how to simulate populations now- you can choose whether it makes sense to use R, InsightMaker, Vortex, or some other software or programming platform for your simulations!</p>
-<p>Either way, you can be creative- set up the simulations so that they can help you answer your key research questions! You are in control- you can set up the simulations so that they give you the data you need!! (when can you say that in, e.g., experimental or field biology?)</p>
-<p>What scenarios do you want to test?</p>
+<p>Either way, you can be creative- set up the simulations so that they can help you answer your key research questions! You are in control- you can set up the simulations so that they give you the kinds of data you need!!</p>
+<ul>
+<li>What scenarios do you want to test?</li>
+<li>How many replicates are sufficient?</li>
+<li>What data do you need to store for your plots and analyses?</li>
+</ul>
 </div>
 <div id="step-5-results" class="section level4">
 <h4>Step 5: Results</h4>
 <p>Finally, you need to make sense of all the simulations you just ran.</p>
 <p>There are two types of data analysis tools that you will need to be able to use the simulation results to answer your questions: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
 <p>These tools- visualization and statistical analysis - are diverse, and there is no one-size-fits-all way that you should visualize and analyze your simulation results. It really depends on your question!!</p>
-<p>I will to give you some ideas here about graphical representations - but just remember you are not limited to these ideas- be creative!</p>
-<p>Since this class is not a statistics class, I don’t necessarily expect you to do any sophisticated stats as part of your project- but Margarete and I can work with your groups individually to figure out some simple stats that make sense for your project.</p>
-<p>[stone soup analogy!]</p>
+<p>I will give you some ideas here about graphical representations in the demo PVA - but just remember you are not limited to these ideas- be creative! Since this class is not a statistics class, I don’t necessarily expect you to do sophisticated stats as part of your project- but Ben and I can work with your groups individually to figure out some simple stats that make sense for your project.</p>
 </div>
 </div>
 </div>
 <div id="a-simple-demonstration-pva" class="section level2">
 <h2>A Simple Demonstration PVA</h2>
-<p>To illustrate some of these concepts, let’s build ourselves a very simple PVA model in R.</p>
+<p>To illustrate some of these concepts, let’s build a very simple PVA model in R.</p>
 <p>We are using R because of its flexible and powerful visualization tools.</p>
-<p>For simplicity, let’s ignore age structure - that is, let’s build a <em>scalar</em> PVA model</p>
-<p>Also let’s ignore parameter uncertainty for now.</p>
+<div id="step-1-conceptualize-the-life-history" class="section level3">
+<h3>Step 1: conceptualize the life history</h3>
+<p>For simplicity, let’s ignore age structure for now - this is just a simple scalar population model!</p>
+<p>Also let’s ignore parameter uncertainty too!</p>
+</div>
+<div id="step-2-parameterize" class="section level3">
+<h3>Step 2: parameterize!</h3>
 <p>Here is the basic model parameterization:</p>
 <pre class="r"><code>####
-# Basic simulation parameters
-####
-
-nyears &lt;- 100     # number of years
-nreps &lt;- 500      # number of replicates
-
-####
 # Basic life history parameters
 ####
 
@@ -531,8 +531,21 @@ Ricker &lt;- function(prev_abund){       # this is a function for computing next
 
 Flood_prob &lt;- 0.05     # 5% chance of major flood
 Flood_lambda &lt;- 0.25    # 25% of population can survive a flood </code></pre>
-<p>Now we can use these parameters to build a simple PVA model:</p>
-<pre class="r"><code>## Set up data structures to store simulation results!
+</div>
+<div id="step-3-spatial-structure-1" class="section level3">
+<h3>Step 3: spatial structure</h3>
+<p>Let’s ignore spatial structure!</p>
+</div>
+<div id="step-4-simulate-1" class="section level3">
+<h3>Step 4: simulate!</h3>
+<p>Now we can use these parameters to build and run a simple PVA model:</p>
+<pre class="r"><code>####
+# Basic simulation parameters
+####
+
+nyears &lt;- 100     # number of years
+nreps &lt;- 500      # number of replicates
+
 
 PVAdemo &lt;- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
   #browser()
@@ -562,6 +575,7 @@ PVAdemo &lt;- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
 ### Run the PVA!
 
 Default &lt;- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)</code></pre>
+</div>
 <div id="graphical-visualization" class="section level3">
 <h3>Graphical visualization</h3>
 <p>There are several types of visualizations that you might want to use for your PVA models:</p>
@@ -648,7 +662,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

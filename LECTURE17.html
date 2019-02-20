@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Species interactions: prey-predator!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Apr 24, 2017</em></h4>
+<h4 class="date"><em>Apr 24, 2018</em></h4>
 
 </div>
 
@@ -431,18 +424,18 @@ div.tocify {
 </div>
 <p>In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one species actually benefits from the interaction and the other species loses out!</p>
 <p>Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:</p>
-<p><span class="math inline">\(\Delta V = rV^* - f(V,P)*P\)</span></p>
+<p><span class="math inline">\(\Delta V = rV^* - f(V,P) \cdot P\)</span></p>
 <p>AND</p>
-<p><span class="math inline">\(\Delta P = g(V,P)*P - qP^*\)</span></p>
+<p><span class="math inline">\(\Delta P = g(V,P) \cdot P - qP^*\)</span></p>
 <p>Where</p>
 <p><span class="math inline">\(V\)</span> is the total prey abundance (V for victims!), and</p>
 <p><span class="math inline">\(P\)</span> is the total predator abundance, and</p>
 <p><span class="math inline">\(rV^*\)</span> represents the growth of the prey population <em>in the absence of predators</em> – usually, this is some form of the standard single-species population growth models we have considered throughout most of this course (possibly density-dependent),</p>
 <p><span class="math inline">\(qP^*\)</span> represents the growth of the predator population <em>in the absence of prey</em> – usually this is simply exponential decline!,</p>
 <p>AND</p>
-<p><span class="math inline">\(f(V,P)\)</span> is known as the <strong>functional response</strong> – that is, the rate of prey consumption per predator, usually a function of the prey and possibly predator densities.</p>
+<p><span class="math inline">\(f(V,P)\)</span> is known as the <strong>functional response</strong> – that is, the per capita rate of prey consumption, usually a function of the prey (and sometimes also predator) densities.</p>
 <p>AND</p>
-<p><span class="math inline">\(g(V,P)\)</span> is known as the <strong>numerical response</strong> – that is, the per-capita rate of predator population growth, usually as a function of the prey and possibly predator densities.</p>
+<p><span class="math inline">\(g(V,P)\)</span> is known as the <strong>numerical response</strong> – that is, the increase in per-capita predator population growth due to prey consumption, usually as a function of the prey and possibly predator densities.</p>
 <p>There are many different types of possible functional response curves and numerical response curves. Let’s start simple!</p>
 <div id="the-classical-prey-predator-model" class="section level3">
 <h3>The classical prey-predator model</h3>
@@ -469,12 +462,12 @@ div.tocify {
 curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Note the intercept- does the functional response need to have an intercept of zero?</p>
-<p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the competition models!</p>
+<p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the L-V competition models! Sorry!</p>
 <p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just randomly bumping into prey.</p>
 <p>The <em>total rate of predation</em> now is:</p>
 <p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
 <p>Does this make sense?</p>
-<p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of the available prey per time step? Which predator is more efficient?</p>
+<p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em>?</p>
 <p><strong>Q</strong> what are the units of <em>alpha</em>?</p>
 <p><strong>Q</strong> Can <em>alpha</em> go above 1?</p>
 <p><strong>Q</strong> Can <em>alpha</em> go below 0?</p>
@@ -494,9 +487,9 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p>The numerical response is the population-level response of the <em>predators</em> given the amount of prey that they have consumed.</p>
 <p>We can think of this as a function of the total prey consumption per predator:</p>
 <p><span class="math inline">\(some.function(f(V))\)</span></p>
-<p>The simplest numerical response is that for every increase in prey consumed per capita, predator population growth increases by a fixed amount, <span class="math inline">\(\beta\)</span></p>
-<p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
+<p>The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption:</p>
 <p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
+<p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
 <pre class="r"><code>LVnumresp &lt;- function(V,beta){
   beta*V
 }
@@ -505,7 +498,7 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Note the intercept- does the numerical response need to have an intercept of zero?</p>
 <p>The <em>predator growth rate due to prey consumption</em> now is:</p>
-<p><span class="math inline">\(g(V) \cdot P = \beta VP\)</span></p>
+<p><span class="math inline">\(g(V) \cdot P = \beta V \cdot P\)</span></p>
 <p>Does this make sense?</p>
 <p>The term <span class="math inline">\(\beta\)</span> is also known as the <strong>conversion efficiency</strong>. Does this make sense? Consider a case where every predator consumes 100 prey per time step, but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1… Which predator is more <em>efficient</em> at converting prey biomass into population growth?</p>
 <p><strong>Q</strong> what are the units of <em>beta</em>?</p>
@@ -521,13 +514,13 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 </div>
 <div id="l-v-predation-model-in-insightmaker" class="section level3">
 <h3>L-V predation model in InsightMaker</h3>
-<p>Before we go deeper into predation modeling, let’s simulate prey and predator population growth under the L-V predation model. As always, you can work in groups!</p>
+<p>Before we go deeper into predation modeling, let’s simulate prey and predator population growth under the L-V predation model.</p>
 <p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/78356/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
 <p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”&quot; and “numerical response”.</p>
-<p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator mortality”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
+<p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator growth”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
 <p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)”.</p>
 <p><strong>Step 5</strong>: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.</p>
-<p><strong>Step 6</strong>: Add a new display to represent <strong>state space</strong>: Choose the “scatter plot” type, and under “Data” select <em>Prey</em> first, then <em>Predator</em>. What does this system look like in phase space.</p>
+<p><strong>Step 6</strong>: Add a new display to represent the <strong>phase plane</strong>: Choose the “scatter plot” type, and under “Data” select <em>Prey</em> first, then <em>Predator</em>. What does this system look like in phase space?</p>
 <p><strong>Q</strong> What happens if you change the initial abundances?</p>
 <p><strong>Q</strong> What happens if you change initial abundance of both species to 100? Is this an <strong>equilibrium</strong>? If so, is it <strong>stable</strong>?</p>
 <p><strong>Step 7</strong>: Try some other parameter values for alpha, beta, r, and q…</p>
@@ -603,7 +596,7 @@ points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,c
 points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>With some jittering, we can visualize the amount of time the system spends in various parts of phase space…</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
 points(jitter(System[,1],200),jitter(System[,2],200),col=&quot;brown&quot;,pch=20,cex=0.3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
@@ -665,7 +658,7 @@ legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;gree
 <p>Again, it can be helpful to plot out the isoclines in phase space – that is, the conditions under which the predator and prey populations do NOT grow!</p>
 <p>If we set the L-V prey growth equation to zero, we find that the victim population is stable under the following conditions in phase space:</p>
 <p><span class="math inline">\(\hat{P} =\frac{r}{\alpha}\)</span></p>
-<p>If we set the L-V predator equation to zero, we find that the victim population is stable under the following conditions in phase space:</p>
+<p>If we set the L-V predator equation to zero, we find that the predator population is stable under the following conditions in phase space:</p>
 <p><span class="math inline">\(\hat{V} =\frac{q}{\beta}\)</span></p>
 <p>That is, the prey population is stable only if there are just enough predators to bump into (and subsequently eat up) any excess individuals produced each year</p>
 <p>And the predator population is stable only if there are just enough prey to offset natural mortality.</p>
@@ -802,7 +795,7 @@ curve(TypeIfuncresp(x,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;To
 <p>The type II functional response is described mathematically as:</p>
 <p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha hV}\)</span>,</p>
 <p>where <em>f(V,P)</em> is the functional response (prey consumed per predator).</p>
-<p>Similar to the Type I functional response, <span class="math inline">\(\alpha\)</span> is the “attack rate” (rate at which a predator-prey encounters increase as prey densities increase)</p>
+<p>Similar to the Type I functional response, <span class="math inline">\(\alpha\)</span> is the “attack rate” (rate at which predator-prey encounters increase as prey densities increase)</p>
 <p>The new term, <em>h</em>, describes the handling time (average time a predator spends processing a single prey item).</p>
 <p>The term <em>h</em> is probably best understood as the <em>inverse of the maximum prey consumption rate</em>!</p>
 <p>Let’s visualize it!</p>
@@ -871,7 +864,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

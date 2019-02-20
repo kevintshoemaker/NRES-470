@@ -1,7 +1,7 @@
 ---
 title: "Stochasticity and Uncertainty"
 author: "NRES 470/670"
-date: "Feb 12, 2017"
+date: "Feb 20, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-![](uncertainty1.png)
+![](uncertainty2.jpg)
 
 ## Uncertainty!
 
@@ -27,7 +27,7 @@ There are two major reasons we can be uncertain. Either we _lack sufficient know
 
 - **You lack sufficient knowledge**. This is also known variously as *sampling uncertainty*, parameter uncertainty, structural uncertainty, and more. If you collected more data you could in principle make a better model that more closely represents reality.
 
-- **The system is inherently unpredictable**. This is also known as **randomness** or **stochasticity**. No matter how much we study a coin, we will not be able to predict outcome of a coin flip any better than 50-50 (at least let's just say that's the case for now). Ecological systems have inherent variability. We can't predict with certainty whether or not an individual will mate, or die. We can't really even be certain whether next year or the year after that will be a good year or a bad year for offspring production or mortality in general!
+- **The system is inherently unpredictable**. This is also known as **randomness** or **stochasticity**. No matter how much we study a coin, we will not be able to predict outcome of a coin flip any better than 50-50 (at least for a proper coin flip!). Ecological systems have inherent variability. We can't predict with certainty whether or not an individual will mate, or die. We can't really even be certain whether next year or the year after that will be a good year or a bad year for offspring production or mortality in general!
 
 ## How to deal with uncertainty
 The key is to **embrace uncertainty**. As population ecologists, we have three major tools to help us manage and account for uncertainty in our study systems:
@@ -38,9 +38,9 @@ The key is to **embrace uncertainty**. As population ecologists, we have three m
 
 ### Stochastic models (two main types)
 
-2. Second, we usually can't predict whether an individual will live or die, breed or not breed (whether an individual will "get lucky" so to speak!)? We might know the per-capita *probability* of breeding, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting who lives and dies, who gives birth and who doesn't, how many females are born, we _just can't know for sure_. This is an example of a system being *inherently unpredictable*. In population ecology this is called **demographic stochasticity**. In this case, the tool we use is **computer-simulated "coin flipping"**.
+2. Second, we usually can't predict whether an individual will live or die, breed or not breed (whether an individual will "get lucky" so to speak!)? We might know the per-capita *probability* of breeding, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting who lives and dies, who gives birth and who doesn't, how many females are born, we _just can't know for sure_. This is an example of a system being inherently unpredictable. In population ecology this is called **demographic stochasticity**. In this case, the tool we use is **computer-simulated "coin flipping"**.
 
-3. Third, we usually can't predict whether next year or the year after will be a good one or a bad one for a population- that is, whether the per-capita vital rates (e.g., $b$, or $d$ or $r$) will be more or less optimal year-to-year (whether a _population_ will "get lucky", so to speak). This is another example of a system being *inherently unpredictable*. In population ecology this is called **environmental stochasticity**. In this case, the tool we use is **randomly varying vital-rates**. 
+3. Third, we usually can't predict whether next year or the year after will be a good one or a bad one for a population- that is, whether the per-capita vital rates (e.g., $b$, or $d$ or $r$) will be more or less optimal year-to-year (whether a _population_ will "get lucky", so to speak). This is another example of a system being *inherently unpredictable*. In population ecology this is called **environmental stochasticity**. In this case, the tool we use is **randomly varying vital rates**. 
 
 ![](dice1.png)
 
@@ -59,12 +59,12 @@ barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")
 ```
 
 
-A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again in nature, and we should know them!
+A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again, and we should know them!
 
 ### Probability distributions
 
 ### Discrete vs. continuous
-In *discrete distributions*, each outcome has a specific probability (like the probability of flipping a coin 10 times and getting 4 heads). For example, let's consider a *binomial distribution*  
+In *discrete distributions*, each unique outcome has a specific probability (like the probability of flipping a coin 10 times and getting 4 heads). For example, let's consider a *binomial distribution*  
 
 ```{r echo=FALSE}
 #rbinom(10,10,0.3)    # the random numbers have no decimal component
@@ -98,7 +98,7 @@ barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution
 ```
 
 
-In *continuous distributions*, there is an infinite set of possibilities in our random-number box.  
+In *continuous distributions*, there are an infinite number of possibilities between any two unique possibilities.  
 
 Let's consider the *uniform distribution*: 
 
@@ -151,7 +151,7 @@ curve(dbeta(x,shape1,shape2),0,1,ylab="Probability (density)",xlab="Possibilitie
 
 ### Explore distributions in R
 
-Let's play around with distributions a little using R- you can access a web-based version of R called  [R-fiddle](http://www.r-fiddle.org/#/).
+Let's play around with distributions a little using R.
 
 Note that all these distributions are also available to you in InsightMaker. 
 
@@ -184,7 +184,7 @@ rbeta(1,shape1=10,shape2=3)  # beta distribution is defined by "shape1" and "sha
 
 ```
 
-Finally, you can make up your own distribution!
+You can even make up your own distribution if you want!
 
 ```{r}
 distribution <- c(5,3,5,4,3,6,4,5,5,1,6,5,4,3,6,6,4,2,8,4,4,5,2)
@@ -193,8 +193,56 @@ sample(distribution,1)  # take one random sample from this distribution!
 ```
 
 
+### In-Class Exercise: Fit a distribution! 
 
-### In-Class Exercise: Stochasticity and Uncertainty
+```{r echo=FALSE, eval=FALSE}
+hist(rgamma(20,4.1,2))
+
+```
+
+![](canvasback1.jpg)
+
+Let's imagine we have studied a population of canvasback ducks over a 20 year period and we have estimated the average number of eggs successfully hatched per female for each of the 20 years. 
+
+We first enter these numbers into R and visualize the distribution:
+
+```{r}
+hatch_perfem <- c(3.05, 1.45, 0.99, 3.24, 1.49, 1.70, 1.66, 2.32, 0.83, 2.41,
+2.33, 1.68, 1.43, 2.74, 2.05, 3.13, 1.90, 3.69, 1.55, 2.79)
+
+hist(hatch_perfem)
+
+```
+
+**Q**: what type of uncertainty does this set of values most likely represent?
+
+**Q**: what distribution might we use to fit this distribution?
+
+Now let's try to fit a distribution to these data! Because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) let's try to fit a lognormal distribution!
+
+We could use statistics to fit the distribution, but we are just going to use trial and error. Here is some code to help you get started.
+
+Note that the lognormal distribution has two parameters: the first (meanlog) helps to define the mean and the other (sdlog) helps to determine the variability of the distribution. 
+
+```{r}
+
+## first, plot a histogram of the data from the 20-year study
+hist(hatch_perfem,freq=F,main="Histogram of avg number hatched per female",xlab="possibilities",ylab="probability",xlim=c(0,10),ylim=c(0,1))
+
+## now, overlay a lognormal probability distribution with arbitrary parameters (meanlog and sdlog)
+
+curve(dlnorm(x,meanlog=1.5,sdlog=0.2),col="green",lty=2,lwd=2,add=T)
+
+
+```
+
+1) Use trial-and-error to find appropriate parameters for the lognormal distribution.
+
+2) Use your fitted distribution to predict the average number of hatchlings per female for the next 5 years. To do this, use the "rlnorm" function in R.
+
+
+
+### In-Class Exercise 2: Stochasticity and Uncertainty in InsightMaker
 
 These concepts (like everything in this class) are best understood by worked examples.
 
@@ -238,10 +286,6 @@ In plain english: the number of births is a random draw from a Poisson random nu
 
 3. Run the simulation. What does it look like?
 
-**Correction**, 2/28/2017: I identified a bug with the Poisson distribution in InsightMaker- it doesn't work when the expected number of offspring exceeds about 750! So until they fix the bug, you would need to use an IF-THEN-ELSE statement to use the Poisson only where their algorithm actually works!  
-
-**Correction**, 3/1/2017: The bug has been fixed!
-
 4. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive".
 
 5. Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool.
@@ -269,7 +313,7 @@ RandNormal(0.3, 0.3)
 
 **Q** Is the effect of *environmental stochasticity* bigger at low or high abundances?
 
-6. Note that the normal distribution CAN go below zero or above 1, which is not always biologically realistic! As we saw above, you could use a different distribution! OR you could just **truncate** the normal distribution to behave more realistically. That is, if the random number you draw comes out below zero, just make it zero! 
+6. Note that the normal distribution CAN go below zero or above 1, which is not always biologically realistic! However, as we have seen before, InsightMaker does not allow a [Flow In] to remove from a [Stock] or a [Flow Out] to add to a [Stock], so we don't really need to worry about this problem! That is, InsightMaker will *truncate* the normal distribution for us. Alternatively (if we want to be very explicit) we could just **truncate** the normal distribution ourselves. That is, if the random number you draw comes out below zero, just make it zero! 
 
 For birth rate, this can be done like this:
 
@@ -277,14 +321,35 @@ For birth rate, this can be done like this:
 Max(0,RandNormal(0.4, 0.4))
 ```
 
-You could also use an IF-THEN-ELSE statement to do this... 
+**Q** Can you implement a **catastrophe** scenario? That is, make a scenario where there is a low probability of an event (e.g., flood, disease, drought) that causes very high mortality and/or very low birth rate?  
 
-**Q** Can you modify survival rate to constrain the random number between 0 and 1? 
+A catastrophe can be implemented by using an IF-THEN statement: if the random number is below some rare value (e.g., 0.05) then cause a catastrophe to occur! 
 
-Re-run the model with the modified/constrained random vital rates. 
+Hint: You may want to use an IF-THEN-ELSE statement to do this... The most basic (most commonly used) random number generator draws numbers from a *uniform* distribution with a minimum of 0 and a maximum of 1. To do this in InsightMaker, you can use this syntax:
+
+```
+Rand(0, 1)
+```
 
 
-**Q** (harder question!) Under what circumstances can you envision small populations being more vulnerable to environmental stochasticity than large populations?
+**Q** What if environmental stochasticity influences survival and fecundity in the same manner? That is: what if a "good year" for births is also a good year for survival? Would this increase or decrease the effect of environmental stochasticity on population dynamics? In InsightMaker, try to impement a scenario where the environmental stochasticity in survival rate is perfectly **correlated** with environmental stochasticity in birth rate. 
+
+
+Hint: you will need another [variable] in your InsightMaker canvas- this variable could be named something like "Habitat Quality", and should store a random draw from a Normal distribution with mean "0" and standard deviation "1":
+
+```
+RandNormal(0, 1)
+```
+
+Next, you can alter your per-capita fecundity parameter to have the following syntax, which would represent a mean fecundity of 0.85 with a standard deviation of 0.4
+
+```
+0.85+0.4*[habitat quality]
+```
+
+
+**Q** Under what circumstances can you envision small populations being more vulnerable to environmental stochasticity than large populations?
+
 
 [--go to next lecture--](LECTURE9.html)
 

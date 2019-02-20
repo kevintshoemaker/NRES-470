@@ -1,7 +1,7 @@
 ---
 title: "Lab 6: Metapopulation modeling"
 author: "NRES 470/670"
-date: "March 13, 2017"
+date: "March 13, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -15,13 +15,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Some definitions
 
-In this lab we will have an opportunity to build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
+In this lab we will build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
 
 A metapopulation is best considered **a population of populations**. If a population is composed of individuals, a metapopulation is composed of populations!
 
 **colonization** is the process of a population going from unoccupied to occupied!
 
-How can a metapopulation become colonized? The answer is **immigration** of course. That part of the "BIDE" equation that we have been ignoring up until now! 
+How can a metapopulation become colonized? The answer is **immigration** of course.  
 
 **extirpation** (or extinction) is the process of a patch going from occupied to unoccupied.
 
@@ -33,7 +33,7 @@ $I$ is the total fraction of patches that are colonized by immigrants per time p
 
 $E$ is the total fraction of patches that go extinct per time period (extirpation rate)
 
-$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy rate**
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy**
 
 Therefore, the change in occupancy can be expressed as:
 
@@ -54,17 +54,18 @@ The more sites are occupied, the higher the rate of extinction!
 $E = p_e\cdot f  \qquad \text{(Eq. 3)}$
 
 
-Combining equation 1 with the above equations, we get a metapopulation model:
+Combining equation 1 with the above equations, we get our first metapopulation model:
 
 $\Delta f = p_i(1-f)-p_ef  \qquad \text{(Eq. 4)}$
 
 This model assumes the following:   
 
 - Homogeneous patches (all patches are created equal)
-- No spatial dependence of extinction and colonization (spatial context does not affect extinction and colonization parameters)
+- Spatial context does not affect extinction and colonization parameters
 - No time lags
-- Constant extinction and colonization rates across time (extinction and colonization parameters do not change over time)
 - Very large number of patches
+- Extinction and colonization parameters are not dependent on the fraction of patches occupied. 
+
 
 
 ### Variant #1: island-mainland model
@@ -73,13 +74,16 @@ Colonization occurs via immigration from a constant external source -- a constan
 
 This is the simplest metapopulation model. $p_i$ and $p_e$ are fixed, totally constant.
 
+This is actually the model we have already constructed!
+
+
 ### Variant #2: internal colonization
 
 Now, colonization can only happen via immigration from within the metapopulation itself. So when few populations are colonized, colonization is low because of a lack of potential immigrants in the metapopultion. 
 
-$p_i = if   \qquad \text{(Eq. 5)}$
+$p_i = i \cdot f   \qquad \text{(Eq. 5)}$
 
-$i$ represents the strength of internal immigration (how much the probability of colonization increases with each new occupied patch in the metapopulation.
+$i$ represents the strength of internal colonization (how much the probability of patch-level colonization increases with each new occupied patch in the metapopulation.
 
 ### Variant #3: rescue effect. 
 
@@ -87,7 +91,7 @@ Now, the extinction rate can be reduced by immigration from other populations in
 
 $p_e = e(1-f)   \qquad \text{(Eq. 6)}$
 
-$e$ represents the strength of the rescue effect.
+$e$ represents the strength of the rescue effect (maximum patch-level extinction risk, which occurs at complete metapopulation vacancy).
 
 
 ### Variant #4: both internal colonization AND rescue effect!
@@ -98,17 +102,17 @@ This one is pretty self-explanatory!
 
 The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *population of populations*. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
 
-Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends. 
+Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends across the entire metapopulation. 
 
-## Exercise 1: play with metapopulation terms and concepts!
+## Exercise 1: basic metapopulation terms and concepts!
 
 HINT: _use the Gotelli book!!!_
 
-1a. An endangered frog population of 100 frogs lives in a single pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond. You know from your demographic studies that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10 to 50% In the short run, is it a better strategy to retain the single population or to split it into three? Show your calculations, and explain your reasoning! 
+1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (located far enough away from each other so you can reasonbly assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10% to 50%. In the short run, is it a better strategy to retain the single population or to split it into three? Show your calculations, and explain your reasoning! 
 
-1b. Consider the simplest (island-mainland) metapopulation model. Under what conditions is the occupancy rate $f$ constant? Explain your reasoning. 
+1b. Consider the simplest (island-mainland) metapopulation model. Under what conditions is the occupancy rate $f$ constant over time? Explain your reasoning. 
 
-1c. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied populations $f$ should be represented as a [Stock] (this stock can not go negative, nor can it go above 1!) and there should be two [Flows]: one for *colonization* and one for *extinction*. Initialize $f$ at 0.9. The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. Set $p_e$ to 0.15 and $p_i$ to 0.4. Provide a link to your InsightMaker model as part of your lab write-up.
+1c. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied populations $f$ should be represented as a [Stock] (this stock can not go negative, nor can it go above 1!) and there should be two [Flows]: one for *colonization* and one for *extinction*. Initialize $f$ at 0.9. The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. Set $p_e$ to 0.15 and $p_i$ to 0.4. Provide a link to your working InsightMaker model as part of your lab write-up.
 
 1d. On the basis of your Insightmaker model, what happens to $f$ over the course of the simulation? Does the metapopulation go extinct (regional extinction)? Does $f$ reach an equilibrium? If so, is this equilibrium **stable** or **unstable**? Explain your reasoning. 
 
@@ -118,7 +122,7 @@ HINT: _use the Gotelli book!!!_
 
 1g. Compare your InsightMaker results (provide a plot) with the results from applying Equation 4.6 from Gotelli. Show your work. Do the two answers match?
 
-1h. Change your InsightMaker model to reflect the *rescue effect*. Restore the colonization model to represent "propagule rain". Set the parameter $e$ to 0.25. Provide a link to your InsightMaker model as part of your lab write-up. 
+1h. Change your InsightMaker model to reflect the *rescue effect*. Restore the colonization model to represent "propagule rain" (constant colonization rate for vacant patches). Set the parameter $e$ to 0.25. Provide a link to your InsightMaker model as part of your lab write-up. 
 
 1i. Compare your InsightMaker results (provide a plot) with the results from applying Equation 4.8 from Gotelli. Show your work. Do the two answers match?
 
@@ -163,7 +167,7 @@ dispersal rate: 0.25
 NOTE: there is one parameter (max dispersal distance, maxdist) you will need to pay attention to, but it is not represented by a value slider (I couldn't get it to work that way, unfortunately). To alter the maximum dispersal distance, you need to open the equation editor for the [Immigrants] variable, and change the value in the top line, which should look something like this:
 
 ```
-maxdist <- 60
+maxdist <- 50
 ```
 
 2a. Use InsightMaker's *sensitivity testing tool* to run the model 50 times. What is the approximate risk of regional extinction of this metapopulation? What is the abundance trend (that is, overall regional, or metapopulation, abundance) over time? What is the trend in occupancy over time? Provide plots to justify your answer. 
@@ -193,7 +197,7 @@ Which management strategy would be most effective for ensuring that the metapopu
 
     * After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, copy and paste the URL into the Word document.
 
-***Due Mar. 31 at 11 am.***
+***Due Mar. 30 at 10 am.***
 
 *  Word document with short answers, model URLs, and figures (where appropriate)
     +  **Exercise 1**

@@ -1,7 +1,7 @@
 ---
 title: "Lab 3: Age-structured populations"
 author: "NRES 470/670"
-date: "Feb 9, 2017"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -21,37 +21,49 @@ First let's do some math!
 
 ### Life tables
 
-Let's start with some notation- population ecology, and life tables in particular, are full of notation. We should at least be aware of the major terms used in population ecology!
+Let's start with some definitions- population ecology, and life tables in particular, are full of terms and equations. We should at least be aware of the meaning of the major terms involved in life table analysis!
 
-**Survivorship:** $l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$
+**Cohort:** A group of organisms of the same species that are born during the same year or the same breeding season
 
-**Survival rate:** $g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$
+**x:** Age, or time elapsed since the birth date of the cohort (often in years).       
 
-**Birth rate:** $b(x)$ is simply the per-capita number of offspring produced by a given age class.
+**S(x):** Survivors, or Census size -- the number of individuals in the study population who survive to time x.   
 
-**Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum age.
+**Birth rate, b(x):** Average number of offspring produced by an individual in age category x.  
 
-**Average lifespan** is defined as: $L = \frac{\sum_{x=0}^{k}l(x)\cdot x}{\sum_{x=0}^{k}l(x)}  \qquad \text{(Eq. 4)}$ 
+**Survivorship, l(x):** $l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$       
 
-**Generation time** is defined as the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
+**Survival rate, g(x):** $g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$
 
-**Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$ 
+**Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.     
 
-One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected present and future reproductive output of an individual of age x: $V(x) = b(x) + \sum_{t=x+1}^{k} \frac{l(t+1)}{l(t)} \cdot b(t)   \qquad \text{(Eq. 7)}$. This could also be expressed as: $V(x) = b(x) + \sum_{t=x+1}^{k} g(t) \cdot b(t)$. 
+**Life Expectancy (for a newborn)** can be *approximated* as: $LE = \sum_{x=0}^{k}l_{mid}(x)  \qquad \text{(Eq. 4)}$, where $l_{mid}(x)=\frac{l(x)+l(x+1)}{2}$ (lmid(x) is the 'midpoint survivorship').     
 
-## Exercise 1: basic life table analysis
+**Q**: why is the above estimate for life expectancy (LE) *approximate* and not exact? Is it likely to be biased or unbiased?          
+
+**Generation time** is defined as the _Average parental age for all the offspring produced by a cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
+
+**Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$
+
+NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the *Euler method*.      
+
+One more concept I want to introduce here is **reproductive value**, or V(y). This represents the expected future reproductive output of an individual of age y, *discounted by the intrinsic rate of growth*: $V(y) = \frac{e^{ry}}{l_y} \cdot \sum_{x=y+1}^{k}e^{-rx}l_xb_x   \qquad \text{(Eq. 7)}$.  Different individuals in a population tend to have different "value" in terms of contributing to future generations. Caswell (2001) said "The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class". Knowing something about the relative "value" of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, reproductive value is critical for applied population ecology! 
+
+**Q:** Why is the reproductive value discounted by the population growth rate??    
+
+## Exercise 1: life table analysis
 
 ![](blackrobin.jpg)
 
 Let's imagine that we are following a *cohort* of reintroduced Chatham Island robins on a small island through time. 
 
-- First, we establish fake nests and place 350 captive-laid eggs in them. 
-- All individuals are given a unique marking as soon as they hatch. These markings are permanent and not affected by tag loss!
-- We visit the island once per year, and we count all the individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it. If we do not see the individual we know with certainty that it is dead!
+- First, we establish artificial nests and place 350 captive-laid eggs in them.      
+- All individuals are given a unique marking as soon as they hatch. These markings are permanent and not affected by tag loss!        
+- We visit the island once per year, and count all the individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!     
 - We record the following numbers of robins over 5 years revisiting the island (starting with 350 at year 0): 50, 25, 10, 2, and 0.
-- We record the following reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0
+- We record the following reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0        
 
-You can load these data in [this handy CSV file](life_table2.csv). It should look something like this:
+You can load these data in [this CSV file](life_table2.csv). It should look something like this:
 
 ```{r include=FALSE}
 lifetable <- read.csv("life_table2.csv")
@@ -64,18 +76,18 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 
 ### QUESTIONS, Exercise 1 (basic life tables):
 
-1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the "correct" way!). Does this population most closely resemble type I, II, or III survivorship? Explain your reasoning. Does the log-transformation change your answer? 
+1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the "correct" way!). Does this population most closely resemble type I, II, or III survivorship? Explain your reasoning. Why do you need to log-transform the survivorship values in order to properly classify this population as type I, II or III? 
 
-1b. Describe *Equation 3* above in plain English in a way that makes sense to you. What is the net reproductive output, $R_0$ for this population? Is this population growing, declining or stable?    
+1b. What is the lifetime reproductive potential, $R_0$ for this population? Is this population growing, declining or stable?    
 
-1c. What is the mean lifespan, $L$, and generation time, $G$ for this population? What happens to your generation time estimate if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?
+1c. What is the mean life expectancy, $LE$, and generation time, $G$ for this population? What happens to your generation time estimate if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?
 
 1d. What is the reproductive value($V$) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?  
 
-1e. Are the vital rates in this population **Density-dependent**? If so, explain your reasoning. If not, explain what additional information you would need to evaluate this question.
+1e. Are the vital rates in this population **Density-dependent**? If so, explain your reasoning. If not, explain what additional information you would need to evaluate density-dependence in this population.
 
 
-## Exercise 2: more complex life table analysis
+## Exercise 2: another life table analysis
 
 ![](uinta.jpg)
 
@@ -91,11 +103,11 @@ Load up the [Uinta ground squirrel life table data](life_table3.csv) given to us
 
 ### QUESTIONS, Exercise 2 (more advanced life table analysis):
 
-2a. Compare the two life tables using the following major life-table metrics: $R0$, $G$, $r$, and $V$. What changes do you notice between these two life tables? 
+2a. [for the Uinta squirrel life table] Compare the two life tables using the following major life-table metrics: $R0$, $G$, and $r$ (extra credit: compute the reproductive value $V$ for each value of cohort age). What changes do you notice between these two life tables? 
 
-2b. Is generation time ($G$) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how it affected generation time.  
+2b. [for the Uinta squirrel life table] Is generation time ($G$) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how (and if) it affected generation time.  
 
-2c. [return to the black robin example] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the 6 age classes next year? Try it, and explain how you got your answer! 
+2c. [**return to the black robin example**] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the 6 age classes next year? Try it, and explain how you got your answer! 
 
 
 ## Exercise 3: age-structured models in InsightMaker
@@ -106,7 +118,7 @@ Let's build an age-structured model from scratch. To do this, you can follow the
 
 2. Make three new stocks: *Age 1*, *Age 2* and *Age 3*. 
 
-3. Make a new flow called *Recruitment*. This should represent new *Age 1* individuals. We will ignore immigration for now, so new recruiment into the "Age 1" stock represents the only way new individuals can be added to the population. We will assume that *Age 2* and *Age 3* are the only reproductive ages. Therefore, draw links from *Age 2* and *Age 3* to *Recruitment*. 
+3. Make a new flow (flow in) called *Recruitment*. This should represent new *Age 1* individuals. We will ignore immigration for now, so new recruiment into the "Age 1" stock is the only way new individuals can be added to the population. We will assume that *Age 2* and *Age 3* are the only reproductively active ages. Therefore, draw links from *Age 2* and *Age 3* to *Recruitment*. 
 
 4. Make new flows from _Age 1 to Age 2_ and from _Age 2 to Age 3_, called *Transition to Age 2* and *Transition to Age 3*, respectively. These flows represent **growth**, or advancement from *Age 1* to *Age 2* is dependent on the number of individuals in *Age 1*. Therefore, draw a link from *Age 1* to *Transition to Age 2*. Do the same for *Transition to Age 3*.   
 5. Make three new flows representing, emerging respectively from each stock and called *Age 1 mortality*, *Age 2 mortality*, and *Age 3 mortality*. The total number of deaths is dependent on the numbers in each stock, so draw links from each stock to the respective *mortality* outflow.  
@@ -117,23 +129,23 @@ Your new insight should look something like this:
 
 6. Parameterize your new age-structured population!
     6a. For recruitment, make new variables called *Recruitment rate, age 2* and *Recruitment rate, age 3*, representing the per-capita recruitment rate for age 2 and age 3, respectively. Draw links from these variables to *Recruitment*, and set these variables at 1.1 and 1.8, respectively. Click on the equation editor for *Recruitment* and set the equation appropriately (see questions below)
-    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Set these rates at 0.4 and 0.3, respectively. Now click on the equation editors for the transition rates, and specify the transition rates appropriately.   
-    6c. For the mortality rates, note that all individual in the *Age 1* stock must either transition to *Age 2* or die. In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately. 
+    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Draw links to the appropriate flows, and set these rates at 0.4 and 0.3, respectively.    
+    6c. For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately. 
 
 7. Explore the model- make sure you understand how it works! 
 
 
 ### QUESTIONS, Exercise 3 (age-structured model in InsightMaker):
 
-3a. What is the equation for *Recruitment* in the above model? Copy and paste your equation from InsightMaker. Now explain this equation in plain english!
+3a. What is the equation for *Recruitment* in the above model? Copy and paste your equation from InsightMaker. Now explain this equation in plain English!
 
-3b. What is the equation for *Age 1 Mortality* in the above model? Copy and paste the equation from InsightMaker. Now explain this equation in plain english! What about *Age 3 mortality*? 
+3b. What is the equation for *Age 1 Mortality* in the above model? Copy and paste the equation from InsightMaker. Now explain this equation in plain English! What about *Age 3 mortality*? 
 
-3c. Initialize the population like the spadefoot toad example from lecture- so that the population consists of only individuals in the first (*Age 1*) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation? How do the dynamics change if you change the simulation time step to 0.1? 
+3c. Initialize the population like the spadefoot toad example from lecture- so that the population consists of only individuals in the first (*Age 1*) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?  
 
-3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the **Stable Age Distribution** for this population? Would the stable age distribution change if you changed the vital rates (recruitment rates, transition rates etc.)?
+3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the **Stable Age Distribution** for this population? Does the stable age distribution change if you change the vital rates (recruitment rates, transition rates etc.)?
 
-3e. Is this a growing or declining population? Imagine you could enact a predator-control program and reduce the mortality of *Age 1* individuals. How much would you have to reduce mortality of this age class to make a growing population? What if you could only reduce *Age 2* mortality? 
+3e. Is this a growing or declining population? Imagine you could enact a predator-control program and reduce the mortality of *Age 1* individuals. How much would you have to reduce mortality of this age class to make a growing population? What about *Age 2* mortality -- How much would you have to reduce mortality of this age class to make a growing population? 
     
 
 ## Exercise 4: more complex age-structured models in InsightMaker!
@@ -142,14 +154,14 @@ Try to implement the following model (adding onto the previous age-structured mo
 
 4a. Please provide your full InsightMaker model (share with instructors and send as a link).   
     
-4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model? If not, why does it look like it has a random component?  
+4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does it *appear* to have a random component?  
 
 
 ##Checklist for Lab 3 completion
 
-* Please bundle the materials into one Word document and submit to Professor Shoemaker and Margarete Walden _using WebCampus_!
+* Please bundle the materials into one Word document and submit _using WebCampus_!
 
-***Due Feb. 17 at 11 am.***
+***Due Feb. 22 at midnight.***
 
 *  Word document with short answers
     +  **Exercise 1**

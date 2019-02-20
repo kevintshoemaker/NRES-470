@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Example: parameterizing a PVA model</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Mar 26, 2017</em></h4>
+<h4 class="date"><em>Mar 26, 2018</em></h4>
 
 </div>
 
@@ -431,7 +424,7 @@ div.tocify {
 <li>Approximately 90% of the diet of black-footed ferret consists of prairie dogs (obligate predator).</li>
 <li>Ferrets give birth in prairie dog burrows.</li>
 <li>The historic range of the black-footed ferret coincides with the three prairie dog species that constitute its prey.</li>
-<li><em>You can’t know what’s going on with BFF populations without knowing what’s going on with prairie dogs.</em></li>
+<li><em>You can’t know what’s going on with BFF populations without knowing what’s going on with prairie dogs</em></li>
 </ul>
 <div class="figure">
 <img src="ferret1.jpg" />
@@ -457,7 +450,7 @@ div.tocify {
 <p class="caption">Conata basin</p>
 </div>
 <ul>
-<li>This effort resulted in a self-sustaining population with an annual total of approximately 200 animals by 2000 (Livieri 2006).</li>
+<li>This effort resulted in a self-sustaining population with a total of approximately 200 animals by 2000 (Livieri 2006).</li>
 <li>Plague-free, rapid establishment of ferrets, <em>among the most successful ferret reintroduction sites</em>.</li>
 <li>Declined dramatically since <em>sylvatic plague</em> was detected in 2008, falling from 335 individuals documented in 2007 to only 71 in 2012 (Livieri 2012).</li>
 <li>Plague mitigation efforts have been implemented, including
@@ -684,7 +677,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

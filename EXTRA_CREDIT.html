@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Extra credit options</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>March 9, 2017</em></h4>
+<h4 class="date"><em>March 7, 2018</em></h4>
 
 </div>
 
@@ -424,7 +417,7 @@ div.tocify {
 <h2>Extra Credit Option 1 – Journal Article Response</h2>
 <div id="total-points-possible-10" class="section level4">
 <h4>Total points possible: 10</h4>
-<p><strong>Due May 10, 2016 at 11:59 pm</strong></p>
+<p><strong>Due May 9, 2018 at 11:59 pm</strong></p>
 <p><strong>Objectives:</strong><br />
 1. Connect the content of this course with active research areas in the expanding, dynamic field of population ecology.<br />
 2. Engage with original scientific literature in this field of study.</p>
@@ -443,20 +436,21 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>No more than 2 pages, double-spaced, size 12 font.</li>
 <li>Use essay format: write in complete sentences and coherent paragraphs.</li>
-<li>Three main facets to write about:
+<li>Three main elements to write about:
 <ul>
 <li>Summarize <strong>main methods and results</strong></li>
 <li>Identify <strong>how the research was applied</strong> to a particular conservation or management issue, and describe the relationship between the research and the contents of this course.</li>
-<li>Provide <strong>your personal response</strong> to the article - why did you choose to read it, what did you like about it, and what did you learn? Upload your written response and a PDF of the journal article to WebCampus by May 10.</li>
+<li>Provide <strong>your personal response</strong> to the article - why did you choose to read it, what did you like about it, and what did you learn?</li>
 </ul></li>
 </ol>
+<p>Upload your written response and a PDF of the journal article to WebCampus by May 9.</p>
 </div>
 </div>
 <div id="extra-credit-option-2-population-ecology-talk" class="section level2">
 <h2>Extra Credit Option #2 – Population Ecology Talk</h2>
 <div id="total-points-possible-10-1" class="section level4">
 <h4>Total points possible: 10</h4>
-<p><strong>Due May 10, 2016 at 11:59 pm</strong></p>
+<p><strong>Due May 9, 2018 at 11:59 pm</strong></p>
 <p><strong>Objectives:</strong></p>
 <ol style="list-style-type: decimal">
 <li>Augment the course by learning directly from other experts in the field of population ecology.</li>
@@ -483,7 +477,7 @@ div.tocify {
 <li>Provide <strong>your personal response</strong> to the talk - why did you choose to attend, and what did you like about it? Was there anything that was unclear or that you would like to learn more about?</li>
 </ul></li>
 </ol>
-<p>Upload your written response to WebCampus by May 10.</p>
+<p>Upload your written response to WebCampus by May 9.</p>
 </div>
 <div id="grading-rubric-option-1" class="section level4">
 <h4>Grading Rubric, option 1:</h4>
@@ -763,7 +757,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

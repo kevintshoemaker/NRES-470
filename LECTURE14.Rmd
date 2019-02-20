@@ -1,7 +1,7 @@
 ---
 title: "Example: parameterizing a PVA model"
 author: "NRES 470/670"
-date: "Mar 26, 2017"
+date: "Mar 26, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 - Approximately 90% of the diet of black-footed ferret consists of prairie dogs (obligate predator). 
 - Ferrets give birth in prairie dog burrows. 
 - The historic range of the black-footed ferret coincides with the three prairie dog species that constitute its prey. 
-- *You can’t know what’s going on with BFF populations without knowing what’s going on with prairie dogs.* 
+- *You can’t know what’s going on with BFF populations without knowing what’s going on with prairie dogs* 
 
 ![](ferret1.jpg)
 
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![Conata basin](conata1.jpg)
 
-- This effort resulted in a self-sustaining population with an annual total of approximately 200 animals by 2000 (Livieri 2006). 
+- This effort resulted in a self-sustaining population with a total of approximately 200 animals by 2000 (Livieri 2006). 
 - Plague-free, rapid establishment of ferrets, _among the most successful ferret reintroduction sites_. 
 - Declined dramatically since *sylvatic plague* was detected in 2008, falling from 335 individuals documented in 2007 to only 71 in 2012 (Livieri 2012).
 - Plague mitigation efforts have been implemented, including 

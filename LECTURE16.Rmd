@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: competition!"
 author: "NRES 470/670"
-date: "Apr 13, 2017"
+date: "Apr 20, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -19,7 +19,11 @@ PVA, as you may recall, tends to be very single-species focused.
 
 BUT population ecology doesn't have to be single-species focused. There are many cases where we would do well to think about species interactions specifically.
 
-From a modeling standpoint, this is where things really get interesting! That is, with species interactions, we really start to see some unexpected emergent properties!
+From a modeling standpoint, this is where things really get interesting- with species interactions, we really start to see some unexpected emergent properties!
+
+Species interactions can be classified according to the effect of the interaction on each species: (+,+), (+,-), (+,0), (-,-), (-,0), (0,0)
+
+**Q**: Can you name each of the above interaction classes?
 
 ## Competition
 
@@ -32,7 +36,7 @@ There is not much essential difference between within-species competition and am
 #### Exploitation
 This is the kind of competition we probably think about first- all individuals are competing for resources and all have similar competitive abilities. It's a free-for-all: everyone gets some piece of a limited pie!  
 
-Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed in detail! Within species, this is often called "*scramble competition*". 
+Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed this class. Within a single species, this is often called "*scramble competition*".  
 
 #### Interference
 Sometimes the negative effect of one actor (individual of the same or another species) on another actor is due to direct behavioral exclusion. This is the case with birds that maintain territories and keep other birds off the territory. 
@@ -49,7 +53,7 @@ If *intra-species competition* and *inter-species competition* are essentially t
 
 $\Delta N = r\cdot N_t \cdot (1-\frac{N}{K})$
 
-2. Now consider the case where we have two species that experience logistic growth:
+2. Now consider the case where we have two species whose dynamics can be described by logistic growth equations:
 
 Species 1: $\Delta N1 = r\cdot N1_t \cdot (1-\frac{N1}{K1})$      
 
@@ -71,13 +75,11 @@ The constants $\alpha$ and $\beta$ are measures of the effect of one species on 
 
 **Q**: what does it mean if $\alpha$ is equal to zero?
 
-### Let's explore this model in InsightMaker!
+### Let's explore this model together in InsightMaker!
 
 **Step 1**: clone a basic (non-interacting) two-species model [here](https://insightmaker.com/insight/77729/Base-2-species-model). Try some different parameter settings, to make sure the model is doing what you expect!
 
 **Step 2**: Now add the "alpha" and "beta" terms to represent the degree to which species 1 competes with species 2, and vice versa. Put slider bars on these parameters, with bounds of 0 to 10.  *What should "alpha" and "beta" link to??*
-
-**NOTE** I ran into some strange error where the term "alpha" means something to InsightMaker, and so naming a variable "alpha" generated an error. Took me like an hour to figure this out. So maybe name it "Alpha1" instead...
 
 **Step 3**: Change the parameter values around and see how the model behaves. 
 
@@ -604,21 +606,21 @@ jacobianAtXY <- compiler::cmpfun(function(fun,x=NULL, y=NULL,inc=1e-7){
 ```
 
 
-### Working in phase space!
+### Working in the phase plane!
 
-There is a lot you can do with phase space. 
+There is a lot you can learn about an interacting two-species system by working with the phase plane. 
 
 First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system is expected to go from that point in phase space. 
 
 So, imagine we start at the initial abundance in the above figures. Where does the arrow point in phase space? 
 
-The *length* of the arrow represents the speed at which the system will move in the direction of the arrow. 
+The *length* of the arrow represents the speed at which the system will move in the direction of the arrow (the degree of *repulsion* from that point in phase space).  
 
 Now imagine we draw arrows throughout phase space, representing where the system would be expected to go. 
 
 Note: this example uses R code from [Paul Hurtado](http://www.pauljhurtado.com/)
 
-```{r echo=FALSE}
+```{r}
 #######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
@@ -689,19 +691,17 @@ The red line represents the conditions under which the growth rate of species 1 
 
 **Q**: under what conditions is carrying capacity "used up" for species 1??
 
-That is, it represents that case where carrying capacity is "filled up", by either species 1 or species 2.
-
 Below the red line, species 1 will tend to increase. 
 
 Above the red line, species 1 will tend to decrease.
 
-The blue line represents the conditions under which carrying capacity is used up for species 2!
+The blue line (isocline) represents the conditions under which carrying capacity is used up for species 2!
 
 **Q**: under what conditions is carrying capacity "used up" for species 2??
 
-Below the red line, species 2 will tend to increase. 
+Below the blue line, species 2 will tend to increase. 
 
-Above the red line, species 2 will tend to decrease.
+Above the blue line, species 2 will tend to decrease.
 
 **Q**: consider the point where the two isoclines cross. What does this point represent?
 
@@ -734,9 +734,11 @@ Follow the trajectories from any point in this phase space. What is the outcome 
 
 **Q**: Is there a system-wide equilibrium?
 
-**Q**: Is there any point in this phase space where the population growth goes negative for species 1 and positive for species 2? 
+**Q**: Is there any point in this phase space where the population growth goes negative for species 1 (K1 used up) and positive for species 2 (some of K2 left unused)? 
 
-**Q**: What happens to the system when carrying capacity is used up for species 2? 
+**Q**: What happens to species 1 when carrying capacity is used up for species 2? Is there room for species 1 to invade? 
+
+**Q**: What happens to species 2 when carrying capacity is used up for species 1? Is there room for species 2 to invade? 
 
 
 How about this example?
@@ -827,7 +829,9 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
 **Q**: is the point where the two isoclines cross a *stable equilibrium*?
 
-**Q**: in nature, what would happen in this case?
+**Q**: what would happen if species 1 was at K and species 2 tried to invade?  And vice versa?
+
+**Q**: what would happen if both species tried to invade a vacant habitat at the same time? 
 
 ### Phase space in InsightMaker
 
@@ -838,11 +842,11 @@ If you are having trouble, you can load up the basic competition model [here](ht
 
 **Step 1**: Set the key parameters (alpha, beta, K1, K2) to arbitrary values
 
-**Step 2**: Draw out the phase space with isoclines for both competing species.. Also draw out the expected direction of growth in each quadrant/region of the phase space.
+**Step 2**: Draw out the phase plane with isoclines for both competing species.. Also draw out the expected direction of growth in each quadrant/region of the phase plane.
 
 **Step 3**: Pick an arbitrary starting value. What do you think the trajectory is going to look like?
 
-**Step 4**: Run this model in InsightMaker. Does the system behave as you expected?
+**Step 4**: Run this model in InsightMaker. Does the system behave as expected?
 
 **Step 5**: Evaluate the following statement (from the Gotelli Book):
 

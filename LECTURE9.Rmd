@@ -1,7 +1,7 @@
 ---
 title: "Small-population paradigm"
 author: "NRES 470/670"
-date: "Feb 26, 2017"
+date: "March 7, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -26,23 +26,28 @@ The simple fact is: _it's much more likely for all 10 individuals in a populatio
 
 This illustrates the very important concept, that small populations can go extinct due to demographic stochasticity alone, whereas this possibility is vanishingly small for large populations. 
 
+The moral of the story for demographic stochasticity was: weird and dramatic things (e.g., extinction) can happen in small populations!
+
+Weird and dramatic things like random extinction just would **never happen** in large populations just due to random chance (in a stable, favorable environment)!
+
+Same goes for *genetic drift*! Genetic drift is a _small-population phenomenon_!
+
+
 ### Genetic drift
 
 ![](geneticdrift1.png)
 
-The moral of the story for demographic stochasticity was: weird things (e.g., extinction) can happen in small populations!
+For example: in large populations, you could never randomly get **fixation** of a particular gene (this could happen via natural selection, but not through random reproductive processes). 
 
-Weird things like random extinction just would **never happen** in large populations!
+Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). The different colored balls represent different genetic variants. Each jar, left to right, represents a different (non-overlappling) generation. 
 
-Same goes for *genetic drift*! Genetic drift is a small-population phenomenon!
+Does this sound familiar? Just by random chance, some individuals will breed and some will not. Just by random chance, some individuals will have more of their offspring survive. Genetic drift is simply a consequence of **demographic stochasticity**. 
 
-In large populations, you could never randomly get **fixation** of a particular gene (this could happen via natural selection, but not through random reproductive processes). 
+Finally, let's imagine that the red balls represent individuals that are more likely to survive a rare drought (but have no selective advantage or disadvantage under normal circumstances). 
 
-Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). Finally, let's imagine that the red balls are individuals that are more likely to survive a rare drought (but have no selective advantage or disadvantage under normal circumstances). 
+Under normal conditions, the number of births is completely random. And if this was a sexually reproducing diploid population, mating would be completely random too. 
 
-Under these conditions, the number of births is completely random. And if this was a sexually reproducing diploid population, mating would be completely random too. 
-
-Just by random chance, the blue individuals happen to reproduce more than the red individuals- and the red individuals go extinct. Does this sound similar to a process we have already discussed in this class? 
+Just by random chance, the blue individuals happen to reproduce more than the red individuals- and the red individuals go extinct. 
 
 And now, by random chance, this population is now more susceptible to drought!
 
@@ -51,18 +56,18 @@ And now, by random chance, this population is now more susceptible to drought!
 
 ![](inbreeding1.jpg)
 
-Inbreeding depression is similar to genetic drift, but more specific! Again, inbreeding problems only occur in small populations.
+Inbreeding depression is very similar to genetic drift, but more specific! Again, inbreeding problems only occur in small populations.
 
 Most diploid populations have some "bad genes" floating around. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! 
 
+**Q**: Why is it more likely to get two copies of the same allele if your two parents are close relatives? 
+
+**Q**: Why is it more likely for your two parents to be close relatives if you are living in a small population?
 
 ![](inbreeding2.jpg)
 
-Why is it more likely to get two copies of the same allele if your two parents are close relatives? 
+The above image is of [Charles II of Spain](https://en.wikipedia.org/wiki/Charles_II_of_Spain), who tragically illustrates some of the issues that can emerge with severe inbreeding. 
 
-The above image of Charles II of Spain indicates what can happen when you inherit too many alleles that are identical by descent!
-
-Why is it more likely for your two parents to be close relatives if you are living in a small population?
 
 ## Extinction vortex
 
@@ -75,13 +80,15 @@ Once a population gets small enough, it becomes subject to catastrophic declines
 
 ## Minimum Viable Populations (MVP)
 
-We have seen this concept already, in the context of the Allee Effect. However, there is a more general definition, related to the extinction vortex. 
+When we talked about [Allee effects](LECTURE5.html), we saw a case in which a deterministic population model could have a minimum viable population size- below the threshold, the population was doomed to extinction, and above the threshold the population would deterministically increase until carrying capacity. However, the MVP concept is usually used in the context of stochastic extinction risk. 
 
-**Minimum Viable Population** is defined as that *population size whereby the extinction vortex can be safely averted*! 
+The best general definition of MVP (in my opinion) directly relates to the extinction vortex concept. 
+
+_**Minimum Viable Population** is defined as that *population size above which the extinction vortex can be safely averted*_ 
 
 ## Population Viability Analysis (PVA)
 
-Population Viability Analysis (PVA) is often used to model the processes in the extinction vortex, including genetic drift. In this class, we won't get into modeling genetics (that's for a different course!)
+Population Viability Analysis (PVA) is often used to model the processes involved in the extinction vortex (the central concept of the small population paradigm). This often includes genetic drift. However, in this course, we won't get into modeling genetics (unless you really want to in your own modeling project!)
 
 The most widely-used PVA software, [Vortex](http://www.vortex10.org/Vortex10.aspx), gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.  
 
@@ -101,12 +108,7 @@ The Aruba island rattlenake, as you might expect, occurs only on the island of A
 
 The Aruba rattlesnake is listed as *Critically Endangered* by IUCN, and has several attributes that make it particularly susceptible to falling into the extinction vortex:
 
-- Range is limited to the small island of Aruba
-    **Q**: why does this matter?
-- Total abundance is estimated as 250 individuals
-- Population has been declining due to:
-    - loss and degradation of habitat (overgrazing, human encroachment, forest clearing)
-    - human persecution
+See [Lab 5](LAB5.html) for the related MVP activity.  
 
 
 [--go to next lecture--](LECTURE10.html)

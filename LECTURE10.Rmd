@@ -1,7 +1,7 @@
 ---
 title: "Intro to individual-based models (IBM)"
 author: "NRES 470/670"
-date: "Mar 6, 2017"
+date: "Mar 6, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -16,9 +16,15 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![](birds1.jpg)
 
-So far in this class we have looked at the **population** as the fundamental unit that we are interested in modeling. This makes sense for a population ecology class! But we are all aware that populations consist of **individuals** that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the *individual level*. 
+So far in this class we have considered the **population** as the fundamental unit that we are interested in modeling. The population is a [Stock] and all processes that can change the size of the population are [Flows]. All individuals within any [Stock] are assumed to be interchangeable (identical in every way).  
 
-In some ways a population is hard to define- it can be a bit of an artificial concept. The individual is (mostly) a straightforward, biologically meaningful concept. 
+The fact that we model populations as our fundamental unit of interest makes sense for a population ecology class! BUT we are also aware (of course) that populations consist of **individuals** that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the *individual level*. 
+
+In some ways a population is hard to define- it can be a bit of an artificial concept. Where exactly does a population begin and end? 
+
+However, the individual is (usually!) a straightforward, biologically meaningful concept.
+
+## The General Modeling Workflow
 
 Before we define how individual-based models differ from the population-level stock-flow models we have already been using, let's first point out the similarities. 
 
@@ -28,11 +34,13 @@ First of all, the basic modeling workflow is ALWAYS the same, no matter what kin
 
 All models are a way to **formalize our understanding about our study system**. 
 
-**Population-based models** (PBM; i.e., models of $N$) are the main type of model we consider in this class- because it is the most direct way to think about population dynamics: $N$ is our main variable of interest, and it is controlled by intrinsic (e.g., density-dependence, demographic stochasticity) and extrinsic (e.g., environmental stochasticity, harvest) factors. 
+**Population-based models** (PBM; i.e., models of $N$) are the main type of model we consider in this class- because it is the most simple and direct way to think about population dynamics: with all individuals in a [Stock] considered to be interchangeable, $N$ is our main variable of interest. $N$ is in turn controlled by endogenous (forces coming from inside the population -- e.g., density-dependence, demographic stochasticity) and exogenous (forces coming from outside the population -- e.g., environmental stochasticity, harvest) factors. 
 
-**Age/stage structured population-based models** and **sex structured population models** (i.e., models of $\mathbf{N}$, i.e., vector-structured $N$) are a type of population model in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.
+**Age/stage structured population-based models** and **sex structured population models** (i.e., models of $\mathbf{N}$, i.e., matrix population models) are a type of population model in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.
 
-**Individual-based models** (IBM; also known as "agent-based" models) is a way of modeling populations such that all individuals are considered explicitly! We no longer need to put individuals into groups- each individual can potentially have a different survival probability, or chance of breeding, or movement propensity! In this case, we don't model $N$ directly at all -- in fact, $N$ is an **emergent property** of individual organisms interacting with each other, with predators and competitors, and with their abiotic environment.
+**Individual-based models** (IBM; also known as "agent-based" models) is a way of modeling populations such that all individuals are considered explicitly! We no longer need to group individuals into [Stocks]- each individual can potentially have a different survival probability, or chance of breeding, or movement propensity! These differences can be a result of (e.g.) spatial context or among-individual genetic variation. 
+
+In this case, we don't model $N$ directly at all -- in fact, $N$ (in an IBM framework) is an **emergent property** of individual organisms interacting with each other, with predators and competitors, and with their abiotic environment.
 
 ### Which model structure should I use? IBM or PBM??
 
@@ -40,22 +48,21 @@ In general, models are tools- you should use the model structure that best fits 
 
 And also, if two different model structures are equally appropriate, you should usually use the **simplest approach**! This idea is often called the *Principle of Parsimony* (or, *Occam's Razor*). 
 
+![](occam1.jpg)
+
 Both IBM and PBM can be used to address questions at the population or metapopulation level
 
 #### Rules of thumb
 
-- In general, you should use IBM if your *primary information at the individual level* (e.g., telemetry data)-- allowing you to build informed models of how individuals interact with members of their own species, possibly other species, and their local environment -- in which case the principle of parsimony dictates that you should build models at the individual level!
+- In general, you should use IBM if your *primary information sources (data) are at the individual level* (e.g., telemetry data)-- allowing you to build informed models of how individuals interact with members of their own species, other interacting species, and with their local environment -- in which case the principle of parsimony dictates that you should build models at the individual level! That is, you make fewer assumptions if you model this system as an IBM. 
 
-- You should use PBM if your *primary information is at the population level* (e.g., the results of most mark-recapture analyses) -- in which case the principle of parsimony dictates that you should build models at the population level!
+- You should use PBM if your *primary information is at the population level* (e.g., _the results of most mark-recapture analyses_) -- in which case the principle of parsimony dictates that you should build models at the population level!
 
 **Q**: All populations are composed of individuals. Why then don't we always model populations using individual-based models? (this could be a good exam question...)
 
-![](occam1.jpg)
+**Q**: What are some population ecology questions that might be best addressed using **individual-based models (IBM)**?
 
-
-**Q**: What are some questions that might be best addressed using **individual-based models (IBM)**?
-
-**Q**: What are some questions that might be best addressed using **population-based models (PBM)**?
+**Q**: What are some population ecology questions that might be best addressed using **population-based models (PBM)**?
 
 
 _Individual-based models are powerful- but with power comes great responsibility!_
@@ -63,26 +70,24 @@ _Individual-based models are powerful- but with power comes great responsibility
 
 ## Demo: Individual-based models!
 
-The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (real, not made-up by my postdoc I swear!) ecological system. 
+The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (entirely real, not made-up by my a postdoc in my lab I swear!) ecological system. 
 
 ### The scenario
-The *laphlag island* archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock. 
+The *Laphlag island* archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock. 
 
 However, without wolves, populations of the native sheep skyrocketed, and the famous laphlagian lush green grass is quickly being lost to overgrazing by the native sheep. 
 
-The locals now realize: *They need to reintroduce wolves to the islands*!
+The locals now realize: to restore ecological balance to the islands *They need to reintroduce wolves*!
 
-You have been hired as a research ecologist to help the locals and biologists address the following questions:
+The local natural resources management agency is about to start an experimental wolf reintroduction in a very small island in the archipelago (as a test), but they want to know how to proceed.  
+
+You have been hired as a research ecologist to help address the following questions:
 
 - How are reintroduced wolves likely to affect grass biomass and distribution? 
 
-- How many wolves are needed to effectively restore that characteristic lush green grass to the islands?
+- How many wolves should be introduced and over what period of time to produce the desired ecological effect (lush carpets of green grass)?
 
-The local management agency is about to start an experimental wolf reintroduction, but they want to know what to expect before making the final decision to go ahead with it.  
-
-They give you some information to get a first guess but they promise that you’ll be able to come study the experimental setup once it’s underway.
-
-The hypothesis is that presence of wolves affects sheep populations in such a way that grass growth is promoted.
+They give you some information to get a first guess and they promise that you’ll be able to come study this natural system once the reintroductions are underway.
 
 
 ![](sheep1.png)
@@ -90,27 +95,27 @@ The hypothesis is that presence of wolves affects sheep populations in such a wa
 
 ### The details!
 
-The enclosure is deployed after the breeding season and the experiment is run for 365 days. 
+The reintroduction is initiated right after the breeding season and the experiment is run for 365 days. 
 
 #### Sheep
 
-- There are a total of 50 sheep in the experimental enclosure
-- Each sheep eats 0.2 units of grass per day
-- Each sheep gives birth to 3 lambs approximately every 100 days of the experiment.
+- There are a total of 50 sheep at the release location. 
+- Each sheep eats 1 "unit"" of grass per day (see section on grass, below)
+- Each sheep gives birth to 2 lambs approximately every 100 days of the experiment (very high fecundity!).
 - Sheep tend to stay in place unless either they run out of food to eat or there is a wolf in the vicinity
 
 #### Wolves
 
-- There are a total of 5 wolves in the experimental enclosure
-- Wolves are solitary hunters, at least on this imaginary island!
-- Wolves have a 10% probability of finding and killing any sheep within 500 m of its location in any given day.
+- There are a total of 5 wolves released at the beginning of the "experiment".
+- Wolves are solitary hunters, at least on this (non-imaginary!) island!
+- Wolves have a 50% probability of finding and killing any sheep within 500 m of its location in any given day.
+- Wolves can kill a maximum of one sheep per day.
 - Wolves tend to move approximately 500 m per day on average. 
-- Wolves can kill a maximum of one sheep a day.
-- Wolves give birth with a probability of 1% per day. 
+- Wolves give birth with a probability of 2% per day. 
 
 #### Grass
 
-- The experimental enclosure is one large grassy pasture. For the purposes of this exercise, we will turn this pasture into a grid of approximately 100 equivalent plots. Each plot starts off with 10 units of grass (enough to support 50 sheep for a day). 
+- The release site is essentially one large grassy pasture. For the purposes of this exercise, we will model this pastoral release site as a grid of 100 functionally equivalent plots. Each plot starts off with 10 "units"" of grass (each "unit" of grass can support exactly 1 sheep). 
 - Each grass plot can have a maximum of 15 units of grass. 
 - Each plot can grow approximately 0.1 units of grass per day. 
 

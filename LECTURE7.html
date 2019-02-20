@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -372,24 +374,6 @@ div.tocify {
       <a href="LAB3.html">Lab 3: age-structured population growth</a>
     </li>
     <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -414,31 +398,31 @@ div.tocify {
 
 <h1 class="title toc-ignore">Matrix population models</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 11, 2017</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
 <div id="upcoming-midterm-exam" class="section level3">
 <h3>Upcoming midterm exam</h3>
-<p><strong>when and where</strong> The first midterm exam (out of two) is coming up on <strong>February 23</strong>. You will have the whole 50 minute class period to take the exam. Margarete and I will be at a meeting- one of my graduate students will fill in. The exam will be in our regular classroom.</p>
+<p><strong>when and where</strong> The first midterm exam (out of two) is coming up this Thursday <strong>February 21</strong>. You will have the whole 50 minute class period to take the exam. The exam will be in our regular classroom.</p>
 <p><strong>what</strong> The exam will cover:</p>
 <ul>
-<li>All material in Chapters 1-3 of the Gotelli book.<br />
+<li>All material in Chapters 1-3 of the Gotelli book <em>except matrix population models</em>.<br />
 </li>
-<li>All material covered in lectures up to the “Stochasticity and Uncertainty” lecture (right after matrix population models).<br />
+<li>All material covered in lectures through the “Age-structured populations” lecture (not including today’s lecture on matrix population models).<br />
 </li>
-<li>All material covered in labs 1-4.<br />
+<li>All material covered in labs 1-3.<br />
 </li>
-<li>All additional assigned readings, including Ch. 1 of “Beyond Connecting the Dots”, Lande 1992, Heppell 1998 and Regan et al. 2002.</li>
+<li>Ch. 1 of “Beyond Connecting the Dots”</li>
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
+<p><em>Please bring a calculator- a regular scientific calculator is fine (not absolutely necessary, but it could be helpful for at least one question on the exam!)</em></p>
 <p>Any questions?</p>
 </div>
-<div id="final-projects" class="section level3">
-<h3>Final projects:</h3>
-<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a></p>
-</div>
+<div id="matrix-population-models" class="section level1">
+<h1>Matrix population models</h1>
+<p>First of all, this lecture is full of R code (R is pretty good at running matrix population models!). If you want to follow along in R, you can find the R script <a href="LECTURE7.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.</p>
 <div id="why-matrices" class="section level2">
 <h2>Why matrices?</h2>
 <div id="reason-1-simplify" class="section level3">
@@ -447,12 +431,12 @@ div.tocify {
 <img src="IM8.jpg" />
 
 </div>
-<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? How many lines would you have to draw, how many equations would you have to put in different flows. It would be tedious, and you could easily run into errors that would be very hard to debug!</p>
+<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5 or 5? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be very hard to debug!</p>
 <div class="figure">
 <img src="teasel1.jpg" />
 
 </div>
-<p>Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in “age”. There MUST be an easier way!</p>
+<p>Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in developmental stage. There MUST be an easier way!</p>
 <div class="figure">
 <img src="gotelli3_6.jpg" />
 
@@ -471,11 +455,11 @@ div.tocify {
 </div>
 <div id="reason-2-projection" class="section level3">
 <h3>Reason 2: projection!</h3>
-<p>In one of the questions in Lab 3, your were asked to use a life table to project the age structure of a population one time step in the future. Was it simple and straightforward to do this? (no!)</p>
-<p>Life tables are great for summarizing the vital rates of age-structured populations. But <em>life tables are not great for projecting age-structured abundance into the future</em>!</p>
-<p>You know what <em>is</em> great for projecting age-structured abundance into the future?</p>
+<p>In one of the questions in Lab 3, your were asked to use a life table to project the age structure of a population one time step in the future. Was it simple and straightforward to do this? (answer: NO!!)</p>
+<p>Life tables are great for summarizing survivorship schedules and other aspects of age-structured populations. But <em>life tables are not great for projecting age-structured abundance into the future</em>!</p>
+<p>You know what <em>is</em> great for projecting age-structured abundance into the future? (answer: MATRICES!)</p>
 <p>For example, let’s project a teasel population 1 year into the future:</p>
-<p>First of all, we need to begin with a teasel population…</p>
+<p>First of all, we need to begin with a teasel population <strong>vector</strong>…</p>
 <pre><code>##           Abundance
 ## Seed1          1000
 ## seed2          1500
@@ -483,9 +467,13 @@ div.tocify {
 ## ros2            300
 ## ros3            600
 ## flowering        25</code></pre>
-<p>Then all we need to do is matrix-multiply this <strong>vector</strong> of abundances by the <strong>transition matrix</strong> from above! Each time we do this multiplication step, we advance one year!</p>
+<p>Then all we need to do is ‘matrix-multiply’ this <strong>vector</strong> of abundances by the <strong>transition matrix</strong> from above! Each time we do this multiplication step, we advance one year! It’s that easy!</p>
+<p>NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R)</p>
 <p>Here’s how we can do this in R!</p>
-<pre class="r"><code>Year1 &lt;- teasel_matrix %*% Initial_teasel
+<pre class="r"><code>#########
+# Project the population at time 1
+
+Year1 &lt;- teasel_matrix %*% Initial_teasel   # note: the &#39;%*%&#39; denotes &#39;matrix multiplication&#39; in R. We&#39;ll go through this more later.     
 Year1</code></pre>
 <pre><code>##           Abundance
 ## Seed1       8059.50
@@ -494,11 +482,14 @@ Year1</code></pre>
 ## ros2         857.65
 ## ros3         203.25
 ## flowering    456.90</code></pre>
-<p>How easy is that!</p>
+<p>How easy is that?!</p>
 <p>To compute teasel abundance in year 2, we can simply repeat:</p>
-<pre class="r"><code>thisYear &lt;- Year1
+<pre class="r"><code>#########
+# Project the population at time 2
+
+thisYear &lt;- Year1
 nextYear &lt;- teasel_matrix %*% thisYear
-nextYear</code></pre>
+nextYear  # now we get the (age structured) population size at time 2!     </code></pre>
 <pre><code>##             Abundance
 ## Seed1     147295.4220
 ## seed2       7785.4770
@@ -508,7 +499,10 @@ nextYear</code></pre>
 ## flowering    172.1635</code></pre>
 <p>We could use this strategy to simulate for ten years for example…</p>
 <p>Notice the use of a <strong>for loop</strong> here!</p>
-<pre class="r"><code>nYears &lt;- 10
+<pre class="r"><code>########
+# Use a for loop to project the population dynamics for the next 10 years!
+
+nYears &lt;- 10
 tenYears &lt;- matrix(0,nrow=6,ncol=nYears+1)
 rownames(tenYears) &lt;- rownames(Initial_teasel)
 colnames(tenYears) &lt;- seq(0,10)
@@ -534,11 +528,11 @@ tenYears</code></pre>
 ## ros3        46750.08   68459.45   186131.95   505712.0   948267.5
 ## flowering   12905.64   38754.83    61484.15   169797.3   431750.1</code></pre>
 <p>Finally, we can plot out the abundance of each stage over 10 years!</p>
-<p><img src="LECTURE7_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>So projection is easy!</p>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>So projection is easy with matrices!</p>
 </div>
-<div id="reason-3-linear-algebra-tricks" class="section level3">
-<h3>Reason 3: Linear algebra tricks!</h3>
+<div id="reason-3-matrix-algebra-tricks" class="section level3">
+<h3>Reason 3: Matrix algebra tricks!</h3>
 <p>There is a clear similarity between the finite population growth equation:</p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t\)</span>,</p>
 <p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
@@ -550,57 +544,71 @@ tenYears</code></pre>
 <p><strong>Q:</strong> Can you see the difference between these two equations?</p>
 <p>Note that <span class="math inline">\(N\)</span> in the first equation is a <strong>scalar</strong> – that is, it is just a naked number with no additional components.</p>
 <p>WHEREAS,</p>
-<p><span class="math inline">\(\mathbf{N}\)</span> in the second equation is a <strong>vector</strong>, a set of abundances structured by age or stage class.</p>
+<p><span class="math inline">\(\mathbf{N}\)</span> in the second equation is an age-structured <strong>vector</strong>: a set of abundances structured by age or stage class.</p>
 <p>Similarly, the finite population growth rate, <span class="math inline">\(\lambda\)</span> is a scalar,</p>
 <p>WHEREAS,</p>
-<p><span class="math inline">\(\mathbf{A}\)</span> is a <strong>matrix</strong></p>
-<div id="what-about-those-tricks" class="section level4">
-<h4>What about those tricks??</h4>
-<p>Okay one of the nifty tricks is this:</p>
+<p><span class="math inline">\(\mathbf{A}\)</span> is a <strong>matrix</strong> (the transition matrix)</p>
+<div id="what-about-those-tricks-you-promised" class="section level4">
+<h4>What about those tricks you promised??</h4>
+<p>Okay one of the tricks is this:</p>
 <blockquote>
 <p>In one step, you can compute <span class="math inline">\(\lambda\)</span> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
 </blockquote>
 <p>All you need to do is obtain the <em>first, or dominant, <strong>eigenvalue</strong> of <span class="math inline">\(\mathbf{A}\)</span></em>! This number is the finite rate of growth, <span class="math inline">\(\lambda\)</span>, for an age or stage-structured population.</p>
+<p>Recall that when a population is at stable age distribution, it grows in a discrete exponential growth pattern- this rate of exponential growth can be described by a single parameter – Lambda!</p>
 <p>Let’s do this in R!</p>
 <p>What is the growth rate <span class="math inline">\(\lambda\)</span> for the teasel population. If you recall, it looked like it was growing, so it should be above 1…</p>
-<pre class="r"><code>Lambda &lt;- as.numeric(round(eigen(teasel_matrix)$values[1],2))
+<pre class="r"><code>###########
+# Use the transition matrix to compute Lambda, or the finite rate of population growth!
+
+Lambda &lt;- as.numeric(round(eigen(teasel_matrix)$values[1],2))
 Lambda</code></pre>
 <pre><code>## [1] 2.32</code></pre>
 <p>Or we could use the handy “popbio” package in R:</p>
-<pre class="r"><code>library(popbio)
+<pre class="r"><code>library(popbio)      # or... it&#39;s easier to use the &#39;popbio&#39; library in R!
 lambda(teasel_matrix)</code></pre>
 <pre><code>## [1] 2.32188</code></pre>
 <p>You don’t have to understand the math here- but I do want you to understand how simple that was- just one line of code and we computed the annual rate of growth from the teasel transition matrix!</p>
 <p>Here’s another nifty trick:</p>
 <blockquote>
-<p>In one step, you can compute <strong>stable age distribution</strong> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
+<p>In one step, you can compute <strong>stable age distribution (S.A.D)</strong> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
 </blockquote>
 <p>All you need to do is obtain the <em>right-hand eigenvector of <span class="math inline">\(\mathbf{A}\)</span></em>! This vector represents the <em>relative abundances in each age class at the stable age distribution</em>.</p>
 <p>Let’s do this in R!</p>
 <p>What is the stable age distribution for the teasel population. If you recall, the first seed stage looked like it dominated in the figure above.</p>
-<pre class="r"><code>SAD &lt;- abs(as.numeric(round(eigen(teasel_matrix)$vectors[,1],3)))
-SAD/sum(SAD)</code></pre>
+<pre class="r"><code>##########
+# Compute stable age distribution from the transition matrix!
+
+SAD &lt;- abs(as.numeric(round(eigen(teasel_matrix)$vectors[,1],3)))
+SAD/sum(SAD)      # stable age distribution as a percentage of the total population</code></pre>
 <pre><code>## [1] 0.636615811 0.264909847 0.012482663 0.069348128 0.011789182 0.004854369</code></pre>
 <p>Or you can use the ‘popbio’ package in R:</p>
-<pre class="r"><code>library(popbio)
+<pre class="r"><code>library(popbio)    # ... and it&#39;s even easier if we use the &#39;popbio&#39; package...
 stable.stage(teasel_matrix)</code></pre>
 <pre><code>##       Seed1       seed2        ros1        ros2        ros3   flowering 
 ## 0.636901968 0.264978062 0.012174560 0.069281759 0.012076487 0.004587164</code></pre>
-<p><strong>Q:</strong> Does a stage-structured population grow at the rate of <span class="math inline">\(\lambda\)</span> per time step if it is NOT at stable age distribution?</p>
-<p>For more on this, the bible of matrix population models is <a href="https://www.amazon.com/gp/huc/view.html?ie=UTF8&amp;newItems=C1DH1414B1C6AK%2C1">this book by Hal Caswell</a>.</p>
+<p><strong>Q:</strong> Does a stage-structured population grow at the rate of <span class="math inline">\(\lambda\)</span> per time step if it is NOT at stable age distribution? [tophat]</p>
+<p>To answer this question, you may find it helps to load an stage-structured model in InsightMaker like <a href="https://insightmaker.com/insight/70809/Age-structured-population">this one</a>).</p>
 </div>
 </div>
 </div>
 <div id="mechanics-of-matrix-population-models" class="section level2">
 <h2>Mechanics of matrix population models</h2>
-<p>Let’s take a look at a basic age-structured population – specifically the in-class example from the last lecture (<a href="https://insightmaker.com/insight/70809/Age-structured-population">this one</a>.). In InsightMaker it looks like this:</p>
+<p>Let’s take a look at a basic age-structured population – specifically the in-class example from the last lecture (<a href="https://insightmaker.com/insight/70809/Age-structured-population">this one</a>.). In InsightMaker it looks something like this:</p>
 <div class="figure">
 <img src="IM9.jpg" />
 
 </div>
 <p>Let’s convert the vital rates to a three-stage <strong>projection matrix</strong>. Projection matrices are <strong>square matrices</strong> where the number of rows and columns are equal to the number of life stages. In this case, that means three! Let’s make a blank matrix for now:</p>
-<pre class="r"><code>TMat &lt;- matrix(0,nrow=3,ncol=3)
-stagenames &lt;- c(&quot;Juveniles&quot;,&quot;Subadults&quot;,&quot;Adults&quot;)
+<pre class="r"><code>###################
+# In class demo: convert an insightmaker model to a matrix projection model
+
+
+###########
+# First, we specify a blank transition matrix
+
+TMat &lt;- matrix(0,nrow=3,ncol=3)     # blank matrix with 3 rows and 3 columns
+stagenames &lt;- c(&quot;Juveniles&quot;,&quot;Subadults&quot;,&quot;Adults&quot;)  # name the rows and columns
 rownames(TMat) &lt;- stagenames
 colnames(TMat) &lt;- stagenames
 TMat</code></pre>
@@ -614,7 +622,10 @@ TMat</code></pre>
 </blockquote>
 <p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita transition rate from Juveniles (col) to Juveniles (row). What is the value of this?</p>
 <p>Let’s update our transition matrix:</p>
-<pre class="r"><code>TMat[1,1] &lt;- 0.1
+<pre class="r"><code>#####
+# fill in the top left element of the matrix
+
+TMat[1,1] &lt;- 0.1
 TMat</code></pre>
 <pre><code>##           Juveniles Subadults Adults
 ## Juveniles       0.1         0      0
@@ -622,14 +633,20 @@ TMat</code></pre>
 ## Adults          0.0         0      0</code></pre>
 <p>How about the second row, first column. This represents the per-capita production of Subadults (row) by Juveniles (col). This is the transition rate from juvenile to subadult. The value from our model is 0.3.</p>
 <p>Let’s update our transition matrix:</p>
-<pre class="r"><code>TMat[2,1] &lt;- 0.3
+<pre class="r"><code>#####
+# update the second row, first column
+
+TMat[2,1] &lt;- 0.3
 TMat</code></pre>
 <pre><code>##           Juveniles Subadults Adults
 ## Juveniles       0.1         0      0
 ## Subadults       0.3         0      0
 ## Adults          0.0         0      0</code></pre>
 <p>If we keep going, we get the following matrix. See if you can understand what this matrix is saying about the transitions from and two the three life stages.</p>
-<pre class="r"><code>TMat[,1] &lt;- c(0.1,0.3,0)
+<pre class="r"><code>#####
+# and keep filling it in...
+
+TMat[,1] &lt;- c(0.1,0.3,0)
 TMat[,2] &lt;- c(0,0.4,0.1)
 TMat[,3] &lt;- c(4,0,0.85)
 TMat</code></pre>
@@ -639,13 +656,19 @@ TMat</code></pre>
 ## Adults          0.0       0.1   0.85</code></pre>
 <p>Now we can run a 40-year projection and compare it with the InsightMaker model. It had better look the same!!</p>
 <p>First we must specify the initial abundances in each stage:</p>
-<pre class="r"><code>InitAbund &lt;- c(40,0,0)
+<pre class="r"><code>######
+# specify initial abundance vector
+
+InitAbund &lt;- c(40,0,0)
 names(InitAbund) &lt;- colnames(TMat)
 InitAbund</code></pre>
 <pre><code>## Juveniles Subadults    Adults 
 ##        40         0         0</code></pre>
 <p>So we are starting with only Juveniles…</p>
-<pre class="r"><code>nYears &lt;- 40
+<pre class="r"><code>#######
+# Run the model for 40 years (using for loop)
+
+nYears &lt;- 40
 allYears &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
 rownames(allYears) &lt;- rownames(TMat)
 colnames(allYears) &lt;- seq(0,nYears)
@@ -685,14 +708,17 @@ allYears</code></pre>
 ## Subadults 15.543159
 ## Adults     7.920502</code></pre>
 <p>Now let’s plot it out!</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,50),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)
+<pre class="r"><code>#####
+# and plot out the results!
+
+plot(1,1,pch=&quot;&quot;,ylim=c(0,50),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)
 cols &lt;- rainbow(3)
 for(s in 1:3){
   points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
 legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</code></pre>
-<p><img src="LECTURE7_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Does this look the same as the InsightMaker results?</p>
 </div>
 <div id="limitations-of-matrix-population-models" class="section level2">
@@ -703,10 +729,9 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p>In some ways, while introducing a new level of realism in our models – age-structure – we have been ignoring another type of realism that we introduced in earlier lectures- <strong>density-dependence</strong>!</p>
 <p>Which vital rates are density-dependent? All? Some? It depends? Are the data available?</p>
 <p>How do you incorporate density-dependence into a matrix population model?</p>
-<p>How do you incorporate predator-prey dynamics into a matrix population model?</p>
-<p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or other programming platform)</em></p>
-<p>The reverse is NOT true: <strong>you can not always convert InsightMaker models to matrix population models</strong></p>
-<p>Hmmm….</p>
+<p>How do you incorporate predator-prey dynamics into a matrix population model? [cue brain explosion]</p>
+<p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or other programming platform)</em> (but it might be complicated and messy)</p>
+<p>The reverse is NOT true: <strong>you can not always convert InsightMaker models to matrix population models</strong> (IM is a programming language, so is much more flexible!)</p>
 </div>
 <div id="in-class-exercise-matrix-projection-models" class="section level3">
 <h3>In-class exercise: matrix projection models</h3>
@@ -716,15 +741,17 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 
 </div>
 <blockquote>
-<p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
+<p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
 </blockquote>
 <p><strong>Q:</strong> What does the transition matrix look like?</p>
 <p><strong>Q:</strong> What does the initial stage abundance vector look like?</p>
-<p><strong>Q:</strong> Is this at a stable stage-distribution?</p>
+<p><strong>Q:</strong> Is this population at a stable stage-distribution?</p>
 <p><strong>Q:</strong> What is the growth rate of this population?</p>
+<p>For more on matrix population models, the bible of this subject is <a href="https://www.amazon.com/gp/huc/view.html?ie=UTF8&amp;newItems=C1DH1414B1C6AK%2C1">this book by Hal Caswell</a>.</p>
 <p>And finally, check this out- this is a database of thousands of stage matrices for plants and animals around the world:</p>
 <p><a href="https://compadredb.wordpress.com/2015/10/05/introducing-the-comadre-animal-matrix-database/">COMADRE and COMPADRE databases</a></p>
 <p><a href="LECTURE8.html">–go to next lecture–</a></p>
+</div>
 </div>
 </div>
 
@@ -753,7 +780,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

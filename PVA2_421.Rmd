@@ -1,7 +1,7 @@
 ---
 title: "Grizzly bear PVA example"
 author: "NRES 421/621"
-date: "Mar 26, 2017"
+date: "Mar 15, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -16,13 +16,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## PVA for Yellowstone grizzly bears!
 
-By the time we meet on Tuesday, April 18 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant **scenario testing**.
+By the time we meet on Thursday, March 29 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant **scenario testing**.
 
 ![](grizzly1.jpg)
 
 Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may regulate this population!
 
-Let's walk through the basic steps in building and running a PVA model: 
+Let's walk together through the basic steps in building and running a PVA model: 
 
 #### Step 1: life history diagram
 
@@ -32,15 +32,15 @@ Therefore, our conceptual life history diagram looks something like this!
 
 ![](IM16.jpg)
 
-You can clone the base grizzly bear model [here](https://insightmaker.com/insight/77056/Yellowstone-Grizzlies). This model has not yet been parameterized!
+You can "clone" the base grizzly bear model [here](https://insightmaker.com/insight/77056/Yellowstone-Grizzlies). This model has not yet been parameterized!
 
 #### Step 2: parameterize!
 
 Let's use this table to parameterize the population vital rates in our model!
 
-This table actually has *two alternative parameterizations*, one representing the period from 1983 to 2001, and the other representing the period from 2002-2011. 
+This table actually has *two alternative parameterizations*, one summarized from data collected the period from 1983 through 2001, and the other representing data from the period from 2002-2011. 
 
-Remember that we are not paying any attention to males!
+NOTE: we are not paying any attention to males! Population models are often *female-only*, since females are the primary drivers of population dynamics.
 
 ![](grizzly_table1.jpg)
 
@@ -50,19 +50,19 @@ What about population size? For any simulation we always need to initialize abun
 
 From [Schwartz et al 2006](schwarz_grizzly1.pdf) we know that:
 
-1. Adult females represent approximately a quarter (25%) of the (female0.553) population. 
-2. Total abundance of adult females in the greater Yellowstone park area was approximately 5 in 1983 and approximately 30 in 2002 
+1. Adult (reproductive) females represent approximately a quarter (25%) of the total population. 
+2. Total abundance of adult females in the greater Yellowstone park area (solid squares plus the open triangles) was 5 to 10 in 1983 and 40 to 50 in 2001/2002 
 
 ![](grizzly_table2.jpg)
 
-Let's use the initial (1983) abundances (all female!) to initialize our model:
+Let's use the lower bound for initial (1983) abundances (all female!) to initialize our model:
 
 *Cubs:* 5   
 *Yearlings:* 5   
-*Subadults:*  5   
+*Subadults:* 5   
 *Adults:* 5   
 
-Take a moment to parameterize the model!
+Take a moment to parameterize the model, using the 1983 to 2001 estimates!
 
 #### Step 3: Spatial structure
 
@@ -75,7 +75,6 @@ Okay, let's run the model!
 Again, you can clone the base grizzly bear model [here](https://insightmaker.com/insight/77056/Yellowstone-Grizzlies) if you haven't already.
 
 1. Try running the model with the parameterization we discussed above. What do you notice? Is the population growing?
-
 
 *REALITY CHECK*:       
 
@@ -90,12 +89,12 @@ Again, you can clone the base grizzly bear model [here](https://insightmaker.com
 
 ![](grizzly_table1.jpg)
 
-In 2002 the population was more like 30 females- so let's use the following parameterization!
+In 2002 the population was more like 40 females- so let's use the following parameterization!
 
-*Cubs:* 30   
-*Yearlings:* 30   
-*Subadults:*  30   
-*Adults:* 30
+*Cubs:* 40   
+*Yearlings:* 40   
+*Subadults:*  40   
+*Adults:* 40
 
 **Q**: What do you notice about this model? Is it still growing? What about the overall *rate of growth* of the population?
 
@@ -109,50 +108,68 @@ In 2002 the population was more like 30 females- so let's use the following para
 
 We know that when the adult (female) population size was around 5, yearling survival was around 82%
 
-We also know that when the adult (female) population size was around 30, yearling survival dropped to around 54%
+We also know that when the adult (female) population size was around 40, yearling survival dropped to around 54%
 
-Can you calculate a **linear relationship** between population size and yearling survival? When abundance increased by 25, yearling survival decreased by a little more than 25% (28% to be exact). 
+What is the **linear relationship** between population size and yearling survival? When abundance increased by 35, yearling survival rate decreased from 82% to 0.54% -- a total of 28%. 
 
-**SLOPE**: For each additional individual in the adult population, yearling survival decreased by 1.12.
+**SLOPE**: For each additional individual in the adult population, yearling survival decreased by 0.8 percent ($=\frac{0.28}{35}$).
 
-**INTERCEPT**: When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be $81.7 + 1.12\cdot 5$, which is 87.6%. 
+**INTERCEPT**: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be $81.7 + 0.8\cdot 5$, which is 85.7%. 
 
 To convert back to a fraction, we divide this linear model by 100!
 
 So the linear formula for computing yearling survival as a function of adult female abundance should be:
 
-$Surv_{yearling} = \frac{\left (  87.6 - 1.12*N_{female} \right )}{100}$
+$Surv_{yearling} = \frac{\left (  85.7 - 0.8*N_{female} \right )}{100}$
 
 Let's implement this *density-dependent process* in Insightmaker!
 
 - Create a [Link] between female abundance and yearling survival.
-- Open the *equation editor* for yearling survival, and input the linear equation above! 
+
+- Open the *equation editor* for yearling survival, and input the equation above! 
 
 Run the model! What do you notice?
 
-**Q**: What is the **carrying capacity** of this population? NOTE: you may need to run the model for longer than 100 years! NOTE: this is an **emergent property** of our new model!
-
-**Q**: Do you notice an *oscillatory pattern* in abundance over time? NOTE: this is also an **emergent property** of our new model!
-
 **Q**: Why is this type of model called **density-dependent**?
 
-NOTE: if necessary, you can clone a density-dependent version of the grizzly model [here](https://insightmaker.com/insight/77058/Yellowstone-Grizzlies-DD)
 
-### Grizzly bear exercise
+### Grizzly bear in-class exercises
 
 **Answer the following questions**:
 
-1. Run the grizzly bear PVA with and without the density-dependence process. In each case, what is the *extinction risk* after 100 years? In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? Under which scenario is the *conservation outlook* best for grizzly bears in Yellowstone park? 
+NOTE: if necessary, you can clone a density-dependent version of the grizzly model [here](https://insightmaker.com/insight/77058/Yellowstone-Grizzlies-DD)
 
-2. For the *density-independent* model, what is the extinction risk if you changed yearling survival to its **lower confidence limit** in the above table (from 2002-2011)? Does the *parameter uncertainty* in the above table make a difference for the conservation outlook for this population?? NOTE: remember to change yearling survival back to 0.539 for the density-independent model!
 
-3. In each case (with and without density-dependence), what is the *extinction risk* if you changed the initial abundance in each stage to 2? Given that a viable population is defined as a risk of extinction of < 10% over 100 years, can you identify a **minimum viable population** for this population? 
+1. What is the **carrying capacity** of this population? NOTE: you may need to run the model for longer than 100 years! NOTE: this is an **emergent property** of our new model!
+
+
+2. Set all initial abundances to 5 -- the values estimated from 2002 to 2011. Run the grizzly bear PVA with and without the density-dependence process. In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? Under which scenario is the *conservation outlook* best for grizzly bears in Yellowstone park? 
+
+NOTE: For the *density-independent* scenario, set the yearling survival rate to 0.54.
+
+NOTE: you can turn the density dependence process on and off by using the pound symbol to "comment out" the equation. So ... if you input the following into the equation editor for yearling survival, you can easily go back and forth between the density-dependent and the density-independent formulations of the model:
+
+For example, this one is density-independent:
+
+```
+0.54
+#(85.7-0.8*[Adult])/100
+```
+
+...and this one is density-dependent:
+```
+#0.54
+(85.7-0.8*[Adult])/100
+```
+
+3. For the *density-independent* model, what is the extinction risk if you changed yearling survival to its **lower confidence limit** in the above table (from 2002-2011)? Does the *parameter uncertainty* in the above table make a difference for the conservation outlook for this population?? 
+
+[Bonus question!]. Given that local managers have decided that a viable grizzly bear population should have a risk of extinction of < 5% over 100 years, can you identify a **minimum viable population size (MVP)** for this population? 
 
 **HELPFUL HINTS:**    
 
-- For the *density-independent* scenario, set the yearling survival rate to 0.54 -- the value estimated from 2002 to 2011.
-- All parameters aside from yearling survival should be the same between the two scenarios (so that the presence/absence of the density-dependence process is the only difference between the scenarios). I suggest you use all parameters estimated for the period 2002 to 2011, just to be consistent! 
-- For both scenarios, set the initial abundance to 5 for each stage (the numbers observed inside the park in 1983). 
+- All parameters aside from yearling survival should be the same between the two scenarios (so that the presence/absence of the density-dependence process is the only difference between the scenarios). I suggest you use all parameters estimated for the period 2002 to 2011, just to be consistent!
+
 - Use the "sensitivity testing" option in the "Tools" menu to run multiple simulations (>100 *replicates*). You can assess extinction risk using the following formula:
 
 $\frac{extinctions}{replicates}$

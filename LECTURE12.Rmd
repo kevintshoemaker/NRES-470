@@ -13,6 +13,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+
+### Final projects:
+
+Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due next Monday, April 2*!
+
+
 ## Population Viability Analysis (PVA)
 
 Population Viability Analysis (PVA) integrates everything we have studied so far and more. At its most basic level, PVA is the _process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options_.
@@ -35,7 +41,7 @@ Population Viability Analysis (PVA) integrates everything we have studied so far
 
 NOTE: The process of building a PVA model is **iterative** and **non-linear**. 
 
-For example -- after running your model (step 4) you might realize that your results (step 5) are totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).   
+For example -- after running your model (step 4) and looking at your results (step 5) you might realize that the model is totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).   
 
 #### Step 1: Life history
 
@@ -62,11 +68,15 @@ This is where you attach real numbers to the stocks and flows in your conceptual
 - Effects of management actions.
 - And more...
 
+[stone soup analogy to model parameterization!]
+
 #### Step 3: Spatial structure!
 
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
 - How many discrete populations? 
+- Do different populations have different mean vital rates?
+- Is environmental stochasticity **correlated**?
 - At what rate do individuals move among these populations?
 - Can connectivity be enhanced via management?
 - Are dispersal rates density-dependent?
@@ -75,10 +85,11 @@ If you want to ask spatial questions, your model needs to be spatially explicit,
 
 You know how to simulate populations now- you can choose whether it makes sense to use R, InsightMaker, Vortex, or some other software or programming platform for your simulations!
 
-Either way, you can be creative- set up the simulations so that they can help you answer your key research questions! You are in control- you can set up the simulations so that they give you the data you need!!  (when can you say that in, e.g., experimental or field biology?)
+Either way, you can be creative- set up the simulations so that they can help you answer your key research questions! You are in control- you can set up the simulations so that they give you the kinds of data you need!!
 
-What scenarios do you want to test?
-
+- What scenarios do you want to test?
+- How many replicates are sufficient?
+- What data do you need to store for your plots and analyses?
 
 #### Step 5: Results
 
@@ -88,33 +99,27 @@ There are two types of data analysis tools that you will need to be able to use 
 
 These tools- visualization and statistical analysis - are diverse, and there is no one-size-fits-all way that you should visualize and analyze your simulation results. It really depends on your question!! 
 
-I will to give you some ideas here about graphical representations - but just remember you are not limited to these ideas- be creative! 
+I will give you some ideas here about graphical representations in the demo PVA - but just remember you are not limited to these ideas- be creative! 
+Since this class is not a statistics class, I don't necessarily expect you to do sophisticated stats as part of your project- but Ben and I can work with your groups individually to figure out some simple stats that make sense for your project. 
 
-Since this class is not a statistics class, I don't necessarily expect you to do any sophisticated stats as part of your project- but Margarete and I can work with your groups individually to figure out some simple stats that make sense for your project. 
-
-
-[stone soup analogy!]
 
 ## A Simple Demonstration PVA
 
-To illustrate some of these concepts, let's build ourselves a very simple PVA model in R.
+To illustrate some of these concepts, let's build a very simple PVA model in R.
 
 We are using R because of its flexible and powerful visualization tools. 
 
-For simplicity, let's ignore age structure - that is, let's build a *scalar* PVA model 
+### Step 1: conceptualize the life history
 
-Also let's ignore parameter uncertainty for now. 
+For simplicity, let's ignore age structure for now - this is just a simple scalar population model!
+
+Also let's ignore parameter uncertainty too! 
+
+### Step 2: parameterize!
 
 Here is the basic model parameterization:
 
 ```{r}
-
-####
-# Basic simulation parameters
-####
-
-nyears <- 100     # number of years
-nreps <- 500      # number of replicates
 
 ####
 # Basic life history parameters
@@ -145,16 +150,26 @@ Ricker <- function(prev_abund){       # this is a function for computing next-ye
 Flood_prob <- 0.05     # 5% chance of major flood
 Flood_lambda <- 0.25    # 25% of population can survive a flood 
 
-
-
 ```
 
 
-Now we can use these parameters to build a simple PVA model:
+### Step 3: spatial structure
+
+Let's ignore spatial structure!
+
+### Step 4: simulate!
+
+Now we can use these parameters to build and run a simple PVA model:
 
 ```{r}
 
-## Set up data structures to store simulation results!
+####
+# Basic simulation parameters
+####
+
+nyears <- 100     # number of years
+nreps <- 500      # number of replicates
+
 
 PVAdemo <- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
   #browser()
@@ -251,7 +266,6 @@ plot(declines,declineprob,type="l",lwd=2,xlab="Decline threshold (percent)",ylab
 abline(v=25,col="red",lwd=2)
 
 ```
-
 
 
 What if our question is about the effect of flooding on extinction risk. Let's imagine that the probability of flooding is not expected to change with climate change, but that the intensity of the flood damage is likely to increase substantially!

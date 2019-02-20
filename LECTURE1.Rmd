@@ -1,7 +1,7 @@
 ---
 title: "A whole-systems approach to population ecology"
 author: "NRES 470/670"
-date: "Jan 19, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ![](FoodWeb1.jpg)
 
 ## Systems ecology: a way of thinking   
-Ecology is messy. When we work in natural environments, we are dealing with *inherently complex systems*. _All elements in a natural system are connected_, full of dynamic interactions. Interactions among organisms, between organisms and their environment to meet basic needs -- these linkages are what makes ecology messy, but also endlessly fascinating. 
+Ecology is messy. When we work in natural environments, we are dealing with *inherently complex systems*. _All elements in a natural system are connected_, full of dynamic interactions. Interactions among organisms, between organisms and their environments -- these linkages are what makes ecology messy, but also endlessly fascinating. 
 
 We can think of humans as just another element in these complex systems. And wildlife conservation and mangement is the task of manipulating these linkages to meet societal objectives for natural systems.  
 
@@ -47,14 +47,19 @@ We will make extensive use of InsightMaker, both during class and in lab- this w
 
 ## Computer programming and systems thinking
 
-Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including **ecosystems** analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available.  **In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations**.  
+Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including **ecosystems** analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations**.  
 
-By the end of this course, students will have the ability to program their own *whole-systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, various **R** packages)
+By the end of this course, students will have the ability to program their own *whole-systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, **R**)
 
-**The course motto**: *Get messy*! This might sound funny for a computer-based class. But just as ecological systems are complex and messy, models sometimes get messy. 
-Don't be afraid to model messy systems. And above all, **don't be afraid to be wrong** (especially at first)- that attitude is the enemy of successful computer programming, and of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive!
+## The course motto: *Be wrong (but useful)*! 
 
-Of course, getting messy means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.
+A famous statistician ([George Box](https://en.wikipedia.org/wiki/George_E._P._Box)) once said ["All models are wrong but some are useful"](https://en.wikipedia.org/wiki/All_models_are_wrong). What he meant was that no model can perfectly describe any real-world system (e.g., population dynamics). However, some models can help us to undersand how the real-world works and how to manage natural systems.
+
+**This is especially true in ecology**: ecological systems are complex and messy, and it is clear that no mathematical model can perfectly describe and predict any ecological phenomena. But that does not mean that ecological models can't be *useful*!    
+
+In this class (and beyond), _don't be afraid to model messy systems_. And above all, **don't be afraid to be wrong** - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don't forget that all models are wrong!
+
+Of course, this means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.
 
 ## In-class Exercise: InsightMaker
 
@@ -70,28 +75,33 @@ If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not c
 
 The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn't change instantaneously, with hand waving, magic, or smoke and mirrors.
 
+Finally, a [Variable] is an object that stores an important piece of information for your model (e.g., birth rate could be a [Variable] that informs the total [Flow] of individuals into a [Stock] representing a wild population). [Variables] are generally connected to [Flows] with [Links] -- unlike [Flows], links do not represent any physical process. Instead, links simply represent a transfer of *information*.   
+
 1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
 
-2. Create a new Insight (the button to do this should be obvious!) and clear the demo model. 
+2. Create a new "Insight" (the button to do this should be obvious!) and clear the demo model. 
 
-3. Right click in the center of the screen and select **Create Stock** from the popup. Notice that the name is *New Stock* and is selected. Type in a name for what this is an accumulation of. Note the **Configuration Panel** on the right is now for a [Stock]. In the configuration panel, set the *Initial Value* to 50. That is, there will be 50 moose at the start of the simulation! 
+3. **Create a population of Moose!** Right click in the center of the screen and select **Create Stock** from the pop-up. Notice that the name is *New Stock* and is selected. Type in a name for what this [Stock] represents (Moose!). Note the **Configuration Panel** on the right is now for a [Stock]. In the configuration panel, set the *Initial Value* to 50. That is, there will be 50 moose at the start of the simulation! 
 
-4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the **Reverse** button in the **Connections** menu. Please do that now. You can name the [Flow] as you wish. Also in the **Configuration Panel** set **Flow Rate** = 1.
+- **OPTIONAL**: insert a picture of the animal you are modeling to your work canvas. The instructor will show you how in class!
 
-5. Now click **Run Simulation** and you have just finished your first simulation model.
+4. **Specify the births process** Select the [Flows/Transitions] button in the upper left corner of your screen. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. Type in a name for what this arrow represents (Births). NOTE: you have actually just created a [Flow] *out* of a [Stock]. To create a [Flow] *into* a [Stock], click the **Reverse** button in the top menu (looks like two opposing arrows). Please do that now. Also in the **Configuration Panel** set **Flow Rate** = 1.
+
+5. Now click **Run Simulation** and you have just finished your first population simulation model.
 
 6. Can you figure out how to change the settings to run the model for 50 years? Try this and click **Run Simulation**.
 
 7. Use the same methods as *step 4* to create a [Flow Out], representing moose deaths. Re-run the model. Is the population increasing or declining? Why? 
 
-8. Change the **Configuration Panel** for the [Stock] and for the [Flow In] and [Flow Out] so that "Show Value Slider" is set to "Yes". You can change the model parameterization easily using these sliders. Try it a couple times, re-running the simulation after each change. 
+8. Change the **Configuration Panel** for the [Stock] and for the [Flow In] and [Flow Out] so that "Show Value Slider" is set to "Yes". You can change the model parameterization easily using these sliders. Try it a few times, re-running the simulation after each change. **Save your model** ("Save" button at the top menu) 
 
-**Q**: Is this Moose model realistic? What is the first thing you would like to change to make the model more realistic?
+**Q**: Is this Moose model realistic? What are the first things you would like to change to make the model more realistic?
 
-9. Take a few minutes to check out "Insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of Insights. We can (and will) add to this database as part of this class!
+*Take a few minutes to list the things you would like to change to make this model more realistic!*
 
+9. Finally, take a few minutes to check out "Insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of Insights. Pick one or two of these insights and run them. How does the system behave? Does this make sense to you? We can (and will) add to this database as part of this class! 
 
-Finally, just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!
+Just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!
 
 [Lorenz attractor video!](https://www.youtube.com/watch?v=iu4RdmBVdps)
 

@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -372,24 +374,6 @@ div.tocify {
       <a href="LAB3.html">Lab 3: age-structured population growth</a>
     </li>
     <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -414,25 +398,27 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 2: Density-dependence and more!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Jan 24, 2017</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
-<p>In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are <em>density dependence</em>, <em>chaos</em> and <em>time delays</em>.</p>
+<p>In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will get familiar with are <em>density dependence</em>, <em>chaos</em> and <em>time delays</em>.</p>
 <p>First let’s do some math!</p>
 <div id="mathematics-of-density-dependent-population-regulation" class="section level2">
 <h2>Mathematics of Density-Dependent population regulation</h2>
 <p>Recall the basic population growth equation:</p>
 <p><span class="math inline">\(\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 1)}\)</span></p>
-<p>Previously we considered <em>b</em> and <em>d</em> to be constants. Now we want them to be functions of abundance! In particular, as abundance goes up, <em>b</em> goes down:</p>
+<p>Previously we considered <em>b</em> and <em>d</em> to be constants.</p>
+<p>Now we want them to be functions of abundance! In particular, as abundance goes up, <em>b</em> goes down (becomes less favorable):</p>
 <p><span class="math inline">\(b = b_{max}-a*N_t \qquad \text{(Eq. 2)}\)</span></p>
-<p>For the death rate <em>d</em> we might expect it to go up as abundance goes up:</p>
+<p>For the death rate <em>d</em> we might expect it to go up as abundance goes up (becomes less favorable):</p>
 <p><span class="math inline">\(d = d_{min}+c*N_t \qquad \text{(Eq. 3)}\)</span></p>
 <p>The above equations nicely illustrate the meaning of density dependence. That is, the vital rates are <em>dependent</em> on density!</p>
-<p><strong>thought Q</strong>: what do the <em>a</em> and <em>c</em> constants in the above equations really represent? You will have a chance to think more about this in the first exercise.</p>
+<p><strong>Q</strong>: what do the <em>a</em> and <em>c</em> constants in the above equations really represent? You will have a chance to think more about this in the first exercise.</p>
 <p>Okay, now we can substitute the above equations into <strong>Eq. 1</strong>:</p>
-<p><span class="math inline">\(\Delta N = (b_{max}-a*N_t - d_{min}+c*N_t) \cdot N_t \qquad \text{(Eq. 4)}\)</span></p>
+<p><span class="math inline">\(\Delta N = ((b_{max}-a*N_t) - (d_{min}+c*N_t)) \cdot N_t \qquad \text{(Eq. 4)}\)</span></p>
+<p><strong>Q</strong>: what is the maximum rate of growth in this case?</p>
 <p>Using some tricks of algebra (see the Gotelli book), we can simplify this to:</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t \left [ 1 - \frac{a+c}{b-d} \cdot N_t \right ] \qquad \text{(Eq. 5)}\)</span></p>
 <p>Which, if we define <span class="math inline">\(\frac{b-d}{a+c}\)</span> as a constant, <span class="math inline">\(K\)</span>, we can re-write like this!</p>
@@ -442,23 +428,23 @@ div.tocify {
 <div id="exercise-1-hypothetical-mechanisms-of-density-dependence" class="section level2">
 <h2>Exercise 1: hypothetical mechanisms of density dependence</h2>
 <p>Please provide short answers to the following questions:</p>
-<p>1a. Describe two possible density-dependence mechanisms – that is, tell a plausible story about two hypothetical wildlife populations, one of which experiences <em>lower survival</em> (higher mortality) as densities increase and another that experiences <em>lower reproduction</em>. Have fun and be creative- we will not grade these on whether these mechanisms actually occur in nature- we just want to give you a chance to think about the many possible mechanisms that could potentially regulate wild populations. You can use real-world examples if you would rather- that is up to you.</p>
-<p>1b. For one of the above mechanisms, draw (on paper or electronically) two graphs to illustrate how this hypothetical mechanism might manifest at a population level:</p>
+<p>1a. Tell a plausible story about two (possibly hypothetical) wildlife populations, one of which experiences <em>lower survival</em> (higher mortality) as densities increase and another that experiences <em>lower reproduction</em>. In 2-3 sentences (for each of your two hypothetical populations), describe the mechanism(s) underlying the reduction in vital rates for your hypothetical populations. Be creative- we will not grade these on whether these mechanisms actually occur in nature- we just want to give you a chance to think about the many possible mechanisms that could potentially regulate wild populations. You can use real-world examples if you would rather- that is up to you.</p>
+<p>1b. For <em>one of the above mechanisms</em>, draw (electronically-see below for an easy way to do this) two graphs to illustrate how this hypothetical mechanism might manifest at a population level:</p>
 <ol style="list-style-type: lower-roman">
-<li>Abundance (Y axis) over time (X axis). Start the abundance well below carrying capacity.<br />
+<li>Abundance (Y axis) over time (X axis). Initialize the abundance well below carrying capacity.<br />
 </li>
 <li>Vital rate (<em>b</em> or <em>d</em>) (Y axis) over abundance (X axis).</li>
 </ol>
 <p>For each graph, provide a short (1-2 sentences) description of why you think your hypothetical D-D mechanism would result in this relationship!</p>
-<p>NOTE: you can use a web app like <a href="https://awwapp.com/">“A web whiteboard”</a> to quickly and easily make and download sketches! I encourage you to use this method, and to embed your sketches in your submitted MS Word document.</p>
+<p>NOTE: you can use a web app like <a href="https://awwapp.com/">“A web whiteboard”</a> to quickly and easily make and save sketches! I encourage you to use this method, and to embed your sketches in your submitted MS Word document.</p>
 </div>
 <div id="exercise-2-determining-peruvian-anchovy-optimal-harvest-levels" class="section level2">
 <h2>Exercise 2: Determining Peruvian anchovy optimal harvest levels!</h2>
 <p>Let’s use InsightMaker to create a logistic growth model based on the collapse of the Peruvian anchovy fisheries (pages 45-47 in Gotelli).</p>
 <p>As you develop the logistic growth model for the Peruvian anchovy stock in InsightMaker, you might want to refer to the in-class example for <a href="LECTURE4.html">the logistic growth lecture</a>.</p>
-<p><strong>The Goal</strong>: find the level of harvest that maximizes the total quantity harvested while maintaining a sustainable population!</p>
+<p><strong>The Goal</strong>: find the rate of harvest that maximizes the total harvest yield while maintaining a sustainable population!</p>
 <ol style="list-style-type: decimal">
-<li>In InsightMaker, open your basic exponential growth model and choose “Clone Insight” in the upper right corner to create a copy that you can edit for this exercise. It should look something like this (except for anchovies, not rabbits!): (note that it is not strictly necessary to have [Links] – e.g., going from <em>Population</em> to the [Flows] (<em>Births</em> and <em>Deaths</em>). But it makes your models more visually explicit- you know which parts of the system are interacting!)</li>
+<li>In InsightMaker, open your basic exponential growth model (with explicit terms for birth and death rates, like you did in lab 1) and choose “Clone Insight” in the upper right corner to create a new copy that you can edit for this exercise. It should look something like this (see below; except for anchovies, not rabbits!). Note that it is not strictly necessary to have [Links] going from [Stocks] (e.g., <em>Population</em>) to connected [Flows] (e.g., <em>Births</em> and <em>Deaths</em>). But it makes your models more visually explicit- now you know which parts of the system are interacting and what feedback mechanisms are occurring!)</li>
 </ol>
 <div class="figure">
 <img src="basicexp1.png" />
@@ -469,77 +455,98 @@ div.tocify {
 </ol>
 <p><span class="math inline">\(b = b_{max} - aN\)</span>, aka density-dependent birth rate = ideal (maximum) birth rate - (strength of density dependence * N)</p>
 <p><span class="math inline">\(d = d_{min} + cN\)</span>, aka density-dependent death rate = ideal (minimum) death rate + (strength of density dependence * N)</p>
-<p>“Ideal” in this case means the birth and death rates in the absence of the effects of density. So, make new [Variables] (Click on <strong>Add Primitive</strong> &gt;&gt; <strong>Add Variable</strong>) for <em>Ideal Birth Rate</em> and <em>Ideal Death Rate</em>.</p>
+<p>“Ideal” in this case means the birth and death rates in the absence of the effects of density. So, make new [Variables] (Click on <strong>Add Primitive</strong> &gt;&gt; <strong>Add Variable</strong>) for <em>Ideal Birth Rate</em> (maximum birth rate) and <em>Ideal Death Rate</em> (minimum death rate).</p>
 <p>In addition, we need to add variables for the strength of density dependence (terms <em>a</em> and <em>c</em> in the equations). Make sure the <strong>Links</strong> button is activated, and click and drag your mouse to create links from the new variables to the appropriate per-capita vital rates. Your final model should look something like this (except for anchovies, not box turtles!):</p>
 <div class="figure">
 <img src="IM5.jpg" />
 
 </div>
+<p>Here we visualize these relationships in R!</p>
+<pre class="r"><code>Density &lt;- seq(0,15000,10)  # create a sequence of numbers from 0 to 500, representing a range of population densities
+
+## CONSTANTS
+
+b_max &lt;- 1   # maximum reproduction (at low densities)
+d_min &lt;- 0.4  # minimum mortality (at low densities)
+
+a &lt;- 0.00005    # D-D terms
+c &lt;- 0.00001
+
+b &lt;- b_max - a*Density
+d &lt;- d_min + c*Density
+
+plot(Density,b,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,ylim=c(0,2),main=&quot;Density-Dependence!&quot;,xlim=c(0,15000))
+points(Density,d,type=&quot;l&quot;,col=&quot;red&quot;,lwd=2)
+legend(&quot;topleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1),legend=c(&quot;per-capita birth rate&quot;,&quot;per-capita mortality&quot;),bty=&quot;n&quot;)</code></pre>
+<p><img src="LAB2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Next, you’ll need to update the equations to calculate the per-capita birth and death rates. Click on the <strong>=</strong> sign in the corner of each variable, and enter the appropriate equations for the appropriate rates (see above):</p></li>
 <li><p>Enter starting values for your variables. Let’s use 10,000 for the initial <em>Anchovy Population</em>, 1 for the <em>Ideal Birth Rate</em>, 0.00005 for <em>Density Dependence</em> for birth rate, 0.4 for <em>Ideal Death Rate</em>, and 0.00001 for <em>Density Dependence</em> for death rate.</p></li>
-<li><p>Use the <strong>Settings</strong> button to change the <strong>Simulation Length</strong> to 24 and the timescale to “Months”. Click <strong>Simulate</strong>. You may need to click <strong>Configure</strong> in order to clean up your plot to just show <strong>Time</strong> on the x-axis and <strong>Anchovy Population</strong> on the y-axis. Run the model to see if it is working. Since the abundance is initialized at carrying capacity, abundance should not change over time. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an “S-shaped” logistic growth curve.</p></li>
+<li><p>Use the <strong>Settings</strong> button to change the <strong>Simulation Length</strong> to 24 and the timescale to “Months”. Click <strong>Simulate</strong>. You may need to click <strong>Configure</strong> in order to clean up your plot to just show <strong>Time</strong> on the x-axis and <strong>Anchovy Population</strong> on the y-axis. Run the model to see if it is working. <em>Since the abundance is initialized at carrying capacity (K), abundance should not change over time</em>. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an “S-shaped” logistic growth curve. Once you have confirmed that you see S-shaped growth, return the initial population size to 10,000.</p></li>
 <li><p>Next, let’s add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let’s assume harvest is constant – that is, a given number are harvested, regardless of the size of the population (no feedback!).</p></li>
-<li><p>One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property <strong>Only Positive Rates</strong> to “Yes”. We don’t want to harvest the population into negative numbers!!!</p></li>
-<li><p>Finally, try to find the <strong>maximum sustainable yield</strong>. That is, find the maximum harvest rate that yields a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! [Optional: I encourage you to play around with the “Sensitivity Analysis tool”, which you could use to automate this process- that is, have Insightmaker run lots of different values for harvest rate at the same time! We will go over how to use this tool in lab next week or the week after]</p></li>
+<li><p>One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property <strong>Allow Negatives</strong> to “No” (the default is “Yes”). We don’t want to harvest the population into negative numbers!!!</p></li>
+<li><p>Finally, try to find the <strong>maximum sustainable yield (MSY)</strong>. That is, find the maximum harvest rate that results in a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!!</p></li>
 </ol>
 <div id="questions-exercise-2" class="section level3">
 <h3>QUESTIONS, Exercise 2:</h3>
 <p>2a. What is the (approximate) MSY for this population?</p>
 <p>2b. Does the harvest process change the <strong>carrying capacity</strong> for the Peruvian sardines? Explain your reasoning.</p>
 <p>2c. Does the MSY change if you reduce the initial population size down to 1,000 instead of 10,000? If so, what is the new MSY?</p>
-<p>2d. Does the MSY point represent a <strong>stable equilibrium</strong>? That is, does it return to that equilibrium even if you perturb the system? Why? Why not?</p>
-<p>2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY? Why or why not? (More generally, is the MSY really sustainable?)</p>
-<p>2f. Think back to your Wildlife Ecology course (or refer to the Gotelli book!). If you know <span class="math inline">\(K\)</span> and <span class="math inline">\(r\)</span>, how can you analytically solve for <strong>Maximum Sustainable Yield</strong>? Show your calculation. Does your computed MSY match the MSY you found by trial-and-error? (note that <span class="math inline">\(r\)</span> in this case is the difference between the maximum birth rate and the minimum death rate!)</p>
+<p>2d. Does the MSY point represent a <strong>stable equilibrium</strong>? That is, does it return to that equilibrium even if you alter the initial sonditions of the model (i.e., alter the initial abundance)? Why? Why not?</p>
+<p>2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY you determined in part 2a? Why or why not? (More generally, is the MSY sustainable?). Consider the fact that population vital rates (birth and death rates) in real systems exhibit <em>stochasticity</em> (random fluctuations) and that we never know population parameters (e.g., the intrinsic rate of growth, density dependence parameters) with complete certainty.</p>
+<p>2f. Think back to your Wildlife Ecology and Management course (or refer to the Gotelli book!). If you know <span class="math inline">\(K\)</span> and <span class="math inline">\(r\)</span> (intrinsic, or maximum, rate of growth for the population), how can you analytically solve for <strong>Maximum Sustainable Yield</strong>? Show your calculations. Does your computed MSY match the MSY you found by trial-and-error? (note that <span class="math inline">\(r\)</span> in this case is the difference between the maximum birth rate and the minimum death rate!)</p>
+<p><strong>NOTE</strong>: remember to copy the URL for your Insight, insert the URL into your lab write-up. And don’t make any more changes to this insight once you have submitted it (clone it if you want to keep making changes)!</p>
 </div>
 </div>
-<div id="exercise-3-fun-with-logistic-growth" class="section level2">
-<h2>Exercise 3: fun with logistic growth</h2>
-<p>For this exercise we will set up a simpler model in InsightMaker- this time, we will replicate the second-most important equation of population ecology (<strong>Eq. 6</strong>, above.</p>
+<div id="exercise-3-basic-logistic-growth-model" class="section level2">
+<h2>Exercise 3: basic logistic growth model</h2>
+<p>For this exercise we will set up a simpler model in InsightMaker- this time, we will replicate the second-most important equation of population ecology (<strong>Eq. 6</strong>, above). We will sometimes refer to this as “basic logistic growth, r formulation” to distinguish this from basic logistic growth with explicit birth and death rates.</p>
 <ol style="list-style-type: decimal">
-<li><p>Starting from a blank canvas, add a [Stock] called <em>Population</em>. This population should be initialized at 10 individuals, and the <em>Allow Negatives</em> field in the properties window should be set to “No”. Set <em>Show Value Slider</em> to “Yes”, and set the <em>Slider Min</em> to 0 and <em>Slider Max</em> to 1000.</p></li>
-<li><p>Make a new [Flow] coming out of <em>Population</em>, called <em>Delta N</em>. In the properties window, set <em>Only Positive Rates</em> to “No”. You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in <em>Population</em> each time step, which can either be positive or negative!</p></li>
+<li><p>Starting from a blank canvas, add a [Stock] called <em>Population</em>. This population should be initialized at 10 individuals, and the <em>Allow Negatives</em> field in the properties window should be set to “No” (doesn’t make sense to have negative numbers of individuals in the population). Set <em>Show Value Slider</em> to “Yes”, and set the <em>Slider Min</em> to 0 and <em>Slider Max</em> to 1000 (with a slider step of 1).</p></li>
+<li><p>Make a new [Flow] coming out of <em>Population</em>, called <em>Delta N</em>. In the properties window, set <em>Only Positive Rates</em> to “No”. You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in <em>Population</em> each time step, which can either be positive or negative! [NOTE: the <em>tiny white triangle in one of the two arrow heads should be facing <strong>out</strong></em> – this means that a positive value for the flow will mean an addition to the population and a negative flow will be a subtraction from the population]</p></li>
 <li><p>Make a new [Variable] called <em>Max growth rate</em> (also known as <span class="math inline">\(r_{max}\)</span>), and set it at 0.1. Make a link from <em>Max growth rate</em> to <em>Delta N</em>. Set <em>Show Value Slider</em> to “Yes”, and set the <em>Slider Min</em> to 0 and <em>Slider Max</em> to 5.</p></li>
 <li><p>Make a new [Variable] called <em>Carrying capacity</em> (also known as <span class="math inline">\(K\)</span>), and set it at 500. Make a link from <em>Carrying Capacity</em> to <em>Delta N</em>.</p></li>
 <li><p>Finally, open the equation editor for <em>Delta N</em> and type in the logistic growth equation (<strong>Eq. 6</strong>).</p></li>
-<li><p>Run the simulation for 100 years (1 year time step) and make sure it behaves as expected- that is, it should exhibit logistic (S-shaped) growth and should level off at carrying capacity.</p></li>
+<li><p>Run the simulation for 100 years (1-year time step) and make sure it behaves as expected- that is, it should exhibit logistic (S-shaped) growth and should level off at carrying capacity.</p></li>
 </ol>
 <div id="questions-exercise-3" class="section level3">
 <h3>QUESTIONS, Exercise 3:</h3>
-<p>3a. What happens if you initialize the <em>Population</em> at above carrying capacity? Do you still see “S-shaped” (logistic) growth? What if you initialize abundance <strong>at</strong> carrying capacity? Is carrying capacity a <strong>stable equilibrium</strong>? Explain your reasoning.</p>
-<p>3b. Return the initial abundance to 10. Now start adjusting the value of <em>Max Growth Rate</em>. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes as the growth rate increases from 1 to 5. You should be able to identify at least four unique patterns! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as <strong>Chaos</strong> (yes, that is the technical name)!! Can you figure out which pattern is known as chaos??</p>
-<p>3c. Try changing the <strong>Simulation Time Step</strong> in the <strong>Settings</strong> menu. Note that you can set the simulation time step to fractional values- for example, try setting it to 0.1. What if you change it to 2, or 5? Does this change the patterns and thresholds from the previous question? Can you figure out why these patterns emerge?</p>
-<p>3d. Think of at least two hypothetical or real-world cases where <strong>chaos</strong> could emerge as a result of density-dependence. Explain your reasoning!</p>
+<p>3a. What happens if you initialize the <em>Population</em> at above carrying capacity? Do you still see “S-shaped” (logistic) growth? What if you initialize abundance <strong>at</strong> carrying capacity? Is carrying capacity a <strong>stable equilibrium</strong>? Explain your reasoning (show plots from InsightMaker to help illustrate).</p>
+<p>3b. Return the initial abundance to 10. Now start adjusting the value of <em>Max Growth Rate</em>. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes as the growth rate increases from 1 to 5. You should be able to identify <em>at least</em> four unique patterns of population dynamics! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as <strong>Chaos</strong> (yes, that is the technical name)!! Can you figure out which pattern is known as chaos?? Provide a plot that illustrates each of the four unique patterns you identified.</p>
+<p>3c. Try changing the <strong>Simulation Time Step</strong> in the <strong>Settings</strong> menu. Note that you can set the simulation time step to fractional values- for example, try setting it to 0.1. What if you change it to 2, or 5? Does this change the patterns and thresholds from the previous question? Can you figure out why these patterns emerge? This may be somewhat difficult, but try to come up with an explanation for the differences you observe in population dynamics as the time step changes.</p>
+<p>3d. Can you think of a hypothetical or real-world case where <strong>chaos</strong> could emerge as a result of density-dependent processes? Be creative, and explain your reasoning!</p>
+<p><strong>NOTE</strong>: remember to copy the URL for your Insight, insert the URL into your lab write-up. And don’t make any more changes to this insight once you have submitted it (clone it if you want to keep making changes)!</p>
 </div>
 </div>
 <div id="exercise-4-delayed-density-dependence" class="section level2">
 <h2>Exercise 4: delayed density-dependence!</h2>
-<p>What happens when the effects of resource competition are delayed? In this case, the effects of competition (reduction in fitness) will not manifest immediately- but emerge later down the road!</p>
+<p>What happens when the effects of resource competition are delayed? In this case, the effects of competition (reduction in fitness) will not manifest immediately- but will emerge later down the road!</p>
 <p>Let’s build on the previous model…</p>
 <ol style="list-style-type: decimal">
-<li><p>First, add a new [Variable] to the system, called <em>Delayed Abundance</em>, which will store a previous abundance value. Draw a new link from <em>Population</em> to <em>Delayed abundance</em> and from <em>Delayed abundance</em> to <em>Delta N</em>.</p></li>
+<li><p>First, add a new [Variable] to the system, called <em>Delayed Abundance</em>, which will store an abundance value from a previous time step. Draw a new link from <em>Population</em> to <em>Delayed abundance</em> and from <em>Delayed abundance</em> to <em>Delta N</em> (you might need to curve your link arrow so it doesn’t overlap with other objects on your canvas).</p></li>
 <li><p>Add a new [Variable] to the system, called <em>Time Delay</em>. Set <em>Show Value Slider</em> to “Yes”, and set the <em>Slider Min</em> to 0 and <em>Slider Max</em> to 5, and <em>Slider Step</em> to 1. Make a new link from <em>Time Delay</em> to <em>Delayed Abundance</em></p></li>
-<li><p>Open the equation window for <em>Delayed abundance</em>. This variable will store a previous value of <em>Abundance</em>, with the time delay set by <em>Time Delay</em>. To do this, use the following syntax:</p></li>
+<li><p>Open the equation window for <em>Delayed abundance</em>. This variable will store a previous value of <em>Abundance</em>, with the time delay set by <em>Time Delay</em>. To do this, use the following syntax (which you can access by clicking on “Delay” in the “Historical functions” menu within the equation editor):</p></li>
 </ol>
-<pre><code>Delay([Population], [Time delay], 100)</code></pre>
-<p>The “100” in this function is there just to help the simulation get started (at the first time step(s), there are no previous values of <em>Abundance</em>, so InsightMaker will use this value instead).</p>
+<pre><code>Delay([Population], [Time delay], [Population])</code></pre>
+<p>The second “Abundance” in this function is there just to help the simulation get started (at time-step zero, there are no previous values of <em>Abundance</em>, so InsightMaker will use the initial value of “Abundance” instead).</p>
 <ol start="4" style="list-style-type: decimal">
-<li>Finally, modify the equation for <em>Delta N</em> so that <em>Delayed abundance</em> (not <em>Population</em>) is used in the density-dependent portion of the equation. Your equation should now look something like this:</li>
+<li>Finally, modify the equation for <em>Delta N</em> so that <em>Delayed abundance</em> (not <em>Population</em>) is used in the density-dependent portion of the equation (1-N/K). Your equation should now look something like this:</li>
 </ol>
-<pre><code>[Max growth rate]*[Population]*(1-[Delayed abundance]/[Carrying Capacity])</code></pre>
+<pre><code>[Population]*[Max growth rate]*(1-[Delayed abundance]/[Carrying Capacity])</code></pre>
 <div id="questions-exercise-4" class="section level3">
 <h3>QUESTIONS, Exercise 4:</h3>
 <p>4a. Run the model with different values for the time delay. How does the system behave with a time delay? Do you see any similarities with exercise 3?</p>
-<p>4b. Parasitoid wasps help to keep many lepidopteran populations in check. The wasps lay their eggs in caterpillars, and the caterpillars end up dying a horrific death as the wasp larva grows. Wasp-regulation on caterpillars often exhibits delayed density-dependence, resulting in oscillations in caterpillar populations. Can you think of why this might be the case?</p>
+<p>4b. Parasitoid wasps help to keep many lepidopteran populations in check. The wasps lay their eggs in caterpillars, and the caterpillars end up dying a horrific death as the wasp larva grows. Wasp parasitism on caterpillar populations often results in delayed density-dependence – which in turn results in oscillations in caterpillar populations. Can you think of why this might be the case? Explain your reasoning.</p>
+<p><strong>NOTE</strong>: remember to copy the URL for your Insight, insert the URL into your lab write-up. And don’t make any more changes to this insight once you have submitted it (clone it if you want to keep making changes)!</p>
 </div>
 </div>
 <div id="checklist-for-lab-2-completion" class="section level2">
 <h2>Checklist for Lab 2 completion</h2>
 <ul>
-<li>Please package the materials into one Word document and email to Professor Shoemaker and Margarete Walden.</li>
+<li>Please package the materials into one Word document submit via webcampus.</li>
 </ul>
-<p>To share your InsightMaker models: The first step (of course) is to save your model! After you save the model you should see a link on the top left-hand corner, “Insight Access”. Click on that link, and a new window will pop up. Under “allow update access”, add a username (i.e., kevintshoemaker or waldenTA). click on the “Add User” button, and then click on “Submit”. Finally, embed the URL for your InsightMaker model(s) in your Word document!</p>
-<p><strong><em>Due Feb. 10 at 11 am.</em></strong></p>
+<p>To share your InsightMaker models, please embed the URL in your lab write-up.</p>
+<p><strong><em>Due Feb. 15.</em></strong></p>
 <ul>
 <li>Word document with short answers
 <ul>
@@ -575,7 +582,7 @@ div.tocify {
 <ul>
 <li><strong>Exercises 2,3 and 4</strong>
 <ul>
-<li>Your models should show that you were able to create and specify your models correctly. This should be shared with “kevintshoemaker” and “Margarete”, and the URLs should be shared via email.</li>
+<li>Your models should show that you were able to create and specify your models correctly. This should be shared with Kevin and Danielle as embedded URLs in your lab write-up.</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -606,7 +613,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

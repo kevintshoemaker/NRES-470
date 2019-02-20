@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: prey-predator!"
 author: "NRES 470/670"
-date: "Apr 24, 2017"
+date: "Apr 24, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -24,11 +24,11 @@ In the case of competition, we saw that each species negatively influenced the o
 
 Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:
 
-$\Delta V = rV^* - f(V,P)*P$
+$\Delta V = rV^* - f(V,P) \cdot P$
 
 AND
 
-$\Delta P = g(V,P)*P - qP^*$
+$\Delta P = g(V,P) \cdot P - qP^*$
 
 Where
 
@@ -42,11 +42,11 @@ $qP^*$ represents the growth of the predator population *in the absence of prey*
 
 AND
 
-$f(V,P)$ is known as the **functional response** -- that is, the rate of prey consumption per predator, usually a function of the prey and possibly predator densities.
+$f(V,P)$ is known as the **functional response** -- that is, the per capita rate of prey consumption, usually a function of the prey (and sometimes also predator) densities.
 
 AND
 
-$g(V,P)$ is known as the **numerical response** -- that is, the per-capita rate of predator population growth, usually as a function of the prey and possibly predator densities.
+$g(V,P)$ is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption, usually as a function of the prey and possibly predator densities.
 
 There are many different types of possible functional response curves and numerical response curves. Let's start simple!
 
@@ -93,7 +93,7 @@ curve(LVfuncresp(x,0.03),0,200,xlab="Victim abundance",ylab="Total prey eaten pe
 
 Note the intercept- does the functional response need to have an intercept of zero?
 
-...Of course, this *alpha* term has a different meaning from the *alpha* in the competition models! 
+...Of course, this *alpha* term has a different meaning from the *alpha* in the L-V competition models! Sorry! 
 
 Now consider the case where there is more than one predator -- that is, there are $P$ predators and there are $V$ prey. Recall that each predator has *no influence* on the consumption rates of other predators. The predators are just randomly bumping into prey. 
 
@@ -103,7 +103,7 @@ $f(V) \cdot P = \alpha VP$
 
 Does this make sense?
 
-The term $\alpha$ is also known as the **capture efficiency**. Does this make sense? Consider a case where every predator "bumps into" all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of the available prey per time step? Which predator is more efficient? 
+The term $\alpha$ is also known as the **capture efficiency**. Does this make sense? Consider a case where every predator "bumps into" all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more *efficient*? 
 
 **Q** what are the units of *alpha*?
 
@@ -139,11 +139,11 @@ We can think of this as a function of the total prey consumption per predator:
 
 $some.function(f(V))$
 
-The simplest numerical response is that for every increase in prey consumed per capita, predator population growth increases by a fixed amount, $\beta$
-
-**Q** what is the shape of the **numerical response** in this case?
+The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption: 
 
 $g(V)=\beta \cdot V$
+
+**Q** what is the shape of the **numerical response** in this case?
 
 ```{r}
 LVnumresp <- function(V,beta){
@@ -158,7 +158,7 @@ Note the intercept- does the numerical response need to have an intercept of zer
 
 The *predator growth rate due to prey consumption* now is:
 
-$g(V) \cdot P = \beta VP$
+$g(V) \cdot P = \beta V \cdot P$
 
 Does this make sense?
 
@@ -185,19 +185,19 @@ $\Delta V = rV - \alpha VP$
 
 ### L-V predation model in InsightMaker 
 
-Before we go deeper into predation modeling, let's simulate prey and predator population growth under the L-V predation model. As always, you can work in groups!
+Before we go deeper into predation modeling, let's simulate prey and predator population growth under the L-V predation model. 
 
 **Step 1**: First, clone [this Insight](https://insightmaker.com/insight/78356/Base-prey-predator-model), which provides the skeleton for a basic prey-predator model
 
 **Step 2**: Correctly set up the equations for the variables "functional response"" and "numerical response".  
 
-**Step 3**: Correctly set up the flow equations for "total prey consumed" and "predator mortality", which refer to the the prey lost and the predators gained per time step, respectively.
+**Step 3**: Correctly set up the flow equations for "total prey consumed" and "predator growth", which refer to the the prey lost and the predators gained per time step, respectively.
 
 **Step 4**: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to "Accurate (RK4)".
 
 **Step 5**: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.
 
-**Step 6**: Add a new display to represent **state space**: Choose the "scatter plot" type, and under "Data" select *Prey* first, then *Predator*. What does this system look like in phase space. 
+**Step 6**: Add a new display to represent the **phase plane**: Choose the "scatter plot" type, and under "Data" select *Prey* first, then *Predator*. What does this system look like in phase space? 
 
 **Q** What happens if you change the initial abundances?
 
@@ -300,7 +300,7 @@ points(System[1,],col="blue",pch=20,cex=3)
 With some jittering, we can visualize the amount of time the system spends in various parts of phase space...
 
 ```{r}
-plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="species 1",ylab="species 2")
+plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="Prey",ylab="Predators")
 points(jitter(System[,1],200),jitter(System[,2],200),col="brown",pch=20,cex=0.3)
 #abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 ```
@@ -766,7 +766,7 @@ If we set the L-V prey growth equation to zero, we find that the victim populati
 
 $\hat{P} =\frac{r}{\alpha}$
 
-If we set the L-V predator equation to zero, we find that the victim population is stable under the following conditions in phase space:
+If we set the L-V predator equation to zero, we find that the predator population is stable under the following conditions in phase space:
 
 $\hat{V} =\frac{q}{\beta}$
 
@@ -963,7 +963,7 @@ $f(V,P) = \frac{\alpha V}{1+\alpha hV}$,
 
 where *f(V,P)* is the functional response (prey consumed per predator).
 
-Similar to the Type I functional response, $\alpha$ is the "attack rate" (rate at which a predator-prey encounters increase as prey densities increase) 
+Similar to the Type I functional response, $\alpha$ is the "attack rate" (rate at which predator-prey encounters increase as prey densities increase) 
 
 The new term, *h*, describes the handling time (average time a predator spends processing a single prey item). 
 

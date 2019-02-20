@@ -1,7 +1,7 @@
 ---
-title: "Loggerhead PVA example"
+title: "Loggerhead PVA"
 author: "NRES 421/621"
-date: "Mar 26, 2017"
+date: "Mar 15, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -15,18 +15,16 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 # PVA for loggerhead turtles!
 
-This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 17 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant **scenario testing**
-
-NOTE: the Excel exercise below is *optional*! 
+This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 3 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant **scenario testing**. Also make sure you have run through the Excel exercise- see below!
 
 
 ## Constructing a demographic (matrix) model data for loggerhead turtles
 
 If you would like more background information on loggerhead turtles, visit these websites:     
 
-[](http://ecos.fws.gov/species_profile/servlet/gov.doi.species_profile.servlets.SpeciesProfile?spcode=C00U)       
-[](http://www.nmfs.noaa.gov/prot_res/species/turtles/loggerhead.html)       
-[](http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml)       
+[USFWS site](http://ecos.fws.gov/species_profile/servlet/gov.doi.species_profile.servlets.SpeciesProfile?spcode=C00U)       
+[NMFS site](http://www.nmfs.noaa.gov/prot_res/species/turtles/loggerhead.html)       
+[Texas site](http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml)       
 
 ### Background
 
@@ -61,7 +59,7 @@ Because beaches are popular sites for human recreation and development, arriving
 
 Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.  
 
-- Hatchlings and juveniles feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common.  
+- Juveniles feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common.  
 
 ![](trawl1.png)
 
@@ -69,11 +67,11 @@ Once hatchlings reach the ocean, they face different threats as they slowly deve
 
 - Moreover, human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause *entanglement*, stranding, and drowning.
 
-- In addition to these primary threats, seagoing juveniles and adults face mortality due to *bycatch* in longline, hook-and-line, and trap fisheries targeting tuna and other species.  
+- In addition to these primary threats, sea-going juveniles and adults face mortality due to *bycatch* in longline, hook-and-line, and trap fisheries targeting tuna and other species.  
 
 - Shallow swimming turtles may also collide with *boat propellers*.  
 
-- Toxins (*pesticides and heavy metals*) and oil spills may harm turtle physiology and decrease fecundity, but their impact has not been quantified.  
+- Toxins (*pesticides and heavy metals*) and oil spills may harm turtle physiology and decrease fecundity, but their impact has not been quantified.
 
 - Finally, although rare in the US, *illegal harvest* of eggs  as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras).  Turtle eggs are occasionally seen in open-air markets in Panama.
 
@@ -91,7 +89,7 @@ Once turtle life-stages with similar vital rates have been identified, three pie
 
 Transition rates for turtles and other species are often estimated on the basis of *capture-mark-recapture* (CMR) data. 
 
-Here are some estimates, from [this paper](crowder1994.pdf):
+Here are some estimates, from [this paper](Crowder1994.pdf):
 
 *Transition from stage 1-2*: 0.675    
 *Transition from stage 2-3*: 0.047   
@@ -102,78 +100,29 @@ Here are some estimates, from [this paper](crowder1994.pdf):
 *Transition from stage 4-4*: 0.682     
 *Transition from stage 5-5*: 0.809     
 *Transition from stage 4-1*: 4.67     
-*Transition from stage 5-1*: 61.90     
+*Transition from stage 5-1*: 61.90    
 
+For this model we will assume no stochasticity or uncertainty in any of these parameters. 
 
-```{r echo=FALSE}
-
-projection_matrix <- matrix(
-  c(
-    0,     1.2,   3.1,
-    0.4,   0,     0,
-    0,     0.75,   0
-  )
-  ,nrow=3,ncol=3,byrow=T
-)
-
-#projection_matrix
-
-```
-
-
-```{r echo=FALSE}
-Abundance_year0 <- c(1000,0,0)
-#Abundance_year0
-```
-
-```{r echo=FALSE}
-Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
-#Year1
-```
-
-```{r echo=FALSE}
-Year2 <- projection_matrix %*% Year1  # matrix multiplication!
-#Year2
-```
-
-```{r echo=FALSE}
-
-nYears <- 20                                            # set the number of years to project
-TMat <- projection_matrix                               # define the projection matrix
-InitAbund <- Abundance_year0                            # define the initial abundance
-
-  ## NOTE: the code below can be re-used without modification:
-allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
-allYears[,1] <- InitAbund  # set the year 0 abundance                                    
-for(t in 2:(nYears+1)){   # loop through all years
-  allYears[,t] <-  TMat %*% allYears[,t-1]
-}
-# plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
-# cols <- rainbow(3)    # set up colors to use
-# for(s in 1:3){
-#   points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
-# }
-# axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
-# legend("topleft",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))))  # put a legend on the plot
-```
-
-### Step 3: spatial structure
+### Step 3: spatial structure  
 
 We are not modeling spatial structure, so we can skip this one!
 
 ### Step 4: simulate!
 
-We can project the loggerhead population into the future using *matrix multiplication* (for more background on matrix projections, look at the [lecture notes](PVA1_421.html) on "PVA basics")!
+We can project the loggerhead population into the future using *matrix multiplication*!
 
 We can do this using any number of tools- including R, Excel, or Insightmaker. 
 
-Since you probably are most familiar with Excel, let's do it in Excel first! 
+See the end of this lecture for a review of matrix population models and how they work. 
 
-## OPTIONAL: population projection in Excel!
+Since you probably are most familiar with Excel, let's do it in Excel first! Or if you'd like to do it in R instead, I've provided some code to get you started.  
+
+## Population projection in Excel
 
 You can load the base Excel model [here](Loggerhead2017.xlsx)
 
-#### Build the baseline loggerhead projection matrix [A]
+#### Build the baseline loggerhead projection matrix
 
 - Your initial spreadsheet should look something like this:
 
@@ -181,22 +130,18 @@ You can load the base Excel model [here](Loggerhead2017.xlsx)
 
 - Use the transition rates to complete the baseline projection matrix for the loggerhead turtles. For example, the yearly transition probability from large juveniles to large juveniles ($S_3$) is 0.657. Recall that the transition rates are:
 
-*Transition from stage 1-2*: 0.675    
-*Transition from stage 2-3*: 0.047   
-*Transition from stage 3-4*: 0.019      
-*Transition from stage 4-5*: 0.061     
-*Transition from stage 2-2*: 0.703     
-*Transition from stage 3-3*: 0.657      
-*Transition from stage 4-4*: 0.682     
-*Transition from stage 5-5*: 0.809     
-*Transition from stage 4-1*: 4.67     
-*Transition from stage 5-1*: 61.90     
+*Transition from stage 1-2 (hatchling to small juvenile)*: 0.675    
+*Transition from stage 2-3 (small to large juvenile)*: 0.047   
+*Transition from stage 3-4 (large juvenile to subadult)*: 0.019      
+*Transition from stage 4-5 (subadult to adult)*: 0.061     
+*Transition from stage 2-2 (stay small juvenile)*: 0.703     
+*Transition from stage 3-3 (stay large juvenile)*: 0.657      
+*Transition from stage 4-4 (stay subadult)*: 0.682     
+*Transition from stage 5-5 (stay adult)*: 0.809     
+*Transition from stage 4-1 (reproduction by subadults)*: 4.67     
+*Transition from stage 5-1 (reproduction by adults)*: 61.90     
 
-- Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero.
-
-- Make sure you understand what the matrix telling you.  
-
-**Q**: How many  large-juveniles out of 1000 will survive AND grow to be subadults the following year?
+- Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero in the transition matrix.
 
 **Q**: what is the total survival rate for, e.g., large juveniles?
 
@@ -215,6 +160,9 @@ projection_matrix <- matrix(
   ,nrow=5,ncol=5,byrow=T
 )
 
+stagenames <- c("Hatchling","Small Juv","Large Juv","Subadult","Adult")
+rownames(projection_matrix) <- stagenames
+colnames(projection_matrix) <- stagenames
 projection_matrix
 
 ```
@@ -251,7 +199,7 @@ For example, to calculate the first row of [n]t +1, the number of hatchlings:
 
 *hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42*     
 
-We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values.  The first entry in row 1 is multiplied by the first entry of the column vector.  The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for.
+We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector.  The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for.
 
 **Q**: Using actual numbers as for hatchlings above, write out the equation for calculating the number of small juveniles (sm juv) in year 1 based on $\mathbf{A}$ and $\mathbf{N}_{0}$:
 
@@ -314,33 +262,38 @@ for(s in 1:5){
   points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
-legend("topright",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))),bty="n")  # put a legend on the plot
+legend("topright",col=cols,lwd=rep(2,3),legend=rownames(TMat),bty="n")  # put a legend on the plot
 ```
 
 ## Projecting the loggerhead population in InsightMaker
 
 First, clone the baseline loggerhead PVA model [here](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model)
 
-Hit "Simulate". Make sure that the model results look the same as the above figure! 
+Hit "Simulate". Make sure that the model results look the same as the above figure! If not, make sure the parameters are correct!
+
+NOTE: here we use the term "survival" to refer to staying in the same stage class, and "growth" to refer to moving on to the next life stage. 
 
 Look over the model, and make sure that you understand the inner workings!
 
 ### Group exercise (in class!): loggerhead management
 
-Working in groups of 2-3, investigate three management scenarios for the loggerhead turtle population:
+Working in groups of 2-3, investigate four management scenarios for the loggerhead turtle population:
 
-1. Improve fecundity via nest-site protection!
+1. Improve fecundity (transition rates to the hatchling stage) via *nest-site protection*!
     - Improve by 50%
     - Improve by 100%
-2. Improve hatchling survival via nest monitoring
+2. Improve hatchling survival via *nest monitoring*
     - Improve _to_ 90%
     - Improve _to_ 100%
-3. Improve large juvenile survival using Turtle Excluder Devices (TEDs)
+3. Improve large juvenile survival using *Turtle Excluder Devices (TEDs)*
     - Improve by 15%
     - Improve by 25%
-4. Improve adult/subadult survival by restricting longline fisheries.
+4. Improve adult/subadult survival by *restricting longline fisheries*.
     - Improve by 5%
     - Improve by 10%
+    
+    
+NOTE: to alter parameters by (e.g.) 10% you can open the equation window and multiply the original parameter value by 1.1.
     
     
 ![turtle excluder device](ted1.jpg)    
@@ -355,10 +308,6 @@ For each scenario, consider:
 
 **Q**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if it ultimately declines?
 
-**Q**: What is the *stable stage distribution*?
-
-**Q**: In what year is the *stable stage distribution* reached? What if you play around with the initial abundances to make it start closer to stable stage distribution?
-
 
 #### References
 
@@ -367,6 +316,125 @@ Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J.
 Morris, W. F. and D. F. Doak.  2002.  Quantitative conservation biology:  Theory and practice of population viability analysis.  Sinauer, Sunderland, MA.
 
 Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson.  1999. A practical handbook for population viability analysis.  The Nature Conservancy, Wash., DC.
+
+
+
+
+## REVIEW: matrix population models: 
+
+We can present yearly fecundity and survival probabilities compactly in a **projection matrix** [A] which we use to project the population size year to year.
+
+We all remember the finite-population-growth equation:
+
+$N_{t+1}=\lambda \cdot N_t   \qquad \text{(Eq. 1)}$,
+
+where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multipicative growth rate over the time period $t \rightarrow t+1$
+
+The matrix population growth equation looks pretty much the same!
+
+$\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}   \qquad \text{(Eq. 2)}$,
+
+where $\mathbf{N}$ is a **vector** of abundances (abundance for all stages), and $\mathbf{A}$ is the **transition matrix**, which we have seen before.
+
+We can be more explicit about this if we re-write the above equation this way:
+
+$\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 & F_2 & F_3\\ P_{1 \rightarrow 2} & P_{2 \rightarrow 2} & 0\\ 0 & P_{2 \rightarrow 3} & P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
+
+Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2, and $F_2$ is the **fecundity** of stage 2.
+
+There are three important types of transitions. 
+
+- $F_i$ = Fecundities, or the number of new turtles (hatchlings) produced by an average individual of size-class *i* per year. This is the top row of the transition matrix.
+- $S_i$ = Stage Survival, or fraction of size *i* turtles surviving and staying in the same size-class per year. These are the diagonal elements of the matrix
+- $G_i$ = fraction of size *i* turtles surviving and growing to size-class *i + 1* per year. These are the subdiagonal elements of the matrix. 
+
+NOTE: _fecundity is NOT the same thing as birth rate_, $b$. What's the difference?
+
+Birth rate, $b_t$, is the _per-capita rate of offspring production_ for stage $t$  
+
+Fecundity, $F_t$, is the _per-capita rate by which an individual of stage $t$ contributes new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference??
+
+Fecundity also takes into account the survival rate from $t$ to $t+1$!!  For an adult of stage $t$ to contribute to the next generation, _it must both survive and reproduce_!.
+
+$F_t = P_{1 \rightarrow 2} \cdot  b_{t+1}    \qquad \text{(Eq. 4)}$
+
+There is a lot we can do with matrix population models. The most obvious one is *projection*:
+
+### Projection:
+
+We have already seen the projection equation (*Eq. 2*, above). Here is how we can implement this in R:
+
+```{r}
+
+Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
+  
+```
+
+Let's try it!:
+
+First, let's build a *projection matrix*:
+
+```{r}
+
+projection_matrix <- matrix(
+  c(
+    0,     1.2,   3.1,
+    0.4,   0,     0,
+    0,     0.75,   0
+  )
+  ,nrow=3,ncol=3,byrow=T
+)
+
+projection_matrix
+
+```
+
+Next, let's build an initial abundance vector:
+
+```{r}
+Abundance_year0 <- c(1000,0,0)
+Abundance_year0
+```
+
+Now we can run the code for real!
+
+```{r}
+Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
+Year1
+```
+
+Now we have 300 individuals in stage 2!
+
+Let's project one more year:
+
+```{r}
+Year2 <- projection_matrix %*% Year1  # matrix multiplication!
+Year2
+```
+
+Here is some R code to project many years into the future!  
+
+```{r}
+nYears <- 20                                            # set the number of years to project
+TMat <- projection_matrix                               # define the projection matrix
+InitAbund <- Abundance_year0                            # define the initial abundance
+
+  ## NOTE: the code below can be re-used without modification:
+allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+allYears[,1] <- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
+  allYears[,t] <-  TMat %*% allYears[,t-1]
+}
+plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+cols <- rainbow(3)    # set up colors to use
+for(s in 1:3){
+  points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
+}
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+legend("topleft",col=cols,lwd=rep(2,3),legend=paste("Stage ",seq(1:nrow(TMat))))  # put a legend on the plot
+```
+
+
 
 
 

@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Matrix population models"
 author: "NRES 470/670"
-date: "Feb 10, 2017"
+date: "Feb 10, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will get back to age-structured populations: specifically, we will play with **matrix projection models**! Rememeber that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic exponential growth!
+In this lab we will get back to age-structured populations: specifically, we will play with **matrix projection models**! Rememeber that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic (discrete) exponential growth!
 
 ## Mathematics of matrix population models: 
 
@@ -22,6 +22,8 @@ We all remember the finite-population-growth equation:
 $N_{t+1}=\lambda \cdot N_t   \qquad \text{(Eq. 1)}$,
 
 where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multipicative growth rate over the time period $t \rightarrow t+1$
+
+In other words, $\lambda$ is the average per-capita multiplication factor per time step. You want next year's expected abundance? Just multiply last year's abundance by $\lambda$!
 
 The matrix population growth equation looks pretty much the same!
 
@@ -137,7 +139,7 @@ lambda(projection_matrix)
 
 Pretty easy right?
 
-NOTE: we are using a "package" in R to make these analyses super easy! So if you don't already have the "popbio" package, go to the "Packages" tab in R studio (should be at the top of the lower right panel), click on "Install", and then type "popbio" in the "Packages" field in the pop-up window, then click on the "Install" button. 
+NOTE: we are using a "package" in R to make these analyses super easy! So if you don't already have the "popbio" package, go to the "Packages" tab in Rstudio (should be at the top of the lower right panel), click on "Install", and then type "popbio" in the "Packages" field in the pop-up window, then click on the "Install" button. 
 
 Or just use the following code:
 
@@ -160,9 +162,9 @@ And that is really all we need to know to get started with matrix-based populati
 
 ## Exercise 1: play with matrix projection models!
 
-In this exercise, you will have a chance to play around with a very simple matrix population model. But first, you need to translate a life table into a transition matrix!
+In this exercise, you will have a chance to play around with a very simple matrix population model. But first, you need to translate a life table into a transition matrix! 
 
-Here is a life table you may remember.
+Here is a life table you may remember. You can find this life table [here](life_table4.csv).
 
 ```{r echo=FALSE}
 lifetable <- read.csv("life_table4.csv")
@@ -173,14 +175,16 @@ lifetable
 
 Keep the following points in mind: 
 
-- Individuals are in "age class 1" if they are between the ages of 0 and 1. They transition to "age-class 2" ($P_{1 \rightarrow 2}$) if they survive to age 1 (at which point they are now entering age class two!). Yes this can be confusing!     
+- Individuals are in "age class 1" if they are between the ages of 0 and 1. They transition to "age-class 2" ($P_{1 \rightarrow 2}$) if they survive to enter their second year of life (at which point they are now entering age class two!).     
 - For individuals of "Age class 1" to contribute new offpring (individuals of age-class 1) to the population in the next time step ($F_1$), they have to survive their first year of life ($P_{1 \rightarrow 2}$) AND produce offspring when they are exactly 1 year of age (which they do at the rate of $b$ at age 1).    
-
-- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age-class or they die.     
+- Use five age classes for your transition matrix. However, individuals in their fifth year of life have zero survival (you can't go past your fifth year of life in this model).      
+- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age-class or they die.          
 
 1b. Use R to compute the finite rate of growth for the population ($\lambda$). Is this a growing or declining population? Show your R code!   
 
-1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?   
+1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?
+
+-NOTE: you can't have fractional individuals, so please round to the nearest whole numbers:    
 
 1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the "Lambda" value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 1. 
 
@@ -203,7 +207,9 @@ Make sure the parameters are at the original values specified in Exercise 3 of L
 
 2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide the InsightMaker plot to show that the two models are identical.    
 
-In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO! Let's build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let's build a model where *growth* (transition from one stage to the next) is density dependent but stage-specific survival does not change! Here is the scenario:   
+In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO! 
+
+Let's build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let's build a model where *growth* (transition from one stage to the next) is density dependent but stage-specific survival does not change! Here is the scenario:   
 
 > The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.    
 
@@ -221,7 +227,7 @@ stmat
 
 ## Exercise 3. Translate plain English to projection matrix!
 
-This should be quick and relatively painless! As a test of your understanding, try to implement the following passage as a matrix projection model:
+As a test of your understanding, try to implement the following passage as a matrix projection model:
 
 ![](redtail1.jpg)
 
@@ -242,7 +248,7 @@ This should be quick and relatively painless! As a test of your understanding, t
 
     * After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, copy and paste the URL into the Word document.
 
-***Due Mar. 3 at 11 am.***
+***Due Mar. 2 at 10 am.***
 
 *  Word document with short answers
     +  **Exercise 1**

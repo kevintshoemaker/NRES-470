@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Species interactions: competition!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Apr 13, 2017</em></h4>
+<h4 class="date"><em>Apr 20, 2018</em></h4>
 
 </div>
 
@@ -423,7 +416,9 @@ div.tocify {
 <h2>Species interactions</h2>
 <p>PVA, as you may recall, tends to be very single-species focused.</p>
 <p>BUT population ecology doesn’t have to be single-species focused. There are many cases where we would do well to think about species interactions specifically.</p>
-<p>From a modeling standpoint, this is where things really get interesting! That is, with species interactions, we really start to see some unexpected emergent properties!</p>
+<p>From a modeling standpoint, this is where things really get interesting- with species interactions, we really start to see some unexpected emergent properties!</p>
+<p>Species interactions can be classified according to the effect of the interaction on each species: (+,+), (+,-), (+,0), (-,-), (-,0), (0,0)</p>
+<p><strong>Q</strong>: Can you name each of the above interaction classes?</p>
 </div>
 <div id="competition" class="section level2">
 <h2>Competition</h2>
@@ -434,7 +429,7 @@ div.tocify {
 <div id="exploitation" class="section level4">
 <h4>Exploitation</h4>
 <p>This is the kind of competition we probably think about first- all individuals are competing for resources and all have similar competitive abilities. It’s a free-for-all: everyone gets some piece of a limited pie!</p>
-<p>Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed in detail! Within species, this is often called “<em>scramble competition</em>”.</p>
+<p>Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed this class. Within a single species, this is often called “<em>scramble competition</em>”.</p>
 </div>
 <div id="interference" class="section level4">
 <h4>Interference</h4>
@@ -454,7 +449,7 @@ div.tocify {
 </ol>
 <p><span class="math inline">\(\Delta N = r\cdot N_t \cdot (1-\frac{N}{K})\)</span></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Now consider the case where we have two species that experience logistic growth:</li>
+<li>Now consider the case where we have two species whose dynamics can be described by logistic growth equations:</li>
 </ol>
 <p>Species 1: <span class="math inline">\(\Delta N1 = r\cdot N1_t \cdot (1-\frac{N1}{K1})\)</span></p>
 <p>Species 2: <span class="math inline">\(\Delta N2 = r\cdot N2_t \cdot (1-\frac{N2}{K2})\)</span></p>
@@ -469,11 +464,10 @@ div.tocify {
 <p><strong>Q</strong>: what does it mean if <span class="math inline">\(\alpha\)</span> is equal to <span class="math inline">\(\frac{1}{5}\)</span>?</p>
 <p><strong>Q</strong>: what does it mean if <span class="math inline">\(\alpha\)</span> is equal to zero?</p>
 </div>
-<div id="lets-explore-this-model-in-insightmaker" class="section level3">
-<h3>Let’s explore this model in InsightMaker!</h3>
+<div id="lets-explore-this-model-together-in-insightmaker" class="section level3">
+<h3>Let’s explore this model together in InsightMaker!</h3>
 <p><strong>Step 1</strong>: clone a basic (non-interacting) two-species model <a href="https://insightmaker.com/insight/77729/Base-2-species-model">here</a>. Try some different parameter settings, to make sure the model is doing what you expect!</p>
 <p><strong>Step 2</strong>: Now add the “alpha” and “beta” terms to represent the degree to which species 1 competes with species 2, and vice versa. Put slider bars on these parameters, with bounds of 0 to 10. <em>What should “alpha” and “beta” link to??</em></p>
-<p><strong>NOTE</strong> I ran into some strange error where the term “alpha” means something to InsightMaker, and so naming a variable “alpha” generated an error. Took me like an hour to figure this out. So maybe name it “Alpha1” instead…</p>
 <p><strong>Step 3</strong>: Change the parameter values around and see how the model behaves.</p>
 <p>This model is known as <em>Lotka-Volterra competition</em>! The model is named after mathematicians Alfred Lotka and Vito Volterra</p>
 <p><strong>Q</strong>: what happens if one species is a superior competitor? Can one species go extinct?</p>
@@ -601,15 +595,52 @@ abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><strong>Q</strong>: Does this two-species system have a stable equilibrium?</p>
 <pre><code>## Warning: package &#39;deSolve&#39; was built under R version 3.3.3</code></pre>
-<div id="working-in-phase-space" class="section level3">
-<h3>Working in phase space!</h3>
-<p>There is a lot you can do with phase space.</p>
+<div id="working-in-the-phase-plane" class="section level3">
+<h3>Working in the phase plane!</h3>
+<p>There is a lot you can learn about an interacting two-species system by working with the phase plane.</p>
 <p>First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system is expected to go from that point in phase space.</p>
 <p>So, imagine we start at the initial abundance in the above figures. Where does the arrow point in phase space?</p>
-<p>The <em>length</em> of the arrow represents the speed at which the system will move in the direction of the arrow.</p>
+<p>The <em>length</em> of the arrow represents the speed at which the system will move in the direction of the arrow (the degree of <em>repulsion</em> from that point in phase space).</p>
 <p>Now imagine we draw arrows throughout phase space, representing where the system would be expected to go.</p>
 <p>Note: this example uses R code from <a href="http://www.pauljhurtado.com/">Paul Hurtado</a></p>
+<pre class="r"><code>#######################################################################################
+## SPECIFY MODEL AND INITIALIZE
+#
+## toggle switch function for phase arrow and nullcline plotting 
+
+toggle = compiler::cmpfun(function(u,v,parms) {
+  c( u*parms[1]*(1-(u+(parms[2]*v))/parms[3]), v*parms[4]*(1-(v+(parms[5]*u))/parms[6]) )
+})
+
+fun=toggle ## Our generic name for the system of equations to look at! ;-)
+#
+## toggle switch function for computing solution trajectories with deSolve::ode()
+
+#Toggle = as.ode.func(toggle)
+#
+## parameter values?
+
+Rmax1 &lt;- 0.05
+Alpha &lt;- 0.3
+K1 &lt;- 1000
+Rmax2 &lt;- 0.3
+Beta &lt;- 0.2
+K2 &lt;- 450
+
+parms=c(Rmax1,Alpha,K1,Rmax2,Beta,K2)
+
+# toggle(100,100,parms)
+
+xlim = c(5,2000)
+ylim = c(5,1000)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
+phasearrows.draw(new)</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>#
+## END MODEL SPECIFICATION AND INITIALIZATION
+#######################################################################################</code></pre>
 <p>Take any arbitrary starting point. Now we can trace the trajectory that the system will take in phase space.</p>
 <p>Try it!!</p>
 <p>You will see that there are some key thresholds in phase space that we should consider. For example, arrows can reverse direction!</p>
@@ -628,13 +659,12 @@ abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 1</code></pre>
 <p>The red line represents the conditions under which the growth rate of species 1 is zero.</p>
 <p><strong>Q</strong>: how many equilibrium solutions are there for species 1?</p>
 <p><strong>Q</strong>: under what conditions is carrying capacity “used up” for species 1??</p>
-<p>That is, it represents that case where carrying capacity is “filled up”, by either species 1 or species 2.</p>
 <p>Below the red line, species 1 will tend to increase.</p>
 <p>Above the red line, species 1 will tend to decrease.</p>
-<p>The blue line represents the conditions under which carrying capacity is used up for species 2!</p>
+<p>The blue line (isocline) represents the conditions under which carrying capacity is used up for species 2!</p>
 <p><strong>Q</strong>: under what conditions is carrying capacity “used up” for species 2??</p>
-<p>Below the red line, species 2 will tend to increase.</p>
-<p>Above the red line, species 2 will tend to decrease.</p>
+<p>Below the blue line, species 2 will tend to increase.</p>
+<p>Above the blue line, species 2 will tend to decrease.</p>
 <p><strong>Q</strong>: consider the point where the two isoclines cross. What does this point represent?</p>
 <p>Let’s consider the following case…</p>
 <pre class="r"><code>Rmax1 &lt;- 0.2
@@ -659,8 +689,9 @@ abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Follow the trajectories from any point in this phase space. What is the outcome here?</p>
 <p><strong>Q</strong>: Is there a system-wide equilibrium?</p>
-<p><strong>Q</strong>: Is there any point in this phase space where the population growth goes negative for species 1 and positive for species 2?</p>
-<p><strong>Q</strong>: What happens to the system when carrying capacity is used up for species 2?</p>
+<p><strong>Q</strong>: Is there any point in this phase space where the population growth goes negative for species 1 (K1 used up) and positive for species 2 (some of K2 left unused)?</p>
+<p><strong>Q</strong>: What happens to species 1 when carrying capacity is used up for species 2? Is there room for species 1 to invade?</p>
+<p><strong>Q</strong>: What happens to species 2 when carrying capacity is used up for species 1? Is there room for species 2 to invade?</p>
 <p>How about this example?</p>
 <pre class="r"><code>Rmax1 &lt;- 0.5
 Alpha &lt;- 1.05
@@ -733,7 +764,8 @@ abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p><strong>Q</strong>: is the point where the two isoclines cross an <em>equilibrium</em>?</p>
 <p><strong>Q</strong>: is the point where the two isoclines cross a <em>stable equilibrium</em>?</p>
-<p><strong>Q</strong>: in nature, what would happen in this case?</p>
+<p><strong>Q</strong>: what would happen if species 1 was at K and species 2 tried to invade? And vice versa?</p>
+<p><strong>Q</strong>: what would happen if both species tried to invade a vacant habitat at the same time?</p>
 </div>
 </div>
 <div id="phase-space-in-insightmaker" class="section level3">
@@ -741,9 +773,9 @@ abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
 <p>You can visualize populations moving through the phase plane in InsightMaker! To do this, just click on “Add Display” in the graphics window (which comes up automatically when you hit “Simulate”) and create a “Scatter Plot”. For the “Data” field, select the two stocks (species abundances).</p>
 <p>If you are having trouble, you can load up the basic competition model <a href="https://insightmaker.com/insight/77730/Competition-1#">here</a></p>
 <p><strong>Step 1</strong>: Set the key parameters (alpha, beta, K1, K2) to arbitrary values</p>
-<p><strong>Step 2</strong>: Draw out the phase space with isoclines for both competing species.. Also draw out the expected direction of growth in each quadrant/region of the phase space.</p>
+<p><strong>Step 2</strong>: Draw out the phase plane with isoclines for both competing species.. Also draw out the expected direction of growth in each quadrant/region of the phase plane.</p>
 <p><strong>Step 3</strong>: Pick an arbitrary starting value. What do you think the trajectory is going to look like?</p>
-<p><strong>Step 4</strong>: Run this model in InsightMaker. Does the system behave as you expected?</p>
+<p><strong>Step 4</strong>: Run this model in InsightMaker. Does the system behave as expected?</p>
 <p><strong>Step 5</strong>: Evaluate the following statement (from the Gotelli Book):</p>
 <blockquote>
 <p>“the more similar species are in their use of shared resources, the more precarious their coexistence”</p>
@@ -779,7 +811,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

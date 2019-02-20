@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -368,33 +370,6 @@ div.tocify {
     <li>
       <a href="LAB2.html">Lab 2: logistic growth</a>
     </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
-      <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -414,21 +389,21 @@ div.tocify {
 
 <h1 class="title toc-ignore">Population regulation</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 1, 2017</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
 <div id="what-is-density-dependence-d-d" class="section level2">
-<h2>What is density-dependence (D-D)?</h2>
-<p>Last week we went through the mathematics of exponential growth. This week we will explore basic models of <strong>density dependence</strong>. Exponential growth, as you have seen, leads to craziness. It is not sustainable. As Malthus noted, resources are finite, and at some point or another exponentially growing populations will find their limits.</p>
-<p><strong>Density</strong>: In D-D, <em>density</em> basically refers to the number of con-specific individuals that you are competing with for food. The more you compete with others of your own species, the less favorable your <strong>vital rates</strong> (e.g., per-capita death rate, <em>d</em>, increases or per-capita birth rate, <em>b</em>, decreases)! As <em>N</em> goes up, vital rates take a turn for the worse.</p>
+<h2>What is density dependence (D-D)?</h2>
+<p>Last week we went through the mathematics of exponential growth. This week we will explore basic models of <strong>density dependence</strong>. Exponential growth, as you have seen, leads to craziness. It is not sustainable. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits.</p>
+<p><strong>Density</strong>: In D-D, <em>density</em> basically refers to the number of conspecific individuals that you are competing with for food and other resources. The more you compete with others of your own species, the less favorable your <strong>vital rates</strong> (e.g., per-capita death rate, <em>d</em>, increases or per-capita birth rate, <em>b</em>, decreases)! As <em>N</em> goes up, vital rates take a turn for the worse.</p>
 </div>
 <div id="regulation" class="section level2">
 <h2>Regulation!</h2>
-<p>First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increase mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That’s right- it is a <em>negative feedback</em>! Which is also known as a <em>stabilizing feedback</em>. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa.</p>
-<p>Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate. In population ecology, the latter is often called <em>compensatory growth</em>! You can’t have a regulated population without some kind of negative feedback.</p>
-<p><strong>thought Q</strong>: What are some possible mechanisms of density-dependence? That is, why could vital rates become less ideal at higher densities?</p>
+<p>First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increases mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That’s right- it is a <em>negative feedback</em>! Which is also known as a <em>stabilizing feedback</em>. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa.</p>
+<p>Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate. In population ecology (and especially fisheries science), the latter is often called <em>compensatory growth</em>! You can’t have a regulated population without some kind of negative feedback.</p>
+<p><strong>thought Q</strong>: What are some possible mechanisms of density-dependence? That is, why could vital rates become less favorable at higher densities?</p>
 <p><strong>thought Q</strong>: Are all wild populations regulated?</p>
 </div>
 <div id="logistic-growth" class="section level2">
@@ -447,13 +422,13 @@ div.tocify {
 <p>When carrying capacity is mostly used up, <em>population growth resembles</em>, well…, <em>no growth at all</em>!</p>
 <p><strong>Thought Q:</strong> Given the two above statements, can you figure out what population dynamics should look like under logistic growth, starting with a very small population?</p>
 <div class="figure">
-<img src="Kbucket.gif" />
+<img src="Kbucket.png" />
 
 </div>
 </div>
 <div id="carrying-capacity-is-an-equilibrium-point" class="section level2">
 <h2>Carrying capacity is an equilibrium point!</h2>
-<p>A stock-flow system is at <strong>equilibrium</strong> point is when [Flows In] are equal to [Flows Out]. That is opposing forces cancel each other out.</p>
+<p>A stock-flow system is at an <strong>equilibrium</strong> point when [Flows In] are equal to [Flows Out]. That is, if opposing forces cancel each other out.</p>
 <p>As Gotelli shows, and we will go over in detail, you can derive the logistic growth equation by making <em>b</em> and <em>d</em> (from the standard population growth equation) both linearly dependent on density:</p>
 <p><span class="math inline">\(b=b_{max}-a*[Density]\)</span></p>
 <p>where <span class="math inline">\(b_{max}\)</span> is the maximum, or ideal, per-capita birth rate and <span class="math inline">\(a\)</span> is the density dependence term.</p>
@@ -481,7 +456,7 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 <p><strong>Thought Q</strong>: What is the equilibrium point in this system? That is, what is the (non-zero) abundance/density at which population growth is equal to zero??</p>
 <p>This equilibrium is known as <strong>K</strong>, or <strong>carrying capacity</strong>?</p>
 <div class="figure">
-<img src="gstab.gif" />
+<img src="gstab.png" />
 
 </div>
 </div>
@@ -496,7 +471,7 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 </div>
 <div id="in-class-exercise-logistic-growth" class="section level2">
 <h2>In-class exercise: logistic growth</h2>
-<p>First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don’t have to start from scratch every class!). To build off of a previous Insight, open a previous Insight (e.g., your basic exponential growth model) and choose “Clone Insight” in the upper right corner to create a copy that you can edit.</p>
+<p>First of all, from now on try to start saving your working InsightMaker models, since we will often be building from previous models (so we don’t have to start from scratch every class!). To build off of a previous Insight, open a previous Insight (e.g., your basic exponential growth model– or clone <a href="https://insightmaker.com/insight/68236/Basic-population">this model</a>) and choose “Clone Insight” in the upper right corner to create a copy that you can edit.</p>
 <p>Here is the scenario we will model: both <em>b</em> and <em>d</em> are <strong>density-dependent</strong>. We will replicate the model from the R code and figure above- this time in InsightMaker!</p>
 <pre><code>CONSTANTS
 - [Maximum per-capita birth rate] = 0.8 individuals per individual per year   
@@ -540,6 +515,7 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 <p><strong>Q:</strong> What happens if <span class="math inline">\(r\)</span> is zero? What happens to carrying capacity?<br />
 <strong>Q:</strong> Which population is more likely to be found at or near K in nature? A population with very large <span class="math inline">\(r\)</span> or very small <span class="math inline">\(r\)</span>?</p>
 <p><strong>Q:</strong> Is a high value of <span class="math inline">\(r\)</span> good or bad for conservation?</p>
+<p><strong>Q:</strong> How does this discussion relate to the concept of “r-selected” and “K-selected” species?</p>
 <p><a href="LECTURE5.html">–go to next lecture–</a></p>
 </div>
 
@@ -568,7 +544,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

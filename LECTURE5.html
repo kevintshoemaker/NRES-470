@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Passenger Pigeon/Allee effect</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 1, 2017</em></h4>
+<h4 class="date"><em>Feb 1, 2018</em></h4>
 
 </div>
 
@@ -441,7 +434,7 @@ div.tocify {
 <p>The <a href="https://en.wikipedia.org/wiki/Passenger_pigeon">passenger pigeon</a> was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three <em>billion</em>!</p>
 <p>Aldo Leopold once said,</p>
 <blockquote>
-<p>“Men still live who, in their youth, remember pigeons; trees still live who, in their youth, were shaken by a living wind. But a few decades hence only the oldest oaks will remember, and at long last only the hills will know.” —Aldo Leopold, “On a Monument to the Pigeon,” 1947</p>
+<p>“Men still live who, in their youth, remember pigeons; trees still live who, in their youth, were shaken by a living wind. But a few decades hence only the oldest oaks will remember, and at long last only the hills will know.” —Aldo Leopold, “On a Monument to the Pigeon”, 1947</p>
 </blockquote>
 <p>What happened to the passenger pigeon? Well, first of all pigeons were hunted on a massive scale using wasteful methods.</p>
 <div class="figure">
@@ -500,7 +493,7 @@ End If</code></pre>
 <p><strong>Q</strong>: if you plot birth and death rates as a function of density in this model, can you identify the two equilibria?</p>
 <p><strong>Q:</strong> Why do Allee effects generally spell bad news for wildlife conservation and management?</p>
 <p>And just for fun, here is an article about <a href="http://www.audubon.org/magazine/may-june-2014/why-passenger-pigeon-went-extinct">the passenger pigeon and its possible “de-extinction”</a></p>
-<p><strong>Q:</strong> Do you support bringing back the passenger pigeon? Why or why not??</p>
+<p><strong>Q:</strong> Do you support Revive and Restore’s efforts to bring back the passenger pigeon? Why or why not??</p>
 <p><a href="LECTURE6.html">–go to next lecture–</a></p>
 </div>
 
@@ -529,7 +522,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

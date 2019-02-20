@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Declining-population paradigm</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Mar 6, 2017</em></h4>
+<h4 class="date"><em>Mar 6, 2018</em></h4>
 
 </div>
 
@@ -423,27 +416,27 @@ div.tocify {
 <p><strong>Q</strong>: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations declining despite their intrinsic ability to grow?</p>
 <div id="threats-to-populations" class="section level2">
 <h2>Threats to populations</h2>
-<p>The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births <em>under present conditions</em> the population will decline.</p>
+<p>The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births <em>under present conditions</em> the population will decline until these unfavorable conditions are reversed.</p>
 <p>In the “small-population paradigm” lecture we discussed several <strong>stochastic threats</strong> to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.</p>
-<p>Large populations can be threatened though! Factors that threaten large populations are usually <strong>deterministic</strong>!</p>
+<p>Large populations can be threatened though! Factors that threaten large populations with large geographic ranges are generally <strong>deterministic</strong>!</p>
 <p>The <strong>declining population paradigm</strong> focuses on the factors that make large populations small – that is, it is the <em>study of those deterministic processes that cause population decline, and how these processes may be reversed through effective conservation management</em>.</p>
 <p>What are some factors that can <em>tip the balance</em> so to speak- so that growing or stable populations become declining populations?</p>
-<div id="harvest" class="section level3">
-<h3>Harvest</h3>
+<div id="over-harvest" class="section level3">
+<h3>Over-harvest</h3>
 <div class="figure">
 <img src="overharvest1.jpg" />
 
 </div>
 </div>
-<div id="habitat-loss" class="section level3">
-<h3>Habitat loss</h3>
+<div id="habitat-loss-and-degradation" class="section level3">
+<h3>Habitat loss and degradation</h3>
 <div class="figure">
 <img src="habitatloss1.jpg" />
 
 </div>
 </div>
-<div id="disease" class="section level3">
-<h3>Disease</h3>
+<div id="pathogens-and-parasites" class="section level3">
+<h3>Pathogens and parasites</h3>
 <div class="figure">
 <img src="whitenose1.jpg" />
 
@@ -456,8 +449,8 @@ div.tocify {
 
 </div>
 </div>
-<div id="invasive-species" class="section level3">
-<h3>Invasive species</h3>
+<div id="exotic-nvasive-species" class="section level3">
+<h3>Exotic nvasive species</h3>
 <div class="figure">
 <img src="bullfrog1.jpg" />
 
@@ -494,32 +487,37 @@ div.tocify {
 <img src="IM5.jpg" />
 
 </div>
-<p>You should see logistic growth if you hit the simulate button.</p>
-<p>For this exercise, let’s change the initial population to 200 (near K).</p>
-<p>Also, make sure that the time step is 1 year, and the model should run for 30 years.</p>
-<p>Before adding any threats, let’s add <strong>demographic stochasticity</strong> into this model!</p>
+<p>You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the model and make sure you understand how it works.</p>
+<p>For this exercise, let’s change the initial population to 200 (half of K).</p>
+<p>Also, make sure that the time step is 1 year, and the model should run for 50 years.</p>
 <p><strong>Let’s add a harvest process!</strong></p>
 <ul>
-<li>Assume that harvest is limited to 10% of the population each year. However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%.</li>
+<li>Assume that approximately 10% of the population is harvested each year. However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%. (here we are introducing stochasticity in a “deterministic” threat- don’t think about that too hard!)</li>
 </ul>
+<p><strong>Q</strong>: what random number generator did you choose for simulating harvest rate?</p>
 <p><strong>Q</strong>: is the variation in harvest rates best considered a type of <em>demographic stochasticity</em>, or a type of <em>environmental stochasticity</em>?</p>
 <p><strong>Q</strong>: why doesn’t the population decline to extinction? What has the harvest process done in this case?</p>
+<p><strong>Q</strong>: What if you change the harvest rate- make it even more extreme?</p>
 <p><strong>Let’s add a habitat loss process!</strong></p>
 <ul>
-<li><p>Assume that habitat loss results in larger density-dependence terms- that is, because there is less habitat, the effects of crowding are more pronounced.</p></li>
-<li><p>Let’s model the case where both density dependence terms are multiplied by 1.1 each year (simulating 10% habitat loss each year). You can do this in InsightMaker using the following formula (for both density dependence terms):</p></li>
+<li><p>Assume that habitat loss results in larger density-dependence terms on survival and fecundity- that is, because there is less habitat, the effects of crowding are more pronounced (NOTE: this is already implemented for you! Do you understand why this works?).</p></li>
+<li><p>Let’s first model the case where 10% of K is lost each year.</p></li>
+<li><p>Run the simulation to visually track K along with population dynamics!</p></li>
 </ul>
-<pre><code>0.001 * 1.1^Years()</code></pre>
+<p><strong>Q</strong>: Does the loss of K look right? Is this what you expected?</p>
+<p><strong>Q</strong>: Does the reduction in K over time look realistic? Can you imagine other plausible shapes for this curve?</p>
 <ul>
-<li>Add a new variable to represent carrying capacity. Recall that K is defined as:</li>
+<li>Try running the model with only habitat loss (no harvest - set harvest to zero).</li>
 </ul>
-<p><span class="math inline">\(\frac{b-d}{a+c}\)</span></p>
+<p><strong>Q</strong>: Does anything look different? Are the results different from what you expected?</p>
 <ul>
-<li><p>Run the simulation to visually track K along with population dynamics! Does it look right?</p></li>
-<li><p>Try running the model with only habitat loss (no harvest - set harvest to zero).</p></li>
-<li><p>Try changing the harvest process to be 10 individuals per year instead of 10% of the population per year. How does this change the results?</p></li>
-<li><p>What would happen if the habitat loss process were better represented by a <em>linear</em> versus <em>exponential</em> decline in K??</p></li>
+<li>Try changing the harvest process to be 10 individuals per year instead of 10% of the population per year.</li>
 </ul>
+<p><strong>Q</strong>: How does this change the results?</p>
+<p><strong>Q</strong>: What would happen if the habitat loss process were better represented by a <em>linear</em> versus <em>exponential</em> decline in K?? Try it!</p>
+<p><strong>Q</strong>: Try different combinations of deterministic threats (competing threats!). Can you identify some combinations that are <em>synergistic</em>- that is, that affect population decline or extinction risk more than simply adding the effects of each threat in isolation??</p>
+<p><strong>Q</strong>: Can you identify some combinations of threats that are <em>“antergistic”</em> (not a real word!)- that is, that affect population decline or extinction risk less than simply adding the effects of each threat in isolation??</p>
+<p><strong>Q</strong>: Does stochasticity in harvest rates matter more than stochasticity in habitat loss? Or vice versa?</p>
 <p><a href="LECTURE12.html">–go to next lecture–</a></p>
 </div>
 </div>
@@ -549,7 +547,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

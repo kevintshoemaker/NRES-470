@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -33,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -364,36 +366,6 @@ div.tocify {
     <li>
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
-    <li>
-      <a href="LAB2.html">Lab 2: logistic growth</a>
-    </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
-      <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -422,49 +394,58 @@ div.tocify {
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p>In this class we will explore how the concepts of <em>population ecology</em> can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart’s class in wildlife ecology and management (NRES 310). NRES 470 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers advanced tools like Program MARK in detail. This class is closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers – quantitative population and habitat models!</p>
+<p>In this class we will explore how the concepts of <em>population ecology</em> can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart’s class in wildlife ecology and management (NRES 310). NRES 470 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers advanced tools like Program MARK in detail. This class is closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers – quantitative population models!</p>
 </div>
 <div id="syllabus" class="section level2">
 <h2>Syllabus:</h2>
 <p>First let’s take a quick walk through the online syllabus:</p>
 <p><a href="index.html">Go to syllabus</a><br />
 <a href="schedule.html">Go to schedule</a></p>
+<p>NOTE: you can download a printable PDF version of the syllabus <a href="Syllabus.pdf">here</a></p>
+</div>
+<div id="textbook" class="section level2">
+<h2>Textbook</h2>
+<p>Please pick up a copy of the course textbook (A Primer of Ecology, by Nick Gotelli) as soon as possible. You can purchase the textbook new or used on <a href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1484867155&amp;sr=1-1&amp;keywords=a+primer+of+ecology">Amazon</a>. Previous editions (especially 3rd edition) are acceptable as well. All other readings will be posted on <a href="https://unr.instructure.com/">WebCampus</a>.</p>
 </div>
 <div id="software" class="section level2">
 <h2>Software</h2>
 <p>Skills with specialized software and computer programming is critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with using some specialized tools (e.g., <a href="http://www.phidot.org/software/mark/">Program MARK</a>) and some computer programming (e.g., <a href="https://insightmaker.com/">InsightMaker</a>, <a href="https://cran.r-project.org/">R</a>) and I hope by the end of this class you will understand how powerful and useful these tools can be – and not just for population ecology!</p>
-<p>See the <a href="Links.html">links page</a> for some useful references.</p>
+<p>See the <a href="Links.html">links page</a> for some useful references (I will post more links shortly, including some R tutorials!).</p>
 </div>
-<div id="introductions" class="section level2">
-<h2>Introductions</h2>
-<p>Let’s take some time go around the room and introduce each other and what we are hoping to get out of this course.</p>
-<p>Please take the time to introduce yourself in more detail on the “WebCampus” site – I posted a question on the discussion board.</p>
-<p><em>I need your frequent and honest feedback in order to make sure that the level and pace are appropriate!</em></p>
+<div id="in-class-activities" class="section level2">
+<h2>In-class activities</h2>
+<p>Most class periods will include a short hands-on modeling exercise (mini-lab) to give everyone a chance to apply the population ecology concepts we talked about in lecture. Many class periods will also include short Top Hat questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. <em>NOTE: you will not be penalized for incorrect responses in TopHat</em>!</p>
 </div>
-<div id="textbook" class="section level2">
-<h2>Textbook</h2>
-<p>Please order the course textbook (A Primer of Ecology, by Nick Gotelli) as soon as possible. You can purchase the textbook new or used on <a href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1484867155&amp;sr=1-1&amp;keywords=a+primer+of+ecology">Amazon</a>. All other readings will be posted on <a href="https://unr.instructure.com/">WebCampus</a>.</p>
-</div>
-<div id="out-of-class-work" class="section level2">
-<h2>Out-of-class work</h2>
-<p>Much of class time and lab time will be spent on hands-on, in-class exercises. To really make the most of this course, you will need to devote significant time outside of class on:</p>
+<div id="out-of-class-activities" class="section level2">
+<h2>Out-of-class activities</h2>
+<p>To make the most of this course, you will need to devote significant time outside of class on:</p>
 <ol style="list-style-type: decimal">
-<li>Studying the assigned readings (see <a href="schedule.html">the schedule</a>) and online lecture materials</li>
-<li>Finishing any problems/exercises you didn’t complete during class or lab</li>
+<li>Studying the assigned readings (see <a href="schedule.html">the schedule</a>) and online lecture materials<br />
+</li>
+<li>Finishing any problems/exercises you didn’t complete during class or lab<br />
+</li>
 <li>Working on your final group projects.</li>
 </ol>
 </div>
 <div id="final-projects" class="section level2">
 <h2>Final projects</h2>
-<p>It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). I will begin compiling a list of online databases that might be useful for your projects (e.g., <a href="http://www.gbif.org/">GBIF</a> that I will post to the course website. In the meantime, start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test.</p>
-</div>
-<div id="quizzes" class="section level2">
-<h2>Quizzes</h2>
-<p>Some class periods will begin with a short, unannounced quiz. The questions will not be difficult, and are just intended to (1) make sure you are keeping up with the readings and (2) give me some feedback about your progress.</p>
+<p>It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). I will compile a list of online databases that might be useful for your projects that I will post to the course website. In the meantime, start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test!</p>
 </div>
 <div id="making-up-classes-and-labs" class="section level2">
 <h2>Making up classes and labs</h2>
-<p>Lectures and laboratory exercises will be posted online in enough detail to complete and study on your own time. BUT, much of the benefit of this course will come from interactions with peers and the instructor during class and lab periods and I expect you to be a full participant in this class.</p>
+<p>Lectures and laboratory exercises will be posted online in enough detail to complete and study on your own time. BUT, much of the benefit of this course will come from interactions with peers and the instructor during class and lab periods and I expect you to be a full participant in this class. Please let me know in advance if you need to miss class for any reason.</p>
+</div>
+<div id="please-help-to-make-this-class-better" class="section level2">
+<h2>Please help to make this class better!</h2>
+<p>I need your frequent and honest feedback in order to make sure that the level and pace are appropriate! I will use TopHat to give you frequent opportunities to provide anonymous feedback through TopHat. Please don’t hesitate to use these opportunities to provide constructive suggestions for improving this class!</p>
+</div>
+<div id="introductions" class="section level2">
+<h2>Introductions</h2>
+<p>Let’s take some time go around the room and introduce each other quickly (Name, year, major, where is your “Walden”?).</p>
+<p>NOTE: Please take the time to introduce yourself in more detail on the “WebCampus” site – I posted a question on the discussion board.</p>
+</div>
+<div id="any-questions" class="section level2">
+<h2>Any questions??</h2>
 <p><a href="LECTURE1.html">–go to next lecture–</a></p>
 </div>
 
@@ -493,7 +474,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,7 +407,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Intro to individual-based models (IBM)</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Mar 6, 2017</em></h4>
+<h4 class="date"><em>Mar 6, 2018</em></h4>
 
 </div>
 
@@ -423,8 +416,12 @@ div.tocify {
 <img src="birds1.jpg" />
 
 </div>
-<p>So far in this class we have looked at the <strong>population</strong> as the fundamental unit that we are interested in modeling. This makes sense for a population ecology class! But we are all aware that populations consist of <strong>individuals</strong> that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the <em>individual level</em>.</p>
-<p>In some ways a population is hard to define- it can be a bit of an artificial concept. The individual is (mostly) a straightforward, biologically meaningful concept.</p>
+<p>So far in this class we have considered the <strong>population</strong> as the fundamental unit that we are interested in modeling. The population is a [Stock] and all processes that can change the size of the population are [Flows]. All individuals within any [Stock] are assumed to be interchangeable (identical in every way).</p>
+<p>The fact that we model populations as our fundamental unit of interest makes sense for a population ecology class! BUT we are also aware (of course) that populations consist of <strong>individuals</strong> that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the <em>individual level</em>.</p>
+<p>In some ways a population is hard to define- it can be a bit of an artificial concept. Where exactly does a population begin and end?</p>
+<p>However, the individual is (usually!) a straightforward, biologically meaningful concept.</p>
+<div id="the-general-modeling-workflow" class="section level2">
+<h2>The General Modeling Workflow</h2>
 <p>Before we define how individual-based models differ from the population-level stock-flow models we have already been using, let’s first point out the similarities.</p>
 <p>First of all, the basic modeling workflow is ALWAYS the same, no matter what kind of model we want to use!</p>
 <div class="figure">
@@ -432,46 +429,47 @@ div.tocify {
 
 </div>
 <p>All models are a way to <strong>formalize our understanding about our study system</strong>.</p>
-<p><strong>Population-based models</strong> (PBM; i.e., models of <span class="math inline">\(N\)</span>) are the main type of model we consider in this class- because it is the most direct way to think about population dynamics: <span class="math inline">\(N\)</span> is our main variable of interest, and it is controlled by intrinsic (e.g., density-dependence, demographic stochasticity) and extrinsic (e.g., environmental stochasticity, harvest) factors.</p>
-<p><strong>Age/stage structured population-based models</strong> and <strong>sex structured population models</strong> (i.e., models of <span class="math inline">\(\mathbf{N}\)</span>, i.e., vector-structured <span class="math inline">\(N\)</span>) are a type of population model in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.</p>
-<p><strong>Individual-based models</strong> (IBM; also known as “agent-based” models) is a way of modeling populations such that all individuals are considered explicitly! We no longer need to put individuals into groups- each individual can potentially have a different survival probability, or chance of breeding, or movement propensity! In this case, we don’t model <span class="math inline">\(N\)</span> directly at all – in fact, <span class="math inline">\(N\)</span> is an <strong>emergent property</strong> of individual organisms interacting with each other, with predators and competitors, and with their abiotic environment.</p>
+<p><strong>Population-based models</strong> (PBM; i.e., models of <span class="math inline">\(N\)</span>) are the main type of model we consider in this class- because it is the most simple and direct way to think about population dynamics: with all individuals in a [Stock] considered to be interchangeable, <span class="math inline">\(N\)</span> is our main variable of interest. <span class="math inline">\(N\)</span> is in turn controlled by endogenous (forces coming from inside the population – e.g., density-dependence, demographic stochasticity) and exogenous (forces coming from outside the population – e.g., environmental stochasticity, harvest) factors.</p>
+<p><strong>Age/stage structured population-based models</strong> and <strong>sex structured population models</strong> (i.e., models of <span class="math inline">\(\mathbf{N}\)</span>, i.e., matrix population models) are a type of population model in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.</p>
+<p><strong>Individual-based models</strong> (IBM; also known as “agent-based” models) is a way of modeling populations such that all individuals are considered explicitly! We no longer need to group individuals into [Stocks]- each individual can potentially have a different survival probability, or chance of breeding, or movement propensity! These differences can be a result of (e.g.) spatial context or among-individual genetic variation.</p>
+<p>In this case, we don’t model <span class="math inline">\(N\)</span> directly at all – in fact, <span class="math inline">\(N\)</span> (in an IBM framework) is an <strong>emergent property</strong> of individual organisms interacting with each other, with predators and competitors, and with their abiotic environment.</p>
 <div id="which-model-structure-should-i-use-ibm-or-pbm" class="section level3">
 <h3>Which model structure should I use? IBM or PBM??</h3>
 <p>In general, models are tools- you should use the model structure that best fits with the questions you are asking and your understanding of the study system!</p>
 <p>And also, if two different model structures are equally appropriate, you should usually use the <strong>simplest approach</strong>! This idea is often called the <em>Principle of Parsimony</em> (or, <em>Occam’s Razor</em>).</p>
-<p>Both IBM and PBM can be used to address questions at the population or metapopulation level</p>
-<div id="rules-of-thumb" class="section level4">
-<h4>Rules of thumb</h4>
-<ul>
-<li><p>In general, you should use IBM if your <em>primary information at the individual level</em> (e.g., telemetry data)– allowing you to build informed models of how individuals interact with members of their own species, possibly other species, and their local environment – in which case the principle of parsimony dictates that you should build models at the individual level!</p></li>
-<li><p>You should use PBM if your <em>primary information is at the population level</em> (e.g., the results of most mark-recapture analyses) – in which case the principle of parsimony dictates that you should build models at the population level!</p></li>
-</ul>
-<p><strong>Q</strong>: All populations are composed of individuals. Why then don’t we always model populations using individual-based models? (this could be a good exam question…)</p>
 <div class="figure">
 <img src="occam1.jpg" />
 
 </div>
-<p><strong>Q</strong>: What are some questions that might be best addressed using <strong>individual-based models (IBM)</strong>?</p>
-<p><strong>Q</strong>: What are some questions that might be best addressed using <strong>population-based models (PBM)</strong>?</p>
+<p>Both IBM and PBM can be used to address questions at the population or metapopulation level</p>
+<div id="rules-of-thumb" class="section level4">
+<h4>Rules of thumb</h4>
+<ul>
+<li><p>In general, you should use IBM if your <em>primary information sources (data) are at the individual level</em> (e.g., telemetry data)– allowing you to build informed models of how individuals interact with members of their own species, other interacting species, and with their local environment – in which case the principle of parsimony dictates that you should build models at the individual level! That is, you make fewer assumptions if you model this system as an IBM.</p></li>
+<li><p>You should use PBM if your <em>primary information is at the population level</em> (e.g., <em>the results of most mark-recapture analyses</em>) – in which case the principle of parsimony dictates that you should build models at the population level!</p></li>
+</ul>
+<p><strong>Q</strong>: All populations are composed of individuals. Why then don’t we always model populations using individual-based models? (this could be a good exam question…)</p>
+<p><strong>Q</strong>: What are some population ecology questions that might be best addressed using <strong>individual-based models (IBM)</strong>?</p>
+<p><strong>Q</strong>: What are some population ecology questions that might be best addressed using <strong>population-based models (PBM)</strong>?</p>
 <p><em>Individual-based models are powerful- but with power comes great responsibility!</em></p>
+</div>
 </div>
 </div>
 <div id="demo-individual-based-models" class="section level2">
 <h2>Demo: Individual-based models!</h2>
-<p>The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (real, not made-up by my postdoc I swear!) ecological system.</p>
+<p>The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (entirely real, not made-up by my a postdoc in my lab I swear!) ecological system.</p>
 <div id="the-scenario" class="section level3">
 <h3>The scenario</h3>
-<p>The <em>laphlag island</em> archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock.</p>
+<p>The <em>Laphlag island</em> archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers, to prevent any wolf predation on their precious livestock.</p>
 <p>However, without wolves, populations of the native sheep skyrocketed, and the famous laphlagian lush green grass is quickly being lost to overgrazing by the native sheep.</p>
-<p>The locals now realize: <em>They need to reintroduce wolves to the islands</em>!</p>
-<p>You have been hired as a research ecologist to help the locals and biologists address the following questions:</p>
+<p>The locals now realize: to restore ecological balance to the islands <em>They need to reintroduce wolves</em>!</p>
+<p>The local natural resources management agency is about to start an experimental wolf reintroduction in a very small island in the archipelago (as a test), but they want to know how to proceed.</p>
+<p>You have been hired as a research ecologist to help address the following questions:</p>
 <ul>
 <li><p>How are reintroduced wolves likely to affect grass biomass and distribution?</p></li>
-<li><p>How many wolves are needed to effectively restore that characteristic lush green grass to the islands?</p></li>
+<li><p>How many wolves should be introduced and over what period of time to produce the desired ecological effect (lush carpets of green grass)?</p></li>
 </ul>
-<p>The local management agency is about to start an experimental wolf reintroduction, but they want to know what to expect before making the final decision to go ahead with it.</p>
-<p>They give you some information to get a first guess but they promise that you’ll be able to come study the experimental setup once it’s underway.</p>
-<p>The hypothesis is that presence of wolves affects sheep populations in such a way that grass growth is promoted.</p>
+<p>They give you some information to get a first guess and they promise that you’ll be able to come study this natural system once the reintroductions are underway.</p>
 <div class="figure">
 <img src="sheep1.png" />
 
@@ -479,31 +477,31 @@ div.tocify {
 </div>
 <div id="the-details" class="section level3">
 <h3>The details!</h3>
-<p>The enclosure is deployed after the breeding season and the experiment is run for 365 days.</p>
+<p>The reintroduction is initiated right after the breeding season and the experiment is run for 365 days.</p>
 <div id="sheep" class="section level4">
 <h4>Sheep</h4>
 <ul>
-<li>There are a total of 50 sheep in the experimental enclosure</li>
-<li>Each sheep eats 0.2 units of grass per day</li>
-<li>Each sheep gives birth to 3 lambs approximately every 100 days of the experiment.</li>
+<li>There are a total of 50 sheep at the release location.</li>
+<li>Each sheep eats 1 “unit”&quot; of grass per day (see section on grass, below)</li>
+<li>Each sheep gives birth to 2 lambs approximately every 100 days of the experiment (very high fecundity!).</li>
 <li>Sheep tend to stay in place unless either they run out of food to eat or there is a wolf in the vicinity</li>
 </ul>
 </div>
 <div id="wolves" class="section level4">
 <h4>Wolves</h4>
 <ul>
-<li>There are a total of 5 wolves in the experimental enclosure</li>
-<li>Wolves are solitary hunters, at least on this imaginary island!</li>
-<li>Wolves have a 10% probability of finding and killing any sheep within 500 m of its location in any given day.</li>
+<li>There are a total of 5 wolves released at the beginning of the “experiment”.</li>
+<li>Wolves are solitary hunters, at least on this (non-imaginary!) island!</li>
+<li>Wolves have a 50% probability of finding and killing any sheep within 500 m of its location in any given day.</li>
+<li>Wolves can kill a maximum of one sheep per day.</li>
 <li>Wolves tend to move approximately 500 m per day on average.</li>
-<li>Wolves can kill a maximum of one sheep a day.</li>
-<li>Wolves give birth with a probability of 1% per day.</li>
+<li>Wolves give birth with a probability of 2% per day.</li>
 </ul>
 </div>
 <div id="grass" class="section level4">
 <h4>Grass</h4>
 <ul>
-<li>The experimental enclosure is one large grassy pasture. For the purposes of this exercise, we will turn this pasture into a grid of approximately 100 equivalent plots. Each plot starts off with 10 units of grass (enough to support 50 sheep for a day).</li>
+<li>The release site is essentially one large grassy pasture. For the purposes of this exercise, we will model this pastoral release site as a grid of 100 functionally equivalent plots. Each plot starts off with 10 “units”&quot; of grass (each “unit” of grass can support exactly 1 sheep).</li>
 <li>Each grass plot can have a maximum of 15 units of grass.</li>
 <li>Each plot can grow approximately 0.1 units of grass per day.</li>
 </ul>
@@ -555,7 +553,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -1,7 +1,7 @@
 ---
 title: "Malthus and the beginning of Pop Ecol"
 author: "NRES 470/670"
-date: "Jan 25, 2017"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -23,7 +23,7 @@ The main point of this essay can be summed up by the following (a direct quote):
 
 Or in a more verbose form...
 
-> I think I may make fairly two postulata. First, that food is necessary to the existence of man. Secondly, that the passion between the sexes is necessary and will remain nearly in its present state ... Assuming then my postulata as granted, I say, that the power of population is infinitely greater than the power in the earth to produce subsistence for man. Population, when unchecked, increases in a *geometrical ratio*. Subsistence increases only in an *arithmetical ratio*. A slight acquaintance with numbers will show the immensity of the first power in comparison of the second. By the law of our nature which makes food necessary to the life of man, the effects of these two unequal powers must be kept equal. This implies a strong and constantly operating check on population from the difficulty of subsistence. This difficulty must fall somewhere and must necessarily be severely felt by a large portion of mankind...
+> "I think I may make fairly two postulata. First, that food is necessary to the existence of man. Secondly, that the passion between the sexes is necessary and will remain nearly in its present state ... Assuming then my postulata as granted, I say, that the power of population is infinitely greater than the power in the earth to produce subsistence for man. Population, when unchecked, increases in a *geometrical ratio*. Subsistence increases only in an *arithmetical ratio*. A slight acquaintance with numbers will show the immensity of the first power in comparison of the second. By the law of our nature which makes food necessary to the life of man, the effects of these two unequal powers must be kept equal. This implies a strong and constantly operating check on population from the difficulty of subsistence. This difficulty must fall somewhere and must necessarily be severely felt by a large portion of mankind..."
 
 And his argument can be summed up in this logical argument:
 
@@ -33,19 +33,21 @@ And his argument can be summed up in this logical argument:
 
 Is this an optimistic message or a pessimistic message?
 
+> "If they would rather die they had better do it, and decrease the surplus population" - Ebenezer Scrooge
+
 **Discussion Question:** Was Malthus right? For humans? For wildlife? Can you think of any examples for or against? 
 
 
 ![](darwin1.jpg)
 
 
-Interestingly, in 1838 (four years after Malthus’ death), Charles Darwin, just back from his trip on HMS Beagle (1831–6), was searching for possible mechanisms to explain the origin of species. On reading Malthus’ *Essay on the principle of population*, he realized the possible implication of the checks that controlled population growth and wrote: 
+Interestingly, in 1838 (four years after Malthus’ death), Charles Darwin, just back from his trip on HMS Beagle (1831–6), was searching for possible mechanisms to explain the origin of species. On reading Malthus’ *Essay on the principle of population*, he realized one of the possible implications of the checks that controlled population growth and wrote: 
 
-> “...favourable variations would tend to be preserved, and unfavourable ones to be destroyed ... The result of this would be the formation of a new species. Here, then, I had at last got a theory by which to work.” - Charles Darwin 
+> '...favourable variations would tend to be preserved, and unfavourable ones to be destroyed ... The result of this would be the formation of a new species. Here, then, I had at last got a theory by which to work.' - Charles Darwin 
 
 Twenty one years later Darwin published his book *On the origin of species by means of natural selection*. It too raised a storm of controversy and protest.
 
-I told you that Mathus' *Essay* was influential!!
+So, what do you think? Mathus' *Essay* was extremely influential, right!!
 
 ## In-class exercise: limits to growth
 
@@ -62,20 +64,20 @@ In today's in-class exercise, we will implement the following conditional statem
 To implement this in InsightMaker, we need to use the following **syntax**:
 
 ```
-If [Humans]>[Limit] Then
-  0.99
-Else
+If [Humans]<[Limit] Then
   0.01
+Else
+  0.99
 End If
 ```
 
-1. Put together a basic exponential-growth model for a new [Stock] named *Humans*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Humans* and per-capita rate constants, respectively called *Birth rate* and *Death rate* (each defined on the canvas as [Variables]). This model is identical to the one you made in lab last week. 
+1. Put together a basic exponential-growth model for a new [Stock] named *Humans* (or just clone and modify a basic exponential growth model with birth and death rate). This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Humans* and per-capita rate constants, respectively called *Birth rate* and *Death rate* (each defined on the canvas as [Variables]). This model is identical to the one you made in lab last week. 
 
-2. Initialize the population of *Humans* to 1000. Set the *Birth rate* to 0.1 (humans produced per human per year). Set the *Death rate* to 0.01. Change the settings so that the simulation runs for 100 years.  
+2. Initialize the population of *Humans* to 1000. Set the *Birth rate* to 0.1 (humans produced per human per year). Set the *Death rate* to 0.01 (humans lost per human per year). Change the settings so that the simulation runs for 100 years.  
 
 3. Run this model, make sure it behaves like you would expect it to (yielding exponential growth!). How many humans are there after 100 years?
 
-4. Now make a new [Stock] called *Limit*, representing the population limit for *Humans*. This could, for instance, represent the *maximum number of humans that could be supported indefinitely if all arable land were cultivated with the most energy-rich crop possible*. 
+4. Now make a new [Stock] called *Limit*, representing the population limit for *Humans*. This could, for instance, represent the *maximum number of humans that could be supported indefinitely if all arable land were cultivated with the most energy-rich crop possible*. Initialize the "Limit" to half a million. 
 
 5. In preparation for implementing the "famine" condition (death rate increases to 99% if *Humans* exceeds *Limit*), create new **Links** from *Humans* to *Death rate* and from *Limit* to *Death rate*. Your canvas should look something like the image below:  
 
@@ -84,25 +86,27 @@ End If
 6. Now we can implement the "famine condition"! Open the equation editor window for *Death rate* (click on the equals sign) and type the following: 
 
 ```
-If [Humans]>[Limit] Then
-  0.99
-Else
+If [Humans]<[Limit] Then
   0.01
+Else
+  0.99
 End If
 ```
-You don't actually need to type this all in, you can just click on "Programming Functions" in the equation editor, and select "If-Then-Else" from the options.   
+You don't actually need to type this all in, you can just click on "Programming Functions" in the equation editor, and select "If-Then-Else" from the options. It is always better to use the built-in syntax generators, since that prevents you from making any unintended syntax errors (which can be difficult to de-bug!).   
 
 7. Run the model and describe what happens.  
 
-**Q** is this population *regulated*?   
+**Discussion Question** is this population *regulated*?   
 
 **CHALLENGE:** Malthus said that "Population, when unchecked, increases in a *geometrical ratio*. Subsistence increases only in an *arithmetical ratio*." By this he meant that populations grow exponentially, whereas the population limits (food production capacity) grows linearly.   
 
-What happens if the limit were allowed to increase arithmetically? Try to implement this in InsightMaker. That is, can you change the model so that the population limit increases linearly- say, by 1000 per year. What happens then? Can you adjust the parameters to make this simulated human population **sustainable**? Why? Why not?   
+What happens if the limit were allowed to increase arithmetically? Try to implement this in InsightMaker. That is, can you change the model so that the population limit increases linearly- say, by 1000 per year? What happens then? HINT: you can add a [Flow] to represent increase in agricultural production!
+
+**Q** Can you adjust the parameters to make this simulated human population **sustainable**? Why? Why not?  [TopHat]   
 
 Just for fun, here is a [Video](https://www.youtube.com/watch?v=QAkW_i0bDpQ) made by [John Green](https://en.wikipedia.org/wiki/John_Green_(author)) about Malthus and world history!      
 
-... And here's another [video](https://www.youtube.com/watch?v=U7Z6h-U4CmI) about the influential 1972 book, "[Limits to Growth](https://www.amazon.com/Limits-Growth-Donella-H-Meadows/dp/193149858X)", which made the argument that growth is not sustainable- the earth has limits! Does this argument sound familiar?       
+... And here's another [video](https://www.youtube.com/watch?v=U7Z6h-U4CmI) about the influential 1972 book, "[Limits to Growth](https://www.amazon.com/Limits-Growth-Donella-H-Meadows/dp/193149858X)", which made the argument that growth is not sustainable- the earth has limits! Does this argument sound familiar? Interestingly, the "World3" Insightmaker model that some of you may have pulled up on our first week of class is the basis for the dire predictions in the "Limits to Growth" book!       
 
 [--go to next lecture--](LECTURE4.html)   
 

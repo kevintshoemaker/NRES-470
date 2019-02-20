@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -365,36 +367,6 @@ div.tocify {
     <li>
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
-    <li>
-      <a href="LAB2.html">Lab 2: logistic growth</a>
-    </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
-      <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -414,7 +386,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">A whole-systems approach to population ecology</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Jan 19, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
@@ -425,7 +397,7 @@ div.tocify {
 </div>
 <div id="systems-ecology-a-way-of-thinking" class="section level2">
 <h2>Systems ecology: a way of thinking</h2>
-<p>Ecology is messy. When we work in natural environments, we are dealing with <em>inherently complex systems</em>. <em>All elements in a natural system are connected</em>, full of dynamic interactions. Interactions among organisms, between organisms and their environment to meet basic needs – these linkages are what makes ecology messy, but also endlessly fascinating.</p>
+<p>Ecology is messy. When we work in natural environments, we are dealing with <em>inherently complex systems</em>. <em>All elements in a natural system are connected</em>, full of dynamic interactions. Interactions among organisms, between organisms and their environments – these linkages are what makes ecology messy, but also endlessly fascinating.</p>
 <p>We can think of humans as just another element in these complex systems. And wildlife conservation and mangement is the task of manipulating these linkages to meet societal objectives for natural systems.</p>
 <p>This is not a systems ecology class!</p>
 <p>BUT, systems ecology provides a great framework for thinking about natural populations, understanding how linkages (abiotic and biotic environments) might affect them, and how to manage natural populations most effectively.</p>
@@ -448,9 +420,14 @@ div.tocify {
 <div id="computer-programming-and-systems-thinking" class="section level2">
 <h2>Computer programming and systems thinking</h2>
 <p>Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result <strong>specialized software and computer programming</strong> are a critical component to modern whole-systems analysis, including <strong>ecosystems</strong> analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. <strong>In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations</strong>.</p>
-<p>By the end of this course, students will have the ability to program their own <em>whole-systems models</em> in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, various <strong>R</strong> packages)</p>
-<p><strong>The course motto</strong>: <em>Get messy</em>! This might sound funny for a computer-based class. But just as ecological systems are complex and messy, models sometimes get messy. Don’t be afraid to model messy systems. And above all, <strong>don’t be afraid to be wrong</strong> (especially at first)- that attitude is the enemy of successful computer programming, and of good wildlife management! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive!</p>
-<p>Of course, getting messy means not just reading and listening to lectures, it means <em>learning by doing</em>! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.</p>
+<p>By the end of this course, students will have the ability to program their own <em>whole-systems models</em> in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, <strong>R</strong>)</p>
+</div>
+<div id="the-course-motto-be-wrong-but-useful" class="section level2">
+<h2>The course motto: <em>Be wrong (but useful)</em>!</h2>
+<p>A famous statistician (<a href="https://en.wikipedia.org/wiki/George_E._P._Box">George Box</a>) once said <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">“All models are wrong but some are useful”</a>. What he meant was that no model can perfectly describe any real-world system (e.g., population dynamics). However, some models can help us to undersand how the real-world works and how to manage natural systems.</p>
+<p><strong>This is especially true in ecology</strong>: ecological systems are complex and messy, and it is clear that no mathematical model can perfectly describe and predict any ecological phenomena. But that does not mean that ecological models can’t be <em>useful</em>!</p>
+<p>In this class (and beyond), <em>don’t be afraid to model messy systems</em>. And above all, <strong>don’t be afraid to be wrong</strong> - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don’t forget that all models are wrong!</p>
+<p>Of course, this means not just reading and listening to lectures, it means <em>learning by doing</em>! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.</p>
 </div>
 <div id="in-class-exercise-insightmaker" class="section level2">
 <h2>In-class Exercise: InsightMaker</h2>
@@ -460,21 +437,28 @@ div.tocify {
 <p>If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over time.</p>
 <p>If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time.</p>
 <p>The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn’t change instantaneously, with hand waving, magic, or smoke and mirrors.</p>
+<p>Finally, a [Variable] is an object that stores an important piece of information for your model (e.g., birth rate could be a [Variable] that informs the total [Flow] of individuals into a [Stock] representing a wild population). [Variables] are generally connected to [Flows] with [Links] – unlike [Flows], links do not represent any physical process. Instead, links simply represent a transfer of <em>information</em>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Open up <a href="https://insightmaker.com/">InsightMaker</a>. If you have never used it before you need to sign up first with a username and password. <em>InsightMaker is free!</em></p></li>
-<li><p>Create a new Insight (the button to do this should be obvious!) and clear the demo model.</p></li>
-<li><p>Right click in the center of the screen and select <strong>Create Stock</strong> from the popup. Notice that the name is <em>New Stock</em> and is selected. Type in a name for what this is an accumulation of. Note the <strong>Configuration Panel</strong> on the right is now for a [Stock]. In the configuration panel, set the <em>Initial Value</em> to 50. That is, there will be 50 moose at the start of the simulation!</p></li>
-<li><p>Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the <strong>Reverse</strong> button in the <strong>Connections</strong> menu. Please do that now. You can name the [Flow] as you wish. Also in the <strong>Configuration Panel</strong> set <strong>Flow Rate</strong> = 1.</p></li>
-<li><p>Now click <strong>Run Simulation</strong> and you have just finished your first simulation model.</p></li>
+<li><p>Create a new “Insight” (the button to do this should be obvious!) and clear the demo model.</p></li>
+<li><p><strong>Create a population of Moose!</strong> Right click in the center of the screen and select <strong>Create Stock</strong> from the pop-up. Notice that the name is <em>New Stock</em> and is selected. Type in a name for what this [Stock] represents (Moose!). Note the <strong>Configuration Panel</strong> on the right is now for a [Stock]. In the configuration panel, set the <em>Initial Value</em> to 50. That is, there will be 50 moose at the start of the simulation!</p></li>
+</ol>
+<ul>
+<li><strong>OPTIONAL</strong>: insert a picture of the animal you are modeling to your work canvas. The instructor will show you how in class!</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><p><strong>Specify the births process</strong> Select the [Flows/Transitions] button in the upper left corner of your screen. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. Type in a name for what this arrow represents (Births). NOTE: you have actually just created a [Flow] <em>out</em> of a [Stock]. To create a [Flow] <em>into</em> a [Stock], click the <strong>Reverse</strong> button in the top menu (looks like two opposing arrows). Please do that now. Also in the <strong>Configuration Panel</strong> set <strong>Flow Rate</strong> = 1.</p></li>
+<li><p>Now click <strong>Run Simulation</strong> and you have just finished your first population simulation model.</p></li>
 <li><p>Can you figure out how to change the settings to run the model for 50 years? Try this and click <strong>Run Simulation</strong>.</p></li>
 <li><p>Use the same methods as <em>step 4</em> to create a [Flow Out], representing moose deaths. Re-run the model. Is the population increasing or declining? Why?</p></li>
-<li><p>Change the <strong>Configuration Panel</strong> for the [Stock] and for the [Flow In] and [Flow Out] so that “Show Value Slider” is set to “Yes”. You can change the model parameterization easily using these sliders. Try it a couple times, re-running the simulation after each change.</p></li>
+<li><p>Change the <strong>Configuration Panel</strong> for the [Stock] and for the [Flow In] and [Flow Out] so that “Show Value Slider” is set to “Yes”. You can change the model parameterization easily using these sliders. Try it a few times, re-running the simulation after each change. <strong>Save your model</strong> (“Save” button at the top menu)</p></li>
 </ol>
-<p><strong>Q</strong>: Is this Moose model realistic? What is the first thing you would like to change to make the model more realistic?</p>
+<p><strong>Q</strong>: Is this Moose model realistic? What are the first things you would like to change to make the model more realistic?</p>
+<p><em>Take a few minutes to list the things you would like to change to make this model more realistic!</em></p>
 <ol start="9" style="list-style-type: decimal">
-<li>Take a few minutes to check out “Insights” made by others using the “explore insights” link at the top of the webpage. You can search the database of Insights. We can (and will) add to this database as part of this class!</li>
+<li>Finally, take a few minutes to check out “Insights” made by others using the “explore insights” link at the top of the webpage. You can search the database of Insights. Pick one or two of these insights and run them. How does the system behave? Does this make sense to you? We can (and will) add to this database as part of this class!</li>
 </ol>
-<p>Finally, just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!</p>
+<p>Just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!</p>
 <p><a href="https://www.youtube.com/watch?v=iu4RdmBVdps">Lorenz attractor video!</a></p>
 <p><a href="LECTURE2.html">–go to next lecture–</a></p>
 </div>
@@ -504,7 +488,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

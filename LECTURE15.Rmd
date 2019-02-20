@@ -1,7 +1,7 @@
 ---
 title: "Parameterizing models: estimation!"
 author: "NRES 470/670"
-date: "Apr 3, 2017"
+date: "Apr 20, 2018"
 output: 
   html_document: 
     theme: spacelab
@@ -13,44 +13,45 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-# Parameter estimation for PVA!
 
-We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameters come from!
+
+#Parameter estimation for PVA!
+
+We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!
 
 This is the focus of the current lecture!
-
 
 ## Data requirements
 
 ### Scalar models
-- Abundance (population size)
+- Initial abundance ($N_0$)
 - Population growth rate 
 - Temporal variation in population growth rate (environmentally induced fluctuations among years)
-- Maximum rate of population growth
-- Carrying capacity of the population (equilibrium abundance)
+- Maximum rate of population growth (for logistic model)
+- Carrying capacity of the population (equilibrium abundance of logistic model)
 
 ### Stage-structured (life history) models
-- Abundance (population size)
-- Vital rates (fecundity, survival, dispersal) 
+- Initial abundance ($\mathbf{N_0}$) (vector of initial abundances for all stages)
+- Stage-specific vital rates (fecundity, survival, dispersal) 
 - Temporal variation in vital rates (environmentally induced fluctuations among years) 
-- Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)
-- Maximum rate of population growth
-- Carrying capacity of the population (equilibrium abundance)
-
+- Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)    
+    - Which vital rates are density-dependent?    
+  
 ### Metapopulation (spatial) models
-- Spatial variation in vital rates (variation in different areas, subpopulations, or habitat patches)
+- Spatial distributions of suitable habitat, local populations or individuals (define patches)
+- Spatial variation in vital rates (variation in habitat quality among different patches)
+- Correlation in temporal variation (environmental stochasticity) among patches 
 - Dispersal rates among habitat patches
 - Habitat requirements of different life stages
-- Spatial distributions of suitable habitat, local populations or individuals
-- Patterns of occupancy and extinction in habitat patches, or presence-absence data
+- For "classical" metapopulation models: rates of colonization and extinction in habitat patches
 
 ## Data sources!
 
 ### Life tables
 
-As you recall, life tables represent a single cohort that has been followed over time until the last one has died. 
+As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died. 
 
-NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohorts, across the entire range of ages, at a single point in time. Static tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation,
+NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohorts, across the entire range of ages, at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method is probably better than nothing!
 
 
 ```{r echo=FALSE}
@@ -67,10 +68,10 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 
 **CONS**
 - Makes unrealistic assumptions (especially the *static life table* method).
-- Can not estimate environmental stochasticity
-- Can not estimate density dependence
+- Can not be used to estimate environmental stochasticity
+- Can not be used to estimate density dependence
 - Ignores **imperfect detection** (assumes perfect detection)
-- (remember, it's not always perfectly straightforward to translate into population model- but it can be done!)
+- Remember, it's not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!
 
 ### Census data!
 
@@ -85,47 +86,50 @@ In this case, computing survival and fecundity (and variation in these parameter
 ![](census3.png)
 
 **PROS**
-- Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want!
+- Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!
 
 **CONS**
-- Very rarely if ever available!
-- Ignores **imperfect detection** (assumes perfect detection), which is probably not realistic.
+- Very rarely (if ever) available!!
+- Ignores **imperfect detection** (assumes perfect detection), which is almost always not realistic.
 
 ### Capture-mark-recapture (CMR)
 
 **PROS**
-- Can estimate survival, variation in survival, lambda, dispersal rates. 
+- Can estimate survival, variation in survival, lambda, recruitment, dispersal rates. 
 - Probably the most widely used source of data for population models!
-
 
 **CONS**
 - Few downsides, although the analytical techniques can be difficult to master
-- Emigration and survival can be difficult to tease apart
+- Mounting a proper CMR study can be very costly, and require many years of data. 
+- Estimating landscape-scale movements can require an even more costly and time-consuming study.
+- Emigration and survival can be difficult to tease apart in many cases. 
 
-See below for more! Also this is the main focus of the Population Dynamics course (the next course in the wildlife ecology and management sequence!)
+See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and management sequence!)
 
 ### Data on spatial structure/habitat
 - See [links](FINAL_PROJECTS.html) on Final projects page
 
 ### What if there's "no data"?
 
-Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup)
+Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) - even when you think there's no data, there probably is more than there initially appears!
 
-- Use algebra to construct a full life table from available information
+- Use algebra to construct a full age-structured transition matrix from available information
     - E.g., we are missing information on hatchling survival. We only know: 
-        - Juvenile and adult survival rates 
-        - Nesting success
-        - Population growth (lambda) is 1.09
-        - Now we can solve for hatchling survival!
-- Simplify! (Models are always simplified representations of reality)
-    - Ignore age structure? (i.e., use scalar model)
-    - Ignore density-dependence?
-    - Ignore trophic interactions (we usually make this simplification anyway!)
-- Conservative strategies!
-    - Density-independent is conservative
-    - Under uncertainty, use the *worst case*
-    - Under decline trends, use the worst case
-- Use data from similar species!
+        - Juvenile and adult survival rates      
+        - Nesting success     
+        - Population growth (lambda) is 1.09     
+        - Now we can solve for hatchling survival!    
+        - For an example of this, see [Congdon et al 1993](congdon et al 1993.pdf)     
+- Simplify! (Models are always simplified representations of reality)    
+    - Ignore age structure? (i.e., use scalar model)    
+    - Ignore density-dependence?      
+    - Ignore trophic interactions (we usually make this simplification anyway!)      
+    - Ignore abundance entirely (e.g., use classical metapopulation model)       
+- Conservative strategies (use *worst case scenario*)!    
+    - Density-independent model is conservative, so if you don't have data on D-D, then maybe just ignore it!     
+    - With parameter uncertainty, use the worst case scenario    
+    - Under decline trends, use the worst case scenario   
+- Use data from similar species!      
    - E.g., tamarin species have similar life histories, so use data on golden lion tamarins to model golden-headed lion tamarins.
 - Expert Opinion
     - See below... 
@@ -133,7 +137,7 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup)
     - See [links](FINAL_PROJECTS.html) on Final projects page
 - [Allometries](https://www.astronomyclub.xyz/maternal-effect/does-ecology-have-laws.html)
     - e.g., Fenchel's allometry
-    - (also known as "Macroecology")
+    - This type of thinking is often called "Macroecology"
     
     
 ![](allometry2.jpg)
@@ -142,12 +146,11 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup)
 
 ## Aside- is expert opinion okay to use???
 
-- Not ideal, because it is hard or impossible to validate, and hard to document, but …
+- Not ideal, because it is hard or impossible to validate, and hard to document, but ...
 - That is what will be done in any case!
 - And it is better to use it than to do nothing
 - And it is better to document that expert opinion was used than to proceed with conservation planning in the absence of stating sources and assumptions
-- It is a starting point (and sometimes a good one)
-
+- It is a starting point (and sometimes a reasonable one)
 
 
 ## Capture-mark-recapture (CMR) analysis
@@ -157,12 +160,13 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup)
 
 ### PVA Parameters estimable from CMR data
 
-- Survival rate
-- Birth rate
+- Survival rate (possibly age or size structured)
+- Fecundity (entry of new individuals in the population)
 - Abundance
 - Lambda (rate of growth)
-- Environmental effects on survival rate and fecundity
-- Temporal process variance
+- Environmental influences on survival rates and fecundity
+- Temporal process variance (env. stochasticity)
+- Dispersal rates
 
 ### The data needed for CMR analysis: capture histories
 
@@ -181,14 +185,14 @@ A "2" indicates that an animal was successfully captured in a given year but was
 ### Two main types of CMR analyses
 
 #### Closed population models
-We assume that the population is closed to BIDE processes. That is, abundance does not change!
+We assume that the population is closed (no BIDE processes!). That is, abundance does not change!
 We attempt to estimate abundance!
 
 - No mortality
 - No births
 - No immigration
 - No emigration
-- All individuals are observable
+- All individuals are observable (but not necessarily observed...)
 
 ![](peterson1.png)
 
@@ -203,14 +207,14 @@ R = number of individuals in 2nd sample that are marked
 
 We can use the following formula to estimate abundance (the **lincoln-peterson estimator**): 
 
-$N = \frac{C*M}{R}$
+$N = \frac{M \times C}{R}$
 
 
 #### Open population models
 We assume that the population is open to one or more of the BIDE processes. That is, abundance CAN change! 
 We attempt to estimate the processes driving abundance change (often, survival rates)
 
-- Populations open to birth, death, and migration (abundance can change during the study).
+- Populations open to birth, death, and possibly even migration (abundance can change during the study).
 - Enables estimation of the drivers of population dynamics over extended time periods 
 - Often of great interest to ecologists and managers.
 
@@ -249,8 +253,6 @@ How about the following capture history for a single individual:
 1 0 1 0
 ```
 
-This individual was marked and released upon initial capture. It was then captured in the next survey, but was not detected in either of the final two surveys.  
-
 What is the probability of observing this capture history?
 
 > [(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X
@@ -275,20 +277,17 @@ Maximum likelihood estimation is the process of finding those values of the para
 
 This model is known as the *Cormack-Jolly-Seber* model (CJS), and is the basic analysis performed by Program MARK. 
 
-
 **Q**: Why is $\phi$ also known as "apparent" survival? Why is it not "true" survival???
 
 #### Assumptions of the CJS model
 
-- All animals in population equally catchable at each sampling occasion (each sampling bout is a random sample from the population)
-- All animals have same survival probability at each sampling occasion ($\phi_t$)
+- All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)
 - Marks are not lost or missed by surveyors
 - All emigration is permanent (equivalent to a mortality)
 
 ### Program MARK
 
 MARK is a numerical maximum-likelihood engine designed for mark-recapture analysis. You input a capture history dataset and MARK will output results such as survival rate and capture probability!! 
-
 
 ## Example of an open-population mark-recapture analysis!
 
@@ -305,7 +304,7 @@ head(dipper.data,10)
 ```
 
 
-Here we use the "mra" package in R to do the ML parameter estimation!
+Here we use the "mra" package in R (instead of MARK) to do the ML parameter estimation!
 
 ```{r}
 data(dipper.histories)

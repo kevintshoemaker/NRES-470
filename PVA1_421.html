@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -24,8 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -384,21 +386,12 @@ div.tocify {
       <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
     </li>
     <li>
-      <a href="Lab8_muledeer.docx">Lab 8: mule deer PVA</a>
-    </li>
-    <li>
-      <a href="PDH_KnownFate.zip">Lab 8: mule deer MARK file</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -414,14 +407,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Guest lecture, PVA basics</h1>
 <h4 class="author"><em>NRES 421/621</em></h4>
-<h4 class="date"><em>Mar 27, 2017</em></h4>
+<h4 class="date"><em>Mar 15, 2018</em></h4>
 
 </div>
 
 
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
-<p>For the next three class periods, we will explore the use of <strong>population models</strong> to address conservation questions– a process known as <strong>population viability analysis (PVA)</strong></p>
+<p>For the next three class periods, we will explore the use of <strong>population models</strong> to address conservation questions– a process often called <strong>population viability analysis (PVA)</strong></p>
 <p>PVA is essentially a set of practical approaches to problem-solving in conservation, and wildlife management via creative application of <em>demographic theory</em>, <em>simulation models</em> and <em>statistics</em>.</p>
 <p>As much as possible we will use hands-on activities to explore the fundamentals of PVA. We will use <a href="https://insightmaker.com/">InsightMaker- a free web-based systems modeling tool</a> for running simulation models.</p>
 <p>First we will build a PVA for the grizzly bears of Yellowstone National Park!</p>
@@ -429,7 +422,7 @@ div.tocify {
 <img src="grizzly1.jpg" />
 
 </div>
-<p>We will end this mini-course by building a PVA for the loggerhead turtle, <em>Caretta caretta</em>, which is based on a paper by <a href="Crowder1994.pdf">Crowder et al 1994</a>.</p>
+<p>We will end this mini-course by building a PVA for the loggerhead sea turtle, <em>Caretta caretta</em>, which is based on a paper by <a href="Crowder1994.pdf">Crowder et al 1994</a>.</p>
 <div class="figure">
 <img src="caretta1.jpg" />
 
@@ -446,43 +439,33 @@ div.tocify {
 <blockquote>
 <p>“A biological unit at the level of ecological integration where it is meaningful to speak of birth rate, death rate, sex ratios, and age structure in describing properties or parameters of the unit.”</p>
 </blockquote>
-<p>From Gotelli (1998):</p>
-<blockquote>
-<p>“A group of plants, animals, or other organisms, all of the same species, that live together and reproduce.”</p>
-</blockquote>
-<p>From <a href="http://coris.noaa.gov/glossary/glossary_l_z.html">NOAA website</a>:</p>
-<blockquote>
-<p>“a group of individuals of the same species living in the same area at the same time and sharing a common gene pool; a group of potentially interbreeding organisms in a geographic area”</p>
-</blockquote>
 <p><em>Defining a population is not always straightforward…</em>. Spatial boundaries defining populations sometimes are easily defined, but more typically are vague and difficult to determine.</p>
-<p>Population size, or abundance, is often represented as <span class="math inline">\(N\)</span>, and is the most basic measurement of a wild population.</p>
 </div>
 <div id="exponential-growth-the-fundamental-principle-of-population-ecology" class="section level2">
 <h2>Exponential growth: the fundamental principle of population ecology</h2>
+<p>Living things have the ability to grow exponentially. This is the “power of life”.</p>
 <div class="figure">
 <img src="puffball1.png" />
 
 </div>
-<p>Giant puffballs produce 7 trillion offspring in one reproductive event.</p>
+<p>Giant puffballs produce 7 trillion offspring (spores) in one reproductive event.</p>
 <p>… If all of those individuals reached adulthood, the descendants from just <em>two parent puffballs</em> would weigh more than the entire planet in two generations!</p>
-<p>The reason? Populations grow <em>geometrically</em>, in a process called <strong>exponential growth</strong>. This is the foundational concept of population ecology, and this simple model has enormous resonance across all of ecology and evolution.</p>
+<p>The reason? Populations grow in a positive feedback process. More individuals means more total reproduction events means more individuals means even more total reproduction events. The bigger the population the faster the rate of growth.</p>
 </div>
-<div id="mathematics-and-ecology" class="section level2">
-<h2>Mathematics and Ecology</h2>
-<p>“Mathematics seems to endow one with a new sense.”<br />
-- Charles Darwin</p>
-<p>“Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown.”<br />
-- Charles Elton, in reference to a work by Alfred Lotka</p>
+<div id="aside-mathematics-and-modeling-in-ecology" class="section level2">
+<h2>Aside: Mathematics and modeling in Ecology</h2>
 <div class="figure">
 <img src="1976_Elton.jpg" />
 
 </div>
+<p>“Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown”<br />
+- Charles Elton (referring to a work by Alfred Lotka)</p>
 <p>“The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated.”<br />
-- Charles Elton</p>
+- Charles Elton (also referring to a work by Alfred Lotka)</p>
 </div>
 <div id="nomenclature-for-population-ecology" class="section level2">
 <h2>Nomenclature for Population Ecology</h2>
-<p>First of all, we need a symbol to represent population size, or <em>abundance</em>. This is <span class="math inline">\(N\)</span>, for the <span class="math inline">\(N\)</span>umber of individuals!</p>
+<p>First of all, <span class="math inline">\(N\)</span> represents population size, or <em>abundance</em>.</p>
 <p><span class="math inline">\(\Delta N\)</span> represents the change in population size, <span class="math inline">\({N_{t+1}}-{N_t}\)</span></p>
 <p>The famous “BIDE” equation is a way to break down <span class="math inline">\(\Delta N\)</span> into components.</p>
 <div class="figure">
@@ -490,19 +473,19 @@ div.tocify {
 
 </div>
 <p><span class="math inline">\(\Delta N = B + I - D - E \qquad \text{(Eq. 1)}\)</span></p>
-<p>where <span class="math inline">\(B\)</span> represents the number of births, <span class="math inline">\(I\)</span> reprents the number of immigrants, <span class="math inline">\(D\)</span> represents the number of deaths, and <span class="math inline">\(E\)</span> represents the number of emigrants.</p>
+<p>where <span class="math inline">\(B\)</span> represents the number of births per time period, <span class="math inline">\(I\)</span> reprents the number of immigrants, <span class="math inline">\(D\)</span> represents the number of deaths, and <span class="math inline">\(E\)</span> represents the number of emigrants.</p>
 <p>If we ignore immigration and emigration, then the BIDE equation simplifies to:</p>
 <p><span class="math inline">\(\Delta N = B - D \qquad \text{(Eq. 2)}\)</span></p>
 <p>Now let’s focus on <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>. The important thing to recognize is that the number of births and deaths in a population is not constant.</p>
 <p>What does the number of births depend on?</p>
-<p>What <strong>is</strong> more likely to be constant is the <strong>per-capita rate</strong> of producing offspring, or dying. Does this make sense? These per-capita rates are often expressed as lower case letters. So <span class="math inline">\(b\)</span> represents per-capita births, and <span class="math inline">\(d\)</span> represents per-capita deaths.</p>
+<p>What <strong>is</strong> more likely to be constant is the <strong>per capita rate</strong> of producing offspring, or dying. Does this make sense? These per capita rates are often expressed as lower case letters. So <span class="math inline">\(b\)</span> represents per capita births, and <span class="math inline">\(d\)</span> represents per capita deaths.</p>
 <p><span class="math inline">\(b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}\)</span></p>
 <p>–or–</p>
 <p><span class="math inline">\(B_t = b \cdot N_t\)</span></p>
-<p>The letter <span class="math inline">\(t\)</span> of course represents time, which could be years, or minutes, or decades, or whatever! So the above equation could be described as follows: “the number of births at a given time is equal to the per-capita birth rate times the total population size at that time”</p>
+<p>The letter <span class="math inline">\(t\)</span> of course represents time, which could be years, or minutes, or decades, or whatever!</p>
+<p>In plain English, the above equation could be described as follows: “the number of births at a given time is equal to the per-capita birth rate times the total population size at that time”. (literally, <em>per capita</em> means “by heads” in Latin. So we multiply the “heads” by the birth rate “per head”).</p>
 <p>Similarly,</p>
 <p><span class="math inline">\(D_t = d \cdot N_t \qquad \text{(Eq. 4)}\)</span></p>
-<p>Okay, we’re almost there.</p>
 <p>If <span class="math inline">\(\Delta N = B - D \qquad \text{(Eq. 5)}\)</span></p>
 <p>then</p>
 <p><span class="math inline">\(\Delta N = b \cdot N_t - d \cdot N_t\qquad \text{(Eq. 6)}\)</span></p>
@@ -511,31 +494,41 @@ div.tocify {
 <p>which could also be written:</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t\qquad \text{(Eq. 8)}\)</span></p>
 <p>Where <span class="math inline">\(r\)</span> represents the difference between births and deaths. If <span class="math inline">\(r\)</span> is positive, then births are greater than deaths and the population grows. If <span class="math inline">\(r\)</span> is negative then deaths exceed births and the population declines.</p>
+</div>
+<div id="continuous-population-growth" class="section level2">
+<h2>Continuous population growth</h2>
+<p>In a <em>continuous population growth</em> model, the population is constantly changing: for a growing population, no matter how small the time interval, the population will be bigger at the next time step.</p>
+<p><strong>Q</strong>: What wild populations exhibit continuous growth?</p>
 <p>We can use <em>calculus notation</em> to consider the instantaneous change in population size:</p>
 <p><span class="math inline">\(\frac{\partial N}{\partial t} = r \cdot N \qquad \text{(Eq. 9)}\)</span></p>
-<p>This simple formula represents <strong>exponential growth</strong> and is probably the <em>most fundamental equation of population ecology</em>.</p>
-<p>We will have time to explore this model in a few minutes!</p>
-<p>A couple more quick notes:</p>
-<p>The greek symbol lambda (<span class="math inline">\(\lambda\)</span>), represents the <em>finite rate of growth</em>, or <span class="math inline">\(\frac {N_{t+1}}{N_t}\)</span>. Lambda is what you multiply the current population size by to compute the population size in the next time step.</p>
-<p><span class="math inline">\(N_{t+1}=N_t + B - D \qquad \text{(Eq. 11)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=N_t + b \cdot N_t - d \cdot N_t \qquad \text{(Eq. 12)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=N_t + (b - d) \cdot N_t \qquad \text{(Eq. 13)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=N_t + r \cdot N_t \qquad \text{(Eq. 14)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=N_t \cdot (1 + r) \qquad \text{(Eq. 15)}\)</span></p>
+<p>This simple formula represents <strong>continuous exponential growth</strong>.</p>
+<p>To estimate the abundance at time <em>t</em>, we can <em>integrate</em> this differential equation, and we get the following result:</p>
+<p><span class="math inline">\(N_t = N_0 e^{rt} \qquad \text{(Eq. 10)}\)</span></p>
+</div>
+<div id="discrete-population-growth-most-pvas" class="section level2">
+<h2>Discrete population growth (most PVAs)</h2>
+<p>Most PVAs represent <em>discrete population growth</em> models, where the population changes abruptly at regular intervals (looking like a staircase): for a growing population, the population size is constant until the next time step, at which point it grows in one leap.</p>
+<p><strong>Q</strong>: What wild populations exhibit discrete growth?</p>
+<p>The greek symbol lambda (<span class="math inline">\(\lambda\)</span>), represents the <em>finite rate of growth</em> for a discrete population growth model, or <span class="math inline">\(\frac {N_{t+1}}{N_t}\)</span>. Lambda is what you multiply the current population size by to compute the population size in the next time step.</p>
+<p><span class="math inline">\(N_{t+1}=N_t + \Delta N_t \qquad \text{(Eq. 11)}\)</span></p>
+<p><span class="math inline">\(N_{t+1}=N_t + r_d \cdot N_t \qquad \text{(Eq. 12)}\)</span></p>
+<p><span class="math inline">\(N_{t+1}=N_t \cdot (1 + r_d) \qquad \text{(Eq. 15)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 16)}\)</span></p>
+<p><span class="math inline">\(N_{t}=\lambda^{t} \cdot N_0 \qquad \text{(Eq. 17)}\)</span></p>
 </div>
 <div id="modeling" class="section level2">
 <h2>Modeling!!</h2>
 <div id="computer-programming-and-systems-thinking" class="section level3">
 <h3>Computer programming and systems thinking</h3>
-<p>Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result <strong>specialized software and computer programming</strong> are a critical component to modern whole-systems analysis, including <strong>ecosystems</strong> analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. <strong>In these three classes, we will learn to use computer simulations for understanding and managing natural populations</strong>.</p>
+<p>Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result <strong>specialized software and computer programming</strong> are a critical component to modern whole-systems analysis, including models of population and ecosystem dynamics. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. <strong>In this unit, we will learn to use computer simulations for understanding and managing natural populations</strong>.</p>
 </div>
 <div id="insightmaker-a-simulation-modeling-framework-for-dynamic-systems" class="section level3">
 <h3><em>InsightMaker</em>: a simulation modeling framework for dynamic systems!</h3>
 <p><a href="insightmaker.com">InsightMaker</a> is a web-based visual programming language for modeling the dynamics of inter-connected systems.</p>
 <p>A <strong>dynamic system</strong> essentially consists of [Stocks] and [Flows].</p>
-<p>A [Stock] represents a quantity of something. The [Stock] only changes over time ONLY via [Flows In] or [Flows Out].</p>
-<p>A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents <em>Moose</em>! <em>Moose Births</em> would then be the input [Flow] to the population of <em>Moose</em> over time.</p>
+<p>A [Stock] simply represents a quantity of something. The [Stock] only changes over time ONLY via [Flows In] or [Flows Out].</p>
+<p>A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents <em>Moose</em>!</p>
+<p><em>Moose Births</em> would then be the input [Flow] to the population of <em>Moose</em> over time.</p>
 <p>A [Stock] of stuff decreases over time via what [Flows] out. For example, <em>Moose Deaths</em> could represent the [Flow] out of the population of <em>Moose</em>.</p>
 <div class="figure">
 <img src="IM13.jpg" />
@@ -552,13 +545,12 @@ div.tocify {
 <h3>Simple stock and flow model!</h3>
 <ol style="list-style-type: decimal">
 <li><p>Open up <a href="https://insightmaker.com/">InsightMaker</a>. If you have never used it before you need to sign up first with a username and password. <em>InsightMaker is free!</em></p></li>
-<li><p>Create a new “Insight” and clear the demo model.</p></li>
+<li><p>Create a new “Insight” and clear the demo module.</p></li>
 <li><p>Right click in the center of the screen and select <strong>Create Stock</strong> from the pop-up. Notice that the name is <em>New Stock</em> and is selected. Type in a name for what this is an accumulation of (e.g., “Moose”!). Note the <strong>Configuration Panel</strong> on the right - where you can alter the settings for your [Stock]. In the configuration panel, set the <em>Initial Value</em> to 50. That is, there will be 50 moose at the start of the simulation!</p></li>
-<li><p>Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the <strong>Reverse</strong> button in the <strong>Connections</strong> menu. Please do that now. You can name the [Flow] as you wish (e.g., “Births”!). Also in the <strong>Configuration Panel</strong> set <strong>Flow Rate</strong> equal to 1.</p></li>
+<li><p>Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the <strong>Reverse</strong> button in the <strong>Connections</strong> menu. Please do that now. You can name the [Flow] “Births”. Also in the <strong>Configuration Panel</strong> set <strong>Flow Rate</strong> equal to 1.</p></li>
 <li><p>Now click <strong>Run Simulation</strong> and you have just finished your first simulation model!!</p></li>
 <li><p>Can you figure out how to change the settings to run the model for 50 years? Try this and click <strong>Run Simulation</strong>.</p></li>
 <li><p>Use the same methods as <em>step 4</em> to create a [Flow Out], representing moose deaths. Set the death rate to 1 moose per year. Re-run the model. Is the population increasing or declining? Why?</p></li>
-<li><p>Change the <strong>Configuration Panel</strong> for the [Stock] and for the [Flow In] and [Flow Out] so that “Show Value Slider” is set to “Yes”. You can change the model parameterization easily using these sliders. Try it a couple times, re-running the simulation after each change.</p></li>
 </ol>
 <p><strong>Q</strong>: Is this Moose model realistic? What is the first thing you would like to change to make the model more realistic?</p>
 </div>
@@ -567,22 +559,23 @@ div.tocify {
 <h2>A more realistic model!</h2>
 <p>Now let’s consider <em>per-capita</em> rates of birth and death in the population. This way, if the population is bigger, the total births will increase!</p>
 <ol start="9" style="list-style-type: decimal">
-<li><p>To create a variable to store per-capita vital rates (per-capita birth and death rate), right-click on the canvas and select <strong>Variable</strong> from the drop-down. While the [Variable] is still selected rename it (per-capita) <em>birth rate</em>. Open the [Equation] window for <em>birth rate</em> and set it to 0.5 (if you mouse over <em>Stock</em> or <em>Flow</em> a small [<span class="math inline">\(=\)</span> Sign] will appear. If you click this it will open the <strong>Equation</strong> window where you can set values.</p></li>
+<li><p>To create variables to store per-capita vital rates (per-capita birth and death rates), right-click on the canvas and select <strong>Variable</strong> from the drop-down. While the [Variable] is still selected rename it (per-capita) <em>birth rate</em>. Open the [Equation] window for <em>birth rate</em> and set it to 0.5 (if you mouse over <em>Stock</em> or <em>Flow</em> a small [<span class="math inline">\(=\)</span> Sign] will appear. If you click this it will open the <strong>Equation</strong> window where you can set values or enter more complex equations.</p></li>
 <li><p>Now draw a [Link] from <em>birth rate</em> to the “Births” [Flow]. In InsightMaker, flow of information is represented by a [Link]. To create a [Link], click <strong>Link</strong> in the <strong>Connections</strong> part of the toolbar. When you mouse over the <em>birth rate</em> click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it to make a visually pleasing curved line!</p></li>
+<li><p>Repeat step 10 for the the <em>death rate</em> variable.</p></li>
 </ol>
 <p>Your model should look something like this:</p>
 <div class="figure">
 <img src="IM14.jpg" />
 
 </div>
-<ol start="11" style="list-style-type: decimal">
-<li>Open the <em>Equation editor window</em> for the [Flow] and set it to [Moose] times [birth rate]. To make sure you don’t make any spelling errors, it’s best to click on the variables you want in the right-hand panel of the equation editor. The equation in the equation editor window should look like this:</li>
+<ol start="12" style="list-style-type: decimal">
+<li>Open the <em>Equation editor window</em> for the [Flow] and set it to [Moose] times [birth rate]. To make sure you don’t make any typing errors, it’s best to add variables to your equation by clicking on the variable names in the right-hand panel of the equation editor. The equation in the equation editor window should look like this:</li>
 </ol>
 <pre><code>[Moose]*[Birth rate]</code></pre>
 <p>That is, the rate of inflow into the [Moose] stock is equal to the total number of moose multiplied by the per-capita birth rate.</p>
-<ol start="12" style="list-style-type: decimal">
-<li><p>For the [Moose], [Birth rate], and [Death rate], open the configuration panel and set “Show Value Slider” to “Yes”. Set the “Slider Max” to 100 for moose, and 1 for birth and death rate. Make sure the number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4.</p></li>
-<li><p>Now click [Run Simulation]. How would you describe the results?</p></li>
+<p>Do the same for the outflow into the [Moose] stock (Deaths).</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Make sure the number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?</li>
 </ol>
 <p>NOTE: If you are running into difficulties, you can always use <a href="https://insightmaker.com/insight/76064/ICE-stocks-and-flows">this working model</a>. Click on this link and then click “Clone Insight” in the top right corner of your screen. This will create a copy of the Insight that you can change as you wish!</p>
 <p><strong>Q</strong>: what happens if you set the birth rate equal to the death rate?</p>
@@ -591,8 +584,6 @@ div.tocify {
 </div>
 <div id="an-even-more-realistic-model" class="section level2">
 <h2>An even more realistic model!!</h2>
-<div id="uncertainty" class="section level3">
-<h3>Uncertainty!</h3>
 <p>Which one of these figures is most likely to be from a real wildlife population??</p>
 <div class="figure">
 <img src="fluct1.jpg" />
@@ -602,7 +593,6 @@ div.tocify {
 <div class="figure">
 <img src="nofluct1.jpg" />
 
-</div>
 </div>
 <div id="wildlife-populations-fluctuate-over-time" class="section level3">
 <h3>Wildlife populations fluctuate over time!</h3>
@@ -614,7 +604,7 @@ div.tocify {
 <p>All ecological systems are full of uncertainty. We all know it intuitively. But what <em>exactly</em> do we mean by that? And how can we deal with it? How can we incorporate it into our models?</p>
 <p><strong>Q</strong>: if you were to re-run the basic population model you just made in InsightMaker ten times, how many different results would you get?</p>
 <p>When a model outcome is the same every time (when starting with the same input values) we say that the model is <strong>deterministic</strong>.</p>
-<p>BUT… ecological systems (e.g., dynamic populations) have inherent variability that is often <em>not predictable</em>.</p>
+<p>BUT… ecological systems (e.g., dynamic populations) have inherent variability.</p>
 <p>We can’t predict with certainty whether or not an individual will mate, or die.</p>
 <p>We can’t be certain whether next year or the year after that will be a good year or a bad year for offspring production or mortality!</p>
 <p>The key is to <strong>embrace uncertainty</strong>. As population ecologists, we have some tricks to help us manage and account for unpredictable variation in our study systems:</p>
@@ -633,14 +623,14 @@ div.tocify {
 <p><strong>Q</strong>: What is the extinction risk for this population?</p>
 <div id="demographic-stochasticity" class="section level4">
 <h4>Demographic stochasticity</h4>
-<p>When it comes to projecting who lives and dies, who gives birth and who doesn’t, how many females are born to each individual in the population, we <em>just can’t know that for sure</em>.</p>
+<p>When it comes to projecting who lives and dies, who gives birth and who doesn’t, how many females are born to each individual in the population, we <em>just can’t know for sure</em>.</p>
 <p>In other words, we can’t know whether an <em>individual</em> will be “lucky” or “unlucky” so to speak!</p>
 <p>In population ecology this is called <strong>demographic stochasticity</strong>.</p>
 </div>
 <div id="environmental-stochasticity" class="section level4">
 <h4>Environmental Stochasticity</h4>
 <p>We usually can’t predict whether next year or the year after will be a good one or a bad one for a <em>population</em>- that is, we don’t know whether the per-capita vital rates (e.g., <span class="math inline">\(b\)</span>, or <span class="math inline">\(d\)</span>) will be more or less optimal year-to-year</p>
-<p>In other words, we can’t know whether a <em>population</em> will be “lucky” or “unlucky”, so to speak!</p>
+<p>In other words, we can’t know whether a <em>population</em> will be “lucky” or “unlucky” each year, so to speak!</p>
 <p>In population ecology this is called <strong>environmental stochasticity</strong>.</p>
 <div class="figure">
 <img src="dice1.png" />
@@ -651,7 +641,7 @@ div.tocify {
 </div>
 <div id="random-number-generation" class="section level2">
 <h2>Random number generation</h2>
-<p>To ensure that each model run (replicate) – or each year of each model run – is different from one another, we can include at least one <strong>random number generator</strong> in our models!</p>
+<p>To ensure that each model run (replicate) – or each year of each model run – is different from one another, we need to include at least one <strong>random number generator</strong> in our models!</p>
 <p>A random number generator is like a box of (potentially infinite) possible numbers – a lottery ball machine for example! Each time we want a new number we reach in and pull one out, record the number, put it back in and shake it up again.</p>
 <div class="figure">
 <img src="lottery1.png" />
@@ -659,40 +649,51 @@ div.tocify {
 </div>
 <p>Every random-number generator has a <strong>distribution</strong>. This is a way of defining what exactly is in the box. For example, the box might have 10 “ones”, 5 “twos”, and 2 “threes”. In this case the distribution looks like this (<em>probability</em> of each <em>possibility</em>):</p>
 <p><img src="PVA1_421_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again in nature, and we should know them, because they end up being major building blocks of PVA!</p>
-<div id="common-probability-distributions" class="section level3">
-<h3>Common probability distributions</h3>
-<div id="binomial-distribution" class="section level4">
-<h4>Binomial distribution</h4>
-<p>Consider the probability of flipping a coin 10 times and getting 4 heads. This quantity would follow a <em>binomial distribution</em></p>
+<p>A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again in modeling (and in nature), and we should know them, because they end up being major building blocks of PVA!</p>
+<div id="random-number-generators-for-demographic-stochasticity" class="section level3">
+<h3>Random number generators for demographic stochasticity</h3>
+<div id="binomial-random-number-generator" class="section level4">
+<h4>Binomial random number generator</h4>
+<p>Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this “experiment” over and over again. Your results should follow a <em>binomial distribution</em>!</p>
+<pre class="r"><code>#rbinom(10,10,0.3)    # the random numbers have no decimal component
+
+             # plot a discrete distribution!
+xvals &lt;- seq(0,10,1)
+probs &lt;- dbinom(xvals,10,prob=0.3)
+names(probs) &lt;- xvals
+               
+barplot(probs,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Binomial distribution (discrete)&quot;)</code></pre>
 <p><img src="PVA1_421_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>#barplot(cumsum(probs),ylab=&quot;Cumulative Probability&quot;,main=&quot;Binomial distribution (discrete)&quot;)   # cumulative distribution
+
+#sum(probs)   # just to make sure it sums to 1!  Does it??? </code></pre>
+<p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
 </div>
-<div id="poisson-distribution" class="section level4">
-<h4>Poisson distribution</h4>
-<p>Another discrete distribution we will use in this PVA mini-course is the <em>Poisson distribution</em>:</p>
+<div id="poisson-random-number-generator" class="section level4">
+<h4>Poisson random number generator</h4>
+<p>Another discrete distribution we will use in this PVA mini-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
+<pre class="r"><code>             # plot a discrete distribution!
+xvals &lt;- seq(0,10,1)
+probs &lt;- dpois(xvals,lambda=2.2)
+names(probs) &lt;- xvals
+               
+barplot(probs,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Poisson distribution (discrete)&quot;)</code></pre>
 <p><img src="PVA1_421_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
 </div>
-<div id="uniform-distribution" class="section level4">
-<h4>Uniform distribution</h4>
-<p>In <em>continuous distributions</em>, there is an infinite set of possibilities in our random-number box between any upper and lower bound.</p>
-<p>Let’s consider the <em>uniform distribution</em>:</p>
-<pre class="r"><code>lower = 0
-upper = 10
-
-curve(dunif(x,lower,upper),0,10,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Uniform distribution (continuous)&quot;,ylim=c(0,1))   # probability density</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>This isn’t a very intersting looking distribution. All possible numbers from 0 to 10 are equally probable.</p>
 </div>
+<div id="random-number-generators-for-environmental-stochasticity" class="section level3">
+<h3>Random number generators for environmental stochasticity</h3>
 <div id="normal-distribution" class="section level4">
 <h4>Normal distribution</h4>
-<p>Another continuous distribution you should know is called the <em>Normal distribution</em>. This distribution has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
+<p>You are probably already familiar with the <em>Normal distribution</em>. This distribution has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
 <p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
 <pre class="r"><code>mean = 7.1
 stdev = 1.9
 
 curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Normal distribution (continuous)&quot;)   # probability density</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
 </div>
 </div>
 <div id="return-to-insightmaker" class="section level3">
@@ -734,35 +735,27 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <li>We will use a <em>Normal distribution</em> to represent how the birth rate changes each year. This could represent climatic variablity – “good years” and “bad years”. The <em>Normal distribution</em> is commonly used for this type of variability- it is characterized by an average value (<strong>mean</strong>) and a variability measure (<strong>standard deviation</strong>). To do this in InsightMaker, use the following formula for the <em>Birth Rate</em> variable:</li>
 </ol>
 <pre><code>RandNormal(0.4, 0.4)</code></pre>
-<p>Similarly, use the following formula for the <em>Death Rate</em> variable:</p>
-<pre><code>RandNormal(0.3, 0.3)</code></pre>
+<p>Similarly, we could use the following formula to represent environmental stochasticity in the <em>Death Rate</em> variable:</p>
+<pre><code>RandNormal(0.3, 0.4)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”.</p></li>
 <li><p>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</p></li>
-<li><p>Note that the normal distribution CAN go below zero or above 1, which is often NOT biologically realistic! Let’s <strong>truncate</strong> the normal distribution to behave more realistically. That is, if the random number you draw comes out less than zero, just set it to zero!</p></li>
 </ol>
-<p>For <em>birth rate</em>, this can be done like this:</p>
-<pre><code>Max(0,RandNormal(0.4, 0.4))</code></pre>
-<p>This forces birth rates to always be greater than or equal to zero.</p>
-<p>For <em>death rate</em>, this can be done like this:</p>
-<pre><code>Min(1,Max(0,RandNormal(0.3, 0.3)))</code></pre>
-<p>This forces death rates to always be greater than or equal to zero.</p>
-<p>Re-run the model with the modified/constrained random vital rates.</p>
 <p>If you’re having trouble, you can clone a working model <a href="https://insightmaker.com/insight/77054/ICE-environmental-stochasticity">here</a></p>
 <p><strong>Q</strong> Is the effect of <em>environmental stochasticity</em> bigger at low or high abundances?</p>
-<p><strong>Q</strong> Under what circumstances can you envision small populations being more vulnerable to environmental stochasticity than large populations?</p>
+<p><strong>Q</strong> Can you envision any circumstances where small populations would be more vulnerable to <em>environmental stochasticity</em> than large populations?</p>
 </div>
 </div>
 </div>
 <div id="population-viability-analysis-pva-1" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
-<p>Before we move on do run some real PVA analysis, let’s return to the topic of this mini-course: PVA.</p>
-<p>Population Viability Analysis (PVA) is the <em>process of building and running a formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative management options</em>.</p>
+<p>Let’s return to the topic of this unit: PVA.</p>
+<p>Population Viability Analysis (PVA) is the <em>process of building and running a formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions</em>.</p>
 <div id="what-are-some-questions-you-can-address-with-pva" class="section level3">
 <h3>What are some questions you can address with PVA?</h3>
-<p>In general, we are interested in evaluating population-level risk under various <strong>scenarios</strong>. These scenarios could involve population size, different vital rates, or specific sources of mortality.</p>
+<p>In general, we are interested in evaluating population-level risk under various alternative <strong>scenarios</strong>. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions. Setting up alternative scenarios is a bit like setting up experiments in a laboratory.</p>
 <p>We are often interested in evaluating the factors that threaten the present or future viability of a population.</p>
-<p>Just like population models, population threats can be classified as either deterministic or stochastic.</p>
+<p>Population threats can be classified as either deterministic or stochastic.</p>
 </div>
 <div id="deterministic-threats" class="section level3">
 <h3>Deterministic threats</h3>
@@ -785,18 +778,16 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <li>Catastrophes?</li>
 <li>Loss of genetic diversity?</li>
 </ul>
-<p><strong>Q</strong>: which is more likely to cause a large population to become small: stochastic threas or deterministic threats?</p>
-<p><strong>Q</strong>: can you match the above concepts with the two paradigms of conservation biology: the <em>small-population paradigm</em> and the <em>declining-population paradigm</em>?</p>
+<p><strong>Q</strong>: which is more likely to cause a large population to become small: stochastic threats or deterministic threats?</p>
+<p><strong>Q</strong>: can you match the above concepts with the two “paradigms” of conservation biology (from Caughley 1994): the <em>small-population paradigm</em> and the <em>declining-population paradigm</em>?</p>
 </div>
 </div>
-<div id="the-pva-process-recipe-for-pva" class="section level2">
-<h2>The PVA process (recipe for PVA!)</h2>
+<div id="a-general-pva-workflow" class="section level2">
+<h2>A general PVA workflow</h2>
 <div class="figure">
 <img src="PVAschematic1.png" />
 
 </div>
-<p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
-<p>For example – after running your model (step 4) you might realize that your results (step 5) are totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).</p>
 <div id="step-1-life-history" class="section level3">
 <h3>Step 1: Life history</h3>
 <p><em>How does your population work?</em></p>
@@ -810,7 +801,7 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 </div>
 <div id="step-2-parameterize-the-demographic-model" class="section level3">
 <h3>Step 2: Parameterize the demographic model!</h3>
-<p>This is where you attach <em>real numbers</em> to the stocks and flows in your conceptual life history diagram!</p>
+<p>This is where you attach <em>real numbers</em> to the stocks and flows in your conceptual life history diagram! Remember that this includes not just the vital rates, but also <em>density dependence</em> and <em>stochasticity</em> for these vital rates!</p>
 </div>
 <div id="step-3-spatial-structure" class="section level3">
 <h3>Step 3: Spatial structure!</h3>
@@ -831,15 +822,17 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <h3>Step 5: Results</h3>
 <p>Finally, you need to make sense of all the simulations you just ran!</p>
 <p>There are two types of data analysis tools that you will need to be able to use the simulation results to answer your questions: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
-<p>Before we get into the PVA examples, let’s just step back and look at the final stage of the PVA process- visualizing results and making conclusions.</p>
-<p>This is, after all, why we do PVA in the first place!!</p>
+<p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
+<p>For example – after running your model (step 4) you might realize that your results (step 5) are totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).</p>
+<p>Okay, now let’s build a PVA model together!</p>
+<p><a href="PVA2_421.html">–go to grizzly PVA!–</a></p>
 </div>
 </div>
-<div id="a-simple-demonstration-pva" class="section level2">
-<h2>A Simple Demonstration PVA</h2>
-<p>To illustrate some of these concepts, let’s build ourselves a very simple PVA model in R.</p>
+<div id="bonus-a-simple-demonstration-pva" class="section level2">
+<h2>BONUS: A Simple Demonstration PVA</h2>
+<p>To illustrate the process, let’s build ourselves a very simple PVA model in R.</p>
 <p>For this demo I’m using the <em>“R” programming language</em> because of its flexible and powerful visualization tools. You can download R for yourself from <a href="https://cran.r-project.org/">this website</a>:</p>
-<p>For simplicity, let’s ignore age structure - that is, let’s build a <em>scalar</em> PVA model.</p>
+<p>For simplicity, let’s ignore age structure.</p>
 <p>Also let’s ignore parameter uncertainty for now.</p>
 <p>Here is the basic model parameterization:</p>
 <pre class="r"><code>####
@@ -921,7 +914,7 @@ Default &lt;- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)</code
 }
 
 PlotCloud(Default)</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Okay, what do we learn from this? Really, it’s a mess!!!</p>
 <p>If our question is about extinction risk, maybe we want to plot extinction risk by time…</p>
 <pre class="r"><code>Extinction_byyear &lt;- function(simdata){
@@ -930,12 +923,12 @@ PlotCloud(Default)</code></pre>
 
 plot(c(1:101),Extinction_byyear(Default),type=&quot;l&quot;,lwd=2,xlab=&quot;year&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Maybe our question is about the probability of decline over 100 years …</p>
 <p>In that case maybe we should present a histogram of final abundances…</p>
 <pre class="r"><code>hist(Default[nrow(Default),],xlab=&quot;Final abundance after 100 years&quot;,ylab=&quot;Number of replicates&quot;,main=&quot;&quot;)
 abline(v=Init_N,col=&quot;green&quot;,lwd=2)</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>We could compute the probability of decline by computing <span class="math inline">\(\frac{number.declined}{total.simulations}\)</span></p>
 <pre class="r"><code>prob_decline &lt;- round(length(which(Default[nrow(Default),]&lt;Init_N))/ncol(Default),2)
 cat(&quot;the probability of decline is: &quot;, prob_decline)</code></pre>
@@ -959,91 +952,8 @@ for(scenario in 1:length(flood_lambdas)){
 
 plot(flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impact (lambda in flood year)&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-</div>
-</div>
-<div id="aside-matrix-population-models" class="section level2">
-<h2>ASIDE: matrix population models:</h2>
-<p>We can present yearly fecundity and survival probabilities compactly in a <strong>projection matrix</strong> [A] which we use to project the population size year to year.</p>
-<p>We all remember the finite-population-growth equation:</p>
-<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 1)}\)</span>,</p>
-<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
-<p>The matrix population growth equation looks pretty much the same!</p>
-<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
-<p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
-<p>We can be more explicit about this if we re-write the above equation this way:</p>
-<p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
-<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2, and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2.</p>
-<p>There are three important types of transitions.</p>
-<ul>
-<li><span class="math inline">\(F_i\)</span> = Fecundities, or the number of new turtles (hatchlings) produced by an average individual of size-class <em>i</em> per year. This is the top row of the transition matrix.</li>
-<li><span class="math inline">\(S_i\)</span> = Stage Survival, or fraction of size <em>i</em> turtles surviving and staying in the same size-class per year. These are the diagonal elements of the matrix</li>
-<li><span class="math inline">\(G_i\)</span> = fraction of size <em>i</em> turtles surviving and growing to size-class <em>i + 1</em> per year. These are the subdiagonal elements of the matrix.</li>
-</ul>
-<p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for stage <span class="math inline">\(t\)</span></p>
-<p>Fecundity, <span class="math inline">\(F_t\)</span>, is the _per-capita rate by which an individual of stage <span class="math inline">\(t\)</span> contributes new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference??</p>
-<p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must both survive and reproduce</em>!.</p>
-<p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
-<p>There is a lot we can do with matrix population models. The most obvious one is <em>projection</em>:</p>
-<div id="projection" class="section level3">
-<h3>Projection:</h3>
-<p>We have already seen the projection equation (<em>Eq. 2</em>, above). Here is how we can implement this in R:</p>
-<pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!</code></pre>
-<p>Let’s try it!:</p>
-<p>First, let’s build a <em>projection matrix</em>:</p>
-<pre class="r"><code>projection_matrix &lt;- matrix(
-  c(
-    0,     1.2,   3.1,
-    0.4,   0,     0,
-    0,     0.75,   0
-  )
-  ,nrow=3,ncol=3,byrow=T
-)
-
-projection_matrix</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]  0.0 1.20  3.1
-## [2,]  0.4 0.00  0.0
-## [3,]  0.0 0.75  0.0</code></pre>
-<p>Next, let’s build an initial abundance vector:</p>
-<pre class="r"><code>Abundance_year0 &lt;- c(1000,0,0)
-Abundance_year0</code></pre>
-<pre><code>## [1] 1000    0    0</code></pre>
-<p>Now we can run the code for real!</p>
-<pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!
-Year1</code></pre>
-<pre><code>##      [,1]
-## [1,]    0
-## [2,]  400
-## [3,]    0</code></pre>
-<p>Now we have 300 individuals in stage 2!</p>
-<p>Let’s project one more year:</p>
-<pre class="r"><code>Year2 &lt;- projection_matrix %*% Year1  # matrix multiplication!
-Year2</code></pre>
-<pre><code>##      [,1]
-## [1,]  480
-## [2,]    0
-## [3,]  300</code></pre>
-<p>Here is some R code to project many years into the future!</p>
-<pre class="r"><code>nYears &lt;- 20                                            # set the number of years to project
-TMat &lt;- projection_matrix                               # define the projection matrix
-InitAbund &lt;- Abundance_year0                            # define the initial abundance
-
-  ## NOTE: the code below can be re-used without modification:
-allYears &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
-allYears[,1] &lt;- InitAbund  # set the year 0 abundance                                    
-for(t in 2:(nYears+1)){   # loop through all years
-  allYears[,t] &lt;-  TMat %*% allYears[,t-1]
-}
-plot(1,1,pch=&quot;&quot;,ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)  # set up blank plot
-cols &lt;- rainbow(3)    # set up colors to use
-for(s in 1:3){
-  points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
-}
-axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
-legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))))  # put a legend on the plot</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Okay, now let’s build a PVA model together!</p>
 <p><a href="PVA2_421.html">–go to grizzly PVA!–</a></p>
 </div>
 </div>
@@ -1073,7 +983,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
