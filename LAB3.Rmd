@@ -120,7 +120,8 @@ Let's build an age-structured model from scratch. To do this, you can follow the
 
 3. Make a new flow (flow in) called *Recruitment*. This should represent new *Age 1* individuals. We will ignore immigration for now, so new recruiment into the "Age 1" stock is the only way new individuals can be added to the population. We will assume that *Age 2* and *Age 3* are the only reproductively active ages. Therefore, draw links from *Age 2* and *Age 3* to *Recruitment*. 
 
-4. Make new flows from _Age 1 to Age 2_ and from _Age 2 to Age 3_, called *Transition to Age 2* and *Transition to Age 3*, respectively. These flows represent **growth**, or advancement from *Age 1* to *Age 2* is dependent on the number of individuals in *Age 1*. Therefore, draw a link from *Age 1* to *Transition to Age 2*. Do the same for *Transition to Age 3*.   
+4. Make new flows from _Age 1 to Age 2_ and from _Age 2 to Age 3_, called *Transition to Age 2* and *Transition to Age 3*, respectively. These flows represent **growth**, or advancement from *Age 1* to *Age 2* is dependent on the number of individuals in *Age 1*. Therefore, draw a link from *Age 1* to *Transition to Age 2*. Do the same for *Transition to Age 3*. 
+
 5. Make three new flows representing, emerging respectively from each stock and called *Age 1 mortality*, *Age 2 mortality*, and *Age 3 mortality*. The total number of deaths is dependent on the numbers in each stock, so draw links from each stock to the respective *mortality* outflow.  
 
 Your new insight should look something like this: 
@@ -141,11 +142,11 @@ Your new insight should look something like this:
 
 3b. What is the equation for *Age 1 Mortality* in the above model? Copy and paste the equation from InsightMaker. Now explain this equation in plain English! What about *Age 3 mortality*? 
 
-3c. Initialize the population like the spadefoot toad example from lecture- so that the population consists of only individuals in the first (*Age 1*) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?  
+3c. Initialize the population abundances (Age 1, Age2, and Age 3 initial abundances) so that the population consists of only individuals in the first (*Age 1*) age class (e.g., 100 individuals in Age 1, no individuals in the other age classes). How do the population dynamics at the beginning of the simulation differ from the dynamics at the end of the simulation?  
 
-3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the **Stable Age Distribution** for this population? Does the stable age distribution change if you change the vital rates (recruitment rates, transition rates etc.)?
+3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the **Stable Age Distribution** for this population? Does the stable age distribution change if you change the vital rates (recruitment rates, transition rates etc.)? When you are done, please return all population vital rates to their original specifications. 
 
-3e. Is this a growing or declining population? Imagine you could enact a predator-control program and reduce the mortality of *Age 1* individuals. How much would you have to reduce mortality of this age class to make a growing population? What about *Age 2* mortality -- How much would you have to reduce mortality of this age class to make a growing population? 
+3e. Is this a growing or declining population (make sure you use the originally specified vital rates)? Imagine you could enact a predator-control program and reduce the mortality of *Age 1* individuals. How much would you have to reduce mortality (i.e., increase the proportion transitioning from Age 1 to age 2) of this age class to make a growing population? What about *Age 2* mortality -- how much would you have to reduce mortality of this age class (increase the proportion transitioning from Age 2 and Age 3) to make a growing population? 
     
 
 ## Exercise 4: more complex age-structured models in InsightMaker!
@@ -159,7 +160,7 @@ Try to implement the following model (adding onto the previous age-structured mo
 
 ##Checklist for Lab 3 completion
 
-* Please bundle the materials into one Word document and submit _using WebCampus_!
+* Please type your responses into one Word document and submit _using WebCampus_!
 
 ***Due Feb. 22 at midnight.***
 

@@ -371,6 +371,12 @@ div.tocify {
       <a href="LAB2.html">Lab 2: logistic growth</a>
     </li>
     <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -395,18 +401,18 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 4: Matrix population models</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 10, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
-<p>In this lab we will get back to age-structured populations: specifically, we will play with <strong>matrix projection models</strong>! Rememeber that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic (discrete) exponential growth!</p>
+<p>In this lab we will get back to age-structured populations: specifically, we will get familiar with <strong>matrix projection models</strong>! Rememeber that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic (discrete) exponential growth (<span class="math inline">\(N_{t+1} = N_t \cdot \lambda\)</span>)!</p>
 <div id="mathematics-of-matrix-population-models" class="section level2">
 <h2>Mathematics of matrix population models:</h2>
 <p>We all remember the finite-population-growth equation:</p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 1)}\)</span>,</p>
 <p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
-<p>In other words, <span class="math inline">\(\lambda\)</span> is the average per-capita multiplication factor per time step. You want next year’s expected abundance? Just multiply last year’s abundance by <span class="math inline">\(\lambda\)</span>!</p>
+<p>In other words, <span class="math inline">\(\lambda\)</span> is the population multiplier per time step. You want next year’s expected abundance? Just multiply last year’s abundance by <span class="math inline">\(\lambda\)</span>!</p>
 <p>The matrix population growth equation looks pretty much the same!</p>
 <p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
 <p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
@@ -414,20 +420,27 @@ div.tocify {
 <p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
 <p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2, and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2.</p>
 <p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for stage <span class="math inline">\(t\)</span></p>
+<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for age <span class="math inline">\(t\)</span>. We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.</p>
 <p>Fecundity, <span class="math inline">\(F_t\)</span>, is the _per-capita rate by which an individual of stage <span class="math inline">\(t\)</span> contributes new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference??</p>
-<p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must both survive and reproduce</em>!.</p>
-<p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
+<p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must first survive</em> before it can reproduce!.</p>
+<p><span class="math inline">\(F_t = P_{t \rightarrow t+1} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
 <div id="matrix-operations" class="section level3">
 <h3>Matrix operations:</h3>
 <p>There is a lot we can do with matrix population models. The most obvious one is <em>projection</em>:</p>
 <div id="projection" class="section level4">
 <h4>Projection:</h4>
+<p>This lab demo contains a bunch of R code (R is pretty good at running matrix population models!). If you want to follow along in R, you can find the R script <a href="LAB4.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.</p>
 <p>We have already seen the projection equation (Eq. 2, above). Here is how we can implement this in R:</p>
-<pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!</code></pre>
+<pre class="r"><code>########
+# Syntax for projecting abundance using a transition matrix (NOTE: this code won&#39;t run until we specify the terms on the right)
+
+Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!</code></pre>
 <p>Let’s try it:</p>
 <p>First, build a projection matrix:</p>
-<pre class="r"><code>projection_matrix &lt;- matrix(
+<pre class="r"><code>######
+# First, build a simple projection matrix
+
+projection_matrix &lt;- matrix(
   c(
     0,     1.2,   3.1,
     0.4,   0,     0,
@@ -442,11 +455,17 @@ projection_matrix</code></pre>
 ## [2,]  0.4 0.00  0.0
 ## [3,]  0.0 0.75  0.0</code></pre>
 <p>Next, let’s build an initial abundance vector:</p>
-<pre class="r"><code>Abundance_year0 &lt;- c(1000,0,0)
+<pre class="r"><code>######
+# Then we specify initial abundances for the three age classes
+
+Abundance_year0 &lt;- c(1000,0,0)
 Abundance_year0</code></pre>
 <pre><code>## [1] 1000    0    0</code></pre>
 <p>Now we can run the code for real!</p>
-<pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!
+<pre class="r"><code>######
+# Now we can run the code for real
+
+Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!
 Year1</code></pre>
 <pre><code>##      [,1]
 ## [1,]    0
@@ -454,14 +473,20 @@ Year1</code></pre>
 ## [3,]    0</code></pre>
 <p>Now we have 300 individuals in stage 2!</p>
 <p>Let’s project one more year:</p>
-<pre class="r"><code>Year2 &lt;- projection_matrix %*% Year1  # matrix multiplication!
+<pre class="r"><code>########
+# Project another year
+
+Year2 &lt;- projection_matrix %*% Year1  # matrix multiplication!
 Year2</code></pre>
 <pre><code>##      [,1]
 ## [1,]  480
 ## [2,]    0
 ## [3,]  300</code></pre>
 <p>Finally, here is some code to project many years into the future! You may want to re-use some of this code for the exercises below.</p>
-<pre class="r"><code>nYears &lt;- 20                                            # set the number of years to project
+<pre class="r"><code>##########
+# Use a FOR loop to project many years into the future
+
+nYears &lt;- 20                                            # set the number of years to project
 TMat &lt;- projection_matrix                               # define the projection matrix
 InitAbund &lt;- Abundance_year0                            # define the initial abundance
 
@@ -472,30 +497,39 @@ for(t in 2:(nYears+1)){   # loop through all years
   allYears[,t] &lt;-  TMat %*% allYears[,t-1]
 }
 plot(1,1,pch=&quot;&quot;,ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)  # set up blank plot
-cols &lt;- rainbow(3)    # set up colors to use
-for(s in 1:3){
+cols &lt;- rainbow(ncol(TMat))    # set up colors to use
+for(s in 1:ncol(TMat)){
   points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
-legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))))  # put a legend on the plot</code></pre>
-<p><img src="LAB4_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+legend(&quot;topleft&quot;,col=cols,lwd=rep(2,ncol(TMat)),legend=paste(&quot;Stage &quot;,seq(1:ncol(TMat))))  # put a legend on the plot</code></pre>
+<p><img src="LAB4_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="compute-lambda" class="section level4">
 <h4>Compute lambda</h4>
 <p>Clearly this is a growing population. But let’s see exactly what <span class="math inline">\(\lambda\)</span> is!</p>
-<pre class="r"><code>library(popbio)</code></pre>
-<pre><code>## Warning: package &#39;popbio&#39; was built under R version 3.3.2</code></pre>
-<pre class="r"><code>lambda(projection_matrix)</code></pre>
+<pre class="r"><code>############
+# Use the &#39;popbio&#39; package to compute lambda (NOTE: you first have to install the popbio package! You only have to install the package once...)
+
+library(popbio)
+
+lambda(projection_matrix)</code></pre>
 <pre><code>## [1] 1.138728</code></pre>
 <p>Pretty easy right?</p>
 <p>NOTE: we are using a “package” in R to make these analyses super easy! So if you don’t already have the “popbio” package, go to the “Packages” tab in Rstudio (should be at the top of the lower right panel), click on “Install”, and then type “popbio” in the “Packages” field in the pop-up window, then click on the “Install” button.</p>
 <p>Or just use the following code:</p>
-<pre class="r"><code>install.packages(&quot;popbio&quot;)</code></pre>
+<pre class="r"><code>#############
+# Use this code if you haven&#39;t installed &#39;popbio&#39; yet. Once you&#39;ve installed it, you can delete the line or comment this line out by adding a pound sign before the &quot;i&quot; in &quot;install.packages&quot;
+
+install.packages(&quot;popbio&quot;)</code></pre>
 </div>
 <div id="compute-stable-age-distribution-s.a.d." class="section level4">
 <h4>Compute stable-age distribution (S.A.D.)</h4>
 <p>Clearly the population doesn’t reach a stable age distribution until a few years into our simulation. What exactly is the stable age distribution here? We can do this in R:</p>
-<pre class="r"><code>stable.stage(projection_matrix)</code></pre>
+<pre class="r"><code>###### 
+# Use the &#39;popbio&#39; package to compute the stable age distribution!
+
+stable.stage(projection_matrix)</code></pre>
 <pre><code>## [1] 0.6318614 0.2219535 0.1461852</code></pre>
 <p>And that is really all we need to know to get started with matrix-based population models!</p>
 </div>
@@ -517,17 +551,17 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;
 <ul>
 <li>Individuals are in “age class 1” if they are between the ages of 0 and 1. They transition to “age-class 2” (<span class="math inline">\(P_{1 \rightarrow 2}\)</span>) if they survive to enter their second year of life (at which point they are now entering age class two!).<br />
 </li>
-<li>For individuals of “Age class 1” to contribute new offpring (individuals of age-class 1) to the population in the next time step (<span class="math inline">\(F_1\)</span>), they have to survive their first year of life (<span class="math inline">\(P_{1 \rightarrow 2}\)</span>) AND produce offspring when they are exactly 1 year of age (which they do at the rate of <span class="math inline">\(b\)</span> at age 1).<br />
+<li>For individuals of “Age class 1” to contribute new offpring (individuals of age-class 1) to the population in the next time step (<span class="math inline">\(F_1\)</span>), they have to survive their first year of life (<span class="math inline">\(P_{1 \rightarrow 2}\)</span>) AND produce offspring when they are exactly 1 year of age (which they do at the rate of <span class="math inline">\(b(1)\)</span> – the birth rate at age 1).<br />
 </li>
-<li>Use five age classes for your transition matrix. However, individuals in their fifth year of life have zero survival (you can’t go past your fifth year of life in this model).<br />
+<li>Use five age classes for your transition matrix. However, individuals in their fifth year of life have zero survival (you can’t go past your fifth year of life in this model) and zero fecundity (if there are no individuals left, how can they reproduce!)<br />
 </li>
-<li>No individual ever stays in the same age-class two time steps in a row- they either transition to the next age-class or they die.</li>
+<li>No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die.</li>
 </ul>
-<p>1b. Use R to compute the finite rate of growth for the population (<span class="math inline">\(\lambda\)</span>). Is this a growing or declining population? Show your R code!</p>
-<p>1c. Use R to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class?</p>
-<p>-NOTE: you can’t have fractional individuals, so please round to the nearest whole numbers:</p>
-<p>1d. Use R to project this population for 30 years, starting with the S.A.D. population you computed in part 1c. Show your R code. What is the total abundance after 30 years? Re-do the calculation using Eq. 1 and the “Lambda” value you computed in 1b. Do you get the same answer? Finally, run your simulation again, this time starting with all 671 individuals in age-class 1.</p>
-<p>1e. Why is the final abundance estimate different from your previous calculations?</p>
+<p>1b. Use R (‘popbio’ package) to compute the finite rate of growth for the population (<span class="math inline">\(\lambda\)</span>). Is this a growing or declining population? Show your R code (just copy and paste the relevant R code into your lab write-up)!</p>
+<p>1c. Use R (‘popbio’ package) to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class? (NOTE: you can’t have fractional individuals, so please round to the nearest whole numbers)</p>
+<p>1d. Use R to project this population for 30 years, initializing your population at S.A.D. (computed in part 1c). Show your R code. What is the total abundance after 30 years? Re-do the calculation using the equation below and the “Lambda” value you computed in part 1b. Do you get the same answer (or approximately so)?</p>
+<p><span class="math inline">\(N_t = \lambda^t \cdot No\)</span></p>
+<p>1e. Finally, run your simulation again, this time starting with all 671 individuals in age-class 1. Why is the final abundance estimate different from your previous calculation?</p>
 </div>
 <div id="exercise-2-translate-insightmaker-to-projection-matrix" class="section level2">
 <h2>Exercise 2: translate InsightMaker to projection matrix!</h2>
@@ -536,19 +570,13 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;
 <img src="IM11.jpg" />
 
 </div>
-<p>Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e.)</p>
-<p>2a. Translate this InsightMaker model into a projection matrix. This is not quite as straightforward as it might sound. Pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix.</p>
-<p>2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. You don’t need to show your R code or the InsightMaker model this time- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same!</p>
-<p>2c. Now let’s go the other way around. Build an InsightMaker model that represents the same population as the stage matrix below. Share your InsightMaker model with your instructors and provide the URL in your write-up.</p>
-<p>2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide the InsightMaker plot to show that the two models are identical.</p>
-<p>In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO!</p>
-<p>Let’s build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let’s build a model where <em>growth</em> (transition from one stage to the next) is density dependent but stage-specific survival does not change! Here is the scenario:</p>
-<blockquote>
-<p>The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.</p>
-</blockquote>
-<p>2e. Provide the URL for your new, density-dependent InsightMaker model. Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population <em>regulated</em>? Explain your reasoning.</p>
-<div id="use-the-following-stage-matrix-to-answer-questions-2c-e" class="section level4">
-<h4>Use the following stage matrix to answer questions 2c-e</h4>
+<p>Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e)</p>
+<p>2a. Translate this InsightMaker model into a projection matrix. This shouldn’t be too difficult, but pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix.</p>
+<p>2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. <em>You don’t need to show your R code or the InsightMaker model this time</em>- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same!</p>
+<p>Now let’s go the other way around – try to build an InsightMaker model based on a population matrix!</p>
+<div id="use-the-following-stage-matrix-to-answer-questions-2c-d" class="section level4">
+<h4>Use the following stage matrix to answer questions 2c-d</h4>
+<p>Click <a href="stage_matrix1.csv">here</a> to download the CSV file for the code below…</p>
 <pre class="r"><code>stmat &lt;- read.csv(&quot;stage_matrix1.csv&quot;)
 stmat &lt;- as.matrix(stmat[,-1])
 rownames(stmat) &lt;- colnames(stmat)
@@ -557,6 +585,17 @@ stmat</code></pre>
 ## Stage1   0.02   0.30   0.85
 ## Stage2   0.45   0.20   0.00
 ## Stage3   0.00   0.65   0.70</code></pre>
+<p>2c. Build an InsightMaker model that represents the same population as the stage matrix above. Provide the URL to your InsightMaker model in your write-up (and remember to ensure that you don’t alter the model once you submit it) .</p>
+<p>2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide both the InsightMaker and R plots to show that the two models are identical.</p>
+<p>NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO!</p>
+</div>
+<div id="extra-credit-question" class="section level4">
+<h4>EXTRA CREDIT question:</h4>
+<p>Let’s build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let’s build a model where the transition rate from one stage to the next is density dependent but stage-specific survival does not change! Here is the scenario:</p>
+<blockquote>
+<p>The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.</p>
+</blockquote>
+<p>EXTRA CREDIT. Provide the URL for your new, density-dependent InsightMaker model (based on your model from question 2c). Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population <em>regulated</em>? Explain your reasoning.</p>
 </div>
 </div>
 <div id="exercise-3.-translate-plain-english-to-projection-matrix" class="section level2">
@@ -567,22 +606,19 @@ stmat</code></pre>
 
 </div>
 <blockquote>
-<p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling, juvenile, and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles tend to produce only 1 new hatchling per year on average. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles fail to transition to adults, remaining in the juvenile phase. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
+<p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
 </blockquote>
-<p>3a. Provide your transition matrix in your write-up.</p>
+<p>3a. Provide your transition matrix in your write-up. Please indicate your fecundity calculations so we can give partial credit for incorrect answers!</p>
 <p>3b. Is this population at S.A.D. at time 0? If not, provide an example of an initial population structure that IS at S.A.D.</p>
-<p>3c. What is the finite growth rate, Lambda, for this population (at S.A.D.)?</p>
+<p>3c. What is the finite growth rate, Lambda, for this population?</p>
 </div>
 <div id="checklist-for-lab-4-completion" class="section level2">
 <h2>Checklist for Lab 4 completion</h2>
 <ul>
 <li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
-<li><p>URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below…</p>
-<ul>
-<li>After you save the model you should see a link on the top left-hand corner, “Insight Access”. Click on that link, and a new window will pop up. Under “allow update access”, add a username (i.e., kevintshoemaker or waldenTA). click on the “Add User” button, and then click on “Submit”. Finally, copy and paste the URL into the Word document.</li>
-</ul></li>
+<li><p>As always, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below…</p></li>
 </ul>
-<p><strong><em>Due Mar. 2 at 10 am.</em></strong></p>
+<p><strong><em>Due Mar. 8 at midnight</em></strong></p>
 <ul>
 <li>Word document with short answers
 <ul>
@@ -603,7 +639,7 @@ stmat</code></pre>
 <li><em>Short answer (2c.)</em></li>
 <li><em>Short answer (2d.)</em><br />
 </li>
-<li><em>Short answer (2e.)</em></li>
+<li>EXTRA CREDIT question <em>Short answer</em></li>
 </ul></li>
 <li><strong>Exercise 3</strong>
 <ul>

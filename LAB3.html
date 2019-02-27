@@ -374,6 +374,9 @@ div.tocify {
       <a href="LAB3.html">Lab 3: age-structured population growth</a>
     </li>
     <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -519,8 +522,7 @@ div.tocify {
 <li><p>Open a blank workspace and save it.</p></li>
 <li><p>Make three new stocks: <em>Age 1</em>, <em>Age 2</em> and <em>Age 3</em>.</p></li>
 <li><p>Make a new flow (flow in) called <em>Recruitment</em>. This should represent new <em>Age 1</em> individuals. We will ignore immigration for now, so new recruiment into the “Age 1” stock is the only way new individuals can be added to the population. We will assume that <em>Age 2</em> and <em>Age 3</em> are the only reproductively active ages. Therefore, draw links from <em>Age 2</em> and <em>Age 3</em> to <em>Recruitment</em>.</p></li>
-<li>Make new flows from <em>Age 1 to Age 2</em> and from <em>Age 2 to Age 3</em>, called <em>Transition to Age 2</em> and <em>Transition to Age 3</em>, respectively. These flows represent <strong>growth</strong>, or advancement from <em>Age 1</em> to <em>Age 2</em> is dependent on the number of individuals in <em>Age 1</em>. Therefore, draw a link from <em>Age 1</em> to <em>Transition to Age 2</em>. Do the same for <em>Transition to Age 3</em>.<br />
-</li>
+<li><p>Make new flows from <em>Age 1 to Age 2</em> and from <em>Age 2 to Age 3</em>, called <em>Transition to Age 2</em> and <em>Transition to Age 3</em>, respectively. These flows represent <strong>growth</strong>, or advancement from <em>Age 1</em> to <em>Age 2</em> is dependent on the number of individuals in <em>Age 1</em>. Therefore, draw a link from <em>Age 1</em> to <em>Transition to Age 2</em>. Do the same for <em>Transition to Age 3</em>.</p></li>
 <li><p>Make three new flows representing, emerging respectively from each stock and called <em>Age 1 mortality</em>, <em>Age 2 mortality</em>, and <em>Age 3 mortality</em>. The total number of deaths is dependent on the numbers in each stock, so draw links from each stock to the respective <em>mortality</em> outflow.</p></li>
 </ol>
 <p>Your new insight should look something like this:</p>
@@ -537,9 +539,9 @@ div.tocify {
 <h3>QUESTIONS, Exercise 3 (age-structured model in InsightMaker):</h3>
 <p>3a. What is the equation for <em>Recruitment</em> in the above model? Copy and paste your equation from InsightMaker. Now explain this equation in plain English!</p>
 <p>3b. What is the equation for <em>Age 1 Mortality</em> in the above model? Copy and paste the equation from InsightMaker. Now explain this equation in plain English! What about <em>Age 3 mortality</em>?</p>
-<p>3c. Initialize the population like the spadefoot toad example from lecture- so that the population consists of only individuals in the first (<em>Age 1</em>) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?</p>
-<p>3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the <strong>Stable Age Distribution</strong> for this population? Does the stable age distribution change if you change the vital rates (recruitment rates, transition rates etc.)?</p>
-<p>3e. Is this a growing or declining population? Imagine you could enact a predator-control program and reduce the mortality of <em>Age 1</em> individuals. How much would you have to reduce mortality of this age class to make a growing population? What about <em>Age 2</em> mortality – How much would you have to reduce mortality of this age class to make a growing population?</p>
+<p>3c. Initialize the population abundances (Age 1, Age2, and Age 3 initial abundances) so that the population consists of only individuals in the first (<em>Age 1</em>) age class (e.g., 100 individuals in Age 1, no individuals in the other age classes). How do the population dynamics at the beginning of the simulation differ from the dynamics at the end of the simulation?</p>
+<p>3d. Can you tweak the initial abundances so that the population exhibits smooth exponential growth/decline for all three age classes? What is the <strong>Stable Age Distribution</strong> for this population? Does the stable age distribution change if you change the vital rates (recruitment rates, transition rates etc.)? When you are done, please return all population vital rates to their original specifications.</p>
+<p>3e. Is this a growing or declining population (make sure you use the originally specified vital rates)? Imagine you could enact a predator-control program and reduce the mortality of <em>Age 1</em> individuals. How much would you have to reduce mortality (i.e., increase the proportion transitioning from Age 1 to age 2) of this age class to make a growing population? What about <em>Age 2</em> mortality – how much would you have to reduce mortality of this age class (increase the proportion transitioning from Age 2 and Age 3) to make a growing population?</p>
 </div>
 </div>
 <div id="exercise-4-more-complex-age-structured-models-in-insightmaker" class="section level2">
@@ -551,7 +553,7 @@ div.tocify {
 <div id="checklist-for-lab-3-completion" class="section level2">
 <h2>Checklist for Lab 3 completion</h2>
 <ul>
-<li>Please bundle the materials into one Word document and submit <em>using WebCampus</em>!</li>
+<li>Please type your responses into one Word document and submit <em>using WebCampus</em>!</li>
 </ul>
 <p><strong><em>Due Feb. 22 at midnight.</em></strong></p>
 <ul>
