@@ -48,11 +48,11 @@ You might recognize this InsightMaker model from Lab 3. This represents an age-s
 
 ![](teasel1.jpg)
 
-Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can't do- for instance go backwards in developmental stage. There MUST be an easier way!
+Consider the teasel example from our textbook. It's possible to implement this model in InsightMaker, but how tedious would this be? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can't do- for instance go backwards in developmental stage. With matrix models, there is an easier way!
 
 ![](gotelli3_6.jpg)
 
-The population vital rates for pretty much any age-structured or stage-structured population can be represented by a **transition matrix**, which summarizes all the information about mortality, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)
+The population vital rates for pretty much any age-structured or stage-structured population can be represented as a **transition matrix** (or, projection matrix), which summarizes all the information about mortality, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)
 
 For example, the teasel vital rates can be summarized in [this matrix](teaselmatrix1.csv):
 

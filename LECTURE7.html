@@ -422,12 +422,12 @@ div.tocify {
 <img src="teasel1.jpg" />
 
 </div>
-<p>Consider the teasel example from Gotelli. How tedious would this be to implement in InsightMaker? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in developmental stage. There MUST be an easier way!</p>
+<p>Consider the teasel example from our textbook. It’s possible to implement this model in InsightMaker, but how tedious would this be? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in developmental stage. With matrix models, there is an easier way!</p>
 <div class="figure">
 <img src="gotelli3_6.jpg" />
 
 </div>
-<p>The population vital rates for pretty much any age-structured or stage-structured population can be represented by a <strong>transition matrix</strong>, which summarizes all the information about mortality, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)</p>
+<p>The population vital rates for pretty much any age-structured or stage-structured population can be represented as a <strong>transition matrix</strong> (or, projection matrix), which summarizes all the information about mortality, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)</p>
 <p>For example, the teasel vital rates can be summarized in <a href="teaselmatrix1.csv">this matrix</a>:</p>
 <pre class="r"><code>#########
 # Teasel example from Gotelli: summarizing a complex life history!
@@ -645,7 +645,7 @@ TMat</code></pre>
 TMat[2,1] &lt;- 0.3
 TMat</code></pre>
 <pre><code>##           Juveniles Subadults Adults
-## Juveniles       0.1         0      0
+## Juveniles       0.0         0      0
 ## Subadults       0.3         0      0
 ## Adults          0.0         0      0</code></pre>
 <p>If we keep going, we get the following matrix. See if you can understand what this matrix is saying about the transitions from and two the three life stages.</p>
@@ -686,33 +686,29 @@ for(t in 2:(nYears+1)){
 
 allYears</code></pre>
 <pre><code>##            0  1   2    3     4       5        6        7        8        9
-## Juveniles 40  4 0.4 4.84 6.964 7.21240 7.243840 7.497874 7.864454 8.246053
-## Subadults  0 12 6.0 2.52 2.460 3.07320 3.393000 3.530352 3.661503 3.823937
-## Adults     0  0 1.2 1.62 1.629 1.63065 1.693372 1.778667 1.864902 1.951317
-##                 10       11       12       13        14        15
-## Juveniles 8.629873 9.027040 9.443505 9.880158 10.337148 10.815176
-## Subadults 4.003391 4.190318 4.384239 4.586747  4.798746  5.020643
-## Adults    2.041013 2.135200 2.233952 2.337283  2.445365  2.558435
-##                  16        17        18        19        20        21
-## Juveniles 11.315258 11.838463 12.385866 12.958584 13.557784 14.184690
-## Subadults  5.252810  5.495701  5.749819  6.015688  6.293850  6.584875
-## Adults     2.676734  2.800505  2.929999  3.065481  3.207228  3.355529
-##                  22        23        24        25        26        27
-## Juveniles 14.840584 15.526807 16.244760 16.995910 17.781794 18.604017
-## Subadults  6.889357  7.207918  7.541209  7.889912  8.254738  8.636433
-## Adults     3.510687  3.673020  3.842859  4.020551  4.206459  4.400964
-##                  28        29        30        31        32        33
-## Juveniles 19.464258 20.364277 21.305913 22.291089 23.321820 24.400211
-## Subadults  9.035778  9.453589  9.890719 10.348061 10.826551 11.327166
-## Adults     4.604463  4.817371  5.040124  5.273178  5.517007  5.772111
-##                  34        35        36        37        38        39
-## Juveniles 25.528466 26.708891 27.943899 29.236013 30.587874 32.002244
-## Subadults 11.850930 12.398912 12.972232 13.572063 14.199629 14.856214
-## Adults     6.039011  6.318252  6.610406  6.916068  7.235864  7.570447
-##                  40
-## Juveniles 33.482014
-## Subadults 15.543159
-## Adults     7.920502</code></pre>
+## Juveniles 40  0 0.0 4.80 6.000 5.86800 5.871000 6.063630 6.287558 6.502333
+## Subadults  0 12 4.8 1.92 2.208 2.68320 2.833680 2.894772 2.976998 3.077066
+## Adults     0  0 1.2 1.50 1.467 1.46775 1.515908 1.571889 1.625583 1.679445
+##                 10       11       12       13       14       15       16
+## Juveniles 6.717782 6.940941 7.172411 7.411727 7.658952 7.914392 8.178354
+## Subadults 3.181526 3.287945 3.397460 3.510707 3.627801 3.748806 3.873840
+## Adults    1.735235 1.793103 1.852932 1.914738 1.978598 2.044588 2.112781
+##                 17       18       19       20       21       22        23
+## Juveniles 8.451123 8.732991 9.024259 9.325242 9.636263 9.957658 10.289772
+## Subadults 4.003042 4.136554 4.274519 4.417085 4.564407 4.716641  4.873954
+## Adults    2.183248 2.256065 2.331310 2.409066 2.489414 2.572443  2.658241
+##                  24        25        26        27        28        29
+## Juveniles 10.632962 10.987600 11.354065 11.732753 12.124071 12.528440
+## Subadults  5.036513  5.204494  5.378077  5.557450  5.742806  5.934344
+## Adults     2.746900  2.838516  2.933188  3.031018  3.132110  3.236574
+##                  30        31        32        33        34        35
+## Juveniles 12.946297 13.378090 13.824284 14.285360 14.761814 15.254160
+## Subadults  6.132270  6.336797  6.548146  6.766543  6.992225  7.225434
+## Adults     3.344522  3.456071  3.571340  3.690454  3.813540  3.940731
+##                  36        37        38        39        40
+## Juveniles 15.762926 16.288661 16.831930 17.393319 17.973432
+## Subadults  7.466422  7.715446  7.972777  8.238690  8.513472
+## Adults     4.072165  4.207983  4.348330  4.493358  4.643223</code></pre>
 <p>Now let’s plot it out!</p>
 <pre class="r"><code>#####
 # and plot out the results!

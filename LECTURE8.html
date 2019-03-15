@@ -377,6 +377,9 @@ div.tocify {
       <a href="LAB4.html">Lab 4: matrix population models</a>
     </li>
     <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -418,25 +421,23 @@ div.tocify {
 <h3>A taxonomy of uncertainty</h3>
 <p>There are two major reasons we can be uncertain. Either we <em>lack sufficient knowledge</em> or the <em>system itself is variable and unpredictable</em>. Let’s explore these two types of uncertainty.</p>
 <ul>
-<li><p><strong>You lack sufficient knowledge</strong>. This is also known variously as <em>sampling uncertainty</em>, parameter uncertainty, structural uncertainty, and more. If you collected more data you could in principle make a better model that more closely represents reality.</p></li>
-<li><p><strong>The system is inherently unpredictable</strong>. This is also known as <strong>randomness</strong> or <strong>stochasticity</strong>. No matter how much we study and understand a natural system, we will never be able to predict the future with complete certainty. Ecological systems have inherent variability. We can’t predict with certainty whether or not an individual will mate, or die. We can’t really even be certain whether next year or the year after that will be a good year or a bad year for offspring production or mortality in general!</p></li>
+<li><p><strong>You lack sufficient knowledge</strong>. This is also known variously as <em>sampling uncertainty</em>, parameter uncertainty, structural uncertainty, and more. <em>In practical terms: if you collected more data you could in principle make a better model that more closely represents reality.</em></p></li>
+<li><p><strong>The system is inherently variable and unpredictable</strong>. In population ecology and systems modeling, this is also known as <strong>stochasticity</strong>. <em>In practical terms: no matter how much we study and understand a natural system, we will never be able to predict the future with certainty.</em> Ecological systems are inherently variable and unpredictable. We can’t know with certainty whether or not an individual will mate, or die. We can’t really even be certain whether the environmental conditions (e.g., weather) will be favorable or unfavorable for offspring production or mortality!</p></li>
 </ul>
 </div>
 </div>
 <div id="how-to-deal-with-uncertainty" class="section level2">
 <h2>How to deal with uncertainty</h2>
-<p>The key is to <strong>embrace uncertainty</strong>. As population ecologists, we have three major tools to help us manage and account for uncertainty in our study systems:</p>
+<p>As applied population ecologists, we must <strong>embrace uncertainty</strong>. we have two major tools to help us manage and account for uncertainty in our study systems: <em>uncertainty analysis</em> and <em>stochastic models</em></p>
 <div id="uncertainty-analysis" class="section level3">
 <h3>Uncertainty analysis</h3>
-<ol style="list-style-type: decimal">
-<li>First, what if we simply don’t have enough data to build a perfect model? This is an example of <em>lacking sufficient knowledge</em>. In this case, the tool we use is called <strong>uncertainty analysis</strong>. Basically, we try all plausible values for a parameter we are uncertain about (e.g., adult survival rate) and see what happens to our study system (e.g., does the population go extinct? decline?).</li>
-</ol>
+<p>What if we simply don’t have enough data to build a perfect model? This is an example of <em>lacking sufficient knowledge</em>. In this case, the tool we use is called <strong>uncertainty analysis</strong>. Basically, we try a range of plausible values for a parameter we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?).</p>
 </div>
 <div id="stochastic-models-demographic-and-environmental-stochasticity" class="section level3">
 <h3>Stochastic models (demographic and environmental stochasticity)</h3>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Second, we usually can’t predict whether an individual will live or die, breed or not breed (whether an individual will “get lucky” so to speak!)? We might know the per-capita <em>probability</em> of breeding, or the <em>probability</em> of dying, or the per-capita <em>rate</em> of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly who lives and dies, who gives birth and who doesn’t, and how many females are born, we <em>just can’t know for sure</em>. This is an example of a system being inherently unpredictable. In population ecology this is called <strong>demographic stochasticity</strong>. In this case, we <strong>randomly vary total births and deaths</strong> to represent the inherent unpredictability of births and deaths.</p></li>
-<li><p>Third, we usually can’t predict whether next year or the year after will be a good one or a bad one for a population- that is, whether the per-capita vital rates (e.g., <span class="math inline">\(b\)</span>, or <span class="math inline">\(d\)</span> or <span class="math inline">\(r\)</span>) will be more or less optimal year-to-year (whether a <em>population</em> will “get lucky”, so to speak). This is another example of a system being <em>inherently unpredictable</em>. In population ecology this is called <strong>environmental stochasticity</strong>. In this case, we <strong>randomly vary per-capita vital rates</strong> to represent the inherent unpredictability of environmental conditions.</p></li>
+<ol style="list-style-type: decimal">
+<li><p>Second, we usually can’t predict whether an individual will live or die, breed or not breed, etc. All we can know is the <em>probability</em> of mating, or the <em>probability</em> of dying, or the per-capita <em>rate</em> of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly which individiuals live or die (whether an individual will “get lucky” so to speak!), who gives birth and who doesn’t, and how many females are born, we <em>just can’t know for sure</em>. This is an example of a system being inherently unpredictable. In population ecology, this is called <strong>demographic stochasticity</strong>. In this case, we <strong>randomly vary total births and deaths</strong> (the [Flows] in InsightMaker) to represent the inherent unpredictability of individual fates within a population.</p></li>
+<li><p>Third, we usually can’t predict whether next year or the year after will be favorable or unfavorable for population growth- that is, whether the per-capita vital rates (e.g., <span class="math inline">\(b\)</span>, or <span class="math inline">\(d\)</span> or <span class="math inline">\(r\)</span>) will be more or less optimal at a future point in time (whether a <em>population</em> will “get lucky”, so to speak). This is another example of a system being <em>inherently unpredictable</em>. In population ecology this is called <strong>environmental stochasticity</strong>. In this case, we <strong>randomly vary per-capita vital rates</strong> (represented as [Variables] in InsightMaker) to represent the inherent unpredictability of environmental conditions.</p></li>
 </ol>
 <div class="figure">
 <img src="dice1.png" />
@@ -446,7 +447,7 @@ div.tocify {
 </div>
 <div id="random-number-generation" class="section level2">
 <h2>Random number generation</h2>
-<p>To incorporate uncertainty and randomness into our models, we need to include <em>stochastic</em> components so that each model run (replicate) – or each year of each model run – is different from one another. That is, we need to include at least one <strong>random number generator</strong> in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.</p>
+<p>To incorporate uncertainty and randomness into our models, we need to include <em>stochastic</em> components so that each model run (replicate) – or each year of each model run – is different from one another (the results are variable). That is, we need to include at least one <strong>random number generator</strong> in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.</p>
 <div class="figure">
 <img src="lottery1.png" />
 
@@ -461,7 +462,7 @@ div.tocify {
 #####
 # define an arbitrary distribution
 
-box &lt;- c(rep(1,10),rep(2,5),rep(3,2))       # define what&#39;s in the lottery ball machine
+box &lt;- c(rep(1,10),rep(2,5),rep(3,2))                                           # define what&#39;s in the lottery ball machine (10 &quot;1&quot; balls, 5 &quot;2&quot; balls and 2 &quot;3&quot; balls)
 barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possibility&quot;)       # visualize the distribution of possibilities</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again, and we should learn them!</p>
@@ -477,7 +478,7 @@ barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possi
 
 
 #######
-# Example: binomial distribuition
+# Example: binomial distribuition (coin flipping distribution)
 
              # plot a discrete distribution!
 xvals &lt;- seq(0,10,1)
@@ -486,6 +487,7 @@ names(probs) &lt;- xvals
                
 barplot(probs,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Binomial distribution (discrete)&quot;)</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><strong>Q</strong> What population parameter might the binomial distribution be useful for modeling?</p>
 <p>Another discrete distribution we will use in this class is the <em>Poisson distribution</em>:</p>
 <pre class="r"><code>#########
 # Poisson distribution
@@ -496,6 +498,7 @@ names(probs) &lt;- xvals
                
 barplot(probs,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Poisson distribution (discrete)&quot;)</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><strong>Q</strong> What population parameter might the Poisson distribution be useful for modeling?</p>
 <p>In <em>continuous distributions</em>, there are an infinite number of possibilities between any two unique possibilities.</p>
 <p>Let’s consider the <em>uniform distribution</em>:</p>
 <pre class="r"><code>################
@@ -511,7 +514,7 @@ upper = 10
 curve(dunif(x,lower,upper),0,10,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Uniform distribution (continuous)&quot;,ylim=c(0,1))   # probability density</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>This isn’t a very intersting looking distribution. All possible numbers from 0 to 10 are equally probable.</p>
-<p>Another continuous distribution you should know is called the <em>Normal distribution</em>. This distribution has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
+<p>Another continuous distribution you should know is called the <em>Normal distribution</em>. This distribution (the classic bell-shaped distribution) has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
 <p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
 <pre class="r"><code>#########
 # Normal distribution
@@ -522,7 +525,7 @@ stdev = 1.9
 curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Normal distribution (continuous)&quot;)   # probability density</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Another continuous distribution you should know is called the <em>Lognormal distribution</em>. This distribution has a lower bound of zero and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
-<p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
+<p><strong>Q</strong> What population parameter might the lognormal distribution be useful for modeling?</p>
 <pre class="r"><code>############
 # Log-normal distribution
 
@@ -532,7 +535,7 @@ stdevlog = 0.6
 curve(dlnorm(x,meanlog,stdevlog),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Lognormal distribution (continuous)&quot;)   # probability density</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Another continuous distribution you might want to know is called the <em>Beta distribution</em>. This distribution has a lower bound of zero and an upper bound of 1.</p>
-<p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
+<p><strong>Q</strong> What population parameter might the beta distribution be useful for modeling?</p>
 <pre class="r"><code>##########
 # Beta distribution
 
@@ -547,18 +550,25 @@ curve(dbeta(x,shape1,shape2),0,1,ylab=&quot;Probability (density)&quot;,xlab=&qu
 <p>Let’s play around with distributions a little using R.</p>
 <p>Note that all these distributions are also available to you in InsightMaker.</p>
 <p>Here’s some R syntax for you!</p>
-<p>Note that R random number generators start with the letter “r” – for “random”.</p>
+<p>Note that all the R random number generators are <strong>functions</strong> that start with the letter “r” – for “random”.</p>
+<p>Random number generators are <em>functions</em> (“machines” that take inputs and transform the inputs (arguments) into useful outputs – in R, that means you will use the following syntax:</p>
+<pre><code>
+thisfunction([argument 1],[argument 2] ... )
+
+myresults &lt;- thisfunction([argument 1],[argument 2] ... )
+
+</code></pre>
 <p>The first <em>argument</em> (specified within the parentheses in a function call) represents how many random numbers you want R to draw from the specified distribution.</p>
-<p>The following arguments represent the <em>parameters</em> of the random distribution you wish to draw from.</p>
+<p>The arguments after that represent the <em>parameters</em> of the random distribution you wish to draw from – you can modify these parameters to suit your needs. Here are some examples (drawing 1 random number at a time):</p>
 <pre class="r"><code>################
 # Random number generation!
 
 
 ### Binomial random number generator
-rbinom(1,size=10,prob=0.5)    # note: &quot;size&quot; is the number of coin flips, and &quot;prob&quot; is the probability of coming up heads
+rbinom(1,size=10,prob=0.5)    # note: &quot;size&quot; is the number of coin flips, and &quot;prob&quot; is the probability of coming up &#39;heads&#39;
 
 ### Poisson random number generator
-rpois(1,lambda=4.1)     # note: &quot;lambda&quot; represents the poisson mean (and variance!)
+rpois(1,lambda=4.1)     # note: &quot;lambda&quot; represents the mean (and variance!) of the Poisson distribution
 
 ### Uniform random number generator
 runif(1,min=1,max=3.5)   # &quot;min&quot; and &quot;max&quot; are pretty obvious!
@@ -567,10 +577,12 @@ runif(1,min=1,max=3.5)   # &quot;min&quot; and &quot;max&quot; are pretty obviou
 rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by &quot;mean&quot; and &quot;sd&quot; (standard deviation).
 
 ### lognormal random number generator (like normal distribution, but can not go below zero)
-rlnorm(1,meanlog=0.5,sdlog=0.2)    # lognormal distribution is defined by &quot;meanlog&quot;, the mean of the log-transformed random variable and &quot;sd&quot; (standard deviation of the log-transformed random variable).
+rlnorm(1,meanlog=0.5,sdlog=0.2)    # lognormal distribution is defined by &quot;meanlog&quot;, the mean on the log scale and &quot;sdlog&quot; (standard deviation on the log scale).
 
 ### beta random number generator (bounded between 0 and 1- just like survival rate!)
 rbeta(1,shape1=10,shape2=3)  # beta distribution is defined by &quot;shape1&quot; and &quot;shape2&quot;, which together define the mean and spread within the range from 0 to 1.</code></pre>
+<p>Can you change one of the above functions to produce more than 1 random number?</p>
+<p>Try to change one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the “hist()” function to produce a histogram of the random distribution you just generated!</p>
 <p>You can even make up your own distribution if you want!</p>
 <pre class="r"><code>########
 # sample from an arbitrary distribution!
@@ -579,7 +591,7 @@ distribution &lt;- c(5,3,5,4,3,6,4,5,5,1,6,5,4,3,6,6,4,2,8,4,4,5,2)     # make u
 hist(distribution,freq = F, ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;)  # visualize distribution</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>sample(distribution,1)  # take one random sample from this distribution!</code></pre>
-<pre><code>## [1] 4</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
 <div id="in-class-exercise-fit-a-distribution" class="section level3">
 <h3>In-Class Exercise: Fit a distribution!</h3>
@@ -595,18 +607,17 @@ hist(distribution,freq = F, ylab=&quot;Probability&quot;,xlab=&quot;Possibilitie
 
 
 #############
-# Made-up canvasback data- number of eggs hatched per female for 20 years
+# Made-up canvasback data- average number of eggs hatched per female for 20 years
 
 hatch_perfem &lt;- c(3.05, 1.45, 0.99, 3.24, 1.49, 1.70, 1.66, 2.32, 0.83, 2.41,
 2.33, 1.68, 1.43, 2.74, 2.05, 3.13, 1.90, 3.69, 1.55, 2.79)
 
 hist(hatch_perfem)</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p><strong>Q</strong>: what type of uncertainty does this set of values most likely represent? [tophat]</p>
-<p><strong>Q</strong>: what distribution might we use to fit this distribution?</p>
+<p><strong>Q</strong>: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [tophat]</p>
 <p>Now let’s try to fit a distribution to these data! We could use a normal distribution (which would be perfectly fine), but because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) it’s even better to use a lognormal distribution!</p>
 <p>We could use statistics to fit the distribution, but we are just going to use trial and error for now! Here is some code to help you get started.</p>
-<p>Note that the lognormal distribution has two parameters: the first (meanlog) helps to define the mean and the other (sdlog) helps to determine the variability of the distribution.</p>
+<p>Note that the lognormal distribution has two parameters: the first (‘meanlog’) helps to define the mean and the other (‘sdlog’) helps to determine the variability of the distribution.</p>
 <pre class="r"><code>############
 # Try to identify a lognormal random number distribution to represent the canvasback data
 
@@ -617,14 +628,14 @@ hist(hatch_perfem,freq=F,main=&quot;Histogram of avg number hatched per female&q
 
 curve(dlnorm(x,meanlog=1.5,sdlog=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)
 
-curve(dlnorm(x,meanlog=1.5,sdlog=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)    # try a different value...</code></pre>
+curve(dlnorm(x,meanlog=1.8,sdlog=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)    # try a different value...</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<pre class="r"><code>#### Keep changing the value for meanlog until you find best parameters to fit the data!
+<pre class="r"><code>#### Keep changing the value for &#39;meanlog&#39; until you find best parameters to fit the data!
 
 #### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the &quot;rlnorm()&quot; function in R
 
-rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example!</code></pre>
-<pre><code>## [1] 3.482513 4.996915 9.972961 2.935610 3.000148</code></pre>
+rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example! (remember to change the &quot;meanlog&quot; parameter to the value you identified above!)</code></pre>
+<pre><code>## [1] 4.874979 3.127646 5.186167 3.605462 4.726124</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Use trial-and-error to find appropriate “meanlog” parameter for the lognormal distribution.</p></li>
 <li><p>Use your fitted distribution to predict the average number of hatchlings per female for the next 5 years. To do this, use the “rlnorm()” function in R.</p></li>
@@ -643,8 +654,8 @@ rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example!</code></pre>
 <h4><em>Parameter Uncertainty</em></h4>
 <ol style="list-style-type: decimal">
 <li><p>Set <em>Birth rate</em> equal to 0.4 and <em>Death rate</em> equal to 0.3. Set initial abundance to 10. Under the “Settings” menu, set the model to run for 10 years. Make sure your <em>Population</em> stock can not go negative (this is a setting in the configuration panel). Hit “Simulate”- you should see exponential growth!</p></li>
-<li><p><strong>Parameter uncertainty:</strong> What if we have imperfect knowledge about birth rate? The birth rate could be anything from 0.2 to 0.5. Run the model with the lowest and the highest possible birth rate.</p></li>
-<li><p>Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> about birth rate.</p></li>
+<li><p><strong>Parameter uncertainty:</strong> What if we have imperfect knowledge about birth rate? The birth rate could be anything from 0.2 to 0.5. Run the model with the lowest and the highest possible birth rate. NOTE: you can give each results plot a title using the gear-shaped symbol at the top of your plot window- that way you can name your scenarios – e.g., “min birth rate”.</p></li>
+<li><p>Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> (lack of knowledge) about birth rate.</p></li>
 </ol>
 <p><strong>Q</strong> What is the range of possible final abundances after 10 years?</p>
 <p><strong>Q</strong> Should we study this system more if we want to know whether the population is growing or declining??</p>
@@ -653,7 +664,7 @@ rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example!</code></pre>
 <h4><em>Demographic Stochasticity</em></h4>
 <ol style="list-style-type: decimal">
 <li><p>Set <em>Birth rate</em> back to 0.4. Hit “Simulate”- make sure you still see exponential growth!</p></li>
-<li><p>We will use a <em>Binomial distribution</em> to represent the number of mortalities. That is, we <em>flip a coin the same number of times as there are individuals in the population</em>. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 30% of the time! The <em>Binomial distribution</em> essentially represents the number of times heads came up. To do this in InsightMaker, use the following formula for the <em>Deaths</em> flow:</p></li>
+<li><p>We will use a <em>Binomial distribution</em> to represent the number of mortalities. That is, we <em>flip a coin the same number of times as there are individuals in the population</em>. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 30% of the time! The <em>Binomial distribution</em> essentially represents the number of times heads came up. To do this in InsightMaker, use the following formula for the <em>Deaths</em> flow (you can use the right-hand “Random Number Functions” menu to auto-type the proper syntax):</p></li>
 </ol>
 <pre><code>RandBinomial([Population], [Death rate])</code></pre>
 <p>In plain English: the number of deaths each year is a random quantity determined by “coin-flipping” (Binomial distribution is the “coin flip” distribution). The total deaths is computed by flipping a coin for each individual in the population and killing off all individuals that come out ‘heads’ (where the probability of coming up ‘heads’ is the death rate).</p>
@@ -664,10 +675,10 @@ rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example!</code></pre>
 <p>In plain English: the number of births ([Births] flow in InsightMaker) is a random draw from a Poisson random number generator with a mean equal to the expected number of births ([Population]*[Birth rate]).</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Run the simulation. What does it look like?</p></li>
-<li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”.</p></li>
+<li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”. NOTE: I recommend choosing the “Plot Each Run” button – that way we can generate a “spaghetti plot”.</p></li>
 <li><p>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</p></li>
 </ol>
-<p><strong>Q</strong> Is the effect of <em>demographic stochasticity</em> bigger at low or high abundances?</p>
+<p><strong>Q</strong> Is the effect of <em>demographic stochasticity</em> larger or smaller at low or high abundances?</p>
 </div>
 <div id="environmental-stochasticity" class="section level4">
 <h4><em>Environmental Stochasticity</em></h4>
@@ -692,7 +703,7 @@ rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example!</code></pre>
 <p>A catastrophe can be implemented by using an IF-THEN-ELSE statement: if the random number is below some rare value (e.g., 0.05) then cause a catastrophe to occur (otherwise keep all vital rates at their normal values)!</p>
 <p>Hint: The most basic (most commonly used) random number generator draws numbers from a <em>uniform</em> distribution with a minimum of 0 and a maximum of 1. To do this in InsightMaker, you can use this syntax:</p>
 <pre><code>Rand(0, 1)</code></pre>
-<p><strong>Q</strong> What if environmental stochasticity influences survival and fecundity in the same manner? That is: what if a “good year” for births is also a good year for survival? Would this increase or decrease the effect of environmental stochasticity on population dynamics? In InsightMaker, try to impement a scenario where the environmental stochasticity in survival rate is perfectly <strong>correlated</strong> with environmental stochasticity in birth rate.</p>
+<p><strong>Q</strong> What if environmental stochasticity influences survival and fecundity in the same manner? That is: what if a “good year” for births is also a good year for survival? Would this increase or decrease the effect of environmental stochasticity on population dynamics? In InsightMaker, try to implement a scenario where the environmental stochasticity in survival rate is perfectly <strong>correlated</strong> with environmental stochasticity in birth rate.</p>
 <p>Hint: you will need another [variable] in your InsightMaker canvas- this variable could be named something like “Habitat Quality”, and should store a random draw from a Normal distribution with mean “0” and standard deviation “1”:</p>
 <pre><code>RandNormal(0, 1)</code></pre>
 <p>Next, you can alter your per-capita fecundity parameter to have the following syntax, which would represent a mean fecundity of 0.85 with a standard deviation of 0.4</p>

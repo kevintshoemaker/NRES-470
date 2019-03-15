@@ -1,7 +1,7 @@
 ---
 title: "Intro to individual-based models (IBM)"
 author: "NRES 470/670"
-date: "Mar 6, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -34,7 +34,7 @@ First of all, the basic modeling workflow is ALWAYS the same, no matter what kin
 
 All models are a way to **formalize our understanding about our study system**. 
 
-**Population-based models** (PBM; i.e., models of $N$) are the main type of model we consider in this class- because it is the most simple and direct way to think about population dynamics: with all individuals in a [Stock] considered to be interchangeable, $N$ is our main variable of interest. $N$ is in turn controlled by endogenous (forces coming from inside the population -- e.g., density-dependence, demographic stochasticity) and exogenous (forces coming from outside the population -- e.g., environmental stochasticity, harvest) factors. 
+**Population-based models** (PBM; i.e., models of $N$) are the main type of model we consider in this class- because it is the most simple and direct way to think about population dynamics: with all individuals in a [Stock] considered to be interchangeable, $N$ is our main variable of interest. $N$ is in turn controlled by endogenous factors (forces coming from inside the population -- e.g., density-dependence, demographic stochasticity) and exogenous factors (forces coming from outside the population -- e.g., environmental stochasticity, harvest). 
 
 **Age/stage structured population-based models** and **sex structured population models** (i.e., models of $\mathbf{N}$, i.e., matrix population models) are a type of population model in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.
 
@@ -50,7 +50,7 @@ And also, if two different model structures are equally appropriate, you should 
 
 ![](occam1.jpg)
 
-Both IBM and PBM can be used to address questions at the population or metapopulation level
+Both IBM and PBM can be used to address questions at the population or metapopulation level.
 
 #### Rules of thumb
 
@@ -100,7 +100,7 @@ The reintroduction is initiated right after the breeding season and the experime
 #### Sheep
 
 - There are a total of 50 sheep at the release location. 
-- Each sheep eats 1 "unit"" of grass per day (see section on grass, below)
+- Each sheep eats 1 "unit" of grass per day (see section on grass, below)
 - Each sheep gives birth to 2 lambs approximately every 100 days of the experiment (very high fecundity!).
 - Sheep tend to stay in place unless either they run out of food to eat or there is a wolf in the vicinity
 

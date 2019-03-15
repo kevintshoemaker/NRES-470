@@ -1,7 +1,7 @@
 ---
 title: "Guest lecture, PVA basics"
 author: "NRES 421/621"
-date: "Mar 15, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -187,6 +187,7 @@ If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over t
 
 If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time.
 
+[TODO: change this to a demo- we don't need to start from scratch...]
 
 ## In-class activity: constructing a basic population simulation model
 

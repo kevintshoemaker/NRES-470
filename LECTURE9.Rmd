@@ -1,7 +1,7 @@
 ---
 title: "Small-population paradigm"
 author: "NRES 470/670"
-date: "March 7, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -13,6 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+Aside: [MSY Insigtmaker model](https://insightmaker.com/insight/161312/MSY2) to accompany Kelley's mini-lecture!
 
 The final extinction of a population usually is probabilistic. That is, once the population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deal the final death knell to a population. In conservation biology the study of processes that disproportionately influence small populations is called the *small-population paradigm*. 
 
@@ -20,7 +21,7 @@ That is: the small-population paradigm refers to the tendency in **conservation 
 
 ### Demographic stochasticity
 
-We have already been through this concept, which is central to the small population paradigm! 
+We have already explored this concept, which is central to the small population paradigm! 
 
 The simple fact is: _it's much more likely for all 10 individuals in a population to be **unlucky** in a given year than for all 1000 individuals in a population to be **unlucky** in a given year!!_ -- just as it is very unlikely for all coin flips out of 1000 to come up heads...
 
@@ -37,7 +38,7 @@ Same goes for *genetic drift*! Genetic drift is a _small-population phenomenon_!
 
 ![](geneticdrift1.png)
 
-For example: in large populations, you could never randomly get **fixation** of a particular gene (this could happen via natural selection, but not through random reproductive processes). 
+For example: in large populations, random forces are just not strong enough to eradicate a relatively common allele from a population (this could happen via natural selection, but not through random reproductive processes). 
 
 Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). The different colored balls represent different genetic variants. Each jar, left to right, represents a different (non-overlappling) generation. 
 
@@ -45,22 +46,24 @@ Does this sound familiar? Just by random chance, some individuals will breed and
 
 Finally, let's imagine that the red balls represent individuals that are more likely to survive a rare drought (but have no selective advantage or disadvantage under normal circumstances). 
 
-Under normal conditions, the number of births is completely random. And if this was a sexually reproducing diploid population, mating would be completely random too. 
+Under normal conditions, the number of births is completely random. And if this was a sexually reproducing diploid population, mating should be random too. 
 
-Just by random chance, the blue individuals happen to reproduce more than the red individuals- and the red individuals go extinct. 
+Just by random chance, the blue individuals happen to reproduce more than the red individuals- the blue variant becomes **fixed** in the population and the red variants go extinct. *There is no natural selection involved in this scenario -- just stochasticity!*
 
-And now, by random chance, this population is now more susceptible to drought!
+And now, by random chance, this population is now more susceptible to drought than it was before!
+
+**Q**: is a small population or a large population more susceptible to genetic drift (e.g., loss of variation due to random chance)?
 
 
 ### Inbreeding depression
 
 ![](inbreeding1.jpg)
 
-Inbreeding depression is very similar to genetic drift, but more specific! Again, inbreeding problems only occur in small populations.
+Inbreeding depression is another problem peculiar to small populations.
 
-Most diploid populations have some "bad genes" floating around. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! 
+Most diploid populations have some bad gene variants (alleles) in their gene pool. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! And since these alleles are rare, it is extremely unlikely that you get two copies of the same bad allele!   
 
-**Q**: Why is it more likely to get two copies of the same allele if your two parents are close relatives? 
+Unless...your two parents are close relatives, and both inherited the same allele from a common ancestor! 
 
 **Q**: Why is it more likely for your two parents to be close relatives if you are living in a small population?
 
@@ -76,19 +79,21 @@ The above image is of [Charles II of Spain](https://en.wikipedia.org/wiki/Charle
 
 One of the central ideas arising from the small population paradigm is the concept of the **extinction vortex**. This concept is illustrated in the above figure.
 
-Once a population gets small enough, it becomes subject to catastrophic declines due to demographic stochasticity, leading to inbreeding and random loss of useful genes, leading to reduced vital rates, leading to smaller population sizes, leading to further genetic degradation, leading to more possibility of catastrophic declines due to demographic stochasticity, leading to ... EXTINCTION!!
+Once a population gets small enough, it becomes subject to catastrophic declines due to demographic (and environmental) stochasticity, leading to inbreeding and random loss of useful genes, leading to reduced vital rates, leading to smaller population sizes, leading to further genetic degradation, leading to more possibility of catastrophic declines due to demographic stochasticity, leading inevitably to extinction...
 
 ## Minimum Viable Populations (MVP)
 
-When we talked about [Allee effects](LECTURE5.html), we saw a case in which a deterministic population model could have a minimum viable population size- below the threshold, the population was doomed to extinction, and above the threshold the population would deterministically increase until carrying capacity. However, the MVP concept is usually used in the context of stochastic extinction risk. 
+When we talked about [Allee effects](LECTURE5.html), we saw a case in which a deterministic population model could have a minimum viable population size- below a certain threshold, the population was doomed to extinction, and above the threshold the population would deterministically increase until carrying capacity. However, the MVP concept is usually used in the context of stochastic extinction risk. 
 
-The best general definition of MVP (in my opinion) directly relates to the extinction vortex concept. 
+The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size is that *population size above which the extinction vortex can be safely averted*.
 
-_**Minimum Viable Population** is defined as that *population size above which the extinction vortex can be safely averted*_ 
+However, the above definition is not strictly quantifiable. Also MVP is often defined in relation to population models, many of which don't have an explicit genetic component (becuase we often don't know exactly how many deleterious recessive alleles are in a population!). The quantitative, operational definition that we will use in this class is:
+
+> _MVP: the initial abundance threshold below which the risk of extinction over a specified time period (e.g., 50 years) exceeds a specified threshold (e.g., 10%)_
 
 ## Population Viability Analysis (PVA)
 
-Population Viability Analysis (PVA) is often used to model the processes involved in the extinction vortex (the central concept of the small population paradigm). This often includes genetic drift. However, in this course, we won't get into modeling genetics (unless you really want to in your own modeling project!)
+Population Viability Analysis (PVA) is often used to model the processes involved in the extinction vortex (the central concept of the small population paradigm). This can include genetic drift and inbreeding depression. However, in this course, we won't get into modeling genetics (unless you really want to- I'm happy to show you how to do this in Vortex!)
 
 The most widely-used PVA software, [Vortex](http://www.vortex10.org/Vortex10.aspx), gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.  
 
@@ -110,6 +115,10 @@ The Aruba rattlesnake is listed as *Critically Endangered* by IUCN, and has seve
 
 See [Lab 5](LAB5.html) for the related MVP activity.  
 
+
+**Q** Why are island-endemic species like the Aruba rattlesnake so vulnerable to extinction? [tophat]
+
+**Q** Are species that are confined to small areas (like the Aruba rattlesnake) more vulnerable to *environmental stochasticity* than species that occupy larger geographic ranges? [tophat]
 
 [--go to next lecture--](LECTURE10.html)
 
