@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## PVA for Yellowstone grizzly bears!
 
-By the time we meet on Thursday, March 29 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant **scenario testing**.
+By the time we meet on Thursday, March 28 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant **scenario testing**.
 
 ![](grizzly1.jpg)
 
@@ -32,7 +32,7 @@ Therefore, our conceptual life history diagram looks something like this!
 
 ![](IM16.jpg)
 
-You can "clone" the base grizzly bear model [here](https://insightmaker.com/insight/77056/Yellowstone-Grizzlies). This model has not yet been parameterized!
+You can "clone" the base grizzly bear model [here](https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized). This model has not yet been parameterized!
 
 #### Step 2: parameterize!
 
@@ -59,10 +59,12 @@ Let's use the lower bound for initial (1983) abundances (all female!) to initial
 
 *Cubs:* 5   
 *Yearlings:* 5   
-*Subadults:* 5   
+*Subadult 1:* 2
+*Subadult 2:* 2
+*Subadult 3:* 2
 *Adults:* 5   
 
-Take a moment to parameterize the model, using the 1983 to 2001 estimates!
+Take a few minutes to parameterize the model, using the 1983 to 2001 estimates!
 
 #### Step 3: Spatial structure
 
@@ -71,8 +73,6 @@ We are ignoring spatial structure for this PVA!
 #### Step 4: Simulate!
 
 Okay, let's run the model!
-
-Again, you can clone the base grizzly bear model [here](https://insightmaker.com/insight/77056/Yellowstone-Grizzlies) if you haven't already.
 
 1. Try running the model with the parameterization we discussed above. What do you notice? Is the population growing?
 
@@ -93,11 +93,13 @@ In 2002 the population was more like 40 females- so let's use the following para
 
 *Cubs:* 40   
 *Yearlings:* 40   
-*Subadults:*  40   
+*Subadult 1:*  15
+*Subadult 2:*  15
+*Subadult 3:*  10
 *Adults:* 40
 
 **Q**: What do you notice about this model? Is it still growing? What about the overall *rate of growth* of the population?
-
+40
 **Q**: Which vital rates changed the most from 1983 to 2002? 
 
 **Q**: Can you think of any reason for this change?
@@ -106,29 +108,31 @@ In 2002 the population was more like 40 females- so let's use the following para
 
 4. Let's implement a new process into our model- **density-dependence**!
 
-We know that when the adult (female) population size was around 5, yearling survival was around 82%
+We know that when the total (female) population size was around 20, yearling survival was around 82%
 
-We also know that when the adult (female) population size was around 40, yearling survival dropped to around 54%
+We also know that when the total (female) population size was around 160, yearling survival dropped to around 54%
 
-What is the **linear relationship** between population size and yearling survival? When abundance increased by 35, yearling survival rate decreased from 82% to 0.54% -- a total of 28%. 
+What is the **linear relationship** between population size and yearling survival? When abundance increased by 140, yearling survival rate decreased from 82% to 54% -- a 28% drop! 
 
-**SLOPE**: For each additional individual in the adult population, yearling survival decreased by 0.8 percent ($=\frac{0.28}{35}$).
+**SLOPE**: For each additional individual in the adult population, yearling survival decreased by 0.2 % ($=\frac{0.28}{140}$).
 
-**INTERCEPT**: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be $81.7 + 0.8\cdot 5$, which is 85.7%. 
+**INTERCEPT**: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be $81.7 + 0.2\cdot 5$, which is 82.7%. 
 
 To convert back to a fraction, we divide this linear model by 100!
 
 So the linear formula for computing yearling survival as a function of adult female abundance should be:
 
-$Surv_{yearling} = \frac{\left (  85.7 - 0.8*N_{female} \right )}{100}$
+$Surv_{yearling} = \frac{\left (  82.7 - 0.2*N_{female} \right )}{100}$
 
 Let's implement this *density-dependent process* in Insightmaker!
 
-- Create a [Link] between female abundance and yearling survival.
+- First, load [this InsightMaker model](https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation). Clone it so you can make edits!
 
-- Open the *equation editor* for yearling survival, and input the equation above! 
+- Open the *equation editor* for yearling survival, and input the equation above! Let's do it together!  
 
 Run the model! What do you notice?
+
+Try running the model for 200 years. 
 
 **Q**: Why is this type of model called **density-dependent**?
 
@@ -137,44 +141,46 @@ Run the model! What do you notice?
 
 **Answer the following questions**:
 
-NOTE: if necessary, you can clone a density-dependent version of the grizzly model [here](https://insightmaker.com/insight/77058/Yellowstone-Grizzlies-DD)
+To start off, you can clone a full, density-dependent version of the grizzly model [here](https://insightmaker.com/insight/162305/Yellowstone-Grizzlies-densdep)
 
 
-1. What is the **carrying capacity** of this population? NOTE: you may need to run the model for longer than 100 years! NOTE: this is an **emergent property** of our new model!
+1. Set the initial abundances back to the values estimated from 1983 to 2001. Run the model for 200 years. What is the approximate **carrying capacity** of this population? NOTE: this is an **emergent property** of our new model! We didn't specify carrying capacity, but nonetheless there seems to be a carrying capacity for this population. 
 
+2. "Comment out" the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation), and type in the value of yearling survival estimated for the 2002-2011 time period (0.539). This enables you to run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value '0.539'; see below). 
 
-2. Set all initial abundances to 5 -- the values estimated from 2002 to 2011. Run the grizzly bear PVA with and without the density-dependence process. In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? Under which scenario is the *conservation outlook* best for grizzly bears in Yellowstone park? 
+**Q** In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? (use the 'sensitivity testing' tool) 
 
-NOTE: For the *density-independent* scenario, set the yearling survival rate to 0.54.
+**Q** Under which scenario (with and without density-dependence) is the *conservation outlook* best for grizzly bears in Yellowstone park?
 
-NOTE: you can turn the density dependence process on and off by using the pound symbol to "comment out" the equation. So ... if you input the following into the equation editor for yearling survival, you can easily go back and forth between the density-dependent and the density-independent formulations of the model:
+3. Given that local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 20 individuals at any time over the next 100 years, can you identify an approximate **minimum viable population size (MVP)** for this population?
+
+[Bonus question!]. For the *density-independent* model, what is the extinction risk if you changed yearling survival to its **lower confidence limit** in the above table (from 2002-2011)? Does the *parameter uncertainty* in the above table make a difference for the conservation outlook for this population??  
+
+#### Helpful hints
+
+##### "commenting out" the density-dependence equation
+
+You can turn the density dependence process on and off by using the pound symbol to "comment out" the equation. So ... if you input the following into the equation editor for yearling survival, you can easily go back and forth between the density-dependent and the density-independent formulations of the model:
 
 For example, this one is density-independent:
 
 ```
-0.54
-#(85.7-0.8*[Adult])/100
+0.539
+#0.827-0.002*[Total abundance]
 ```
 
 ...and this one is density-dependent:
+
 ```
-#0.54
-(85.7-0.8*[Adult])/100
+#0.539
+0.827-0.002*[Total abundance]
 ```
 
-3. For the *density-independent* model, what is the extinction risk if you changed yearling survival to its **lower confidence limit** in the above table (from 2002-2011)? Does the *parameter uncertainty* in the above table make a difference for the conservation outlook for this population?? 
+##### using the sensitivity testing tool
 
-[Bonus question!]. Given that local managers have decided that a viable grizzly bear population should have a risk of extinction of < 5% over 100 years, can you identify a **minimum viable population size (MVP)** for this population? 
+Use the "sensitivity testing" option in the "Tools" menu to run multiple simulations. You can visually assess the risk of falling below a certain abundance threshold by examining whether a particular quantile (e.g., 95%) of your simulation results (the output from the sensitivity testing tool) falls below a particular threshold (e.g., 20 individuals) over a certain number of years. 
 
-**HELPFUL HINTS:**    
-
-- All parameters aside from yearling survival should be the same between the two scenarios (so that the presence/absence of the density-dependence process is the only difference between the scenarios). I suggest you use all parameters estimated for the period 2002 to 2011, just to be consistent!
-
-- Use the "sensitivity testing" option in the "Tools" menu to run multiple simulations (>100 *replicates*). You can assess extinction risk using the following formula:
-
-$\frac{extinctions}{replicates}$
-
-Where *extinctions* is the total number of replicates where the abundance declined to zero, and *replicates* is the total number of independent simulation replicates you ran. Similarly, you can assess the probability of failing to meet an important conervation criterion (e.g., population remaining above MVP) as the fraction of replicates that failed to meet the specified criterion. 
+You can compute the risk of extinction or decline more quantitatively as the fraction of replicates that failed to meet the specified criterion. That is, you can divide the total number of simulations falling below the threshold by the total numer of replicates.
 
 
 [--go to loggerhead PVA--](PVA3_421.html)

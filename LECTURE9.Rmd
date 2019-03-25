@@ -83,7 +83,11 @@ Once a population gets small enough, it becomes subject to catastrophic declines
 
 ## Minimum Viable Populations (MVP)
 
-When we talked about [Allee effects](LECTURE5.html), we saw a case in which a deterministic population model could have a minimum viable population size- below a certain threshold, the population was doomed to extinction, and above the threshold the population would deterministically increase until carrying capacity. However, the MVP concept is usually used in the context of stochastic extinction risk. 
+As wildlife managers, we often wish to know: "how small does a population have to be before we have to start worrying about adverse consequences (extinction, genetic erosion, inbreeding)"
+
+When we talked about [Allee effects](LECTURE5.html), we saw a case in which a deterministic population model could have a minimum viable population size- below a certain critical threshold, the population was doomed to extinction, and above the threshold the population would deterministically increase until carrying capacity. 
+
+However, the MVP concept derived from *conservation biology* and not from theoretical population biology. Conservation biology deals with real-world systems which are messy, variable and uncertain. Therefore, the MVP concept is usually quantified using stochastic population models.  
 
 The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size is that *population size above which the extinction vortex can be safely averted*.
 

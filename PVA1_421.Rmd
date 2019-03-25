@@ -13,11 +13,30 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 421, PVA                                     ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
+
+
+############################################################
+####  PVA basics                                        ####
+############################################################
+
+
+```
+
 ## Population Viability Analysis (PVA)
 
 For the next three class periods, we will explore the use of **population models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
 
-PVA is essentially a set of practical approaches to problem-solving in conservation, and wildlife management via creative application of *demographic theory*, *simulation models* and *statistics*. 
+PVA is a set of practical approaches to problem-solving in conservation, and wildlife management via creative application of *demographic theory*, *simulation models* and *statistics*. 
 
 As much as possible we will use hands-on activities to explore the fundamentals of PVA. We will use [InsightMaker- a free web-based systems modeling tool](https://insightmaker.com/) for running simulation models.  
 
@@ -57,7 +76,7 @@ Giant puffballs produce 7 trillion offspring (spores) in one reproductive event.
 
 ... If all of those individuals reached adulthood, the descendants from just *two parent puffballs* would weigh more than the entire planet in two generations!
 
-The reason? Populations grow in a positive feedback process. More individuals means more total reproduction events means more individuals means even more total reproduction events. The bigger the population the faster the rate of growth. 
+The reason? Populations grow in a positive feedback process. More individuals means greater potential for population growth (more reproduction!), which means more individuals enter the population, which means even greater potential for population growth. The bigger the population the faster the population grows. 
 
 ## Aside: Mathematics and modeling in Ecology
 
@@ -84,15 +103,15 @@ $\Delta N = B + I - D - E \qquad \text{(Eq. 1)}$
 
 where $B$ represents the number of births per time period, $I$ reprents the number of immigrants, $D$ represents the number of deaths, and $E$ represents the number of emigrants.    
 
-If we ignore immigration and emigration, then the BIDE equation simplifies to:
+If we ignore immigration and emigration, then the BIDE equation simplifies to the "buh-duh" equation:
 
 $\Delta N = B - D \qquad \text{(Eq. 2)}$
 
-Now let's focus on $B$ and $D$. The important thing to recognize is that the number of births and deaths in a population is not constant. 
+Now let's focus on $B$ and $D$. The important thing to recognize is that the total number of births and deaths in a population is not constant. 
 
-What does the number of births depend on? 
+What does the total number of births depend on? 
 
-What **is** more likely to be constant is the **per capita rate** of producing offspring, or dying. Does this make sense? These per capita rates are often expressed as lower case letters. So $b$ represents per capita births, and $d$ represents per capita deaths. 
+What **is** more likely to be constant is the **per capita rate** of births or deaths in a population. Does this make sense? These per capita rates are often expressed as lower case letters. So $b$ represents per capita births, and $d$ represents per capita deaths. 
 
 $b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}$
 
@@ -100,9 +119,9 @@ $b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}$
 
 $B_t = b \cdot N_t$
 
-The letter $t$ of course represents time, which could be years, or minutes, or decades, or whatever! 
+The letter $t$ of course represents time, which ofen denotes years. 
 
-In plain English, the above equation could be described as follows: "the number of births at a given time is equal to the per-capita birth rate times the total population size at that time". (literally, *per capita* means "by heads" in Latin. So we multiply the "heads" by the birth rate "per head").
+In plain English, the above equation could be described as follows: "the number of births at a given time is equal to the per-capita birth rate times the total population size at that time". (literally, *per capita* means "by heads" in Latin. So we multiply the birth rate "per head" by the total number of heads!).
 
 Similarly, 
 
@@ -124,46 +143,30 @@ $\Delta N = r \cdot N_t\qquad \text{(Eq. 8)}$
 
 Where $r$ represents the difference between births and deaths. If $r$ is positive, then births are greater than deaths and the population grows. If $r$ is negative then deaths exceed births and the population declines. 
 
-## Continuous population growth
-
-In a *continuous population growth* model, the population is constantly changing: for a growing population, no matter how small the time interval, the population will be bigger at the next time step. 
-
-**Q**: What wild populations exhibit continuous growth? 
-
-We can use *calculus notation* to consider the instantaneous change in population size:
-
-$\frac{\partial N}{\partial t} = r \cdot N  \qquad \text{(Eq. 9)}$ 
-
-This simple formula represents **continuous exponential growth**. 
-
-To estimate the abundance at time *t*, we can *integrate* this differential equation, and we get the following result:
-
-$N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$
-
 ## Discrete population growth (most PVAs)
 
-Most PVAs represent *discrete population growth* models, where the population changes abruptly at regular intervals (looking like a staircase): for a growing population, the population size is constant until the next time step, at which point it grows in one leap. 
+Most PVAs represent *discrete population growth* models, where population growth occurs at regular intervals (often modeled as one growth event per year): for a growing population, the population size is constant until the next year, at which point it grows in one leap. 
 
 **Q**: What wild populations exhibit discrete growth? 
 
 The greek symbol lambda ($\lambda$), represents the *finite rate of growth* for a discrete population growth model, or $\frac {N_{t+1}}{N_t}$. Lambda is what you multiply the current population size by to compute the population size in the next time step. 
 
-$N_{t+1}=N_t + \Delta N_t  \qquad \text{(Eq. 11)}$ 
+$N_{t+1}=N_t + \Delta N_t  \qquad \text{(Eq. 9)}$ 
 
-$N_{t+1}=N_t + r_d \cdot N_t  \qquad \text{(Eq. 12)}$
+$N_{t+1}=N_t + r_d \cdot N_t  \qquad \text{(Eq. 10)}$
 
-$N_{t+1}=N_t \cdot (1 + r_d)  \qquad \text{(Eq. 15)}$         
+$N_{t+1}=N_t \cdot (1 + r_d)  \qquad \text{(Eq. 11)}$         
 
-$N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 16)}$ 
+$N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 12)}$ 
 
-$N_{t}=\lambda^{t} \cdot N_0  \qquad \text{(Eq. 17)}$
+$N_{t}=\lambda^{t} \cdot N_0  \qquad \text{(Eq. 13)}$
 
 
 ## Modeling!!
 
 ### Computer programming and systems thinking
 
-Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including models of population and ecosystem dynamics. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this unit, we will learn to use computer simulations for understanding and managing natural populations**.  
+Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including models of population and ecosystem dynamics. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this short-course, we will use computer simulations for understanding and managing natural populations**.  
 
 ### *InsightMaker*: a simulation modeling framework for dynamic systems!
 
@@ -187,62 +190,47 @@ If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over t
 
 If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time.
 
-[TODO: change this to a demo- we don't need to start from scratch...]
 
-## In-class activity: constructing a basic population simulation model
+## In-class activity: a basic population simulation model
 
 ### Simple stock and flow model! 
 
 1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
 
-2. Create a new "Insight" and clear the demo module. 
+2. Click on [this link](https://insightmaker.com/insight/162300/NRES-421-In-Class-Demo-1) to load up the first population modeling demonstration.
 
-3. Right click in the center of the screen and select **Create Stock** from the pop-up. Notice that the name is *New Stock* and is selected. Type in a name for what this is an accumulation of (e.g., "Moose"!). Note the **Configuration Panel** on the right - where you can alter the settings for your [Stock]. In the configuration panel, set the *Initial Value* to 50. That is, there will be 50 moose at the start of the simulation!
+3. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.  
 
-4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the **Reverse** button in the **Connections** menu. Please do that now. You can name the [Flow] "Births". Also in the **Configuration Panel** set **Flow Rate** equal to 1.
+4. Now click **Run Simulation**. Now you have run your first population simulation!
 
-5. Now click **Run Simulation** and you have just finished your first simulation model!!
+5. Can you figure out how to change the settings to run the model for 50 years? Try this and click **Run Simulation**.
 
-6. Can you figure out how to change the settings to run the model for 50 years? Try this and click **Run Simulation**.
-
-7. Use the same methods as *step 4* to create a [Flow Out], representing moose deaths. Set the death rate to 1 moose per year. Re-run the model. Is the population increasing or declining? Why? 
+6. Can you figure out how to change the total number of births? Hint: hover your cursor over the [Births] flow and click on the "equals" sign that appears! What happens if you change the total number of births to 4?
 
 **Q**: Is this Moose model realistic? What is the first thing you would like to change to make the model more realistic?
 
 
 ## A more realistic model!
 
-Now let's consider *per-capita* rates of birth and death in the population. This way, if the population is bigger, the total births will increase! 
+Now let's consider *per-capita* birth and death rates in the population. This way, if the population is bigger, the total births will increase! 
 
-9. To create variables to store per-capita vital rates (per-capita birth and death rates), right-click on the canvas and select **Variable** from the drop-down. While the [Variable] is still selected rename it (per-capita) *birth rate*. Open the [Equation] window for *birth rate* and set it to 0.5 (if you mouse over *Stock* or *Flow* a small [$=$ Sign] will appear. If you click this it will open the **Equation** window where you can set values or enter more complex equations.
+1. Click on [this link](https://insightmaker.com/insight/162299/NRES-421-In-Class-Demo-2) to load up the next population modeling demonstration.
 
-10. Now draw a [Link] from *birth rate* to the "Births" [Flow]. In InsightMaker, flow of information is represented by a [Link]. To create a [Link], click **Link** in the **Connections** part of the toolbar. When you mouse over the *birth rate* click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it to make a visually pleasing curved line! 
-
-11. Repeat step 10 for the the *death rate* variable. 
+2. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
 
 Your model should look something like this:
 
 ![](IM14.jpg)
 
-12. Open the *Equation editor window* for the [Flow] and set it to [Moose] times [birth rate]. To make sure you don't make any typing errors, it's best to add variables to your equation by clicking on the variable names in the right-hand panel of the equation editor. The equation in the equation editor window should look like this:
+3. Hover your curser over the two [Flows] (Births and Deaths). Do these equations make sense? 
 
-```
-[Moose]*[Birth rate]
-```
+4. Make sure the initial number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
 
-That is, the rate of inflow into the [Moose] stock is equal to the total number of moose multiplied by the per-capita birth rate.
+**Q**: what happens if you set the birth rate equal to the death rate? What is *r* for this population?
 
-Do the same for the outflow into the [Moose] stock (Deaths).
+**Q**: what happens if you set the birth rate less than the death rate? What is *r* for this population?
 
-13. Make sure the number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
-
-NOTE: If you are running into difficulties, you can always use [this working model](https://insightmaker.com/insight/76064/ICE-stocks-and-flows). Click on this link and then click "Clone Insight" in the top right corner of your screen. This will create a copy of the Insight that you can change as you wish!
-
-**Q**: what happens if you set the birth rate equal to the death rate?
-
-**Q**: what happens if you set the birth rate less than the death rate?
-
-**Q**: is this model realistic?  What is the next thing you would like to change in this model?
+**Q**: is this model realistic?  What is the next thing you would like to change in this model to make it even more realistic?
 
 
 ## An even more realistic model!!
@@ -319,25 +307,28 @@ A random number generator is like a box of (potentially infinite) possible numbe
 
 ![](lottery1.png)
 
-Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. For example, the box might have 10 "ones", 5 "twos", and 2 "threes". In this case the distribution looks like this (*probability* of each *possibility*):
+Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. 
 
-```{r echo=FALSE}
+
+For example, the box might have 10 "ones", 5 "twos", and 2 "threes". In this case the distribution looks like this (*probability* of each *possibility*):
+
+```{r echo=TRUE}
+
 box <- c(rep(1,10),rep(2,5),rep(3,2))
 barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")
 
 ```
 
 
-A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again in modeling (and in nature), and we should know them, because they end up being major building blocks of PVA!
+A probability distribution can be pretty much anything you want it to be. However, there are several key families of distributions that come up again and again in modeling (and in nature), and are often major building blocks of PVA!
 
-### Random number generators for demographic stochasticity
+These distributions are: the **binomial distribution**, the **Poisson distribution**, and the **Normal distribution**
 
 #### Binomial random number generator
 
 Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this "experiment" over and over again. Your results should follow a *binomial distribution*! 
 
-```{r}
-#rbinom(10,10,0.3)    # the random numbers have no decimal component
+```{r echo=TRUE}
 
              # plot a discrete distribution!
 xvals <- seq(0,10,1)
@@ -345,10 +336,6 @@ probs <- dbinom(xvals,10,prob=0.3)
 names(probs) <- xvals
                
 barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distribution (discrete)")
-
-#barplot(cumsum(probs),ylab="Cumulative Probability",main="Binomial distribution (discrete)")   # cumulative distribution
-
-#sum(probs)   # just to make sure it sums to 1!  Does it??? 
 
 ```
 
@@ -359,7 +346,7 @@ barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distributio
 
 Another discrete distribution we will use in this PVA mini-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of $\infty$.
 
-```{r}
+```{r echo=TRUE}
 
              # plot a discrete distribution!
 xvals <- seq(0,10,1)
@@ -373,16 +360,13 @@ barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution
 
 **Q** What population parameter might this distribution be useful for modeling?
 
-
-### Random number generators for environmental stochasticity
-
 #### Normal distribution
 
 You are probably already familiar with the *Normal distribution*. This distribution has a lower bound of $-\infty$ and an upper bound of $\infty$.
 
 **Q** What population parameter might this distribution be useful for modeling?
 
-```{r}
+```{r echo=TRUE}
 mean = 7.1
 stdev = 1.9
 
@@ -392,79 +376,40 @@ curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities"
 
 **Q** What population parameter might this distribution be useful for modeling?
 
-### Return to InsightMaker!
+### Return to InsightMaker- add demographic stochasticity!
 
-1. Return to your Moose model (hopefully you saved it from last time!). Set *Birth rate* back to 0.5 and *Death rate* back to 0.4. Set initial abundance back to 50. Under the "Settings" menu set the model to run for 10 years. 
+1. Click on [this link](https://insightmaker.com/insight/162301/NRES-421-In-Class-Demo-3) to load up the next population modeling demonstration.
 
-Make sure your *Population* stock can NOT go negative (this is a setting in the configurations panel: Allow Negatives = "No"). Hit "Simulate"- you should see *exponential growth*! 
+2. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
 
-#### Add _Demographic Stochasticity_  
+3. Make sure that *Birth rate* is set to 0.5 and *Death rate* is set to 0.4. Set initial abundance to 10. Under the "Settings" menu set the model to run for 20 years. Also make sure your *Population* stock can NOT go negative (this is a setting in the configurations panel: Allow Negatives = "No").  
 
-2. We will use a *Binomial distribution* to represent the number of mortalities. That is, we _flip a coin the same number of times as there are individuals in the population_. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 40% of the time! Each random draw from the *Binomial distribution* essentially represents the number of times heads came up (or the number of times mortality occurred). 
+4. Run the simulation. What does it look like?
 
-To do this in InsightMaker, open the equation window for the *Deaths* flow, and use the following formula to define the total number of deaths in the population each year:
+5. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive". View the results!
 
-```
-RandBinomial([Population], [Death rate])
-```
+6. Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool.
 
-For the total births, $B$ we will use the *Poisson* distribution. The Poisson distribution is often use to represent births, because there could feasibly be more births than there are individuals currently in the population (e.g., if all individuals have two offspring!). This would not be possible with a binomial distribution! That is, the maximum number of "heads" (you can always think of binomial distributions as coin-flipping!) is the total number of individuals, period. 
-
-To do this in InsightMaker, use the following formula for the *Births* flow:
-
-```
-RandPoisson([Population]*[Birth rate])
-```
-
-If you're having trouble, you can clone a working model [here](https://insightmaker.com/insight/76072/ICE-demographic-stochasticity)
-
-3. Run the simulation. What does it look like?
-
-4. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive". View the results!
-
-5. Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool.
-
-6. Change the initial abundance to 10 and re-run the "Sensitivity Testing" tool.
 
 **Q** Is the effect of *demographic stochasticity* bigger at low or high abundances?
 
-**Q** Is there any risk of extinction in this population? 
+**Q** Is there any risk of extinction when the initial abundance is 10? What about when the initial abundance is 500?
 
 **Q** In this model, did the *population vital rates* change at all? If not, why does it look different each time we run the model?
 
 
-#### Add _Environmental Stochasticity_  
+### Add _Environmental Stochasticity_  
 
-1. For now, set *Births* back to what it was before:
+1. Click on [this link](https://insightmaker.com/insight/162298/NRES-421-In-Class-Demo-4) to load up the next population modeling demonstration.
 
-```
-[Moose]*[Birth rate]
-```
+2. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
 
-And do the same for *Deaths*!
+3. Set initial abundance to 10. Under the "Settings" menu set the model to run for 20 years. Also make sure your *Population* stock can NOT go negative (this is a setting in the configurations panel: Allow Negatives = "No"). 
 
-```
-[Moose]*[Death rate]
-```
 
-2. We will use a *Normal distribution* to represent how the birth rate changes each year. This could represent climatic variablity -- "good years" and "bad years". The *Normal distribution* is commonly used for this type of variability- it is characterized by an average value (**mean**) and a variability measure (**standard deviation**). To do this in InsightMaker, use the following formula for the *Birth Rate* variable:
-
-```
-RandNormal(0.4, 0.4)
-```
-
-Similarly, we could use the following formula to represent environmental stochasticity in the *Death Rate* variable:
-
-```
-RandNormal(0.3, 0.4)
-```
-
-3. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive".
+4. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive".
 
 5. Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool.
-
-If you're having trouble, you can clone a working model [here](https://insightmaker.com/insight/77054/ICE-environmental-stochasticity)
-
 
 **Q** Is the effect of *environmental stochasticity* bigger at low or high abundances? 
 
@@ -513,17 +458,20 @@ What is the population-level impact of the following?
 
 ## A general PVA workflow
 
+
 ![](PVAschematic1.png) 
 
 ### Step 1: Life history
 
 *How does your population work?*
 
-The first step is to conceptualize the life history for your species of interest. This can be done by visualized in a *life history diagram* (essentially and stock-and-flow diagram just like we have already been doing!), and think about the following questions:
+The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. This can be done by visualized in a *life history diagram* (essentially and stock-and-flow diagram just like we have already been doing!). In general, the following life history traits are often critical to consider:
 
-- What is the maximum age?
-- At what age do individuals start reproducing?
-- Is it important to include males??
+- Maximum and minimum reproductive age
+- Number of relvant age classes
+- Maximum population density
+- Density dependence mechanisms
+- Variability in key vital rates
 
 **Q**: Why do most population models ignore males??
 
@@ -531,7 +479,7 @@ The first step is to conceptualize the life history for your species of interest
 
 This is where you attach *real numbers* to the stocks and flows in your conceptual life history diagram! Remember that this includes not just the vital rates, but also *density dependence* and *stochasticity* for these vital rates!
 
-### Step 3: Spatial structure!
+### Step 3: Spatial structure (metapopulations)!
 
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
@@ -546,18 +494,17 @@ You have already simulated simple population dynamics!
 
 There are lots of options for simulation software- R, [InsightMaker](https://insightmaker.com/), [Vortex](http://www.vortex10.org/Vortex10.aspx), [Ramas](http://www.ramas.com/metapop), and much more!
 
-What *scenarios* do you want to test in order to test your original questions?
+What *scenarios* do you want to test in order to answer your original questions?
 
 ### Step 5: Results
 
 Finally, you need to make sense of all the simulations you just ran!  
 
-There are two types of data analysis tools that you will need to be able to use the simulation results to answer your questions: **graphical visualization** and **statistical analysis**. 
+There are two major tools that you will need to be able to use the simulation results to answer your questions: **graphical visualization** and **statistical analysis**. 
 
 NOTE: The process of building a PVA model is **iterative** and **non-linear**. 
 
-For example -- after running your model (step 4) you might realize that your results (step 5) are totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).  
-
+For example -- after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).  
 
 Okay, now let's build a PVA model together!
 
@@ -567,12 +514,13 @@ Okay, now let's build a PVA model together!
 
 
 
-
 ## BONUS: A Simple Demonstration PVA
 
 To illustrate the process, let's build ourselves a very simple PVA model in R.
 
-For this demo I'm using the *"R" programming language* because of its flexible and powerful visualization tools. You can download R for yourself from [this website](https://cran.r-project.org/): 
+For this demo I'm using the *"R" programming language* because of its flexible and powerful visualization tools. You can download R for yourself from [this website](https://cran.r-project.org/):
+
+If you want to follow along, click on the link [here](PVA1_421.R)
 
 For simplicity, let's ignore age structure.  
 
@@ -668,6 +616,7 @@ The first is to look at the "cloud" of abundance trajectories. This is the same 
 
 
 ```{r}
+
 PlotCloud <- function(simdata){
   plot(c(1:101),simdata[,1],col=gray(0.7),type="l",ylim=c(0,max(simdata)),xlab="Years",ylab="Abundance")
   
@@ -685,6 +634,7 @@ Okay, what do we learn from this? Really, it's a mess!!!
 If our question is about extinction risk, maybe we want to plot extinction risk by time... 
 
 ```{r}
+
 Extinction_byyear <- function(simdata){
   apply(simdata,1,function(t)  length(which(t==0)))/ncol(simdata)
 }
@@ -701,15 +651,19 @@ Maybe our question is about the probability of decline over 100 years ...
 In that case maybe we should present a histogram of final abundances...
 
 ```{r}
+
 hist(Default[nrow(Default),],xlab="Final abundance after 100 years",ylab="Number of replicates",main="")
 abline(v=Init_N,col="green",lwd=2)
+
 ```
 
 We could compute the probability of decline by computing $\frac{number.declined}{total.simulations}$
 
 ```{r}
+
 prob_decline <- round(length(which(Default[nrow(Default),]<Init_N))/ncol(Default),2)
 cat("the probability of decline is: ", prob_decline)
+
 ```
 
 
@@ -748,16 +702,193 @@ Okay, now let's build a PVA model together!
 
 
 
+## And finally, some extras!
+
+### Continuous population growth
+
+Most PVA models involve discrete population growth (growth occurrs at discrete points in time, e.g., once each year). 
+
+In a *continuous population growth* model, the population is constantly changing: for a growing population, no matter how small the time interval, the population will be bigger at the next time step. 
+
+**Q**: What wild populations exhibit continuous growth? 
+
+We can use *calculus notation* to consider the instantaneous change in population size:
+
+$\frac{\partial N}{\partial t} = r \cdot N  \qquad \text{(Eq. 9)}$ 
+
+This simple formula represents **continuous exponential growth**. 
+
+To estimate the abundance at time *t*, we can *integrate* this differential equation, and we get the following result:
+
+$N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$
 
 
+### Getting started with InsightMaker
+
+#### Here are instructions for constructing the first InsightMaker model from today's lecture
+
+1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
+
+2. Create a new "Insight" and clear the demo module. 
+
+3. Right click in the center of the screen and select **Create Stock** from the pop-up. Notice that the name is *New Stock* and is selected. Type in a name for what this is an accumulation of (e.g., "Moose"!). Note the **Configuration Panel** on the right - where you can alter the settings for your [Stock]. In the configuration panel, set the *Initial Value* to 50. That is, there will be 50 moose at the start of the simulation!
+
+4. Select [Flow] in the upper left corner of your screen under [Connections]. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. This is how you create a [Flow] out of a [Stock]. To create a [Flow] into a [Stock] click the **Reverse** button in the **Connections** menu. Please do that now. You can name the [Flow] "Births". Also in the **Configuration Panel** set **Flow Rate** equal to 1.
+
+5. Now click **Run Simulation** and you have just finished your first simulation model!!
+
+6. Can you figure out how to change the settings to run the model for 50 years? Try this and click **Run Simulation**.
+
+7. Use the same methods as *step 4* to create a [Flow Out], representing moose deaths. Set the death rate to 1 moose per year. Re-run the model. Is the population increasing or declining? Why? 
 
 
+#### And the second model (basic exponential growth)
+
+8. To create variables to store per-capita vital rates (per-capita birth and death rates), right-click on the canvas and select **Variable** from the drop-down. While the [Variable] is still selected rename it (per-capita) *birth rate*. Open the [Equation] window for *birth rate* and set it to 0.5 (if you mouse over *Stock* or *Flow* a small [$=$ Sign] will appear. If you click this it will open the **Equation** window where you can set values or enter more complex equations.
+
+9. Now draw a [Link] from *birth rate* to the "Births" [Flow]. In InsightMaker, flow of information is represented by a [Link]. To create a [Link], click **Link** in the **Connections** part of the toolbar. When you mouse over the *birth rate* click on the right-arrow, drag to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it to make a visually pleasing curved line! 
+
+10. Repeat step 10 for the the *death rate* variable. 
+
+Your model should look something like this:
+
+![](IM14.jpg)
+
+11. Open the *Equation editor window* for the [Flow] and set it to [Moose] times [birth rate]. To make sure you don't make any typing errors, it's best to add variables to your equation by clicking on the variable names in the right-hand panel of the equation editor. The equation in the equation editor window should look like this:
+
+```
+[Moose]*[Birth rate]
+```
+
+That is, the rate of inflow into the [Moose] stock is equal to the total number of moose multiplied by the per-capita birth rate.
+
+Do the same for the outflow into the [Moose] stock (Deaths).
+
+12. Make sure the number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
 
 
+#### And the third model (demographic stochasticity)
+
+1. Return to your Moose model (hopefully you saved it from last time!). Set *Birth rate* back to 0.5 and *Death rate* back to 0.4. Set initial abundance back to 50. Under the "Settings" menu set the model to run for 10 years. 
+
+Make sure your *Population* stock can NOT go negative (this is a setting in the configurations panel: Allow Negatives = "No"). Hit "Simulate"- you should see *exponential growth*! 
+
+2. We will use a *Binomial distribution* to represent the number of mortalities. That is, we _flip a coin the same number of times as there are individuals in the population_. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 40% of the time! Each random draw from the *Binomial distribution* essentially represents the number of times heads came up (or the number of times mortality occurred). 
+
+To do this in InsightMaker, open the equation window for the *Deaths* flow, and use the following formula to define the total number of deaths in the population each year:
+
+```
+RandBinomial([Population], [Death rate])
+```
+
+For the total births, $B$ we will use the *Poisson* distribution. The Poisson distribution is often use to represent births, because there could feasibly be more births than there are individuals currently in the population (e.g., if all individuals have two offspring!). This would not be possible with a binomial distribution! That is, the maximum number of "heads" (you can always think of binomial distributions as coin-flipping!) is the total number of individuals, period. 
+
+To do this in InsightMaker, use the following formula for the *Births* flow:
+
+```
+RandPoisson([Population]*[Birth rate])
+```
+
+3. Run the simulation. What does it look like?
+
+4. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive". View the results!
+
+5. Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool.
+
+6. Change the initial abundance to 10 and re-run the "Sensitivity Testing" tool.
 
 
+#### And the fourth model (environmental stochasticity) 
+
+1. For now, set *Births* back to what it was before:
+
+```
+[Moose]*[Birth rate]
+```
+
+And do the same for *Deaths*!
+
+```
+[Moose]*[Death rate]
+```
+
+2. We will use a *Normal distribution* to represent how the birth rate changes each year. This could represent climatic variablity -- "good years" and "bad years". The *Normal distribution* is commonly used for this type of variability- it is characterized by an average value (**mean**) and a variability measure (**standard deviation**). To do this in InsightMaker, use the following formula for the *Birth Rate* variable:
+
+```
+RandNormal(0.4, 0.4)
+```
+
+Similarly, we could use the following formula to represent environmental stochasticity in the *Death Rate* variable:
+
+```
+RandNormal(0.3, 0.4)
+```
+
+3. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times. Choose [Population] as the "Monitored Primitive".
+
+5. Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool.
 
 
+## Random number generators
+
+### Random number generators for demographic stochasticity
+
+#### Binomial random number generator
+
+Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this "experiment" over and over again. Your results should follow a *binomial distribution*! 
+
+```{r}
+
+             # plot a discrete distribution!
+xvals <- seq(0,10,1)
+probs <- dbinom(xvals,10,prob=0.3)
+names(probs) <- xvals
+               
+barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distribution (discrete)")
+
+
+```
+
+**Q** What population parameter might this distribution be useful for modeling?
+
+
+#### Poisson random number generator
+
+Another discrete distribution we will use in this PVA mini-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of $\infty$.
+
+```{r}
+
+             # plot a discrete distribution!
+xvals <- seq(0,10,1)
+probs <- dpois(xvals,lambda=2.2)
+names(probs) <- xvals
+               
+barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution (discrete)")
+
+
+```
+
+**Q** What population parameter might this distribution be useful for modeling?
+
+
+### Random number generators for environmental stochasticity
+
+#### Normal distribution
+
+You are probably already familiar with the *Normal distribution*. This distribution has a lower bound of $-\infty$ and an upper bound of $\infty$.
+
+**Q** What population parameter might this distribution be useful for modeling?
+
+```{r}
+mean = 7.1
+stdev = 1.9
+
+curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities",main="Normal distribution (continuous)")   # probability density
+
+```
+
+
+**Q** What population parameter might this distribution be useful for modeling?
 
 
 

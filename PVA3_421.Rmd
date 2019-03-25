@@ -13,6 +13,26 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 421, PVA                                     ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
+
+
+############################################################
+####  Loggerhead example                                ####
+############################################################
+
+
+```
+
 # PVA for loggerhead turtles!
 
 This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 3 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant **scenario testing**. Also make sure you have run through the Excel exercise- see below!
@@ -30,7 +50,7 @@ If you would like more background information on loggerhead turtles, visit these
 
 ![](loggerhead2.jpg)
 
-The loggerhead turtle, *C. caretta*, is a large marine turtle that nests along the Atlantic coast from New Jersey to Texas, but is also found along the Pacific coast and in Hawaii.  
+The loggerhead sea turtle, *C. caretta*, is a large marine turtle that nests along the Atlantic coast from New Jersey to Texas, but is also found along the Pacific coast and in Hawaii.  
 
 ![](loggerhead4.jpg)
 
@@ -47,7 +67,7 @@ Biologists have identified two key types of threats facing loggerheads that stem
 ![](loggerhead5.jpg)
 
 Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.  
-Because beaches are popular sites for human recreation and development, arriving female turtles and hatching juveniles face risks including 
+Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including 
 
 - *poaching* (eggs or adults)
 - *beach erosion* or beach fortification to prevent erosion
@@ -63,11 +83,13 @@ Once hatchlings reach the ocean, they face different threats as they slowly deve
 
 ![](trawl1.png)
 
-- Moreover, during cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries.  While dormant they can be killed by periodic *dredging* to maintain bays and waterways.  
+- In addition to these primary threats, sea-going juveniles and adults face mortality due to *bycatch* in longline, hook-and-line, and trap fisheries targeting tuna and other species. 
 
-- Moreover, human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause *entanglement*, stranding, and drowning.
+3. **Additional threats**
 
-- In addition to these primary threats, sea-going juveniles and adults face mortality due to *bycatch* in longline, hook-and-line, and trap fisheries targeting tuna and other species.  
+- During cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries.  While dormant they can be killed by periodic *dredging* to maintain bays and waterways.  
+
+- Human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause *entanglement*, stranding, and drowning.
 
 - Shallow swimming turtles may also collide with *boat propellers*.  
 
@@ -79,28 +101,28 @@ Once hatchlings reach the ocean, they face different threats as they slowly deve
 
 The loggerhead is a long-lived species -- sexual maturity often doesn't occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct **stage classes** defined by body size (carapace (shell) length).
 
-Once turtle life-stages with similar vital rates have been identified, three pieces of data (*transition rates*) must be collected to construct the size-structured model:
+Once turtle life-stages with similar vital rates have been identified, three pieces of data (*transition rates*) must be collected to construct the stage-structured model:
 
-1.  fraction of turtles surviving each year but not advancing to the next larger size-class;
-2.  fraction of turtles surviving each year and advancing to the next larger size-class; and
-3.  average number of eggs produced by females of each size-class per year.
+1.  fraction of turtles surviving each year but not advancing to the next larger size-class (often just called 'survival');
+2.  fraction of turtles surviving each year and advancing to the next larger size-class (often called 'growth'); and
+3.  average number of hatchlings successfully produced by females of each size-class per year, discounted by the probability of surviving each year (often called 'fecundity').
 
 ### Step 2: parameterize the model
 
 Transition rates for turtles and other species are often estimated on the basis of *capture-mark-recapture* (CMR) data. 
 
-Here are some estimates, from [this paper](Crowder1994.pdf):
+Here are some relevant parameters, from [this paper](Crowder1994.pdf):
 
-*Transition from stage 1-2*: 0.675    
-*Transition from stage 2-3*: 0.047   
-*Transition from stage 3-4*: 0.019      
-*Transition from stage 4-5*: 0.061     
-*Transition from stage 2-2*: 0.703     
-*Transition from stage 3-3*: 0.657      
-*Transition from stage 4-4*: 0.682     
-*Transition from stage 5-5*: 0.809     
-*Transition from stage 4-1*: 4.67     
-*Transition from stage 5-1*: 61.90    
+*Transition from stage 1-2 (hatchling to small juvenile)*: 0.675    
+*Transition from stage 2-3 (small to large juvenile)*: 0.047   
+*Transition from stage 3-4 (large juvenile to subadult)*: 0.019      
+*Transition from stage 4-5 (subadult to adult)*: 0.061     
+*Transition from stage 2-2 (stay small juvenile)*: 0.703     
+*Transition from stage 3-3 (stay large juvenile)*: 0.657      
+*Transition from stage 4-4 (stay subadult)*: 0.682     
+*Transition from stage 5-5 (stay adult)*: 0.809     
+*Transition from stage 4-1 (reproduction by subadults)*: 4.67     
+*Transition from stage 5-1 (reproduction by adults)*: 61.90
 
 For this model we will assume no stochasticity or uncertainty in any of these parameters. 
 
@@ -116,11 +138,11 @@ We can do this using any number of tools- including R, Excel, or Insightmaker.
 
 See the end of this lecture for a review of matrix population models and how they work. 
 
-Since you probably are most familiar with Excel, let's do it in Excel first! Or if you'd like to do it in R instead, I've provided some code to get you started.  
+Since you probably are most familiar with Excel, let's do it in Excel first! Or if you'd like to do it in R instead, I've provided some code to get you started!  You can download the R code [here](PVA3_421.R)
 
 ## Population projection in Excel
 
-You can load the base Excel model [here](Loggerhead2017.xlsx)
+You can load the base Excel model [here](Loggerhead2019.xlsx)
 
 #### Build the baseline loggerhead projection matrix
 
@@ -128,26 +150,15 @@ You can load the base Excel model [here](Loggerhead2017.xlsx)
 
 ![](loggerhead6.jpg.png)
 
-- Use the transition rates to complete the baseline projection matrix for the loggerhead turtles. For example, the yearly transition probability from large juveniles to large juveniles ($S_3$) is 0.657. Recall that the transition rates are:
+- Note that the transition rates are already provided for you in the spreadsheet -- in the form of a transition matrix!
 
-*Transition from stage 1-2 (hatchling to small juvenile)*: 0.675    
-*Transition from stage 2-3 (small to large juvenile)*: 0.047   
-*Transition from stage 3-4 (large juvenile to subadult)*: 0.019      
-*Transition from stage 4-5 (subadult to adult)*: 0.061     
-*Transition from stage 2-2 (stay small juvenile)*: 0.703     
-*Transition from stage 3-3 (stay large juvenile)*: 0.657      
-*Transition from stage 4-4 (stay subadult)*: 0.682     
-*Transition from stage 5-5 (stay adult)*: 0.809     
-*Transition from stage 4-1 (reproduction by subadults)*: 4.67     
-*Transition from stage 5-1 (reproduction by adults)*: 61.90     
+- NOTE: Wherever a transition is not possible, e.g., from hatchlings to large juveniles, you will see a zero in the transition matrix.
 
-- Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero in the transition matrix.
-
-**Q**: what is the total survival rate for, e.g., large juveniles?
-
-Your projection matrix should look like this!
+In R, your projection matrix should look like this!
 
 ```{r}
+
+##### specify projection matrix!
 
 projection_matrix <- matrix(
   c(
@@ -167,10 +178,7 @@ projection_matrix
 
 ```
 
-```{r echo=FALSE}
-Abundance_year0 <- c(2000,500,300,300,20)
-Abundance_year0
-```
+
 
 
 #### Forecast the population into the future in Excel
@@ -187,11 +195,20 @@ Let's use the following initial densities in our model!
 - 300	size-class 4 (Subadults)
 - 20	size-class 5 (Adults)
 
-So your EXCEL file should look something like the one below (but with the transition rates filled in!):
+Here's how it looks in R:
+
+```{r}
+
+Abundance_year0 <- c(2000,500,300,300,20)   # vector of initial abundances
+Abundance_year0
+
+```
+
+So your EXCEL file should look something like the one below:
 
 ![](loggerhead7.png)
 
-Using the 'size-distribution vector', we can project the population size of each size-class next year using the matrix formula: $\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}$ . 
+Using the 'size-distribution vector', we can project the population size of each size-class next year using the matrix formula: $\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}$. (remember to see below for a refresher of matrix multiplication). 
 
 This formula calculates the size distribution next year (i.e., in year *t + 1*) based on the projection matrix $\mathbf{A}$ and the size distribution this year $\mathbf{N}_{t}$.  
 
@@ -199,7 +216,7 @@ For example, to calculate the first row of [n]t +1, the number of hatchlings:
 
 *hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42*     
 
-We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector.  The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for.
+We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector.  The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for. Let's do this together!
 
 **Q**: Using actual numbers as for hatchlings above, write out the equation for calculating the number of small juveniles (sm juv) in year 1 based on $\mathbf{A}$ and $\mathbf{N}_{0}$:
 
@@ -222,7 +239,7 @@ And the projected number of small juveniles (SJ) in year 1 might look like this:
 
 **Q**: What is the formula for the projected number of large juveniles in year 1?
 
-Finally, create an additional formula in (f) [cells H12-H13] which calculates the total population size in a year (the sum of all size-classes):
+Finally, create an additional formula in cells H12-H13 which calculates the total population size in a year (the sum of all size-classes):
 
 In Excel, this will look something like this:
 	
@@ -246,6 +263,9 @@ ADDITIONAL NOTE:  If your data are in different columns and rows than described 
 Your results should look similar to this (which was done in R):
 
 ```{r}
+
+# Run the matrix projection model!
+
 nYears <- 100                                            # set the number of years to project
 TMat <- projection_matrix                               # define the projection matrix
 InitAbund <- Abundance_year0                            # define the initial abundance
@@ -263,11 +283,12 @@ for(s in 1:5){
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend("topright",col=cols,lwd=rep(2,3),legend=rownames(TMat),bty="n")  # put a legend on the plot
+
 ```
 
 ## Projecting the loggerhead population in InsightMaker
 
-First, clone the baseline loggerhead PVA model [here](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model)
+First, clone the baseline loggerhead PVA model [here](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model). 
 
 Hit "Simulate". Make sure that the model results look the same as the above figure! If not, make sure the parameters are correct!
 
@@ -280,17 +301,17 @@ Look over the model, and make sure that you understand the inner workings!
 Working in groups of 2-3, investigate four management scenarios for the loggerhead turtle population:
 
 1. Improve fecundity (transition rates to the hatchling stage) via *nest-site protection*!
-    - Improve by 50%
-    - Improve by 100%
+    - Improve fecundity to 1.5X the current value 
+    - Double fecundity (2X the current value)
 2. Improve hatchling survival via *nest monitoring*
     - Improve _to_ 90%
     - Improve _to_ 100%
 3. Improve large juvenile survival using *Turtle Excluder Devices (TEDs)*
-    - Improve by 15%
-    - Improve by 25%
+    - Increase by 15%
+    - Increase by 25%
 4. Improve adult/subadult survival by *restricting longline fisheries*.
-    - Improve by 5%
-    - Improve by 10%
+    - Increase by 5%
+    - Increase by 10%
     
     
 NOTE: to alter parameters by (e.g.) 10% you can open the equation window and multiply the original parameter value by 1.1.
@@ -316,6 +337,9 @@ Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J.
 Morris, W. F. and D. F. Doak.  2002.  Quantitative conservation biology:  Theory and practice of population viability analysis.  Sinauer, Sunderland, MA.
 
 Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson.  1999. A practical handbook for population viability analysis.  The Nature Conservancy, Wash., DC.
+
+
+
 
 
 

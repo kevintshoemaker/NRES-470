@@ -380,18 +380,15 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -407,14 +404,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Grizzly bear PVA example</h1>
 <h4 class="author"><em>NRES 421/621</em></h4>
-<h4 class="date"><em>Mar 15, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
 <div id="pva-for-yellowstone-grizzly-bears" class="section level2">
 <h2>PVA for Yellowstone grizzly bears!</h2>
-<p>By the time we meet on Thursday, March 29 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant <strong>scenario testing</strong>.</p>
+<p>By the time we meet on Thursday, March 28 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant <strong>scenario testing</strong>.</p>
 <div class="figure">
 <img src="grizzly1.jpg" />
 
@@ -429,7 +426,7 @@ div.tocify {
 <img src="IM16.jpg" />
 
 </div>
-<p>You can “clone” the base grizzly bear model <a href="https://insightmaker.com/insight/77056/Yellowstone-Grizzlies">here</a>. This model has not yet been parameterized!</p>
+<p>You can “clone” the base grizzly bear model <a href="https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized">here</a>. This model has not yet been parameterized!</p>
 </div>
 <div id="step-2-parameterize" class="section level4">
 <h4>Step 2: parameterize!</h4>
@@ -454,9 +451,8 @@ div.tocify {
 <p>Let’s use the lower bound for initial (1983) abundances (all female!) to initialize our model:</p>
 <p><em>Cubs:</em> 5<br />
 <em>Yearlings:</em> 5<br />
-<em>Subadults:</em> 5<br />
-<em>Adults:</em> 5</p>
-<p>Take a moment to parameterize the model, using the 1983 to 2001 estimates!</p>
+<em>Subadult 1:</em> 2 <em>Subadult 2:</em> 2 <em>Subadult 3:</em> 2 <em>Adults:</em> 5</p>
+<p>Take a few minutes to parameterize the model, using the 1983 to 2001 estimates!</p>
 </div>
 <div id="step-3-spatial-structure" class="section level4">
 <h4>Step 3: Spatial structure</h4>
@@ -465,7 +461,6 @@ div.tocify {
 <div id="step-4-simulate" class="section level4">
 <h4>Step 4: Simulate!</h4>
 <p>Okay, let’s run the model!</p>
-<p>Again, you can clone the base grizzly bear model <a href="https://insightmaker.com/insight/77056/Yellowstone-Grizzlies">here</a> if you haven’t already.</p>
 <ol style="list-style-type: decimal">
 <li>Try running the model with the parameterization we discussed above. What do you notice? Is the population growing?</li>
 </ol>
@@ -485,61 +480,65 @@ div.tocify {
 <p>In 2002 the population was more like 40 females- so let’s use the following parameterization!</p>
 <p><em>Cubs:</em> 40<br />
 <em>Yearlings:</em> 40<br />
-<em>Subadults:</em> 40<br />
-<em>Adults:</em> 40</p>
-<p><strong>Q</strong>: What do you notice about this model? Is it still growing? What about the overall <em>rate of growth</em> of the population?</p>
-<p><strong>Q</strong>: Which vital rates changed the most from 1983 to 2002?</p>
+<em>Subadult 1:</em> 15 <em>Subadult 2:</em> 15 <em>Subadult 3:</em> 10 <em>Adults:</em> 40</p>
+<p><strong>Q</strong>: What do you notice about this model? Is it still growing? What about the overall <em>rate of growth</em> of the population? 40 <strong>Q</strong>: Which vital rates changed the most from 1983 to 2002?</p>
 <p><strong>Q</strong>: Can you think of any reason for this change?</p>
 <div id="density-dependence" class="section level5">
 <h5>Density-dependence</h5>
 <ol start="4" style="list-style-type: decimal">
 <li>Let’s implement a new process into our model- <strong>density-dependence</strong>!</li>
 </ol>
-<p>We know that when the adult (female) population size was around 5, yearling survival was around 82%</p>
-<p>We also know that when the adult (female) population size was around 40, yearling survival dropped to around 54%</p>
-<p>What is the <strong>linear relationship</strong> between population size and yearling survival? When abundance increased by 35, yearling survival rate decreased from 82% to 0.54% – a total of 28%.</p>
-<p><strong>SLOPE</strong>: For each additional individual in the adult population, yearling survival decreased by 0.8 percent (<span class="math inline">\(=\frac{0.28}{35}\)</span>).</p>
-<p><strong>INTERCEPT</strong>: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be <span class="math inline">\(81.7 + 0.8\cdot 5\)</span>, which is 85.7%.</p>
+<p>We know that when the total (female) population size was around 20, yearling survival was around 82%</p>
+<p>We also know that when the total (female) population size was around 160, yearling survival dropped to around 54%</p>
+<p>What is the <strong>linear relationship</strong> between population size and yearling survival? When abundance increased by 140, yearling survival rate decreased from 82% to 54% – a 28% drop!</p>
+<p><strong>SLOPE</strong>: For each additional individual in the adult population, yearling survival decreased by 0.2 % (<span class="math inline">\(=\frac{0.28}{140}\)</span>).</p>
+<p><strong>INTERCEPT</strong>: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be <span class="math inline">\(81.7 + 0.2\cdot 5\)</span>, which is 82.7%.</p>
 <p>To convert back to a fraction, we divide this linear model by 100!</p>
 <p>So the linear formula for computing yearling survival as a function of adult female abundance should be:</p>
-<p><span class="math inline">\(Surv_{yearling} = \frac{\left ( 85.7 - 0.8*N_{female} \right )}{100}\)</span></p>
+<p><span class="math inline">\(Surv_{yearling} = \frac{\left ( 82.7 - 0.2*N_{female} \right )}{100}\)</span></p>
 <p>Let’s implement this <em>density-dependent process</em> in Insightmaker!</p>
 <ul>
-<li><p>Create a [Link] between female abundance and yearling survival.</p></li>
-<li><p>Open the <em>equation editor</em> for yearling survival, and input the equation above!</p></li>
+<li><p>First, load <a href="https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation">this InsightMaker model</a>. Clone it so you can make edits!</p></li>
+<li><p>Open the <em>equation editor</em> for yearling survival, and input the equation above! Let’s do it together!</p></li>
 </ul>
 <p>Run the model! What do you notice?</p>
+<p>Try running the model for 200 years.</p>
 <p><strong>Q</strong>: Why is this type of model called <strong>density-dependent</strong>?</p>
 </div>
 </div>
 <div id="grizzly-bear-in-class-exercises" class="section level3">
 <h3>Grizzly bear in-class exercises</h3>
 <p><strong>Answer the following questions</strong>:</p>
-<p>NOTE: if necessary, you can clone a density-dependent version of the grizzly model <a href="https://insightmaker.com/insight/77058/Yellowstone-Grizzlies-DD">here</a></p>
+<p>To start off, you can clone a full, density-dependent version of the grizzly model <a href="https://insightmaker.com/insight/162305/Yellowstone-Grizzlies-densdep">here</a></p>
 <ol style="list-style-type: decimal">
-<li><p>What is the <strong>carrying capacity</strong> of this population? NOTE: you may need to run the model for longer than 100 years! NOTE: this is an <strong>emergent property</strong> of our new model!</p></li>
-<li><p>Set all initial abundances to 5 – the values estimated from 2002 to 2011. Run the grizzly bear PVA with and without the density-dependence process. In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? Under which scenario is the <em>conservation outlook</em> best for grizzly bears in Yellowstone park?</p></li>
+<li><p>Set the initial abundances back to the values estimated from 1983 to 2001. Run the model for 200 years. What is the approximate <strong>carrying capacity</strong> of this population? NOTE: this is an <strong>emergent property</strong> of our new model! We didn’t specify carrying capacity, but nonetheless there seems to be a carrying capacity for this population.</p></li>
+<li><p>“Comment out” the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation), and type in the value of yearling survival estimated for the 2002-2011 time period (0.539). This enables you to run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value ‘0.539’; see below).</p></li>
 </ol>
-<p>NOTE: For the <em>density-independent</em> scenario, set the yearling survival rate to 0.54.</p>
-<p>NOTE: you can turn the density dependence process on and off by using the pound symbol to “comment out” the equation. So … if you input the following into the equation editor for yearling survival, you can easily go back and forth between the density-dependent and the density-independent formulations of the model:</p>
-<p>For example, this one is density-independent:</p>
-<pre><code>0.54
-#(85.7-0.8*[Adult])/100</code></pre>
-<p>…and this one is density-dependent:</p>
-<pre><code>#0.54
-(85.7-0.8*[Adult])/100</code></pre>
+<p><strong>Q</strong> In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? (use the ‘sensitivity testing’ tool)</p>
+<p><strong>Q</strong> Under which scenario (with and without density-dependence) is the <em>conservation outlook</em> best for grizzly bears in Yellowstone park?</p>
 <ol start="3" style="list-style-type: decimal">
-<li>For the <em>density-independent</em> model, what is the extinction risk if you changed yearling survival to its <strong>lower confidence limit</strong> in the above table (from 2002-2011)? Does the <em>parameter uncertainty</em> in the above table make a difference for the conservation outlook for this population??</li>
+<li>Given that local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 20 individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population?</li>
 </ol>
-<p>[Bonus question!]. Given that local managers have decided that a viable grizzly bear population should have a risk of extinction of &lt; 5% over 100 years, can you identify a <strong>minimum viable population size (MVP)</strong> for this population?</p>
-<p><strong>HELPFUL HINTS:</strong></p>
-<ul>
-<li><p>All parameters aside from yearling survival should be the same between the two scenarios (so that the presence/absence of the density-dependence process is the only difference between the scenarios). I suggest you use all parameters estimated for the period 2002 to 2011, just to be consistent!</p></li>
-<li><p>Use the “sensitivity testing” option in the “Tools” menu to run multiple simulations (&gt;100 <em>replicates</em>). You can assess extinction risk using the following formula:</p></li>
-</ul>
-<p><span class="math inline">\(\frac{extinctions}{replicates}\)</span></p>
-<p>Where <em>extinctions</em> is the total number of replicates where the abundance declined to zero, and <em>replicates</em> is the total number of independent simulation replicates you ran. Similarly, you can assess the probability of failing to meet an important conervation criterion (e.g., population remaining above MVP) as the fraction of replicates that failed to meet the specified criterion.</p>
+<p>[Bonus question!]. For the <em>density-independent</em> model, what is the extinction risk if you changed yearling survival to its <strong>lower confidence limit</strong> in the above table (from 2002-2011)? Does the <em>parameter uncertainty</em> in the above table make a difference for the conservation outlook for this population??</p>
+<div id="helpful-hints" class="section level4">
+<h4>Helpful hints</h4>
+<div id="commenting-out-the-density-dependence-equation" class="section level5">
+<h5>“commenting out” the density-dependence equation</h5>
+<p>You can turn the density dependence process on and off by using the pound symbol to “comment out” the equation. So … if you input the following into the equation editor for yearling survival, you can easily go back and forth between the density-dependent and the density-independent formulations of the model:</p>
+<p>For example, this one is density-independent:</p>
+<pre><code>0.539
+#0.827-0.002*[Total abundance]</code></pre>
+<p>…and this one is density-dependent:</p>
+<pre><code>#0.539
+0.827-0.002*[Total abundance]</code></pre>
+</div>
+<div id="using-the-sensitivity-testing-tool" class="section level5">
+<h5>using the sensitivity testing tool</h5>
+<p>Use the “sensitivity testing” option in the “Tools” menu to run multiple simulations. You can visually assess the risk of falling below a certain abundance threshold by examining whether a particular quantile (e.g., 95%) of your simulation results (the output from the sensitivity testing tool) falls below a particular threshold (e.g., 20 individuals) over a certain number of years.</p>
+<p>You can compute the risk of extinction or decline more quantitatively as the fraction of replicates that failed to meet the specified criterion. That is, you can divide the total number of simulations falling below the threshold by the total numer of replicates.</p>
 <p><a href="PVA3_421.html">–go to loggerhead PVA–</a></p>
+</div>
+</div>
 </div>
 </div>
 

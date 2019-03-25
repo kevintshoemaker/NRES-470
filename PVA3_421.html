@@ -380,18 +380,15 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -407,7 +404,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Loggerhead PVA</h1>
 <h4 class="author"><em>NRES 421/621</em></h4>
-<h4 class="date"><em>Mar 15, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
@@ -427,7 +424,7 @@ div.tocify {
 <img src="loggerhead2.jpg" />
 
 </div>
-<p>The loggerhead turtle, <em>C. caretta</em>, is a large marine turtle that nests along the Atlantic coast from New Jersey to Texas, but is also found along the Pacific coast and in Hawaii.</p>
+<p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine turtle that nests along the Atlantic coast from New Jersey to Texas, but is also found along the Pacific coast and in Hawaii.</p>
 <div class="figure">
 <img src="loggerhead4.jpg" />
 
@@ -449,7 +446,7 @@ div.tocify {
 
 </div>
 <p>Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.<br />
-Because beaches are popular sites for human recreation and development, arriving female turtles and hatching juveniles face risks including</p>
+Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including</p>
 <ul>
 <li><em>poaching</em> (eggs or adults)</li>
 <li><em>beach erosion</em> or beach fortification to prevent erosion</li>
@@ -469,9 +466,14 @@ Because beaches are popular sites for human recreation and development, arriving
 
 </div>
 <ul>
-<li><p>Moreover, during cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries. While dormant they can be killed by periodic <em>dredging</em> to maintain bays and waterways.</p></li>
-<li><p>Moreover, human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause <em>entanglement</em>, stranding, and drowning.</p></li>
-<li><p>In addition to these primary threats, sea-going juveniles and adults face mortality due to <em>bycatch</em> in longline, hook-and-line, and trap fisheries targeting tuna and other species.</p></li>
+<li>In addition to these primary threats, sea-going juveniles and adults face mortality due to <em>bycatch</em> in longline, hook-and-line, and trap fisheries targeting tuna and other species.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Additional threats</strong></li>
+</ol>
+<ul>
+<li><p>During cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries. While dormant they can be killed by periodic <em>dredging</em> to maintain bays and waterways.</p></li>
+<li><p>Human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause <em>entanglement</em>, stranding, and drowning.</p></li>
 <li><p>Shallow swimming turtles may also collide with <em>boat propellers</em>.</p></li>
 <li><p>Toxins (<em>pesticides and heavy metals</em>) and oil spills may harm turtle physiology and decrease fecundity, but their impact has not been quantified.</p></li>
 <li><p>Finally, although rare in the US, <em>illegal harvest</em> of eggs as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras). Turtle eggs are occasionally seen in open-air markets in Panama.</p></li>
@@ -480,27 +482,27 @@ Because beaches are popular sites for human recreation and development, arriving
 <div id="step-1-building-a-size-structured-model" class="section level3">
 <h3>Step 1: Building a size-structured Model</h3>
 <p>The loggerhead is a long-lived species – sexual maturity often doesn’t occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct <strong>stage classes</strong> defined by body size (carapace (shell) length).</p>
-<p>Once turtle life-stages with similar vital rates have been identified, three pieces of data (<em>transition rates</em>) must be collected to construct the size-structured model:</p>
+<p>Once turtle life-stages with similar vital rates have been identified, three pieces of data (<em>transition rates</em>) must be collected to construct the stage-structured model:</p>
 <ol style="list-style-type: decimal">
-<li>fraction of turtles surviving each year but not advancing to the next larger size-class;</li>
-<li>fraction of turtles surviving each year and advancing to the next larger size-class; and</li>
-<li>average number of eggs produced by females of each size-class per year.</li>
+<li>fraction of turtles surviving each year but not advancing to the next larger size-class (often just called ‘survival’);</li>
+<li>fraction of turtles surviving each year and advancing to the next larger size-class (often called ‘growth’); and</li>
+<li>average number of hatchlings successfully produced by females of each size-class per year, discounted by the probability of surviving each year (often called ‘fecundity’).</li>
 </ol>
 </div>
 <div id="step-2-parameterize-the-model" class="section level3">
 <h3>Step 2: parameterize the model</h3>
 <p>Transition rates for turtles and other species are often estimated on the basis of <em>capture-mark-recapture</em> (CMR) data.</p>
-<p>Here are some estimates, from <a href="Crowder1994.pdf">this paper</a>:</p>
-<p><em>Transition from stage 1-2</em>: 0.675<br />
-<em>Transition from stage 2-3</em>: 0.047<br />
-<em>Transition from stage 3-4</em>: 0.019<br />
-<em>Transition from stage 4-5</em>: 0.061<br />
-<em>Transition from stage 2-2</em>: 0.703<br />
-<em>Transition from stage 3-3</em>: 0.657<br />
-<em>Transition from stage 4-4</em>: 0.682<br />
-<em>Transition from stage 5-5</em>: 0.809<br />
-<em>Transition from stage 4-1</em>: 4.67<br />
-<em>Transition from stage 5-1</em>: 61.90</p>
+<p>Here are some relevant parameters, from <a href="Crowder1994.pdf">this paper</a>:</p>
+<p><em>Transition from stage 1-2 (hatchling to small juvenile)</em>: 0.675<br />
+<em>Transition from stage 2-3 (small to large juvenile)</em>: 0.047<br />
+<em>Transition from stage 3-4 (large juvenile to subadult)</em>: 0.019<br />
+<em>Transition from stage 4-5 (subadult to adult)</em>: 0.061<br />
+<em>Transition from stage 2-2 (stay small juvenile)</em>: 0.703<br />
+<em>Transition from stage 3-3 (stay large juvenile)</em>: 0.657<br />
+<em>Transition from stage 4-4 (stay subadult)</em>: 0.682<br />
+<em>Transition from stage 5-5 (stay adult)</em>: 0.809<br />
+<em>Transition from stage 4-1 (reproduction by subadults)</em>: 4.67<br />
+<em>Transition from stage 5-1 (reproduction by adults)</em>: 61.90</p>
 <p>For this model we will assume no stochasticity or uncertainty in any of these parameters.</p>
 </div>
 <div id="step-3-spatial-structure" class="section level3">
@@ -512,12 +514,12 @@ Because beaches are popular sites for human recreation and development, arriving
 <p>We can project the loggerhead population into the future using <em>matrix multiplication</em>!</p>
 <p>We can do this using any number of tools- including R, Excel, or Insightmaker.</p>
 <p>See the end of this lecture for a review of matrix population models and how they work.</p>
-<p>Since you probably are most familiar with Excel, let’s do it in Excel first! Or if you’d like to do it in R instead, I’ve provided some code to get you started.</p>
+<p>Since you probably are most familiar with Excel, let’s do it in Excel first! Or if you’d like to do it in R instead, I’ve provided some code to get you started! You can download the R code <a href="PVA3_421.R">here</a></p>
 </div>
 </div>
 <div id="population-projection-in-excel" class="section level2">
 <h2>Population projection in Excel</h2>
-<p>You can load the base Excel model <a href="Loggerhead2017.xlsx">here</a></p>
+<p>You can load the base Excel model <a href="Loggerhead2019.xlsx">here</a></p>
 <div id="build-the-baseline-loggerhead-projection-matrix" class="section level4">
 <h4>Build the baseline loggerhead projection matrix</h4>
 <ul>
@@ -528,24 +530,13 @@ Because beaches are popular sites for human recreation and development, arriving
 
 </div>
 <ul>
-<li>Use the transition rates to complete the baseline projection matrix for the loggerhead turtles. For example, the yearly transition probability from large juveniles to large juveniles (<span class="math inline">\(S_3\)</span>) is 0.657. Recall that the transition rates are:</li>
+<li><p>Note that the transition rates are already provided for you in the spreadsheet – in the form of a transition matrix!</p></li>
+<li><p>NOTE: Wherever a transition is not possible, e.g., from hatchlings to large juveniles, you will see a zero in the transition matrix.</p></li>
 </ul>
-<p><em>Transition from stage 1-2 (hatchling to small juvenile)</em>: 0.675<br />
-<em>Transition from stage 2-3 (small to large juvenile)</em>: 0.047<br />
-<em>Transition from stage 3-4 (large juvenile to subadult)</em>: 0.019<br />
-<em>Transition from stage 4-5 (subadult to adult)</em>: 0.061<br />
-<em>Transition from stage 2-2 (stay small juvenile)</em>: 0.703<br />
-<em>Transition from stage 3-3 (stay large juvenile)</em>: 0.657<br />
-<em>Transition from stage 4-4 (stay subadult)</em>: 0.682<br />
-<em>Transition from stage 5-5 (stay adult)</em>: 0.809<br />
-<em>Transition from stage 4-1 (reproduction by subadults)</em>: 4.67<br />
-<em>Transition from stage 5-1 (reproduction by adults)</em>: 61.90</p>
-<ul>
-<li>Wherever a transition is not possible, e.g., from hatchlings to large juveniles, enter a zero in the transition matrix.</li>
-</ul>
-<p><strong>Q</strong>: what is the total survival rate for, e.g., large juveniles?</p>
-<p>Your projection matrix should look like this!</p>
-<pre class="r"><code>projection_matrix &lt;- matrix(
+<p>In R, your projection matrix should look like this!</p>
+<pre class="r"><code>##### specify projection matrix!
+
+projection_matrix &lt;- matrix(
   c(
     0,     0,      0,      4.665,      61.896,
     0.675, 0.703,  0,      0,          0,
@@ -566,7 +557,6 @@ projection_matrix</code></pre>
 ## Large Juv     0.000     0.047     0.657    0.000  0.000
 ## Subadult      0.000     0.000     0.019    0.682  0.000
 ## Adult         0.000     0.000     0.000    0.061  0.809</code></pre>
-<pre><code>## [1] 2000  500  300  300   20</code></pre>
 </div>
 <div id="forecast-the-population-into-the-future-in-excel" class="section level4">
 <h4>Forecast the population into the future in Excel</h4>
@@ -580,16 +570,20 @@ projection_matrix</code></pre>
 <li>300 size-class 4 (Subadults)</li>
 <li>20 size-class 5 (Adults)</li>
 </ul>
-<p>So your EXCEL file should look something like the one below (but with the transition rates filled in!):</p>
+<p>Here’s how it looks in R:</p>
+<pre class="r"><code>Abundance_year0 &lt;- c(2000,500,300,300,20)   # vector of initial abundances
+Abundance_year0</code></pre>
+<pre><code>## [1] 2000  500  300  300   20</code></pre>
+<p>So your EXCEL file should look something like the one below:</p>
 <div class="figure">
 <img src="loggerhead7.png" />
 
 </div>
-<p>Using the ‘size-distribution vector’, we can project the population size of each size-class next year using the matrix formula: <span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}\)</span> .</p>
+<p>Using the ‘size-distribution vector’, we can project the population size of each size-class next year using the matrix formula: <span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}\)</span>. (remember to see below for a refresher of matrix multiplication).</p>
 <p>This formula calculates the size distribution next year (i.e., in year <em>t + 1</em>) based on the projection matrix <span class="math inline">\(\mathbf{A}\)</span> and the size distribution this year <span class="math inline">\(\mathbf{N}_{t}\)</span>.</p>
 <p>For example, to calculate the first row of [n]t +1, the number of hatchlings:</p>
 <p><em>hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42</em></p>
-<p>We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector. The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for.</p>
+<p>We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector. The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for. Let’s do this together!</p>
 <p><strong>Q</strong>: Using actual numbers as for hatchlings above, write out the equation for calculating the number of small juveniles (sm juv) in year 1 based on <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{N}_{0}\)</span>:</p>
 <p><strong>Number of small juveniles in year 1 = </strong></p>
 <p>Now we can enter formulas in Excel to calculate the stage distribution vector for year 1.</p>
@@ -599,7 +593,7 @@ projection_matrix</code></pre>
 <p>And the projected number of small juveniles (SJ) in year 1 might look like this:</p>
 <pre><code>    = B$5*B12 + C$5*C12 + D$5*D12 + E$5*E12 + F$5*F12</code></pre>
 <p><strong>Q</strong>: What is the formula for the projected number of large juveniles in year 1?</p>
-<p>Finally, create an additional formula in (f) [cells H12-H13] which calculates the total population size in a year (the sum of all size-classes):</p>
+<p>Finally, create an additional formula in cells H12-H13 which calculates the total population size in a year (the sum of all size-classes):</p>
 <p>In Excel, this will look something like this:</p>
 <pre><code>=SUM(B12:F12)</code></pre>
 <p>You should note two things about the formulas:</p>
@@ -611,7 +605,9 @@ projection_matrix</code></pre>
 <p>ADDITIONAL NOTE: If your data are in different columns and rows than described above, you will not be able to copy the above formulas exactly, as they will not be referring to the proper cells in your file. So make sure your formulas are correct for your particular EXCEL file.</p>
 <p><strong>Q</strong>: Use your [A] matrix and skills in EXCEL to project the loggerhead population 100 years in the future. This will require dragging formulas down. This is equivalent to iterating (i.e., repeating) the matrix multiplication process 100 times.</p>
 <p>Your results should look similar to this (which was done in R):</p>
-<pre class="r"><code>nYears &lt;- 100                                            # set the number of years to project
+<pre class="r"><code># Run the matrix projection model!
+
+nYears &lt;- 100                                            # set the number of years to project
 TMat &lt;- projection_matrix                               # define the projection matrix
 InitAbund &lt;- Abundance_year0                            # define the initial abundance
 
@@ -628,12 +624,12 @@ for(s in 1:5){
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
-<p><img src="PVA3_421_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="PVA3_421_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 </div>
 <div id="projecting-the-loggerhead-population-in-insightmaker" class="section level2">
 <h2>Projecting the loggerhead population in InsightMaker</h2>
-<p>First, clone the baseline loggerhead PVA model <a href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">here</a></p>
+<p>First, clone the baseline loggerhead PVA model <a href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">here</a>.</p>
 <p>Hit “Simulate”. Make sure that the model results look the same as the above figure! If not, make sure the parameters are correct!</p>
 <p>NOTE: here we use the term “survival” to refer to staying in the same stage class, and “growth” to refer to moving on to the next life stage.</p>
 <p>Look over the model, and make sure that you understand the inner workings!</p>
@@ -643,8 +639,8 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quo
 <ol style="list-style-type: decimal">
 <li>Improve fecundity (transition rates to the hatchling stage) via <em>nest-site protection</em>!
 <ul>
-<li>Improve by 50%</li>
-<li>Improve by 100%</li>
+<li>Improve fecundity to 1.5X the current value</li>
+<li>Double fecundity (2X the current value)</li>
 </ul></li>
 <li>Improve hatchling survival via <em>nest monitoring</em>
 <ul>
@@ -653,13 +649,13 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quo
 </ul></li>
 <li>Improve large juvenile survival using <em>Turtle Excluder Devices (TEDs)</em>
 <ul>
-<li>Improve by 15%</li>
-<li>Improve by 25%</li>
+<li>Increase by 15%</li>
+<li>Increase by 25%</li>
 </ul></li>
 <li>Improve adult/subadult survival by <em>restricting longline fisheries</em>.
 <ul>
-<li>Improve by 5%</li>
-<li>Improve by 10%</li>
+<li>Increase by 5%</li>
+<li>Increase by 10%</li>
 </ul></li>
 </ol>
 <p>NOTE: to alter parameters by (e.g.) 10% you can open the equation window and multiply the original parameter value by 1.1.</p>
@@ -764,7 +760,7 @@ for(s in 1:3){
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=paste(&quot;Stage &quot;,seq(1:nrow(TMat))))  # put a legend on the plot</code></pre>
-<p><img src="PVA3_421_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="PVA3_421_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
 </div>
