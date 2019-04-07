@@ -1,7 +1,7 @@
 ---
-title: "Metapopulations!"
+title: "Metapopulations"
 author: "NRES 470/670"
-date: "March 30, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -20,127 +20,127 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 **what** The exam will cover:
 
-- Everything from the first midterm
-- Matrix population models
-- Stochasticity and Uncertainty, including [Lande 1992](lande.pdf), [Regan 2002](Regan_2002.pdf) and all material covered in lecture and lab.
-- Small-population paradigm and declining-population paradigm, including [Beissinger and Westphal 1998](beissinger1.pdf), [Caughley 1988](caughley1.pdf), and and all material covered in lecture and lab.  
-- Individual-based models (IBM), inlcluding Ch. 10 of "Beyond Connecting the Dots" and all material covered in lecture and lab.
-- Metapopulations, including Chapter 4 of the Gotelli book, and all material covered in lecture and lab. Suggested reading: [Griffin et al. 2008](griffin1.pdf).   
+- Everything from the first midterm      
+- Matrix population models, including Chapter 3 of Gotelli       
+- Stochasticity and uncertainty        
+- Small-population paradigm and declining-population paradigm        
+- Individual-based models (IBM)            
+- Metapopulations, including Chapter 4 of Gotelli, and all material covered in lecture and lab through today's lecture!       
     
 *The exam will consist of a mixture of multiple-choice and short-answer questions.*  
 
 ## Metapopulations
 
-Metapopulation ecology remains one of the most dynamic and active areas of population ecology - both applied and theoretical!
+Metapopulation ecology remains one of the most dynamic and active areas of population ecology!
 
-A **metapopulation** is a *spatially structured* population. What does that mean??
+Broadly speaking, a **metapopulation** is just a *spatially structured* population.
 
-1. Just like with an age-structured population, in which vital rates and abundances can vary by age or stage, _vital rates and abundances can vary over space_. Some areas might have better habitat, with higher overall population growth rates! On the other hand, some areas might have poor habitat- and these areas may be associated with lower vital rates...
+Now that we are thinking about animals living in particular areas in space, we need to start thinking about **movements** as well! Patches in a metapopulation are connected via **dispersal**. If there were no *connectivity* (dispersal among patches), it wouldn't really be a metapopulation, but rather a set of isolated populations that you could model independently.   
 
-2. Now that we are thinking about animals living in particular areas in space, we need to start thinking about **movements** as well! In a metapopulation, we often think about **dispersal** among populations. This dispersal process allows us (finally!) to think about the whole "BIDE" equation!
+Including a dispersal process allows us (finally!) to think about the whole "BIDE" equation!      
 
 $\Delta N = B + I - D - E$
 
 ## What is a metapopulation?
 
-In classical *metapopulation ecology*, we are generally considering a **landscape** with a certain number of habitable **patches**.  
+In classical *metapopulation ecology*, we are generally considering a **landscape** with a certain number of habitable **patches** (also called 'subpopulations'). 
+
+A metapopulation is simply a *population of patches*, each of which may or may not be occupied by a species of interest at a given point in time. 
 
 ![](patch1.jpg)
 
-A metapopulation is simply a *population of populations*. 
+To simplify, we often assume that all habitat areas outside a patch are completely unsuitable.   
 
-To reduce confusion, each distinct component of a metapopulation is often called a *subpopulation*.  
+We also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable.   
 
-Subpopulations are connected via **dispersal**. If there were no *connectivity* (movement among subpopulations), it wouldn't really be a metapopulation.  
+Instead of keeping track of the individuals in each patch ($N$), we often just keep track of the fraction of occupied patches in our landscape ($f$!
+
+Instead of keeping track of the dispersal of indviduals among patches, we only consider the colonization of unoccupied (empty) patches via immigration ($I$) and the "rescue effect" (immigration preventing extinction of a patch; see below). 
 
 ![](MP2.gif)
 
-Metapopulation ecology generally focuses on the case where there is *some* dispersal, but not complete **panmyxia**. 
+Metapopulation ecology generally focuses on the case where there is *some* dispersal, but not complete **panmixia**. 
 
 ![](MP1.jpg)
 
-Although the term "metapopulation" is often used to refer to models where we don't care about abundance (we only consider **occupancy** - like the models in the Gotelli chapter on metapopulations), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model. 
+Although the term "metapopulation" is often used to refer to models where we don't care about abundance (we only consider **patch occupancy** - like the models in Gotelli Chapter 4), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model.     
 
-We will have a chance to use a metapopulation model in lab that is much more complex than the models in Gotelli!
+We will have a chance to use a metapopulation model in lab that is much more complex than the models in Gotelli Chapter 4!
 
 [Link to metapopulation model with explicit abundance](https://insightmaker.com/insight/74948/Agent-based-metapopulation-model)
 
-Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends. 
 
-**Q**: Is it still a metapopulation if there is no dispersal among patches? 
-
-**Q**: What about complete dispersal?
-
-**Q**: Is it still a metapopulation if there are no local extinctions?
-
-
-## "Classical" metapopulation
+## "Classical" metapopulation models   
 
 The simplest type of spatially structured population model is the "classical" metapopulation model. 
 
-The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski) among others.  
+The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski) among others.    
 
-In a classical metapopulation, patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.
+In a classical metapopulation, patches are either **occupied** (coded as 1) or not (coded as 0) at any given point in time. We don't consider abundance ($N$) in these models- we just keep track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation at each time step.
 
-That is, the [Stock] we are studying now is not the total number of individuals but the total number of occupied patches (or the fraction of patches occupied)!
+That is, the [Stock] we are studying now is NOT the total number of individuals but instead it is the total number of occupied patches (or the fraction of patches occupied)!
 
 Instead of investigating population dynamics, we are investigating **metapopulation dynamics**. That is, how the number of occupied patches (or the fraction of patches occupied) changes over time.
+
+Under the classical model, it NOT a metapopulation unless there are local extinctions!
 
 **Q**: how does a metapopulation grow?
 
 **Q**: how does a metapopulation shrink?
 
-**Q**: what is the equivalent of demographic stochasticity in a metapopulation model?
+**Q**: what is the equivalent of demographic stochasticity in a metapopulation model? [tophat]
 
 **colonization** is the process of a patch transitioning from unoccupied to occupied!
 
-**Q**: How can a patch become colonized? The answer is **immigration** of course. That part of the "BIDE" equation that we have been ignoring up until now! 
+How can a patch become colonized? The answer is **immigration** of course. That part of the "BIDE" equation that we have been ignoring up until now! 
 
 **extirpation** (or extinction) is the process of a patch transitioning from occupied to unoccupied.
 
-**regional (or global) extinction** represents extinction of all populations in the metapopulation. 
+**regional (or global) extinction** represents extinction (extirpation) of all patches in the metapopulation. 
 
 More formally, here are some terms we will consider:
 
-$I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate). 
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy rate**. This is the primary [Stock] we model in a classical metapopulation model.   
 
-$E$ is the total fraction of patches that are extirpated per time period (extirpation rate).
+$I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate).   
 
-$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy rate**
+$E$ is the total fraction of patches that are extirpated per time period (extirpation rate).    
 
-Therefore, the change in occupancy can be expressed as:
+
+Therefore, the change in occupancy can be expressed as: 
 
 $\Delta f = I - E$
 
-$p_i$ is the probability of colonization for any given (non-occupied) population.
+$p_i$ is the probability of colonization for any given (non-occupied) patch.
 
-$p_e$ is the probability of extinction for any given (occupied) population.
+$p_e$ is the probability of extinction for any given (occupied) patch.
 
-Now that we have the basic terms defined, we can build a basic model of metapopulation dynamics! Refer to the [metapopulation lab](LAB6.html) for more details!
+Now that we have the basic terms defined, we can build a basic model of metapopulation dynamics! We will do this in lab- refer to the [metapopulation lab](LAB6.html) for more details!
 
 ### Assumptions of the classical metapopulation model:
 
-- Homogeneous patches (all patches are considered equal- they do not differ in size or quality. Also differences in habitat quality or spatial context within patches are ignored).
-- Time-invarying extinction and colonization rates (fundamental parameters are constant across time).
-- Extinction and colonization are insensitive to spatial context (spatial context, or "neighborhood effects", do not affect $p_e$ and $p_i$).
-- No time lags (metapopulation growth responds instantaneously to any changes in $f$, $p_e$ and $p_i$).
-- Very large number of patches (even when the fraction of occupied patches is infinitely small, the classical metapopulation still persists!)
+- Homogeneous patches (all patches are considered equal and interchangeable- they do not differ in size or quality -- any differences in habitat quality or spatial context within patches are ignored).     
+- Extinction and colonization are insensitive to spatial context (spatial context, or "neighborhood effects", do not affect $p_e$ and $p_i$).          
+- No time lags (metapopulation growth responds instantaneously to any changes in $f$, $p_e$ and $p_i$).     
+- Very large number of patches (even when the fraction of occupied patches is very small, the classical metapopulation still persists!). That is, global extinction is not possible!    
+
+We will start by making these assumptions, but then we will "relax" some of them!
 
 #### Variant #1: island-mainland model
 
 Colonization occurs via immigration from a constant external source -- a constant **propagule rain**.
 
-This is the simplest metapopulation model. $p_i$ and $p_e$ are fixed, totally constant.
+This is the simplest metapopulation model. $p_i$ and $p_e$ are constant.
 
 #### Variant #2: internal colonization
 
-Now, colonization can only happen via immigration from within the metapopulation itself. So when few populations are colonized, the colonization probability is low because of a lack of potential immigrants within the metapopulation. 
+Now, colonization can only happen via immigration from within the metapopulation itself. So when a small fraction of patches are colonized, the colonization probability is low because of a lack of potential immigrants within the metapopulation. 
 
 $p_i = i\cdot f$
 
 $i$ represents the strength of internal immigration (how much the probability of colonization increases with each new occupied patch in the metapopulation.
 
-Another way to think of $i$ in this model is the maximum rate of successful colonization (when nearly all patches are occupied).
+Another way to think of $i$ in this model is the maximum rate of successful colonization of an unoccupied patch when nearly all patches in the metapopulation are occupied.
 
 #### Variant #3: rescue effect. 
 
@@ -154,15 +154,15 @@ $e$ represents the strength of the rescue effect. More to the point- $e$ represe
 
 ### Dynamic stability
 
-In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equlibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the size of the metapopulation is relatively stable and not at risk of **regional extinction**!
+In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equlibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the size of the metapopulation is relatively stable and not at risk of **regional (or global) extinction**!
 
 The concept of metapopulation stability- in which extinctions and colonizations balance out - has much in common with the dynamic stability of a single population at carrying capacity - in which any given individual could die at any given time, but deaths and births approximately balance out!
 
 ### Spreading the risk!
 
-In the classical metapopulation models, we assumed a very large number of patches, so there was no real chance of global extinction. But most real metapopulations are small enough such that we need to think about global extinction. 
+In the classical metapopulation models, we assumed a very large number of patches, so there was no real chance of regional/global extinction. But most real metapopulations are small enough such that we often need to consider the risk of global extinction.
 
-Let's consider a system in which a species occupies only a single patch, and there is a probability of extinction $p_e$ of 0.15 per year. 
+Let's consider a system in which a species occupies a single patch, and there is a probability of extinction $p_e$ of 0.15 per year. 
 
 **Q**: What is the probability of regional extinction after 10 years? 
 
@@ -186,7 +186,7 @@ $(1-p_e^5)^{10}$
 
 _This works out to be effectively zero!!!_
 
-**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. 
+**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. [tophat] 
 
 ## Sources and sinks!
 
@@ -196,21 +196,23 @@ One important concept related to metapopulations is that of **source-sink dynami
 
 In the real world, patches vary in size and quality. That is, the assumption of homogeneity (inherent to the classical metapopulation framework) is unlikely to be met in most real metapopulations! 
 
-In fact, some patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., $r$ below zero, or $\lambda$ less than 1). Other patches may represent perfect conditions, in which population growth is highly positive, at least at low densities!
+Just like with an age-structured population, where vital rates and equilibrium abundance can vary by age or size-class, _vital rates and abundances can vary over space_. Some areas might have better habitat, with higher overall population growth rates! On the other hand, some areas might have poor habitat- and these areas may be associated with lower vital rates...
 
-A **source population** is defined as a patch that provides a *net donation of immigrants** to nearby patches with lower-quality habitat (i.e., sink populations or pseudo-sink populations). A source population should persist indefinitely even in isolation. 
+In fact, some patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., $r$ below zero, or $\lambda$ less than 1). Other patches may represent perfect conditions for population growth (at least if the habitat isn't too crowded)!
 
-A **sink population** is defined as a patch that *would go exinct* if it were not for the constant input of immigrants from nearby **source populations**.
+A **source population** is defined as a patch that provides a *net donation of immigrants** to nearby patches with lower-quality habitat (i.e., sink populations or pseudo-sink populations). A source population should persist indefinitely, even in isolation. 
+
+A **sink population** is defined as a patch that *would go extinct* if it were not for the constant input of immigrants from nearby **source populations**.
 
 **Q**: how is the concept of a sink population related to the *rescue effect*?
 
-A **pseudo-sink population** is defined as a patch that is *artifically augmented* by immigrants from nearby source populations. In isolation (in the absence of a nearby source population) a psuedo-sink would not go extinct (a true sink would go extinct!), but would settle down at a much lower equilibrium abundance (carrying capacity). 
+A **pseudo-sink population** is defined as a patch that is *artifically augmented* by immigrants from nearby source populations. In isolation (in the absence of a nearby source population) a psuedo-sink would not go extinct (a true sink would go extinct!), but would settle down at a much lower equilibrium abundance (carrying capacity). That is, a pseudo-sink *maintains an equlibrium abundance above its carrying capacity due to the influx of immigrants from one or more nearby source populations*.
 
 ## In-class exercise: sources and sinks!
 
 In this exercise, we will explore source-sink dynamics!
 
-1. First click on this [link](https://insightmaker.com/insight/107587/Source-Sink-2) and clone this *population-based source-sink model* in InsightMaker. This model represents four different patches- one source population, and three sink populations. The sink populations are located at various distances from the source population. You can imagine the following spatial configuration:
+1. First click on this [link](https://insightmaker.com/insight/107587/Source-Sink-2) and clone this *population-based source-sink model* in InsightMaker. This model represents a four-patch metapopulation with one large source population and three smaller sink populations. The sink populations are located at varying distances from the source population. Here is the approximate *spatial configuration* of this metapopulation:
 
 ![](sourcesink1.png)
 
@@ -226,26 +228,26 @@ K for nearby sink: 50
 K for mid-range sink: 25    
 K for distant sink: 15
 Maximum dispersal rate: 10% per year (0.1)
-Lambda (discrete growth rate) for sink populations: 0.8     
-Lambda for source population: 2.1
+Lambda (discrete growth rate) for sink populations [lambda bad]: 0.8     
+Lambda for source population [lambda good]: 2.1
 
-NOTE: maximum dispersal rate (in this model) is the rate of dispersal between neighboring patches. Patches that are located farther apart have dispersal rates that are computed as a fixed fraction of the maximum rate. 
+NOTE: maximum dispersal rate (in this model) is the rate of dispersal between neighboring patches. Patches that are located farther apart have dispersal rates that are computed as a fraction of the maximum rate. 
 
 3. Run the model, view the results and make sure you understand how the model works.
 
-**Q**: in this scenario, a fixed fraction of each population disperses to each other population each year. Is this biologically realistic? Can you think of biologically realistic scenarios that would lead to different dispersal patterns? 
+**Q**: in this scenario, a constant fraction of each population disperses to each neighboring patch each year. Is this realistic? Can you think of real-world scenarios that would lead to different dispersal patterns? 
 
 **Q**: what data sources might be helpful in understanding dispersal rates in a metapopulation?
 
-4. Change the dispersal rate to zero and run the model. What happens? Is this realistic?
+4. Change the dispersal rate to zero and run the model. What happens? Is this realistic?     
 
-5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the lowest dispersal rate that generally ensures that the distant sink is consistently occupied?
+5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is consistently (continuously) occupied (make sure the lower bound of the 95% region for abundance in this patch is above 2 for all years)? [tophat]
 
-6. Change the dispersal rate back to 10%. Now change the population growth rate in the source population to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What if the growth rate in the source patch was set to 1? 
+6. Change the dispersal rate back to 10%. Now reduce the population growth rate in the source population to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population? 
 
 #### A pseudo-sink!
 
-7. Change the source lambda back to 2.1. Now change the sink lambda to 1.1. Also, change the max dispersal rate to 25%. What is the approximate equilibrium abundance of the distant sink? How does this relate to its carrying capacity? Make a figure (using InsightMaker) that illustrates the abundance of the distant sink vs. carrying capacity (over time). How does this illustrate the concept of a **pseudo-sink**. 
+7. Change the source lambda back to 2.1. Now change the sink lambda to 1.1 and the max dispersal rate to 25%. What is the approximate equilibrium abundance of the distant sink? How does this relate to its carrying capacity? Generate a figure (using InsightMaker) that illustrates the abundance of the distant sink vs. carrying capacity (over time). How does this figure illustrate the concept of a **pseudo-sink**. 
 
 #### An ecological trap!
 
@@ -253,7 +255,7 @@ NOTE: maximum dispersal rate (in this model) is the rate of dispersal between ne
 
 NOTE: you may want to clone your model now to enable you to easily go back and forth between the "ecological trap" model and the "source-sink" model.
 
-> The nearby sink patch is now extremely attractive to our focal species- since it contains abundant food resources and what seems like good shelter! However, in this habitat there is also a novel, introduced disease that the species is unable to detect. Therefore, dispersal rates to the sink habitat are very high, but mortality rates are also very high.    
+> The nearby sink patch is now extremely attractive to our focal species- since it contains abundant food resources and what seems like good shelter! However, in this habitat there is also a novel, introduced predator that the species is unable to detect. Therefore, dispersal rates to the sink habitat are very high, but mortality rates are also very high.    
 
 To force a disproportionate number of individuals into the nearby sink, open the equation editor for the flow from the source to the nearby sink. Change the first line to read:
 
@@ -273,9 +275,9 @@ random code
 /*
 ```
 
-This will force 50% of the source population to try to move to the sink habitat each year! Nearly all individuals that are in the sink habitat try to stay. 
+This will force 50% of the source population to try to move to the sink habitat each year! Nearly all individuals that are in the sink habitat will attempt to stay there. 
 
-Also, change the lambda for the nearby sink to 0.25, (meaning 75% of the sink population dies each year due to disease). To do this, replace the [lambda bad] term in the births/deaths flow for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
+Also, change the lambda for the nearby sink to 0.25, (meaning 75% of the sink population dies each year due to predation). To do this, replace the [lambda bad] term in the births/deaths flow for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
 
 ```
 growth <- [nearby sink]*Ln(0.25)

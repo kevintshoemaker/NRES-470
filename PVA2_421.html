@@ -411,7 +411,7 @@ div.tocify {
 
 <div id="pva-for-yellowstone-grizzly-bears" class="section level2">
 <h2>PVA for Yellowstone grizzly bears!</h2>
-<p>By the time we meet on Thursday, March 28 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and use this PVA to do some management-relevant <strong>scenario testing</strong>.</p>
+<p>In today’s class we will use a PVA to do some management-relevant <strong>scenario testing</strong> for the grizzly bear population in Yellowstone National Park.</p>
 <div class="figure">
 <img src="grizzly1.jpg" />
 
@@ -432,31 +432,33 @@ div.tocify {
 <h4>Step 2: parameterize!</h4>
 <p>Let’s use this table to parameterize the population vital rates in our model!</p>
 <p>This table actually has <em>two alternative parameterizations</em>, one summarized from data collected the period from 1983 through 2001, and the other representing data from the period from 2002-2011.</p>
-<p>NOTE: we are not paying any attention to males! Population models are often <em>female-only</em>, since females are the primary drivers of population dynamics.</p>
+<p>NOTE: we are not paying any attention to males! Population models are often <em>female-only</em>, since females are usually the primary drivers of population dynamics.</p>
 <div class="figure">
 <img src="grizzly_table1.jpg" />
 
 </div>
 <p>The table is from <a href="YellowstoneScience-BearIssue.pdf">this scientific report</a> (<a href="https://www.nps.gov/yell/learn/upload/YellowstoneScience-BearIssue.pdf">alternative link</a>)</p>
-<p>What about population size? For any simulation we always need to initialize abundance!</p>
+<p>What about population size?</p>
 <p>From <a href="schwarz_grizzly1.pdf">Schwartz et al 2006</a> we know that:</p>
 <ol style="list-style-type: decimal">
-<li>Adult (reproductive) females represent approximately a quarter (25%) of the total population.</li>
-<li>Total abundance of adult females in the greater Yellowstone park area (solid squares plus the open triangles) was 5 to 10 in 1983 and 40 to 50 in 2001/2002</li>
+<li>Adult (reproductive) females represent approximately a half (50%) of the total female population.</li>
+<li>Total abundance of adult females in the greater Yellowstone park area (solid squares plus the open triangles) was ca. 10 in 1983 and ca. 40 in 2001/2002</li>
 </ol>
 <div class="figure">
 <img src="grizzly_table2.jpg" />
 
 </div>
-<p>Let’s use the lower bound for initial (1983) abundances (all female!) to initialize our model:</p>
-<p><em>Cubs:</em> 5<br />
-<em>Yearlings:</em> 5<br />
-<em>Subadult 1:</em> 2 <em>Subadult 2:</em> 2 <em>Subadult 3:</em> 2 <em>Adults:</em> 5</p>
+<p>Let’s use the initial (1983) abundances (all female!) to initialize our model:</p>
+<p><em>Cubs:</em> 3<br />
+<em>Yearlings:</em> 3<br />
+<em>Subadult 1:</em> 2<br />
+<em>Subadult 2:</em> 2<br />
+<em>Subadult 3:</em> 2<br />
+<em>Adults:</em> 10</p>
 <p>Take a few minutes to parameterize the model, using the 1983 to 2001 estimates!</p>
 </div>
-<div id="step-3-spatial-structure" class="section level4">
-<h4>Step 3: Spatial structure</h4>
-<p>We are ignoring spatial structure for this PVA!</p>
+<div id="step-3-spatial-structure-not-applicable-here" class="section level4">
+<h4>Step 3: Spatial structure (not applicable here)</h4>
 </div>
 <div id="step-4-simulate" class="section level4">
 <h4>Step 4: Simulate!</h4>
@@ -465,23 +467,27 @@ div.tocify {
 <li>Try running the model with the parameterization we discussed above. What do you notice? Is the population growing?</li>
 </ol>
 <p><em>REALITY CHECK</em>:</p>
-<p><strong>Q</strong>: Given that the population of adult females is known to have increased to around 30 individuals by the year 2002, is this model realistic??</p>
+<p><strong>Q</strong>: Given that the population of adult females is known to have increased to around 40 individuals by the year 2002, is this model realistic??</p>
 <ol start="2" style="list-style-type: decimal">
 <li>What if we configure the model to run for 100 years? What happens now?</li>
 </ol>
-<p><strong>Q</strong>: <em>NOW</em> do you think this is biologically realistic? Why or why not?</p>
+<p><strong>Q</strong>: <em>NOW</em> do you think this model is biologically realistic? Why or why not?</p>
 <ol start="3" style="list-style-type: decimal">
-<li>Let’s change the parameterization to reflect the vital rates observed for the period 2002 to 2011 in the table:</li>
+<li>Now let’s change the parameterization to reflect the vital rates observed for the period 2002 to 2011 in the table:</li>
 </ol>
 <div class="figure">
 <img src="grizzly_table1.jpg" />
 
 </div>
-<p>In 2002 the population was more like 40 females- so let’s use the following parameterization!</p>
-<p><em>Cubs:</em> 40<br />
-<em>Yearlings:</em> 40<br />
-<em>Subadult 1:</em> 15 <em>Subadult 2:</em> 15 <em>Subadult 3:</em> 10 <em>Adults:</em> 40</p>
-<p><strong>Q</strong>: What do you notice about this model? Is it still growing? What about the overall <em>rate of growth</em> of the population? 40 <strong>Q</strong>: Which vital rates changed the most from 1983 to 2002?</p>
+<p>In 2002 the population was more like 40 females- so let’s use the following initialization!</p>
+<p><em>Cubs:</em> 15<br />
+<em>Yearlings:</em> 15<br />
+<em>Subadult 1:</em> 5<br />
+<em>Subadult 2:</em> 5<br />
+<em>Subadult 3:</em> 5<br />
+<em>Adults:</em> 40</p>
+<p><strong>Q</strong>: What do you notice about this model? Is the population still growing? What about the overall <em>rate of growth</em> of the population?</p>
+<p><strong>Q</strong>: Which vital rates changed the most from 1983 to 2002?</p>
 <p><strong>Q</strong>: Can you think of any reason for this change?</p>
 <div id="density-dependence" class="section level5">
 <h5>Density-dependence</h5>
@@ -489,53 +495,60 @@ div.tocify {
 <li>Let’s implement a new process into our model- <strong>density-dependence</strong>!</li>
 </ol>
 <p>We know that when the total (female) population size was around 20, yearling survival was around 82%</p>
-<p>We also know that when the total (female) population size was around 160, yearling survival dropped to around 54%</p>
-<p>What is the <strong>linear relationship</strong> between population size and yearling survival? When abundance increased by 140, yearling survival rate decreased from 82% to 54% – a 28% drop!</p>
-<p><strong>SLOPE</strong>: For each additional individual in the adult population, yearling survival decreased by 0.2 % (<span class="math inline">\(=\frac{0.28}{140}\)</span>).</p>
-<p><strong>INTERCEPT</strong>: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 5 adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would be <span class="math inline">\(81.7 + 0.2\cdot 5\)</span>, which is 82.7%.</p>
-<p>To convert back to a fraction, we divide this linear model by 100!</p>
+<p>We also know that when the total (female) population size was around 80, yearling survival dropped to around 54%</p>
+<p>What is the <strong>linear relationship</strong> between population size and yearling survival? When abundance increased by 60, yearling survival rate decreased from 82% to 54% – a 28% drop!</p>
+<p><strong>SLOPE</strong>: For each additional individual in the adult population, yearling survival decreased by 0.47% (<span class="math inline">\(=\frac{0.28}{60}\)</span>).</p>
+<p><strong>INTERCEPT</strong>: This can be interpreted as the expected yearling survival when there are no adults in the population. When there were 10 female adults, yearling survival was 81.7%. If there were 0 individuals in the adult population, yearling survival would (theoretically) be <span class="math inline">\(81.7 + 0.47\cdot 10\)</span>, which is 86.4%.</p>
 <p>So the linear formula for computing yearling survival as a function of adult female abundance should be:</p>
-<p><span class="math inline">\(Surv_{yearling} = \frac{\left ( 82.7 - 0.2*N_{female} \right )}{100}\)</span></p>
+<p><span class="math inline">\(Surv_{yearling} = \frac{\left ( 86.4 - 0.47*N_{female} \right )}{100}\)</span></p>
+<p>NOTE: we divide by 100 to convert the result from a percentage to a fraction</p>
 <p>Let’s implement this <em>density-dependent process</em> in Insightmaker!</p>
 <ul>
 <li><p>First, load <a href="https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation">this InsightMaker model</a>. Clone it so you can make edits!</p></li>
 <li><p>Open the <em>equation editor</em> for yearling survival, and input the equation above! Let’s do it together!</p></li>
 </ul>
 <p>Run the model! What do you notice?</p>
-<p>Try running the model for 200 years.</p>
+<p>Try running the model for 100 years.</p>
 <p><strong>Q</strong>: Why is this type of model called <strong>density-dependent</strong>?</p>
 </div>
 </div>
 <div id="grizzly-bear-in-class-exercises" class="section level3">
 <h3>Grizzly bear in-class exercises</h3>
-<p><strong>Answer the following questions</strong>:</p>
+<p>Working in groups is encouraged!!</p>
 <p>To start off, you can clone a full, density-dependent version of the grizzly model <a href="https://insightmaker.com/insight/162305/Yellowstone-Grizzlies-densdep">here</a></p>
 <ol style="list-style-type: decimal">
-<li><p>Set the initial abundances back to the values estimated from 1983 to 2001. Run the model for 200 years. What is the approximate <strong>carrying capacity</strong> of this population? NOTE: this is an <strong>emergent property</strong> of our new model! We didn’t specify carrying capacity, but nonetheless there seems to be a carrying capacity for this population.</p></li>
-<li><p>“Comment out” the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation), and type in the value of yearling survival estimated for the 2002-2011 time period (0.539). This enables you to run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value ‘0.539’; see below).</p></li>
+<li><p>Make sure the initial abundances are set at the estimated values for 1983 to 2001, and the model is set to run for 100 years.</p></li>
+<li><p>“Comment out” the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (0.539). The “commenting out” trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value ‘0.539’; see below).</p></li>
 </ol>
-<p><strong>Q</strong> In each case (with and without density-dependence), what is the approximate 95% confidence interval for the total population abundance after 100 years? (use the ‘sensitivity testing’ tool)</p>
-<p><strong>Q</strong> Under which scenario (with and without density-dependence) is the <em>conservation outlook</em> best for grizzly bears in Yellowstone park?</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Given that local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 20 individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population?</li>
-</ol>
-<p>[Bonus question!]. For the <em>density-independent</em> model, what is the extinction risk if you changed yearling survival to its <strong>lower confidence limit</strong> in the above table (from 2002-2011)? Does the <em>parameter uncertainty</em> in the above table make a difference for the conservation outlook for this population??</p>
-<div id="helpful-hints" class="section level4">
-<h4>Helpful hints</h4>
+<p><strong>Please write down your responses to the following questions:</strong>:</p>
+<p><strong>Question 2.1</strong> What is the approximate <strong>carrying capacity</strong> (K) of the Yellowstone grizzly population? NOTE: this is an <strong>emergent property</strong> of our new, density-dependent model! We didn’t specify carrying capacity, but it <em>emerges</em> out of the model.</p>
+<p><strong>Question 2.2</strong> In each case (with density-dependence and without density-dependence; i.e., yearling survival = 0.539), what is the approximate 90% confidence interval for the total population abundance after 100 years? (hint: use the ‘Sensitivity Testing’ tool; see below for more details)</p>
+<p>Before answering the next question, comment out the density-dependence equation and set yearling survival to its lowest possible value from Table 1 (above; 0.346). This is an example of a <strong>worst-case scenario</strong></p>
+<p><strong>Question 2.3</strong> Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the 6 age-classes) such that you can’t reduce the population any further without having an unacceptable (&gt;5%) risk of falling below 30 individuals over the next 100 years.</p>
+<div id="helpful-hints-to-answer-the-grizzly-bear-questions" class="section level4">
+<h4>Helpful hints to answer the grizzly bear questions</h4>
 <div id="commenting-out-the-density-dependence-equation" class="section level5">
 <h5>“commenting out” the density-dependence equation</h5>
 <p>You can turn the density dependence process on and off by using the pound symbol to “comment out” the equation. So … if you input the following into the equation editor for yearling survival, you can easily go back and forth between the density-dependent and the density-independent formulations of the model:</p>
 <p>For example, this one is density-independent:</p>
 <pre><code>0.539
-#0.827-0.002*[Total abundance]</code></pre>
+#0.864-0.004666*[Total abundance]</code></pre>
 <p>…and this one is density-dependent:</p>
 <pre><code>#0.539
-0.827-0.002*[Total abundance]</code></pre>
+0.864-0.004666*[Total abundance]</code></pre>
+<p>…or for the worst case scenario:</p>
+<pre><code>#0.539
+#0.864-0.004666*[Total abundance]
+0.346</code></pre>
 </div>
-<div id="using-the-sensitivity-testing-tool" class="section level5">
-<h5>using the sensitivity testing tool</h5>
-<p>Use the “sensitivity testing” option in the “Tools” menu to run multiple simulations. You can visually assess the risk of falling below a certain abundance threshold by examining whether a particular quantile (e.g., 95%) of your simulation results (the output from the sensitivity testing tool) falls below a particular threshold (e.g., 20 individuals) over a certain number of years.</p>
-<p>You can compute the risk of extinction or decline more quantitatively as the fraction of replicates that failed to meet the specified criterion. That is, you can divide the total number of simulations falling below the threshold by the total numer of replicates.</p>
+<div id="using-the-sensitivity-testing-tool-to-evaluate-risk" class="section level5">
+<h5>using the sensitivity testing tool to evaluate risk</h5>
+<p>Use the “sensitivity testing” option in the “Tools” menu to run multiple simulations. You can visually assess the risk of falling below a certain abundance threshold by examining whether a particular quantile (e.g., 90%) of your simulation results (the output from the sensitivity testing tool) falls below a particular threshold (e.g., 1 individuals) over a specified number of years (e.g., 50 year). For example, the following figure illustrates a population with an extinction risk of approximately 5% (90% of the simulations fall within the blue region, so 5% of simulations fell below the threshold and the remaining 5% of of simulations were larger than the upper bound of the blue region) :</p>
+<div class="figure">
+<img src="MVP1.PNG" />
+
+</div>
+<p>You can compute the risk of extinction or decline more quantitatively as the fraction of replicates that failed to meet the specified criterion. That is, you can divide the total number of simulations falling below the threshold by the total number of replicates.</p>
 <p><a href="PVA3_421.html">–go to loggerhead PVA–</a></p>
 </div>
 </div>

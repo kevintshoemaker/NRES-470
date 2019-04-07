@@ -414,7 +414,8 @@ div.tocify {
 <p>For the next three class periods, we will explore the use of <strong>population models</strong> to address conservation questions– a process often called <strong>population viability analysis (PVA)</strong></p>
 <p>PVA is a set of practical approaches to problem-solving in conservation, and wildlife management via creative application of <em>demographic theory</em>, <em>simulation models</em> and <em>statistics</em>.</p>
 <p>As much as possible we will use hands-on activities to explore the fundamentals of PVA. We will use <a href="https://insightmaker.com/">InsightMaker- a free web-based systems modeling tool</a> for running simulation models.</p>
-<p>First we will build a PVA for the grizzly bears of Yellowstone National Park!</p>
+<p>First we will run through the basics of population modeling for wildlife conservation…</p>
+<p>Second, we will build a PVA for the grizzly bears of Yellowstone National Park!</p>
 <div class="figure">
 <img src="grizzly1.jpg" />
 
@@ -424,23 +425,25 @@ div.tocify {
 <img src="caretta1.jpg" />
 
 </div>
-<p><em>But even before any of that</em>, let’s review some basic population ecology theory and mathematics which are the foundation of PVA!</p>
+<p>Let’s review some basic population ecology theory and mathematics which are the foundation of PVA!</p>
 </div>
 <div id="what-is-a-population" class="section level2">
 <h2>What is a population?</h2>
-<p>From Krebs (1972):</p>
+<p>From Charles Krebs (1972):</p>
 <blockquote>
 <p>“A group of organisms of the same species occupying a particular space at a particular time, with the potential to breed with each other”</p>
 </blockquote>
-<p>From Cole (1957):</p>
+<p>From Lamont Cole (1957):</p>
 <blockquote>
 <p>“A biological unit at the level of ecological integration where it is meaningful to speak of birth rate, death rate, sex ratios, and age structure in describing properties or parameters of the unit.”</p>
 </blockquote>
 <p><em>Defining a population is not always straightforward…</em>. Spatial boundaries defining populations sometimes are easily defined, but more typically are vague and difficult to determine.</p>
 </div>
-<div id="exponential-growth-the-fundamental-principle-of-population-ecology" class="section level2">
-<h2>Exponential growth: the fundamental principle of population ecology</h2>
-<p>Living things have the ability to grow exponentially. This is the “power of life”.</p>
+<div id="how-do-populations-change-over-time" class="section level2">
+<h2>How do populations change over time?</h2>
+<div id="exponential-growth-the-fundamental-principle-of-population-ecology" class="section level3">
+<h3>Exponential growth: the fundamental principle of population ecology</h3>
+<p>Populations of iving things have the ability to grow exponentially. This is the “power of life”.</p>
 <div class="figure">
 <img src="puffball1.png" />
 
@@ -449,8 +452,8 @@ div.tocify {
 <p>… If all of those individuals reached adulthood, the descendants from just <em>two parent puffballs</em> would weigh more than the entire planet in two generations!</p>
 <p>The reason? Populations grow in a positive feedback process. More individuals means greater potential for population growth (more reproduction!), which means more individuals enter the population, which means even greater potential for population growth. The bigger the population the faster the population grows.</p>
 </div>
-<div id="aside-mathematics-and-modeling-in-ecology" class="section level2">
-<h2>Aside: Mathematics and modeling in Ecology</h2>
+<div id="aside-mathematics-and-modeling-in-ecology" class="section level3">
+<h3>Aside: Mathematics and modeling in Ecology</h3>
 <div class="figure">
 <img src="1976_Elton.jpg" />
 
@@ -459,6 +462,7 @@ div.tocify {
 - Charles Elton (referring to a work by Alfred Lotka)</p>
 <p>“The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated.”<br />
 - Charles Elton (also referring to a work by Alfred Lotka)</p>
+</div>
 </div>
 <div id="nomenclature-for-population-ecology" class="section level2">
 <h2>Nomenclature for Population Ecology</h2>
@@ -470,12 +474,12 @@ div.tocify {
 
 </div>
 <p><span class="math inline">\(\Delta N = B + I - D - E \qquad \text{(Eq. 1)}\)</span></p>
-<p>where <span class="math inline">\(B\)</span> represents the number of births per time period, <span class="math inline">\(I\)</span> reprents the number of immigrants, <span class="math inline">\(D\)</span> represents the number of deaths, and <span class="math inline">\(E\)</span> represents the number of emigrants.</p>
+<p>where <span class="math inline">\(B\)</span> represents the total number of births per time period, <span class="math inline">\(I\)</span> reprents the number of immigrants, <span class="math inline">\(D\)</span> represents the number of deaths, and <span class="math inline">\(E\)</span> represents the number of emigrants.</p>
 <p>If we ignore immigration and emigration, then the BIDE equation simplifies to the “buh-duh” equation:</p>
 <p><span class="math inline">\(\Delta N = B - D \qquad \text{(Eq. 2)}\)</span></p>
-<p>Now let’s focus on <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>. The important thing to recognize is that the total number of births and deaths in a population is not constant.</p>
-<p>What does the total number of births depend on?</p>
-<p>What <strong>is</strong> more likely to be constant is the <strong>per capita rate</strong> of births or deaths in a population. Does this make sense? These per capita rates are often expressed as lower case letters. So <span class="math inline">\(b\)</span> represents per capita births, and <span class="math inline">\(d\)</span> represents per capita deaths.</p>
+<p>Now let’s focus on <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>. The important thing to recognize is that the total number of births and deaths (B and D) in a population is not constant – they both depend on the population size!</p>
+<p>What about the <strong>per capita rates</strong> of births and deaths in a population? Is this more likely to be constant across a range of population sizes?</p>
+<p>These per capita rates are often expressed as lower case letters. So <span class="math inline">\(b\)</span> (little b) represents per capita births, and <span class="math inline">\(d\)</span> (little d) represents per capita deaths.</p>
 <p><span class="math inline">\(b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}\)</span></p>
 <p>–or–</p>
 <p><span class="math inline">\(B_t = b \cdot N_t\)</span></p>
@@ -495,24 +499,25 @@ div.tocify {
 <div id="discrete-population-growth-most-pvas" class="section level2">
 <h2>Discrete population growth (most PVAs)</h2>
 <p>Most PVAs represent <em>discrete population growth</em> models, where population growth occurs at regular intervals (often modeled as one growth event per year): for a growing population, the population size is constant until the next year, at which point it grows in one leap.</p>
-<p><strong>Q</strong>: What wild populations exhibit discrete growth?</p>
+<p><strong>Q</strong>: What wild populations exhibit discrete population growth?</p>
 <p>The greek symbol lambda (<span class="math inline">\(\lambda\)</span>), represents the <em>finite rate of growth</em> for a discrete population growth model, or <span class="math inline">\(\frac {N_{t+1}}{N_t}\)</span>. Lambda is what you multiply the current population size by to compute the population size in the next time step.</p>
 <p><span class="math inline">\(N_{t+1}=N_t + \Delta N_t \qquad \text{(Eq. 9)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=N_t + r_d \cdot N_t \qquad \text{(Eq. 10)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=N_t \cdot (1 + r_d) \qquad \text{(Eq. 11)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 12)}\)</span></p>
 <p><span class="math inline">\(N_{t}=\lambda^{t} \cdot N_0 \qquad \text{(Eq. 13)}\)</span></p>
+<p><strong>Q</strong>: Why do most population models ignore males??</p>
 </div>
 <div id="modeling" class="section level2">
 <h2>Modeling!!</h2>
 <div id="computer-programming-and-systems-thinking" class="section level3">
 <h3>Computer programming and systems thinking</h3>
-<p>Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result <strong>specialized software and computer programming</strong> are a critical component to modern whole-systems analysis, including models of population and ecosystem dynamics. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. <strong>In this short-course, we will use computer simulations for understanding and managing natural populations</strong>.</p>
+<p>Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result <strong>specialized software and computer programming</strong> are a critical component to modern whole-systems analysis, including models of population and ecosystem dynamics. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. <strong>In this short-course, we will use computer simulations for understanding and managing natural populations</strong>. We’ll start simple, and quickly build up to relatively complex simulation models.</p>
 </div>
 <div id="insightmaker-a-simulation-modeling-framework-for-dynamic-systems" class="section level3">
 <h3><em>InsightMaker</em>: a simulation modeling framework for dynamic systems!</h3>
 <p><a href="insightmaker.com">InsightMaker</a> is a web-based visual programming language for modeling the dynamics of inter-connected systems.</p>
-<p>A <strong>dynamic system</strong> essentially consists of [Stocks] and [Flows].</p>
+<p>Any <strong>dynamic system</strong> (like a wildlife population) essentially consists of [Stocks] and [Flows].</p>
 <p>A [Stock] simply represents a quantity of something. The [Stock] only changes over time ONLY via [Flows In] or [Flows Out].</p>
 <p>A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents <em>Moose</em>!</p>
 <p><em>Moose Births</em> would then be the input [Flow] to the population of <em>Moose</em> over time.</p>
@@ -587,19 +592,24 @@ div.tocify {
 <p>We can’t predict with certainty whether or not an individual will mate, or die.</p>
 <p>We can’t be certain whether next year or the year after that will be a good year or a bad year for offspring production or mortality!</p>
 <p>The key is to <strong>embrace uncertainty</strong>. As population ecologists, we have some tricks to help us manage and account for unpredictable variation in our study systems:</p>
+<div class="figure">
+<img src="dice1.png" />
+
+</div>
 </div>
 <div id="how-to-model-uncertainty" class="section level3">
 <h3>How to model uncertainty</h3>
-<p>When we incorporate <strong>random processes</strong> into models, the result can be different each time we run the model!</p>
-<p>These are called <strong>stochastic models</strong>.</p>
+<p>Typically, we embrace uncertainty in our models by incorporating <strong>random-number generators</strong> in our models. These are called <strong>stochastic models</strong>.</p>
+<p>When we incorporate <strong>random processes</strong> into models, the result will be different each time we run the model!</p>
 <p>When we use stochastic models, we often want to run lots of <strong>replicates</strong>. Each replicate represents a possible future.</p>
 <p>We can then interpret the <em>cloud of possible futures</em> rather than just the results from a single model run!</p>
 <div class="figure">
 <img src="IM15.jpg" />
 
 </div>
-<p>Here we see that the population went extinct in three replicates, out of a total of 50 replicates.</p>
+<p>Here we see that the population went extinct three times out of a total of 50 replicates.</p>
 <p><strong>Q</strong>: What is the extinction risk for this population?</p>
+<p><strong>Q</strong>: Is this extinction risk acceptable?</p>
 <div id="demographic-stochasticity" class="section level4">
 <h4>Demographic stochasticity</h4>
 <p>When it comes to projecting who lives and dies, who gives birth and who doesn’t, how many females are born to each individual in the population, we <em>just can’t know for sure</em>.</p>
@@ -611,10 +621,6 @@ div.tocify {
 <p>We usually can’t predict whether next year or the year after will be a good one or a bad one for a <em>population</em>- that is, we don’t know whether the per-capita vital rates (e.g., <span class="math inline">\(b\)</span>, or <span class="math inline">\(d\)</span>) will be more or less optimal year-to-year</p>
 <p>In other words, we can’t know whether a <em>population</em> will be “lucky” or “unlucky” each year, so to speak!</p>
 <p>In population ecology this is called <strong>environmental stochasticity</strong>.</p>
-<div class="figure">
-<img src="dice1.png" />
-
-</div>
 </div>
 </div>
 </div>
@@ -673,42 +679,45 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <ol style="list-style-type: decimal">
 <li><p>Click on <a href="https://insightmaker.com/insight/162301/NRES-421-In-Class-Demo-3">this link</a> to load up the next population modeling demonstration.</p></li>
 <li><p>In the upper right-hand corner of the screen, click on the “Clone Insight” link at the top and click on the “Clone” button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the “Edit Info” button on the left-hand context menu.</p></li>
-<li><p>Make sure that <em>Birth rate</em> is set to 0.5 and <em>Death rate</em> is set to 0.4. Set initial abundance to 10. Under the “Settings” menu set the model to run for 20 years. Also make sure your <em>Population</em> stock can NOT go negative (this is a setting in the configurations panel: Allow Negatives = “No”).</p></li>
+<li><p>Make sure that <em>Birth rate</em> is set to 0.5 and <em>Death rate</em> is set to 0.4. Set initial abundance to 10. Under the “Settings” menu make sure the model is set to run for 20 years.</p></li>
 <li><p>Run the simulation. What does it look like?</p></li>
 <li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”. View the results!</p></li>
 <li><p>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</p></li>
 </ol>
-<p><strong>Q</strong> Is the effect of <em>demographic stochasticity</em> bigger at low or high abundances?</p>
-<p><strong>Q</strong> Is there any risk of extinction when the initial abundance is 10? What about when the initial abundance is 500?</p>
-<p><strong>Q</strong> In this model, did the <em>population vital rates</em> change at all? If not, why does it look different each time we run the model?</p>
+<p>In this model, did the <em>population vital rates</em> change at all? If not, why does it look different each time we run the model?</p>
+<p><strong>Please write down your responses to the following questions:</strong></p>
+<p><strong>Question 1</strong> Is the effect of <em>demographic stochasticity</em> bigger (more pronounced) at low or high abundances?</p>
+<p><strong>Question 2</strong> Is there any risk of extinction when the initial abundance is 10? What about when the initial abundance is 500?</p>
 </div>
 <div id="add-environmental-stochasticity" class="section level3">
 <h3>Add <em>Environmental Stochasticity</em></h3>
 <ol style="list-style-type: decimal">
 <li><p>Click on <a href="https://insightmaker.com/insight/162298/NRES-421-In-Class-Demo-4">this link</a> to load up the next population modeling demonstration.</p></li>
 <li><p>In the upper right-hand corner of the screen, click on the “Clone Insight” link at the top and click on the “Clone” button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the “Edit Info” button on the left-hand context menu.</p></li>
-<li><p>Set initial abundance to 10. Under the “Settings” menu set the model to run for 20 years. Also make sure your <em>Population</em> stock can NOT go negative (this is a setting in the configurations panel: Allow Negatives = “No”).</p></li>
-<li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”.</p></li>
+<li><p>Set initial abundance to 10. Under the “Settings” menu set the model to run for 20 years.</p></li>
+<li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model multiple times. Choose [Population] as the “Monitored Primitive”.</p></li>
 <li><p>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</p></li>
 </ol>
-<p><strong>Q</strong> Is the effect of <em>environmental stochasticity</em> bigger at low or high abundances?</p>
-<p><strong>Q</strong> Can you envision any circumstances where small populations would be more vulnerable to <em>environmental stochasticity</em> than large populations?</p>
+<p><strong>Please consider the following questions- write down your answers on a sheet of paper:</strong></p>
+<p><strong>Question 3</strong> Does the population-level impact of <em>environmental stochasticity</em> depend on the initial abundance? If so, how?</p>
+<p><strong>Question 4</strong> Can you envision any circumstance(s) where small populations would be more vulnerable to <em>environmental stochasticity</em> than large populations? (this is open-ended, there is no one right answer!)</p>
 </div>
 </div>
 <div id="population-viability-analysis-pva-1" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
 <p>Let’s return to the topic of this unit: PVA.</p>
-<p>Population Viability Analysis (PVA) is the <em>process of building and running a formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions</em>.</p>
+<p>Population Viability Analysis (PVA) is the <em>process of building and running formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions</em>.</p>
 <div id="what-are-some-questions-you-can-address-with-pva" class="section level3">
 <h3>What are some questions you can address with PVA?</h3>
-<p>In general, we are interested in evaluating population-level risk under various alternative <strong>scenarios</strong>. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions. Setting up alternative scenarios is a bit like setting up experiments in a laboratory.</p>
+<p>In general, we are interested in evaluating population-level risk under various alternative <strong>scenarios</strong>. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions.</p>
+<p>Setting up alternative scenarios is a bit like setting up experiments in a laboratory!</p>
 <p>We are often interested in evaluating the factors that threaten the present or future viability of a population.</p>
 <p>Population threats can be classified as either deterministic or stochastic.</p>
 </div>
 <div id="deterministic-threats" class="section level3">
 <h3>Deterministic threats</h3>
 <p><img src="Fragmentation1.jpg" /> <img src="harvest1.jpg" /></p>
-<p>What is the population-level impact of the following?</p>
+<p>Given what we know (and what we don’t know!) about our study system, what is the population-level impact of:</p>
 <ul>
 <li>Habitat fragmentation?</li>
 <li>Habitat degradation or loss?</li>
@@ -719,7 +728,7 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 </div>
 <div id="stochastic-threats" class="section level3">
 <h3>Stochastic threats</h3>
-<p>What is the population-level impact of the following?</p>
+<p>Given what we know (and what we don’t know!) about our study system, what is the population-level impact of:</p>
 <ul>
 <li>Demographic stochasticity?</li>
 <li>Environmental stochasticity?</li>
@@ -739,48 +748,44 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <div id="step-1-life-history" class="section level3">
 <h3>Step 1: Life history</h3>
 <p><em>How does your population work?</em></p>
-<p>The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. This can be done by visualized in a <em>life history diagram</em> (essentially and stock-and-flow diagram just like we have already been doing!). In general, the following life history traits are often critical to consider:</p>
+<p>The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. It can help to draw a <em>life history diagram</em> (essentially a stock-and-flow diagram!). In general, the following life history traits are often critical to consider:</p>
 <ul>
 <li>Maximum and minimum reproductive age</li>
-<li>Number of relvant age classes</li>
+<li>Number of relevant age classes</li>
 <li>Maximum population density</li>
-<li>Density dependence mechanisms</li>
+<li>Density-dependence mechanisms</li>
 <li>Variability in key vital rates</li>
 </ul>
-<p><strong>Q</strong>: Why do most population models ignore males??</p>
 </div>
 <div id="step-2-parameterize-the-demographic-model" class="section level3">
 <h3>Step 2: Parameterize the demographic model!</h3>
-<p>This is where you attach <em>real numbers</em> to the stocks and flows in your conceptual life history diagram! Remember that this includes not just the vital rates, but also <em>density dependence</em> and <em>stochasticity</em> for these vital rates!</p>
+<p>This is where you attach <em>real numbers</em> to the stocks and flows in your conceptual life history diagram!</p>
 </div>
 <div id="step-3-spatial-structure-metapopulations" class="section level3">
 <h3>Step 3: Spatial structure (metapopulations)!</h3>
-<p>If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:</p>
+<p>If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:</p>
 <ul>
 <li>How many discrete populations?</li>
 <li>At what rate do individuals move among these populations?</li>
 </ul>
 <p>For the grizzly bear and loggerhead examples, we will not consider spatial structure!</p>
 </div>
-<div id="step-4-simulate" class="section level3">
-<h3>Step 4: Simulate!</h3>
-<p>You have already simulated simple population dynamics!</p>
+<div id="step-4-simulate-under-alternative-scenarios" class="section level3">
+<h3>Step 4: Simulate under alternative scenarios!</h3>
 <p>There are lots of options for simulation software- R, <a href="https://insightmaker.com/">InsightMaker</a>, <a href="http://www.vortex10.org/Vortex10.aspx">Vortex</a>, <a href="http://www.ramas.com/metapop">Ramas</a>, and much more!</p>
-<p>What <em>scenarios</em> do you want to test in order to answer your original questions?</p>
+<p>The key question here is: what <em>scenarios</em> do you want to test in order to answer your original questions?</p>
 </div>
 <div id="step-5-results" class="section level3">
 <h3>Step 5: Results</h3>
 <p>Finally, you need to make sense of all the simulations you just ran!</p>
-<p>There are two major tools that you will need to be able to use the simulation results to answer your questions: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
+<p>There are two major tools that you will need to do this: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
 <p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
 <p>For example – after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).</p>
-<p>Okay, now let’s build a PVA model together!</p>
-<p><a href="PVA2_421.html">–go to grizzly PVA!–</a></p>
 </div>
 </div>
-<div id="bonus-a-simple-demonstration-pva" class="section level2">
-<h2>BONUS: A Simple Demonstration PVA</h2>
-<p>To illustrate the process, let’s build ourselves a very simple PVA model in R.</p>
+<div id="a-simple-demonstration-pva" class="section level2">
+<h2>A Simple Demonstration PVA</h2>
+<p>To illustrate what we can do with your PVA results, here is a very simple PVA model in R.</p>
 <p>For this demo I’m using the <em>“R” programming language</em> because of its flexible and powerful visualization tools. You can download R for yourself from <a href="https://cran.r-project.org/">this website</a>:</p>
 <p>If you want to follow along, click on the link <a href="PVA1_421.R">here</a></p>
 <p>For simplicity, let’s ignore age structure.</p>

@@ -125,17 +125,17 @@ The reintroduction is initiated right after the breeding season and the experime
 
 First, go to InsightMaker and clone the demo individual-based model! [Here is the link!](https://insightmaker.com/insight/162354/Sheep-model-Individual-based-demo).
 
-1) Make sure you can run the model and interpret the resulting figures. 
+1) Make sure you can run the model and interpret the resulting figures.     
 
-2) Try to adjust the number of sheep and wolves to meet your management goals: [tophat]
-    - Maintain viable populations of both sheep and wolves
-    - Maintain lush grass!
+2) Does the model behave realistically?  Test it! What happens if you start with lots of sheep and no wolves? What happens if you start with no sheep, and a bunch of wolves?    
 
-3) Does the model behave realistically?  Test it! What happens if you start with lots of sheep and no wolves? What happens if you start with no sheep, and a bunch of wolves? 
+3) Is it possible for the experimental plot to support sheep, wolves, and grass indefinitely?     
 
-4) Is it possible for the experimental plot to support sheep, wolves, and grass indefinitely?
+4) Try to adjust the number of sheep and wolves to meet your management goals: [tophat]       
+    - Maintain viable populations of both sheep and wolves       
+    - Maintain lush grass!       
 
-5) What if wolves were more efficient at killing sheep? Try doubling the "Prob of kill" variable and see how your answer changes.
+5) What if wolves were more efficient at killing sheep? Try doubling the "Prob of kill" variable and see if/how your answer changes.
 
 6) What if grass were more productive? Try doubling the "Grass Growth Rate" and see if more sheep can be supported sustainably. 
 

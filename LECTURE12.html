@@ -383,15 +383,15 @@ div.tocify {
       <a href="LAB6.html">Lab 6: metapopulations</a>
     </li>
     <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="Links.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -407,14 +407,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Population Viability Analysis</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Mar 6, 2017</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
 <div id="final-projects" class="section level3">
 <h3>Final projects:</h3>
-<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a>. Working PVA and document justifying decisions is <em>due next Monday, April 2</em>!</p>
+<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a>. Working PVA and document justifying decisions is <em>due this Friday, April 5</em>!</p>
 </div>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
@@ -466,7 +466,7 @@ div.tocify {
 <ul>
 <li>How many discrete populations?</li>
 <li>Do different populations have different mean vital rates?</li>
-<li>Is environmental stochasticity <strong>correlated</strong>?</li>
+<li>Is environmental stochasticity <strong>spatially correlated</strong>?</li>
 <li>At what rate do individuals move among these populations?</li>
 <li>Can connectivity be enhanced via management?</li>
 <li>Are dispersal rates density-dependent?</li>
@@ -493,7 +493,7 @@ div.tocify {
 </div>
 <div id="a-simple-demonstration-pva" class="section level2">
 <h2>A Simple Demonstration PVA</h2>
-<p>To illustrate some of these concepts, let’s build a very simple PVA model in R.</p>
+<p>To illustrate some of these concepts, let’s build a very simple PVA model in R. If you want to follow along, click <a href="LECTURE12.R">here</a></p>
 <p>We are using R because of its flexible and powerful visualization tools.</p>
 <div id="step-1-conceptualize-the-life-history" class="section level3">
 <h3>Step 1: conceptualize the life history</h3>
@@ -503,7 +503,11 @@ div.tocify {
 <div id="step-2-parameterize" class="section level3">
 <h3>Step 2: parameterize!</h3>
 <p>Here is the basic model parameterization:</p>
-<pre class="r"><code>####
+<pre class="r"><code>##############
+# Demonstration PVA
+##############
+
+####
 # Basic life history parameters
 ####
 
@@ -529,7 +533,7 @@ Ricker &lt;- function(prev_abund){       # this is a function for computing next
 # Catastrophe
 ####
 
-Flood_prob &lt;- 0.05     # 5% chance of major flood
+Flood_prob &lt;- 0.05      # 5% chance of major flood
 Flood_lambda &lt;- 0.25    # 25% of population can survive a flood </code></pre>
 </div>
 <div id="step-3-spatial-structure-1" class="section level3">
@@ -589,7 +593,7 @@ Default &lt;- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)</code
 }
 
 PlotCloud(Default)</code></pre>
-<p><img src="LECTURE12_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="LECTURE12_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Okay, what do we learn from this? Really, it’s a mess!!!</p>
 <p>If our question is about extinction risk, maybe we want to plot extinction risk by time…</p>
 <pre class="r"><code>Extinction_byyear &lt;- function(simdata){
@@ -598,12 +602,12 @@ PlotCloud(Default)</code></pre>
 
 plot(c(1:101),Extinction_byyear(Default),type=&quot;l&quot;,lwd=2,xlab=&quot;year&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
-<p><img src="LECTURE12_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="LECTURE12_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Maybe our question is about the probability of decline over 100 years …</p>
 <p>In that case maybe we should present a histogram of final abundances…</p>
 <pre class="r"><code>hist(Default[nrow(Default),],xlab=&quot;Final abundance after 100 years&quot;,ylab=&quot;Number of replicates&quot;,main=&quot;&quot;)
 abline(v=Init_N,col=&quot;green&quot;,lwd=2)</code></pre>
-<p><img src="LECTURE12_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="LECTURE12_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Or we could plot the extent of decline vs the probability of falling below that threshold at year 100.</p>
 <pre class="r"><code>declines &lt;- seq(0,100,by=1)
 declineprob &lt;- numeric(length(declines))
@@ -615,7 +619,7 @@ for(s in 1:length(declines)){
 plot(declines,declineprob,type=&quot;l&quot;,lwd=2,xlab=&quot;Decline threshold (percent)&quot;,ylab=&quot;Probability of falling below threshold&quot;)
 
 abline(v=25,col=&quot;red&quot;,lwd=2)</code></pre>
-<p><img src="LECTURE12_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="LECTURE12_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>What if our question is about the effect of flooding on extinction risk. Let’s imagine that the probability of flooding is not expected to change with climate change, but that the intensity of the flood damage is likely to increase substantially!</p>
 <p>Currently, floods generally result in a 10% population reduction. But climate change could increase this number to as much as 90%. Let’s look at how much this could increase extinction risk!</p>
 <pre class="r"><code>Exctinction_risk &lt;- function(simdata){
@@ -632,7 +636,7 @@ for(scenario in 1:length(flood_lambdas)){
 
 plot(flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impact (lambda in flood year)&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
-<p><img src="LECTURE12_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="LECTURE12_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><a href="LECTURE13.html">–go to next lecture–</a></p>
 </div>
 </div>
