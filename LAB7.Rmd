@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 First, [please download this R script and load it in Rstudio](LAB7.R) for later.
 
-Next, since we haven't had the lecture on this topic yet, let's go over the basics from the lecture first- [click here](LECTURE15.html)
+Next, since we haven't had the lecture on this topic yet, let's go over the basics from the lecture first- [click here](LECTURE15.html#capture-mark-recapture_(cmr)_analysis)
 
 ## Open versus closed populations
 
@@ -65,7 +65,7 @@ Let's see how this works!
 
 Basic underlying concept:
 
-On the first visit, a sample of $M$ animals is caught, $M$arked, and released. Later, on a second visit to the study site, a sample of $C$ animals is $C$aptured, of which $R$ animals are $R$*ecaptures* that were previously Marked. No new animals are marked during the second visit. 
+On the first visit, a sample of $M$ animals is caught, *marked*, and released. Later, on a second visit to the study site, a sample of $C$ animals is *captured*, of which $R$ animals are *recaptures* that were previously Marked. No new animals are marked during the second visit. 
 
 NOTE: animals do not need to be uniquely marked to estimate abundance using the L-P method.
 
@@ -77,25 +77,23 @@ where $N$ is the total population size. Solving for $N$ yields the estimator:
 
 $\hat N=\frac{C \cdot M}{R}  \qquad \text{(Eq. 1)}$ 
 
-**Q** What is the estimate of per-capita capture probability ($p$) in the L-P estimator?? 
+**Q** What is the estimate of per-capita capture probability ($p$) in the L-P estimator?? This is the same as asking- what proportion of the total population was marked in the first visit?
 
-Another way to think about the L-P estimator is that we first estimate the probability of detection as the proportion of marked animals recaptured in the second visit ($\frac{R}{C}$). We then take the *biased* estimate of abundance ($M$) and *unbias* this estimate by dividing by the probability of capture! 
-
-$p = \frac{R}{M}$
+$p = \frac{R}{C}$
 
 $\hat N = p \cdot N+(1-p)\cdot N$
 
-$\hat N = \frac{R}{M}\cdot N + (1-\frac{R}{M})\cdot N $
+$\hat N = \frac{R}{C}\cdot N + (1-\frac{R}{C})\cdot N $
 
-$M=\frac{R}{M}\cdot N = p \cdot N $
+$M=\frac{R}{C}\cdot N = p \cdot N $
 
 $\hat N = \frac{M}{p} = \frac{C \cdot M}{R}$
 
-Imagine we were to capture 10 individuals during our first visit ($M=10$) and 8 individuals during our second visit ($C=10$). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, $p=\frac{R}{C}=0.5$. Another way of saying this is that for every individual we observe during a site visit, we are likely to miss one individual. 
+Imagine we were to capture 10 individuals during our first visit ($M=10$) and 8 individuals during our second visit ($C=10$). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, $p=\frac{R}{C}=0.5$. Another way of saying this is that for every individual we observed during the first site visit, we were likely to have missed one individual. 
 
 To estimate abundance, we add up the total number of individuals we saw during our first visit and the total number of individuals we missed during our first visit- this should represent the entire population! 
 
-The lower our estimate of $p$ (derived from the second visit), the more individuals we missed (failed to observe) in each visit. 
+The lower our estimate of $p$ (fraction of the total population marked in the first visit, derived from observations from the second visit), the more individuals we probably missed (failed to observe) in the first visit. 
 
 **Q:** How many individuals did we miss in this case?
 
@@ -103,7 +101,7 @@ The lower our estimate of $p$ (derived from the second visit), the more individu
 
 **Q:** What if we had only observed 2 (out of 8) marked individuals during the second visit?
 
-NOTE: If sample size is small, the above estimator can be biased. For example, what happens if the number of recaptures is zero? 
+NOTE: If sample size is small, the basic L-P estimator can be biased. For example, what happens if the number of recaptures is zero? 
 
 A modified version with less bias was originally developed by Chapman (1951) and is commonly called the *modified Petersen estimate* or the *Chapman estimator*:
 
@@ -113,7 +111,7 @@ This formula is a **statistic** estimating total population size on the basis of
 
 We still need to make inference about the **parameter**, $N$, on the basis of the statistic, $\hat N$.
 
-To do this, we need to understand the **sampling uncertainty** for this statistic. That is, if we collected a different sample from the *same population*, we might get a very different answer for $\hat N$. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for $\hat N$!! The variation among these estimates is the sampling uncertainty.
+To do this, we need to understand the **sampling uncertainty** for this statistic (we need to ask: "what do we *really* know about the population, and what don't we know?". That is, if we collected a different sample from the *same population*, we might get a very different answer for $\hat N$. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for $\hat N$!! The variation among these estimates is the sampling uncertainty.
 
 For the Lincoln-Peterson estimator, our uncertainty about this estimate (sampling variance) can be computed as:
 
@@ -132,6 +130,7 @@ $\hat N \pm 1.965 * StDev(\hat N)   \qquad \text{(Eq. 5)}$
 #### Fundamental Assumptions of Lincoln-Petersen estimator:
 
 - The population is closed (geographically AND demographically).
+- The marked individuals from the first sampling occasion are completely mixed into the population as a whole. 
 - All animals are equally likely to be detected on both visits (although *p* can differ between visits).
 - Capture and marking do not affect the detection probability *p*.
 - Marks are not lost between sampling occasions.
@@ -144,7 +143,7 @@ Only a single type of mark needs to be used because we just need to distinguish 
 
 $C_t$ = Total number of individuals captured during visit $t$
 
-$R_t$ = Number of individuals already marked (Recaptures) when caught in visit $t$ (the remainder of individuals captured in visit *t* must be given a new mark)
+$R_t$ = Number of previously-marked individuals (Recaptures) captured in visit $t$ (the remainder of individuals captured in visit *t* must be given a new mark)
 
 $M_t$ = Total number of marked animals in the population just before the $t$th site visit.
 
@@ -192,7 +191,7 @@ write.table(temp3,file="simple_closed.csv",row.names=FALSE,col.names=TRUE,sep=",
 ```
 
 
-Load up the CSV file [here](simple_closed.csv). The first few lines should look something like this:
+Load up the Excel file [here](simple_closed_base.xlsx). The first few lines should look something like this:
 
 ```{r}
 
@@ -220,7 +219,6 @@ head(read.csv("simple_closed.csv"))
 
 1c. Do the two estimates differ? Either way, which estimate do you trust more- the L-P estimate or the Schnabel estimate? Why? 
 
-
 ### Open-population models
 
 (note: geographic closure is still a critical assumption- that is, no immigration or emigration!)
@@ -233,9 +231,9 @@ See the [parameter estimation lecture](LECTURE15.html) for more information abou
 
 For this exercise, we will use the classic European Dipper data!
 
-NOTE: Program MARK is a Windows-based software. If you have a Mac, you can run MARK using a Windows partition or a Windows emulator. However, you don't need to use Program MARK for this lab exercise -- you can use R instead!
+NOTE: Program MARK is a Windows-based software. If you're running MacOS, you can run MARK using a Windows partition or a Windows emulator. However, you don't need to use Program MARK for this lab exercise -- you can use R instead!
 
-The 'mra' package in R runs many of the simpler open-population models, and is much easier to use than Program MARK. Please install this package if haven't already done so.
+The 'marked' package in R runs many of the same open-population models, and is much easier to use than Program MARK. Please install this package if haven't already done so.
 
 
 These data should look like this! Here it is in R (just the first 15 lines)!
@@ -260,13 +258,27 @@ data(dipper.males)   # load up only the capture histories for male dippers!
 
 Program MARK wants a particular type of input file (.INP; just a text file with special formatting). For the dipper data, it should look something like [this](ed_males.txt)
 
-An "INP" file can be downloaded [here](ed_males.inp). If this doesn't work, you can save this [text file](ed_males.txt) and re-name it with the extension ".inp" rather than the extension ".txt"
+Save this [text file](ed_males.txt) and re-name it with the extension ".inp" rather than the extension ".txt"
 
-NOTE: if this doesn't work, you can load the example files from the ["gentle introduction" link](http://www.phidot.org/software/mark/docs/book/)! 
+Your INP file should look something like this:
+
+```{r echo=FALSE}
+
+library(marked)
+data(dipper)
+
+dpr <- read.table('ed_males.txt',sep="",header=F)
+names(dpr) <- c("ch","group")
+head(dpr,15)
+
+```
+
+
+NOTE: if this doesn't work, you can load this and other example files from the ["gentle introduction" link](http://www.phidot.org/software/mark/docs/book/)! Scroll down to "Example data files" in the "book chapters $ data files" menu.
 
 1. Open Program MARK! You can download the software [here](http://www.phidot.org/software/mark/downloads/index.html)
 
-2. Double-click the MARK icon to open Program MARK.  Click the spreadsheet icon in the upper left corner to open a menu for Specifications for Mark Analysis.  This menu allows you to specify the kind of analysis you will conduct (Select Data Type).  Today we will start with a data set that includes live recaptures only so be sure this Data Type is selected (Cormack-Jolly-Seber model).   
+2. Double-click the MARK icon to open Program MARK. Click the spreadsheet icon in the upper left corner to open a menu for Specifications for Mark Analysis.  This menu allows you to specify the kind of analysis you will conduct (Select Data Type).  Today we will start with a data set that includes live recaptures only so be sure this Data Type is selected (Cormack-Jolly-Seber model).   
 
 3. Look to the right and you will see a button: Click to Select File.  Click this button and browse to find the "ed_males.inp" fil you just downloaded.  Double click this file to open this file in Program Mark.  Now click the 'view this file' button, which will allow you to see the data file. You will see encounter histories (e.g., 1110101, representing observations over 7 visits) followed by a space, followed by one or more additional columns, followed by a semicolon at the end. The encounter history indicates the occasions when each individual was encountered (actually observed), indicated by a 1, or not encountered, indicated by a 0. The length of the capture history is equal to the number of site visits. The column to the right of the capture histories indicate how many individuals in the population exhibit this particular capture history. The semicolon at the end indicates the end of the record.  Note that in this encounter history each individual has its own record (the value in the final colummn is always 1).  However, it is possible to specify only the unique observed encounter histories and indicate the number of individuals with each history.
 
@@ -286,9 +298,9 @@ NOTE: if this doesn't work, you can load the example files from the ["gentle int
 
 11. Re-open the PIMs for survival and capture probability. Use the minus button to reduce the numbers in survival windows to 1 for both males and females and 2 for the both the windows for encounter probabilities (for the latter reduce all matrix entries to 1 then use the plus button to increase them to 2). Use the green arrow to run this model and follow the same procedure as for the earlier model to run this model. Identify the model as {phi(.),p(.)}, which indicates that both parameters are constant across both groups and time. This is the simplest model we can run for these data.  Again, use the identity matrix and append the results to the Results Browser. The "dot" model performs better (lower AIC) and has fewer parameters so it is the best of the two models run so far!
 
-12. **Examine Parameter Estimates**: To examine parameter estimates click on the model, then move the cursor to the top tool bar and click on 'Retrieve'.  Then click on current model. To see the parameter estimates for the retrieved model return the curser to the Results Browser and click the fourth icon from the left (the third minipage from the left). A text file will open with a list of parameters and their estimates ("view estimates of real parameters in notepad window"). For the 'dot' model you will only see one survival estimate and one encounter probability because you specified that both parameters would be constant across time.
+12. **Examine Parameter Estimates**: To examine parameter estimates click on the model, then move the cursor to the top tool bar and click on 'Retrieve'. Then click on current model. To see the parameter estimates for the retrieved model return the curser to the Results Browser and click the fourth icon from the left (the third minipage from the left). A text file will open with a list of parameters and their estimates ("view estimates of real parameters in notepad window"). For the 'dot' model you will only see one survival estimate and one encounter probability because you specified that both parameters would be constant across time.
 
-Now retrieve the {phi(t) p(t)} model and examine parameter estimates for this model.  You will see 6 survival estimates and 6 estimates for detection probability.  These are indexed using the numbers you provided in the PIMs.  Notice that the 6th estimates for both phi and p have standard error that are either very large or zero.  *These are the estimates for the last survival and encounter probability for each group, which cannot be estimated*.  
+Now retrieve the {phi(t) p(t)} model and examine parameter estimates for this model.  You will see 6 survival estimates and 6 estimates for detection probability.  These are indexed using the numbers you provided in the PIMs. Notice that the 6th estimates for both phi and p have standard error that are either very large or zero. *These are the estimates for the last survival and encounter probability for each group, which cannot be estimated*.  
 
 
 ##### CJS model in R
@@ -303,13 +315,15 @@ library(marked)    # remember to install the 'marked' package if you haven't alr
 
 ?crm  # to get help on the main parameter estimation function in "marked"
 
+# library(help="marked")
+
+vignette("markedVignette","marked")
 
 ##########
 # load data!
 
 data(dipper)
-
-dipper.male <- dipper[which(dipper$sex=="Male"),]   # extract only the males, to compare with Mark
+dipper.male <- dipper[which(dipper$sex=="Male"),]   # extract only the males, to compare with the Mark example
 
 
 #############
@@ -321,111 +335,76 @@ dipper.ddl=make.design.data(dipper.proc)    # another helper function- process d
 ##########
 # Fit models
 
+########
 # fit time-varying cjs model
 
-mod.Phit.pt <- crm(dipper.proc,dipper.ddl,
-   model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)))
+mod.Phit.pt <- crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)),method="Nelder-Mead",hessian = T)
 
-#cjs.hessian(mod.Phit.pt)
-mod.Phit.pt
+mod.Phit.pt   # print out model
+mod.Phit.pt$results$AIC       # extract AIC
 
-mod.Phit.pt$results$AIC
-
+########
 # fit time-invariant cjs model
 
-mod.Phidot.pdot <- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)))
+mod.Phidot.pdot <- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)),method="Nelder-Mead",hessian = TRUE)
 
-#cjs.hessian(mod.Phidot.pdot)
+mod.Phidot.pdot
+mod.Phidot.pdot$results$AIC
 
-# compare models with AIC
+###########
+# compare all models with AIC
+###########
 
-Phi.dot <- list(formula=~1)
+######
+# Set up models to run (must have either "Phi." or "p." in the name)
+Phi.dot <- list(formula=~1)       
 Phi.time <- list(formula=~time)
 p.dot <- list(formula=~1)
 p.time <- list(formula=~time)
-cml=create.model.list(c("Phi","p"))
-allmodels <- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE)
 
+cml=create.model.list(c("Phi","p"))    # create list of all models to run
+
+######
+# Run all models
+
+allmodels <- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method="Nelder-Mead",hessian=TRUE)
 allmodels
 
 #######
 # get parameter estimates and confidence intervals for best model
 
-cjs.hessian(allmodels[[1]])
+allmodels[[1]]
 
 #######
 # make predictions and plot them. 
 
+predict(allmodels[[1]])$Phi
+
+Phi_by_year <- predict(allmodels[[3]])$Phi    # predict Phi for all years (based on the best Phi(t) model)
+
+library(Hmisc)   #load Hmisc package- has a nice error bar function
+plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab="Year",ylab="Survival",ylim=c(0,1),main="Variability in Survival, dipper demo")
+errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)
 
 
-
-```
-
-Now, before running the next model, you need to [download this dataset](indcov1.csv) to your R working directory.
-
-```{r}
-
-##########
-# Run a model with individual covariates
-##########
-
-indcov <- read.csv(file="indcov1.csv",header=T)
-
-# extract the capture history
-
-caphist <- as.matrix(indcov[,1:8])   #  make sure that the histories file is a matrix, not a data frame!!
-
-# separate out the covariates
-
-mass1 <- as.matrix(indcov[,10])
-mass2 <- as.matrix(indcov[,11])
-
-# turn the covariates into matrices with same dimensions as capture history
-mass1 <- sapply(1:ncol(caphist),function(t) mass1  )
-mass2 <- sapply(1:ncol(caphist),function(t) mass2  )
-
-mass1mat <- ivar(as.vector(mass1),ncol(ic_hist))
-mass2mat <- ivar(as.vector(mass2),ncol(ic_hist))
-
-# generate indicator matrices for time (just like before- now we use even more efficient method!)
-tmp <- F.cjs.covars(nan=nrow(ic_hist),ns=ncol(ic_hist))  # helper function from mra package
-for(j in 1:ncol(ic_hist)){ 
-   assign(paste("x",j,sep=""), tmp$x[,,j]) 
-}
-
-# traditional time-varying cjs model, no covariates...
-phit.pt <- F.cjs.estim(capture=~x3+x4+x5+x6+x7+x8,survival=~x2+x3+x4+x5+x6,histories=caphist)
-print.cjs(phit.pt)
-AIC
-
-# model with no time component in survival, just mass
-
-phimass.pt <- F.cjs.estim(capture=~x3+x4+x5+x6+x7+x8,survival=~mass1mat,histories=caphist)
-print.cjs(phimass.pt)
-AIC
-
-# model with constant capture rates, and survival as a function of mass
-phimass.pdot <- F.cjs.estim(capture=~1,survival=~mass1mat,histories=ic_hist)
-print.cjs(phimass.pdot)
-AIC
-
-# compare AIC?
 
 
 ```
+
+
 
 
 ## Exercise 2- Open population (CJS) models
 
 Use R or MARK to answer the following questions:
 
-2a. [building off the demonstration in R and Program MARK]. Build and run the following model: capture probability varies by year, but survival is constant across time. Is this model better than the current top model (lower AIC value means a better model)? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
+2a. [building off the demonstration in R and Program MARK]. Run the following model: capture probability varies by year, but survival is constant across time. Is this model better than the current top model (lower AIC value means a better model)? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
 
 
-2b. Build and run the following model: capture probability is constant across time, but survival exhibits temporal variability. Is this model better than the current top model? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
+2b. Run the following model: capture probability is constant across time, but survival exhibits temporal variability. Is this model better than the current top model? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
 
 
-2c. Use the results from the time-dependent model [phi(t)p(t)] to estimate the mean per-capita survival rate and the *environmental stochasticity* (annual variation) in survival for European dippers. In other words, what is the mean and standard deviation for the Normal random number generator you would you use to represent annual variation in survival for this population? Explain how you obtained your answer, and show your work!
+2c. Use the results from the time-dependent model [phi(t)p(t)] to estimate the mean per-capita survival rate and the *environmental stochasticity* (annual variation) in survival for European dippers. In other words, what is the mean and standard deviation for the Normal random number generator you would you use to represent annual variation in survival for this population? Explain how you obtained your answer!
 
 
 ##Checklist for Lab 7 completion
@@ -489,9 +468,61 @@ Use R or MARK to answer the following questions:
 
 
 
+### Extras (you can ignore!)
 
 
+Now, before running the next model, you need to [download this dataset](indcov1.csv) to your R working directory.
 
+```{r echo=FALSE,eval=FALSE}
+
+##########
+# Run a model with individual covariates
+##########
+
+# indcov <- read.csv(file="indcov1.csv",header=T)
+# 
+# # extract the capture history
+# 
+# caphist <- as.matrix(indcov[,1:8])   #  make sure that the histories file is a matrix, not a data frame!!
+# 
+# # separate out the covariates
+# 
+# mass1 <- as.matrix(indcov[,10])
+# mass2 <- as.matrix(indcov[,11])
+# 
+# # turn the covariates into matrices with same dimensions as capture history
+# mass1 <- sapply(1:ncol(caphist),function(t) mass1  )
+# mass2 <- sapply(1:ncol(caphist),function(t) mass2  )
+# 
+# mass1mat <- ivar(as.vector(mass1),ncol(ic_hist))
+# mass2mat <- ivar(as.vector(mass2),ncol(ic_hist))
+# 
+# # generate indicator matrices for time (just like before- now we use even more efficient method!)
+# tmp <- F.cjs.covars(nan=nrow(ic_hist),ns=ncol(ic_hist))  # helper function from mra package
+# for(j in 1:ncol(ic_hist)){ 
+#    assign(paste("x",j,sep=""), tmp$x[,,j]) 
+# }
+# 
+# # traditional time-varying cjs model, no covariates...
+# phit.pt <- F.cjs.estim(capture=~x3+x4+x5+x6+x7+x8,survival=~x2+x3+x4+x5+x6,histories=caphist)
+# print.cjs(phit.pt)
+# AIC
+# 
+# # model with no time component in survival, just mass
+# 
+# phimass.pt <- F.cjs.estim(capture=~x3+x4+x5+x6+x7+x8,survival=~mass1mat,histories=caphist)
+# print.cjs(phimass.pt)
+# AIC
+# 
+# # model with constant capture rates, and survival as a function of mass
+# phimass.pdot <- F.cjs.estim(capture=~1,survival=~mass1mat,histories=ic_hist)
+# print.cjs(phimass.pdot)
+# AIC
+
+# compare AIC?
+
+
+```
 
 
 

@@ -216,7 +216,6 @@ We attempt to estimate abundance!
 Parameters estimated:
 
 - Abundance
-- Capture probability 
 
 M = the number of individuals marked in the first sample   
 C = total number of individuals captured in 2nd sample   
@@ -317,14 +316,14 @@ The European dipper data is THE classic example of a CMR dataset. Let's look at 
 # Cormack-Jolly-Seber (CJS) model in R
 ###########
 
-library(mra)      # install the 'mra' package if you haven't already done this!
-data("dipper.data")
-head(dipper.data,10)
+library(marked)      # install the 'marked' package if you haven't already done this!
+data("dipper")
+head(dipper,10)
 
 ```
 
 
-Here we use the "mra" package in R (instead of MARK) to do the ML parameter estimation!
+Here we use the "marked" package in R (instead of MARK) to do the ML parameter estimation!
 
 ```{r}
 

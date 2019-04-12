@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Parameterizing models: estimation!</title>
+<title>Parameter estimation!</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -393,6 +393,9 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -405,34 +408,33 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Parameterizing models: estimation!</h1>
+<h1 class="title toc-ignore">Parameter estimation!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Apr 20, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
 
-<div id="parameter-estimation-for-pva" class="section level1">
-<h1>Parameter estimation for PVA!</h1>
+<div id="parameter-estimation-for-wildlife-population-models" class="section level1">
+<h1>Parameter estimation for wildlife population models!</h1>
 <p>We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!</p>
 <p>This is the focus of the current lecture!</p>
 <div id="data-requirements" class="section level2">
 <h2>Data requirements</h2>
-<div id="scalar-models" class="section level3">
-<h3>Scalar models</h3>
+<div id="scalar-models-no-age-structure" class="section level3">
+<h3>Scalar models (no age structure)</h3>
 <ul>
 <li>Initial abundance (<span class="math inline">\(N_0\)</span>)</li>
-<li>Population growth rate</li>
-<li>Temporal variation in population growth rate (environmentally induced fluctuations among years)</li>
-<li>Maximum rate of population growth (for logistic model)</li>
-<li>Carrying capacity of the population (equilibrium abundance of logistic model)</li>
+<li>Mean population growth rate (<span class="math inline">\(r\)</span> or <span class="math inline">\(r_{max}\)</span>)</li>
+<li>Variation in population growth rate (standard deviation for a normal distribution representing environmentally induced fluctuations among years)</li>
+<li>Carrying capacity of the population (<span class="math inline">\(K\)</span>; equilibrium abundance of logistic model)</li>
 </ul>
 </div>
 <div id="stage-structured-life-history-models" class="section level3">
 <h3>Stage-structured (life history) models</h3>
 <ul>
 <li>Initial abundance (<span class="math inline">\(\mathbf{N_0}\)</span>) (vector of initial abundances for all stages)</li>
-<li>Stage-specific vital rates (fecundity, survival, dispersal)</li>
+<li>Stage-specific vital rates (fecundity, survival; fill in a transition matrix)</li>
 <li>Temporal variation in vital rates (environmentally induced fluctuations among years)</li>
 <li>Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)
 <ul>
@@ -507,7 +509,8 @@ div.tocify {
 </tbody>
 </table>
 <p><strong>PROS</strong> - Summary of survival and fecundity, often available in the literature. Be careful when using data from captive populations!</p>
-<p><strong>CONS</strong> - Makes unrealistic assumptions (especially the <em>static life table</em> method). - Can not be used to estimate environmental stochasticity - Can not be used to estimate density dependence - Ignores <strong>imperfect detection</strong> (assumes perfect detection) - Remember, it’s not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!</p>
+<p><strong>CONS</strong> - Makes unrealistic assumptions (especially the <em>static life table</em> method). - Can not be used to estimate environmental stochasticity - Can not be used to estimate density dependence - Ignores <strong>imperfect detection</strong><br />
+- Remember, it’s not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!</p>
 </div>
 <div id="census-data" class="section level3">
 <h3>Census data!</h3>
@@ -532,7 +535,7 @@ div.tocify {
 <h3>Capture-mark-recapture (CMR)</h3>
 <p><strong>PROS</strong> - Can estimate survival, variation in survival, lambda, recruitment, dispersal rates. - Probably the most widely used source of data for population models!</p>
 <p><strong>CONS</strong> - Few downsides, although the analytical techniques can be difficult to master - Mounting a proper CMR study can be very costly, and require many years of data. - Estimating landscape-scale movements can require an even more costly and time-consuming study. - Emigration and survival can be difficult to tease apart in many cases.</p>
-<p>See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and management sequence!)</p>
+<p>See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and conservation sequence!)</p>
 </div>
 <div id="data-on-spatial-structurehabitat" class="section level3">
 <h3>Data on spatial structure/habitat</h3>
@@ -628,8 +631,10 @@ div.tocify {
 <ul>
 <li>Survival rate (possibly age or size structured)</li>
 <li>Fecundity (entry of new individuals in the population)</li>
+<li>Recruitment (entry of new individuals into the adult population)<br />
+</li>
 <li>Abundance</li>
-<li>Lambda (rate of growth)</li>
+<li>Lambda (finite rate of growth)</li>
 <li>Environmental influences on survival rates and fecundity</li>
 <li>Temporal process variance (env. stochasticity)</li>
 <li>Dispersal rates</li>
@@ -666,7 +671,6 @@ div.tocify {
 <p>Parameters estimated:</p>
 <ul>
 <li>Abundance</li>
-<li>Capture probability</li>
 </ul>
 <p>M = the number of individuals marked in the first sample<br />
 C = total number of individuals captured in 2nd sample<br />
@@ -686,7 +690,6 @@ R = number of individuals in 2nd sample that are marked</p>
 </div>
 <div id="maximum-likelihood-a-framework-for-statistical-inference" class="section level3">
 <h3>Maximum likelihood: a framework for statistical inference!</h3>
-<p><strong>IN GENERAL</strong>: - Given an underlying <em>data-generating model</em>, what values of the model <strong>parameters</strong> maximize the probability of producing the observed data? - To find the maximum likelihood estimate (MLE) for an unknown <strong>parameter</strong> we usually take a starting value (e.g. survival=25%), and keep trying new values until the likelihood function is maximized (numerical optimization).</p>
 <p><strong>FOR CMR ANALYSIS</strong>: - What value of survival maximizes the probability of generating the observed capture histories?</p>
 <p>EXAMPLE:</p>
 <p>Consider the following capture history for a single individual:</p>
@@ -717,13 +720,15 @@ R = number of individuals in 2nd sample that are marked</p>
 <p><strong>Q</strong>: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?</p>
 <p><strong>Q</strong>: what about if survival were 100% and capture probability were 75%?</p>
 <p>Maximum likelihood estimation is the process of finding those values of the parameters <span class="math inline">\(\phi\)</span> and <span class="math inline">\(p\)</span> that would be most <em>likely</em> to generate the observed capture histories!</p>
-<p>This model is known as the <em>Cormack-Jolly-Seber</em> model (CJS), and is the basic analysis performed by Program MARK.</p>
+<p>This model is known as the <em>Cormack-Jolly-Seber</em> model (CJS), and is the most common analysis performed by Program MARK.</p>
 <p><strong>Q</strong>: Why is <span class="math inline">\(\phi\)</span> also known as “apparent” survival? Why is it not “true” survival???</p>
-<div id="assumptions-of-the-cjs-model" class="section level4">
-<h4>Assumptions of the CJS model</h4>
+<div id="key-assumptions-of-the-cjs-model" class="section level4">
+<h4>Key assumptions of the CJS model</h4>
 <ul>
-<li>All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)</li>
-<li>Marks are not lost or missed by surveyors</li>
+<li>All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)<br />
+</li>
+<li>Marks are not lost or missed by surveyors<br />
+</li>
 <li>All emigration is permanent (equivalent to a mortality)</li>
 </ul>
 </div>
@@ -735,32 +740,48 @@ R = number of individuals in 2nd sample that are marked</p>
 </div>
 <div id="example-of-an-open-population-mark-recapture-analysis" class="section level2">
 <h2>Example of an open-population mark-recapture analysis!</h2>
+<p>Let’s run through a CJS analysis in R! To follow along, please <a href="LECTURE15.R">save this script and load it up in Rstudio</a>.</p>
 <div class="figure">
 <img src="dipper1.png" />
 
 </div>
 <p>The European dipper data is THE classic example of a CMR dataset. Let’s look at it!</p>
-<pre class="r"><code>library(mra)</code></pre>
-<pre><code>## Warning: package &#39;mra&#39; was built under R version 3.3.2</code></pre>
-<pre><code>## Mark-Recapture Analysis (vers 2.16.4)</code></pre>
-<pre class="r"><code>data(&quot;dipper.data&quot;)
-head(dipper.data,10)</code></pre>
-<pre><code>##    h1 h2 h3 h4 h5 h6 h7 males females
-## 1   1  1  1  1  1  1  0     1       0
-## 2   1  1  1  1  1  0  0     0       1
-## 3   1  1  1  1  0  0  0     1       0
-## 4   1  1  1  1  0  0  0     0       1
-## 5   1  1  0  1  1  1  0     0       1
-## 6   1  1  0  0  0  0  0     1       0
-## 7   1  1  0  0  0  0  0     1       0
-## 8   1  1  0  0  0  0  0     1       0
-## 9   1  1  0  0  0  0  0     1       0
-## 10  1  1  0  0  0  0  0     0       1</code></pre>
-<p>Here we use the “mra” package in R (instead of MARK) to do the ML parameter estimation!</p>
-<pre class="r"><code>data(dipper.histories)
-ct &lt;- as.factor( paste(&quot;T&quot;,1:ncol(dipper.histories), sep=&quot;&quot;))
-attr(ct,&quot;nan&quot;)&lt;-nrow(dipper.histories)
+<pre class="r"><code>###########
+# Cormack-Jolly-Seber (CJS) model in R
+###########
+
+library(marked)      # install the &#39;marked&#39; package if you haven&#39;t already done this!</code></pre>
+<pre><code>## Loading required package: lme4</code></pre>
+<pre><code>## Warning: package &#39;lme4&#39; was built under R version 3.5.1</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre><code>## This is marked 1.2.1</code></pre>
+<pre class="r"><code>data(&quot;dipper&quot;)
+head(dipper,10)</code></pre>
+<pre><code>##         ch    sex
+## 1  0000001 Female
+## 2  0000001 Female
+## 3  0000001 Female
+## 4  0000001 Female
+## 5  0000001 Female
+## 6  0000001 Female
+## 7  0000001 Female
+## 8  0000001 Female
+## 9  0000001 Female
+## 10 0000001 Female</code></pre>
+<p>Here we use the “marked” package in R (instead of MARK) to do the ML parameter estimation!</p>
+<pre class="r"><code>data(dipper.histories)      # load data
+ct &lt;- as.factor( paste(&quot;T&quot;,1:ncol(dipper.histories), sep=&quot;&quot;))      # specify which years were modeled
+attr(ct,&quot;nan&quot;)&lt;-nrow(dipper.histories)  # assign the proper number of individuals
+
+######
+# Run the model!
+
 dipper.cjs &lt;- F.cjs.estim( ~tvar(ct,drop=c(1,2)), ~tvar(ct,drop=c(1,6,7)), dipper.histories )
+
+#####
+# Display the results
+
 cat(&quot;survival estimates!\n&quot;)</code></pre>
 <pre><code>## survival estimates!</code></pre>
 <pre class="r"><code>dipper.cjs$s.hat[1,] </code></pre>
@@ -772,10 +793,16 @@ cat(&quot;survival estimates!\n&quot;)</code></pre>
 <pre class="r"><code>dipper.cjs$p.hat[1,] </code></pre>
 <pre><code>## [1]        NA 0.6962024 0.9230769 0.9130435 0.9007892 0.9324138 0.7388270</code></pre>
 <p>What is our estimate for mean survival?</p>
-<pre class="r"><code>mean(dipper.cjs$s.hat[1,],na.rm=T)</code></pre>
+<pre class="r"><code>#######
+# Compute the mean survival rate for the population
+
+mean(dipper.cjs$s.hat[1,],na.rm=T)</code></pre>
 <pre><code>## [1] 0.5956427</code></pre>
 <p>What is the environmental stochasticity?</p>
-<pre class="r"><code>sd(dipper.cjs$s.hat[1,],na.rm=T)</code></pre>
+<pre class="r"><code>#######
+# Compute the environmental variablility in annual survival rates. 
+
+sd(dipper.cjs$s.hat[1,],na.rm=T)</code></pre>
 <pre><code>## [1] 0.1188953</code></pre>
 <div id="program-mark-1" class="section level3">
 <h3>Program MARK!</h3>
