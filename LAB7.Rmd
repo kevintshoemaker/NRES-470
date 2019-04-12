@@ -1,7 +1,7 @@
 ---
 title: "Lab 7: Parameter estimation: mark-recapture analysis!"
 author: "NRES 470/670"
-date: "April 4, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -13,6 +13,30 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 470/670, lab 7                               ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
+
+
+############################################################
+####  Parameter estimation                              ####
+############################################################
+
+
+```
+
+
+First, [please download this R script and load it in Rstudio](LAB7.R) for later.
+
+Next, since we haven't had the lecture on this topic yet, let's go over the basics from the lecture first- [click here](LECTURE15.html)
+
 ## Open versus closed populations
 
 **Closed population** – a population in which there is no recruitment (birth or immigration) or losses (death or emigration) during the period of study. Geographic and demographic closure.
@@ -23,11 +47,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 It is important to note that for both closed- and open-population models, a primary task is to estimate the *probability of detection, p*. This is because most surveys of wild populations are **imperfect**- with few exceptions, we just can't observe all individuals in a wild population every time we visit our study population in the wild.
 
-If we didn't account for imperfect detection, our estimates of key population parameters like abundance and survival would be highly *biased* in many cases. 
+This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN'T SEE!! How do we know how many animals we didn't see? We need to know the probability of capture- if we know the probability of capture we automatically know the probability of NOT capturing/detecting an animal in the population! From there we can estimate the number we didn't capture from the number we did capture!
 
-Capture-mark-recapture models correct for that bias-- and to do that, they estimate the probability of detection (*p*) in addition to fundamental parameters like abundance and survival (we need to estimate it to be able to correct for the bias it introduces into our data!). 
+If may not be as easy to see, but if we didn't account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly *biased* in most cases. 
 
-In fact, for many closed population models, detection probability can be viewed as the **only** parameter that is estimated! 
+Capture-mark-recapture models correct for that bias by estimating the probability of detection (*p*) in addition to fundamental parameters like abundance, recruitment and survival. If we can estimate the probability of detection, we can correct for the bias it introduces into our data. 
 
 Let's see how this works!  
 
@@ -35,7 +59,7 @@ Let's see how this works!
 
 - *two visits* – Lincoln-Petersen model
 
-- *several visits* (k>2) – Schnabel (Schumacher-Eschmeyer) model and models in program CAPTURE (which can be run through Program MARK).
+- *several visits* (k>2) – Schnabel and Schumacher-Eschmeyer models -- and other models that can be run via program CAPTURE (which can be run through Program MARK).
 
 #### LINCOLN-PETERSEN MODEL (L-P) (estimating abundance on the basis of two site visits!)
 
@@ -43,7 +67,9 @@ Basic underlying concept:
 
 On the first visit, a sample of $M$ animals is caught, $M$arked, and released. Later, on a second visit to the study site, a sample of $C$ animals is $C$aptured, of which $R$ animals are $R$*ecaptures* that were previously Marked. No new animals are marked during the second visit. 
 
-If the key assumptions of this analysis are met (below), then the proportion of marked animals recaptured in the second visit ($\frac{R}{C}$) should be equivalent to the proportion of marked animals (from the first visit) in the total population ($\frac{M}{N}$) such that:
+NOTE: animals do not need to be uniquely marked to estimate abundance using the L-P method.
+
+If the key assumptions of this analysis are met (see below), then the proportion of marked animals recaptured in the second visit ($\frac{R}{C}$) should be equivalent to the proportion of marked animals (from the first visit) in the total population ($\frac{M}{N}$) such that:
 
 $\frac{R}{C} = \frac{M}{N}$
 
@@ -54,6 +80,16 @@ $\hat N=\frac{C \cdot M}{R}  \qquad \text{(Eq. 1)}$
 **Q** What is the estimate of per-capita capture probability ($p$) in the L-P estimator?? 
 
 Another way to think about the L-P estimator is that we first estimate the probability of detection as the proportion of marked animals recaptured in the second visit ($\frac{R}{C}$). We then take the *biased* estimate of abundance ($M$) and *unbias* this estimate by dividing by the probability of capture! 
+
+$p = \frac{R}{M}$
+
+$\hat N = p \cdot N+(1-p)\cdot N$
+
+$\hat N = \frac{R}{M}\cdot N + (1-\frac{R}{M})\cdot N $
+
+$M=\frac{R}{M}\cdot N = p \cdot N $
+
+$\hat N = \frac{M}{p} = \frac{C \cdot M}{R}$
 
 Imagine we were to capture 10 individuals during our first visit ($M=10$) and 8 individuals during our second visit ($C=10$). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, $p=\frac{R}{C}=0.5$. Another way of saying this is that for every individual we observe during a site visit, we are likely to miss one individual. 
 
@@ -67,15 +103,13 @@ The lower our estimate of $p$ (derived from the second visit), the more individu
 
 **Q:** What if we had only observed 2 (out of 8) marked individuals during the second visit?
 
-**Q:** Do you understand why dividing by $M$ by $p$ gives us an estimate of $N$?
-
 NOTE: If sample size is small, the above estimator can be biased. For example, what happens if the number of recaptures is zero? 
 
 A modified version with less bias was originally developed by Chapman (1951) and is commonly called the *modified Petersen estimate* or the *Chapman estimator*:
 
 $\hat N=\frac{(M+1)(C+1)}{R+1}-1   \qquad \text{(Eq. 2)}$
 
-This formula is a **statistic** estimating total population size on the basis of a **sample** (see lecture on parameter estimation). 
+This formula is a **statistic** estimating total population size on the basis of a **sample** (see [lecture on parameter estimation](LECTURE15.html) for more). 
 
 We still need to make inference about the **parameter**, $N$, on the basis of the statistic, $\hat N$.
 
@@ -102,19 +136,17 @@ $\hat N \pm 1.965 * StDev(\hat N)   \qquad \text{(Eq. 5)}$
 - Capture and marking do not affect the detection probability *p*.
 - Marks are not lost between sampling occasions.
 
-**Q** For the L-P estimator, is it critical that all individuals are *uniquely* marked??
-
 #### SCHNABEL ESTIMATOR (if there are more than two site visits!)
 
-This method extends the Lincoln-Peterson method to a series of samples in which there are 2, 3, 4,..., k site visits.  Individuals caught during each visit are first examined for marks, then all unmarked individuals are given a mark, and finally the individual is released back into the population. 
+This method extends the Lincoln-Peterson method to a series of samples in which there are 2, 3, 4,..., k site visits. Individuals caught during each visit are first examined for marks, then all unmarked individuals are given a mark, and finally the individual is released back into the population. 
 
 Only a single type of mark needs to be used because we just need to distinguish 2 types of individuals: marked (caught in one or more prior samples); and unmarked (never caught before). For each visit *t*, the following is determined:
 
-$C_t$ = Total number of individuals caught in visit $t$
+$C_t$ = Total number of individuals captured during visit $t$
 
-$R_t$ = Number of individuals already marked (Recaptures) when caught in visit $t$ (the remainder must be marked in visit $t$)
+$R_t$ = Number of individuals already marked (Recaptures) when caught in visit $t$ (the remainder of individuals captured in visit *t* must be given a new mark)
 
-$M_t$ = Number of marked animals in the population just before the $t$th site visit.
+$M_t$ = Total number of marked animals in the population just before the $t$th site visit.
 
 Schnabel treated the multiple visits as a series of Lincoln-Peterson (L-P) samples and obtained a population estimate as a weighted average of the L-P estimates:
 
@@ -162,7 +194,18 @@ write.table(temp3,file="simple_closed.csv",row.names=FALSE,col.names=TRUE,sep=",
 
 Load up the CSV file [here](simple_closed.csv). The first few lines should look something like this:
 
-```{r echo=FALSE}
+```{r}
+
+##########
+# CLOSED POPULATION MODELS
+##########
+
+# Note: I recommend doing these lab activities in EXCEL, but you're more than welcome to try to do it in R (instead of handing in your work as an excel spreadsheet, just hand in your R code!)
+
+###########
+# First, load up the CSV file (you need to download it first)
+
+# setwd()     # remember to set your working directory before you read in the data! 
 
 head(read.csv("simple_closed.csv"))
 
@@ -170,7 +213,7 @@ head(read.csv("simple_closed.csv"))
 ```
 
 
-1a. First, let's imagine that we only have samples 1 and 2! Using these data, compute the L-P estimate of abundance using Eq. 2. Also compute the confidence interval for your abundance estimate. Show your work! I recommend using EXCEL for this!
+1a. First, let's imagine that we only have samples 1 and 2 (the first 2 columns of data)! Using these data, compute the L-P estimate of abundance using Eq. 2. Also compute the confidence interval for your abundance estimate. Show your work! I recommend using EXCEL for this!
 
 
 1b. Now, use the Schnabel method to estimate abundance (and confidence interval around abundance) for this population. Show your work! Again, I recommend using EXCEL for this!  
@@ -178,11 +221,9 @@ head(read.csv("simple_closed.csv"))
 1c. Do the two estimates differ? Either way, which estimate do you trust more- the L-P estimate or the Schnabel estimate? Why? 
 
 
-### Open-population models in Program MARK
+### Open-population models
 
 (note: geographic closure is still a critical assumption- that is, no immigration or emigration!)
-
-Program MARK is primarily a tool for fitting open-population models- that is, for estimating population vital rates like survival.
 
 *Cormack-Jolly-Seber* model is the most basic model in Program MARK, and it only estimates survival parameters (not fecundity).
 
@@ -192,28 +233,44 @@ See the [parameter estimation lecture](LECTURE15.html) for more information abou
 
 For this exercise, we will use the classic European Dipper data!
 
+NOTE: Program MARK is a Windows-based software. If you have a Mac, you can run MARK using a Windows partition or a Windows emulator. However, you don't need to use Program MARK for this lab exercise -- you can use R instead!
+
+The 'mra' package in R runs many of the simpler open-population models, and is much easier to use than Program MARK. Please install this package if haven't already done so.
+
+
 These data should look like this! Here it is in R (just the first 15 lines)!
 
-```{r echo=FALSE}
-library(mra)
 
-data(dipper.histories)
-head(dipper.histories,15)
+```{r echo=FALSE}
+
+##########
+# OPEN POPULATION MODELS
+##########
+
+library(mra)   # remember to install the 'mra' package if you haven't already done this
+
+data(dipper.histories)         # load up the data
+head(dipper.histories,15)     # look at the top few lines
+
+data(dipper.males)   # load up only the capture histories for male dippers!
+
 ```
 
-Program MARK wants a particular type of input file (.INP). For the dipper data, it should look something like [this](ed_males.txt)
+##### Program MARK (follow along if you can!)
 
-An "INP" file can be dowloaded [here](ed_males.inp). Alternatively, you can save this [text file](ed_males.txt) and re-name it with the extension ".inp" rather than the extension ".txt"
+Program MARK wants a particular type of input file (.INP; just a text file with special formatting). For the dipper data, it should look something like [this](ed_males.txt)
 
-NOTE: if this doesn't work, load the example files from the ["gentle introduction" link](http://www.phidot.org/software/mark/docs/book/)! 
+An "INP" file can be downloaded [here](ed_males.inp). If this doesn't work, you can save this [text file](ed_males.txt) and re-name it with the extension ".inp" rather than the extension ".txt"
+
+NOTE: if this doesn't work, you can load the example files from the ["gentle introduction" link](http://www.phidot.org/software/mark/docs/book/)! 
 
 1. Open Program MARK! You can download the software [here](http://www.phidot.org/software/mark/downloads/index.html)
 
 2. Double-click the MARK icon to open Program MARK.  Click the spreadsheet icon in the upper left corner to open a menu for Specifications for Mark Analysis.  This menu allows you to specify the kind of analysis you will conduct (Select Data Type).  Today we will start with a data set that includes live recaptures only so be sure this Data Type is selected (Cormack-Jolly-Seber model).   
 
-3. Look to the right and you will see a button: Click to Select File.  Click this button and browse to find the "ed_males.inp"" fil you just downloaded.  Double click this file to open this file in Program Mark.  Now click the view this file button, which will allow you to see the data file. You will see encounter histories (e.g., 1110101, representing observations over 7 visits) followed by a space, followed by one or more additional columns, followed by a semicolon at the end. The encounter history indicates the occasions when each individual was encountered (actually observed), indicated by a 1, or not encountered, indicated by a 0. The length of the capture history is equal to the number of site visits. The column to the right of the capture histories indicate how many individuals in the population exhibit this particular capture history. The semicolon at the end indicates the end of the record.  Note that in this encounter history each individual has its own record (the value in the final colummn is always 1).  However, it is possible to specify only the unique observed encounter histories and indicate the number of individuals with each history.
+3. Look to the right and you will see a button: Click to Select File.  Click this button and browse to find the "ed_males.inp" fil you just downloaded.  Double click this file to open this file in Program Mark.  Now click the 'view this file' button, which will allow you to see the data file. You will see encounter histories (e.g., 1110101, representing observations over 7 visits) followed by a space, followed by one or more additional columns, followed by a semicolon at the end. The encounter history indicates the occasions when each individual was encountered (actually observed), indicated by a 1, or not encountered, indicated by a 0. The length of the capture history is equal to the number of site visits. The column to the right of the capture histories indicate how many individuals in the population exhibit this particular capture history. The semicolon at the end indicates the end of the record.  Note that in this encounter history each individual has its own record (the value in the final colummn is always 1).  However, it is possible to specify only the unique observed encounter histories and indicate the number of individuals with each history.
 
-5. We now have to provide Mark some information about the data.  You should provide a title for the data to keep your results organized.  Below the data file selection area you will find some buttons and counters to provide additional information.  Encounter occasions needs information about the number of possible times an individual could be encountered (number of site visits). Count the number of columns in the dipper encounter history (there are 7) and enter this number for encounter occasions. Once you have completed these tasks click OK; MARK has the basic information it needs to perform an analysis.
+5. We now have to provide MARK some information about the data.  You should provide a title for the data to keep your results organized.  Below the data file selection area you will find some buttons and counters to provide additional information.  Encounter occasions needs information about the number of possible times an individual could be encountered (number of site visits). Count the number of columns in the dipper encounter history (there are 7) and enter this number for encounter occasions. Once you have completed these tasks click OK; MARK has the basic information it needs to perform an analysis.
 
 6.  A window will open entitled "apparent survival  parameter (phi) males of live recaptures".  Before we discuss this window we need to open an additional window.  Click on the PIM button on the top toolbar, then click on "open parameter index matrix".  Click select all then OK. Click on the Window button on the top toolbar then click on Tile. You should see 2 similar appearing windows all with the upper triangular of a matrix.  Look more closely and you’ll see that the window for male survival has numbers ranging from 1 to 6 as columns go from left to right.  The encounter probability matrices have numbers 7 to 12. These numbers specify the model structure by defining the number of survival and capture probabilities we wish to estimate! The model you have specified by default allows survival and encounter probabilities to vary annually.
 
@@ -233,55 +290,151 @@ NOTE: if this doesn't work, load the example files from the ["gentle introductio
 
 Now retrieve the {phi(t) p(t)} model and examine parameter estimates for this model.  You will see 6 survival estimates and 6 estimates for detection probability.  These are indexed using the numbers you provided in the PIMs.  Notice that the 6th estimates for both phi and p have standard error that are either very large or zero.  *These are the estimates for the last survival and encounter probability for each group, which cannot be estimated*.  
 
-## Exercise 2- CJS models in Program MARK
 
-2a. In the CJS model with time-constant survival and capture probability, write out the *likelihood* of the following capture history (refer to the parameter estimation lecture!):
+##### CJS model in R
+
+```{r}
+
+##########
+# OPEN POPULATION MODELS
+##########
+
+library(marked)    # remember to install the 'marked' package if you haven't already done this
+
+?crm  # to get help on the main parameter estimation function in "marked"
+
+
+##########
+# load data!
+
+data(dipper)
+
+dipper.male <- dipper[which(dipper$sex=="Male"),]   # extract only the males, to compare with Mark
+
+
+#############
+# Process data
+
+dipper.proc=process.data(dipper.male,model="cjs",begin.time=1)  # Helper function- process the data for CJS model
+dipper.ddl=make.design.data(dipper.proc)    # another helper function- process data!
+
+##########
+# Fit models
+
+# fit time-varying cjs model
+
+mod.Phit.pt <- crm(dipper.proc,dipper.ddl,
+   model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)))
+
+#cjs.hessian(mod.Phit.pt)
+mod.Phit.pt
+
+mod.Phit.pt$results$AIC
+
+# fit time-invariant cjs model
+
+mod.Phidot.pdot <- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)))
+
+#cjs.hessian(mod.Phidot.pdot)
+
+# compare models with AIC
+
+Phi.dot <- list(formula=~1)
+Phi.time <- list(formula=~time)
+p.dot <- list(formula=~1)
+p.time <- list(formula=~time)
+cml=create.model.list(c("Phi","p"))
+allmodels <- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE)
+
+allmodels
+
+#######
+# get parameter estimates and confidence intervals for best model
+
+cjs.hessian(allmodels[[1]])
+
+#######
+# make predictions and plot them. 
+
+
+
 
 ```
-1 1 1 1
+
+Now, before running the next model, you need to [download this dataset](indcov1.csv) to your R working directory.
+
+```{r}
+
+##########
+# Run a model with individual covariates
+##########
+
+indcov <- read.csv(file="indcov1.csv",header=T)
+
+# extract the capture history
+
+caphist <- as.matrix(indcov[,1:8])   #  make sure that the histories file is a matrix, not a data frame!!
+
+# separate out the covariates
+
+mass1 <- as.matrix(indcov[,10])
+mass2 <- as.matrix(indcov[,11])
+
+# turn the covariates into matrices with same dimensions as capture history
+mass1 <- sapply(1:ncol(caphist),function(t) mass1  )
+mass2 <- sapply(1:ncol(caphist),function(t) mass2  )
+
+mass1mat <- ivar(as.vector(mass1),ncol(ic_hist))
+mass2mat <- ivar(as.vector(mass2),ncol(ic_hist))
+
+# generate indicator matrices for time (just like before- now we use even more efficient method!)
+tmp <- F.cjs.covars(nan=nrow(ic_hist),ns=ncol(ic_hist))  # helper function from mra package
+for(j in 1:ncol(ic_hist)){ 
+   assign(paste("x",j,sep=""), tmp$x[,,j]) 
+}
+
+# traditional time-varying cjs model, no covariates...
+phit.pt <- F.cjs.estim(capture=~x3+x4+x5+x6+x7+x8,survival=~x2+x3+x4+x5+x6,histories=caphist)
+print.cjs(phit.pt)
+AIC
+
+# model with no time component in survival, just mass
+
+phimass.pt <- F.cjs.estim(capture=~x3+x4+x5+x6+x7+x8,survival=~mass1mat,histories=caphist)
+print.cjs(phimass.pt)
+AIC
+
+# model with constant capture rates, and survival as a function of mass
+phimass.pdot <- F.cjs.estim(capture=~1,survival=~mass1mat,histories=ic_hist)
+print.cjs(phimass.pdot)
+AIC
+
+# compare AIC?
+
+
 ```
 
-NOTE: the initial "1" of the capture history is not part of the likelihood, as it simply indicates that the individual was captured and is now available for estimating survival.
 
-NOTE: use the term $\phi$ to represent survival, and use the term $p$ to represent the encounter probability. So the probability of observing the capture history "11" could be represented as:   
+## Exercise 2- Open population (CJS) models
 
-$\phi \cdot p$ -- that is, to be observed on the second capture occasion, the individual had to survive to year 2 with probability $phi$ and be detected with probability $p$. 
+Use R or MARK to answer the following questions:
 
-Similarly, the capture history "101" could be represented as:
-
-$\phi \cdot (1-p) \times \phi \cdot p$
-
-Does it make sense why? If not, review the lecture on capture-mark-recapture analysis. 
+2a. [building off the demonstration in R and Program MARK]. Build and run the following model: capture probability varies by year, but survival is constant across time. Is this model better than the current top model (lower AIC value means a better model)? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
 
 
-2b. In the CJS model with time-constant survival and capture probability, write out the *likelihood* of the following capture history:
-
-```
-1 0 0 1
-```
-
-2c. In the CJS model with time-constant survival and capture probability, write out the *likelihood* of the following capture history (this one is a little harder!!):
-
-```
-1 1 1 0
-```
-
-2d. [building off the demonstration in Program MARK]. Build and run the following model: capture probability varies by year, but survival is constant across time. Is this model better than the current top model? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
+2b. Build and run the following model: capture probability is constant across time, but survival exhibits temporal variability. Is this model better than the current top model? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
 
 
-2e. Build and run the following model: capture probability is constant across time, but survival exhibits temporal variability. Is this model better than the current top model? What are the parameter estimates for this model? What are the *confidence intervals* for these parameters?
-
-
-2f. Use your results to estimate *environmental stochasticity* in survival for European dippers. In other words, what random number generator would you use to represent annual variation in survival for this population? Explain how you obtained your answer, and show your work!
+2c. Use the results from the time-dependent model [phi(t)p(t)] to estimate the mean per-capita survival rate and the *environmental stochasticity* (annual variation) in survival for European dippers. In other words, what is the mean and standard deviation for the Normal random number generator you would you use to represent annual variation in survival for this population? Explain how you obtained your answer, and show your work!
 
 
 ##Checklist for Lab 7 completion
 
 * Please prepare all written responses in a single Word document and submit _using WebCampus_!
 
-* Where appropriate, Excel files should be included as part of your lab submission (can be bundled with the Word document using a zipped folder).  
+* Where appropriate, Excel files and R scripts can be included as part of your lab submission (can be submitted separately in WebCampus .  
 
-***Due Apr. 27 at 10 am.***
+***Due Apr. 26 at midnight***
 
 *  Word document with short answers, and Excel document
     +  **Exercise 1**
@@ -293,12 +446,46 @@ Does it make sense why? If not, review the lecture on capture-mark-recapture ana
         -  *Short answer (2a.)*
         -  *Short answer (2b.)*
         -  *Short answer (2c.)*
-        -  *Short answer (2d.)* 
-        -  *Short answer (2e.)*
-        -  *Short answer (2f.)*
  
         
 
+
+```{r echo=FALSE, eval=FALSE}
+
+# 2a. In the CJS model with time-constant survival and capture probability, write out the *likelihood* of the following capture history (refer to the parameter estimation lecture!):
+# 
+# #```
+# 1 1 1 1
+# #```
+# 
+# NOTE: the initial "1" of the capture history is not part of the likelihood, as it simply indicates that the individual was captured and is now available for estimating survival.
+# 
+# NOTE: use the term $\phi$ to represent survival, and use the term $p$ to represent the encounter probability. So the probability of observing the capture history "11" could be represented as:   
+# 
+# $\phi \cdot p$ -- that is, to be observed on the second capture occasion, the individual had to survive to year 2 with probability $phi$ and be detected with probability $p$. 
+# 
+# Similarly, the capture history "101" could be represented as:
+# 
+# $\phi \cdot (1-p) \times \phi \cdot p$
+# 
+# Does it make sense why? If not, review the lecture on capture-mark-recapture analysis. 
+# 
+# 
+# 2b. In the CJS model with time-constant survival and capture probability, write out the *likelihood* of the following capture history:
+# 
+# #```
+# 1 0 0 1
+# #```
+# 
+# 2c. In the CJS model with time-constant survival and capture probability, write out the *likelihood* of the following capture history (this one is a little harder!!):
+# 
+# #```
+# 1 1 1 0
+# #```
+
+
+
+```
 
 
 

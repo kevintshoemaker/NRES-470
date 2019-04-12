@@ -1,7 +1,7 @@
 ---
-title: "Parameterizing models: estimation!"
+title: "Parameter estimation!"
 author: "NRES 470/670"
-date: "Apr 20, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -13,9 +13,26 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 470/670, Lecture 15                          ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
 
 
-#Parameter estimation for PVA!
+############################################################
+####  Parameter estimation                              ####
+############################################################
+
+
+```
+
+#Parameter estimation for wildlife population models!
 
 We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!
 
@@ -23,16 +40,15 @@ This is the focus of the current lecture!
 
 ## Data requirements
 
-### Scalar models
+### Scalar models (no age structure)
 - Initial abundance ($N_0$)
-- Population growth rate 
-- Temporal variation in population growth rate (environmentally induced fluctuations among years)
-- Maximum rate of population growth (for logistic model)
-- Carrying capacity of the population (equilibrium abundance of logistic model)
+- Mean population growth rate ($r$ or $r_{max}$)
+- Variation in population growth rate (standard deviation for a normal distribution representing environmentally induced fluctuations among years)
+- Carrying capacity of the population ($K$; equilibrium abundance of logistic model)
 
 ### Stage-structured (life history) models
 - Initial abundance ($\mathbf{N_0}$) (vector of initial abundances for all stages)
-- Stage-specific vital rates (fecundity, survival, dispersal) 
+- Stage-specific vital rates (fecundity, survival; fill in a transition matrix) 
 - Temporal variation in vital rates (environmentally induced fluctuations among years) 
 - Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)    
     - Which vital rates are density-dependent?    
@@ -70,7 +86,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 - Makes unrealistic assumptions (especially the *static life table* method).
 - Can not be used to estimate environmental stochasticity
 - Can not be used to estimate density dependence
-- Ignores **imperfect detection** (assumes perfect detection)
+- Ignores **imperfect detection**  
 - Remember, it's not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!
 
 ### Census data!
@@ -104,7 +120,7 @@ In this case, computing survival and fecundity (and variation in these parameter
 - Estimating landscape-scale movements can require an even more costly and time-consuming study.
 - Emigration and survival can be difficult to tease apart in many cases. 
 
-See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and management sequence!)
+See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and conservation sequence!)
 
 ### Data on spatial structure/habitat
 - See [links](FINAL_PROJECTS.html) on Final projects page
@@ -162,8 +178,9 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) -
 
 - Survival rate (possibly age or size structured)
 - Fecundity (entry of new individuals in the population)
+- Recruitment (entry of new individuals into the adult population)  
 - Abundance
-- Lambda (rate of growth)
+- Lambda (finite rate of growth)
 - Environmental influences on survival rates and fecundity
 - Temporal process variance (env. stochasticity)
 - Dispersal rates
@@ -221,10 +238,6 @@ We attempt to estimate the processes driving abundance change (often, survival r
 
 ### Maximum likelihood: a framework for statistical inference!
 
-**IN GENERAL**:
-- Given an underlying *data-generating model*, what values of the model **parameters** maximize the probability of producing the observed data?
-- To find the maximum likelihood estimate (MLE) for an unknown **parameter** we usually take a starting value (e.g. survival=25%), and keep trying new values until the likelihood function is maximized (numerical optimization).
-
 **FOR CMR ANALYSIS**:
 - What value of survival maximizes the probability of generating the observed capture histories?
 
@@ -275,15 +288,15 @@ $L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4)  \ri
 
 Maximum likelihood estimation is the process of finding those values of the parameters $\phi$ and $p$ that would be most *likely* to generate the observed capture histories!
 
-This model is known as the *Cormack-Jolly-Seber* model (CJS), and is the basic analysis performed by Program MARK. 
+This model is known as the *Cormack-Jolly-Seber* model (CJS), and is the most common analysis performed by Program MARK. 
 
 **Q**: Why is $\phi$ also known as "apparent" survival? Why is it not "true" survival???
 
-#### Assumptions of the CJS model
+#### Key assumptions of the CJS model
 
-- All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)
-- Marks are not lost or missed by surveyors
-- All emigration is permanent (equivalent to a mortality)
+- All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)    
+- Marks are not lost or missed by surveyors    
+- All emigration is permanent (equivalent to a mortality)    
 
 ### Program MARK
 
@@ -291,13 +304,20 @@ MARK is a numerical maximum-likelihood engine designed for mark-recapture analys
 
 ## Example of an open-population mark-recapture analysis!
 
+Let's run through a CJS analysis in R! To follow along, please [save this script and load it up in Rstudio](LECTURE15.R).
+
 ![](dipper1.png)
 
 The European dipper data is THE classic example of a CMR dataset. Let's look at it!
 
 
 ```{r}
-library(mra)
+
+###########
+# Cormack-Jolly-Seber (CJS) model in R
+###########
+
+library(mra)      # install the 'mra' package if you haven't already done this!
 data("dipper.data")
 head(dipper.data,10)
 
@@ -307,27 +327,47 @@ head(dipper.data,10)
 Here we use the "mra" package in R (instead of MARK) to do the ML parameter estimation!
 
 ```{r}
-data(dipper.histories)
-ct <- as.factor( paste("T",1:ncol(dipper.histories), sep=""))
-attr(ct,"nan")<-nrow(dipper.histories)
+
+data(dipper.histories)      # load data
+ct <- as.factor( paste("T",1:ncol(dipper.histories), sep=""))      # specify which years were modeled
+attr(ct,"nan")<-nrow(dipper.histories)  # assign the proper number of individuals
+
+######
+# Run the model!
+
 dipper.cjs <- F.cjs.estim( ~tvar(ct,drop=c(1,2)), ~tvar(ct,drop=c(1,6,7)), dipper.histories )
+
+#####
+# Display the results
+
 cat("survival estimates!\n")
 dipper.cjs$s.hat[1,] 
 
 cat("\n\n detection probability estimates!\n")
 dipper.cjs$p.hat[1,] 
+
 ```
 
 What is our estimate for mean survival?
 
 ```{r}
+
+#######
+# Compute the mean survival rate for the population
+
 mean(dipper.cjs$s.hat[1,],na.rm=T)
+
 ```
 
 What is the environmental stochasticity?
 
 ```{r}
+
+#######
+# Compute the environmental variablility in annual survival rates. 
+
 sd(dipper.cjs$s.hat[1,],na.rm=T)
+
 ```
 
 ### Program MARK!
