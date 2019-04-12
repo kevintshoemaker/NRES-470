@@ -424,12 +424,13 @@ div.tocify {
 <img src="loggerhead2.jpg" />
 
 </div>
-<p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine turtle that nests along the Atlantic coast from New Jersey to Texas, but is also found along the Pacific coast and in Hawaii.</p>
+<p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine turtle with a nearly global distribution. Nesting areas in the USA occur along the Atlantic coast from New Jersey to Texas, although individuals may be observed along the Pacific coast and in Hawaii.</p>
 <div class="figure">
 <img src="loggerhead4.jpg" />
 
 </div>
 <p>The species has been federally listed as ‘threatened’ since 1978. When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.</p>
+<p>Loggerheads are listed as “Threatened” under the IUCN Red List.</p>
 <div class="figure">
 <img src="loggerhead3.jpg" />
 
@@ -437,7 +438,7 @@ div.tocify {
 </div>
 <div id="threats" class="section level3">
 <h3>Threats</h3>
-<p>Biologists have identified two key types of threats facing loggerheads that stem from a long lifespan (30-55 years) linking terrestrial and marine environments.</p>
+<p>Biologists have identified two key types of threats facing loggerheads: alteration of nesting beaches and bycatch from commercial fisheries.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Threats to nesting beaches</strong></li>
 </ol>
@@ -459,7 +460,7 @@ Because beaches are popular sites for human recreation and development, arriving
 </ol>
 <p>Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.</p>
 <ul>
-<li>Juveniles feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence <em>accidental capture (“bycatch”)</em> and subsequent drowning in the nets and traps used by these vessels is common.</li>
+<li>Juveniles (after the sargassum-feeding stage) feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence <em>accidental capture (“bycatch”)</em> and subsequent drowning in the nets and traps used by these vessels is common.</li>
 </ul>
 <div class="figure">
 <img src="trawl1.png" />
@@ -479,10 +480,10 @@ Because beaches are popular sites for human recreation and development, arriving
 <li><p>Finally, although rare in the US, <em>illegal harvest</em> of eggs as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras). Turtle eggs are occasionally seen in open-air markets in Panama.</p></li>
 </ul>
 </div>
-<div id="step-1-building-a-size-structured-model" class="section level3">
-<h3>Step 1: Building a size-structured Model</h3>
-<p>The loggerhead is a long-lived species – sexual maturity often doesn’t occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct <strong>stage classes</strong> defined by body size (carapace (shell) length).</p>
-<p>Once turtle life-stages with similar vital rates have been identified, three pieces of data (<em>transition rates</em>) must be collected to construct the stage-structured model:</p>
+<div id="step-1-a-size-structured-model" class="section level3">
+<h3>Step 1: a size-structured model</h3>
+<p>The loggerhead is a long-lived species – sexual maturity often doesn’t occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct <strong>stage classes</strong> defined by body size (carapace length).</p>
+<p>Once turtle life-stages with similar vital rates have been identified, three pieces of data (collectively called <em>transition rates</em>) must be collected to construct the stage-structured model:</p>
 <ol style="list-style-type: decimal">
 <li>fraction of turtles surviving each year but not advancing to the next larger size-class (often just called ‘survival’);</li>
 <li>fraction of turtles surviving each year and advancing to the next larger size-class (often called ‘growth’); and</li>
@@ -561,7 +562,6 @@ projection_matrix</code></pre>
 <div id="forecast-the-population-into-the-future-in-excel" class="section level4">
 <h4>Forecast the population into the future in Excel</h4>
 <p>The projection matrix can be used to project future loggerhead population size assuming the transition probabilities (the <span class="math inline">\(F_i\)</span>, <span class="math inline">\(S_i\)</span>, and <span class="math inline">\(G_i\)</span>) do not change over time.</p>
-<p><strong>Q</strong>: Is this model <em>deterministic</em> or <em>stochastic</em>?</p>
 <p>Let’s use the following initial densities in our model!</p>
 <ul>
 <li>2000 size-class 1 (Hatchlings)</li>
@@ -583,7 +583,7 @@ Abundance_year0</code></pre>
 <p>This formula calculates the size distribution next year (i.e., in year <em>t + 1</em>) based on the projection matrix <span class="math inline">\(\mathbf{A}\)</span> and the size distribution this year <span class="math inline">\(\mathbf{N}_{t}\)</span>.</p>
 <p>For example, to calculate the first row of [n]t +1, the number of hatchlings:</p>
 <p><em>hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42</em></p>
-<p>We systematically multiply each entry of the first row of [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector. The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for. Let’s do this together!</p>
+<p>We systematically multiply each entry of the first row of the transition matrix [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector. The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for. Let’s do this together!</p>
 <p><strong>Q</strong>: Using actual numbers as for hatchlings above, write out the equation for calculating the number of small juveniles (sm juv) in year 1 based on <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{N}_{0}\)</span>:</p>
 <p><strong>Number of small juveniles in year 1 = </strong></p>
 <p>Now we can enter formulas in Excel to calculate the stage distribution vector for year 1.</p>
@@ -625,40 +625,47 @@ for(s in 1:5){
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
 <p><img src="PVA3_421_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><strong>Q</strong>: Is this model <em>deterministic</em> or <em>stochastic</em>?</p>
 </div>
 </div>
 <div id="projecting-the-loggerhead-population-in-insightmaker" class="section level2">
 <h2>Projecting the loggerhead population in InsightMaker</h2>
 <p>First, clone the baseline loggerhead PVA model <a href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">here</a>.</p>
 <p>Hit “Simulate”. Make sure that the model results look the same as the above figure! If not, make sure the parameters are correct!</p>
-<p>NOTE: here we use the term “survival” to refer to staying in the same stage class, and “growth” to refer to moving on to the next life stage.</p>
+<p>NOTE: here we use the term “survival” to refer to surviving and staying in the same stage class, and “growth” to refer to surviving and moving on to the next life stage.</p>
 <p>Look over the model, and make sure that you understand the inner workings!</p>
 <div id="group-exercise-in-class-loggerhead-management" class="section level3">
 <h3>Group exercise (in class!): loggerhead management</h3>
 <p>Working in groups of 2-3, investigate four management scenarios for the loggerhead turtle population:</p>
 <ol style="list-style-type: decimal">
-<li>Improve fecundity (transition rates to the hatchling stage) via <em>nest-site protection</em>!
+<li>Improve fecundity (labeled “Sub Fecundity” and “Adult Fecundity” in the IM model) via <em>nest-site protection</em>!
 <ul>
-<li>Improve fecundity to 1.5X the current value</li>
-<li>Double fecundity (2X the current value)</li>
+<li>Improve fecundity to 1.5X the current value<br />
+</li>
+<li>Double fecundity (2X the current value)<br />
+</li>
 </ul></li>
-<li>Improve hatchling survival via <em>nest monitoring</em>
+<li>Improve hatchling survival (labeled “hatchling growth” in the IM model) via <em>nest monitoring</em>
 <ul>
-<li>Improve <em>to</em> 90%</li>
-<li>Improve <em>to</em> 100%</li>
+<li>Improve <em>to</em> 90%<br />
+</li>
+<li>Improve <em>to</em> 100%<br />
+</li>
 </ul></li>
-<li>Improve large juvenile survival using <em>Turtle Excluder Devices (TEDs)</em>
+<li>Improve large juvenile survival (labeled “Lg Juv Surv” in the IM model) using <em>Turtle Excluder Devices (TEDs)</em>
 <ul>
-<li>Increase by 15%</li>
-<li>Increase by 25%</li>
+<li>Increase by 15% (add 0.15 to the existing juvenile survival)<br />
+</li>
+<li>Increase by 25% (add 0.25 to the existing juvenile survival)<br />
+</li>
 </ul></li>
-<li>Improve adult/subadult survival by <em>restricting longline fisheries</em>.
+<li>Improve adult/subadult survival (labeled “Sub Surv” and “Adult Surv” in IM) by <em>restricting longline fisheries</em>.
 <ul>
-<li>Increase by 5%</li>
-<li>Increase by 10%</li>
+<li>Increase by 5% (add 0.05 to the existing subadult and adult survival)<br />
+</li>
+<li>Increase by 10% (add 0.1 to the existing subadult and adult survival)</li>
 </ul></li>
 </ol>
-<p>NOTE: to alter parameters by (e.g.) 10% you can open the equation window and multiply the original parameter value by 1.1.</p>
 <div class="figure">
 <img src="TED1.jpg" alt="turtle excluder device" />
 <p class="caption">turtle excluder device</p>
@@ -666,11 +673,11 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quo
 <p>For each scenario, consider:</p>
 <ul>
 <li>The short-term outlook (4-6 years out)</li>
-<li>The longer-term outlook (25 years out)</li>
 <li>The long-term outlook (100 years out)</li>
 </ul>
-<p><strong>Q</strong>: What is your management recommendation for this population??</p>
-<p><strong>Q</strong>: In the base model, why does the population always seem to grow during the first few years of the simulation, even if it ultimately declines?</p>
+<p><strong>Please write down your responses to the following questions:</strong>:</p>
+<p><strong>Question 3.1</strong>: What is your management recommendation for this population? Why?</p>
+<p><strong>Question 3.2</strong>: In the base model, why does the population always seem to grow during the first few years of the simulation, even if it ultimately declines?</p>
 <div id="references" class="section level4">
 <h4>References</h4>
 <p>Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy. 1996. Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set. Conservation Biology 10 (3), 863-873. doi: 10.1046/j.1523-1739.1996.10030863.x</p>

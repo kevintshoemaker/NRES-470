@@ -1,7 +1,7 @@
 ---
 title: "Population Viability Analysis"
 author: "NRES 470/670"
-date: "Mar 6, 2017"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -13,10 +13,28 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 470, Lecture 12                               ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
+
+
+############################################################
+####  Population Viability Analysis                     ####
+############################################################
+
+
+```
 
 ### Final projects:
 
-Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due next Monday, April 2*!
+Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due this Friday, April 5*!
 
 
 ## Population Viability Analysis (PVA)
@@ -54,7 +72,7 @@ The first step is to conceptualize the life history for your species of interest
 - Which vital rates could be altered by management activities?
 - Are there any important catastrophes that can affect the system?
 
-**Q**: is there ever a case where you *WON'T* include demographic stochasticity in your model?
+**Q**: is there ever a case where you *WON'T* include demographic stochasticity in your model? 
 
 #### Step 2: Parameterize the demographic model! 
 
@@ -76,7 +94,7 @@ If you want to ask spatial questions, your model needs to be spatially explicit,
 
 - How many discrete populations? 
 - Do different populations have different mean vital rates?
-- Is environmental stochasticity **correlated**?
+- Is environmental stochasticity **spatially correlated**?
 - At what rate do individuals move among these populations?
 - Can connectivity be enhanced via management?
 - Are dispersal rates density-dependent?
@@ -105,7 +123,7 @@ Since this class is not a statistics class, I don't necessarily expect you to do
 
 ## A Simple Demonstration PVA
 
-To illustrate some of these concepts, let's build a very simple PVA model in R.
+To illustrate some of these concepts, let's build a very simple PVA model in R. If you want to follow along, click [here](LECTURE12.R)
 
 We are using R because of its flexible and powerful visualization tools. 
 
@@ -120,6 +138,10 @@ Also let's ignore parameter uncertainty too!
 Here is the basic model parameterization:
 
 ```{r}
+
+##############
+# Demonstration PVA
+##############
 
 ####
 # Basic life history parameters
@@ -147,7 +169,7 @@ Ricker <- function(prev_abund){       # this is a function for computing next-ye
 # Catastrophe
 ####
 
-Flood_prob <- 0.05     # 5% chance of major flood
+Flood_prob <- 0.05      # 5% chance of major flood
 Flood_lambda <- 0.25    # 25% of population can survive a flood 
 
 ```
@@ -211,6 +233,7 @@ The first is to look at the "cloud" of abundance trajectories. This is the same 
 
 
 ```{r}
+
 PlotCloud <- function(simdata){
   plot(c(1:101),simdata[,1],col=gray(0.7),type="l",ylim=c(0,max(simdata)),xlab="Years",ylab="Abundance")
   
@@ -245,8 +268,10 @@ Maybe our question is about the probability of decline over 100 years ...
 In that case maybe we should present a histogram of final abundances...
 
 ```{r}
+
 hist(Default[nrow(Default),],xlab="Final abundance after 100 years",ylab="Number of replicates",main="")
 abline(v=Init_N,col="green",lwd=2)
+
 ```
 
 
@@ -273,6 +298,7 @@ What if our question is about the effect of flooding on extinction risk. Let's i
 Currently, floods generally result in a 10% population reduction. But climate change could increase this number to as much as 90%. Let's look at how much this could increase extinction risk!
 
 ```{r}
+
 Exctinction_risk <- function(simdata){
   length(which(simdata[nrow(simdata),]==0))/ncol(simdata)
 }

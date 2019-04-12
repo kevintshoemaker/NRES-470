@@ -251,6 +251,8 @@ rmd2rscript("LECTURE8.Rmd")
 rmd2rscript("LAB4.Rmd")  ##
 rmd2rscript("LAB5.Rmd")
 
+rmd2rscript("LECTURE12.Rmd")
+
 rmd2rscript("LECTURE9.Rmd")
 rmd2rscript("LECTURE10.Rmd")
 rmd2rscript("FigureDemo.Rmd")

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 **Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why???
 
-**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations declining despite their intrinsic ability to grow?
+**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations in decline despite their intrinsic ability to grow?
 
 ## Threats to populations
 
@@ -24,7 +24,7 @@ The answer of course is that the intrinsic ability to grow under ideal condition
 
 In the "small-population paradigm" lecture, we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.
 
-Large populations can be threatened though! Factors that threaten large populations with large geographic ranges are generally **deterministic**! 
+Large populations can be threatened too though! Factors that threaten large populations with large geographic ranges are generally **deterministic**! 
 
 The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those deterministic processes that cause population decline, and how these processes may be reversed through effective conservation management*. 
 
@@ -56,7 +56,7 @@ What are some factors that can *tip the balance* so to speak- so that growing or
 ![](pollution1.png)
 
 
-## The controversy in Conservation Biology!
+## The debate in Conservation Biology!
 
 So, which one is more important for conservation? The declining-population paradigm or the small-population paradigm??
 
@@ -78,7 +78,7 @@ Let's try a worked example to illustrate the above points.
 
 Let's start with a souped up scalar, density-dependent population -- should look something like this:
 
-You can clone this model by clicking [here](https://insightmaker.com/insight/74417/ICE-declining-population-paradigm)
+You can clone this model by clicking [here](https://insightmaker.com/insight/74417/declining-population-paradigm)
 
 
 ![](IM5.PNG)
@@ -94,39 +94,38 @@ Also, make sure that the time step is 1 year, and the model should run for 50 ye
 
 - Assume that approximately 10% of the population is harvested each year (a fractional harvest). However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%. Make sure you specify the 'fractional harvest' parameters (mean and stdev) in the model so that you achieve this range.   
 
-**Q**: what value did you choose for standard deviation?
+**Q**: what value did you use for standard deviation?
 
 **Q**: is the variation in harvest rates best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?     
 
 **Q**: why doesn't the population decline to extinction? What has the harvest process done in this case?   
 
-**Q**: What if you change the harvest rate- make it even more extreme?
+**Q**: What if you change the harvest rate- make it even more extreme? Starting at an abundance of 200, what is the expected final abundance (after 50 years) if the harvest rate is 40% and the variation (standard deviation) in harvest rate is 20%?   [tophat]
 
 **Let's add a habitat loss process!**
 
 Note that we are modeling habitat loss as a decline in carrying capacity. To do this, we impose larger density-dependence terms on survival and fecundity: because there is less habitat, the effects of crowding are more pronounced.   
 
-- Let's first model the case where 10% of K is lost each year (fractional habitat loss. 
+- Remove any fractional harvest process for now (set frac harvested terms to 0)     
+
+- Let's first model the case where 10% of K is lost each year (fractional habitat loss). 
 
 - Run the simulation to visually track K along with population dynamics! 
 
-**Q**: Does the loss of K look right? Is this what you expected?
-
 **Q**: Does the reduction in K over time look realistic? Can you imagine other plausible shapes for this curve?
 
-- Try running the model with only habitat loss (no harvest - set harvest to zero). 
+- Try running the model with 10% habitat loss (fractional habitat loss) AND 10% harvest (fractional harvest and fractional habitat loss). 
 
-**Q**: Does anything look different? Are the results different from what you expected?  
+**Q**: Are the results different from what you expected?  
 
-- Try changing the harvest process to be 10 individuals per year instead of 10% of the population per year (absolute harvest rate). 
+- Try changing the harvest process to be 35 *individuals* per year (absolute harvest rate). What happens? Return the absolute harvest to zero.
 
-**Q**: How does this change the results?    
+- Try changing the habitat loss process to be 5 *individuals* per year (absolute habitat loss). What happens?
 
-**Q**: What would happen if the habitat loss process were better represented by a *linear* versus *exponential* decline in K?? Try it!    
+- Try changing the habitat loss process to be 5 *individuals* per year (absolute habitat loss) AND the harvest process to be 35 *individuals* per year (absolute harvest rate). What happens?   [tophat]
+
 
 **Q**: Try different combinations of deterministic threats (competing threats!). Can you identify some combinations that are *synergistic*- that is, that affect population decline or extinction risk more than simply adding the effects of each threat in isolation??  
-
-**Q**: Can you identify some combinations of threats that are the opposite of synergistic (*"antergistic"?*) -- that is, conbinations that affect population decline or extinction risk less than simply adding the effects of each threat in isolation??
 
 **Q**: Does stochasticity in harvest rates matter more than stochasticity in habitat loss? Or vice versa?
 

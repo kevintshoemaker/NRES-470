@@ -1,7 +1,7 @@
 ---
 title: "Lab 6: Metapopulation modeling"
 author: "NRES 470/670"
-date: "March 13, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -15,13 +15,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Some definitions
 
-In this lab we will build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each population is occupied or not, and how many total occupied populations we have in our metapopulation.   
+In this lab we will build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.   
 
-A metapopulation is best considered **a population of populations**. If a population is composed of individuals, a metapopulation is composed of populations!
+A classical metapopulation is best considered **a population of patches** -- patches which may or may not be occupied. If a patch is composed of individuals, a metapopulation is composed of patches!
 
-**colonization** is the process of a population going from unoccupied to occupied!
-
-How can a metapopulation become colonized? The answer is **immigration** of course.  
+**colonization** is the process of a patch going from unoccupied to occupied! (via **immigration**).  
 
 **extirpation** (or extinction) is the process of a patch going from occupied to unoccupied.
 
@@ -29,15 +27,19 @@ How can a metapopulation become colonized? The answer is **immigration** of cour
 
 More formally, here are some terms we will consider:
 
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy**. This is the primary [Stock] in our classical metapopulation models.  
+
 $I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate) 
 
 $E$ is the total fraction of patches that go extinct per time period (extirpation rate)
 
-$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy**
-
 Therefore, the change in occupancy can be expressed as:
 
 $\Delta f = I - E  \qquad \text{(Eq. 1)}$
+
+**Q**: If $f_t$ is the [Stock], what would $I$ and $E$ represent in a stock-and-flow modeling framework (e.g., InsightMaker)?
+
+And what are the [Variables]?
 
 $p_i$ is the probability of colonization for any given (unoccupied) patch.
 
@@ -45,11 +47,11 @@ $p_e$ is the probability of extinction for any given (occupied) patch.
 
 ## A basic metapopulation model:
 
-The more sites are available for colonization, the higher the rate of colonization! 
+The more sites are available for colonization (not currently occupied), the higher the rate of patch colonization! 
 
 $I = p_i\cdot (1-f)  \qquad \text{(Eq. 2)}$  
 
-The more sites are occupied, the higher the rate of extinction!
+The more sites are occupied, the higher the rate of patch extinction!
 
 $E = p_e\cdot f  \qquad \text{(Eq. 3)}$
 
@@ -60,12 +62,11 @@ $\Delta f = p_i(1-f)-p_ef  \qquad \text{(Eq. 4)}$
 
 This model assumes the following:   
 
-- Homogeneous patches (all patches are created equal)
+- Homogeneous patches (all patches are created equal -- patches are interchangeable)
 - Spatial context does not affect extinction and colonization parameters
 - No time lags
 - Very large number of patches
 - Extinction and colonization parameters are not dependent on the fraction of patches occupied. 
-
 
 
 ### Variant #1: island-mainland model
@@ -79,7 +80,7 @@ This is actually the model we have already constructed!
 
 ### Variant #2: internal colonization
 
-Now, colonization can only happen via immigration from within the metapopulation itself. So when few populations are colonized, colonization is low because of a lack of potential immigrants in the metapopultion. 
+In this scenario, colonization can only happen via immigration from within the metapopulation itself. So when few patches are colonized, colonization is low because of a lack of potential immigrants in the metapopultion. 
 
 $p_i = i \cdot f   \qquad \text{(Eq. 5)}$
 
@@ -87,7 +88,7 @@ $i$ represents the strength of internal colonization (how much the probability o
 
 ### Variant #3: rescue effect. 
 
-Now, the extinction rate can be reduced by immigration from other populations in the metapopulation!
+Now, the extinction rate can be reduced by immigration from other patches in the metapopulation!
 
 $p_e = e(1-f)   \qquad \text{(Eq. 6)}$
 
@@ -100,7 +101,7 @@ This one is pretty self-explanatory!
 
 ## What is a metapopulation?
 
-The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *population of populations*. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
+The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *population of patches*. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
 
 Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends across the entire metapopulation. 
 
@@ -108,42 +109,40 @@ Just as we can use metapopulation models to study the probability of **regional 
 
 HINT: _use the Gotelli book!!!_
 
-1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (located far enough away from each other so you can reasonbly assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10% to 50%. In the short run, is it a better strategy to retain the single population or to split it into three? Show your calculations, and explain your reasoning! 
+1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (assume the ponds are located far enough away from each other so you can reasonbly assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10% to 50%. Over the next 3 years, is it a better strategy to retain the single population or to split it into three (and "spread out the risk")? Show your calculations, and explain your reasoning! 
 
-1b. Consider the simplest (island-mainland) metapopulation model. Under what conditions is the occupancy rate $f$ constant over time? Explain your reasoning. 
+1b. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied patches $f$ should be represented as a [Stock] (this stock can not go negative!) and there should be two [Flows]: one for *colonization* (I) and one for *extinction* (E). Initialize $f$ at 0.9. The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. Set $p_e$ to 0.15 and $p_i$ to 0.4. Clone your Insight and provide a link to your working InsightMaker metapopulation model as part of your lab write-up. 
 
-1c. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied populations $f$ should be represented as a [Stock] (this stock can not go negative, nor can it go above 1!) and there should be two [Flows]: one for *colonization* and one for *extinction*. Initialize $f$ at 0.9. The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. Set $p_e$ to 0.15 and $p_i$ to 0.4. Provide a link to your working InsightMaker model as part of your lab write-up.
+1c. On the basis of your Insightmaker model, what happens to $f$ over the course of the simulation? Does the metapopulation go extinct (regional extinction)? Does $f$ reach an equilibrium? If so, is this equilibrium **stable** or **unstable**? Explain your reasoning. 
 
-1d. On the basis of your Insightmaker model, what happens to $f$ over the course of the simulation? Does the metapopulation go extinct (regional extinction)? Does $f$ reach an equilibrium? If so, is this equilibrium **stable** or **unstable**? Explain your reasoning. 
+1d. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.4 from Gotelli. Show your work. Do the two answers match?
 
-1e. Compare your InsightMaker results (provide a plot) with the results from applying Equation 4.4 from Gotelli. Show your work. Do the two answers match?
+1e. Change your InsightMaker model to reflect *internal colonization*. Set the parameter $i$ to 0.1. Clone the model and provide a link to your InsightMaker model as part of your lab write-up. 
 
-1f. Change your InsightMaker model to reflect *internal colonization*. Set the parameter $i$ to 0.1. Provide a link to your InsightMaker model as part of your lab write-up. 
+1f. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.6 from Gotelli. Show your work. Do the two answers match?
 
-1g. Compare your InsightMaker results (provide a plot) with the results from applying Equation 4.6 from Gotelli. Show your work. Do the two answers match?
+1g. Change your InsightMaker model to reflect the *rescue effect*. Restore the colonization model to represent "propagule rain" (constant colonization rate for vacant patches). Set the parameter $e$ in the "rescue effect" model to 0.25. Clone the model and provide a link to your InsightMaker model as part of your lab write-up. 
 
-1h. Change your InsightMaker model to reflect the *rescue effect*. Restore the colonization model to represent "propagule rain" (constant colonization rate for vacant patches). Set the parameter $e$ to 0.25. Provide a link to your InsightMaker model as part of your lab write-up. 
+1h. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.8 from Gotelli. Show your work. Do the two answers match?
 
-1i. Compare your InsightMaker results (provide a plot) with the results from applying Equation 4.8 from Gotelli. Show your work. Do the two answers match?
+1i. Change your InsightMaker model to reflect the *rescue effect* AND *internal colonization* (both processes operating in the same model). Set the parameter $i$ to 0.1. Set the parameter $e$ to 0.25. Clone your model and provide a link to your InsightMaker model as part of your lab write-up. 
 
-1j. Change your InsightMaker model to reflect the *rescue effect* AND *internal colonization*. Set the parameter $i$ to 0.1. Set the parameter $e$ to 0.25. Provide a link to your InsightMaker model as part of your lab write-up. 
-
-1k. Is this model *stable*? explain your reasoning. Under what conditions do you get perfect 100% occupancy? 
+1j. Try some alternative parameterizations for the e and i parameters in the model you built for question 1i. Provide two plots illustrating two qualitatively different alternative stable states (e.g., provide one figure illustrating complete colonization over time [f=1] and another illustrating an equilibrium at an intermediate level of patch occupancy [e.g., f=0.25]). Make sure you indicate which parameters were used for each plot.   
 
 
 ## Exercise 2: a spatial metapopulation model!
 
-As we already know, agent-based models are well-suited for considering spatial context. 
+As we already know, agent-based models (individual-based models) are well-suited for considering spatial context. 
 
 I have already prepared an agent-based metapopulation model for you. You can access and clone this model [here](https://insightmaker.com/insight/74948/Agent-based-metapopulation-model).
 
 Each population/patch in the metapopulation is represented by an "individual", or "agent". These individuals cannot move (they are patches of land, after all), but they can influence each other via immigration and emigration!
 
-The landscape is 200 km by 200 km. Each simulation run, patches are initialized randomly in the landscape. The **metapopulation size** (total number of patches) is initialized at 10. 
+The landscape is 200 km by 200 km. Each time a simulation is initiated, patches are placed randomly in the landscape. The **metapopulation size** (total number of patches) is initialized at 10 (but you can change this quantity using a slider bar). 
 
 Each patch potentially contains a population of animals. If it has >= 2 individuals living in it, it is considered "occupied".
 
-Each patch has its own carrying capacity (K)- some patches have very low carrying capacity, and some have very high carrying capacity. The distribution of K among populations is approximately *lognormal*. This means that there are usually a few very large populations in the landscape. The minimum K is 2 (minimum to support an "occupied" population). 
+Each patch has its own carrying capacity (K)- some patches have very low carrying capacity, and some have very high carrying capacity. The distribution of K among patches is approximately *lognormal*. This means that there are usually a few very large patches in the landscape. The minimum K is 2. 
 
 Abundance dynamics are density-dependent, and population growth is computed as a function of **r_max**, **local carrying capacity**, and previous-year local abundance using the **Ricker** growth model:
 
@@ -151,7 +150,7 @@ $N_{t+1} = N_t e^{r_{max}(1-\frac{N_t}{K})}$
 
 This is one of the most commonly used models for discrete logistic population growth (very analogous to the logistic growth model we have already seen!).
 
-Population growth in each patch is also driven by migration to and from nearby populations. A fixed proportion of each population disperses each year (**dispersal rate**, set to 25% initially), and the **maximum dispersal distance** is set initially at 50 kilometers. If no neighboring population exists within that distance, all dispersers perish. 
+Population growth in each patch is also driven by migration to and from nearby patches. A fixed proportion of the population in each patch disperses each year (**dispersal rate**, set to 25% initially), and the **maximum dispersal distance** is set initially at 50 kilometers. If no neighboring patch exists within that distance, all dispersers perish. 
 
 There is, of course, demographic stochasticity in this model!
 
@@ -163,6 +162,7 @@ Metapopulation size: 10 patches
 r_max: 0.11
 maxdist (maximum dispersal distance): 50 kilometers
 dispersal rate: 0.25
+Mean K per population: 10   
 
 NOTE: there is one parameter (max dispersal distance, maxdist) you will need to pay attention to, but it is not represented by a value slider (I couldn't get it to work that way, unfortunately). To alter the maximum dispersal distance, you need to open the equation editor for the [Immigrants] variable, and change the value in the top line, which should look something like this:
 
@@ -170,58 +170,55 @@ NOTE: there is one parameter (max dispersal distance, maxdist) you will need to 
 maxdist <- 50
 ```
 
-2a. Use InsightMaker's *sensitivity testing tool* to run the model 50 times. What is the approximate risk of regional extinction of this metapopulation? What is the abundance trend (that is, overall regional, or metapopulation, abundance) over time? What is the trend in occupancy over time? Provide plots to justify your answer. 
+2a. Use InsightMaker's *sensitivity testing tool* to run the model 50 times. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? What is the abundance trend (that is, overall regional abundance) over time? Provide plots to justify your answer. 
 
-2b. Change the dispersal rate to zero. Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool to examine expected patterns in occupancy and abundance over time. How did the trend in abundance and occupancy change relative to the scenario with 25% dispersal? What about the probability of regional extinction? Justify your answer, including figures. Do these results match with your expectation of what would happen? Why or why not? 
-
-2c. Change the dispersal rate back to 25 % and change the number of patches to 25. Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool (note that InsightMaker will run slower with more patches!) to examine expected patterns in occupancy and abundance over time. How did the trend in abundance and occupancy change relative to the scenario with 10 patches? What about the probability of regional extinction? Justify your answer, including figures. Do these results match with your expectation of what would happen? Why or why not?
-
-2d. Change the metapopulation size back to 10 patches and change the maximum dispersal distance (maxdist) to 100 km (remember you need to open the equation editor for the [Immigrants] variable to do this). Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool to examine expected patterns in occupancy and abundance over time. How did the trend in abundance and occupancy change relative to the scenario with a dispersal distance of 50 km? What about the probability of regional extinction? Justify your answer, including figures. Do these results match with your expectation of what would happen? Why or why not?
-
-2e. Imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: You could:    
+2b. Imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:    
       
-i. Improve the intervening, or "matrix", habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances). 
-ii. Improve existing habitats, doubling the mean per-population carrying capacity.   
-iii. Restore habitat, effectively doubling the number of patches.    
+i. Improve the intervening, or "matrix", habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances).   
+ii. Improve existing habitats, doubling the mean per-patch carrying capacity.     
+iii. Restore habitat, effectively doubling the number of patches.      
      
 Which management strategy would be most effective for ensuring that the metapopulation does not go exinct (prevent regional extinction)? Justify your answer with supporting figures.    
 
-2f. [thought question] Is it possible for $r_{max}$ to be positive and yet for the total regional abundance to exhibit a persistent declining trend? Explain your reasoning, using at least one biologically realistic example. You can use the agent-based metapopulation model in InsightMaker to help test your ideas, but this is not required.   
+2c. [thought question] Is it possible for $r_{max}$ to be positive and yet for the total regional abundance to exhibit a persistent declining trend? Explain your reasoning, using at least one biologically realistic example. You can use the agent-based metapopulation model in InsightMaker to help test your ideas, but this is not required.   
 
 
 ##Checklist for Lab 6 completion
 
 * Please bundle all your responses into a single Word document and submit _using WebCampus_!
 
-* Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below...  
+* Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). 
 
-    * After you save the model you should see a link on the top left-hand corner, "Insight Access". Click on that link, and a new window will pop up. Under "allow update access", add a username (i.e., kevintshoemaker or waldenTA). click on the "Add User" button, and then click on "Submit". Finally, copy and paste the URL into the Word document.
 
-***Due Mar. 30 at 10 am.***
+***Due Apr. 12 at midnight.***
 
 *  Word document with short answers, model URLs, and figures (where appropriate)
     +  **Exercise 1**
         -  *Short answer (1a.)*   
         -  *Short answer (1b.)*   
-        -  *InsightMaker model (1c.)*
+        -  *Short answer (1c.)*
         -  *Short answer (1d.)*
         -  *Short answer (1e.)*
         -  *Short answer (1f.)*   
         -  *Short answer (1g.)*
         -  *Short answer (1h.)*
         -  *Short answer (1i.)*
-        -  *Short answer (1k.)*
+        -  *Short answer (1j.)*
  
     +  **Exercise 2**
         -  *Short answer (2a.)*
         -  *Short answer (2b.)*
         -  *Short answer (2c.)*
-        -  *Short answer (2d.)* 
-        -  *Short answer (2e.)*
-        -  *Short answer (2f.)*
  
         
 
+```{r eval=FALSE, echo=FALSE}
+
+# 2b. Change the dispersal rate to zero. Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool to examine expected patterns in occupancy and abundance over time. How did the trend in regional abundance change relative to the scenario with 25% dispersal? What about the probability of regional extinction? Include figures. Do these results match with your expectation of what would happen? Why or why not? 
+# 
+# 2c. Change the dispersal rate back to 25% and increase the number of patches to 25. Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool (note that InsightMaker will run slower with more patches!) to examine expected patterns in occupancy and abundance over time. How did the trend in abundance change relative to the scenario with 10 patches? What about the probability of regional extinction? Include figures to justify your answer. Do these results match with your expectation of what would happen? Why or why not?
+
+```
 
 
 
