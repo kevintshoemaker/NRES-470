@@ -426,7 +426,7 @@ div.tocify {
 <ul>
 <li>Initial abundance (<span class="math inline">\(N_0\)</span>)</li>
 <li>Mean population growth rate (<span class="math inline">\(r\)</span> or <span class="math inline">\(r_{max}\)</span>)</li>
-<li>Variation in population growth rate (standard deviation for a normal distribution representing environmentally induced fluctuations among years)</li>
+<li>Variation in population growth rate (standard deviation for a normal distribution representing environmental stochasticity)</li>
 <li>Carrying capacity of the population (<span class="math inline">\(K\)</span>; equilibrium abundance of logistic model)</li>
 </ul>
 </div>
@@ -435,7 +435,7 @@ div.tocify {
 <ul>
 <li>Initial abundance (<span class="math inline">\(\mathbf{N_0}\)</span>) (vector of initial abundances for all stages)</li>
 <li>Stage-specific vital rates (fecundity, survival; fill in a transition matrix)</li>
-<li>Temporal variation in vital rates (environmentally induced fluctuations among years)</li>
+<li>Temporal variation in stage-specific vital rates (environmental stochasticity)</li>
 <li>Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)
 <ul>
 <li>Which vital rates are density-dependent?</li>
@@ -445,9 +445,9 @@ div.tocify {
 <div id="metapopulation-spatial-models" class="section level3">
 <h3>Metapopulation (spatial) models</h3>
 <ul>
-<li>Spatial distributions of suitable habitat, local populations or individuals (define patches)</li>
-<li>Spatial variation in vital rates (variation in habitat quality among different patches)</li>
-<li>Correlation in temporal variation (environmental stochasticity) among patches</li>
+<li>Spatial distributions of suitable habitat patches (define patches)</li>
+<li>Spatial variation in vital rates (e.g., variation in habitat quality among different patches)</li>
+<li>Correlation in environmental stochasticity among patches</li>
 <li>Dispersal rates among habitat patches</li>
 <li>Habitat requirements of different life stages</li>
 <li>For “classical” metapopulation models: rates of colonization and extinction in habitat patches</li>
@@ -459,7 +459,7 @@ div.tocify {
 <div id="life-tables" class="section level3">
 <h3>Life tables</h3>
 <p>As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died.</p>
-<p>NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the <strong>static life table</strong>, which compares population size from multiple different cohorts, across the entire range of ages, at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method is probably better than nothing!</p>
+<p>NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the <strong>static life table</strong>, which compares population size from multiple different cohort (across the entire range of ages), at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method can be better than nothing!</p>
 <table>
 <thead>
 <tr class="header">
@@ -508,7 +508,7 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p><strong>PROS</strong> - Summary of survival and fecundity, often available in the literature. Be careful when using data from captive populations!</p>
+<p><strong>PROS</strong> - Summary of survival and fecundity schedules, often available in the literature. Be careful when using data from captive populations!</p>
 <p><strong>CONS</strong> - Makes unrealistic assumptions (especially the <em>static life table</em> method). - Can not be used to estimate environmental stochasticity - Can not be used to estimate density dependence - Ignores <strong>imperfect detection</strong><br />
 - Remember, it’s not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!</p>
 </div>
@@ -597,7 +597,7 @@ div.tocify {
 <li><a href="https://www.astronomyclub.xyz/maternal-effect/does-ecology-have-laws.html">Allometries</a>
 <ul>
 <li>e.g., Fenchel’s allometry</li>
-<li>This type of thinking is often called “Macroecology”</li>
+<li>This type of thinking (looking for broad patterns across species) is often called “Macroecology”</li>
 </ul></li>
 </ul>
 <div class="figure">
@@ -741,6 +741,7 @@ R = number of individuals in 2nd sample that are marked</p>
 <div id="example-of-an-open-population-mark-recapture-analysis" class="section level2">
 <h2>Example of an open-population mark-recapture analysis!</h2>
 <p>Let’s run through a CJS analysis in R! To follow along, please <a href="LECTURE15.R">save this script and load it up in Rstudio</a>.</p>
+<p>NOTE: this analysis includes both males and females (unlike the example in Lab 7), so the results will look somewhat different!</p>
 <div class="figure">
 <img src="dipper1.png" />
 
@@ -770,43 +771,223 @@ head(dipper,10)</code></pre>
 ## 9  0000001 Female
 ## 10 0000001 Female</code></pre>
 <p>Here we use the “marked” package in R (instead of MARK) to do the ML parameter estimation!</p>
-<pre class="r"><code>data(dipper.histories)      # load data
-ct &lt;- as.factor( paste(&quot;T&quot;,1:ncol(dipper.histories), sep=&quot;&quot;))      # specify which years were modeled
-attr(ct,&quot;nan&quot;)&lt;-nrow(dipper.histories)  # assign the proper number of individuals
+<pre class="r"><code>##########
+# load data!
+
+data(dipper)
+
+#############
+# Process data
+
+dipper.proc=process.data(dipper,model=&quot;cjs&quot;,begin.time=1)  # Helper function- process the data for CJS model</code></pre>
+<pre><code>## 255 capture histories collapsed into 53</code></pre>
+<pre class="r"><code>dipper.ddl=make.design.data(dipper.proc)    # another helper function- process data!
+
+##########
+# Fit models
+
+# fit time-varying cjs model
+
+
+capture.output(suppressMessages( 
+      mod.Phit.pt &lt;-  crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)),method=&quot;Nelder-Mead&quot;,hessian = T)
+),file=&quot;temp.txt&quot;) 
+
+mod.Phit.pt   # print out model</code></pre>
+<pre><code>## 
+## crm Model Summary
+## 
+## Npar :  12
+## -2lnL:  657.0644
+## AIC  :  681.0644
+## 
+## Beta
+##                    Estimate        se        lcl       ucl
+## Phi.(Intercept)  0.75646636 0.6570805 -0.5314115 2.0443442
+## Phi.time2       -0.99255899 0.7541097 -2.4706141 0.4854961
+## Phi.time3       -0.84151202 0.6991671 -2.2118796 0.5288556
+## Phi.time4       -0.22522075 0.7051952 -1.6074033 1.1569618
+## Phi.time5       -0.36893542 0.6974964 -1.7360283 0.9981575
+## Phi.time6        0.10115137 1.5063608 -2.8513157 3.0536185
+## p.(Intercept)    1.00571207 0.8006506 -0.5635631 2.5749873
+## p.time3          1.49463757 1.3119502 -1.0767848 4.0660599
+## p.time4          1.37853596 1.0927335 -0.7632217 3.5202936
+## p.time5          1.12053506 0.9914941 -0.8227934 3.0638635
+## p.time6          1.57229762 1.0715539 -0.5279480 3.6725433
+## p.time7          0.07823848 1.7821190 -3.4147147 3.5711916</code></pre>
+<pre class="r"><code>mod.Phit.pt$results$AIC       # extract AIC</code></pre>
+<pre><code>## [1] 681.0644</code></pre>
+<pre class="r"><code>########
+# fit time-invariant cjs model
+
+capture.output(suppressMessages(
+  mod.Phidot.pdot &lt;- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)),method=&quot;Nelder-Mead&quot;,hessian = TRUE)
+),file=&quot;temp.txt&quot;)
+
+mod.Phidot.pdot</code></pre>
+<pre><code>## 
+## crm Model Summary
+## 
+## Npar :  2
+## -2lnL:  666.8377
+## AIC  :  670.8377
+## 
+## Beta
+##                  Estimate        se        lcl       ucl
+## Phi.(Intercept) 0.2422903 0.1020150 0.04234102 0.4422397
+## p.(Intercept)   2.2261889 0.3251153 1.58896300 2.8634148</code></pre>
+<pre class="r"><code>mod.Phidot.pdot$results$AIC</code></pre>
+<pre><code>## [1] 670.8377</code></pre>
+<pre class="r"><code>########
+# fit sex-dependent cjs model
+
+capture.output(suppressMessages(
+  mod.Phisex.psex &lt;- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~sex),p=list(formula=~sex)),method=&quot;Nelder-Mead&quot;,hessian = TRUE)
+),file=&quot;temp.txt&quot;)
+
+mod.Phisex.psex</code></pre>
+<pre><code>## 
+## crm Model Summary
+## 
+## Npar :  4
+## -2lnL:  666.1518
+## AIC  :  674.1518
+## 
+## Beta
+##                   Estimate        se        lcl       ucl
+## Phi.(Intercept) 0.22338784 0.1440981 -0.0590445 0.5058202
+## Phi.sexMale     0.04138178 0.2041878 -0.3588263 0.4415898
+## p.(Intercept)   2.01072100 0.4210671  1.1854294 2.8360126
+## p.sexMale       0.47587463 0.6630165 -0.8236377 1.7753870</code></pre>
+<pre class="r"><code>mod.Phisex.psex$results$AIC</code></pre>
+<pre><code>## [1] 674.1518</code></pre>
+<pre class="r"><code>###########
+# compare all models with AIC
+###########
 
 ######
-# Run the model!
+# Set up models to run (must have either &quot;Phi.&quot; or &quot;p.&quot; in the name)
+Phi.dot &lt;- list(formula=~1)       
+Phi.time &lt;- list(formula=~time)
+Phi.sex &lt;- list(formula=~sex)
+Phi.timesex &lt;- list(formula=~sex+time)
+p.dot &lt;- list(formula=~1)
+p.time &lt;- list(formula=~time)
+p.sex &lt;- list(formula=~sex)
+p.timesex &lt;- list(formula=~sex+time)
 
-dipper.cjs &lt;- F.cjs.estim( ~tvar(ct,drop=c(1,2)), ~tvar(ct,drop=c(1,6,7)), dipper.histories )
+cml=create.model.list(c(&quot;Phi&quot;,&quot;p&quot;))    # create list of all models to run
 
-#####
-# Display the results
+######
+# Run all models
 
-cat(&quot;survival estimates!\n&quot;)</code></pre>
-<pre><code>## survival estimates!</code></pre>
-<pre class="r"><code>dipper.cjs$s.hat[1,] </code></pre>
-<pre><code>## [1] 0.7181820 0.4346708 0.4781705 0.6261177 0.5985334 0.7181820        NA</code></pre>
-<pre class="r"><code>cat(&quot;\n\n detection probability estimates!\n&quot;)</code></pre>
+capture.output(suppressMessages(suppressWarnings(
+  allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method=&quot;Nelder-Mead&quot;,hessian=TRUE)
+)),file=&quot;temp.txt&quot;)
+
+######
+# AIC model selection
+
+allmodels</code></pre>
+<pre><code>##                             model npar      AIC  DeltaAIC       weight
+## 1                    Phi(~1)p(~1)    2 670.8377  0.000000 0.3792707172
+## 2                  Phi(~1)p(~sex)    3 672.1934  1.355756 0.1925531715
+## 5                  Phi(~sex)p(~1)    3 672.6762  1.838541 0.1512568696
+## 9                 Phi(~time)p(~1)    7 673.7301  2.892463 0.0893015564
+## 6                Phi(~sex)p(~sex)    4 674.1518  3.314151 0.0723253541
+## 10              Phi(~time)p(~sex)    8 675.1913  4.353613 0.0430104833
+## 13          Phi(~sex + time)p(~1)    8 675.6617  4.824056 0.0339952989
+## 14        Phi(~sex + time)p(~sex)    9 677.1681  6.330419 0.0160072363
+## 3                 Phi(~1)p(~time)    7 678.4804  7.642778 0.0083050299
+## 4           Phi(~1)p(~sex + time)    8 679.9497  9.112045 0.0039837661
+## 7               Phi(~sex)p(~time)    8 680.4921  9.654404 0.0030375415
+## 11             Phi(~time)p(~time)   12 681.0644 10.226756 0.0022815888
+## 12       Phi(~time)p(~sex + time)   13 681.7032 10.865580 0.0016577483
+## 8         Phi(~sex)p(~sex + time)    9 681.8896 11.051978 0.0015102292
+## 15       Phi(~sex + time)p(~time)   13 682.9670 12.129303 0.0008812611
+## 16 Phi(~sex + time)p(~sex + time)   14 683.6633 12.825655 0.0006221479
+##     neg2lnl convergence
+## 1  666.8377           0
+## 2  666.1934           0
+## 5  666.6762           0
+## 9  659.7301           0
+## 6  666.1518           0
+## 10 659.1913           0
+## 13 659.6617           0
+## 14 659.1681           0
+## 3  664.4804           0
+## 4  663.9497           0
+## 7  664.4921           0
+## 11 657.0644           0
+## 12 655.7032           0
+## 8  663.8896           0
+## 15 656.9670           0
+## 16 655.6633           1</code></pre>
+<pre class="r"><code>#######
+# get parameter estimates and confidence intervals for best model
+
+allmodels[[1]]</code></pre>
 <pre><code>## 
+## crm Model Summary
 ## 
-##  detection probability estimates!</code></pre>
-<pre class="r"><code>dipper.cjs$p.hat[1,] </code></pre>
-<pre><code>## [1]        NA 0.6962024 0.9230769 0.9130435 0.9007892 0.9324138 0.7388270</code></pre>
+## Npar :  2
+## -2lnL:  666.8377
+## AIC  :  670.8377
+## 
+## Beta
+##                  Estimate        se        lcl       ucl
+## Phi.(Intercept) 0.2422903 0.1020150 0.04234102 0.4422397
+## p.(Intercept)   2.2261889 0.3251153 1.58896300 2.8634148</code></pre>
+<pre class="r"><code>allmodels[[11]]</code></pre>
+<pre><code>## 
+## crm Model Summary
+## 
+## Npar :  12
+## -2lnL:  657.0644
+## AIC  :  681.0644
+## 
+## Beta
+##                    Estimate        se        lcl       ucl
+## Phi.(Intercept)  0.75646636 0.6570805 -0.5314115 2.0443442
+## Phi.time2       -0.99255899 0.7541097 -2.4706141 0.4854961
+## Phi.time3       -0.84151202 0.6991671 -2.2118796 0.5288556
+## Phi.time4       -0.22522075 0.7051952 -1.6074033 1.1569618
+## Phi.time5       -0.36893542 0.6974964 -1.7360283 0.9981575
+## Phi.time6        0.10115137 1.5063608 -2.8513157 3.0536185
+## p.(Intercept)    1.00571207 0.8006506 -0.5635631 2.5749873
+## p.time3          1.49463757 1.3119502 -1.0767848 4.0660599
+## p.time4          1.37853596 1.0927335 -0.7632217 3.5202936
+## p.time5          1.12053506 0.9914941 -0.8227934 3.0638635
+## p.time6          1.57229762 1.0715539 -0.5279480 3.6725433
+## p.time7          0.07823848 1.7821190 -3.4147147 3.5711916</code></pre>
+<pre class="r"><code>#######
+# make predictions and plot them. 
+
+predict(allmodels[[1]])$Phi</code></pre>
+<pre><code>##   occ estimate         se       lcl       ucl
+## 1   6 0.560278 0.02513307 0.5105837 0.6087926</code></pre>
+<pre class="r"><code>Phi_by_year &lt;- predict(allmodels[[11]])$Phi    # predict Phi for all years (based on the best Phi(t) model)
+
+suppressWarnings( suppressMessages( library(Hmisc,quietly = T) ))    #load Hmisc package- has a nice error bar function
+plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab=&quot;Year&quot;,ylab=&quot;Survival&quot;,ylim=c(0,1),main=&quot;Variability in Survival, dipper demo&quot;)
+errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)</code></pre>
+<p><img src="LECTURE15_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>What is our estimate for mean survival?</p>
 <pre class="r"><code>#######
 # Compute the mean survival rate for the population
 
-mean(dipper.cjs$s.hat[1,],na.rm=T)</code></pre>
-<pre><code>## [1] 0.5956427</code></pre>
+mean(Phi_by_year$estimate)</code></pre>
+<pre><code>## [1] 0.5880352</code></pre>
 <p>What is the environmental stochasticity?</p>
 <pre class="r"><code>#######
 # Compute the environmental variablility in annual survival rates. 
 
-sd(dipper.cjs$s.hat[1,],na.rm=T)</code></pre>
-<pre><code>## [1] 0.1188953</code></pre>
+sd(Phi_by_year$estimate)</code></pre>
+<pre><code>## [1] 0.1066587</code></pre>
 <div id="program-mark-1" class="section level3">
 <h3>Program MARK!</h3>
 <p>MARK is free software, and can be downloaded from <a href="http://warnercnr.colostate.edu/~gwhite/mark/mark.htm">here</a></p>
+<p>The demo from Lab 7 can be found <a href="LAB7.html#open-population_models">here</a></p>
 <p><a href="LECTURE16.html">–go to next lecture–</a></p>
 </div>
 </div>

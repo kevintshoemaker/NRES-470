@@ -43,20 +43,20 @@ This is the focus of the current lecture!
 ### Scalar models (no age structure)
 - Initial abundance ($N_0$)
 - Mean population growth rate ($r$ or $r_{max}$)
-- Variation in population growth rate (standard deviation for a normal distribution representing environmentally induced fluctuations among years)
+- Variation in population growth rate (standard deviation for a normal distribution representing environmental stochasticity)
 - Carrying capacity of the population ($K$; equilibrium abundance of logistic model)
 
 ### Stage-structured (life history) models
 - Initial abundance ($\mathbf{N_0}$) (vector of initial abundances for all stages)
 - Stage-specific vital rates (fecundity, survival; fill in a transition matrix) 
-- Temporal variation in vital rates (environmentally induced fluctuations among years) 
+- Temporal variation in stage-specific vital rates (environmental stochasticity) 
 - Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)    
     - Which vital rates are density-dependent?    
   
 ### Metapopulation (spatial) models
-- Spatial distributions of suitable habitat, local populations or individuals (define patches)
-- Spatial variation in vital rates (variation in habitat quality among different patches)
-- Correlation in temporal variation (environmental stochasticity) among patches 
+- Spatial distributions of suitable habitat patches (define patches)
+- Spatial variation in vital rates (e.g., variation in habitat quality among different patches)
+- Correlation in environmental stochasticity among patches 
 - Dispersal rates among habitat patches
 - Habitat requirements of different life stages
 - For "classical" metapopulation models: rates of colonization and extinction in habitat patches
@@ -67,7 +67,7 @@ This is the focus of the current lecture!
 
 As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died. 
 
-NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohorts, across the entire range of ages, at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method is probably better than nothing!
+NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohort (across the entire range of ages), at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method can be better than nothing!
 
 
 ```{r echo=FALSE}
@@ -80,7 +80,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 ```
 
 **PROS**
-- Summary of survival and fecundity, often available in the literature. Be careful when using data from captive populations!
+- Summary of survival and fecundity schedules, often available in the literature. Be careful when using data from captive populations!
 
 **CONS**
 - Makes unrealistic assumptions (especially the *static life table* method).
@@ -153,7 +153,7 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) -
     - See [links](FINAL_PROJECTS.html) on Final projects page
 - [Allometries](https://www.astronomyclub.xyz/maternal-effect/does-ecology-have-laws.html)
     - e.g., Fenchel's allometry
-    - This type of thinking is often called "Macroecology"
+    - This type of thinking (looking for broad patterns across species) is often called "Macroecology"
     
     
 ![](allometry2.jpg)
@@ -305,6 +305,8 @@ MARK is a numerical maximum-likelihood engine designed for mark-recapture analys
 
 Let's run through a CJS analysis in R! To follow along, please [save this script and load it up in Rstudio](LECTURE15.R).
 
+NOTE: this analysis includes both males and females (unlike the example in Lab 7), so the results will look somewhat different!
+
 ![](dipper1.png)
 
 The European dipper data is THE classic example of a CMR dataset. Let's look at it!
@@ -327,23 +329,96 @@ Here we use the "marked" package in R (instead of MARK) to do the ML parameter e
 
 ```{r}
 
-data(dipper.histories)      # load data
-ct <- as.factor( paste("T",1:ncol(dipper.histories), sep=""))      # specify which years were modeled
-attr(ct,"nan")<-nrow(dipper.histories)  # assign the proper number of individuals
+##########
+# load data!
+
+data(dipper)
+
+#############
+# Process data
+
+dipper.proc=process.data(dipper,model="cjs",begin.time=1)  # Helper function- process the data for CJS model
+dipper.ddl=make.design.data(dipper.proc)    # another helper function- process data!
+
+##########
+# Fit models
+
+# fit time-varying cjs model
+
+
+capture.output(suppressMessages(   # note: this is just to suppress messages to avoid cluttering the website...
+      mod.Phit.pt <-  crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)),method="Nelder-Mead",hessian = T)
+),file="temp.txt") 
+
+mod.Phit.pt   # print out model
+mod.Phit.pt$results$AIC       # extract AIC
+
+########
+# fit time-invariant cjs model
+
+capture.output(suppressMessages(
+  mod.Phidot.pdot <- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)),method="Nelder-Mead",hessian = TRUE)
+),file="temp.txt")
+
+mod.Phidot.pdot
+mod.Phidot.pdot$results$AIC
+
+########
+# fit sex-dependent cjs model
+
+capture.output(suppressMessages(
+  mod.Phisex.psex <- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~sex),p=list(formula=~sex)),method="Nelder-Mead",hessian = TRUE)
+),file="temp.txt")
+
+mod.Phisex.psex
+mod.Phisex.psex$results$AIC
+
+###########
+# compare all models with AIC
+###########
 
 ######
-# Run the model!
+# Set up models to run (must have either "Phi." or "p." in the name)
+Phi.dot <- list(formula=~1)       
+Phi.time <- list(formula=~time)
+Phi.sex <- list(formula=~sex)
+Phi.timesex <- list(formula=~sex+time)
+p.dot <- list(formula=~1)
+p.time <- list(formula=~time)
+p.sex <- list(formula=~sex)
+p.timesex <- list(formula=~sex+time)
 
-dipper.cjs <- F.cjs.estim( ~tvar(ct,drop=c(1,2)), ~tvar(ct,drop=c(1,6,7)), dipper.histories )
+cml=create.model.list(c("Phi","p"))    # create list of all models to run
 
-#####
-# Display the results
+######
+# Run all models
 
-cat("survival estimates!\n")
-dipper.cjs$s.hat[1,] 
+capture.output(suppressMessages(suppressWarnings(
+  allmodels <- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method="Nelder-Mead",hessian=TRUE)
+)),file="temp.txt")
 
-cat("\n\n detection probability estimates!\n")
-dipper.cjs$p.hat[1,] 
+######
+# AIC model selection
+
+allmodels
+
+#######
+# get parameter estimates and confidence intervals for best model
+
+allmodels[[1]]
+
+allmodels[[11]]
+
+#######
+# make predictions and plot them. 
+
+predict(allmodels[[1]])$Phi
+
+Phi_by_year <- predict(allmodels[[11]])$Phi    # predict Phi for all years (based on the best Phi(t) model)
+
+suppressWarnings( suppressMessages( library(Hmisc,quietly = T) ))    #load Hmisc package- has a nice error bar function
+plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab="Year",ylab="Survival",ylim=c(0,1),main="Variability in Survival, dipper demo")
+errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)
 
 ```
 
@@ -354,7 +429,7 @@ What is our estimate for mean survival?
 #######
 # Compute the mean survival rate for the population
 
-mean(dipper.cjs$s.hat[1,],na.rm=T)
+mean(Phi_by_year$estimate)
 
 ```
 
@@ -365,7 +440,7 @@ What is the environmental stochasticity?
 #######
 # Compute the environmental variablility in annual survival rates. 
 
-sd(dipper.cjs$s.hat[1,],na.rm=T)
+sd(Phi_by_year$estimate)
 
 ```
 
@@ -373,7 +448,7 @@ sd(dipper.cjs$s.hat[1,],na.rm=T)
 
 MARK is free software, and can be downloaded from [here](http://warnercnr.colostate.edu/~gwhite/mark/mark.htm)
 
-
+The demo from Lab 7 can be found [here](LAB7.html#open-population_models)
 
 [--go to next lecture--](LECTURE16.html)
 

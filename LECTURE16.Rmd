@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: competition!"
 author: "NRES 470/670"
-date: "Apr 20, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -19,11 +19,11 @@ PVA, as you may recall, tends to be very single-species focused.
 
 BUT population ecology doesn't have to be single-species focused. There are many cases where we would do well to think about species interactions specifically.
 
-From a modeling standpoint, this is where things really get interesting- with species interactions, we really start to see some unexpected emergent properties!
+From a modeling standpoint, this is where things really get interesting -- with species interactions, we start to see some really unpredictable emergent properties!
 
 Species interactions can be classified according to the effect of the interaction on each species: (+,+), (+,-), (+,0), (-,-), (-,0), (0,0)
 
-**Q**: Can you name each of the above interaction classes?
+**Q**: Can you name each of the above interaction classes? [tophat]
 
 ## Competition
 
