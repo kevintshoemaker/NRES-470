@@ -13,6 +13,26 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 470/670, Lecture 15                          ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
+
+
+############################################################
+####  Competition                                       ####
+############################################################
+
+
+```
+
+
 ## Species interactions
 
 PVA, as you may recall, tends to be very single-species focused. 
@@ -69,44 +89,47 @@ The constants $\alpha$ and $\beta$ are measures of the effect of one species on 
 
 **Q**: what does it mean if $\alpha$ is equal to 1?
 
-**Q**: what does it mean if $\alpha$ is equal to 5?
+**Q**: what does it mean if $\alpha$ is equal to 5? [tophat]
 
 **Q**: what does it mean if $\alpha$ is equal to $\frac{1}{5}$?
 
-**Q**: what does it mean if $\alpha$ is equal to zero?
+**Q**: what does it mean if $\alpha$ is equal to zero? 
 
 ### Let's explore this model together in InsightMaker!
 
 **Step 1**: clone a basic (non-interacting) two-species model [here](https://insightmaker.com/insight/77729/Base-2-species-model). Try some different parameter settings, to make sure the model is doing what you expect!
 
-**Step 2**: Now add the "alpha" and "beta" terms to represent the degree to which species 1 competes with species 2, and vice versa. Put slider bars on these parameters, with bounds of 0 to 10.  *What should "alpha" and "beta" link to??*
+**Step 2**: Now add the "alpha" and "beta" terms to represent the degree to which species 1 competes with species 2, and vice versa.  *What should "alpha" and "beta" link to??*
 
 **Step 3**: Change the parameter values around and see how the model behaves. 
 
 This model is known as *Lotka-Volterra competition*! The model is named after mathematicians Alfred Lotka and Vito Volterra 
 
-**Q**: what happens if one species is a superior competitor? Can one species go extinct?
+**Q**: what happens if one species is a superior competitor? What does it mean to be a superior competitor? Can one species go extinct?
 
 **Q**: what conditions are necessary for coexistence in this model?
 
 **Q**: what if you change the time step? Less than 1? Greater than 1?
 
-**Q**: can you identify any equilibria?
+**Q**: can you identify any equilibrium conditions?
 
 
 ## Phase plane!
 
 In the study of dynamic systems (such as the lotka-volterra competition system) it can be very useful to visualize the system on the **phase plane**.
 
-To do this, we first envision the abundance of each interacting species as a dimension, forming a 2-D surface (phase plane). 
+To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species as the y axis and the other species as the x axis. This 2-D surface is called the phase plane. 
 
-Then, each time step in the model, we plot out where we are in the phase plane. 
+Then, for each time step in the model, we plot out where we are in the phase plane (plot the abundances of species 1 and species 2 as a point on the 2-D cartesian surface). 
 
 For example:
 
 Let's build the basic lotka-volterra competion model in R. 
 
+If you want to follow along, you can download the script [here](LECTURE16.R)
+
 ```{r}
+
 ##### LOTKA VOLTERRA COMPETITION EXAMPLE
 
 ## Params
@@ -142,6 +165,10 @@ for(i in 1:(Nyears+1)){
 Now let's visualize year zero in *phase space*:
 
 ```{r}
+
+####
+# visualize the initial abundances on the phase plane
+
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(System[1,],col="green",pch=20,cex=2)
 
@@ -151,6 +178,8 @@ points(System[1,],col="green",pch=20,cex=2)
 How about the first 5 years...
 
 ```{r}
+
+# and the first 5 years...
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(System[1:6,],col="green",pch=20,cex=2)
 
@@ -159,8 +188,11 @@ points(System[1:6,],col="green",pch=20,cex=2)
 And the entire simulation?
 
 ```{r}
+
+# and many years!
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(System,col="green",pch=20,cex=2)
+
 ```
 
 
@@ -170,7 +202,8 @@ Okay, so species 1 is outcompeting species 2. As abundance of species 1 goes up,
 Here is another example...
 
 ```{r}
-##### LOTKA VOLTERRA COMPETITION EXAMPLE
+
+##### LOTKA VOLTERRA COMPETITION EXAMPLE #2
 
 ## Params
 
@@ -205,9 +238,13 @@ for(i in 1:(Nyears+1)){
 With these new parameters, phase space looks like this (with jittering to indicate concentration of points:
 
 ```{r}
+
+# visualize on the phase plane
+
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(jitter(System[,1],500),jitter(System[,2],500),col="brown",pch=20,cex=0.3)
 abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
+
 ```
 
 You can see that this sytem has arrived at an equilibrium at the end, just below the carrying capacity for species 1. 
@@ -215,7 +252,8 @@ You can see that this sytem has arrived at an equilibrium at the end, just below
 Finally, let's consider multiple starting points and see how the system behaves!
 
 ```{r}
-##### LOTKA VOLTERRA COMPETITION EXAMPLE
+
+##### LOTKA VOLTERRA COMPETITION EXAMPLE #3: multiple starting points
 
 ## Params
 
@@ -252,18 +290,22 @@ for(i in 1:(Nyears+1)){
 Now, phase space looks like this (with jittering to indicate concentration of points:
 
 ```{r}
+
+# visualize on the phase plane
+
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(jitter(System[,1],500),jitter(System[,2],500),col="brown",pch=20,cex=0.3)
 points(jitter(System1[,1],500),jitter(System1[,2],500),col="green",pch=20,cex=0.3)
 points(jitter(System2[,1],500),jitter(System2[,2],500),col="red",pch=20,cex=0.3)
 points(jitter(System3[,1],500),jitter(System3[,2],500),col="blue",pch=20,cex=0.3)
+
 abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 ```
 
 **Q**: Does this two-species system have a stable equilibrium?
 
 
-```{r echo=FALSE}
+```{r}
 
 ## Paul Hurtado code
 
@@ -621,6 +663,11 @@ Now imagine we draw arrows throughout phase space, representing where the system
 Note: this example uses R code from [Paul Hurtado](http://www.pauljhurtado.com/)
 
 ```{r}
+
+##########
+# Visualize phase plane with arrows!
+##########
+
 #######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
@@ -659,6 +706,7 @@ phasearrows.draw(new)
 #
 ## END MODEL SPECIFICATION AND INITIALIZATION
 #######################################################################################
+
 ```
 
 Take any arbitrary starting point. Now we can trace the trajectory that the system will take in phase space. 
@@ -678,6 +726,9 @@ Here is one example:
 #### Species 1 isocline...
 
 ```{r}
+
+#### example with phase-plane arrows
+
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="N1",ylab="N2")
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
@@ -709,6 +760,11 @@ Let's consider the following case...
 
 
 ```{r}
+
+##########
+# Another example
+##########
+
 Rmax1 <- 0.2
 Alpha <- 1.1
 K1 <- 1000
@@ -744,6 +800,11 @@ Follow the trajectories from any point in this phase space. What is the outcome 
 How about this example?
 
 ```{r}
+
+#########
+# And another example!
+#########
+
 Rmax1 <- 0.5
 Alpha <- 1.05
 K1 <- 890
@@ -763,6 +824,7 @@ plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="N1",ylab="N2")
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
+
 ```
 
 Follow the trajectories from any point in this phase space. What is the outcome here?
@@ -772,6 +834,11 @@ Follow the trajectories from any point in this phase space. What is the outcome 
 What about this case(going back to the earlier example...):
 
 ```{r}
+
+########
+# And another!
+#########
+
 Alpha <- 0.3
 Beta <- 0.2
 K1 <- 1000
@@ -804,6 +871,11 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=2)   # species 2
 Finally consider this example:
 
 ```{r}
+
+########
+# And finally...
+########
+
 Rmax1 <- 0.2
 Alpha <- 1.5
 K1 <- 1000
@@ -823,6 +895,7 @@ plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="N1",ylab="N2")
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
+
 ```
 
 **Q**: is the point where the two isoclines cross an *equilibrium*?
