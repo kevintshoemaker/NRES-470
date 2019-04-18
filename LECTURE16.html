@@ -393,6 +393,9 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -407,7 +410,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Species interactions: competition!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Apr 20, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
@@ -416,9 +419,9 @@ div.tocify {
 <h2>Species interactions</h2>
 <p>PVA, as you may recall, tends to be very single-species focused.</p>
 <p>BUT population ecology doesn’t have to be single-species focused. There are many cases where we would do well to think about species interactions specifically.</p>
-<p>From a modeling standpoint, this is where things really get interesting- with species interactions, we really start to see some unexpected emergent properties!</p>
+<p>From a modeling standpoint, this is where things really get interesting – with species interactions, we start to see some really unpredictable emergent properties!</p>
 <p>Species interactions can be classified according to the effect of the interaction on each species: (+,+), (+,-), (+,0), (-,-), (-,0), (0,0)</p>
-<p><strong>Q</strong>: Can you name each of the above interaction classes?</p>
+<p><strong>Q</strong>: Can you name each of the above interaction classes? [tophat]</p>
 </div>
 <div id="competition" class="section level2">
 <h2>Competition</h2>
@@ -467,22 +470,22 @@ div.tocify {
 <div id="lets-explore-this-model-together-in-insightmaker" class="section level3">
 <h3>Let’s explore this model together in InsightMaker!</h3>
 <p><strong>Step 1</strong>: clone a basic (non-interacting) two-species model <a href="https://insightmaker.com/insight/77729/Base-2-species-model">here</a>. Try some different parameter settings, to make sure the model is doing what you expect!</p>
-<p><strong>Step 2</strong>: Now add the “alpha” and “beta” terms to represent the degree to which species 1 competes with species 2, and vice versa. Put slider bars on these parameters, with bounds of 0 to 10. <em>What should “alpha” and “beta” link to??</em></p>
+<p><strong>Step 2</strong>: Now add the “alpha” and “beta” terms to represent the degree to which species 1 competes with species 2, and vice versa. <em>What should “alpha” and “beta” link to??</em></p>
 <p><strong>Step 3</strong>: Change the parameter values around and see how the model behaves.</p>
 <p>This model is known as <em>Lotka-Volterra competition</em>! The model is named after mathematicians Alfred Lotka and Vito Volterra</p>
-<p><strong>Q</strong>: what happens if one species is a superior competitor? Can one species go extinct?</p>
-<p><strong>Q</strong>: what conditions are necessary for coexistence in this model?</p>
-<p><strong>Q</strong>: what if you change the time step? Less than 1? Greater than 1?</p>
-<p><strong>Q</strong>: can you identify any equilibria?</p>
+<p><strong>Q</strong>: what happens if one species is a superior competitor? What does it mean to be a superior competitor? Can one species go extinct?</p>
+<p><strong>Q</strong>: what conditions are necessary for coexistence in this model? [tophat]</p>
+<p><strong>Q</strong>: can you identify any equilibrium conditions?</p>
 </div>
 </div>
 <div id="phase-plane" class="section level2">
 <h2>Phase plane!</h2>
 <p>In the study of dynamic systems (such as the lotka-volterra competition system) it can be very useful to visualize the system on the <strong>phase plane</strong>.</p>
-<p>To do this, we first envision the abundance of each interacting species as a dimension, forming a 2-D surface (phase plane).</p>
-<p>Then, each time step in the model, we plot out where we are in the phase plane.</p>
+<p>To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species as the y axis and the other species as the x axis. This 2-D surface is called the phase plane.</p>
+<p>Then, for each time step in the model, we plot out where we are in the phase plane (plot the abundances of species 1 and species 2 as a point on the 2-D cartesian surface).</p>
 <p>For example:</p>
 <p>Let’s build the basic lotka-volterra competion model in R.</p>
+<p>If you want to follow along, you can download the script <a href="LECTURE16.R">here</a></p>
 <pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
 
 ## Params
@@ -510,20 +513,25 @@ for(i in 1:(Nyears+1)){
   System[1+i,] &lt;- doYear(System[i,])
 }</code></pre>
 <p>Now let’s visualize year zero in <em>phase space</em>:</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+<pre class="r"><code>####
+# visualize the initial abundances on the phase plane
+
+plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
 points(System[1,],col=&quot;green&quot;,pch=20,cex=2)</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>How about the first 5 years…</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
-points(System[1:6,],col=&quot;green&quot;,pch=20,cex=2)</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>And the entire simulation?</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
-points(System,col=&quot;green&quot;,pch=20,cex=2)</code></pre>
+<p>How about the first 5 years…</p>
+<pre class="r"><code># and the first 5 years...
+plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(System[1:6,],col=&quot;green&quot;,pch=20,cex=2)</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>And the entire simulation?</p>
+<pre class="r"><code># and many years!
+plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+points(System,col=&quot;green&quot;,pch=20,cex=2)</code></pre>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Okay, so species 1 is outcompeting species 2. As abundance of species 1 goes up, the abundance of species 2 declines, and we end up with just species 1!</p>
 <p>Here is another example…</p>
-<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
+<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE #2
 
 ## Params
 
@@ -550,13 +558,15 @@ for(i in 1:(Nyears+1)){
   System[1+i,] &lt;- doYear(System[i,])
 }</code></pre>
 <p>With these new parameters, phase space looks like this (with jittering to indicate concentration of points:</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+<pre class="r"><code># visualize on the phase plane
+
+plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
 points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
 abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>You can see that this sytem has arrived at an equilibrium at the end, just below the carrying capacity for species 1.</p>
 <p>Finally, let’s consider multiple starting points and see how the system behaves!</p>
-<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
+<pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE #3: multiple starting points
 
 ## Params
 
@@ -586,15 +596,353 @@ for(i in 1:(Nyears+1)){
   System3[1+i,] &lt;- doYear(System3[i,])
 }</code></pre>
 <p>Now, phase space looks like this (with jittering to indicate concentration of points:</p>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
+<pre class="r"><code># visualize on the phase plane
+
+plot(1,1,pch=&quot;&quot;,ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
 points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
 points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
 points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.3)
 points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)
+
 abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><strong>Q</strong>: Does this two-species system have a stable equilibrium?</p>
-<pre><code>## Warning: package &#39;deSolve&#39; was built under R version 3.3.3</code></pre>
+<pre class="r"><code>## Paul Hurtado code
+
+## Shiny version was based on code from the following page, sourced 20 July 2016. 
+## http://grrrraphics.blogspot.com/2013/01/shiny-desolve-and-ggplot-play-nicely.html
+
+#library(shiny)
+library(deSolve) 
+
+#######################################################################################
+## Functions for pplane actions.
+
+# Modified from the original script pplane.r written by Daniel Kaplan,
+# Dept. of Mathematics, Macalester College, kaplan@macalester.edu 
+
+# Modifications by S. Ellner for use in connection with the textbook
+# Dynamic Models in Biology by S.P. Ellner and J. Guckenheimer,
+# Princeton University Press (2006)  
+
+# Early modifications of SPE&#39;s code by Paul Hurtado:
+#   * Removed noisy phase arrow placement
+#   * Changed the colors of some of the curves
+#   * Relace odesolve package dependency with updated package deSolve.
+#
+# Later modifications by Paul Hurtado:
+#   * Overhaul as a shiny app: http://shiny.rstudio.com/gallery/widget-gallery.html 
+#      + Modified functions so that all use input functions of the form: fun(x,y,parms)
+#
+# Missing Features (TTD):
+#
+#   * A mechanism to &quot;reset&quot; following an equation or parameter change, 
+#     that erases all fixed points, S/U manifolds of saddles, trajectories, etc.
+#
+#   * Better time step size and integration length controls.
+#
+#   * Allow user defined labels and colors...  E.g. default colors should 
+#     match colors from the matlab version of pplane (personal preference!) 
+#
+#   * Legend on GUI for fixed point symbols (saddle, source, node, etc.)
+#
+#   * Do these revised functions work as &quot;command line&quot; tools like SPE&#39;s version? 
+#     If not, go back and implement wrappers so we can have a unified package!
+#      + Ultimately, aim for a shiny/GUI version and command line version.
+#      + Once that exists, write documentation, put it all in an R package.
+#
+#   Inspired by pplane (for Matlab) at http://math.rice.edu/~dfield/
+#
+
+##########################################################################################
+## These functions assume a function of the form 
+##    fun &lt;- function(x,y,p) { with(as.list(p), { c(dx,dy) } ) }
+## When we need to use fun with deSolve::ode() we must first convert it via this function:
+as.ode.func = function(FUN) { return(function(t,y,parms){list(FUN(y[1],y[2],parms))}) }
+
+
+##########################################################################################
+## Functions for drawing 2D state space / vector field / phase plane plots
+## Documentation will be coming soon!! :-)
+
+## Split this into phasearrows.calc() and phasearrows.draw() 
+phasearrows &lt;- compiler::cmpfun(function(fun,xlims,ylims,resol=25, col=&#39;black&#39;, add=F,parms=NULL) {
+  if (add==F) {
+    plot(1,xlim=xlims, ylim=ylims, type=&#39;n&#39;,xlab=&quot;x&quot;,ylab=&quot;y&quot;);
+  }
+  x &lt;- matrix(seq(xlims[1],xlims[2], length=resol), byrow=T, resol,resol);
+  y &lt;- matrix(seq(ylims[1],ylims[2], length=resol),byrow=F, resol, resol);
+  npts &lt;- resol*resol;
+  # Removed by PJH so drawing phase arrows twice doesn&#39;t change the figure...
+  #  xspace &lt;- abs(diff(xlims))/(resol*10);
+  #  yspace &lt;- abs(diff(ylims))/(resol*10);
+  #  x &lt;- x + matrix(runif(npts, -xspace, xspace),resol,resol);
+  #  y &lt;- y + matrix(runif(npts, -yspace, yspace),resol,resol);
+  z &lt;- fun(x,y,parms);
+  z1 &lt;- matrix(z[1:npts], resol, resol);
+  z2 &lt;- matrix(z[(npts+1):(2*npts)], resol, resol);
+  maxx &lt;- max(abs(z1));
+  maxy &lt;- max(abs(z2));
+  dt &lt;- min( abs(diff(xlims))/maxx, abs(diff(ylims))/maxy)/resol;
+  lens &lt;- sqrt(z1^2 + z2^2);
+  lens2 &lt;- lens/max(lens); ## Can this next line be more robust? Change .1 to ???
+  arrows(c(x), c(y), c(x+dt*z1/((lens2)+.1)), c(y+dt*z2/((lens2)+.1)),length=.04, col=col);
+})
+
+vec.data&lt;&lt;-list()
+phasearrows.calc &lt;- compiler::cmpfun(function(fun,xlims,ylims,resol=25,parms=NULL) {
+  #if (add==F) { 
+  #  plot(1,xlim=xlims, ylim=ylims, type=&#39;n&#39;,xlab=&quot;x&quot;,ylab=&quot;y&quot;);
+  #}
+  x &lt;- matrix(seq(xlims[1],xlims[2], length=resol), byrow=T, resol,resol);
+  y &lt;- matrix(seq(ylims[1],ylims[2], length=resol),byrow=F, resol, resol);
+  npts &lt;- resol*resol;
+  z &lt;- fun(x,y,parms);
+  z1 &lt;- matrix(z[1:npts], resol, resol);
+  z2 &lt;- matrix(z[(npts+1):(2*npts)], resol, resol);
+  maxx &lt;- max(abs(z1));
+  maxy &lt;- max(abs(z2));
+  dx &lt;- min( abs(diff(xlims))/maxx, abs(diff(ylims))/maxy)/resol;
+  lens &lt;- sqrt(z1^2 + z2^2);
+  lens2 &lt;- lens/max(lens); 
+  return(list(x,y,z1,z2,lens2,dx)) # save as vec.data
+})
+
+phasearrows.draw &lt;- compiler::cmpfun(function(vfdat=vec.data, col=&quot;black&quot;) {
+  x &lt;- vfdat[[1]]
+  y &lt;- vfdat[[2]]
+  z1&lt;- vfdat[[3]]
+  z2&lt;- vfdat[[4]]
+  lens2&lt;- vfdat[[5]]
+  dx &lt;- vfdat[[6]]
+  ## Can this next line be more robust? Change .1 to 1e-6? Change 0.04 to ???
+  arrows(c(x), c(y), c(x+dx*z1/((lens2)+.1)), c(y+dx*z2/((lens2)+.1)),length=.04, col=col);
+})
+
+
+## REMOVE THIS OR NOT???
+showcontours &lt;- compiler::cmpfun(function(fun,xlims, ylims,resol=250,add=F, colors=c(&#39;red&#39;, &#39;blue&#39;),parms=NULL) {
+  x &lt;- matrix(seq(xlims[1],xlims[2], length=resol), byrow=F, resol,resol);
+  y &lt;- matrix(seq(ylims[1],ylims[2], length=resol),byrow=T, resol, resol);
+  npts = resol*resol;
+  z &lt;- fun(x,y,parms);
+  z1 &lt;- matrix(z[1:npts], resol, resol);
+  z2 &lt;- matrix(z[(npts+1):(2*npts)], resol, resol);
+  contour(x[,1],y[1,],z1, add=add, col=colors[1]);
+  contour(x[,1],y[1,],z2, add=T, col=colors[2]); 
+})
+
+##  Split into nullclines.calc() and nullclines.draw()
+nullclines &lt;- compiler::cmpfun(function(fun,xlims, ylims, resol=250, add=F,parms=NULL) {
+  x &lt;- matrix(seq(xlims[1],xlims[2], length=resol), byrow=F, resol,resol);
+  y &lt;- matrix(seq(ylims[1],ylims[2], length=resol),byrow=T, resol, resol);
+  npts = resol*resol;
+  z &lt;- fun(x,y,parms);
+  z1 &lt;- matrix(z[1:npts], resol, resol);
+  z2 &lt;- matrix(z[(npts+1):(2*npts)], resol, resol);
+  contour(x[,1],y[1,],z1,levels=c(0), drawlabels=F,add=add, col=&quot;orange&quot;);
+  contour(x[,1],y[1,],z2,levels=c(0), drawlabels=F,add=T, col=&quot;magenta&quot;); 
+  title(main=&quot;Orange = x nullcline, Magenta = y nullcline&quot;,cex=0.35); 
+})
+
+nullclines.data &lt;- list()
+nullclines.calc &lt;- compiler::cmpfun(function(fun,xlims,ylims,resol=250,parms=NULL) {
+  x &lt;- matrix(seq(xlims[1],xlims[2], length=resol), byrow=F, resol,resol);
+  y &lt;- matrix(seq(ylims[1],ylims[2], length=resol),byrow=T, resol, resol);
+  npts = resol*resol;
+  z &lt;- fun(x,y,parms);
+  z1 &lt;- matrix(z[1:npts], resol, resol);
+  z2 &lt;- matrix(z[(npts+1):(2*npts)], resol, resol);
+  return(list(x,y,z1,z2)) # return nullclines.data
+})
+
+nullclines.draw &lt;- compiler::cmpfun(function(ndat=nullclines.data,add=T){
+  x &lt;- ndat[[1]]
+  y &lt;- ndat[[2]]
+  z1&lt;- ndat[[3]]
+  z2&lt;- ndat[[4]]
+  contour(x[,1],y[1,],z1,levels=c(0), drawlabels=F,add=add, col=&quot;orange&quot;);
+  contour(x[,1],y[1,],z2,levels=c(0), drawlabels=F,add=T, col=&quot;magenta&quot;); 
+  #title(main=&quot;Orange = x nullcline, Magenta = y nullcline&quot;,cex=0.35); 
+})
+
+## We need something like an array or list for each trajectory, that we can add to.
+## BETA VERSION: Don&#39;t track time. Add that in later once it all works?
+##
+## 1. Structure to save curves: traj.data   
+traj.data=list() # each element will be an Mx3 matrix like cbind(time,x,y)
+## 2. Function to plot them all. Allow ability to pass args to ode() via ...
+traj.draw = function(tdat=traj.data,col=&quot;blue&quot;,lwd=2) {
+  #print(unlist(tdat[[1]]))
+  for(i in 1:length(tdat)) { 
+    lines(tdat[[i]][,2:3], lwd=lwd, col=col)}
+}
+
+## 3. grid.calc()    
+grid.calc &lt;- compiler::cmpfun(function(fun,xlim,ylim,parms,ngrid,maxtime=50) {
+  xvals=seq(xlim[1],xlim[2],length=ngrid); 
+  yvals=seq(ylim[1],ylim[2],length=ngrid); 
+  ts &lt;- list()
+  for(i in 1:ngrid) {
+    for(j in 1:ngrid) {
+      out1=ode(times=  seq(0,maxtime,length=500),y=c(xvals[i],yvals[j]),func=as.ode.func(fun),parms=parms); 
+      out2=ode(times= -seq(0,maxtime,length=500),y=c(xvals[i],yvals[j]),func=as.ode.func(fun),parms=parms); 
+      ts[[length(ts)+1]] &lt;- rbind(out2[nrow(out2):2 , ],out1)
+    }}
+  return(ts)
+})
+
+## 4. traj.forward() and traj.backward()    
+traj.forward  = compiler::cmpfun(function(x0,fun,parms,maxtime,Tlen=500,...){
+  out=ode(times=seq(0,maxtime,length=Tlen),y=c(x0[1],x0[2]),func=as.ode.func(fun),parms=parms,...); 
+  return(out);
+})
+
+traj.backward = compiler::cmpfun(function(x0,fun,parms,maxtime,Tlen=500,...){
+  out=ode(times=seq(0,-maxtime,length=Tlen),y=c(x0[1],x0[2]),func=as.ode.func(fun),parms=parms,...); 
+  return(out[nrow(out):1,]);
+})
+
+## 5. traj.continue()
+traj.continue &lt;- compiler::cmpfun(function(fun, parms, tdat, maxtime, Tlen=500, backward=FALSE, ...){
+  if(length(tdat)==0) { cat(&quot;WARNING: No trajectories have been calculate yet!\n&quot;)}
+  out.curr &lt;- tdat[[length(tdat)]]
+  if(backward) {
+    X0=head(out.curr,1); 
+    t0=X0[1];
+    x0=X0[-1];
+    times=t0+seq(0,-maxtime,length=Tlen); 
+    out=ode(times=times,y=x0,func=as.ode.func(fun),parms=parms,...); 
+    return(rbind(out[nrow(out):2,],out.curr));
+  } else {
+    X0=tail(out.curr,1); 
+    t0=X0[1]
+    x0=X0[-1]
+    times=t0+seq(0,maxtime,length=Tlen); 
+    out=ode(times=times,y=x0,func=as.ode.func(fun),parms=parms,...); 
+    return(rbind(out.curr,out[-1,]));
+  }
+})
+
+## original grid() function
+grid=compiler::cmpfun(function(fun,xlim,ylim,parms,ngrid,maxtime=50,Tlen=500,add=F,color=&quot;blue&quot;) {
+  if (add==F) {
+    plot(1,xlim=xlim, ylim=ylim, type=&#39;n&#39;,xlab=&quot;x&quot;,ylab=&quot;y&quot;);
+  }
+  xvals=seq(xlim[1],xlim[2],length=ngrid); 
+  yvals=seq(ylim[1],ylim[2],length=ngrid); 
+  for(i in 1:ngrid) {
+    for(j in 1:ngrid) {
+      out=ode(times=seq(0,maxtime,length=Tlen),y=c(xvals[i],yvals[j]),func=as.ode.func(fun),parms=parms); 
+      points(out[,2],out[,3],type=&quot;l&quot;,lwd=2,col=color);
+      out=ode(times=-seq(0,maxtime,length=Tlen),y=c(xvals[i],yvals[j]),func=as.ode.func(fun),parms=parms); 
+      points(out[,2],out[,3],type=&quot;l&quot;,lwd=2,col=color);
+    }}
+})
+
+# Newton&#39;s method to find equilibria of vector field.
+# func() must have the same input arguments and returns as for ode/rk4.  
+# Inputs: 
+#   x0 = intial guess at equilibrium. If x0 is not supplied in the call, 
+#        the user chooses it from the current graphics device via locator()
+#         and the equilibrium is plotted to the same device. Plotting
+#         symbol is closed/open=stable/unstable, circle/triangle=eigenvalues imaginary/real.   
+#   tol= Convergence tolerance 
+#   niter = Maximum number of iterations
+#   inc = finite-difference increment for derivative estimates 
+# Coded 5/25/06 by SPE based on Matlab toggle.m by JG 
+# MODIFIED 7/2016 by PJH to take functions fun(x,y,parms)
+
+newton=compiler::cmpfun(function(fun,x0=NULL,parms=NULL,tol=1e-16,niter=40,inc=1e-6,plotit=TRUE) {
+  x=x0; #initial x  
+  if (is.null(x0)) {
+    warning(&quot;Oops! newton() was called without x0 specified!&quot;);#{x = locator(n=1); x=c(x$x,x$y)};
+    return(list(x=c(NA,NA,df=matrix(NA,2,2),pch=NA)))
+  }
+  nx = length(x); # length of state vector
+  ######### Newton iteration loop: start  
+  for(i in 1:niter){  
+    y = as.ode.func(fun)(0,x,parms)[[1]] 
+    df = matrix(0,nx,nx); # Compute df
+    for(j in 1:nx) {
+      #Increment vector for estimating derivative wrt jth coordinate
+      v=rep(0,nx); 
+      v[j] = inc; 
+      df[,j]=  (as.ode.func(fun)(t,x+v,parms)[[1]] - as.ode.func(fun)(t,x-v,parms)[[1]])/(2*inc) 
+    }
+    if (sum(y^2) &lt; tol){  #check for convergence 
+      if(plotit){
+        ev=eigen(df)$values; pch1=1+as.numeric(Im(ev[1])!=0); pch2=1+as.numeric(max(Re(ev))&lt;0);
+        pchs=matrix( c(2,17,1,16),2,2,byrow=T);     
+        #points(x[1],x[2],type=&quot;p&quot;,pch=pchs[pch1,pch2],cex=1.5)
+      }
+      cat(&quot;Fixed point (x,y) = &quot;,x,&quot;\n&quot;); 
+      cat(&quot;Jacobian Df=&quot;,&quot;\n&quot;); print(df);cat(&quot;Eigenvalues&quot;,&quot;\n&quot;); print(eigen(df)$values)
+      return(list(x=x,df=df,pch=pchs[pch1,pch2]))   
+    } # end convergence check   
+    x = x - solve(df,y) # one more step if needed 
+    cat(i, x, &quot;\n&quot;) #print out the next iterate 
+  }
+  ######### Newton iteration loop: end  
+  cat(&quot;Convergence failed&quot;); 
+})
+
+## to draw fixed points 
+fixed.points.draw &lt;- compiler::cmpfun(function(FPs) {
+  for(i in 1:length(FPs)) { points(FPs[[i]]$x[1], FPs[[i]]$x[2], cex=1.5, type=&quot;p&quot;,pch=FPs[[i]]$pch)} 
+})
+
+manifolds.calc &lt;- compiler::cmpfun(function(fun,parms,FPs,maxtime=250, Tlen=500) {
+  ms = list()
+  for(i in 1:length(FPs)) { if(!any(is.na(FPs[[i]]$x))) {
+  x=FPs[[i]]$x; df=FPs[[i]]$df; V=eigen(df)$vectors; ev=eigen(df)$values; 
+  
+  if (sign(Re(ev[1])) != -sign(Re(ev[2])) | Im(ev[1]) != 0) {
+    # if not a saddle...
+    ms[[i]] &lt;- list(S=matrix(NA,nrow=1,ncol=2),U=matrix(NA,nrow=1,ncol=2))
+  }else{
+    i1=which(Re(ev)&gt;0); i2=which(Re(ev)&lt;0); 
+    v1=V[,i1]; v2=V[,i2]; eps=1e-3;  
+    out1=ode(y=x+eps*v1,times=seq(0,maxtime,length=Tlen),func=as.ode.func(fun),parms=parms); 
+    out2=ode(y=x-eps*v1,times=seq(0,maxtime,length=Tlen),func=as.ode.func(fun),parms=parms); 
+    out3=ode(y=x+eps*v2,times=-seq(0,maxtime,length=Tlen),func=as.ode.func(fun),parms=parms); 
+    out4=ode(y=x-eps*v2,times=-seq(0,maxtime,length=Tlen),func=as.ode.func(fun),parms=parms); 
+    
+    S = rbind(out3,out4[1,]*NA,out4)[,-1]
+    U = rbind(out1,out2[1,]*NA,out2)[,-1]
+    
+    ms[[i]] &lt;- list(S=S,U=U)
+  }} else { # if x[1] is NA...
+  ms[[i]] &lt;- list(S=matrix(NA,nrow=1,ncol=2),U=matrix(NA,nrow=1,ncol=2))
+  }
+  }
+ return(ms) 
+})
+
+manifolds.draw=compiler::cmpfun(function(ms) {
+  for(i in 1:length(ms)){
+    S=ms[[i]]$S
+    U=ms[[i]]$U
+    title(sub=&quot;Black=stable manifold, Red=unstable manifold&quot;); 
+    points(S[,1],S[,2],type=&quot;l&quot;,lwd=2,col=&quot;black&quot;);
+    points(U[,1],U[,2],type=&quot;l&quot;,lwd=2,col=&quot;red&quot;);
+  }
+})
+    
+# Compute Jacobian of a planar vector field at a point (x,y),
+# either input or chosen with locator().
+jacobianAtXY &lt;- compiler::cmpfun(function(fun,x=NULL, y=NULL,inc=1e-7){
+  if (is.null(x)|is.null(y)) {
+    x0 &lt;- locator(n=1); x &lt;- x0$x; y &lt;- x0$y;  
+  }
+  foo &lt;- fun(x,y); h = inc; 
+  foox &lt;- fun(x+h,y); fooy &lt;- fun(x,y+h);
+  A &lt;- (foox[1] - foo[1])/h;
+  B &lt;- (fooy[1] - foo[1])/h;
+  C &lt;- (foox[2] - foo[2])/h;
+  D &lt;- (fooy[2] - foo[2])/h;
+  return(matrix( c(A,B,C,D ),2,2,byrow=T))
+})</code></pre>
 <div id="working-in-the-phase-plane" class="section level3">
 <h3>Working in the phase plane!</h3>
 <p>There is a lot you can learn about an interacting two-species system by working with the phase plane.</p>
@@ -603,7 +951,11 @@ abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
 <p>The <em>length</em> of the arrow represents the speed at which the system will move in the direction of the arrow (the degree of <em>repulsion</em> from that point in phase space).</p>
 <p>Now imagine we draw arrows throughout phase space, representing where the system would be expected to go.</p>
 <p>Note: this example uses R code from <a href="http://www.pauljhurtado.com/">Paul Hurtado</a></p>
-<pre class="r"><code>#######################################################################################
+<pre class="r"><code>##########
+# Visualize phase plane with arrows!
+##########
+
+#######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
@@ -637,7 +989,7 @@ new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
 
 plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
 phasearrows.draw(new)</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <pre class="r"><code>#
 ## END MODEL SPECIFICATION AND INITIALIZATION
 #######################################################################################</code></pre>
@@ -651,11 +1003,13 @@ phasearrows.draw(new)</code></pre>
 <p>Here is one example:</p>
 <div id="species-1-isocline" class="section level4">
 <h4>Species 1 isocline…</h4>
-<pre class="r"><code>plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
+<pre class="r"><code>#### example with phase-plane arrows
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&quot;)
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 1</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>The red line represents the conditions under which the growth rate of species 1 is zero.</p>
 <p><strong>Q</strong>: how many equilibrium solutions are there for species 1?</p>
 <p><strong>Q</strong>: under what conditions is carrying capacity “used up” for species 1??</p>
@@ -667,7 +1021,11 @@ abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 1</code></pre>
 <p>Above the blue line, species 2 will tend to decrease.</p>
 <p><strong>Q</strong>: consider the point where the two isoclines cross. What does this point represent?</p>
 <p>Let’s consider the following case…</p>
-<pre class="r"><code>Rmax1 &lt;- 0.2
+<pre class="r"><code>##########
+# Another example
+##########
+
+Rmax1 &lt;- 0.2
 Alpha &lt;- 1.1
 K1 &lt;- 1000
 Rmax2 &lt;- 0.2
@@ -686,14 +1044,18 @@ plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Follow the trajectories from any point in this phase space. What is the outcome here?</p>
 <p><strong>Q</strong>: Is there a system-wide equilibrium?</p>
 <p><strong>Q</strong>: Is there any point in this phase space where the population growth goes negative for species 1 (K1 used up) and positive for species 2 (some of K2 left unused)?</p>
 <p><strong>Q</strong>: What happens to species 1 when carrying capacity is used up for species 2? Is there room for species 1 to invade?</p>
 <p><strong>Q</strong>: What happens to species 2 when carrying capacity is used up for species 1? Is there room for species 2 to invade?</p>
 <p>How about this example?</p>
-<pre class="r"><code>Rmax1 &lt;- 0.5
+<pre class="r"><code>#########
+# And another example!
+#########
+
+Rmax1 &lt;- 0.5
 Alpha &lt;- 1.05
 K1 &lt;- 890
 Rmax2 &lt;- 0.2
@@ -712,11 +1074,15 @@ plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Follow the trajectories from any point in this phase space. What is the outcome here?</p>
 <p><strong>Q</strong>: Is there a system-wide equilibrium?</p>
 <p>What about this case(going back to the earlier example…):</p>
-<pre class="r"><code>Alpha &lt;- 0.3
+<pre class="r"><code>########
+# And another!
+#########
+
+Alpha &lt;- 0.3
 Beta &lt;- 0.2
 K1 &lt;- 1000
 K2 &lt;- 450
@@ -739,10 +1105,14 @@ phasearrows.draw(new)
 abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)
 abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=2)   # species 1
 abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=2)   # species 2</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p><strong>Q</strong>: Where in this figure does the system “move” the fastest? (Magnetic field analogy: strongest repulsion)</p>
 <p>Finally consider this example:</p>
-<pre class="r"><code>Rmax1 &lt;- 0.2
+<pre class="r"><code>########
+# And finally...
+########
+
+Rmax1 &lt;- 0.2
 Alpha &lt;- 1.5
 K1 &lt;- 1000
 Rmax2 &lt;- 0.2
@@ -761,7 +1131,7 @@ plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;N1&quot;,ylab=&quot;N2&
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
-<p><img src="LECTURE16_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="LECTURE16_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p><strong>Q</strong>: is the point where the two isoclines cross an <em>equilibrium</em>?</p>
 <p><strong>Q</strong>: is the point where the two isoclines cross a <em>stable equilibrium</em>?</p>
 <p><strong>Q</strong>: what would happen if species 1 was at K and species 2 tried to invade? And vice versa?</p>

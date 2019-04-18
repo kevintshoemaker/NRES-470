@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ############################################################
 ####                                                    ####  
-####  NRES 470/670, Lecture 15                          ####
+####  NRES 470/670, Lecture 16                          ####
 ####                                                    ####
 ####  Kevin Shoemaker                                   #### 
 ####  University of Nevada, Reno                        ####
@@ -89,7 +89,7 @@ The constants $\alpha$ and $\beta$ are measures of the effect of one species on 
 
 **Q**: what does it mean if $\alpha$ is equal to 1?
 
-**Q**: what does it mean if $\alpha$ is equal to 5? [tophat]
+**Q**: what does it mean if $\alpha$ is equal to 5?
 
 **Q**: what does it mean if $\alpha$ is equal to $\frac{1}{5}$?
 
@@ -107,9 +107,7 @@ This model is known as *Lotka-Volterra competition*! The model is named after ma
 
 **Q**: what happens if one species is a superior competitor? What does it mean to be a superior competitor? Can one species go extinct?
 
-**Q**: what conditions are necessary for coexistence in this model?
-
-**Q**: what if you change the time step? Less than 1? Greater than 1?
+**Q**: what conditions are necessary for coexistence in this model? [tophat]
 
 **Q**: can you identify any equilibrium conditions?
 
