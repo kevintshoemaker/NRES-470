@@ -114,7 +114,7 @@ This model is known as *Lotka-Volterra competition*! The model is named after ma
 
 ## Phase plane!
 
-In the study of dynamic systems (such as the lotka-volterra competition system) it can be very useful to visualize the system on the **phase plane**.
+In the study of dynamic systems (such as the Lotka-Volterra competition model) it can be very useful to visualize the system on the **phase plane**.
 
 To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species as the y axis and the other species as the x axis. This 2-D surface is called the phase plane. 
 
@@ -303,7 +303,7 @@ abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 **Q**: Does this two-species system have a stable equilibrium?
 
 
-```{r}
+```{r echo=FALSE}
 
 ## Paul Hurtado code
 
