@@ -94,6 +94,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -393,6 +396,9 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -407,7 +413,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Species interactions: prey-predator!</h1>
 <h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Apr 24, 2018</em></h4>
+<h4 class="date"><em>Spring 2019</em></h4>
 
 </div>
 
@@ -452,15 +458,18 @@ div.tocify {
 <p>This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way.</p>
 <p>Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a constant amount of prey in a given time period, depending on prey availability.</p>
 <p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator.</p>
-<p><strong>Q</strong>: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant rate of prey consumption in this example (<span class="math inline">\(\alpha\)</span>)?</p>
+<p><strong>Q</strong>: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant daily rate of prey consumption in this example (<span class="math inline">\(\alpha\)</span>)?</p>
 <p><strong>Q</strong> what is the shape of the functional response in this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
-<pre class="r"><code>LVfuncresp &lt;- function(V,alpha){
+<pre class="r"><code>#######
+# simple functional response
+
+LVfuncresp &lt;- function(V,alpha){
   alpha*V
 }
 
 curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Note the intercept- does the functional response need to have an intercept of zero?</p>
 <p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the L-V competition models! Sorry!</p>
 <p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just randomly bumping into prey.</p>
@@ -468,7 +477,7 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
 <p>Does this make sense?</p>
 <p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em>?</p>
-<p><strong>Q</strong> what are the units of <em>alpha</em>?</p>
+<p><strong>Q</strong> what are the units of <em>alpha</em>? [tophat]</p>
 <p><strong>Q</strong> Can <em>alpha</em> go above 1?</p>
 <p><strong>Q</strong> Can <em>alpha</em> go below 0?</p>
 <p>Now, the (instantaneous) prey growth rate can be defined by the following equation:</p>
@@ -490,12 +499,15 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p>The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption:</p>
 <p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
 <p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
-<pre class="r"><code>LVnumresp &lt;- function(V,beta){
+<pre class="r"><code>######
+# Numerical response
+
+LVnumresp &lt;- function(V,beta){
   beta*V
 }
 
 curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Note the intercept- does the numerical response need to have an intercept of zero?</p>
 <p>The <em>predator growth rate due to prey consumption</em> now is:</p>
 <p><span class="math inline">\(g(V) \cdot P = \beta V \cdot P\)</span></p>
@@ -518,9 +530,9 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 <p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/78356/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
 <p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”&quot; and “numerical response”.</p>
 <p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator growth”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
-<p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)”.</p>
+<p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)” (this makes InsightMaker behave more like a continuous growth model).</p>
 <p><strong>Step 5</strong>: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.</p>
-<p><strong>Step 6</strong>: Add a new display to represent the <strong>phase plane</strong>: Choose the “scatter plot” type, and under “Data” select <em>Prey</em> first, then <em>Predator</em>. What does this system look like in phase space?</p>
+<p><strong>Step 6</strong>: Add a new display to represent the <strong>phase plane</strong>: Choose the “scatter plot” type, and under “Data” select <em>Prey</em> first, then <em>Predator</em>. What does this system look like on the phase plane?</p>
 <p><strong>Q</strong> What happens if you change the initial abundances?</p>
 <p><strong>Q</strong> What happens if you change initial abundance of both species to 100? Is this an <strong>equilibrium</strong>? If so, is it <strong>stable</strong>?</p>
 <p><strong>Step 7</strong>: Try some other parameter values for alpha, beta, r, and q…</p>
@@ -532,7 +544,8 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 </div>
 <div id="prey-predator-models-on-the-phase-plane" class="section level2">
 <h2>Prey-Predator models on the phase plane!</h2>
-<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
+<p>If you want to follow along in R, click <a href="LECTURE17.R">here</a> for the R script!</p>
+<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
 
 ## Params
 
@@ -561,7 +574,7 @@ for(i in 1:(Nyears*10+1)){
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;prey&quot;,ylab=&quot;predators&quot;)
 points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,cex=0.85)
 points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Okay, so as prey get more abundant, predators start increasing, but as predators increase, prey abundance goes down. And repeat!</p>
 <p>Here is another example…</p>
 <pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
@@ -594,11 +607,11 @@ for(i in 1:(Nyears*10+1)){
 plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;prey&quot;,ylab=&quot;predators&quot;)
 points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,cex=0.85)
 points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>With some jittering, we can visualize the amount of time the system spends in various parts of phase space…</p>
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
 points(jitter(System[,1],200),jitter(System[,2],200),col=&quot;brown&quot;,pch=20,cex=0.3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
 <p>You can see that this system spends much more time near the origin, where abundances are low for both prey and predator!</p>
 <p>Finally, let’s consider multiple starting points and see how the system behaves!</p>
@@ -637,7 +650,7 @@ points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=2
 points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
 points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.3)
 points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
 <p><strong>Q</strong>: Does this predator-prey system have a stable equilibrium?</p>
 <p><strong>Q</strong>: Does this predator-prey system have an equilibrium at all?</p>
@@ -645,11 +658,46 @@ points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=
 <pre class="r"><code>plot(seq(1,100,length=nrow(System)), System[,1], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;orange&quot;,lwd=2,ylim=c(0,160),xlim=c(0,95))
 points(seq(1,100,length=nrow(System)), System[,2], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,lty=2)
 legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;green&quot;),legend=c(&quot;prey&quot;,&quot;predator&quot;),bty=&quot;n&quot;)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div id="more-with-the-l-v-predator-prey-phase-space" class="section level3">
 <h3>More with the L-V predator-prey phase space!</h3>
 <p>Just like before, let’s draw arrows throughout phase space, representing where the system would be expected to go from each point in phase space.</p>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>#######################################################################################
+## SPECIFY MODEL AND INITIALIZE
+#
+## toggle switch function for phase arrow and nullcline plotting 
+
+toggle = compiler::cmpfun(function(u,v,parms) {
+  c( u*parms[1]-parms[2]*u*v, parms[3]*u*v-parms[4]*v )
+})
+
+fun=toggle ## Our generic name for the system of equations to look at! ;-)
+#
+## toggle switch function for computing solution trajectories with deSolve::ode()
+
+#Toggle = as.ode.func(toggle)
+#
+## parameter values?
+
+Alpha &lt;- 0.005
+Beta &lt;- 0.005
+r &lt;- 0.2
+q &lt;- 0.1
+
+parms=c(r,Alpha,Beta,q)
+
+# toggle(100,100,parms)
+
+xlim = c(5,200)
+ylim = c(5,200)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
+phasearrows.draw(new)</code></pre>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>#
+## END MODEL SPECIFICATION AND INITIALIZATION
+#######################################################################################</code></pre>
 <p>Are there any other possible outcomes of this simple L-V model?</p>
 <p>Well, let’s plot out the isoclines then!!</p>
 </div>
@@ -667,7 +715,7 @@ legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;gree
 phasearrows.draw(new)
 abline(h=r/Alpha,col=&quot;red&quot;,lwd=3)   # prey
 abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 </div>
 <div id="assumptions-of-the-l-v-prey-predator-model" class="section level2">
@@ -692,9 +740,45 @@ abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
 <p>We can play around with these scenarios in InsightMaker. But it can be instructive to visualize in phase space first. For example, let’s incorporate a victim carrying capacity.</p>
 <div id="victim-k-in-phase-space" class="section level3">
 <h3>victim K in phase space</h3>
+<pre class="r"><code>#######################################################################################
+## SPECIFY MODEL AND INITIALIZE
+#
+## toggle switch function for phase arrow and nullcline plotting 
+
+toggle = compiler::cmpfun(function(u,v,parms) {
+  c( u*parms[1]-parms[2]*u*v - parms[3]*u^2, parms[4]*u*v-parms[5]*v )
+})
+
+fun=toggle ## Our generic name for the system of equations to look at! ;-)
+#
+## toggle switch function for computing solution trajectories with deSolve::ode()
+
+#Toggle = as.ode.func(toggle)
+#
+## parameter values?
+
+Alpha &lt;- 0.001
+Beta &lt;- 0.005
+r &lt;- 0.2
+q &lt;- 0.1
+c &lt;- 0.008
+
+parms=c(r,Alpha,c,Beta,q)
+
+# toggle(100,100,parms)
+
+xlim = c(5,200)
+ylim = c(5,200)
+new &lt;- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
+
+plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
+phasearrows.draw(new)</code></pre>
 <pre><code>## Warning in arrows(c(x), c(y), c(x + dx * z1/((lens2) + 0.1)), c(y + dx * :
 ## zero-length arrow is of indeterminate angle and so skipped</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>#
+## END MODEL SPECIFICATION AND INITIALIZATION
+#######################################################################################</code></pre>
 <p>Adding isoclines, it looks something like this:</p>
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
 phasearrows.draw(new)</code></pre>
@@ -702,7 +786,7 @@ phasearrows.draw(new)</code></pre>
 ## zero-length arrow is of indeterminate angle and so skipped</code></pre>
 <pre class="r"><code>abline((r/Alpha),-(c/Alpha),col=&quot;red&quot;,lwd=3)   # prey
 abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Follow the arrows. What do you think the system dynamics will look like?</p>
 <pre class="r"><code>## Params
 
@@ -769,13 +853,13 @@ points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=2
 points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
 points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=20,cex=0.3)
 points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Now, does the system have a stable equilibrium???</p>
 <p>Let’s visualize as a time series!</p>
 <pre class="r"><code>plot(seq(1,100,length=nrow(System)), System[,1], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;orange&quot;,lwd=2,ylim=c(0,160),xlim=c(0,95))
 points(seq(1,100,length=nrow(System)), System[,2], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,lty=2)
 legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;green&quot;),legend=c(&quot;prey&quot;,&quot;predator&quot;),bty=&quot;n&quot;)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="alternative-functional-responses" class="section level3">
 <h3>Alternative functional responses</h3>
@@ -788,7 +872,7 @@ legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;gree
 }
 
 curve(TypeIfuncresp(x,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <div id="type-ii-functional-response" class="section level4">
 <h4>Type II functional response</h4>
 <p>The <strong>Type II functional response</strong> takes prey saturation into account- the predators will consume more prey with increasing prey densities, but only up to a point!</p>
@@ -804,7 +888,7 @@ curve(TypeIfuncresp(x,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;To
 }
 
 curve(TypeIIfuncresp(x,0.1,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 <div id="type-iii-functional-response" class="section level4">
 <h4>Type III functional response</h4>
@@ -822,7 +906,7 @@ curve(TypeIIfuncresp(x,0.1,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&qu
 }
 
 curve(TypeIIIfuncresp(x,0.0005,0.1,1.6),0,1000,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
-<p><img src="LECTURE17_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="LECTURE17_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 </div>
 </div>
