@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: prey-predator!"
 author: "NRES 470/670"
-date: "Apr 24, 2018"
+date: "Spring 2019"
 output: 
   html_document: 
     theme: spacelab
@@ -11,6 +11,25 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+```{r echo=FALSE}
+
+############################################################
+####                                                    ####  
+####  NRES 470/670, Lecture 17                          ####
+####                                                    ####
+####  Kevin Shoemaker                                   #### 
+####  University of Nevada, Reno                        ####
+####                                                    #### 
+############################################################
+
+
+############################################################
+####  Predator-prey                                     ####
+############################################################
+
+
 ```
 
 
@@ -76,13 +95,17 @@ Under such circumstances, the predators do NOT interfere with one another. Each 
 
 Consider the case where there are $V$ prey and only a single predator.  
 
-**Q**: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant rate of prey consumption in this example ($\alpha$)? 
+**Q**: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant daily rate of prey consumption in this example ($\alpha$)? 
 
 **Q** what is the shape of the functional response in this case?
 
 $f(V)=\alpha \cdot V$
 
 ```{r}
+
+#######
+# simple functional response
+
 LVfuncresp <- function(V,alpha){
   alpha*V
 }
@@ -105,7 +128,7 @@ Does this make sense?
 
 The term $\alpha$ is also known as the **capture efficiency**. Does this make sense? Consider a case where every predator "bumps into" all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more *efficient*? 
 
-**Q** what are the units of *alpha*?
+**Q** what are the units of *alpha*? [tophat]
 
 **Q** Can *alpha* go above 1?
 
@@ -146,6 +169,10 @@ $g(V)=\beta \cdot V$
 **Q** what is the shape of the **numerical response** in this case?
 
 ```{r}
+
+######
+# Numerical response
+
 LVnumresp <- function(V,beta){
   beta*V
 }
@@ -193,11 +220,11 @@ Before we go deeper into predation modeling, let's simulate prey and predator po
 
 **Step 3**: Correctly set up the flow equations for "total prey consumed" and "predator growth", which refer to the the prey lost and the predators gained per time step, respectively.
 
-**Step 4**: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to "Accurate (RK4)".
+**Step 4**: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to "Accurate (RK4)" (this makes InsightMaker behave more like a continuous growth model).
 
 **Step 5**: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.
 
-**Step 6**: Add a new display to represent the **phase plane**: Choose the "scatter plot" type, and under "Data" select *Prey* first, then *Predator*. What does this system look like in phase space? 
+**Step 6**: Add a new display to represent the **phase plane**: Choose the "scatter plot" type, and under "Data" select *Prey* first, then *Predator*. What does this system look like on the phase plane? 
 
 **Q** What happens if you change the initial abundances?
 
@@ -216,8 +243,12 @@ Before we go deeper into predation modeling, let's simulate prey and predator po
 
 ## Prey-Predator models on the phase plane!
 
+If you want to follow along in R, click [here](LECTURE17.R) for the R script!
+
+
 ```{r}
-##### LOTKA VOLTERRA PREDATION EXAMPLE
+
+##### LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
 
 ## Params
 
@@ -251,9 +282,11 @@ for(i in 1:(Nyears*10+1)){
 Now let's visualize this basic L-V system in *phase space*:
 
 ```{r}
+
 plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="prey",ylab="predators")
 points(System[seq(1,1000,10),],col="green",type="p",pch=20,cex=0.85)
 points(System[1,],col="blue",pch=20,cex=3)
+
 ```
 
 
@@ -263,6 +296,7 @@ Okay, so as prey get more abundant, predators start increasing, but as predators
 Here is another example...
 
 ```{r}
+
 ##### LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
@@ -300,9 +334,11 @@ points(System[1,],col="blue",pch=20,cex=3)
 With some jittering, we can visualize the amount of time the system spends in various parts of phase space...
 
 ```{r}
+
 plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="Prey",ylab="Predators")
 points(jitter(System[,1],200),jitter(System[,2],200),col="brown",pch=20,cex=0.3)
 #abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
+
 ```
 
 You can see that this system spends much more time near the origin, where abundances are low for both prey and predator! 
@@ -310,6 +346,7 @@ You can see that this system spends much more time near the origin, where abunda
 Finally, let's consider multiple starting points and see how the system behaves!
 
 ```{r}
+
 ##### LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
@@ -347,12 +384,14 @@ for(i in 1:(Nyears*10+1)){
 Now, phase space looks like this (with jittering to indicate concentration of points:
 
 ```{r}
+
 plot(1,1,pch="",ylim=c(0,400),xlim=c(0,400),xlab="species 1",ylab="species 2")
 points(jitter(System[,1],500),jitter(System[,2],500),col="brown",pch=20,cex=0.3)
 points(jitter(System1[,1],500),jitter(System1[,2],500),col="green",pch=20,cex=0.3)
 points(jitter(System2[,1],500),jitter(System2[,2],500),col="red",pch=20,cex=0.3)
 points(jitter(System3[,1],500),jitter(System3[,2],500),col="blue",pch=20,cex=0.3)
 #abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
+
 ```
 
 **Q**: Does this predator-prey system have a stable equilibrium?
@@ -362,9 +401,11 @@ points(jitter(System3[,1],500),jitter(System3[,2],500),col="blue",pch=20,cex=0.3
 **Q**: How do these dynamics look like when visualized as time series?
 
 ```{r}
+
 plot(seq(1,100,length=nrow(System)), System[,1], xlab="Time", ylab="Abundance",type="l",col="orange",lwd=2,ylim=c(0,160),xlim=c(0,95))
 points(seq(1,100,length=nrow(System)), System[,2], xlab="Time", ylab="Abundance",type="l",col="green",lwd=2,lty=2)
 legend("top",lwd=c(2,2),lty=c(1,2),col=c("orange","green"),legend=c("prey","predator"),bty="n")
+
 ```
 
 
@@ -715,7 +756,8 @@ jacobianAtXY <- compiler::cmpfun(function(fun,x=NULL, y=NULL,inc=1e-7){
 
 Just like before, let's draw arrows throughout phase space, representing where the system would be expected to go from each point in phase space. 
 
-```{r echo=FALSE}
+```{r}
+
 #######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
@@ -752,6 +794,7 @@ phasearrows.draw(new)
 #
 ## END MODEL SPECIFICATION AND INITIALIZATION
 #######################################################################################
+
 ```
 
 Are there any other possible outcomes of this simple L-V model?
@@ -777,6 +820,7 @@ And the predator population is stable only if there are just enough prey to offs
 Let's visualize this in phase space.
 
 ```{r}
+
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="Prey",ylab="Predators")
 phasearrows.draw(new)
 abline(h=r/Alpha,col="red",lwd=3)   # prey
@@ -805,7 +849,8 @@ We can play around with these scenarios in InsightMaker. But it can be instructi
 
 ### victim K in phase space
 
-```{r echo=FALSE}
+```{r}
+
 #######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
@@ -843,11 +888,13 @@ phasearrows.draw(new)
 #
 ## END MODEL SPECIFICATION AND INITIALIZATION
 #######################################################################################
+
 ```
 
 Adding isoclines, it looks something like this:
 
 ```{r}
+
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="Prey",ylab="Predators")
 phasearrows.draw(new)
 abline((r/Alpha),-(c/Alpha),col="red",lwd=3)   # prey
@@ -858,6 +905,7 @@ abline(v=q/Beta,col="blue",lwd=3)   # pred
 Follow the arrows. What do you think the system dynamics will look like?
 
 ```{r}
+
 ## Params
 
 Alpha <- 0.001
@@ -929,9 +977,11 @@ Now, does the system have a stable equilibrium???
 Let's visualize as a time series!
 
 ```{r}
+
 plot(seq(1,100,length=nrow(System)), System[,1], xlab="Time", ylab="Abundance",type="l",col="orange",lwd=2,ylim=c(0,160),xlim=c(0,95))
 points(seq(1,100,length=nrow(System)), System[,2], xlab="Time", ylab="Abundance",type="l",col="green",lwd=2,lty=2)
 legend("top",lwd=c(2,2),lty=c(1,2),col=c("orange","green"),legend=c("prey","predator"),bty="n")
+
 ```
 
 ### Alternative functional responses
@@ -945,6 +995,7 @@ As we have seen before, the type I functional response looks something like this
 $f(V)=\alpha \cdot V$
 
 ```{r}
+
 TypeIfuncresp <- function(V,alpha){
   alpha*V
 }
@@ -972,6 +1023,7 @@ The term *h* is probably best understood as the *inverse of the maximum prey con
 Let's visualize it!
 
 ```{r}
+
 TypeIIfuncresp <- function(V,alpha,h){
   (alpha*V)/(1+alpha*h*V)
 }
@@ -1001,6 +1053,7 @@ The term *h* is probably best understood as the *inverse of the maximum prey con
 Let's visualize it!
 
 ```{r}
+
 TypeIIIfuncresp <- function(V,alpha,h,k){
   (alpha*V^k)/(1+alpha*h*V^k)
 }
