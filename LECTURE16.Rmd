@@ -109,7 +109,9 @@ This model is known as *Lotka-Volterra competition*! The model is named after ma
 
 **Q**: what conditions are necessary for coexistence in this model? [tophat]
 
-**Q**: can you identify any equilibrium conditions?
+**Q**: imagine that species 1 is an exotic species- a possible invader of an ecosystem dominated by species 2 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species? 
+
+**Q**: can you identify any equilibrium conditions (either stable or unstable)?
 
 
 ## Phase plane!
@@ -182,6 +184,8 @@ plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species
 points(System[1:6,],col="green",pch=20,cex=2)
 
 ```
+
+Note that every point on the phase plane has both a location and a *direction* - think of the phase plane like a magnetic field- at each point in the phase plane, the system is attracted or repelled from going certain directions. 
 
 And the entire simulation?
 
@@ -303,7 +307,7 @@ abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 **Q**: Does this two-species system have a stable equilibrium?
 
 
-```{r}
+```{r echo=FALSE}
 
 ## Paul Hurtado code
 
@@ -650,7 +654,7 @@ jacobianAtXY <- compiler::cmpfun(function(fun,x=NULL, y=NULL,inc=1e-7){
 
 There is a lot you can learn about an interacting two-species system by working with the phase plane. 
 
-First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system is expected to go from that point in phase space. 
+First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system is expected to go from that point in phase space (every point has a direction associated with it). 
 
 So, imagine we start at the initial abundance in the above figures. Where does the arrow point in phase space? 
 
@@ -752,7 +756,7 @@ Below the blue line, species 2 will tend to increase.
 
 Above the blue line, species 2 will tend to decrease.
 
-**Q**: consider the point where the two isoclines cross. What does this point represent?
+**Q**: consider the point where the two isoclines cross. What does this point represent? [tophat]
 
 Let's consider the following case...
 
@@ -786,7 +790,7 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
 Follow the trajectories from any point in this phase space. What is the outcome here?
 
-**Q**: Is there a system-wide equilibrium?
+**Q**: Is there a system-wide equilibrium? [tophat]
 
 **Q**: Is there any point in this phase space where the population growth goes negative for species 1 (K1 used up) and positive for species 2 (some of K2 left unused)? 
 
@@ -863,7 +867,7 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=2)   # species 2
 
 ```
 
-**Q**: Where in this figure does the system "move" the fastest? (Magnetic field analogy: strongest repulsion)
+**Q**: Where in this figure does the system "move" the fastest? (Magnetic field analogy: strongest attraction and repulsion)
 
 
 Finally consider this example:
@@ -904,11 +908,13 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
 **Q**: what would happen if both species tried to invade a vacant habitat at the same time? 
 
+**Q**" "
+
 ### Phase space in InsightMaker
 
 You can visualize populations moving through the phase plane in InsightMaker! To do this, just click on "Add Display" in the graphics window (which comes up automatically when you hit "Simulate") and create a "Scatter Plot". For the "Data" field, select the two stocks (species abundances). 
 
-If you are having trouble, you can load up the basic competition model [here](https://insightmaker.com/insight/77730/Competition-1#)
+If you don't already have a working L-V competition model you can load up the basic L-V competition model [here](https://insightmaker.com/insight/77730/Competition-1#)
 
 
 **Step 1**: Set the key parameters (alpha, beta, K1, K2) to arbitrary values
@@ -923,7 +929,7 @@ If you are having trouble, you can load up the basic competition model [here](ht
 
 > "the more similar species are in their use of shared resources, the more precarious their coexistence"
 
-**Q**: imagine that species 1 is an exotic species- a possible invader of an ecosystem dominated by species 2 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species? 
+
 
 **Q**: Does $r_{max}$ have any role to play in determining system stability for the lotka-volterra competition model?
 
