@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![](predation2.jpg)
 
-In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one species actually benefits from the interaction and the other species loses out!
+In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two species species benefits greatly from the interaction -- and the other species loses out!
 
 Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:
 
@@ -61,11 +61,11 @@ $qP^*$ represents the growth of the predator population *in the absence of prey*
 
 AND
 
-$f(V,P)$ is known as the **functional response** -- that is, the per capita rate of prey consumption, usually a function of the prey (and sometimes also predator) densities.
+$f(V,P)$ is known as the **functional response** -- that is, the per capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities.
 
 AND
 
-$g(V,P)$ is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption, usually as a function of the prey and possibly predator densities.
+$g(V,P)$ is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption, usually modeled as as a function of prey density, but sometimes modeled as a function of both predator and prey densities.
 
 There are many different types of possible functional response curves and numerical response curves. Let's start simple!
 
@@ -91,11 +91,11 @@ First of all, let's assume that predators and prey walk randomly through their c
 
 This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way. 
 
-Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a constant amount of prey in a given time period, depending on prey availability. 
+Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a fixed number of prey in a given time period, depending on prey availability. 
 
 Consider the case where there are $V$ prey and only a single predator.  
 
-**Q**: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant daily rate of prey consumption in this example ($\alpha$)? 
+**Q**: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption in this example ($\alpha$)? 
 
 **Q** what is the shape of the functional response in this case?
 
@@ -118,7 +118,7 @@ Note the intercept- does the functional response need to have an intercept of ze
 
 ...Of course, this *alpha* term has a different meaning from the *alpha* in the L-V competition models! Sorry! 
 
-Now consider the case where there is more than one predator -- that is, there are $P$ predators and there are $V$ prey. Recall that each predator has *no influence* on the consumption rates of other predators. The predators are just randomly bumping into prey. 
+Now consider the case where there is more than one predator -- that is, there are $P$ predators and there are $V$ prey. Recall that each predator has *no influence* on the consumption rates of other predators. The predators are just like molecules randomly bumping into prey molecules. 
 
 The *total rate of predation* now is:
 
@@ -130,7 +130,7 @@ The term $\alpha$ is also known as the **capture efficiency**. Does this make se
 
 **Q** what are the units of *alpha*? [tophat]
 
-**Q** Can *alpha* go above 1?
+**Q** Can *alpha* go above 1? [this one is tricky]
 
 **Q** Can *alpha* go below 0?
 
@@ -138,7 +138,9 @@ Now, the (instantaneous) prey growth rate can be defined by the following equati
 
 $\Delta V = rV - \alpha VP$
 
-This model is one half of what is known as the **Lotka-Volterra** prey-predator model. 
+In the absence of predators, the prey population grows exponentially. However, with enough predators on the landscape, the population will decline.
+
+This model is one half of what is known as the **Lotka-Volterra** prey-predator model.
 
 The other half is the predator population growth model, of course!!
 
@@ -150,19 +152,23 @@ $\Delta P = -qP$
 
 In the absence of prey, the predator population declines exponentially.
 
-If prey are present, the population growth rate of the predators will go up... 
+If enough prey are present, the population growth rate of the predators will go up... 
 
 Recall that predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:
 
 $f(V) = \alpha V$
 
-The numerical response is the population-level response of the *predators* given the amount of prey that they have consumed. 
+The *numerical response* is the increase in the fractional growth rate of *predators* per unit prey consumed. The numerical response is related to the functional response. While the functional response describes the prey consumption per predator, the numerical response describes how that prey consumption translates into the growth of the predator population.
 
-We can think of this as a function of the total prey consumption per predator:
-
-$some.function(f(V))$
+$g(V) = some.function(f(V))$
 
 The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption: 
+
+$g(V) = \gamma (\alpha \cdot V)$
+
+Where $\gamma$ is the conversion efficiency and $\alpha$ is the capture efficency and $\alpha \cdot V$ is the total prey consumed per predator.
+
+Or, more simply stated:
 
 $g(V)=\beta \cdot V$
 
@@ -183,13 +189,13 @@ curve(LVnumresp(x,0.001),0,200,xlab="Victim abundance",ylab="Increase in r for p
 
 Note the intercept- does the numerical response need to have an intercept of zero?
 
-The *predator growth rate due to prey consumption* now is:
+The *increase in total predators due to prey consumption* now is:
 
 $g(V) \cdot P = \beta V \cdot P$
 
 Does this make sense?
 
-The term $\beta$ is also known as the **conversion efficiency**. Does this make sense? Consider a case where every predator consumes 100 prey per time step, but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1... Which predator is more *efficient* at converting prey biomass into population growth? 
+The term $\beta$ is related to the **conversion efficiency** of the predator (how effieciently the predator converts its food into the production of new predators). Does this make sense? Consider a case where every predator consumes 100 prey per time step ($\alpha \cdot V = 100$), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1... Which predator is more *efficient* at converting prey biomass into population growth? 
 
 **Q** what are the units of *beta*?
 
@@ -830,11 +836,11 @@ abline(v=q/Beta,col="blue",lwd=3)   # pred
 
 ## Assumptions of the L-V prey-predator model
 
-- Victim population is limited only by predation
+- Victim population is regulated only by predation
 - Predator feeds only on one species of prey
 - Individual predators can consume infinity prey items per time step theoretically
 - No interference among predators
-- Victims have no refuge from predatpors
+- Victims have no refuge from predators
 
 ## More realistic prey-predator models
 
@@ -1064,7 +1070,7 @@ curve(TypeIIIfuncresp(x,0.0005,0.1,1.6),0,1000,xlab="Victim abundance",ylab="Tot
 
 ## Final InsightMaker activity (on your own)!!
 
-**Step 1** Add prey density-dependence to your basic predator-prey model, using the equations in the Gotelli book. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with prey density dependence? Is this model more stable than the base L-V model?
+**Step 1** Add prey density-dependence to your basic predator-prey model, using your knowledge of modeling density-dependence (or just use the equations in chapter 6 of the Gotelli book). Visualize the dynamics as time series and in phase space. Do you ever see oscillations with prey density dependence? Is this model more stable than the base L-V model?
 
 **Step 2** Change the functional response to a type-II functional response. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with this model? Is this model more stable than the base L-V model?
 

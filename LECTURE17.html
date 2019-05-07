@@ -94,9 +94,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -428,7 +425,7 @@ div.tocify {
 <img src="predation2.jpg" />
 
 </div>
-<p>In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one species actually benefits from the interaction and the other species loses out!</p>
+<p>In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two species species benefits greatly from the interaction – and the other species loses out!</p>
 <p>Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:</p>
 <p><span class="math inline">\(\Delta V = rV^* - f(V,P) \cdot P\)</span></p>
 <p>AND</p>
@@ -439,9 +436,9 @@ div.tocify {
 <p><span class="math inline">\(rV^*\)</span> represents the growth of the prey population <em>in the absence of predators</em> – usually, this is some form of the standard single-species population growth models we have considered throughout most of this course (possibly density-dependent),</p>
 <p><span class="math inline">\(qP^*\)</span> represents the growth of the predator population <em>in the absence of prey</em> – usually this is simply exponential decline!,</p>
 <p>AND</p>
-<p><span class="math inline">\(f(V,P)\)</span> is known as the <strong>functional response</strong> – that is, the per capita rate of prey consumption, usually a function of the prey (and sometimes also predator) densities.</p>
+<p><span class="math inline">\(f(V,P)\)</span> is known as the <strong>functional response</strong> – that is, the per capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities.</p>
 <p>AND</p>
-<p><span class="math inline">\(g(V,P)\)</span> is known as the <strong>numerical response</strong> – that is, the increase in per-capita predator population growth due to prey consumption, usually as a function of the prey and possibly predator densities.</p>
+<p><span class="math inline">\(g(V,P)\)</span> is known as the <strong>numerical response</strong> – that is, the increase in per-capita predator population growth due to prey consumption, usually modeled as as a function of prey density, but sometimes modeled as a function of both predator and prey densities.</p>
 <p>There are many different types of possible functional response curves and numerical response curves. Let’s start simple!</p>
 <div id="the-classical-prey-predator-model" class="section level3">
 <h3>The classical prey-predator model</h3>
@@ -456,9 +453,9 @@ div.tocify {
 <p>What expression could define the rate at which prey are consumed by predators?</p>
 <p>First of all, let’s assume that predators and prey walk randomly through their common environment, bumping into each other randomly. Every time the predator bumps into a prey item, the predator has some chance of consuming that prey item.</p>
 <p>This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way.</p>
-<p>Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a constant amount of prey in a given time period, depending on prey availability.</p>
+<p>Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a fixed number of prey in a given time period, depending on prey availability.</p>
 <p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator.</p>
-<p><strong>Q</strong>: Imagine there are 100 prey and a single predator, and 3 prey are consumed today. What is the constant daily rate of prey consumption in this example (<span class="math inline">\(\alpha\)</span>)?</p>
+<p><strong>Q</strong>: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption in this example (<span class="math inline">\(\alpha\)</span>)?</p>
 <p><strong>Q</strong> what is the shape of the functional response in this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
 <pre class="r"><code>#######
@@ -472,16 +469,17 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Note the intercept- does the functional response need to have an intercept of zero?</p>
 <p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the L-V competition models! Sorry!</p>
-<p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just randomly bumping into prey.</p>
+<p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just like molecules randomly bumping into prey molecules.</p>
 <p>The <em>total rate of predation</em> now is:</p>
 <p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
 <p>Does this make sense?</p>
 <p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em>?</p>
 <p><strong>Q</strong> what are the units of <em>alpha</em>? [tophat]</p>
-<p><strong>Q</strong> Can <em>alpha</em> go above 1?</p>
+<p><strong>Q</strong> Can <em>alpha</em> go above 1? [this one is tricky]</p>
 <p><strong>Q</strong> Can <em>alpha</em> go below 0?</p>
 <p>Now, the (instantaneous) prey growth rate can be defined by the following equation:</p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
+<p>In the absence of predators, the prey population grows exponentially. However, with enough predators on the landscape, the population will decline.</p>
 <p>This model is one half of what is known as the <strong>Lotka-Volterra</strong> prey-predator model.</p>
 <p>The other half is the predator population growth model, of course!!</p>
 </div>
@@ -490,13 +488,15 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p>In the absence of prey, let’s assume that the predator population grows just how we might imagine it grows- BADLY!</p>
 <p><span class="math inline">\(\Delta P = -qP\)</span></p>
 <p>In the absence of prey, the predator population declines exponentially.</p>
-<p>If prey are present, the population growth rate of the predators will go up…</p>
+<p>If enough prey are present, the population growth rate of the predators will go up…</p>
 <p>Recall that predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:</p>
 <p><span class="math inline">\(f(V) = \alpha V\)</span></p>
-<p>The numerical response is the population-level response of the <em>predators</em> given the amount of prey that they have consumed.</p>
-<p>We can think of this as a function of the total prey consumption per predator:</p>
-<p><span class="math inline">\(some.function(f(V))\)</span></p>
+<p>The <em>numerical response</em> is the increase in the fractional growth rate of <em>predators</em> per unit prey consumed. The numerical response is related to the functional response. While the functional response describes the prey consumption per predator, the numerical response describes how that prey consumption translates into the growth of the predator population.</p>
+<p><span class="math inline">\(g(V) = some.function(f(V))\)</span></p>
 <p>The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption:</p>
+<p><span class="math inline">\(g(V) = \gamma (\alpha \cdot V)\)</span></p>
+<p>Where <span class="math inline">\(\gamma\)</span> is the conversion efficiency and <span class="math inline">\(\alpha\)</span> is the capture efficency and <span class="math inline">\(\alpha \cdot V\)</span> is the total prey consumed per predator.</p>
+<p>Or, more simply stated:</p>
 <p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
 <p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
 <pre class="r"><code>######
@@ -509,10 +509,10 @@ LVnumresp &lt;- function(V,beta){
 curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Note the intercept- does the numerical response need to have an intercept of zero?</p>
-<p>The <em>predator growth rate due to prey consumption</em> now is:</p>
+<p>The <em>increase in total predators due to prey consumption</em> now is:</p>
 <p><span class="math inline">\(g(V) \cdot P = \beta V \cdot P\)</span></p>
 <p>Does this make sense?</p>
-<p>The term <span class="math inline">\(\beta\)</span> is also known as the <strong>conversion efficiency</strong>. Does this make sense? Consider a case where every predator consumes 100 prey per time step, but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1… Which predator is more <em>efficient</em> at converting prey biomass into population growth?</p>
+<p>The term <span class="math inline">\(\beta\)</span> is related to the <strong>conversion efficiency</strong> of the predator (how effieciently the predator converts its food into the production of new predators). Does this make sense? Consider a case where every predator consumes 100 prey per time step (<span class="math inline">\(\alpha \cdot V = 100\)</span>), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1… Which predator is more <em>efficient</em> at converting prey biomass into population growth?</p>
 <p><strong>Q</strong> what are the units of <em>beta</em>?</p>
 <p><strong>Q</strong> Can <em>beta</em> go above 1?</p>
 <p><strong>Q</strong> Can <em>beta</em> go below 0?</p>
@@ -721,11 +721,11 @@ abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
 <div id="assumptions-of-the-l-v-prey-predator-model" class="section level2">
 <h2>Assumptions of the L-V prey-predator model</h2>
 <ul>
-<li>Victim population is limited only by predation</li>
+<li>Victim population is regulated only by predation</li>
 <li>Predator feeds only on one species of prey</li>
 <li>Individual predators can consume infinity prey items per time step theoretically</li>
 <li>No interference among predators</li>
-<li>Victims have no refuge from predatpors</li>
+<li>Victims have no refuge from predators</li>
 </ul>
 </div>
 <div id="more-realistic-prey-predator-models" class="section level2">
