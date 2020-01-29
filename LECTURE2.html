@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -370,6 +437,27 @@ div.tocify {
     <li>
       <a href="LAB2.html">Lab 2: logistic growth</a>
     </li>
+    <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+    <li>
+      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -388,16 +476,13 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Intro to population ecology</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
-<div class="figure">
-<img src="Human_population_growth_from_1800_to_2000.png" />
-
-</div>
+<p><img src="Human_population_growth_from_1800_to_2000.png" /></p>
 <div id="central-questions-of-population-ecology" class="section level2">
 <h2>Central Questions of Population Ecology</h2>
 <div id="ecological" class="section level3">
@@ -416,12 +501,9 @@ div.tocify {
 <li>What prevents predator-prey relationships from collapsing?<br />
 </li>
 <li>What factors allow competitors to coexist?</li>
-<li>What factors allow metapopulations to reach a stable equilibrium?</li>
+<li>What factors allow metapopulations to be stable and self-sustaining?</li>
 </ul>
-<div class="figure">
-<img src="White-tailed_deer.jpg" />
-
-</div>
+<p><img src="White-tailed_deer.jpg" /></p>
 </div>
 <div id="conservation-and-management" class="section level3">
 <h3>Conservation and Management</h3>
@@ -429,7 +511,7 @@ div.tocify {
 <li>What is the conservation status of a focal species or population?</li>
 <li>How do anthropogenic structures and land uses affect populations?</li>
 <li>What is the <em>Maximum Sustainable Yield</em> for a focal game species?</li>
-<li>How can pest species be most effectively controlled?</li>
+<li>How can pest species be effectively controlled?</li>
 <li>What specific land areas should be pretected to preserve at-risk populations and metapopulations?</li>
 <li>What are the likely population-level effects of alternative conservation or management strategies?</li>
 </ul>
@@ -443,103 +525,61 @@ div.tocify {
 </div>
 <div id="exponential-growth-the-fundamental-principle-of-population-ecology" class="section level2">
 <h2>Exponential growth: the fundamental principle of population ecology</h2>
-<div class="figure">
-<img src="puffball1.png" />
-
-</div>
+<p><img src="puffball1.png" /></p>
 <p>Giant puffballs produce 7 trillion offspring (12 zeroes!) in one reproductive event … If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!</p>
-<p>The reason? Populations can exhibit <strong>exponential growth</strong>, in which each new addition to the population expands the reproductive potential of the population in a <strong>positive feedback loop</strong>. This is the most basic concept in population ecology.</p>
+<p>The reason? Populations can exhibit <strong>exponential growth</strong>, in which each new addition to the population expands the reproductive potential of the population in a <strong>positive feedback loop</strong>.</p>
 </div>
 <div id="mathematics-and-population-ecology" class="section level2">
 <h2>Mathematics and Population Ecology</h2>
-<p>‘Mathematics seems to endow one with a new sense.’<br />
+<p>‘Mathematics seems to endow one with a new sense’<br />
 - Charles Darwin</p>
 <p>‘Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown’<br />
 - Charles Elton, in reference to a work by Alfred Lotka</p>
-<div class="figure">
-<img src="1976_Elton.jpg" />
-
-</div>
+<p><img src="1976_Elton.jpg" /></p>
 <p>The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated, and we look forward to seeing the further volumes of Lotka’s studies.<br />
 - Charles Elton</p>
 </div>
-<div id="population-ecology-is-central-to-many-of-the-most-pressing-questions-in-modern-day-ecology-and-evolution" class="section level2">
-<h2>Population ecology is central to many of the most pressing questions in modern day ecology and evolution</h2>
+<div id="population-ecology-is-central-to-many-of-the-most-pressing-questions-in-modern-ecology-and-evolution" class="section level2">
+<h2>Population ecology is central to many of the most pressing questions in modern ecology and evolution</h2>
 <p>This class is mostly about how important Population Ecology is to wildlife conservation and management. But it is worth mentioning that Population Ecology is a very active field of basic science, and that population ecology is at the core of many of the central questions of ecology and evolution.</p>
-<p>These questions are from <a href="http://onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025/full">Sutherland et al. 2012</a>. This paper is on WebCampus (optional). Of course there are many more interesting questions- limited only by your imagination.</p>
+<p>These questions are from <a href="http://onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025/full">Sutherland et al. 2012</a>. This paper is on WebCampus (optional). Of course there are many more interesting questions- limited only by your imagination.</p>
 <p>You may not understand all these questions now- we will revisit this list at the end of the semester!</p>
-<div class="figure">
-<img src="Fragmentation1.jpg" />
-
-</div>
+<p><img src="Fragmentation1.jpg" /></p>
 <ul>
-<li>What are the evolutionary consequences of species becoming less connected through <strong>fragmentation</strong> or more connected through globalization?</li>
+<li>What are the ecological consequences of species becoming less connected through <strong>fragmentation</strong> or more connected through globalization?</li>
 </ul>
-<div class="figure">
-<img src="Juniperus_range_map.png" />
-
-</div>
+<p><img src="Juniperus_range_map.png" /></p>
 <ul>
-<li><p>What are the evolutionary and ecological mechanisms that govern species’ <strong>range margins</strong>?</p></li>
-<li><p>How can we upscale detailed processes at the level of individuals (e.g., behavioral interactions) into patterns at the population scale?</p></li>
-<li><p>To what degree do trans-generational effects on life histories, such as maternal effects or epigenetic factors, impact population dynamics?</p></li>
+<li><p>What are the ecological mechanisms that govern species’ <strong>range margins</strong>? (figure is for common juniper)</p></li>
+<li><p>How can we upscale detailed processes at the level of individuals (e.g., behavioral interactions) into patterns at the population scale? (emergent properties!)</p></li>
 </ul>
-<div class="figure">
-<img src="Wolves_and_bones.jpg" />
-
-</div>
+<p><img src="Wolves_and_bones.jpg" /></p>
 <ul>
-<li>What is the relative importance of direct (<strong>predation, competition</strong>) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?</li>
+<li>What is the relative importance of direct (<strong>predation, competition</strong>) vs. indirect (induced behavioural change; e.g., fear) interactions in determining the effect of one species on others?</li>
 </ul>
-<div class="figure">
-<img src="Gopherus_agassizii.jpg" />
-
-</div>
+<p><img src="Gopherus_agassizii.jpg" /></p>
 <ul>
-<li>What demographic traits determine the <strong>resilience</strong> of natural populations to disturbance and perturbation?</li>
-</ul>
-<div id="and-many-more" class="section level4">
-<h4>And many more!</h4>
-<ul>
-<li>In what ecological settings are <strong>parasites</strong> key regulators of population dynamics?<br />
-</li>
-<li>How does species loss affect the extinction risk of the remaining species?<br />
-</li>
-<li>How important are <strong>dynamical extinction-recolonization equilibria</strong> to the persistence of species assemblages in fragmented landscapes?<br />
-</li>
-<li>How do <strong>resource pulses</strong> affect resource use and interactions between organisms?<br />
-</li>
-<li>How important are rare species in the functioning of ecological communities?<br />
-</li>
-<li>What is the magnitude of the <strong>‘extinction debt’</strong> following the loss and fragmentation of natural habitats, and when will it be paid?<br />
-</li>
-<li>To what extent will climate change uncouple trophic links due to phenological change?<br />
+<li><p>What demographic traits determine the <strong>resilience</strong> of natural populations to disturbance and perturbation (e.g., climate change)?</p></li>
+<li>To what extent will climate change decouple trophic links due to <strong>phenological mismatches</strong>?<br />
 </li>
 <li>How do natural populations and communities respond to increased frequencies of <strong>extreme weather events</strong> predicted under global climate change?<br />
 </li>
-<li>In the face of rapid environmental change, what determines whether species adapt, shift their ranges or go extinct?<br />
+<li><p>How do <strong>interspecific interactions</strong> affect species responses to global change?</p></li>
+<li>How important are <strong>rare species</strong> in the functioning of ecological communities?<br />
 </li>
-<li>What determines the rate at which species distributions respond to climate change?<br />
-</li>
-<li>Under what circumstances do landscape structures such as <strong>corridors</strong> and <strong>stepping stones</strong> play important roles in the distribution and abundance of species?<br />
-</li>
-<li>How do <strong>interspecific interactions</strong> affect species responses to global change?<br />
-</li>
-<li><p>To what extent are widely studied ecological patterns (species-abundance distribution, <strong>species-area relationship</strong>, etc.) the outcomes of statistical rather than ecological processes?</p></li>
-<li><p>How much does modelling <strong>feedbacks</strong> from the observation process, such as the responses of organisms to data collectors, improve our ability to infer ecological processes?</p></li>
+<li><p>What is the magnitude of the <strong>‘extinction debt’</strong> following the loss and fragmentation of natural habitats, and when will it be paid?</p></li>
 </ul>
-<div class="figure">
-<img src="positivefeedback1.png" />
-
-</div>
+<div id="and-many-more" class="section level4">
+<h4>And many more…</h4>
+<p><img src="positivefeedback1.png" /></p>
 </div>
 </div>
 <div id="in-class-exercise-positive-feedbacks" class="section level2">
 <h2>In-class Exercise: positive feedbacks</h2>
-<p><strong>Feedbacks</strong> occur when the inflows and outflows (e.g., births and deaths) depend upon the value of the stock (e.g., a wildlife population!).</p>
-<p>Feedbacks are what lead to complex (‘interesting’) system behaviors.</p>
+<p><strong>Feedbacks</strong> in systems occur when the input and output rates (e.g., births and deaths per year) depend upon the value of the stock (e.g., a wild population!).</p>
+<p>Feedbacks are what leads to complex (‘interesting’) system behaviors and unexpected emergent properties.</p>
 <p>A reinforcing, or <strong>positive feedback</strong> (often called a ‘vicious circle’) leads to <em>exponential growth</em>, leading to insanely high numbers given enough time!</p>
-<p>A <strong>negative feedback</strong> is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!). We’ll talk more about negative feedbacks next time.</p>
+<p>A <strong>negative feedback</strong> is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!). We’ll talk more about negative feedbacks in populations soon enough (population regulation).</p>
 <p>In the previous in-class exercise the model structure produced linear growth as the [Flow] added a fixed amount to the [Stock] in each time step.</p>
 <p><strong>Q</strong>: What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?</p>
 <p>Let’s build a model to help us better understand this process.</p>
@@ -547,15 +587,15 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Open InsightMaker. Create a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and just name them <em>Stock</em> and <em>Flow</em> for now.</p></li>
 <li><p>If you mouse over <em>Stock</em> or <em>Flow</em> a small [<span class="math inline">\(=\)</span> Sign] will appear. If you click this it will open the <strong>Equation</strong> window where you can set values or equations. Open this window for the [Stock], enter a value of 1, then close the window.</p></li>
-<li><p>The value of the [Stock] can be communicated to the [Flow] with a [Link] (representing a feedback process!). To create a [Link], click <strong>Link</strong> in the <strong>Connections</strong> part of the toolbar (at the top). When you mouse over the [Stock] click on the blue arrow, drag the [Link] to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn’t directly on top of the [Flow] (now you can see the [Link]).</p></li>
+<li><p>The value of the [Stock] can be communicated to the [Flow] with a [Link] (representing a feedback process!). To create a [Link], click <strong>Link</strong> in the <strong>Connections</strong> part of the toolbar (at the top). When you mouse over the [Stock] click on the blue arrow, drag the [Link] to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn’t directly on top of the [Flow] (now you can see the [Link]).</p></li>
 <li><p>Usually there is some type of factor governing the <strong>rate</strong> the [Stock] influences the [Flow]. Let’s introduce a [Variable] named <em>Rate</em>. To create a [Variable], right-click on the canvas and select <strong>Variable</strong> from the drop-down. Now draw a [Link] from <em>Rate</em> to the [Flow]. Open the <strong>Equation</strong> window for <em>Rate</em> and set it to 0.5.</p></li>
 <li><p>Open the <strong>Equation</strong> window for the [Flow] and set it to [Stock] times [Rate]. That is, the total inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of <em>Rate</em>.</p></li>
 <li><p>Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model! Does it do what you would expect?</p></li>
 </ol>
-<p><strong>Q:</strong> If [Stock] is a population – say, rabbits – then what is the interpretation of [Flow]? What is the interpretation of <em>Rate</em>? <em>Rename your variables accordingly</em> and change the parameters to make the more biologically realistic. Run the simulation again.</p>
+<p><strong>Q:</strong> If [Stock] is a population – say, rabbits – then what is the interpretation of [Flow]? What is the interpretation of <em>Rate</em>? <em>Rename your variables accordingly</em> and change the parameters to make the model more biologically realistic. Run the simulation again.</p>
 <p><strong>Q</strong> Recall the basic equation of exponential growth: <span class="math inline">\(\Delta N = r \cdot N_t\)</span>. How does it relate to the InsightMaker model you have just created? Which component of the equation refers to which component of the model in InsightMaker? [TopHat]</p>
 <ol start="7" style="list-style-type: decimal">
-<li>Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick 2 or more of these and try it out!</li>
+<li>Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick a couple of these and try it out!</li>
 </ol>
 <p>You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as <em>exponential growth</em>. If you’ve read the first chapter of the Gotelli book, you will recognize this as the <em>foundational concept of population ecology</em>!</p>
 <p><strong>Q</strong> Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations?? [TopHat]</p>
@@ -582,6 +622,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

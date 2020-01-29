@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -367,6 +434,30 @@ div.tocify {
     <li>
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
+    <li>
+      <a href="LAB2.html">Lab 2: logistic growth</a>
+    </li>
+    <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+    <li>
+      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -385,29 +476,26 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">A whole-systems approach to population ecology</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
-<div class="figure">
-<img src="FoodWeb1.jpg" />
-
-</div>
+<p><img src="FoodWeb1.jpg" /></p>
 <div id="systems-ecology-a-way-of-thinking" class="section level2">
 <h2>Systems ecology: a way of thinking</h2>
 <p>Ecology is messy. When we work in natural environments, we are dealing with <em>inherently complex systems</em>. <em>All elements in a natural system are connected</em>, full of dynamic interactions. Interactions among organisms, between organisms and their environments – these linkages are what makes ecology messy, but also endlessly fascinating.</p>
 <p>We can think of humans as just another element in these complex systems. And wildlife conservation and mangement is the task of manipulating these linkages to meet societal objectives for natural systems.</p>
 <p>This is not a systems ecology class!</p>
-<p>BUT, systems ecology provides a great framework for thinking about natural populations, understanding how linkages (abiotic and biotic environments) might affect them, and how to manage natural populations most effectively.</p>
+<p>BUT, systems thinking provides a great framework for understanding natural populations, and understanding how linkages (abiotic and biotic environments) might affect them, and how to manage natural populations effectively.</p>
 </div>
 <div id="emergent-properties" class="section level2">
 <h2>Emergent properties</h2>
 <p>This is one of the most powerful ideas in whole-systems thinking – when you put many interacting, linked parts together, systems often behave in interesting and unexpected ways!</p>
 <p>Take a classic predator-prey system…</p>
 <p><a href="https://insightmaker.com/insight/68437/">Insightmaker Lynx-Hare example</a></p>
-<p>This is a classic example in population ecology, which we will revisit in great detail in this course - but for now it serves as an example of an interacting system that exhibits an emergent property – regular oscillations!</p>
+<p>This is a classic example in population ecology, which we will revisit later in this course - but for now it serves as an example of an interacting system that exhibits an <em>emergent property</em>!</p>
 <p>And here’s a more abstract example that illustrates some really cool and complex emergent properties.</p>
 <p><a href="https://insightmaker.com/insight/1829/Lorenz-Attractor">Lorenz attractor</a></p>
 </div>
@@ -421,12 +509,9 @@ div.tocify {
 <h2>Computer programming and systems thinking</h2>
 <p>Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result <strong>specialized software and computer programming</strong> are a critical component to modern whole-systems analysis, including <strong>ecosystems</strong> analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. <strong>In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations</strong>.</p>
 <p>By the end of this course, students will have the ability to program their own <em>whole-systems models</em> in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, <strong>R</strong>)</p>
-</div>
-<div id="the-course-motto-be-wrong-but-useful" class="section level2">
-<h2>The course motto: <em>Be wrong (but useful)</em>!</h2>
 <p>A famous statistician (<a href="https://en.wikipedia.org/wiki/George_E._P._Box">George Box</a>) once said <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">“All models are wrong but some are useful”</a>. What he meant was that no model can perfectly describe any real-world system (e.g., population dynamics). However, some models can help us to undersand how the real-world works and how to manage natural systems.</p>
-<p><strong>This is especially true in ecology</strong>: ecological systems are complex and messy, and it is clear that no mathematical model can perfectly describe and predict any ecological phenomena. But that does not mean that ecological models can’t be <em>useful</em>!</p>
-<p>In this class (and beyond), <em>don’t be afraid to model messy systems</em>. And above all, <strong>don’t be afraid to be wrong</strong> - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don’t forget that all models are wrong!</p>
+<p><strong>This is especially true in ecology</strong>: ecological systems are complex and messy, and it is clear that no mathematical model can perfectly describe and predict any ecological phenomena. But that does not mean that ecological models can’t be <em>useful</em>!<br />
+In this class (and beyond), <em>don’t be afraid to model messy systems</em>. And above all, <strong>don’t be afraid to be wrong</strong> - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don’t forget that all models are wrong!</p>
 <p>Of course, this means not just reading and listening to lectures, it means <em>learning by doing</em>! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.</p>
 </div>
 <div id="in-class-exercise-insightmaker" class="section level2">
@@ -436,8 +521,8 @@ div.tocify {
 <p>If the [Flow] in is larger than the [Flow] out then the [Stock] increases over time.</p>
 <p>If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over time.</p>
 <p>If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time.</p>
-<p>The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn’t change instantaneously, with hand waving, magic, or smoke and mirrors.</p>
-<p>Finally, a [Variable] is an object that stores an important piece of information for your model (e.g., birth rate could be a [Variable] that informs the total [Flow] of individuals into a [Stock] representing a wild population). [Variables] are generally connected to [Flows] with [Links] – unlike [Flows], links do not represent any physical process. Instead, links simply represent a transfer of <em>information</em>.</p>
+<p>The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn’t change instantaneously. If there are no [Flows] then the [Stock] can not change.</p>
+<p>Finally, a [Variable] is an object that stores an important piece of information for your model (e.g., birth rate could be a [Variable] that informs the total [Flow] of individuals into a [Stock] representing a wild population). [Variables] are generally connected to [Flows] with [Links] – unlike [Flows], links do not represent any physical process. Instead, links simply represent <em>information</em>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Open up <a href="https://insightmaker.com/">InsightMaker</a>. If you have never used it before you need to sign up first with a username and password. <em>InsightMaker is free!</em></p></li>
 <li><p>Create a new “Insight” (the button to do this should be obvious!) and clear the demo model.</p></li>
@@ -447,14 +532,14 @@ div.tocify {
 <li><strong>OPTIONAL</strong>: insert a picture of the animal you are modeling to your work canvas. The instructor will show you how in class!</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
-<li><p><strong>Specify the births process</strong> Select the [Flows/Transitions] button in the upper left corner of your screen. Now notice that when you mouse over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. Type in a name for what this arrow represents (Births). NOTE: you have actually just created a [Flow] <em>out</em> of a [Stock]. To create a [Flow] <em>into</em> a [Stock], click the <strong>Reverse</strong> button in the top menu (looks like two opposing arrows). Please do that now. Also in the <strong>Configuration Panel</strong> set <strong>Flow Rate</strong> = 1.</p></li>
+<li><p><strong>Specify the births process</strong> Select the [Flows/Transitions] button in the upper left corner of your screen. Now notice that when you place your cursor over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. Type in a name for what this arrow represents (Births). NOTE: you have actually just created a [Flow] <em>out</em> of a [Stock]. To create a [Flow] <em>into</em> a [Stock], click on the <strong>Reverse</strong> button in the top menu (looks like two opposing arrows). Please do that now. Also in the <strong>Configuration Panel</strong> set <strong>Flow Rate</strong> equal to 1.</p></li>
 <li><p>Now click <strong>Run Simulation</strong> and you have just finished your first population simulation model.</p></li>
 <li><p>Can you figure out how to change the settings to run the model for 50 years? Try this and click <strong>Run Simulation</strong>.</p></li>
-<li><p>Use the same methods as <em>step 4</em> to create a [Flow Out], representing moose deaths. Re-run the model. Is the population increasing or declining? Why?</p></li>
+<li><p>Use the same methods as <em>step 4</em> to create a [Flow Out], representing deaths. Re-run the model. Is the population increasing or declining? Why?</p></li>
 <li><p>Change the <strong>Configuration Panel</strong> for the [Stock] and for the [Flow In] and [Flow Out] so that “Show Value Slider” is set to “Yes”. You can change the model parameterization easily using these sliders. Try it a few times, re-running the simulation after each change. <strong>Save your model</strong> (“Save” button at the top menu)</p></li>
 </ol>
 <p><strong>Q</strong>: Is this Moose model realistic? What are the first things you would like to change to make the model more realistic?</p>
-<p><em>Take a few minutes to list the things you would like to change to make this model more realistic!</em></p>
+<p><em>Top Hat: take a few minutes to list the things you would like to change to make this model more realistic!</em></p>
 <ol start="9" style="list-style-type: decimal">
 <li>Finally, take a few minutes to check out “Insights” made by others using the “explore insights” link at the top of the webpage. You can search the database of Insights. Pick one or two of these insights and run them. How does the system behave? Does this make sense to you? We can (and will) add to this database as part of this class!</li>
 </ol>
@@ -481,6 +566,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -1,7 +1,7 @@
 ---
 title: 'Intro to population ecology'
 author: 'NRES 470/670'
-date: 'Spring 2019'
+date: 'Spring 2020'
 output: 
   html_document: 
     theme: spacelab
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
     - Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)
   - What prevents predator-prey relationships from collapsing?   
   - What factors allow competitors to coexist?
-  - What factors allow metapopulations to reach a stable equilibrium?
+  - What factors allow metapopulations to be stable and self-sustaining?
   
 ![](White-tailed_deer.jpg)
 
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
   - What is the conservation status of a focal species or population?
   - How do anthropogenic structures and land uses affect populations?
   - What is the *Maximum Sustainable Yield* for a focal game species?
-  - How can pest species be most effectively controlled?
+  - How can pest species be effectively controlled?
   - What specific land areas should be pretected to preserve at-risk populations and metapopulations?
   - What are the likely population-level effects of alternative conservation or management strategies? 
 
@@ -53,11 +53,11 @@ Population size, or abundance, is often represented as $N$, and is the most basi
 Giant puffballs produce 7 trillion offspring (12 zeroes!) in one reproductive event
 ... If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!
 
-The reason? Populations can exhibit **exponential growth**, in which each new addition to the population expands the reproductive potential of the population in a **positive feedback loop**. This is the most basic concept in population ecology.   
+The reason? Populations can exhibit **exponential growth**, in which each new addition to the population expands the reproductive potential of the population in a **positive feedback loop**.    
 
 ## Mathematics and Population Ecology
 
-'Mathematics seems to endow one with a new sense.'    
+'Mathematics seems to endow one with a new sense'    
   - Charles Darwin   
   
 'Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown'   
@@ -68,7 +68,7 @@ The reason? Populations can exhibit **exponential growth**, in which each new ad
 The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated, and we look forward to seeing the further volumes of Lotka’s studies.       
   - Charles Elton    
   
-## Population ecology is central to many of the most pressing questions in modern day ecology and evolution
+## Population ecology is central to many of the most pressing questions in modern ecology and evolution
 
 This class is mostly about how important Population Ecology is to wildlife conservation and management. But it is worth mentioning that Population Ecology is a very active field of basic science, and that population ecology is at the core of many of the central questions of ecology and evolution. 
 
@@ -78,54 +78,42 @@ You may not understand all these questions now- we will revisit this list at the
 
 ![](Fragmentation1.jpg)
 
-- What are the evolutionary consequences of species becoming less connected through **fragmentation** or more connected through globalization?   
+- What are the ecological consequences of species becoming less connected through **fragmentation** or more connected through globalization?   
 
 ![](Juniperus_range_map.png)
 
-- What are the evolutionary and ecological mechanisms that govern species’ **range margins**?  
+- What are the ecological mechanisms that govern species’ **range margins**? (figure is for common juniper)
 
-- How can we upscale detailed processes at the level of individuals (e.g., behavioral interactions) into patterns at the population scale?
-
-- To what degree do trans-generational effects on life histories, such as maternal effects or epigenetic factors, impact population dynamics?
+- How can we upscale detailed processes at the level of individuals (e.g., behavioral interactions) into patterns at the population scale? (emergent properties!)
 
 ![](Wolves_and_bones.jpg)
 
-- What is the relative importance of direct (**predation, competition**) vs. indirect (induced behavioural change) interactions in determining the effect of one species on others?    
+- What is the relative importance of direct (**predation, competition**) vs. indirect (induced behavioural change; e.g., fear) interactions in determining the effect of one species on others?    
 
 ![](Gopherus_agassizii.jpg)
 
-- What demographic traits determine the **resilience** of natural populations to disturbance and perturbation?  
+- What demographic traits determine the **resilience** of natural populations to disturbance and perturbation (e.g., climate change)?  
 
-#### And many more!  
-
-- In what ecological settings are **parasites** key regulators of population dynamics?    
-- How does species loss affect the extinction risk of the remaining species?    
-- How important are **dynamical extinction-recolonization equilibria** to the persistence of species assemblages in fragmented landscapes?    
-- How do **resource pulses** affect resource use and interactions between organisms?    
-- How important are rare species in the functioning of ecological communities?    
-- What is the magnitude of the **‘extinction debt’** following the loss and fragmentation of natural habitats, and when will it be paid?    
-- To what extent will climate change uncouple trophic links due to phenological change?    
+- To what extent will climate change decouple trophic links due to **phenological mismatches**?    
 - How do natural populations and communities respond to increased frequencies of **extreme weather events** predicted under global climate change?    
-- In the face of rapid environmental change, what determines whether species adapt, shift their ranges or go extinct?    
-- What determines the rate at which species distributions respond to climate change?    
-- Under what circumstances do landscape structures such as **corridors** and **stepping stones** play important roles in the distribution and abundance of species?    
-- How do **interspecific interactions** affect species responses to global change?    
-- To what extent are widely studied ecological patterns (species-abundance distribution, **species-area relationship**, etc.) the outcomes of statistical rather than ecological processes?    
+- How do **interspecific interactions** affect species responses to global change?     
 
-- How much does modelling **feedbacks** from the observation process, such as the responses of organisms to data collectors, improve our ability to infer ecological processes?    
+- How important are **rare species** in the functioning of ecological communities?     
+- What is the magnitude of the **‘extinction debt’** following the loss and fragmentation of natural habitats, and when will it be paid?    
 
+#### And many more... 
 
 ![](positivefeedback1.png)
 
 ## In-class Exercise: positive feedbacks
 
-**Feedbacks** occur when the inflows and outflows (e.g., births and deaths) depend upon the value of the stock (e.g., a wildlife population!). 
+**Feedbacks** in systems occur when the input and output rates (e.g., births and deaths per year) depend upon the value of the stock (e.g., a wild population!). 
 
-Feedbacks are what lead to complex ('interesting') system behaviors.  
+Feedbacks are what leads to complex ('interesting') system behaviors and unexpected emergent properties.   
 
 A reinforcing, or **positive feedback** (often called a 'vicious circle') leads to _exponential growth_, leading to insanely high numbers given enough time!
 
-A **negative feedback** is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!). We'll talk more about negative feedbacks next time. 
+A **negative feedback** is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!). We'll talk more about negative feedbacks in populations soon enough (population regulation). 
 
 In the previous in-class exercise the model structure produced linear growth as the [Flow] added a fixed amount to the [Stock] in each time step.
 
@@ -139,7 +127,7 @@ This model adds a **feedback** using a [Link] from the [Stock] back into the [Fl
 
 2. If you mouse over *Stock* or *Flow* a small [$=$ Sign] will appear. If you click this it will open the **Equation** window where you can set values or equations. Open this window for the [Stock], enter a value of 1, then close the window.
 
-3. The value of the [Stock] can be communicated to the [Flow] with a [Link] (representing a feedback process!). To create a [Link], click **Link** in the **Connections** part of the toolbar (at the top). When you mouse over the [Stock] click on the blue arrow, drag the [Link] to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn't directly on top of the [Flow] (now you can see the [Link]). 
+3. The value of the [Stock] can be communicated to the [Flow] with a [Link] (representing a feedback process!). To create a [Link], click **Link** in the **Connections** part of the toolbar (at the top). When you mouse over the [Stock] click on the blue arrow, drag the [Link] to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn't directly on top of the [Flow] (now you can see the [Link]). 
 
 4. Usually there is some type of factor governing the **rate** the [Stock] influences the [Flow]. Let's introduce a [Variable] named *Rate*. To create a [Variable], right-click on the canvas and select **Variable** from the drop-down. Now draw a [Link] from *Rate* to the [Flow]. Open the **Equation** window for *Rate* and set it to 0.5. 
 
@@ -147,11 +135,11 @@ This model adds a **feedback** using a [Link] from the [Stock] back into the [Fl
 
 6. Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model! Does it do what you would expect?
 
-**Q:** If [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of *Rate*? *Rename your variables accordingly* and change the parameters to make the more biologically realistic. Run the simulation again. 
+**Q:** If [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of *Rate*? *Rename your variables accordingly* and change the parameters to make the model more biologically realistic. Run the simulation again. 
 
 **Q** Recall the basic equation of exponential growth: $\Delta N = r \cdot N_t$. How does it relate to the InsightMaker model you have just created? Which component of the equation refers to which component of the model in InsightMaker? [TopHat]
 
-7. Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick 2 or more of these and try it out!
+7. Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick a couple of these and try it out!
 
 You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
 

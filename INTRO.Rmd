@@ -1,12 +1,12 @@
 ---
 title: "Intro to NRES 470/670"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     theme: spacelab
     toc: yes
     toc_float: yes
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Summary
 
-In this class we will explore how the concepts of *population ecology* can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart's class in wildlife ecology and management (NRES 310). NRES 470 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers advanced tools like Program MARK in detail. This class is closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers -- quantitative population models!    
+In this class we will explore how the concepts of *population ecology* can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart's class in wildlife ecology and management (NRES 310). NRES 470 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers advanced population modeling and fitting these models to data in R in detail. This class is closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers -- quantitative population models!    
 
 ## Syllabus:
 First let's take a quick walk through the online syllabus:
@@ -53,12 +53,10 @@ It is never too early to start thinking about final project ideas and datasets. 
 Lectures and laboratory exercises will be posted online in enough detail to complete and study on your own time. BUT, much of the benefit of this course will come from interactions with peers and the instructor during class and lab periods and I expect you to be a full participant in this class. Please let me know in advance if you need to miss class for any reason.    
 
 ## Please help to make this class better!
-I need your frequent and honest feedback in order to make sure that the level and pace are appropriate! I will use TopHat to give you frequent opportunities to provide anonymous feedback through TopHat. Please don't hesitate to use these opportunities to provide constructive suggestions for improving this class!
+I need your frequent and honest feedback in order to make sure that the level and pace are appropriate! Please don't hesitate to provide constructive suggestions for improving this class!
 
 ## Introductions
-Let's take some time go around the room and introduce each other quickly (Name, year, major, where is your "Walden"?).
-
-NOTE: Please take the time to introduce yourself in more detail on the "WebCampus" site -- I posted a question on the discussion board.  
+Please take the time to introduce yourself in more detail on the "WebCampus" site -- I posted a question on the discussion board.  
 
 ## Any questions??
 
