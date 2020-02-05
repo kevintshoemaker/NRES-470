@@ -1,7 +1,7 @@
 ---
 title: "Population regulation"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -27,7 +27,7 @@ Same with populations. In a regulated population, an increase in abundance will 
 
 **thought Q**: What are some possible mechanisms of density-dependence? That is, why could vital rates become less favorable at higher densities?
 
-**thought Q**: Are all wild populations regulated?
+**thought Q**: Are all wild populations regulated? Is density-dependent population regulation a "law of nature"?
 
 ## Logistic growth
 
@@ -91,8 +91,10 @@ c <- 0.0005
 b <- b_max - a*Density
 d <- d_min + c*Density
 
-plot(Density,b,type="l",col="green",lwd=2,ylim=c(0,1),main="Density-Dependence!")
+plot(Density,b,type="l",col="green",lwd=2,ylim=c(0,1),main="Density-Dependence!",ylab="b or d")
 points(Density,d,type="l",col="red",lwd=2)
+axis(4,at=seq(0,1,0.2))
+#mtext("d",4)
 legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate","per-capita mortality"),bty="n")
 
   

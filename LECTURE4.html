@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -370,6 +437,27 @@ div.tocify {
     <li>
       <a href="LAB2.html">Lab 2: logistic growth</a>
     </li>
+    <li>
+      <a href="LAB3.html">Lab 3: age-structured population growth</a>
+    </li>
+    <li>
+      <a href="LAB4.html">Lab 4: matrix population models</a>
+    </li>
+    <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
+      <a href="FINAL_PROJECTS.html">Final Projects!</a>
+    </li>
+    <li>
+      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -388,8 +476,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Population regulation</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -404,7 +492,7 @@ div.tocify {
 <p>First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increases mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That’s right- it is a <em>negative feedback</em>! Which is also known as a <em>stabilizing feedback</em>. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa.</p>
 <p>Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate. In population ecology (and especially fisheries science), the latter is often called <em>compensatory growth</em>! You can’t have a regulated population without some kind of negative feedback.</p>
 <p><strong>thought Q</strong>: What are some possible mechanisms of density-dependence? That is, why could vital rates become less favorable at higher densities?</p>
-<p><strong>thought Q</strong>: Are all wild populations regulated?</p>
+<p><strong>thought Q</strong>: Are all wild populations regulated? Is density-dependent population regulation a “law of nature”?</p>
 </div>
 <div id="logistic-growth" class="section level2">
 <h2>Logistic growth</h2>
@@ -421,10 +509,7 @@ div.tocify {
 <p>When carrying capacity is mostly unused, <em>population growth resembles basic exponential growth</em>!</p>
 <p>When carrying capacity is mostly used up, <em>population growth resembles</em>, well…, <em>no growth at all</em>!</p>
 <p><strong>Thought Q:</strong> Given the two above statements, can you figure out what population dynamics should look like under logistic growth, starting with a very small population?</p>
-<div class="figure">
-<img src="Kbucket.png" />
-
-</div>
+<p><img src="Kbucket.png" /></p>
 </div>
 <div id="carrying-capacity-is-an-equilibrium-point" class="section level2">
 <h2>Carrying capacity is an equilibrium point!</h2>
@@ -449,16 +534,15 @@ c &lt;- 0.0005
 b &lt;- b_max - a*Density
 d &lt;- d_min + c*Density
 
-plot(Density,b,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,ylim=c(0,1),main=&quot;Density-Dependence!&quot;)
+plot(Density,b,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,ylim=c(0,1),main=&quot;Density-Dependence!&quot;,ylab=&quot;b or d&quot;)
 points(Density,d,type=&quot;l&quot;,col=&quot;red&quot;,lwd=2)
+axis(4,at=seq(0,1,0.2))
+#mtext(&quot;d&quot;,4)
 legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1),legend=c(&quot;per-capita birth rate&quot;,&quot;per-capita mortality&quot;),bty=&quot;n&quot;)</code></pre>
 <p><img src="LECTURE4_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p><strong>Thought Q</strong>: What is the equilibrium point in this system? That is, what is the (non-zero) abundance/density at which population growth is equal to zero??</p>
 <p>This equilibrium is known as <strong>K</strong>, or <strong>carrying capacity</strong>?</p>
-<div class="figure">
-<img src="gstab.png" />
-
-</div>
+<p><img src="gstab.png" /></p>
 </div>
 <div id="stable-and-non-stable-equilibria" class="section level2">
 <h2>Stable and non-stable equilibria</h2>
@@ -491,26 +575,20 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 <li><p>Change the settings so that the simulation runs for 100 years.</p></li>
 </ol>
 <p>Your model should look something like this! (if you don’t already have a model like this, clone <a href="https://insightmaker.com/insight/70353/Logistic-Growth-1#">this model</a>)</p>
-<div class="figure">
-<img src="IM5.jpg" />
-
-</div>
+<p><img src="IM5.jpg" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Run this model. Does the model behave as you would expect?</li>
 </ol>
-<p><strong>Q:</strong> What happens if population size starts out <em>at</em> carrying capacity?<br />
-<strong>Q:</strong> What happens if population size starts out <em>above</em> carrying capacity?<br />
-<strong>Q:</strong> Is this a stable equilibrium?<br />
+<p><strong>Q:</strong> What happens if population size starts out <em>at</em> carrying capacity? [tophat]<br />
+<strong>Q:</strong> What happens if population size starts out <em>above</em> carrying capacity? [tophat]<br />
+<strong>Q:</strong> Is this a stable equilibrium? [tophat]<br />
 <strong>Q:</strong> Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium?</p>
 <ol start="8" style="list-style-type: decimal">
 <li>Consider the basic logistic growth equation:</li>
 </ol>
 <p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K} \right )\)</span></p>
 <p>Pull up your InsightMaker model for basic logistic growth with an <span class="math inline">\(r_{max}\)</span> term (double-headed arrow). Or you can clone it from <a href="https://insightmaker.com/insight/71146/Basic-logistic-growth-rmax">here</a>. It should look something like this:</p>
-<div class="figure">
-<img src="IM6.jpg" />
-
-</div>
+<p><img src="IM6.jpg" /></p>
 <p>Make your initial population size very small compared to carrying capacity.</p>
 <p><strong>Q:</strong> What happens if <span class="math inline">\(r\)</span> is zero? What happens to carrying capacity?<br />
 <strong>Q:</strong> Which population is more likely to be found at or near K in nature? A population with very large <span class="math inline">\(r\)</span> or very small <span class="math inline">\(r\)</span>?</p>
@@ -537,6 +615,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

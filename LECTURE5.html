@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -393,6 +460,9 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -406,41 +476,29 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Passenger Pigeon/Allee effect</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Feb 1, 2018</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
 <div id="allee-effect" class="section level2">
 <h2>Allee Effect</h2>
-<div class="figure">
-<img src="prairie_dogs3.jpg" />
-
-</div>
+<p><img src="prairie_dogs3.jpg" /></p>
 <p>What happens if density dependence goes the other way? What if an decrease in density changes vital rates to produce an <em>decrease</em> in the population growth rate <em>r</em>?</p>
 <p>Imagine a very social species, like prairie dogs. If the density is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher <em>d</em>. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems!</p>
 <p>This effect – whereby population growth rate may <strong>decrease</strong> when population size decreases – is called an <strong>Allee effect</strong>, named after ecologist <a href="https://en.wikipedia.org/wiki/Warder_Clyde_Allee">Warder Clyde Allee</a> (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.</p>
 <p>Interestingly, Allee’s interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was an anti-war activist!</p>
-<div class="figure">
-<img src="Allee1.jpg" />
-
-</div>
+<p><img src="Allee1.jpg" /></p>
 <p>One of the most famous examples of a possible Allee effect involves the passenger pigeon (<em>Ectopistes migratorius</em>).</p>
-<div class="figure">
-<img src="PP2.jpg" />
-
-</div>
+<p><img src="PP2.jpg" /></p>
 <p>The <a href="https://en.wikipedia.org/wiki/Passenger_pigeon">passenger pigeon</a> was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three <em>billion</em>!</p>
 <p>Aldo Leopold once said,</p>
 <blockquote>
 <p>“Men still live who, in their youth, remember pigeons; trees still live who, in their youth, were shaken by a living wind. But a few decades hence only the oldest oaks will remember, and at long last only the hills will know.” —Aldo Leopold, “On a Monument to the Pigeon”, 1947</p>
 </blockquote>
 <p>What happened to the passenger pigeon? Well, first of all pigeons were hunted on a massive scale using wasteful methods.</p>
-<div class="figure">
-<img src="PP1.jpg" />
-
-</div>
+<p><img src="PP1.jpg" /></p>
 <p>Secondly, hardwood forests were cleared on a massive scale, reducing habitat.</p>
 <p>But what do passenger pigeons have to do with the Allee effect? Well, they were an <em>extremely</em> gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators.</p>
 </div>
@@ -450,10 +508,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>In InsightMaker, load up the logistic model with vital rates – that is, where <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> are each modeled density-dependent. It should look something like this (or if you don’t already have this, load it from <a href="https://insightmaker.com/insight/70353/Logistic-Growth-1#">here</a>):</li>
 </ol>
-<div class="figure">
-<img src="IM5.jpg" />
-
-</div>
+<p><img src="IM5.jpg" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Now add a new [Variable] called <em>Allee threshold</em>. Set this variable equal to 200.</p></li>
 <li><p>As for the other parameters, set them as follows:</p></li>
@@ -515,6 +570,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
