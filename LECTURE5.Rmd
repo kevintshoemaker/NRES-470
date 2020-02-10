@@ -17,13 +17,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![](prairie_dogs3.jpg)
 
-What happens if density dependence goes the other way? What if an decrease in density changes vital rates to produce an *decrease* in the population growth rate *r*? 
+What happens if density dependence goes the other way? What if a decrease in density changes vital rates to produce an *decrease* in the population growth rate *r*? 
 
 Imagine a very social species, like prairie dogs. If the density is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems!
 
 This effect -- whereby population growth rate may **decrease** when population size decreases -- is called an **Allee effect**, named after ecologist [Warder Clyde Allee](https://en.wikipedia.org/wiki/Warder_Clyde_Allee) (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.
 
-Interestingly, Allee's interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was an anti-war activist!
+Interestingly, Allee's interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was a devout Quaker, an anti-war activist and an advocate of social cooperation in humans! From the Wikipedia article: "Allee saw ecologists as 'social healers' who were able to provide a naturalistic foundation for ethics through their research"
 
 
 ![](Allee1.jpg)
@@ -33,10 +33,9 @@ Interestingly, Allee's interest in cooperation and the benefits of social aggreg
 One of the most famous examples of a possible Allee effect involves the passenger pigeon (*Ectopistes migratorius*).  
 
 
-
 ![](PP2.jpg)
 
-The [passenger pigeon](https://en.wikipedia.org/wiki/Passenger_pigeon) was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three *billion*!
+The [passenger pigeon](https://en.wikipedia.org/wiki/Passenger_pigeon) was one of the most abundant birds in North America. Some estimate that the total species abundance may have been over three *billion* at one time!
 
 Aldo Leopold once said,
 
@@ -46,7 +45,7 @@ What happened to the passenger pigeon? Well, first of all pigeons were hunted on
 
 ![](PP1.jpg)
 
-Secondly, hardwood forests were cleared on a massive scale, reducing habitat.   
+Secondly, hardwood forests (primary food source for pigeons was mast from hardwood trees) were cleared on a massive scale, reducing habitat.   
 
 But what do passenger pigeons have to do with the Allee effect? Well, they were an *extremely* gregarious species. Once their numbers dwindled (due to hunting and clearcutting) their social systems broke down, and they could no longer effectively reproduce or avoid predators.   
 
@@ -54,17 +53,17 @@ But what do passenger pigeons have to do with the Allee effect? Well, they were 
 
 In this exercise we will explore the implications of **positive density dependence** on vital rates. 
 
-1. In InsightMaker, load up the logistic model with vital rates -- that is, where $b$ and $d$ are each modeled density-dependent.  It should look something like this (or if you don't already have this, load it from [here](https://insightmaker.com/insight/70353/Logistic-Growth-1#)):
+1. In InsightMaker, load up the logistic model with vital rates -- that is, where $b$ and $d$ are each modeled density-dependent.  It should look something like this (or if you don't already have this, clone it from [here](https://insightmaker.com/insight/70353/Logistic-Growth-1#)):
 
 ![](IM5.jpg)
 
-2. Now add a new [Variable] called *Allee threshold*. Set this variable equal to 200.
+2. Now add a new constant ([Variable] in InsightMaker) called *Allee threshold*. Set this constant equal to 200.
 
 3. As for the other parameters, set them as follows:    
 
 - Initial abundance: 201 (just above the Allee threshold) 
 - Density dependence on birth rate: 0.004    
-- Density dependence on survival: 0.001   
+- Density dependence on mortality: 0.001   
 - Max birth rate: 0.8   
 - Min mortality: 0.3   
 
@@ -97,13 +96,13 @@ Now you can try to answer the following questions:
 
 **Q**: What is the carrying capacity (K) for this population? 
 
-**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.   
+**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.  [tophat] 
 
-**Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? 
+**Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? [tophat]
 
-**Q**: if you plot birth and death rates as a function of density in this model, can you identify the two equilibria?
+**Q**: if you plot birth and death rates as a function of density in this model, can you identify the two equilibria? [tophat]
 
-**Q:** Why do Allee effects generally spell bad news for wildlife conservation and management?  
+**Q:** Why do Allee effects often spell bad news for wildlife conservation?  
 
 
 And just for fun, here is an article about [the passenger pigeon and its possible "de-extinction"](http://www.audubon.org/magazine/may-june-2014/why-passenger-pigeon-went-extinct)
