@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -377,6 +444,15 @@ div.tocify {
       <a href="LAB4.html">Lab 4: matrix population models</a>
     </li>
     <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -400,8 +476,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Lab 3: Age-structured populations</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -431,10 +507,7 @@ div.tocify {
 </div>
 <div id="exercise-1-life-table-analysis" class="section level2">
 <h2>Exercise 1: life table analysis</h2>
-<div class="figure">
-<img src="blackrobin.jpg" />
-
-</div>
+<p><img src="blackrobin.jpg" /></p>
 <p>Let’s imagine that we are following a <em>cohort</em> of reintroduced Chatham Island robins on a small island through time.</p>
 <ul>
 <li>First, we establish artificial nests and place 350 captive-laid eggs in them.<br />
@@ -499,10 +572,7 @@ div.tocify {
 </div>
 <div id="exercise-2-another-life-table-analysis" class="section level2">
 <h2>Exercise 2: another life table analysis</h2>
-<div class="figure">
-<img src="uinta.jpg" />
-
-</div>
+<p><img src="uinta.jpg" /></p>
 <p>Let’s take the Uinta ground squirrel example from the Gotelli book. Take a minute to read the description in Gotelli (end of Ch. 3)…</p>
 <p>This is <em>real data</em> from a long-term experimental study.</p>
 <p>The first life table (on the left) represents a cohort of ground squirrels in a population at typical densities.</p>
@@ -526,10 +596,7 @@ div.tocify {
 <li><p>Make three new flows representing, emerging respectively from each stock and called <em>Age 1 mortality</em>, <em>Age 2 mortality</em>, and <em>Age 3 mortality</em>. The total number of deaths is dependent on the numbers in each stock, so draw links from each stock to the respective <em>mortality</em> outflow.</p></li>
 </ol>
 <p>Your new insight should look something like this:</p>
-<div class="figure">
-<img src="IM7.jpg" />
-
-</div>
+<p><img src="IM7.jpg" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Parameterize your new age-structured population! 6a. For recruitment, make new variables called <em>Recruitment rate, age 2</em> and <em>Recruitment rate, age 3</em>, representing the per-capita recruitment rate for age 2 and age 3, respectively. Draw links from these variables to <em>Recruitment</em>, and set these variables at 1.1 and 1.8, respectively. Click on the equation editor for <em>Recruitment</em> and set the equation appropriately (see questions below) 6b. For the transitions, make new variables representing the per-capita transition rates, called <em>Transition rate, Age 1 to 2</em> and <em>Transition rate, Age 2 to 3</em>. Draw links to the appropriate flows, and set these rates at 0.4 and 0.3, respectively.<br />
 6c. For the mortality rates, note that all individuals in the <em>Age 1</em> stock must either transition to <em>Age 2</em> or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the <em>Age 3</em> stock must die- there is no <em>Age 4</em> class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately.</p></li>
@@ -549,13 +616,11 @@ div.tocify {
 <p>Try to implement the following model (adding onto the previous age-structured model in InsightMaker). <em>If the total population (all three age classes combined!) exceeds 75 individuals, then recruitment rates drop to 25% of normal rates.</em></p>
 <p>4a. Please provide your full InsightMaker model (share with instructors and send as a link).</p>
 <p>4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a <strong>stochastic</strong> model (different results every time you run the model, even with the same initial conditions)? If not, why does it <em>appear</em> to have a random component?</p>
-</div>
-<div id="checklist-for-lab-3-completion" class="section level2">
-<h2>Checklist for Lab 3 completion</h2>
+<p>##Checklist for Lab 3 completion</p>
 <ul>
 <li>Please type your responses into one Word document and submit <em>using WebCampus</em>!</li>
 </ul>
-<p><strong><em>Due Feb. 22 at midnight.</em></strong></p>
+<p><strong><em>Due Feb. 22 at midnight.</em></strong></p>
 <ul>
 <li>Word document with short answers
 <ul>
@@ -609,6 +674,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
