@@ -29,25 +29,25 @@ Let's start with some definitions- population ecology, and life tables in partic
 
 **S(x):** Survivors, or Census size -- the number of individuals in the study population who survive to time x.   
 
-**Birth rate, b(x):** Average number of offspring produced by an individual in age category x.  
+**Birth rate, b(x):** Average number of offspring produced by an individual in age category x (per-capita birth rate for a given age). NOTE: this parameter is sometimes called m(x) for "maternity"
 
 **Survivorship, l(x):** $l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$       
 
-**Survival rate, g(x):** $g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$
+**Survival rate, g(x):** $g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$ (per-capita survival rate at age x)
 
 **Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.     
 
-**Life Expectancy (for a newborn)** can be *approximated* as: $LE = \sum_{x=0}^{k}l_{mid}(x)  \qquad \text{(Eq. 4)}$, where $l_{mid}(x)=\frac{l(x)+l(x+1)}{2}$ (lmid(x) is the 'midpoint survivorship').     
+**Life Expectancy (for a newborn)** can be *approximated* as: $LE_0 = \sum_{x=0}^{k}l_{mid}\cdot (x)  \qquad \text{(Eq. 4)}$, where $l_{mid}(x)=\frac{l(x)+l(x+1)}{2}$ (lmid(x) is the approximate survivorship to the midpoint between age x and age x+1).     
 
 **Q**: why is the above estimate for life expectancy (LE) *approximate* and not exact? Is it likely to be biased or unbiased?          
 
-**Generation time** is defined as the _Average parental age for all the offspring produced by a cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
+**Generation time** is defined as the _Average parental age (at birth) for all the offspring produced by a cohort_. This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
 
 **Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$
 
 NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the *Euler method*.      
 
-One more concept I want to introduce here is **reproductive value**, or V(y). This represents the expected future reproductive output of an individual of age y, *discounted by the intrinsic rate of growth*: $V(y) = \frac{e^{ry}}{l_y} \cdot \sum_{x=y+1}^{k}e^{-rx}l_xb_x   \qquad \text{(Eq. 7)}$.  Different individuals in a population tend to have different "value" in terms of contributing to future generations. Caswell (2001) said "The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class". Knowing something about the relative "value" of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, reproductive value is critical for applied population ecology! 
+One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected future reproductive output of an individual of age x, *discounted by the intrinsic rate of growth*: $V(x) = \frac{e^{rx}}{l_x} \cdot \sum_{y=x+1}^{k}e^{-ry}l_yb_y   \qquad \text{(Eq. 7)}$.  Different individuals in a population tend to have different "value" in terms of contributing to future generations. Caswell (2001) said "The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class". Knowing something about the relative "value" of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, reproductive value is critical for applied population ecology! Reproductive Value also factors heavily in evolutionary studies and life history theory.  
 
 **Q:** Why is the reproductive value discounted by the population growth rate??    
 
@@ -84,7 +84,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 
 1d. What is the reproductive value($V$) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?  
 
-1e. Are the vital rates in this population **Density-dependent**? If so, explain your reasoning. If not, explain what additional information you would need to evaluate density-dependence in this population.
+1e. Are the vital rates (e.g., b(x) or g(x)) in this population **Density-dependent**? If so, explain your reasoning. If not, explain what additional information you would need to evaluate density-dependence in this population.
 
 
 ## Exercise 2: another life table analysis
@@ -107,7 +107,7 @@ Load up the [Uinta ground squirrel life table data](life_table3.csv) given to us
 
 2b. [for the Uinta squirrel life table] Is generation time ($G$) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how (and if) it affected generation time.  
 
-2c. [**return to the black robin example**] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the 6 age classes next year? Try it, and explain how you got your answer! 
+2c. [**return to the black robin example**] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the 6 age classes next year? Try it, and show how you got your answer! 
 
 
 ## Exercise 3: age-structured models in InsightMaker
@@ -155,14 +155,14 @@ Try to implement the following model (adding onto the previous age-structured mo
 
 4a. Please provide your full InsightMaker model (share with instructors and send as a link).   
     
-4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does it *appear* to have a random component?  
+4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctate back and forth as if it had a random component?  
 
 
 ##Checklist for Lab 3 completion
 
 * Please type your responses into one Word document and submit _using WebCampus_!
 
-***Due Feb. 22 at midnight.***
+***Due Feb. 28 at midnight.***
 
 *  Word document with short answers
     +  **Exercise 1**

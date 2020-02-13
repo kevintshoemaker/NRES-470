@@ -41,7 +41,7 @@ What about per-capita death rates for a tortoise? We might imagine something tha
 ```{r}
 Tortoise_age <- seq(0,120,by=5)
 
-Death_rate <- c(seq(0.7,0.05,length=5),seq(0.05,0.05,length=16),seq(0.05,0.5,length=4))
+Death_rate <- c(seq(0.7,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.5,length=4))
 
 names(Death_rate) <- Tortoise_age
 
