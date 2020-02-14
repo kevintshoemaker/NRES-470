@@ -492,11 +492,12 @@ div.tocify {
 <p><strong>Cohort:</strong> A group of organisms of the same species that are born during the same year or the same breeding season</p>
 <p><strong>x:</strong> Age, or time elapsed since the birth date of the cohort (often in years).</p>
 <p><strong>S(x):</strong> Survivors, or Census size – the number of individuals in the study population who survive to time x.</p>
+<p><strong>D(x):</strong> Deaths – the number of age x individuals who die before reaching age x+1</p>
 <p><strong>Birth rate, b(x):</strong> Average number of offspring produced by an individual in age category x (per-capita birth rate for a given age). NOTE: this parameter is sometimes called m(x) for “maternity”</p>
 <p><strong>Survivorship, l(x):</strong> <span class="math inline">\(l(x) = \frac{S_x}{S_0} \qquad \text{(Eq. 1)}\)</span> , where <span class="math inline">\(S_x\)</span> is the number of survivors from the original cohort at year <span class="math inline">\(x\)</span></p>
 <p><strong>Survival rate, g(x):</strong> <span class="math inline">\(g(x) = \frac{S_{x+1}}{S_x} \qquad \text{(Eq. 2)}\)</span> , where <span class="math inline">\(S_x\)</span> is the number of survivors from the original cohort at year <span class="math inline">\(x\)</span> (per-capita survival rate at age x)</p>
 <p><strong>Lifetime reproductive potential:</strong> <span class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot b(x) \qquad \text{(Eq. 3)}\)</span>, where <span class="math inline">\(k\)</span> is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.</p>
-<p><strong>Life Expectancy (for a newborn)</strong> can be <em>approximated</em> as: <span class="math inline">\(LE_0 = \sum_{x=0}^{k}l_{mid}\cdot (x) \qquad \text{(Eq. 4)}\)</span>, where <span class="math inline">\(l_{mid}(x)=\frac{l(x)+l(x+1)}{2}\)</span> (lmid(x) is the approximate survivorship to the midpoint between age x and age x+1).</p>
+<p><strong>Life Expectancy (for a newborn)</strong> can be <em>approximated</em> as: <span class="math inline">\(LE_0 = \frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)} \qquad \text{(Eq. 4)}\)</span></p>
 <p><strong>Q</strong>: why is the above estimate for life expectancy (LE) <em>approximate</em> and not exact? Is it likely to be biased or unbiased?</p>
 <p><strong>Generation time</strong> is defined as the <em>Average parental age (at birth) for all the offspring produced by a cohort</em>. This can be computed as: <span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)} \qquad \text{(Eq. 5)}\)</span></p>
 <p><strong>Intrinsic rate of growth,</strong> <span class="math inline">\(r\)</span> is defined (to a first-order approximation) as: <span class="math inline">\(r = \frac{ln(R_0)}{G} \qquad \text{(Eq. 6)}\)</span></p>
@@ -512,12 +513,12 @@ div.tocify {
 <ul>
 <li>First, we establish artificial nests and place 350 captive-laid eggs in them.<br />
 </li>
-<li>All individuals are given a unique marking as soon as they hatch. These markings are permanent and not affected by tag loss!<br />
+<li>All individuals are given a unique marking as soon as they hatch (hatching is 100% successful!). These markings are permanent and not affected by tag loss!<br />
 </li>
-<li>We visit the island once per year, and count all the individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!<br />
+<li>We visit the island once per year, and count all the female individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!<br />
 </li>
 <li>We record the following numbers of robins over 5 years revisiting the island (starting with 350 at year 0): 50, 25, 10, 2, and 0.</li>
-<li>We record the following reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0</li>
+<li>We record the following per-capita reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0</li>
 </ul>
 <p>You can load these data in <a href="life_table2.csv">this CSV file</a>. It should look something like this:</p>
 <table>
@@ -563,9 +564,9 @@ div.tocify {
 </table>
 <div id="questions-exercise-1-basic-life-tables" class="section level3">
 <h3>QUESTIONS, Exercise 1 (basic life tables):</h3>
-<p>1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the “correct” way!). Does this population most closely resemble type I, II, or III survivorship? Explain your reasoning. Why do you need to log-transform the survivorship values in order to properly classify this population as type I, II or III?</p>
-<p>1b. What is the lifetime reproductive potential, <span class="math inline">\(R_0\)</span> for this population? Is this population growing, declining or stable?</p>
-<p>1c. What is the mean life expectancy, <span class="math inline">\(LE\)</span>, and generation time, <span class="math inline">\(G\)</span> for this population? What happens to your generation time estimate if “age 1” individuals do not reproduce – that is, if b(1) is set to zero?</p>
+<p>1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the “correct” way!). Does this population most closely resemble type I, II, or III survivorship? You only need to include the log-tranformed figure in your submitted response. Why do you need to log-transform the survivorship values in order to properly classify this population as type I, II or III? [HINT: would you be able to distinguish type II and III survivorship curves if you didn’t log-transform the y axis?]</p>
+<p>1b. What is the lifetime reproductive potential, <span class="math inline">\(R_0\)</span> for this population? Based on your estimate of <span class="math inline">\(R_0\)</span> is this population growing, declining or stable? What happens to <span class="math inline">\(R_0\)</span> if “age 1” individuals do not reproduce – that is, if b(1) is set to zero?</p>
+<p>1c. What is the life expectancy from birth, <span class="math inline">\(LE\)</span>, and generation time, <span class="math inline">\(G\)</span> for this population? What happens to <span class="math inline">\(G\)</span> if “age 1” individuals do not reproduce – that is, if b(1) is set to zero?</p>
 <p>1d. What is the reproductive value(<span class="math inline">\(V\)</span>) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?</p>
 <p>1e. Are the vital rates (e.g., b(x) or g(x)) in this population <strong>Density-dependent</strong>? If so, explain your reasoning. If not, explain what additional information you would need to evaluate density-dependence in this population.</p>
 </div>
@@ -580,14 +581,14 @@ div.tocify {
 <p>Load up the <a href="life_table3.csv">Uinta ground squirrel life table data</a> given to us by Gotelli (reproduced from Slade and Balph 1974).</p>
 <div id="questions-exercise-2-more-advanced-life-table-analysis" class="section level3">
 <h3>QUESTIONS, Exercise 2 (more advanced life table analysis):</h3>
-<p>2a. [for the Uinta squirrel life table] Compare the two life tables using the following major life-table metrics: <span class="math inline">\(R0\)</span>, <span class="math inline">\(G\)</span>, and <span class="math inline">\(r\)</span> (extra credit: compute the reproductive value <span class="math inline">\(V\)</span> for each value of cohort age). What changes do you notice between these two life tables?</p>
+<p>2a. [for the Uinta squirrel life table] Compare the two life tables using the following major life-table metrics: <span class="math inline">\(R0\)</span>, <span class="math inline">\(G\)</span>, and <span class="math inline">\(r\)</span> (extra credit: compare the reproductive values <span class="math inline">\(V\)</span> for the squirrels at each age). What differences do you notice between these two life tables?</p>
 <p>2b. [for the Uinta squirrel life table] Is generation time (<span class="math inline">\(G\)</span>) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how (and if) it affected generation time.</p>
-<p>2c. [<strong>return to the black robin example</strong>] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you <strong>simulate</strong> the abundance of robins in each of the 6 age classes next year? Try it, and show how you got your answer!</p>
+<p>2c. [<strong>return to the black robin example</strong>] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you <strong>simulate</strong> the abundance of robins in each of the possible ages (age 0,1,2,3,4,and 5) next year? Try it, and show how you got your answer!</p>
 </div>
 </div>
 <div id="exercise-3-age-structured-models-in-insightmaker" class="section level2">
 <h2>Exercise 3: age-structured models in InsightMaker</h2>
-<p>Let’s build an age-structured model from scratch. To do this, you can follow these steps:</p>
+<p>Let’s build an age-structured model from scratch in InsightMaker. To do this, you can follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Open a blank workspace and save it.</p></li>
 <li><p>Make three new stocks: <em>Age 1</em>, <em>Age 2</em> and <em>Age 3</em>.</p></li>
@@ -597,8 +598,9 @@ div.tocify {
 </ol>
 <p>Your new insight should look something like this:</p>
 <p><img src="IM7.jpg" /></p>
+<p>NOTE: you don’t need links from flows to connected stocks.</p>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Parameterize your new age-structured population! 6a. For recruitment, make new variables called <em>Recruitment rate, age 2</em> and <em>Recruitment rate, age 3</em>, representing the per-capita recruitment rate for age 2 and age 3, respectively. Draw links from these variables to <em>Recruitment</em>, and set these variables at 1.1 and 1.8, respectively. Click on the equation editor for <em>Recruitment</em> and set the equation appropriately (see questions below) 6b. For the transitions, make new variables representing the per-capita transition rates, called <em>Transition rate, Age 1 to 2</em> and <em>Transition rate, Age 2 to 3</em>. Draw links to the appropriate flows, and set these rates at 0.4 and 0.3, respectively.<br />
+<li><p>Parameterize your new age-structured population! 6a. For recruitment, make new variables called <em>Recruitment rate, age 2</em> and <em>Recruitment rate, age 3</em>, representing the per-capita recruitment rate for age 2 and age 3, respectively. Draw links from these variables to <em>Recruitment</em>, and set these variables at 1.1 and 1.8, respectively. Click on the equation editor for <em>Recruitment</em> and set the equation appropriately (see questions below) 6b. For the transitions, make new variables representing the per-capita transition rates, called <em>Transition rate, Age 1 to 2</em> and <em>Transition rate, Age 2 to 3</em>. Draw links to the appropriate flows, and set these rates at 0.4 and 0.3, respectively. NOTE: these transition rates could also be called “survival rates”<br />
 6c. For the mortality rates, note that all individuals in the <em>Age 1</em> stock must either transition to <em>Age 2</em> or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the <em>Age 3</em> stock must die- there is no <em>Age 4</em> class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately.</p></li>
 <li><p>Explore the model- make sure you understand how it works!</p></li>
 </ol>
@@ -615,7 +617,7 @@ div.tocify {
 <h2>Exercise 4: more complex age-structured models in InsightMaker!</h2>
 <p>Try to implement the following model (adding onto the previous age-structured model in InsightMaker). <em>If the total population (all three age classes combined!) exceeds 75 individuals, then recruitment rates drop to 25% of normal rates.</em></p>
 <p>4a. Please provide your full InsightMaker model (share with instructors and send as a link).</p>
-<p>4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a <strong>stochastic</strong> model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctate back and forth as if it had a random component?</p>
+<p>4b. Change the Age 1 mortality rate to 0.3 (i.e., change the survival/transition rate to 0.7). Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a <strong>stochastic</strong> model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctate back and forth as if it had a random component?</p>
 <p>##Checklist for Lab 3 completion</p>
 <ul>
 <li>Please type your responses into one Word document and submit <em>using WebCampus</em>!</li>

@@ -27,7 +27,9 @@ Let's start with some definitions- population ecology, and life tables in partic
 
 **x:** Age, or time elapsed since the birth date of the cohort (often in years).       
 
-**S(x):** Survivors, or Census size -- the number of individuals in the study population who survive to time x.   
+**S(x):** Survivors, or Census size -- the number of individuals in the study population who survive to time x. 
+
+**D(x):** Deaths -- the number of age x individuals who die before reaching age x+1
 
 **Birth rate, b(x):** Average number of offspring produced by an individual in age category x (per-capita birth rate for a given age). NOTE: this parameter is sometimes called m(x) for "maternity"
 
@@ -37,7 +39,7 @@ Let's start with some definitions- population ecology, and life tables in partic
 
 **Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.     
 
-**Life Expectancy (for a newborn)** can be *approximated* as: $LE_0 = \sum_{x=0}^{k}l_{mid}\cdot (x)  \qquad \text{(Eq. 4)}$, where $l_{mid}(x)=\frac{l(x)+l(x+1)}{2}$ (lmid(x) is the approximate survivorship to the midpoint between age x and age x+1).     
+**Life Expectancy (for a newborn)** can be *approximated* as: $LE_0 = \frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)}  \qquad \text{(Eq. 4)}$     
 
 **Q**: why is the above estimate for life expectancy (LE) *approximate* and not exact? Is it likely to be biased or unbiased?          
 
@@ -58,10 +60,10 @@ One more concept I want to introduce here is **reproductive value**, or V(x). Th
 Let's imagine that we are following a *cohort* of reintroduced Chatham Island robins on a small island through time. 
 
 - First, we establish artificial nests and place 350 captive-laid eggs in them.      
-- All individuals are given a unique marking as soon as they hatch. These markings are permanent and not affected by tag loss!        
-- We visit the island once per year, and count all the individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!     
+- All individuals are given a unique marking as soon as they hatch (hatching is 100% successful!). These markings are permanent and not affected by tag loss!        
+- We visit the island once per year, and count all the female individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!     
 - We record the following numbers of robins over 5 years revisiting the island (starting with 350 at year 0): 50, 25, 10, 2, and 0.
-- We record the following reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0        
+- We record the following per-capita reproductive rates for each age: 0, 5.2, 5.5, 4.7, 3.3, and 0        
 
 You can load these data in [this CSV file](life_table2.csv). It should look something like this:
 
@@ -76,11 +78,11 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 
 ### QUESTIONS, Exercise 1 (basic life tables):
 
-1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the "correct" way!). Does this population most closely resemble type I, II, or III survivorship? Explain your reasoning. Why do you need to log-transform the survivorship values in order to properly classify this population as type I, II or III? 
+1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the "correct" way!). Does this population most closely resemble type I, II, or III survivorship? You only need to include the log-tranformed figure in your submitted response. Why do you need to log-transform the survivorship values in order to properly classify this population as type I, II or III? [HINT: would you be able to distinguish type II and III survivorship curves if you didn't log-transform the y axis?] 
 
-1b. What is the lifetime reproductive potential, $R_0$ for this population? Is this population growing, declining or stable?    
+1b. What is the lifetime reproductive potential, $R_0$ for this population? Based on your estimate of $R_0$ is this population growing, declining or stable? What happens to $R_0$ if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?   
 
-1c. What is the mean life expectancy, $LE$, and generation time, $G$ for this population? What happens to your generation time estimate if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?
+1c. What is the life expectancy from birth, $LE$, and generation time, $G$ for this population? What happens to $G$ if "age 1" individuals do not reproduce -- that is, if b(1) is set to zero?  
 
 1d. What is the reproductive value($V$) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?  
 
@@ -103,16 +105,16 @@ Load up the [Uinta ground squirrel life table data](life_table3.csv) given to us
 
 ### QUESTIONS, Exercise 2 (more advanced life table analysis):
 
-2a. [for the Uinta squirrel life table] Compare the two life tables using the following major life-table metrics: $R0$, $G$, and $r$ (extra credit: compute the reproductive value $V$ for each value of cohort age). What changes do you notice between these two life tables? 
+2a. [for the Uinta squirrel life table] Compare the two life tables using the following major life-table metrics: $R0$, $G$, and $r$ (extra credit: compare the reproductive values $V$ for the squirrels at each age). What differences do you notice between these two life tables? 
 
 2b. [for the Uinta squirrel life table] Is generation time ($G$) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how (and if) it affected generation time.  
 
-2c. [**return to the black robin example**] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the 6 age classes next year? Try it, and show how you got your answer! 
+2c. [**return to the black robin example**] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you **simulate** the abundance of robins in each of the possible ages (age 0,1,2,3,4,and 5) next year? Try it, and show how you got your answer! 
 
 
 ## Exercise 3: age-structured models in InsightMaker
 
-Let's build an age-structured model from scratch. To do this, you can follow these steps:
+Let's build an age-structured model from scratch in InsightMaker. To do this, you can follow these steps:
 
 1. Open a blank workspace and save it. 
 
@@ -128,9 +130,11 @@ Your new insight should look something like this:
 
 ![](IM7.jpg)
 
+NOTE: you don't need links from flows to connected stocks. 
+
 6. Parameterize your new age-structured population!
     6a. For recruitment, make new variables called *Recruitment rate, age 2* and *Recruitment rate, age 3*, representing the per-capita recruitment rate for age 2 and age 3, respectively. Draw links from these variables to *Recruitment*, and set these variables at 1.1 and 1.8, respectively. Click on the equation editor for *Recruitment* and set the equation appropriately (see questions below)
-    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Draw links to the appropriate flows, and set these rates at 0.4 and 0.3, respectively.    
+    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Draw links to the appropriate flows, and set these rates at 0.4 and 0.3, respectively. NOTE: these transition rates could also be called "survival rates"    
     6c. For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately. 
 
 7. Explore the model- make sure you understand how it works! 
@@ -155,7 +159,7 @@ Try to implement the following model (adding onto the previous age-structured mo
 
 4a. Please provide your full InsightMaker model (share with instructors and send as a link).   
     
-4b. Change the Age 1 mortality rate to 0.3. Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctate back and forth as if it had a random component?  
+4b. Change the Age 1 mortality rate to 0.3 (i.e., change the survival/transition rate to 0.7). Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctate back and forth as if it had a random component?  
 
 
 ##Checklist for Lab 3 completion
