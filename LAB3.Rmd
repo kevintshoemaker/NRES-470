@@ -157,9 +157,9 @@ NOTE: you don't need links from flows to connected stocks.
 
 Try to implement the following model (adding onto the previous age-structured model in InsightMaker). _If the total population (all three age classes combined!) exceeds 75 individuals, then recruitment rates drop to 25% of normal rates._ 
 
-4a. Please provide your full InsightMaker model (share with instructors and send as a link).   
+4a. Please provide your full InsightMaker model (copy URL in the appropriate place in WebCampus).   
     
-4b. Change the Age 1 mortality rate to 0.3 (i.e., change the survival/transition rate to 0.7). Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctate back and forth as if it had a random component?  
+4b. Change the Age 1 mortality rate to 0.3 (i.e., change the survival/transition rate to 0.7). Run the simulation starting with 75 individuals, all in Age class 1. What happens? Is this a **stochastic** model (different results every time you run the model, even with the same initial conditions)? If not, why does the population fluctuate back and forth as if it had a random component?  
 
 
 ##Checklist for Lab 3 completion
