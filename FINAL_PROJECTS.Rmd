@@ -1,7 +1,7 @@
 ---
 title: "Final projects!"
 author: "NRES 470/670"
-date: "Spring, 2019"
+date: "Spring, 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -31,17 +31,15 @@ Students will work in groups of ~3-4 people to perform a population viability an
 
 ## Timeline
 
-- **PROPOSAL:** Due Tues March 5!
-- **INITIAL PVA** Due Fri April 5: description of how your PVA model works and where the parameter estimates come from.
-- **DRAFT FINAL PAPER:** Due Tues April 23
-- **FINAL FINAL PAPER:** Due Wed May 15
-- **FINAL PRESENTATIONS:** Fri Apr 26 and May 3 in lab!
+- **PROPOSAL:** Due Wed March 9!
+- **INITIAL PVA** Due Fri April 10: description of how your PVA model works and where the parameter estimates come from.
+- **DRAFT FINAL PAPER:** Due Mon April 27
+- **FINAL FINAL PAPER:** Due Wed May 13
+- **FINAL PRESENTATIONS:** Fri Apr 24 and May 1 in lab!
 
 Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
 ## First project-related assignment: the proposal!
-
-(Due March 5...) 
 
 Your project proposal (approx 1 pg) will consist of:  
 
@@ -51,7 +49,7 @@ Your project proposal (approx 1 pg) will consist of:
 4. **Project rationale**: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructors that your project is **interesting**!    
 5. **Data sources**: Describe one or more data/information sources you plan to use to guide PVA construction and parameterization (we want to make sure your project is **possible**!)  
 
-**NOTE about data sources:** The most important parameters you need for a PVA model are *survival rates* (usually age-structured), *fecundity rates* (often age-structured as well), *stochasticity* (variability in those vital rates), *initial abundance*, *dispersal rates*, and *carrying capacity (K)*. We have gone over most of these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven't yet gone over in class). If all else fails, you can use published records for similar species (assuming that the vital rates are approximately the same)!
+**NOTE about data sources:** The most important parameters you need for a PVA model are *survival rates* (usually age-structured), *fecundity rates* (often age-structured as well), *stochasticity* (amount of random variability in those vital rates), *initial abundance*, *dispersal rates*, and *carrying capacity (K)*. We have gone over many of these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven't yet gone over in class). If all else fails, you can use published records for similar species (assuming that the vital rates are approximately the same)!
 
 ## Second project-related assignment: the initial PVA!
 
@@ -117,13 +115,13 @@ A rubric for the presentations can be found [here](presentationProject_rubric.do
 
 ## Final paper peer review/feedback session
 
-In lab on Fri Apr 26 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
+In lab on Fri Apr 24 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
 
 The way it will work is as follows:
 
-1. By mid-day on April 24 (Wed), you will receive another group's draft manuscript via WebCampus (see list below). 
+1. By mid-day on April 22 (Wed), you will receive another group's draft manuscript via WebCampus (see list below). 
 
-2. Before lab on April 26, please throroughly read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
+2. Before lab, please throroughly read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
 
 3. During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 30 minutes to compare notes and prepare a written "peer review" of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! *Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA*
 
@@ -143,8 +141,6 @@ Here are the peer review assignments:
 #knitr::kable(assignments,caption="")
 
 ```
-
-
 
 Bring your laptops to lab as usual so you can write, save and share your peer-review electronically with your classmates/instructors. 
 

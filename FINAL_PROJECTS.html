@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -409,8 +476,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Final projects!</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring, 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring, 2020</h4>
 
 </div>
 
@@ -432,17 +499,16 @@ div.tocify {
 <div id="timeline" class="section level2">
 <h2>Timeline</h2>
 <ul>
-<li><strong>PROPOSAL:</strong> Due Tues March 5!</li>
-<li><strong>INITIAL PVA</strong> Due Fri April 5: description of how your PVA model works and where the parameter estimates come from.</li>
-<li><strong>DRAFT FINAL PAPER:</strong> Due Tues April 23</li>
-<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 15</li>
-<li><strong>FINAL PRESENTATIONS:</strong> Fri Apr 26 and May 3 in lab!</li>
+<li><strong>PROPOSAL:</strong> Due Wed March 9!</li>
+<li><strong>INITIAL PVA</strong> Due Fri April 10: description of how your PVA model works and where the parameter estimates come from.</li>
+<li><strong>DRAFT FINAL PAPER:</strong> Due Mon April 27</li>
+<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 13</li>
+<li><strong>FINAL PRESENTATIONS:</strong> Fri Apr 24 and May 1 in lab!</li>
 </ul>
 <p>Remember that the semester will get crazy at the end (including for your instructors). Plan ahead!</p>
 </div>
 <div id="first-project-related-assignment-the-proposal" class="section level2">
 <h2>First project-related assignment: the proposal!</h2>
-<p>(Due March 5…)</p>
 <p>Your project proposal (approx 1 pg) will consist of:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Title</strong>: should indicate what species you are modeling, and at least hint at what question will be addressed<br />
@@ -454,7 +520,7 @@ div.tocify {
 </li>
 <li><strong>Data sources</strong>: Describe one or more data/information sources you plan to use to guide PVA construction and parameterization (we want to make sure your project is <strong>possible</strong>!)</li>
 </ol>
-<p><strong>NOTE about data sources:</strong> The most important parameters you need for a PVA model are <em>survival rates</em> (usually age-structured), <em>fecundity rates</em> (often age-structured as well), <em>stochasticity</em> (variability in those vital rates), <em>initial abundance</em>, <em>dispersal rates</em>, and <em>carrying capacity (K)</em>. We have gone over most of these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven’t yet gone over in class). If all else fails, you can use published records for similar species (assuming that the vital rates are approximately the same)!</p>
+<p><strong>NOTE about data sources:</strong> The most important parameters you need for a PVA model are <em>survival rates</em> (usually age-structured), <em>fecundity rates</em> (often age-structured as well), <em>stochasticity</em> (amount of random variability in those vital rates), <em>initial abundance</em>, <em>dispersal rates</em>, and <em>carrying capacity (K)</em>. We have gone over many of these concepts in class already- PVA is just a way of putting all these concepts together in a single model! You can either get these parameter estimates directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven’t yet gone over in class). If all else fails, you can use published records for similar species (assuming that the vital rates are approximately the same)!</p>
 </div>
 <div id="second-project-related-assignment-the-initial-pva" class="section level2">
 <h2>Second project-related assignment: the initial PVA!</h2>
@@ -519,11 +585,11 @@ div.tocify {
 </div>
 <div id="final-paper-peer-reviewfeedback-session" class="section level2">
 <h2>Final paper peer review/feedback session</h2>
-<p>In lab on Fri Apr 26 we will have a “peer review” session where we will have a chance to give each other feedback on draft manuscripts.</p>
+<p>In lab on Fri Apr 24 we will have a “peer review” session where we will have a chance to give each other feedback on draft manuscripts.</p>
 <p>The way it will work is as follows:</p>
 <ol style="list-style-type: decimal">
-<li><p>By mid-day on April 24 (Wed), you will receive another group’s draft manuscript via WebCampus (see list below).</p></li>
-<li><p>Before lab on April 26, please throroughly read the manuscript you have been assigned, and make comments, paying particular attention to the <a href="WrittenProject_rubric.docx">grading rubric</a>.</p></li>
+<li><p>By mid-day on April 22 (Wed), you will receive another group’s draft manuscript via WebCampus (see list below).</p></li>
+<li><p>Before lab, please throroughly read the manuscript you have been assigned, and make comments, paying particular attention to the <a href="WrittenProject_rubric.docx">grading rubric</a>.</p></li>
 <li><p>During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 30 minutes to compare notes and prepare a written “peer review” of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! <em>Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA</em></p></li>
 <li><p>After that, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person (and on paper).</p></li>
 <li><p>For any remaining time in lab, you will have a chance to work on yourwrite-ups and presentations!</p></li>
@@ -666,6 +732,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
