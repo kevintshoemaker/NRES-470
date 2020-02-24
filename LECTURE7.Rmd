@@ -40,10 +40,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 **what** The exam will cover:
 
-- All material in Chapters 1-3 of the Gotelli book *except matrix population models*.   
-- All material covered in lectures through the "Age-structured populations" lecture (not including today's lecture on matrix population models).   
+- All material in Chapters 1-3 of the Gotelli book *including basic matrix population modeling concepts*.   
+- All material covered in lectures including today's lecture on matrix population models.   
 - All material covered in labs 1-3.    
-- Ch. 1 of "Beyond Connecting the Dots"    
+- Ch. 1 of "Beyond Connecting the Dots" (basic systems thinking and stock-flow modeling, concepts of feedbacks and equilibria)
+- Basic programming concepts (IF-THEN-ELSE and iteration loops)
 
 *The exam will consist of a mixture of multiple-choice and short-answer questions.*      
 
