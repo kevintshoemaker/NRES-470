@@ -107,7 +107,7 @@ First of all, we need to begin with a teasel population **vector**...
 ```{r}
 
 #############
-# Summarize initial age-structured abundance as a vector
+# Summarize initial age-structured abundance as a matrix with one column
 
 Initial_teasel <- matrix(c(1000,1500,200,300,600,25),ncol=1)         # initial population size (population vector; matrix with 1 column!)
 rownames(Initial_teasel) <- rownames(teasel_matrix)                  # add row and column names
@@ -118,7 +118,7 @@ Initial_teasel
 
 Then all we need to do is 'matrix-multiply' this **vector** of abundances by the **transition matrix** from above! Each time we do this multiplication step, we advance one year! It's that easy!
 
-NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in class a bit later.  
+NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in class/lab a bit later.  
 
 Here's how we can do this in R!
 
@@ -326,7 +326,7 @@ You can read the **elements** of a transition matrix as follows:
 
 > "The per-capita production of _(row name)_ by _(col name)_ is _(value of element)_"      
 
-Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix. This represents the per-capita transition rate from Juveniles (col) to Juveniles (row). What is the value of this element? 
+Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix. This represents the per-capita production of Juveniles (col) by Juveniles (row). What is the value of this element? 
 
 Let's update our transition matrix:
 

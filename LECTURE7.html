@@ -484,16 +484,17 @@ div.tocify {
 
 <div id="upcoming-midterm-exam" class="section level3">
 <h3>Upcoming midterm exam</h3>
-<p><strong>when and where</strong> The first midterm exam (out of two) is coming up next Monday <strong>March 2</strong>. You will have the whole 50 minute class period to take the exam. The exam will be in our regular classroom.</p>
+<p><strong>when and where</strong> The first midterm exam (out of two) is coming up Monday <strong>March 2</strong>. You will have the whole 50 minute class period to take the exam. The exam will be in our regular classroom.</p>
 <p><strong>what</strong> The exam will cover:</p>
 <ul>
-<li>All material in Chapters 1-3 of the Gotelli book <em>except matrix population models</em>.<br />
+<li>All material in Chapters 1-3 of the Gotelli book <em>including basic matrix population modeling concepts</em>.<br />
 </li>
-<li>All material covered in lectures through the “Age-structured populations” lecture (not including today’s lecture on matrix population models).<br />
+<li>All material covered in lectures including today’s lecture on matrix population models.<br />
 </li>
 <li>All material covered in labs 1-3.<br />
 </li>
-<li>Ch. 1 of “Beyond Connecting the Dots”</li>
+<li>Ch. 1 of “Beyond Connecting the Dots” (basic systems thinking and stock-flow modeling, concepts of feedbacks and equilibria)</li>
+<li>Basic programming concepts (IF-THEN-ELSE and iteration loops)</li>
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
 <p><em>Please bring a calculator- a regular scientific calculator is fine (not absolutely necessary, but it could be helpful for at least one question on the exam!)</em></p>
@@ -540,7 +541,7 @@ teasel_matrix                                          # print the matrix</code>
 <p>For example, let’s project a teasel population 1 year into the future:</p>
 <p>First of all, we need to begin with a teasel population <strong>vector</strong>…</p>
 <pre class="r"><code>#############
-# Summarize initial age-structured abundance as a vector
+# Summarize initial age-structured abundance as a matrix with one column
 
 Initial_teasel &lt;- matrix(c(1000,1500,200,300,600,25),ncol=1)         # initial population size (population vector; matrix with 1 column!)
 rownames(Initial_teasel) &lt;- rownames(teasel_matrix)                  # add row and column names
@@ -554,7 +555,7 @@ Initial_teasel</code></pre>
 ## ros3            600
 ## flowering        25</code></pre>
 <p>Then all we need to do is ‘matrix-multiply’ this <strong>vector</strong> of abundances by the <strong>transition matrix</strong> from above! Each time we do this multiplication step, we advance one year! It’s that easy!</p>
-<p>NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in class a bit later.</p>
+<p>NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in class/lab a bit later.</p>
 <p>Here’s how we can do this in R!</p>
 <pre class="r"><code>#########
 # Project the population at time 1
@@ -655,8 +656,14 @@ Lambda &lt;- as.numeric(round(eigen(teasel_matrix)$values[1],2))
 Lambda</code></pre>
 <pre><code>## [1] 2.32</code></pre>
 <p>Or we could use the handy “popbio” package in R:</p>
-<pre class="r"><code>library(popbio)      # or... it&#39;s easier to use the &#39;popbio&#39; library in R!
-lambda(teasel_matrix)</code></pre>
+<pre class="r"><code>library(popbio)      # or... it&#39;s easier to use the &#39;popbio&#39; library in R!</code></pre>
+<pre><code>## Warning: package &#39;popbio&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;popbio&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     teasel</code></pre>
+<pre class="r"><code>lambda(teasel_matrix)</code></pre>
 <pre><code>## [1] 2.32188</code></pre>
 <p>You don’t have to understand the math here- but I do want you to understand how simple that was- just one line of code and we computed the annual rate of growth from the teasel transition matrix!</p>
 <p>Here’s another nifty trick:</p>
@@ -707,7 +714,7 @@ TMat                                               # now we have an all-zero tra
 <blockquote>
 <p>“The per-capita production of <em>(row name)</em> by <em>(col name)</em> is <em>(value of element)</em>”</p>
 </blockquote>
-<p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita transition rate from Juveniles (col) to Juveniles (row). What is the value of this element?</p>
+<p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita production of Juveniles (col) by Juveniles (row). What is the value of this element?</p>
 <p>Let’s update our transition matrix:</p>
 <pre class="r"><code>#####
 # fill in the top left element of the matrix
@@ -769,7 +776,7 @@ allYears</code></pre>
 <pre><code>##            0  1   2    3     4       5        6        7        8        9
 ## Juveniles 40  0 0.0 4.80 6.000 5.86800 5.871000 6.063630 6.287558 6.502333
 ## Subadults  0 12 4.8 1.92 2.208 2.68320 2.833680 2.894772 2.976998 3.077066
-## Adults     0  0 1.2 1.50 1.467 1.46775 1.515908 1.571889 1.625583 1.679445
+## Adults     0  0 1.2 1.50 1.467 1.46775 1.515907 1.571889 1.625583 1.679445
 ##                 10       11       12       13       14       15       16
 ## Juveniles 6.717782 6.940941 7.172411 7.411727 7.658952 7.914392 8.178354
 ## Subadults 3.181526 3.287945 3.397460 3.510707 3.627801 3.748806 3.873840
