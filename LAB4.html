@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -377,6 +444,15 @@ div.tocify {
       <a href="LAB4.html">Lab 4: matrix population models</a>
     </li>
     <li>
+      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
+    </li>
+    <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -400,8 +476,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Lab 4: Matrix population models</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -417,13 +493,15 @@ div.tocify {
 <p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
 <p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
 <p>We can be more explicit about this if we re-write the above equation this way:</p>
-<p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
-<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2, and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2.</p>
-<p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for age <span class="math inline">\(t\)</span>. We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.</p>
-<p>Fecundity, <span class="math inline">\(F_t\)</span>, is the _per-capita rate by which an individual of stage <span class="math inline">\(t\)</span> contributes new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference??</p>
-<p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must first survive</em> before it can reproduce!.</p>
-<p><span class="math inline">\(F_t = P_{t \rightarrow t+1} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
+<p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_1 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
+<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2 (per capita ‘production’ of stage 2 individuals by stage 1 individuals), and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2 (per capita production of offspring by stage 2 individuals).</p>
+<p>NOTE: <em>survival <em>P</em> in a stage transition matrix is NOT the same thing as the survival rate <em>g(x)</em> in a life table</em>. What’s the difference?</p>
+<p>In a stage-based matrix model, individuals can survive in one of two ways- they can stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage!</p>
+<p>NOTE: <em>fecundity <em>F</em> in a stage transition matrix is NOT the same thing as age-specific birth rate <em>b(x)</em></em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
+<p>Birth rate <span class="math inline">\(b_t\)</span> from life tables is the <em>per-capita rate of offspring production</em> for age <span class="math inline">\(t\)</span>. We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.</p>
+<p>Fecundity, <span class="math inline">\(F_s\)</span>, is the _per-capita rate by which individuals that were in stage <span class="math inline">\(s\)</span> at time <span class="math inline">\(t\)</span> contribute new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference?? Well, the difference is exactly <em>one time step</em> (which in our example was one year)!</p>
+<p>That is, Fecundity <span class="math inline">\(F_s\)</span> also takes into account the <em>survival rate</em> to the next time step (e.g., <span class="math inline">\(P_{1 \rightarrow 2}\)</span>)!! For an adult of stage <span class="math inline">\(s\)</span> to contribute to the next generation, <em>it must first survive to the next time step</em> before it can reproduce!.</p>
+<p><span class="math inline">\(F_s = P_{surv.this.year} \cdot b_{age.next.year} \qquad \text{(Eq. 4)}\)</span></p>
 <div id="matrix-operations" class="section level3">
 <h3>Matrix operations:</h3>
 <p>There is a lot we can do with matrix population models. The most obvious one is <em>projection</em>:</p>
@@ -511,9 +589,9 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,ncol(TMat)),legend=paste(&quot;Sta
 <pre class="r"><code>############
 # Use the &#39;popbio&#39; package to compute lambda (NOTE: you first have to install the popbio package! You only have to install the package once...)
 
-library(popbio)
-
-lambda(projection_matrix)</code></pre>
+library(popbio)</code></pre>
+<pre><code>## Warning: package &#39;popbio&#39; was built under R version 3.6.2</code></pre>
+<pre class="r"><code>lambda(projection_matrix)</code></pre>
 <pre><code>## [1] 1.138728</code></pre>
 <p>Pretty easy right?</p>
 <p>NOTE: we are using a “package” in R to make these analyses super easy! So if you don’t already have the “popbio” package, go to the “Packages” tab in Rstudio (should be at the top of the lower right panel), click on “Install”, and then type “popbio” in the “Packages” field in the pop-up window, then click on the “Install” button.</p>
@@ -555,7 +633,7 @@ stable.stage(projection_matrix)</code></pre>
 </li>
 <li>Use five age classes for your transition matrix. However, individuals in their fifth year of life have zero survival (you can’t go past your fifth year of life in this model) and zero fecundity (if there are no individuals left, how can they reproduce!)<br />
 </li>
-<li>No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die.</li>
+<li>No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die (this simple type of matrix model is called a <strong>Leslie Matrix</strong> model).</li>
 </ul>
 <p>1b. Use R (‘popbio’ package) to compute the finite rate of growth for the population (<span class="math inline">\(\lambda\)</span>). Is this a growing or declining population? Show your R code (just copy and paste the relevant R code into your lab write-up)!</p>
 <p>1c. Use R (‘popbio’ package) to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class? (NOTE: you can’t have fractional individuals, so please round to the nearest whole numbers)</p>
@@ -565,12 +643,16 @@ stable.stage(projection_matrix)</code></pre>
 </div>
 <div id="exercise-2-translate-insightmaker-to-projection-matrix" class="section level2">
 <h2>Exercise 2: translate InsightMaker to projection matrix!</h2>
-<p>Return to the InsightMaker model you created in Lab 3 (exercise 3 – that is, the original model, without the carrying capacity component you implemented in Exercise 4 of Lab 3). Your model should look something like this:</p>
-<div class="figure">
-<img src="IM11.jpg" />
-
-</div>
-<p>Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e)</p>
+<p>Return to the InsightMaker model you created in Lab 3 (exercise 3 – that is, a basic age structured population model, without the carrying capacity component you implemented in Exercise 4 of Lab 3). Your model should look something like this:</p>
+<p><img src="IM11.jpg" /></p>
+<p>Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e). As a reminder, here they are again:</p>
+<ul>
+<li>For recruitment, set <em>Recruitment rate, age 2</em> at 1.1 and <em>Recruitment rate, age 3</em> at 1.8.<br />
+</li>
+<li>For transition rates, set <em>Transition rate, Age 1 to 2</em> at 0.4 and <em>Transition rate, Age 2 to 3</em> at 0.3. NOTE: these transition rates could also be called “survival rates”<br />
+</li>
+<li>For the mortality rates, note that all individuals in the <em>Age 1</em> stock must either transition to <em>Age 2</em> or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the <em>Age 3</em> stock must die- there is no <em>Age 4</em> class!</li>
+</ul>
 <p>2a. Translate this InsightMaker model into a projection matrix. This shouldn’t be too difficult, but pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix.</p>
 <p>2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. <em>You don’t need to show your R code or the InsightMaker model this time</em>- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same!</p>
 <p>Now let’s go the other way around – try to build an InsightMaker model based on a population matrix!</p>
@@ -585,7 +667,7 @@ stmat</code></pre>
 ## Stage1   0.02   0.30   0.85
 ## Stage2   0.45   0.20   0.00
 ## Stage3   0.00   0.65   0.70</code></pre>
-<p>2c. Build an InsightMaker model that represents the same population as the stage matrix above. Provide the URL to your InsightMaker model in your write-up (and remember to ensure that you don’t alter the model once you submit it) .</p>
+<p>2c. Build an InsightMaker model that represents the same population as the stage matrix above. Provide the URL to your InsightMaker model in your write-up (and remember to clone your Insight to ensure that you don’t alter the model once you submit it) .</p>
 <p>2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide both the InsightMaker and R plots to show that the two models are identical.</p>
 <p>NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? NO!</p>
 </div>
@@ -601,24 +683,19 @@ stmat</code></pre>
 <div id="exercise-3.-translate-plain-english-to-projection-matrix" class="section level2">
 <h2>Exercise 3. Translate plain English to projection matrix!</h2>
 <p>As a test of your understanding, try to implement the following passage as a matrix projection model:</p>
-<div class="figure">
-<img src="redtail1.jpg" />
-
-</div>
+<p><img src="redtail1.jpg" /></p>
 <blockquote>
 <p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
 </blockquote>
 <p>3a. Provide your transition matrix in your write-up. Please indicate your fecundity calculations so we can give partial credit for incorrect answers!</p>
 <p>3b. Is this population at S.A.D. at time 0? If not, provide an example of an initial population structure that IS at S.A.D.</p>
 <p>3c. What is the finite growth rate, Lambda, for this population?</p>
-</div>
-<div id="checklist-for-lab-4-completion" class="section level2">
-<h2>Checklist for Lab 4 completion</h2>
+<p>##Checklist for Lab 4 completion</p>
 <ul>
-<li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
+<li><p>Please submit all responses <em>using the WebCampus quiz</em>!</p></li>
 <li><p>As always, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below…</p></li>
 </ul>
-<p><strong><em>Due Mar. 8 at midnight</em></strong></p>
+<p><strong><em>Due Mar. 13 at midnight</em></strong></p>
 <ul>
 <li>Word document with short answers
 <ul>
@@ -669,6 +746,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

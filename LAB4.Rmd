@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Matrix population models"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -52,19 +52,23 @@ where $\mathbf{N}$ is a **vector** of abundances (abundance for all stages), and
 
 We can be more explicit about this if we re-write the above equation this way:
 
-$\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 & F_2 & F_3\\ P_{1 \rightarrow 2} & P_{2 \rightarrow 2} & 0\\ 0 & P_{2 \rightarrow 3} & P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
+$\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_1 & F_2 & F_3\\ P_{1 \rightarrow 2} & P_{2 \rightarrow 2} & 0\\ 0 & P_{2 \rightarrow 3} & P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
 
-Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2, and $F_2$ is the **fecundity** of stage 2.
+Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2 (per capita 'production' of stage 2 individuals by stage 1 individuals), and $F_2$ is the **fecundity** of stage 2 (per capita production of offspring by stage 2 individuals).
 
-NOTE: _fecundity is NOT the same thing as birth rate_, $b$. What's the difference?
+NOTE: _survival *P* in a stage transition matrix is NOT the same thing as the survival rate *g(x)* in a life table_. What's the difference? 
 
-Birth rate, $b_t$, is the _per-capita rate of offspring production_ for age $t$. We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
+In a stage-based matrix model, individuals can survive in one of two ways- they can stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage! 
 
-Fecundity, $F_t$, is the _per-capita rate by which an individual of stage $t$ contributes new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference??
+NOTE: _fecundity *F* in a stage transition matrix is NOT the same thing as age-specific birth rate *b(x)*_, $b$. What's the difference?
 
-Fecundity also takes into account the survival rate from $t$ to $t+1$!!  For an adult of stage $t$ to contribute to the next generation, _it must first survive_ before it can reproduce!.
+Birth rate $b_t$ from life tables is the _per-capita rate of offspring production_ for age $t$. We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
 
-$F_t = P_{t \rightarrow t+1} \cdot  b_{t+1}    \qquad \text{(Eq. 4)}$
+Fecundity, $F_s$, is the _per-capita rate by which individuals that were in stage $s$ at time $t$ contribute new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference?? Well, the difference is exactly *one time step* (which in our example was one year)!
+
+That is, Fecundity $F_s$ also takes into account the *survival rate* to the next time step (e.g., $P_{1 \rightarrow 2}$)!! For an adult of stage $s$ to contribute to the next generation, _it must first survive to the next time step_ before it can reproduce!.
+
+$F_s = P_{surv.this.year} \cdot  b_{age.next.year}    \qquad \text{(Eq. 4)}$
 
 ### Matrix operations:
 
@@ -242,7 +246,7 @@ Keep the following points in mind:
 - Individuals are in "age class 1" if they are between the ages of 0 and 1. They transition to "age-class 2" ($P_{1 \rightarrow 2}$) if they survive to enter their second year of life (at which point they are now entering age class two!).     
 - For individuals of "Age class 1" to contribute new offpring (individuals of age-class 1) to the population in the next time step ($F_1$), they have to survive their first year of life ($P_{1 \rightarrow 2}$) AND produce offspring when they are exactly 1 year of age (which they do at the rate of $b(1)$ -- the birth rate at age 1).    
 - Use five age classes for your transition matrix. However, individuals in their fifth year of life have zero survival (you can't go past your fifth year of life in this model) and zero fecundity (if there are no individuals left, how can they reproduce!)      
-- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die.          
+- No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die (this simple type of matrix model is called a **Leslie Matrix** model).          
 
 1b. Use R ('popbio' package) to compute the finite rate of growth for the population ($\lambda$). Is this a growing or declining population? Show your R code (just copy and paste the relevant R code into your lab write-up)!   
 
@@ -257,15 +261,20 @@ $N_t = \lambda^t \cdot No$
 
 ## Exercise 2: translate InsightMaker to projection matrix!
 
-Return to the InsightMaker model you created in Lab 3 (exercise 3 -- that is, the original model, without the carrying capacity component you implemented in Exercise 4 of Lab 3). Your model should look something like this:
+Return to the InsightMaker model you created in Lab 3 (exercise 3 -- that is, a basic age structured population model, without the carrying capacity component you implemented in Exercise 4 of Lab 3). Your model should look something like this:
 
 ![](IM11.jpg)
 
-Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e)
+Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e). As a reminder, here they are again:
+
+- For recruitment, set *Recruitment rate, age 2* at 1.1 and *Recruitment rate, age 3* at 1.8.    
+- For transition rates, set *Transition rate, Age 1 to 2* at 0.4 and *Transition rate, Age 2 to 3* at 0.3. NOTE: these transition rates could also be called "survival rates"    
+- For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! 
 
 2a. Translate this InsightMaker model into a projection matrix. This shouldn't be too difficult, but pay close attention to the difference between survival (transition to the next stage class) and mortality. In your write-up please provide your transition matrix.   
 
 2b. Starting with 75 individuals, all in Age class 1, project the population 20 years into the future, using both InsightMaker and R. *You don't need to show your R code or the InsightMaker model this time*- just provide graphical evidence (that is, provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially the same! 
+
 
 Now let's go the other way around -- try to build an InsightMaker model based on a population matrix!
 
@@ -281,7 +290,7 @@ stmat
 
 ```
 
-2c. Build an InsightMaker model that represents the same population as the stage matrix above. Provide the URL to your InsightMaker model in your write-up (and remember to ensure that you don't alter the model once you submit it) .  
+2c. Build an InsightMaker model that represents the same population as the stage matrix above. Provide the URL to your InsightMaker model in your write-up (and remember to clone your Insight to ensure that you don't alter the model once you submit it) .  
 
 2d. Use this stage matrix to project the population 20 years into the future, starting with 100 individuals at S.A.D. No need to show your R code- simply provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide both the InsightMaker and R plots to show that the two models are identical.    
 
@@ -315,11 +324,11 @@ As a test of your understanding, try to implement the following passage as a mat
 
 ##Checklist for Lab 4 completion
 
-* Please bundle all your responses into a single Word document and submit _using WebCampus_!
+* Please submit all responses _using the WebCampus quiz_!
 
 * As always, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). See details below...  
 
-***Due Mar. 8 at midnight***
+***Due Mar. 13 at midnight***
 
 *  Word document with short answers
     +  **Exercise 1**
