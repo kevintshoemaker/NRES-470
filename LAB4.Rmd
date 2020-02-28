@@ -54,7 +54,7 @@ We can be more explicit about this if we re-write the above equation this way:
 
 $\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_1 & F_2 & F_3\\ P_{1 \rightarrow 2} & P_{2 \rightarrow 2} & 0\\ 0 & P_{2 \rightarrow 3} & P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
 
-Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2 (per capita 'production' of stage 2 individuals by stage 1 individuals), and $F_2$ is the **fecundity** of stage 2 (per capita production of offspring by stage 2 individuals).
+Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2 (per capita 'production' of stage 2 individuals next year by stage 1 individuals this year), and $F_2$ is the **fecundity** of stage 2 (per capita production of offspring next year by stage 2 individuals this year).
 
 NOTE: _survival *P* in a stage transition matrix is NOT the same thing as the survival rate *g(x)* in a life table_. What's the difference? 
 
@@ -62,7 +62,7 @@ In a stage-based matrix model, individuals can survive in one of two ways- they 
 
 NOTE: _fecundity *F* in a stage transition matrix is NOT the same thing as age-specific birth rate *b(x)*_, $b$. What's the difference?
 
-Birth rate $b_t$ from life tables is the _per-capita rate of offspring production_ for age $t$. We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
+Birth rate $b_t$ from life tables is the _per-capita rate of offspring_ for age $t$ individuals. We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
 
 Fecundity, $F_s$, is the _per-capita rate by which individuals that were in stage $s$ at time $t$ contribute new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference?? Well, the difference is exactly *one time step* (which in our example was one year)!
 
