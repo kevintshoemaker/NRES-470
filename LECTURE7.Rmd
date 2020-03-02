@@ -438,13 +438,13 @@ How do you incorporate density-dependence into a matrix population model?
 
 How do you incorporate predator-prey dynamics into a matrix population model? [cue brain explosion]     
 
-_Whatever you can do with a matrix population model, you can also do in InsightMaker (or other programming platform)_ (but it might be complicated and messy)
+_Whatever you can do with a matrix population model, you can also do in InsightMaker (or R, or any other programming platform)_ (but it might not be as 'pretty' or elegant as a matrix population model!)
 
 The reverse is NOT true: **you can not always convert InsightMaker models to matrix population models** (IM is a programming language, so is much more flexible!)   
 
 ### Review of matrix multiplication
 
-(on the whiteboard)
+(on the whiteboard during lab!)
 
 ### In-class exercise: matrix projection models
 
@@ -455,7 +455,7 @@ NOTE: this is also a question in Lab 4!
 
 ![](redtail1.jpg)
 
-> We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. 
+> We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. 
 
 **Q:** What does the transition matrix look like? [tophat]
 

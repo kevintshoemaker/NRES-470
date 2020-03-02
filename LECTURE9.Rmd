@@ -1,7 +1,7 @@
 ---
 title: "Small-population paradigm"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-Aside: [MSY Insigtmaker model](https://insightmaker.com/insight/161312/MSY2) to accompany Kelley's mini-lecture!
+Aside: [MSY Insightmaker model](https://insightmaker.com/insight/161312/MSY2) to accompany Kelley's mini-lecture!
 
 The final extinction of a population usually is probabilistic. That is, once the population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deal the final death knell to a population. In conservation biology the study of processes that disproportionately influence small populations is called the *small-population paradigm*. 
 

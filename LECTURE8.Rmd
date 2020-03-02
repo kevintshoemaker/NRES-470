@@ -1,7 +1,7 @@
 ---
 title: "Stochasticity and Uncertainty"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -45,16 +45,16 @@ This is one of the most important modules in this course. But it is *not in the 
 
 There are two major reasons we can be uncertain. Either we _lack sufficient knowledge_ or the _system itself is variable and unpredictable_. Let's explore these two types of uncertainty.
 
-- **You lack sufficient knowledge**. This is also known variously as *sampling uncertainty*, parameter uncertainty, structural uncertainty, and more. *In practical terms: if you collected more data you could in principle make a better model that more closely represents reality.*
+- **You lack sufficient knowledge**. This is also known variously as *sampling uncertainty*, parameter uncertainty, structural uncertainty, and more. *In practical terms: if you collected more data you could (in principle) make a better model that more closely represents reality.*
 
-- **The system is inherently variable and unpredictable**. In population ecology and systems modeling, this is also known as **stochasticity**. *In practical terms: no matter how much we study and understand a natural system, we will never be able to predict the future with certainty.* Ecological systems are inherently variable and unpredictable. We can't know with certainty whether or not an individual will mate, or die. We can't really even be certain whether the environmental conditions (e.g., weather) will be favorable or unfavorable for offspring production or mortality! 
+- **The system is inherently variable and unpredictable**. In population ecology and systems modeling, this is also known as **stochasticity**. *In practical terms: no matter how much we study and understand a natural system, we will never be able to predict the future with certainty*. Ecological systems are inherently variable and unpredictable. We can't know with certainty whether or not an individual will mate, or die. We can't really even be certain whether the environmental conditions (e.g., weather) will be favorable or unfavorable for offspring production or mortality! 
 
 ## How to deal with uncertainty
 As applied population ecologists, we must **embrace uncertainty**. we have two major tools to help us manage and account for uncertainty in our study systems: _uncertainty analysis_ and _stochastic models_
 
 ### Uncertainty analysis
 
-What if we simply don't have enough data to build a perfect model? This is an example of *lacking sufficient knowledge*. In this case, the tool we use is called **uncertainty analysis**. Basically, we try a range of plausible values for a parameter we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?). 
+What if we simply don't have enough data to build a perfect model? This is an example of *lacking sufficient knowledge*. In this case, the tool we use is called **uncertainty analysis**. Basically, we try a range of possible values for a parameter (usually a per-capita vital rate- often modeled as [Variables] in InsightMaker) we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?). 
 
 ### Stochastic models (demographic and environmental stochasticity)
 
@@ -70,7 +70,7 @@ To incorporate uncertainty and randomness into our models, we need to include *s
 ![](lottery1.png)
 
 
-Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. 
+Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box.This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis. 
 
 If you want to follow along with this lecture in R, you can find the R script [here](LECTURE8.R). I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.
 
@@ -91,7 +91,7 @@ barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")       
 ```
 
 
-A probability distribution can be pretty much anything you want it to be. However, there are several key distributions that come up again and again, and we should learn them!
+A probability distribution can be pretty much anything you want it to be. However, there are several key tyles of probability distribution that come up again and again, and we should learn them!
 
 ### Probability distributions
 
