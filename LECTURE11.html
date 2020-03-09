@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -380,6 +447,12 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -403,8 +476,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Declining-population paradigm</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -420,55 +493,34 @@ div.tocify {
 <p>What are some factors that can <em>tip the balance</em> so to speak- so that growing or stable populations become declining populations?</p>
 <div id="over-harvest" class="section level3">
 <h3>Over-harvest</h3>
-<div class="figure">
-<img src="overharvest1.jpg" />
-
-</div>
+<p><img src="overharvest1.jpg" /></p>
 </div>
 <div id="habitat-loss-and-degradation" class="section level3">
 <h3>Habitat loss and degradation</h3>
-<div class="figure">
-<img src="habitatloss1.jpg" />
-
-</div>
+<p><img src="habitatloss1.jpg" /></p>
 </div>
 <div id="pathogens-and-parasites" class="section level3">
 <h3>Pathogens and parasites</h3>
-<div class="figure">
-<img src="whitenose1.jpg" />
-
-</div>
+<p><img src="whitenose1.jpg" /></p>
 </div>
 <div id="climate-change" class="section level3">
 <h3>Climate change</h3>
-<div class="figure">
-<img src="climatechange1.jpg" />
-
-</div>
+<p><img src="climatechange1.jpg" /></p>
 </div>
 <div id="exotic-nvasive-species" class="section level3">
 <h3>Exotic nvasive species</h3>
-<div class="figure">
-<img src="bullfrog1.jpg" />
-
-</div>
+<p><img src="bullfrog1.jpg" /></p>
 </div>
 <div id="pollution" class="section level3">
 <h3>Pollution</h3>
-<div class="figure">
-<img src="pollution1.png" />
-
-</div>
+<p><img src="pollution1.png" /></p>
 </div>
 </div>
 <div id="the-debate-in-conservation-biology" class="section level2">
 <h2>The debate in Conservation Biology!</h2>
 <p>So, which one is more important for conservation? The declining-population paradigm or the small-population paradigm??</p>
 <p>This “controversy” was ignited by a <a href="caughley1.pdf">very influential paper by Graeme Caughley</a> in <em>Journal of Animal Ecology</em> in 1994.</p>
-<div class="figure">
-<img src="caughley1.jpg" />
-
-</div>
+<p><img src="caughley1.jpg" /></p>
 <p>In this paper, Caughley defines the two competing paradigms, and expresses a bias towards one paradigm and against the other…</p>
 <blockquote>
 <p>Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.</p>
@@ -480,10 +532,7 @@ div.tocify {
 <p>Let’s try a worked example to illustrate the above points.</p>
 <p>Let’s start with a souped up scalar, density-dependent population – should look something like this:</p>
 <p>You can clone this model by clicking <a href="https://insightmaker.com/insight/74417/declining-population-paradigm">here</a></p>
-<div class="figure">
-<img src="IM5.PNG" />
-
-</div>
+<p><img src="IM5.PNG" /></p>
 <p>You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the model and make sure you understand how it works.</p>
 <p>For this exercise, let’s change the initial population to 200 (half of K).</p>
 <p>Also, make sure that the time step is 1 year, and the model should run for 50 years.</p>
@@ -536,6 +585,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

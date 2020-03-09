@@ -65,7 +65,7 @@ What if we simply don't have enough data to build a perfect model? This is an ex
 ![](dice1.png)
 
 ## Random number generation
-To incorporate uncertainty and randomness into our models, we need to include *stochastic* components so that each model run (replicate) -- or each year of each model run -- is different from one another (the results are variable). That is, we need to include at least one **random number generator** in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.
+To incorporate uncertainty and randomness into our models, we often include *stochastic* components so that each model run (replicate) -- or each year of each model run -- is different from one another (the results are variable). That is, we need to include at least one **random number generator** in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.
 
 ![](lottery1.png)
 
@@ -312,7 +312,7 @@ hist(hatch_perfem)
 
 **Q**: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [tophat]
 
-Now let's try to fit a distribution to these data! We could use a normal distribution (which would be perfectly fine), but because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) it's even better to use a lognormal distribution!
+Now let's try to fit a distribution to these data! We could use a normal distribution (which would be perfectly fine), but because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) it's even more appropriate to use a lognormal distribution!
 
 We could use statistics to fit the distribution, but we are just going to use trial and error for now! Here is some code to help you get started.
 
@@ -389,7 +389,7 @@ RandBinomial([Population], [Death rate])
 
 In plain English: the number of deaths each year is a random quantity determined by "coin-flipping" (Binomial distribution is the "coin flip" distribution). The total deaths is computed by flipping a coin for each individual in the population and killing off all individuals that come out 'heads' (where the probability of coming up 'heads' is the death rate). 
 
-For the total births, $B$ we will use the *Poisson* distribution. The Poisson distribution is often use to represent births, because it produces whole numbers AND it can generate numbers bigger than the total population size. 
+For the total births, $B$ we will use the *Poisson* distribution. The Poisson distribution is often use to represent births, because it produces whole numbers, can't go negative, AND it has no hard upper limit (unlike the binomial distribution). 
 
 NOTE: there could feasibly be more births than there are individuals currently in the population (e.g., if all individuals have two offspring!). This would not be possible with a binomial distribution! That is, you can't get more "heads" (deaths) than the total number of coin flips (individuals in the population). 
 
@@ -452,7 +452,7 @@ Rand(0, 1)
 **Q** What if environmental stochasticity influences survival and fecundity in the same manner? That is: what if a "good year" for births is also a good year for survival? Would this increase or decrease the effect of environmental stochasticity on population dynamics? In InsightMaker, try to implement a scenario where the environmental stochasticity in survival rate is perfectly **correlated** with environmental stochasticity in birth rate. 
 
 
-Hint: you will need another [variable] in your InsightMaker canvas- this variable could be named something like "Habitat Quality", and should store a random draw from a Normal distribution with mean "0" and standard deviation "1":
+Hint: you will need another [variable] in your InsightMaker canvas- this variable could be named something like "Forage Quality", and should store a random draw from a Normal distribution with mean "0" and standard deviation "1":
 
 ```
 RandNormal(0, 1)
@@ -461,7 +461,7 @@ RandNormal(0, 1)
 Next, you can alter your per-capita fecundity parameter to have the following syntax, which would represent a mean fecundity of 0.85 with a standard deviation of 0.4
 
 ```
-0.85+0.4*[habitat quality]
+0.85+0.4*[forage quality]
 ```
 
 
@@ -469,9 +469,6 @@ Next, you can alter your per-capita fecundity parameter to have the following sy
 
 
 
-
-
-1500/4
 
 
 

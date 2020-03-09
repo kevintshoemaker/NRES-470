@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -380,6 +447,12 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -403,17 +476,14 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Intro to individual-based models (IBM)</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
 <p>NOTE: Many thanks to Elizabeth Hunter (Georgia Southern Univerisity) for helping to develop the demonstration at the end of this lecture!</p>
-<div class="figure">
-<img src="birds1.jpg" />
-
-</div>
+<p><img src="birds1.jpg" /></p>
 <p>So far in this class we have considered the <strong>population</strong> as the fundamental unit that we are interested in modeling. The population is a [Stock] and all processes that can change the size of the population are [Flows]. All individuals within any [Stock] are assumed to be interchangeable (identical in every way), and are not modeled explicitly.</p>
 <p>The fact that we model populations as our fundamental unit of interest makes sense for a population ecology class! BUT we are also aware (of course) that populations consist of <strong>individuals</strong> that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the <em>individual level</em>.</p>
 <p>In some ways a population is hard to define- it can be a bit of an artificial or abstract concept. Where exactly does a population begin and end?</p>
@@ -422,10 +492,7 @@ div.tocify {
 <h2>The General Modeling Workflow</h2>
 <p>Before we define how individual-based models differ from the population-level stock-flow models we have already been using, let’s first point out the similarities.</p>
 <p>First of all, the basic modeling workflow is ALWAYS the same, no matter what kind of model we want to use!</p>
-<div class="figure">
-<img src="model_wkflow1.jpg" />
-
-</div>
+<p><img src="model_wkflow1.jpg" /></p>
 <p>All models are a way to <strong>formalize our understanding about our study system</strong>.</p>
 <p><strong>Population-based models</strong> (PBM; i.e., models of <span class="math inline">\(N\)</span>) are the main type of model we consider in this class: with all individuals in a [Stock] considered to be interchangeable, <span class="math inline">\(N\)</span> (possibly age-structured) is our main variable of interest. <span class="math inline">\(N\)</span> is in turn controlled by endogenous factors (forces coming from inside the population – e.g., density-dependence, demographic stochasticity) and exogenous factors (forces coming from outside the population – e.g., environmental stochasticity, harvest).</p>
 <p><strong>Age/stage structured PBMs</strong> and <strong>sex structured PBMs</strong> (i.e., models of <span class="math inline">\(\mathbf{N}\)</span>, i.e., matrix population models) are types of PBM in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.</p>
@@ -435,10 +502,7 @@ div.tocify {
 <h3>Which model structure should I use? IBM or PBM??</h3>
 <p>In general, models are tools- you should use the model structure that best fits with the questions you are asking and your understanding of the study system!</p>
 <p>And also, if two different model structures are equally appropriate, you should usually use the <strong>simplest approach</strong>! This idea is often called the <em>Principle of Parsimony</em> (or, <em>Occam’s Razor</em>).</p>
-<div class="figure">
-<img src="occam1.jpg" />
-
-</div>
+<p><img src="occam1.jpg" /></p>
 <p>Both IBM and PBM can be used to address questions at the population or metapopulation level.</p>
 <div id="rules-of-thumb" class="section level4">
 <h4>Rules of thumb</h4>
@@ -468,10 +532,7 @@ div.tocify {
 <li><p>How many wolves should be introduced to produce the desired ecological effect (lush carpets of green grass)? How long will it take to achieve this desired effect?</p></li>
 </ul>
 <p>The agency biologists give you some information to get a first guess and they promise that you’ll be able to come study this natural system once the reintroductions are underway.</p>
-<div class="figure">
-<img src="sheep1.png" />
-
-</div>
+<p><img src="sheep1.png" /></p>
 </div>
 <div id="the-details" class="section level3">
 <h3>The details!</h3>
@@ -499,7 +560,7 @@ div.tocify {
 <div id="grass" class="section level4">
 <h4>Grass</h4>
 <ul>
-<li>The release site is essentially one large grassy pasture. For the purposes of this exercise, we will model this pastoral release site as a grid of 100 functionally equivalent plots. Each plot starts off with 10 “units”&quot; of grass (each “unit” of grass can support exactly 1 sheep).</li>
+<li>The release site is essentially one large grassy pasture. For the purposes of this exercise, we will model this pastoral release site as a grid of 100 functionally equivalent plots. Each plot starts off with 10 “units”" of grass (each “unit” of grass can support exactly 1 sheep).</li>
 <li>Each grass plot can have a maximum of 50 units of grass.</li>
 <li>Each plot can grow approximately 0.7 units of grass per day.</li>
 </ul>
@@ -545,6 +606,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

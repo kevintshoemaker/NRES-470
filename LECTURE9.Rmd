@@ -29,7 +29,7 @@ This illustrates the very important concept, that small populations can go extin
 
 The moral of the story for demographic stochasticity was: weird and dramatic things (e.g., extinction) can happen in small populations!
 
-Weird and dramatic things like random extinction just would **never happen** in large populations just due to random chance (in a stable, favorable environment)!
+Weird and dramatic things like random extinction just would **never happen** in large populations just due to random chance (assuming a stable, favorable environment)!
 
 Same goes for *genetic drift*! Genetic drift is a _small-population phenomenon_!
 
@@ -63,7 +63,7 @@ Inbreeding depression is another problem peculiar to small populations.
 
 Most diploid populations have some bad gene variants (alleles) in their gene pool. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! And since these alleles are rare, it is extremely unlikely that you get two copies of the same bad allele!   
 
-Unless...your two parents are close relatives, and both inherited the same allele from a common ancestor! 
+Unless...your two parents are close relatives, and both inherited the same gene variant from a common ancestor! 
 
 **Q**: Why is it more likely for your two parents to be close relatives if you are living in a small population?
 
@@ -91,9 +91,9 @@ However, the MVP concept derived from *conservation biology* and not from theore
 
 The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size (MVP) is that *population size above which the extinction vortex can be safely averted*.
 
-However, the above definition is not strictly quantifiable. Also MVP is often defined in relation to population models, many of which don't have an explicit genetic component (becuase we often don't know exactly how many deleterious recessive alleles are in a population!). The quantitative, operational definition that we will use in this course is:
+However, the above definition is not strictly quantifiable for most species. Also MVP is often defined in relation to population models, many of which don't have an explicit genetic component (becuase we often don't know exactly how many deleterious recessive alleles are in a population!). The quantitative, operational definition that we will use in this course is:
 
-> _MVP: the initial abundance threshold below which the risk of extinction over a specified time period (e.g., 50 years) exceeds a specified threshold (e.g., 10%)_
+> _MVP: the smallest initial abundance that satisfied a specified extinction risk threshold (e.g., the smallest initial abundance such that the risk of extinction over 50 years is below 10%)_
 
 ## Population Viability Analysis (PVA)
 
