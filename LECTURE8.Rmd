@@ -91,7 +91,7 @@ barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")       
 ```
 
 
-A probability distribution can be pretty much anything you want it to be. However, there are several key tyles of probability distribution that come up again and again, and we should learn them!
+A probability distribution can be pretty much anything you want it to be. However, there are several key types of probability distribution that come up again and again, and we should learn them!
 
 ### Probability distributions
 
@@ -399,7 +399,14 @@ To do this in InsightMaker, use the following formula for the *Births* flow:
 RandPoisson([Population]*[Birth rate])
 ```
 
-In plain English: the number of births ([Births] flow in InsightMaker) is a random draw from a Poisson random number generator with a mean equal to the expected number of births ([Population]*[Birth rate]).
+-or-
+
+```
+Lambda <- [Population]*[Birth rate]
+RandPoisson(Lambda)
+```
+
+In plain English: the number of births ([Births] flow in InsightMaker) is a random draw from a Poisson random number generator with a mean (Lambda) equal to the expected number of births ([Population]*[Birth rate]).
 
 3. Run the simulation. What does it look like?
 
