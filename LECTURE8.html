@@ -514,7 +514,7 @@ div.tocify {
 </div>
 <div id="random-number-generation" class="section level2">
 <h2>Random number generation</h2>
-<p>To incorporate uncertainty and randomness into our models, we need to include <em>stochastic</em> components so that each model run (replicate) – or each year of each model run – is different from one another (the results are variable). That is, we need to include at least one <strong>random number generator</strong> in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.</p>
+<p>To incorporate uncertainty and randomness into our models, we often include <em>stochastic</em> components so that each model run (replicate) – or each year of each model run – is different from one another (the results are variable). That is, we need to include at least one <strong>random number generator</strong> in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.</p>
 <p><img src="lottery1.png" /></p>
 <p>Every random-number generator has a <strong>distribution</strong>. This is a way of defining what exactly is in the box.This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis.</p>
 <p>If you want to follow along with this lecture in R, you can find the R script <a href="LECTURE8.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.</p>
@@ -529,7 +529,7 @@ div.tocify {
 box &lt;- c(rep(1,10),rep(2,5),rep(3,2))                                           # define what&#39;s in the lottery ball machine (10 &quot;1&quot; balls, 5 &quot;2&quot; balls and 2 &quot;3&quot; balls)
 barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possibility&quot;)       # visualize the distribution of possibilities</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>A probability distribution can be pretty much anything you want it to be. However, there are several key tyles of probability distribution that come up again and again, and we should learn them!</p>
+<p>A probability distribution can be pretty much anything you want it to be. However, there are several key types of probability distribution that come up again and again, and we should learn them!</p>
 <div id="probability-distributions" class="section level3">
 <h3>Probability distributions</h3>
 </div>
@@ -676,7 +676,7 @@ hatch_perfem &lt;- c(3.05, 1.45, 0.99, 3.24, 1.49, 1.70, 1.66, 2.32, 0.83, 2.41,
 hist(hatch_perfem)</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><strong>Q</strong>: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [tophat]</p>
-<p>Now let’s try to fit a distribution to these data! We could use a normal distribution (which would be perfectly fine), but because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) it’s even better to use a lognormal distribution!</p>
+<p>Now let’s try to fit a distribution to these data! We could use a normal distribution (which would be perfectly fine), but because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) it’s even more appropriate to use a lognormal distribution!</p>
 <p>We could use statistics to fit the distribution, but we are just going to use trial and error for now! Here is some code to help you get started.</p>
 <p>Note that the lognormal distribution has two parameters: the first (‘meanlog’) helps to define the mean and the other (‘sdlog’) helps to determine the variability of the distribution.</p>
 <pre class="r"><code>############
@@ -726,11 +726,14 @@ rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example! (remember to change the &quot
 </ol>
 <pre><code>RandBinomial([Population], [Death rate])</code></pre>
 <p>In plain English: the number of deaths each year is a random quantity determined by “coin-flipping” (Binomial distribution is the “coin flip” distribution). The total deaths is computed by flipping a coin for each individual in the population and killing off all individuals that come out ‘heads’ (where the probability of coming up ‘heads’ is the death rate).</p>
-<p>For the total births, <span class="math inline">\(B\)</span> we will use the <em>Poisson</em> distribution. The Poisson distribution is often use to represent births, because it produces whole numbers AND it can generate numbers bigger than the total population size.</p>
+<p>For the total births, <span class="math inline">\(B\)</span> we will use the <em>Poisson</em> distribution. The Poisson distribution is often use to represent births, because it produces whole numbers, can’t go negative, AND it has no hard upper limit (unlike the binomial distribution).</p>
 <p>NOTE: there could feasibly be more births than there are individuals currently in the population (e.g., if all individuals have two offspring!). This would not be possible with a binomial distribution! That is, you can’t get more “heads” (deaths) than the total number of coin flips (individuals in the population).</p>
 <p>To do this in InsightMaker, use the following formula for the <em>Births</em> flow:</p>
 <pre><code>RandPoisson([Population]*[Birth rate])</code></pre>
-<p>In plain English: the number of births ([Births] flow in InsightMaker) is a random draw from a Poisson random number generator with a mean equal to the expected number of births ([Population]*[Birth rate]).</p>
+<p>-or-</p>
+<pre><code>Lambda &lt;- [Population]*[Birth rate]
+RandPoisson(Lambda)</code></pre>
+<p>In plain English: the number of births ([Births] flow in InsightMaker) is a random draw from a Poisson random number generator with a mean (Lambda) equal to the expected number of births ([Population]*[Birth rate]).</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Run the simulation. What does it look like?</p></li>
 <li><p>Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times. Choose [Population] as the “Monitored Primitive”. NOTE: I recommend choosing the “Plot Each Run” button – that way we can generate a “spaghetti plot”.</p></li>
@@ -762,10 +765,10 @@ rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example! (remember to change the &quot
 <p>Hint: The most basic (most commonly used) random number generator draws numbers from a <em>uniform</em> distribution with a minimum of 0 and a maximum of 1. To do this in InsightMaker, you can use this syntax:</p>
 <pre><code>Rand(0, 1)</code></pre>
 <p><strong>Q</strong> What if environmental stochasticity influences survival and fecundity in the same manner? That is: what if a “good year” for births is also a good year for survival? Would this increase or decrease the effect of environmental stochasticity on population dynamics? In InsightMaker, try to implement a scenario where the environmental stochasticity in survival rate is perfectly <strong>correlated</strong> with environmental stochasticity in birth rate.</p>
-<p>Hint: you will need another [variable] in your InsightMaker canvas- this variable could be named something like “Habitat Quality”, and should store a random draw from a Normal distribution with mean “0” and standard deviation “1”:</p>
+<p>Hint: you will need another [variable] in your InsightMaker canvas- this variable could be named something like “Forage Quality”, and should store a random draw from a Normal distribution with mean “0” and standard deviation “1”:</p>
 <pre><code>RandNormal(0, 1)</code></pre>
 <p>Next, you can alter your per-capita fecundity parameter to have the following syntax, which would represent a mean fecundity of 0.85 with a standard deviation of 0.4</p>
-<pre><code>0.85+0.4*[habitat quality]</code></pre>
+<pre><code>0.85+0.4*[forage quality]</code></pre>
 <p><a href="LECTURE9.html">–go to next lecture–</a></p>
 </div>
 </div>
