@@ -13,9 +13,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-Aside: [MSY Insightmaker model](https://insightmaker.com/insight/161312/MSY2) to accompany Kelley's mini-lecture!
 
-The final extinction of a population usually is probabilistic. That is, once the population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deal the final death knell to a population. In conservation biology the study of processes that disproportionately influence small populations is called the *small-population paradigm*. 
+The final extinction of a population usually is probabilistic. That is, once the population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deliver the final death knell to a population. In conservation biology the study of processes that disproportionately influence small populations is called the *small-population paradigm*. 
 
 That is: the small-population paradigm refers to the tendency in **conservation biology** to study those largely *stochastic* factors that can result in the extinction or degradation of small populations. 
 
@@ -23,32 +22,28 @@ That is: the small-population paradigm refers to the tendency in **conservation 
 
 We have already explored this concept, which is central to the small population paradigm! 
 
-The simple fact is: _it's much more likely for all 10 individuals in a population to be **unlucky** in a given year than for all 1000 individuals in a population to be **unlucky** in a given year!!_ -- just as it is very unlikely for all coin flips out of 1000 to come up heads...
+The simple fact is: _it is much more likely for all 10 individuals in a population to be **unlucky** in a given year than for all 1000 individuals in a population to be **unlucky** in a given year!!_ -- just as it is very unlikely for all coin flips out of 1000 to come up heads...
 
 This illustrates the very important concept, that small populations can go extinct due to demographic stochasticity alone, whereas this possibility is vanishingly small for large populations. 
 
-The moral of the story for demographic stochasticity was: weird and dramatic things (e.g., extinction) can happen in small populations!
+The moral of the story for demographic stochasticity is: weird and dramatic things (e.g., extinction) can happen in small populations for no other reason than that the population is small!
 
-Weird and dramatic things like random extinction just would **never happen** in large populations just due to random chance (assuming a stable, favorable environment)!
+Weird and dramatic things like random extinction just would **never happen** in large populations due to random mating, birth, and mortality processes (assuming a stable, favorable environment and no range-wide catastrophic events)!
 
 Same goes for *genetic drift*! Genetic drift is a _small-population phenomenon_!
 
 
 ### Genetic drift
 
-![](geneticdrift1.png)
+In large populations, random forces are just not strong enough to eradicate a relatively common gene variant (allele) from a population (this could happen by natural selection, but not through random reproductive processes). In small populations, random chance can be the primary driver of genetic change over time! 
 
-For example: in large populations, random forces are just not strong enough to eradicate a relatively common allele from a population (this could happen via natural selection, but not through random reproductive processes). 
+![](geneticdrift1.png)
 
 Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). The different colored balls represent different genetic variants. Each jar, left to right, represents a different (non-overlappling) generation. 
 
 Does this sound familiar? Just by random chance, some individuals will breed and some will not. Just by random chance, some individuals will have more of their offspring survive. Genetic drift is simply a consequence of **demographic stochasticity**. 
 
-Finally, let's imagine that the red balls represent individuals that are more likely to survive a rare drought (but have no selective advantage or disadvantage under normal circumstances). 
-
-Under normal conditions, the number of births is completely random. And if this was a sexually reproducing diploid population, mating should be random too. 
-
-Just by random chance, the blue individuals happen to reproduce more than the red individuals- the blue variant becomes **fixed** in the population and the red variants go extinct. *There is no natural selection involved in this scenario -- just stochasticity!*
+Finally, let's imagine that the red balls represent individuals that are more likely to survive a rare drought (but have no selective advantage or disadvantage under normal circumstances). Just by random chance, the blue individuals happen to successfully mate and reproduce more than the red individuals- the blue variant becomes **fixed** in the population and the red variants go extinct. *There is no natural selection involved in this scenario -- just stochasticity!*
 
 And now, by random chance, this population is now more susceptible to drought than it was before!
 
@@ -61,9 +56,9 @@ And now, by random chance, this population is now more susceptible to drought th
 
 Inbreeding depression is another problem peculiar to small populations.
 
-Most diploid populations have some bad gene variants (alleles) in their gene pool. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! And since these alleles are rare, it is extremely unlikely that you get two copies of the same bad allele!   
+Most diploid populations have some 'bad' gene variants (alleles) in their gene pool. These are often called **deleterious alleles**. These deleterious alleles usually don't cause problems becuase in general they are **recessive** - that is, the bad effect is only apparent if an individual has _two copies of that allele_! And since these alleles are rare, it is extremely unlikely that you get two copies of the same bad allele!   
 
-Unless...your two parents are close relatives, and both inherited the same gene variant from a common ancestor! 
+Unless...your two parents are close relatives. If your parents are close relatives, both of them have a relatively high probability of inheriting at least one of the same 'bad' gene variants from a single common ancestor! 
 
 **Q**: Why is it more likely for your two parents to be close relatives if you are living in a small population?
 
@@ -81,19 +76,21 @@ One of the central ideas arising from the small population paradigm is the conce
 
 Once a population gets small enough, it becomes subject to catastrophic declines due to demographic (and environmental) stochasticity, leading to inbreeding and random loss of useful genes, leading to reduced vital rates, leading to smaller population sizes, leading to further genetic degradation, leading to more possibility of catastrophic declines due to demographic stochasticity, leading inevitably to extinction...
 
+In general, extinction is often caused by stochastic processes, but stochastic processes are unlikely to be the reason the population got small in the first place!
+
 ## Minimum Viable Populations (MVP)
 
-As wildlife managers, we often wish to know: "how small does a population have to be before we have to start worrying about adverse consequences (extinction, genetic erosion, inbreeding)"
+As wildlife managers, we often wish to know: "how small does a population have to be before we have to start worrying about adverse consequences like extinction, genetic erosion, and inbreeding?"
 
 When we talked about [Allee effects](LECTURE5.html), we saw a case in which a deterministic population model could have a minimum viable population size- below a certain critical threshold, the population was doomed to extinction, and above the threshold the population would deterministically increase until carrying capacity. 
 
-However, the MVP concept derived from *conservation biology* and not from theoretical population biology. Conservation biology deals with real-world systems which are messy, variable and uncertain. Therefore, the MVP concept is usually quantified using stochastic population models.  
+However, the MVP concept is derived from *conservation biology* and not from theoretical population biology. Conservation biology deals with real-world systems which are messy, variable and uncertain. Therefore, the MVP concept is usually quantified using stochastic population models.  
 
 The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size (MVP) is that *population size above which the extinction vortex can be safely averted*.
 
 However, the above definition is not strictly quantifiable for most species. Also MVP is often defined in relation to population models, many of which don't have an explicit genetic component (becuase we often don't know exactly how many deleterious recessive alleles are in a population!). The quantitative, operational definition that we will use in this course is:
 
-> _MVP: the smallest initial abundance that satisfied a specified extinction risk threshold (e.g., the smallest initial abundance such that the risk of extinction over 50 years is below 10%)_
+> _MVP: the smallest abundance that satisfies a specified extinction risk threshold (e.g., the smallest initial abundance such that the risk of extinction over 50 years is below 10%)_
 
 ## Population Viability Analysis (PVA)
 
@@ -102,7 +99,6 @@ Population Viability Analysis (PVA) is often used to model the processes involve
 The most widely-used PVA software, [Vortex](http://www.vortex10.org/Vortex10.aspx), gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.  
 
 ![](vortex10.jpg)
-
 
 
 ## Example: Aruba island rattlesnake
@@ -123,6 +119,9 @@ See [Lab 5](LAB5.html) for the related MVP activity.
 **Q** Why are island-endemic species like the Aruba rattlesnake so vulnerable to extinction? [tophat]
 
 **Q** Are species that are confined to small areas (like the Aruba rattlesnake) more vulnerable to *environmental stochasticity* than species that occupy larger geographic ranges? [tophat]
+
+
+Aside: [MSY Insightmaker model](https://insightmaker.com/insight/161312/MSY2)- last year Dr. Stewart gave a mini-lecture on MSY to clarify some concepts- you can use the above link to review basic concepts about logistic growth and MSY.
 
 [--go to next lecture--](LECTURE10.html)
 

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -94,8 +93,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +135,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -241,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +308,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -380,6 +447,12 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -403,14 +476,14 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Lab 5: Intro to stochastic models</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
 <p>Now we are going to shift focus from age-structured population models for now!</p>
-<p>In this lab we will continue to add complexity (and biological realism) to our population models in InsightMaker. Among the concepts we will explore are <em>parameter uncertainty</em>, <em>demographic stochasticity</em> and <em>environmental stochasticity</em>.</p>
+<p>In this lab we will continue to add complexity (and realism) to our population models in InsightMaker. Among the concepts we will explore are <em>parameter uncertainty</em>, <em>demographic stochasticity</em> and <em>environmental stochasticity</em>.</p>
 <p>Here are the concepts we need for this lab (review!):</p>
 <ol style="list-style-type: decimal">
 <li>What if we don’t have enough data to specify our model (always the case!)? Another way of saying this is that we <em>lack sufficient knowledge</em> to parameterize our model. We can characterize this type of uncertainty as a <strong>confidence interval</strong> or simply upper and lower bounds. Some ways this uncertainty could be represented include:</li>
@@ -458,10 +531,7 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 <div id="exercise-1-uncertainty" class="section level2">
 <h2>Exercise 1: Uncertainty!</h2>
 <p>Start with a basic exponentially growing population that looks something like this:</p>
-<div class="figure">
-<img src="IM10.jpg" />
-
-</div>
+<p><img src="IM10.jpg" /></p>
 <p>This should look familiar!</p>
 <p>Set <em>Birth rate</em> equal to 0.3 and <em>Death rate</em> equal to 0.2. <em>Set initial abundance to 20</em>. Under the “Settings” menu set the model to run for 15 years. Make sure your <em>Population</em> stock can NOT go negative (this is a setting in the configurations panel). Hit “Simulate”- you should see <em>exponential growth</em>!</p>
 <p>What if we have imperfect knowledge about birth rate? The data we have are consistent with a birth rate <span class="math inline">\(b\)</span> as low as 0.15 and as high as 0.35. Run the model with the lowest and the highest possible birth rate. Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> about the per-capita birth rate.</p>
@@ -507,15 +577,9 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 <div id="exercise-3-minimum-viable-population" class="section level2">
 <h2>Exercise 3: Minimum Viable Population</h2>
 <p>The aruba island rattlesnake, or Cascabel (<em>Crotalus durissus unicolor</em>), is the top predator on the island of Aruba, and primarily consumes rodents.</p>
-<div class="figure">
-<img src="aruba_rattlesnake1.jpg" />
-
-</div>
+<p><img src="aruba_rattlesnake1.jpg" /></p>
 <p>The Aruba island rattlenake, as you might expect, occurs only on the island of Aruba.</p>
-<div class="figure">
-<img src="aruba1.png" />
-
-</div>
+<p><img src="aruba1.png" /></p>
 <p>The Aruba rattlesnake is listed as <em>Critically Endangered</em> by IUCN, and has several attributes that make it particularly susceptible to falling into the <strong>extinction vortex</strong>:</p>
 <ul>
 <li>Range is limited to the small island of Aruba<br />
@@ -560,14 +624,12 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 <p>3c. Find the <strong>minimum viable population (MVP)</strong>. (Note: you can refer to the “small population paradigm” <a href="LECTURE9.html">lecture</a> for more detail on the concept of Minimum Viable Population). Explain your reasoning, and provide plot(s) to back up your answer.</p>
 <p><em>By the way, you have now run your first PVA model!!</em></p>
 <p>3d. (thought question) The Aruba island rattlesnake is limited to the small island of Aruba. This fact alone is one of the main reasons this species is listed as <em>Critically Endangered</em> under the IUCN Red List (the major global ranking of conservation status). Explain why small range size might generally be associated with high extinction risk.</p>
-</div>
-<div id="checklist-for-lab-5-completion" class="section level2">
-<h2>Checklist for Lab 5 completion</h2>
+<p>##Checklist for Lab 5 completion</p>
 <ul>
 <li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
 <li><p>Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).</p></li>
 </ul>
-<p><strong><em>Due Mar. 26 at midnight</em></strong></p>
+<p><strong><em>Due Mar. 26 at midnight</em></strong></p>
 <ul>
 <li>Word document with short answers, model URLs, and figures (where appropriate)
 <ul>
@@ -619,6 +681,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
