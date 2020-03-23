@@ -44,13 +44,13 @@ $b = [1.1,1.9]$   --or--
 
 $b = 1.5 \pm 0.4$
 
-The tool we use to deal with this type of uncertainty is called **uncertainty analysis** (also commonly known as *sensitivity analysis*). Basically, we run the model for the lower and upper extreme possible values (lower and upper bounds) and see what happens to our study system (e.g., does the population go extinct? decline?). 
+The tool we use to deal with this type of uncertainty is called **uncertainty analysis**. Basically, we run the model for the lower and upper extreme possible values (lower and upper bounds) and see what happens to our study system (e.g., does the population go extinct? decline?). 
 
 2. Second, we usually can't predict whether an individual will live or die, breed or not breed, have females or males, have twins or triplets. In other words, we can't predict whether an _individual_ will "get lucky" or "get unlucky"! We might know (with absolute certainty!) the per-capita *probability* of breeding, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly who lives and dies, who gives birth and who doesn't, how many females are born, we _just can't know for sure_. In population ecology this type of uncertainty is called **demographic stochasticity**. In this case, the way we deal with this is we make the total number of births and deaths **stochastic** (that is, we use a random-number generator!).
 
 For the total annual number of births in a population, we usually use a **Poisson distribution**. The Poisson random number generator only produces whole numbers (we don't like fractional individuals anyway) and doesn't produce negative numbers. This makes it a good way to model births! 
 
-$Births = Poisson(b*N_t)      \qquad \text{(Eq. 1)}$
+$Births \sim Poisson(b*N_t)      \qquad \text{(Eq. 1)}$
 
 For example, let's imagine population size is 100 and the per-capita birth rate is exactly 0.8. Here is the *distribution* of Births (total annual number of births in the population):
 
@@ -68,7 +68,7 @@ hist(rpois(10000,(100*0.8)),main="",freq = F,ylab="Probability",xlab="Possibilit
 
 Deaths are usually modeled using a **Binomial distribution**. The Binomial random number generator only produces whole numbers (which we like) and can only produce numbers that are greater than or equal to 0 and less than or equal to the total population size. These properties make it good for esimating total number of (annual) mortality or survival events!
 
-$Deaths = Binomial(size=N_t,prob=d)     \qquad \text{(Eq. 2)}$
+$Deaths \sim Binomial(size=N_t,prob=d)     \qquad \text{(Eq. 2)}$
 
 Let's imagine population size is 100 and per-capita death rate is exactly 0.2. Here is the *distribution* of possible values for the total deaths in this population:
 
@@ -109,7 +109,7 @@ hist(rnorm(10000,1.1,0.4),main="",xlab="Possibilities (annual birth rates)",freq
 
 ```
 
-In general, we use a normal distribution if we want our random numbers to have a *central tendency* (humped or peaked distribution) and we use a uniform distribution if we want all possibilities to be equally probable.
+In general, we use a normal distribution if we want our random numbers to have a *central tendency* (humped or peaked distribution, where "average" values are more probable than "extreme" values) and we use a uniform distribution if we want all possibilities to be equally probable.
 
 Okay now let's get to the actual lab activity!
 
@@ -241,7 +241,7 @@ Here are the key model parameters! (note that much of this is simplified and/or 
 3a. Set up an InsightMaker model to represent the above scenario. Embed a link to your InsightMaker model in your write-up. As always, clone your Insight to ensure that this model doesn't change after you submit it!    
 
 3b. Is the current population **viable**, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame?
-    **Hint**: use the *Sensitivity Testing* tool to run 500 replicates. Visualize the 95% quantile. For a viable population the 95% quantile should stay above 0 (extinction) up to at least year 50 of the simulation.    
+    **Hint**: use the *Sensitivity Testing* tool to run 500 replicates. Visualize the 95% quantile. For a viable population, the 90% quantile should stay above 0 (extinction) up to at least year 50 of the simulation (if 90% of the simulation runs fall within the 90% quantile region, then ca. 5% fall below the region and 5% fall above the region -- we only care about the 5% that fall below!).    
     
 3c. Find the **minimum viable population (MVP)**. (Note: you can refer to the "small population paradigm" [lecture](LECTURE9.html) for more detail on the concept of Minimum Viable Population). Explain your reasoning, and provide plot(s) to back up your answer.  
 

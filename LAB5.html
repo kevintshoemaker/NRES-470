@@ -88,7 +88,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -490,12 +489,12 @@ div.tocify {
 </ol>
 <p><span class="math inline">\(b = [1.1,1.9]\)</span> –or–</p>
 <p><span class="math inline">\(b = 1.5 \pm 0.4\)</span></p>
-<p>The tool we use to deal with this type of uncertainty is called <strong>uncertainty analysis</strong> (also commonly known as <em>sensitivity analysis</em>). Basically, we run the model for the lower and upper extreme possible values (lower and upper bounds) and see what happens to our study system (e.g., does the population go extinct? decline?).</p>
+<p>The tool we use to deal with this type of uncertainty is called <strong>uncertainty analysis</strong>. Basically, we run the model for the lower and upper extreme possible values (lower and upper bounds) and see what happens to our study system (e.g., does the population go extinct? decline?).</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Second, we usually can’t predict whether an individual will live or die, breed or not breed, have females or males, have twins or triplets. In other words, we can’t predict whether an <em>individual</em> will “get lucky” or “get unlucky”! We might know (with absolute certainty!) the per-capita <em>probability</em> of breeding, or the <em>probability</em> of dying, or the per-capita <em>rate</em> of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly who lives and dies, who gives birth and who doesn’t, how many females are born, we <em>just can’t know for sure</em>. In population ecology this type of uncertainty is called <strong>demographic stochasticity</strong>. In this case, the way we deal with this is we make the total number of births and deaths <strong>stochastic</strong> (that is, we use a random-number generator!).</li>
 </ol>
 <p>For the total annual number of births in a population, we usually use a <strong>Poisson distribution</strong>. The Poisson random number generator only produces whole numbers (we don’t like fractional individuals anyway) and doesn’t produce negative numbers. This makes it a good way to model births!</p>
-<p><span class="math inline">\(Births = Poisson(b*N_t) \qquad \text{(Eq. 1)}\)</span></p>
+<p><span class="math inline">\(Births \sim Poisson(b*N_t) \qquad \text{(Eq. 1)}\)</span></p>
 <p>For example, let’s imagine population size is 100 and the per-capita birth rate is exactly 0.8. Here is the <em>distribution</em> of Births (total annual number of births in the population):</p>
 <pre class="r"><code>###############
 # Review random number generators:
@@ -505,7 +504,7 @@ div.tocify {
 hist(rpois(10000,(100*0.8)),main=&quot;&quot;,freq = F,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities (Total Births)&quot;)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Deaths are usually modeled using a <strong>Binomial distribution</strong>. The Binomial random number generator only produces whole numbers (which we like) and can only produce numbers that are greater than or equal to 0 and less than or equal to the total population size. These properties make it good for esimating total number of (annual) mortality or survival events!</p>
-<p><span class="math inline">\(Deaths = Binomial(size=N_t,prob=d) \qquad \text{(Eq. 2)}\)</span></p>
+<p><span class="math inline">\(Deaths \sim Binomial(size=N_t,prob=d) \qquad \text{(Eq. 2)}\)</span></p>
 <p>Let’s imagine population size is 100 and per-capita death rate is exactly 0.2. Here is the <em>distribution</em> of possible values for the total deaths in this population:</p>
 <pre class="r"><code># Binomial distribution
 
@@ -526,7 +525,7 @@ hist(runif(10000,0.8,1.7),main=&quot;&quot;,freq=F,xlab=&quot;Possibilities (ann
 
 hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual birth rates)&quot;,freq = F,ylab=&quot;Probability&quot;)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>In general, we use a normal distribution if we want our random numbers to have a <em>central tendency</em> (humped or peaked distribution) and we use a uniform distribution if we want all possibilities to be equally probable.</p>
+<p>In general, we use a normal distribution if we want our random numbers to have a <em>central tendency</em> (humped or peaked distribution, where “average” values are more probable than “extreme” values) and we use a uniform distribution if we want all possibilities to be equally probable.</p>
 <p>Okay now let’s get to the actual lab activity!</p>
 <div id="exercise-1-uncertainty" class="section level2">
 <h2>Exercise 1: Uncertainty!</h2>
@@ -620,7 +619,7 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 </ul></li>
 </ul>
 <p>3a. Set up an InsightMaker model to represent the above scenario. Embed a link to your InsightMaker model in your write-up. As always, clone your Insight to ensure that this model doesn’t change after you submit it!</p>
-<p>3b. Is the current population <strong>viable</strong>, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? <strong>Hint</strong>: use the <em>Sensitivity Testing</em> tool to run 500 replicates. Visualize the 95% quantile. For a viable population the 95% quantile should stay above 0 (extinction) up to at least year 50 of the simulation.</p>
+<p>3b. Is the current population <strong>viable</strong>, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? <strong>Hint</strong>: use the <em>Sensitivity Testing</em> tool to run 500 replicates. Visualize the 95% quantile. For a viable population, the 90% quantile should stay above 0 (extinction) up to at least year 50 of the simulation (if 90% of the simulation runs fall within the 90% quantile region, then ca. 5% fall below the region and 5% fall above the region – we only care about the 5% that fall below!).</p>
 <p>3c. Find the <strong>minimum viable population (MVP)</strong>. (Note: you can refer to the “small population paradigm” <a href="LECTURE9.html">lecture</a> for more detail on the concept of Minimum Viable Population). Explain your reasoning, and provide plot(s) to back up your answer.</p>
 <p><em>By the way, you have now run your first PVA model!!</em></p>
 <p>3d. (thought question) The Aruba island rattlesnake is limited to the small island of Aruba. This fact alone is one of the main reasons this species is listed as <em>Critically Endangered</em> under the IUCN Red List (the major global ranking of conservation status). Explain why small range size might generally be associated with high extinction risk.</p>
