@@ -619,11 +619,13 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 </ul></li>
 </ul>
 <p>3a. Set up an InsightMaker model to represent the above scenario. Embed a link to your InsightMaker model in your write-up. As always, clone your Insight to ensure that this model doesn’t change after you submit it!</p>
-<p>3b. Is the current population <strong>viable</strong>, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? <strong>Hint</strong>: use the <em>Sensitivity Testing</em> tool to run 500 replicates. Visualize the 95% quantile. For a viable population, the 90% quantile should stay above 0 (extinction) up to at least year 50 of the simulation (if 90% of the simulation runs fall within the 90% quantile region, then ca. 5% fall below the region and 5% fall above the region – we only care about the 5% that fall below!).</p>
+<p>3b. Is the current population <strong>viable</strong>, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? <strong>Hint</strong>: use the <em>Sensitivity Testing</em> tool to run at least 500 replicates. Visualize the 95% quantile. For a viable population under our definition, the lower bound of the 95% quantile region should be above 1 at year 50 of the simulation. Since 95% of the simulation runs fall within the 95% quantile region, then no more than 5% fall below the lower bound!</p>
 <p>3c. Find the <strong>minimum viable population (MVP)</strong>. (Note: you can refer to the “small population paradigm” <a href="LECTURE9.html">lecture</a> for more detail on the concept of Minimum Viable Population). Explain your reasoning, and provide plot(s) to back up your answer.</p>
 <p><em>By the way, you have now run your first PVA model!!</em></p>
 <p>3d. (thought question) The Aruba island rattlesnake is limited to the small island of Aruba. This fact alone is one of the main reasons this species is listed as <em>Critically Endangered</em> under the IUCN Red List (the major global ranking of conservation status). Explain why small range size might generally be associated with high extinction risk.</p>
-<p>##Checklist for Lab 5 completion</p>
+</div>
+<div id="checklist-for-lab-5-completion" class="section level2">
+<h2>Checklist for Lab 5 completion</h2>
 <ul>
 <li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
 <li><p>Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).</p></li>
