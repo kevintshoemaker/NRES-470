@@ -154,7 +154,7 @@ The next three questions relate to comparing these two methods:
 
 Set *Birth rate* in your model back to 0.3. _Change the initial abundance to 10 individuals_. Hit "Simulate"- make sure you still see exponential growth!     
 
-We will use a *Binomial distribution* to represent the total number of mortalities in the population. That is, we flip a coin the same number of times as there are individuals in the population. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 30% of the time! The *Binomial distribution* essentially represents the number of times heads came up. To do this in InsightMaker, use the following formula for the *Deaths* flow:
+We will use a *Binomial distribution* to represent the total number of mortalities in the population. That is, we flip a coin the same number of times as there are individuals in the population. If the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 20% of the time! The *Binomial distribution* essentially represents the number of times heads came up. To do this in InsightMaker, use the following formula for the *Deaths* flow:
 
 ```
 RandBinomial([Population], [Death rate])
