@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -88,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -237,6 +235,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -265,6 +264,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -483,13 +488,13 @@ div.tocify {
 
 
 <p><strong>Q</strong>: Is the intrinsic rate of growth <span class="math inline">\(r_{max}\)</span> positive or negative for most species on earth? Why???</p>
-<p><strong>Q</strong>: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations in decline despite their intrinsic ability to grow?</p>
+<p><strong>Q</strong>: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations declining despite their intrinsic ability to grow? Is it all random, or is it more systematic?</p>
 <div id="threats-to-populations" class="section level2">
 <h2>Threats to populations</h2>
 <p>The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births <em>under present conditions</em> the population will decline until these unfavorable conditions are reversed.</p>
 <p>In the “small-population paradigm” lecture, we discussed several <strong>stochastic threats</strong> to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.</p>
-<p>Large populations can be threatened too though! Factors that threaten large populations with large geographic ranges are generally <strong>deterministic</strong>!</p>
-<p>The <strong>declining population paradigm</strong> focuses on the factors that make large populations small – that is, it is the <em>study of those deterministic processes that cause population decline, and how these processes may be reversed through effective conservation management</em>.</p>
+<p>Large populations can be threatened too though! Factors that threaten large populations are generally called <strong>deterministic threats</strong>!</p>
+<p>The <strong>declining population paradigm</strong> focuses on the factors that make large populations small – that is, it is the <em>study of those deterministic processes that cause population decline (that tip the balance and cause deaths to exceed births), and how these processes may be reversed through effective conservation management</em>.</p>
 <p>What are some factors that can <em>tip the balance</em> so to speak- so that growing or stable populations become declining populations?</p>
 <div id="over-harvest" class="section level3">
 <h3>Over-harvest</h3>
@@ -506,9 +511,10 @@ div.tocify {
 <div id="climate-change" class="section level3">
 <h3>Climate change</h3>
 <p><img src="climatechange1.jpg" /></p>
+<p>This map shows the difference (anomaly) between current temperatures and mean (normal) temperatures recorded since 1880.</p>
 </div>
-<div id="exotic-nvasive-species" class="section level3">
-<h3>Exotic nvasive species</h3>
+<div id="exotic-invasive-species" class="section level3">
+<h3>Exotic invasive species</h3>
 <p><img src="bullfrog1.jpg" /></p>
 </div>
 <div id="pollution" class="section level3">
@@ -521,19 +527,19 @@ div.tocify {
 <p>So, which one is more important for conservation? The declining-population paradigm or the small-population paradigm??</p>
 <p>This “controversy” was ignited by a <a href="caughley1.pdf">very influential paper by Graeme Caughley</a> in <em>Journal of Animal Ecology</em> in 1994.</p>
 <p><img src="caughley1.jpg" /></p>
-<p>In this paper, Caughley defines the two competing paradigms, and expresses a bias towards one paradigm and against the other…</p>
+<p>In this paper, Caughley coined the terms ‘small population paradigm’ and ‘declining population paradigm’, and expressed a strong bias towards one paradigm and against the other…</p>
 <blockquote>
 <p>Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.</p>
 </blockquote>
 <p><strong>Q</strong>: Can you detect Caughley’s bias in the above quote?</p>
-<p><strong>Q</strong>: What do you think? Do you agree with Caughley?</p>
+<p><strong>Q</strong>: What do you think? Do you agree with Caughley? Take a moment to look over the paper and please comment on TopHat!</p>
 <div id="in-class-exercise-deterministic-threats" class="section level3">
 <h3>In-Class Exercise: Deterministic threats</h3>
 <p>Let’s try a worked example to illustrate the above points.</p>
 <p>Let’s start with a souped up scalar, density-dependent population – should look something like this:</p>
 <p>You can clone this model by clicking <a href="https://insightmaker.com/insight/74417/declining-population-paradigm">here</a></p>
 <p><img src="IM5.PNG" /></p>
-<p>You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the model and make sure you understand how it works.</p>
+<p>You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the base model and make sure you understand how it works.</p>
 <p>For this exercise, let’s change the initial population to 200 (half of K).</p>
 <p>Also, make sure that the time step is 1 year, and the model should run for 50 years.</p>
 <p><strong>Let’s add a harvest process!</strong></p>

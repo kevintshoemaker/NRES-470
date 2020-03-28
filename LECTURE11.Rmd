@@ -2,8 +2,10 @@
 title: "Declining-population paradigm"
 author: "NRES 470/670"
 date: "Spring 2020"
-output: 
-  html_document: 
+output:
+  pdf_document:
+    toc: yes
+  html_document:
     theme: spacelab
     toc: yes
     toc_float: yes
@@ -16,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 **Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why???
 
-**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are some populations in decline despite their intrinsic ability to grow?
+**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations declining despite their intrinsic ability to grow? Is it all random, or is it more systematic?
 
 ## Threats to populations
 
@@ -24,9 +26,9 @@ The answer of course is that the intrinsic ability to grow under ideal condition
 
 In the "small-population paradigm" lecture, we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.
 
-Large populations can be threatened too though! Factors that threaten large populations with large geographic ranges are generally **deterministic**! 
+Large populations can be threatened too though! Factors that threaten large populations are generally called **deterministic threats**! 
 
-The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those deterministic processes that cause population decline, and how these processes may be reversed through effective conservation management*. 
+The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those deterministic processes that cause population decline (that tip the balance and cause deaths to exceed births), and how these processes may be reversed through effective conservation management*. 
 
 What are some factors that can *tip the balance* so to speak- so that growing or stable populations become declining populations? 
 
@@ -46,7 +48,9 @@ What are some factors that can *tip the balance* so to speak- so that growing or
 
 ![](climatechange1.jpg)
 
-### Exotic nvasive species
+This map shows the difference (anomaly) between current temperatures and mean (normal) temperatures recorded since 1880.
+
+### Exotic invasive species
 
 ![](bullfrog1.jpg)
 
@@ -64,13 +68,14 @@ This "controversy" was ignited by a [very influential paper by Graeme Caughley](
 
 ![](caughley1.jpg)
 
-In this paper, Caughley defines the two competing paradigms, and expresses a bias towards one paradigm and against the other...
+In this paper, Caughley coined the terms 'small population paradigm' and 'declining population paradigm', and expressed a strong bias towards one paradigm and against the other...
 
 > Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.
 
 **Q**: Can you detect Caughley's bias in the above quote? 
 
-**Q**: What do you think? Do you agree with Caughley?
+**Q**: What do you think? Do you agree with Caughley? Take a moment to look over the paper and please comment on TopHat!
+
 
 ### In-Class Exercise: Deterministic threats
 
@@ -84,7 +89,7 @@ You can clone this model by clicking [here](https://insightmaker.com/insight/744
 ![](IM5.PNG)
 
 
-You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the model and make sure you understand how it works.
+You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the base model and make sure you understand how it works.
 
 For this exercise, let's change the initial population to 200 (half of K).
 
