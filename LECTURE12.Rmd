@@ -1,7 +1,7 @@
 ---
 title: "Population Viability Analysis"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -34,16 +34,18 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Final projects:
 
-Just a heads up about [final projects](FINAL_PROJECTS.html). Working PVA and document justifying decisions is *due this Friday, April 5*!
+Just a heads up about [final projects](FINAL_PROJECTS.html). Your working PVA and a document justifying your modeling decisions is *due Friday, April 10*!
 
 
 ## Population Viability Analysis (PVA)
 
-Population Viability Analysis (PVA) integrates everything we have studied so far and more. At its most basic level, PVA is the _process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options_.
+Population Viability Analysis (PVA) integrates everything we have studied so far and more. 
 
-**Q:** Does PVA belong to the small-population paradigm?
+At its most basic level, PVA is the _process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options_.
 
-**Q:** Does PVA belong to the declining-population paradigm?
+**Q:** Does PVA align well with the small-population paradigm?
+
+**Q:** Does PVA align well the declining-population paradigm?
 
 **Q:** Are PVA models always stochastic?
 
@@ -63,11 +65,22 @@ For example -- after running your model (step 4) and looking at your results (st
 
 #### Step 1: Life history
 
+Lecture 1: systems thinking
+Lecture 2: feedbacks
+Lecture 3: exponential growth
+Lecture 4: density dependence
+Lecture 5: allee effects
+Lecture 6: age structured populations
+Lecture 7: matrix population models
+Lecture 8: stochasticity
+Labs 1,2,3,4,5
+
 The first step is to conceptualize the life history for your species of interest. This is where you might put together a life history diagram, and think about the following questions:
 
 - How many life stages should I include?
 - Which life stages are reproductive?
 - Which vital rates are density-dependent?
+- Does your species benefit from social aggregation? If so, are there any Allee effects?
 - Which vital rates are subject to environmental stochasticity?
 - Which vital rates could be altered by management activities?
 - Are there any important catastrophes that can affect the system?
@@ -75,6 +88,14 @@ The first step is to conceptualize the life history for your species of interest
 **Q**: is there ever a case where you *WON'T* include demographic stochasticity in your model? 
 
 #### Step 2: Parameterize the demographic model! 
+
+Lecture 3: exponential growth
+Lecture 4: density dependence
+Lecture 5: allee effect
+Lecture 7: matrix population models
+Lecture 8: stochasticity and uncertainty
+Labs 1,2,3,4,5,7
+
 
 This is where you attach real numbers to the stocks and flows in your conceptual life history diagram. Remember that these parameters are more than just survival and fecundity. It's also:
 
@@ -90,16 +111,23 @@ This is where you attach real numbers to the stocks and flows in your conceptual
 
 #### Step 3: Spatial structure!
 
+Lecture 13: metapopulation models
+Lecture 14: source-sink dynamics
+Lab 6: metapopulation models
+
+
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
-- How many discrete populations? 
-- Do different populations have different mean vital rates?
-- Is environmental stochasticity **spatially correlated**?
+- How many discrete populations are there in your metapopulation? 
+- Do different populations have different mean vital rates? Are some populations likely to be sources and others likely to be sinks?
+- Is environmental stochasticity **spatially correlated**? (is a bad year in one subpopulation likely to be a bad year in every subpopulation?)
 - At what rate do individuals move among these populations?
 - Can connectivity be enhanced via management?
 - Are dispersal rates density-dependent?
 
 #### Step 4: Simulate!
+
+In class exercises, all labs
 
 You know how to simulate populations now- you can choose whether it makes sense to use R, InsightMaker, Vortex, or some other software or programming platform for your simulations!
 
@@ -111,6 +139,8 @@ Either way, you can be creative- set up the simulations so that they can help yo
 
 #### Step 5: Results
 
+I recommend using R to analyze and plot out your simulation results. BUT you can use Excel and InsightMaker to make perfectly good plots as well!
+
 Finally, you need to make sense of all the simulations you just ran. 
 
 There are two types of data analysis tools that you will need to be able to use the simulation results to answer your questions: **graphical visualization** and **statistical analysis**.
@@ -118,8 +148,7 @@ There are two types of data analysis tools that you will need to be able to use 
 These tools- visualization and statistical analysis - are diverse, and there is no one-size-fits-all way that you should visualize and analyze your simulation results. It really depends on your question!! 
 
 I will give you some ideas here about graphical representations in the demo PVA - but just remember you are not limited to these ideas- be creative! 
-Since this class is not a statistics class, I don't necessarily expect you to do sophisticated stats as part of your project- but Ben and I can work with your groups individually to figure out some simple stats that make sense for your project. 
-
+Since this class is not a statistics class, I don't necessarily expect you to do sophisticated stats as part of your project- but Megan and I can work with your groups individually to figure out some simple stats that make sense for your project. 
 
 ## A Simple Demonstration PVA
 
@@ -129,7 +158,7 @@ We are using R because of its flexible and powerful visualization tools.
 
 ### Step 1: conceptualize the life history
 
-For simplicity, let's ignore age structure for now - this is just a simple scalar population model!
+For simplicity, let's ignore age structure for now - this is just a simple stochastic, one-stage (scalar) population model!
 
 Also let's ignore parameter uncertainty too! 
 
@@ -143,6 +172,10 @@ Here is the basic model parameterization:
 # Demonstration PVA
 ##############
 
+# STEP 1: conceptualize life history (we are modeling this population as a simple, single-stage stochastic model with density dependence)
+
+# STEP 2: parameterize the model
+
 ####
 # Basic life history parameters
 ####
@@ -155,14 +188,14 @@ K <- 175            # Carrying capacity
 # Environmental stochasticity
 ####
 
-SD_lambda <- 0.11  # standard deviation of lambda
+SD_anngrowth <- 0.11  # standard deviation of annual growth rate
 
 ####
 # Density-dependence (Ricker model)
 ####
 
 Ricker <- function(prev_abund){       # this is a function for computing next-year abundance -- includes env stochasticity
-  prev_abund * exp(log(rnorm(1,R_max,SD_lambda))*(1-(prev_abund/K)))
+  prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
 ####
@@ -177,13 +210,17 @@ Flood_lambda <- 0.25    # 25% of population can survive a flood
 
 ### Step 3: spatial structure
 
-Let's ignore spatial structure!
+Let's ignore spatial structure! We will learn more about modeling spatial structure in the next two lectures!
 
 ### Step 4: simulate!
 
 Now we can use these parameters to build and run a simple PVA model:
 
 ```{r}
+
+# STEP 3: add spatial structure (not applicable here)
+
+# STEP 4: simulate!
 
 ####
 # Basic simulation parameters
@@ -195,14 +232,14 @@ nreps <- 500      # number of replicates
 
 PVAdemo <- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
   #browser()
-  PopArray2 <- array(0,dim=c((nyears+1),nreps))
+  PopArray2 <- array(0,dim=c((nyears+1),nreps))   # set up storage array
   
   ## start looping through replicates
   
   for(rep in 1:nreps){
     
     # set initial abundance
-    PopArray2[1,rep] <- Init_N     # initial abundance
+    PopArray2[1,rep] <- Init_N     # set the initial abundance
     
     ### loop through years
     for(y in 2:(nyears+1)){
@@ -225,7 +262,11 @@ Default <- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)
 ```
 
 
-### Graphical visualization
+### Step 5: results!
+
+Now we can perform graphical visualizations and statistics that answer our original questions!
+
+#### Graphical visualization
 
 There are several types of visualizations that you might want to use for your PVA models:
 
@@ -233,6 +274,11 @@ The first is to look at the "cloud" of abundance trajectories. This is the same 
 
 
 ```{r}
+
+# STEP 5: results 
+
+############
+# Graphical visualization
 
 PlotCloud <- function(simdata){
   plot(c(1:101),simdata[,1],col=gray(0.7),type="l",ylim=c(0,max(simdata)),xlab="Years",ylab="Abundance")
@@ -251,6 +297,9 @@ Okay, what do we learn from this? Really, it's a mess!!!
 If our question is about extinction risk, maybe we want to plot extinction risk by time... 
 
 ```{r}
+
+# Visualize extinction rates over time
+
 Extinction_byyear <- function(simdata){
   apply(simdata,1,function(t)  length(which(t==0)))/ncol(simdata)
 }
@@ -269,6 +318,8 @@ In that case maybe we should present a histogram of final abundances...
 
 ```{r}
 
+# visualize final abundance after 100 years relative to initial abundance
+
 hist(Default[nrow(Default),],xlab="Final abundance after 100 years",ylab="Number of replicates",main="")
 abline(v=Init_N,col="green",lwd=2)
 
@@ -278,6 +329,8 @@ abline(v=Init_N,col="green",lwd=2)
 Or we could plot the extent of decline vs the probability of falling below that threshold at year 100. 
 
 ```{r}
+
+# plot probabilities of different severities of decline
 
 declines <- seq(0,100,by=1)
 declineprob <- numeric(length(declines))
@@ -299,6 +352,8 @@ Currently, floods generally result in a 10% population reduction. But climate ch
 
 ```{r}
 
+# Plot extinction risk as a function of flood severity
+
 Exctinction_risk <- function(simdata){
   length(which(simdata[nrow(simdata),]==0))/ncol(simdata)
 }
@@ -313,6 +368,7 @@ for(scenario in 1:length(flood_lambdas)){
 
 plot(flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (lambda in flood year)",ylab="extinction risk")
 abline(h=0.05,col="red",lwd=2)
+
 
 ```
 

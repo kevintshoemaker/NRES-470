@@ -97,11 +97,11 @@ Also, make sure that the time step is 1 year, and the model should run for 50 ye
 
 **Let's add a harvest process!**
 
-- Assume that approximately 10% of the population is harvested each year (a fractional harvest). However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%. Make sure you specify the 'fractional harvest' parameters (mean and stdev) in the model so that you achieve this range.   
+- Assume that approximately 10% of the population is harvested each year (a fractional harvest). However, the true harvest rate is stochastic and *normally distributed*- occasionally harvest goes as high as 15%, and occasionally as low as 5%. Make sure you specify the 'fractional harvest' parameters (mean and stdev) in the model so that you achieve this range.   
 
-**Q**: what value did you use for standard deviation?
+**Q**: what value did you use for standard deviation of the normal distribution?
 
-**Q**: is the variation in harvest rates best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?     
+**Q**: is this variation in harvest rate best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?     
 
 **Q**: why doesn't the population decline to extinction? What has the harvest process done in this case?   
 

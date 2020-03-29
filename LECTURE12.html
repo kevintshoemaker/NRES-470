@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -383,6 +455,9 @@ div.tocify {
       <a href="LAB6.html">Lab 6: metapopulations</a>
     </li>
     <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -406,40 +481,40 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Population Viability Analysis</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
 <div id="final-projects" class="section level3">
 <h3>Final projects:</h3>
-<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a>. Working PVA and document justifying decisions is <em>due this Friday, April 5</em>!</p>
+<p>Just a heads up about <a href="FINAL_PROJECTS.html">final projects</a>. Your working PVA and a document justifying your modeling decisions is <em>due Friday, April 10</em>!</p>
 </div>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
-<p>Population Viability Analysis (PVA) integrates everything we have studied so far and more. At its most basic level, PVA is the <em>process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options</em>.</p>
-<p><strong>Q:</strong> Does PVA belong to the small-population paradigm?</p>
-<p><strong>Q:</strong> Does PVA belong to the declining-population paradigm?</p>
+<p>Population Viability Analysis (PVA) integrates everything we have studied so far and more.</p>
+<p>At its most basic level, PVA is the <em>process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options</em>.</p>
+<p><strong>Q:</strong> Does PVA align well with the small-population paradigm?</p>
+<p><strong>Q:</strong> Does PVA align well the declining-population paradigm?</p>
 <p><strong>Q:</strong> Are PVA models always stochastic?</p>
 <p><strong>Q:</strong> Are PVA models always density-dependent?</p>
 <p><strong>Q:</strong> Are PVA models always age-structured?</p>
 <p><strong>Q</strong>: Are PVA models always spatially-explicit?</p>
 <div id="the-pva-process-recipe-for-pva" class="section level3">
 <h3>The PVA process (recipe for PVA!)</h3>
-<div class="figure">
-<img src="PVAschematic1.png" />
-
-</div>
+<p><img src="PVAschematic1.png" /></p>
 <p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
 <p>For example – after running your model (step 4) and looking at your results (step 5) you might realize that the model is totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).</p>
 <div id="step-1-life-history" class="section level4">
 <h4>Step 1: Life history</h4>
+<p>Lecture 1: systems thinking Lecture 2: feedbacks Lecture 3: exponential growth Lecture 4: density dependence Lecture 5: allee effects Lecture 6: age structured populations Lecture 7: matrix population models Lecture 8: stochasticity Labs 1,2,3,4,5</p>
 <p>The first step is to conceptualize the life history for your species of interest. This is where you might put together a life history diagram, and think about the following questions:</p>
 <ul>
 <li>How many life stages should I include?</li>
 <li>Which life stages are reproductive?</li>
 <li>Which vital rates are density-dependent?</li>
+<li>Does your species benefit from social aggregation? If so, are there any Allee effects?</li>
 <li>Which vital rates are subject to environmental stochasticity?</li>
 <li>Which vital rates could be altered by management activities?</li>
 <li>Are there any important catastrophes that can affect the system?</li>
@@ -448,6 +523,7 @@ div.tocify {
 </div>
 <div id="step-2-parameterize-the-demographic-model" class="section level4">
 <h4>Step 2: Parameterize the demographic model!</h4>
+<p>Lecture 3: exponential growth Lecture 4: density dependence Lecture 5: allee effect Lecture 7: matrix population models Lecture 8: stochasticity and uncertainty Labs 1,2,3,4,5,7</p>
 <p>This is where you attach real numbers to the stocks and flows in your conceptual life history diagram. Remember that these parameters are more than just survival and fecundity. It’s also:</p>
 <ul>
 <li>Annual variation in survival and fecundity (environmental stochasticity).</li>
@@ -462,11 +538,12 @@ div.tocify {
 </div>
 <div id="step-3-spatial-structure" class="section level4">
 <h4>Step 3: Spatial structure!</h4>
+<p>Lecture 13: metapopulation models Lecture 14: source-sink dynamics Lab 6: metapopulation models</p>
 <p>If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:</p>
 <ul>
-<li>How many discrete populations?</li>
-<li>Do different populations have different mean vital rates?</li>
-<li>Is environmental stochasticity <strong>spatially correlated</strong>?</li>
+<li>How many discrete populations are there in your metapopulation?</li>
+<li>Do different populations have different mean vital rates? Are some populations likely to be sources and others likely to be sinks?</li>
+<li>Is environmental stochasticity <strong>spatially correlated</strong>? (is a bad year in one subpopulation likely to be a bad year in every subpopulation?)</li>
 <li>At what rate do individuals move among these populations?</li>
 <li>Can connectivity be enhanced via management?</li>
 <li>Are dispersal rates density-dependent?</li>
@@ -474,6 +551,7 @@ div.tocify {
 </div>
 <div id="step-4-simulate" class="section level4">
 <h4>Step 4: Simulate!</h4>
+<p>In class exercises, all labs</p>
 <p>You know how to simulate populations now- you can choose whether it makes sense to use R, InsightMaker, Vortex, or some other software or programming platform for your simulations!</p>
 <p>Either way, you can be creative- set up the simulations so that they can help you answer your key research questions! You are in control- you can set up the simulations so that they give you the kinds of data you need!!</p>
 <ul>
@@ -484,10 +562,11 @@ div.tocify {
 </div>
 <div id="step-5-results" class="section level4">
 <h4>Step 5: Results</h4>
+<p>I recommend using R to analyze and plot out your simulation results. BUT you can use Excel and InsightMaker to make perfectly good plots as well!</p>
 <p>Finally, you need to make sense of all the simulations you just ran.</p>
 <p>There are two types of data analysis tools that you will need to be able to use the simulation results to answer your questions: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
 <p>These tools- visualization and statistical analysis - are diverse, and there is no one-size-fits-all way that you should visualize and analyze your simulation results. It really depends on your question!!</p>
-<p>I will give you some ideas here about graphical representations in the demo PVA - but just remember you are not limited to these ideas- be creative! Since this class is not a statistics class, I don’t necessarily expect you to do sophisticated stats as part of your project- but Ben and I can work with your groups individually to figure out some simple stats that make sense for your project.</p>
+<p>I will give you some ideas here about graphical representations in the demo PVA - but just remember you are not limited to these ideas- be creative! Since this class is not a statistics class, I don’t necessarily expect you to do sophisticated stats as part of your project- but Megan and I can work with your groups individually to figure out some simple stats that make sense for your project.</p>
 </div>
 </div>
 </div>
@@ -497,7 +576,7 @@ div.tocify {
 <p>We are using R because of its flexible and powerful visualization tools.</p>
 <div id="step-1-conceptualize-the-life-history" class="section level3">
 <h3>Step 1: conceptualize the life history</h3>
-<p>For simplicity, let’s ignore age structure for now - this is just a simple scalar population model!</p>
+<p>For simplicity, let’s ignore age structure for now - this is just a simple stochastic, one-stage (scalar) population model!</p>
 <p>Also let’s ignore parameter uncertainty too!</p>
 </div>
 <div id="step-2-parameterize" class="section level3">
@@ -506,6 +585,10 @@ div.tocify {
 <pre class="r"><code>##############
 # Demonstration PVA
 ##############
+
+# STEP 1: conceptualize life history (we are modeling this population as a simple, single-stage stochastic model with density dependence)
+
+# STEP 2: parameterize the model
 
 ####
 # Basic life history parameters
@@ -519,14 +602,14 @@ K &lt;- 175            # Carrying capacity
 # Environmental stochasticity
 ####
 
-SD_lambda &lt;- 0.11  # standard deviation of lambda
+SD_anngrowth &lt;- 0.11  # standard deviation of annual growth rate
 
 ####
 # Density-dependence (Ricker model)
 ####
 
 Ricker &lt;- function(prev_abund){       # this is a function for computing next-year abundance -- includes env stochasticity
-  prev_abund * exp(log(rnorm(1,R_max,SD_lambda))*(1-(prev_abund/K)))
+  prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
 ####
@@ -538,12 +621,16 @@ Flood_lambda &lt;- 0.25    # 25% of population can survive a flood </code></pre>
 </div>
 <div id="step-3-spatial-structure-1" class="section level3">
 <h3>Step 3: spatial structure</h3>
-<p>Let’s ignore spatial structure!</p>
+<p>Let’s ignore spatial structure! We will learn more about modeling spatial structure in the next two lectures!</p>
 </div>
 <div id="step-4-simulate-1" class="section level3">
 <h3>Step 4: simulate!</h3>
 <p>Now we can use these parameters to build and run a simple PVA model:</p>
-<pre class="r"><code>####
+<pre class="r"><code># STEP 3: add spatial structure (not applicable here)
+
+# STEP 4: simulate!
+
+####
 # Basic simulation parameters
 ####
 
@@ -553,14 +640,14 @@ nreps &lt;- 500      # number of replicates
 
 PVAdemo &lt;- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
   #browser()
-  PopArray2 &lt;- array(0,dim=c((nyears+1),nreps))
+  PopArray2 &lt;- array(0,dim=c((nyears+1),nreps))   # set up storage array
   
   ## start looping through replicates
   
   for(rep in 1:nreps){
     
     # set initial abundance
-    PopArray2[1,rep] &lt;- Init_N     # initial abundance
+    PopArray2[1,rep] &lt;- Init_N     # set the initial abundance
     
     ### loop through years
     for(y in 2:(nyears+1)){
@@ -580,11 +667,19 @@ PVAdemo &lt;- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
 
 Default &lt;- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)</code></pre>
 </div>
-<div id="graphical-visualization" class="section level3">
-<h3>Graphical visualization</h3>
+<div id="step-5-results-1" class="section level3">
+<h3>Step 5: results!</h3>
+<p>Now we can perform graphical visualizations and statistics that answer our original questions!</p>
+<div id="graphical-visualization" class="section level4">
+<h4>Graphical visualization</h4>
 <p>There are several types of visualizations that you might want to use for your PVA models:</p>
 <p>The first is to look at the “cloud” of abundance trajectories. This is the same type of figure we have seen in InsightMaker using the “Sensitivity testing” tool.</p>
-<pre class="r"><code>PlotCloud &lt;- function(simdata){
+<pre class="r"><code># STEP 5: results 
+
+############
+# Graphical visualization
+
+PlotCloud &lt;- function(simdata){
   plot(c(1:101),simdata[,1],col=gray(0.7),type=&quot;l&quot;,ylim=c(0,max(simdata)),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;)
   
   for(r in 2:ncol(simdata)){
@@ -596,7 +691,9 @@ PlotCloud(Default)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Okay, what do we learn from this? Really, it’s a mess!!!</p>
 <p>If our question is about extinction risk, maybe we want to plot extinction risk by time…</p>
-<pre class="r"><code>Extinction_byyear &lt;- function(simdata){
+<pre class="r"><code># Visualize extinction rates over time
+
+Extinction_byyear &lt;- function(simdata){
   apply(simdata,1,function(t)  length(which(t==0)))/ncol(simdata)
 }
 
@@ -605,11 +702,15 @@ abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Maybe our question is about the probability of decline over 100 years …</p>
 <p>In that case maybe we should present a histogram of final abundances…</p>
-<pre class="r"><code>hist(Default[nrow(Default),],xlab=&quot;Final abundance after 100 years&quot;,ylab=&quot;Number of replicates&quot;,main=&quot;&quot;)
+<pre class="r"><code># visualize final abundance after 100 years relative to initial abundance
+
+hist(Default[nrow(Default),],xlab=&quot;Final abundance after 100 years&quot;,ylab=&quot;Number of replicates&quot;,main=&quot;&quot;)
 abline(v=Init_N,col=&quot;green&quot;,lwd=2)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Or we could plot the extent of decline vs the probability of falling below that threshold at year 100.</p>
-<pre class="r"><code>declines &lt;- seq(0,100,by=1)
+<pre class="r"><code># plot probabilities of different severities of decline
+
+declines &lt;- seq(0,100,by=1)
 declineprob &lt;- numeric(length(declines))
 
 for(s in 1:length(declines)){
@@ -622,7 +723,9 @@ abline(v=25,col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>What if our question is about the effect of flooding on extinction risk. Let’s imagine that the probability of flooding is not expected to change with climate change, but that the intensity of the flood damage is likely to increase substantially!</p>
 <p>Currently, floods generally result in a 10% population reduction. But climate change could increase this number to as much as 90%. Let’s look at how much this could increase extinction risk!</p>
-<pre class="r"><code>Exctinction_risk &lt;- function(simdata){
+<pre class="r"><code># Plot extinction risk as a function of flood severity
+
+Exctinction_risk &lt;- function(simdata){
   length(which(simdata[nrow(simdata),]==0))/ncol(simdata)
 }
 
@@ -638,6 +741,7 @@ plot(flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impac
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><a href="LECTURE13.html">–go to next lecture–</a></p>
+</div>
 </div>
 </div>
 
@@ -659,6 +763,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
