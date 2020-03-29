@@ -65,15 +65,15 @@ For example -- after running your model (step 4) and looking at your results (st
 
 #### Step 1: Life history
 
-Lecture 1: systems thinking
-Lecture 2: feedbacks
-Lecture 3: exponential growth
-Lecture 4: density dependence
-Lecture 5: allee effects
-Lecture 6: age structured populations
-Lecture 7: matrix population models
-Lecture 8: stochasticity
-Labs 1,2,3,4,5
+Lecture 1: systems thinking     
+Lecture 2: feedbacks    
+Lecture 3: exponential growth    
+Lecture 4: density dependence    
+Lecture 5: allee effects    
+Lecture 6: age structured populations    
+Lecture 7: matrix population models    
+Lecture 8: stochasticity    
+Labs 1,2,3,4,5    
 
 The first step is to conceptualize the life history for your species of interest. This is where you might put together a life history diagram, and think about the following questions:
 
@@ -89,37 +89,37 @@ The first step is to conceptualize the life history for your species of interest
 
 #### Step 2: Parameterize the demographic model! 
 
-Lecture 3: exponential growth
-Lecture 4: density dependence
-Lecture 5: allee effect
-Lecture 7: matrix population models
-Lecture 8: stochasticity and uncertainty
-Labs 1,2,3,4,5,7
+Lecture 3: exponential growth    
+Lecture 4: density dependence    
+Lecture 5: allee effect    
+Lecture 7: matrix population models    
+Lecture 8: stochasticity and uncertainty    
+Labs 1,2,3,4,5,7    
 
 
 This is where you attach real numbers to the stocks and flows in your conceptual life history diagram. Remember that these parameters are more than just survival and fecundity. It's also:
 
-- Annual variation in survival and fecundity (environmental stochasticity).
-- Initial abundances
-- Density dependence functions and parameters (including K)
-- Allee thresholds
-- Catastrophe effect sizes and probabilities
-- Effects of management actions.
-- And more...
+- Annual variation in survival and fecundity (environmental stochasticity)    
+- Initial abundances    
+- Density dependence functions and parameters (including K)    
+- Allee thresholds    
+- Catastrophe effect sizes and probabilities    
+- Effects of management actions    
+- And more...    
 
 [stone soup analogy to model parameterization!]
 
 #### Step 3: Spatial structure!
 
-Lecture 13: metapopulation models
-Lecture 14: source-sink dynamics
-Lab 6: metapopulation models
+Lecture 13: metapopulation models    
+Lecture 14: source-sink dynamics    
+Lab 6: metapopulation models    
 
 
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
-- How many discrete populations are there in your metapopulation? 
-- Do different populations have different mean vital rates? Are some populations likely to be sources and others likely to be sinks?
+- How many discrete populations are there in your metapopulation?  
+- Do different populations have different mean vital rates? Are some populations likely to be sources and others likely to be sinks?   
 - Is environmental stochasticity **spatially correlated**? (is a bad year in one subpopulation likely to be a bad year in every subpopulation?)
 - At what rate do individuals move among these populations?
 - Can connectivity be enhanced via management?
