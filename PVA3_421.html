@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 421/621" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -380,6 +452,12 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -403,8 +481,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Loggerhead PVA</h1>
-<h4 class="author"><em>NRES 421/621</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 421/621</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -420,21 +498,12 @@ div.tocify {
 <a href="http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml">Texas site</a></p>
 <div id="background" class="section level3">
 <h3>Background</h3>
-<div class="figure">
-<img src="loggerhead2.jpg" />
-
-</div>
+<p><img src="loggerhead2.jpg" /></p>
 <p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine turtle with a nearly global distribution. Nesting areas in the USA occur along the Atlantic coast from New Jersey to Texas, although individuals may be observed along the Pacific coast and in Hawaii.</p>
-<div class="figure">
-<img src="loggerhead4.jpg" />
-
-</div>
+<p><img src="loggerhead4.jpg" /></p>
 <p>The species has been federally listed as ‘threatened’ since 1978. When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.</p>
 <p>Loggerheads are listed as “Threatened” under the IUCN Red List.</p>
-<div class="figure">
-<img src="loggerhead3.jpg" />
-
-</div>
+<p><img src="loggerhead3.jpg" /></p>
 </div>
 <div id="threats" class="section level3">
 <h3>Threats</h3>
@@ -442,10 +511,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><strong>Threats to nesting beaches</strong></li>
 </ol>
-<div class="figure">
-<img src="loggerhead5.jpg" />
-
-</div>
+<p><img src="loggerhead5.jpg" /></p>
 <p>Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.<br />
 Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including</p>
 <ul>
@@ -462,10 +528,7 @@ Because beaches are popular sites for human recreation and development, arriving
 <ul>
 <li>Juveniles (after the sargassum-feeding stage) feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence <em>accidental capture (“bycatch”)</em> and subsequent drowning in the nets and traps used by these vessels is common.</li>
 </ul>
-<div class="figure">
-<img src="trawl1.png" />
-
-</div>
+<p><img src="trawl1.png" /></p>
 <ul>
 <li>In addition to these primary threats, sea-going juveniles and adults face mortality due to <em>bycatch</em> in longline, hook-and-line, and trap fisheries targeting tuna and other species.</li>
 </ul>
@@ -526,10 +589,7 @@ Because beaches are popular sites for human recreation and development, arriving
 <ul>
 <li>Your initial spreadsheet should look something like this:</li>
 </ul>
-<div class="figure">
-<img src="loggerhead6.jpg.png" />
-
-</div>
+<p><img src="loggerhead6.jpg.png" /></p>
 <ul>
 <li><p>Note that the transition rates are already provided for you in the spreadsheet – in the form of a transition matrix!</p></li>
 <li><p>NOTE: Wherever a transition is not possible, e.g., from hatchlings to large juveniles, you will see a zero in the transition matrix.</p></li>
@@ -575,10 +635,7 @@ projection_matrix</code></pre>
 Abundance_year0</code></pre>
 <pre><code>## [1] 2000  500  300  300   20</code></pre>
 <p>So your EXCEL file should look something like the one below:</p>
-<div class="figure">
-<img src="loggerhead7.png" />
-
-</div>
+<p><img src="loggerhead7.png" /></p>
 <p>Using the ‘size-distribution vector’, we can project the population size of each size-class next year using the matrix formula: <span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}\)</span>. (remember to see below for a refresher of matrix multiplication).</p>
 <p>This formula calculates the size distribution next year (i.e., in year <em>t + 1</em>) based on the projection matrix <span class="math inline">\(\mathbf{A}\)</span> and the size distribution this year <span class="math inline">\(\mathbf{N}_{t}\)</span>.</p>
 <p>For example, to calculate the first row of [n]t +1, the number of hatchlings:</p>
@@ -790,6 +847,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

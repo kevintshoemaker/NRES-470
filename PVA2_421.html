@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 421/621" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -380,6 +452,12 @@ div.tocify {
       <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
     </li>
     <li>
+      <a href="LAB6.html">Lab 6: metapopulations</a>
+    </li>
+    <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -403,8 +481,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Grizzly bear PVA example</h1>
-<h4 class="author"><em>NRES 421/621</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 421/621</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -412,20 +490,14 @@ div.tocify {
 <div id="pva-for-yellowstone-grizzly-bears" class="section level2">
 <h2>PVA for Yellowstone grizzly bears!</h2>
 <p>In today’s class we will use a PVA to do some management-relevant <strong>scenario testing</strong> for the grizzly bear population in Yellowstone National Park.</p>
-<div class="figure">
-<img src="grizzly1.jpg" />
-
-</div>
+<p><img src="grizzly1.jpg" /></p>
 <p>Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may regulate this population!</p>
 <p>Let’s walk together through the basic steps in building and running a PVA model:</p>
 <div id="step-1-life-history-diagram" class="section level4">
 <h4>Step 1: life history diagram</h4>
 <p>Based on the literature that we have read, we determine that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive!</p>
 <p>Therefore, our conceptual life history diagram looks something like this!</p>
-<div class="figure">
-<img src="IM16.jpg" />
-
-</div>
+<p><img src="IM16.jpg" /></p>
 <p>You can “clone” the base grizzly bear model <a href="https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized">here</a>. This model has not yet been parameterized!</p>
 </div>
 <div id="step-2-parameterize" class="section level4">
@@ -433,10 +505,7 @@ div.tocify {
 <p>Let’s use this table to parameterize the population vital rates in our model!</p>
 <p>This table actually has <em>two alternative parameterizations</em>, one summarized from data collected the period from 1983 through 2001, and the other representing data from the period from 2002-2011.</p>
 <p>NOTE: we are not paying any attention to males! Population models are often <em>female-only</em>, since females are usually the primary drivers of population dynamics.</p>
-<div class="figure">
-<img src="grizzly_table1.jpg" />
-
-</div>
+<p><img src="grizzly_table1.jpg" /></p>
 <p>The table is from <a href="YellowstoneScience-BearIssue.pdf">this scientific report</a> (<a href="https://www.nps.gov/yell/learn/upload/YellowstoneScience-BearIssue.pdf">alternative link</a>)</p>
 <p>What about population size?</p>
 <p>From <a href="schwarz_grizzly1.pdf">Schwartz et al 2006</a> we know that:</p>
@@ -444,10 +513,7 @@ div.tocify {
 <li>Adult (reproductive) females represent approximately a half (50%) of the total female population.</li>
 <li>Total abundance of adult females in the greater Yellowstone park area (solid squares plus the open triangles) was ca. 10 in 1983 and ca. 40 in 2001/2002</li>
 </ol>
-<div class="figure">
-<img src="grizzly_table2.jpg" />
-
-</div>
+<p><img src="grizzly_table2.jpg" /></p>
 <p>Let’s use the initial (1983) abundances (all female!) to initialize our model:</p>
 <p><em>Cubs:</em> 3<br />
 <em>Yearlings:</em> 3<br />
@@ -475,10 +541,7 @@ div.tocify {
 <ol start="3" style="list-style-type: decimal">
 <li>Now let’s change the parameterization to reflect the vital rates observed for the period 2002 to 2011 in the table:</li>
 </ol>
-<div class="figure">
-<img src="grizzly_table1.jpg" />
-
-</div>
+<p><img src="grizzly_table1.jpg" /></p>
 <p>In 2002 the population was more like 40 females- so let’s use the following initialization!</p>
 <p><em>Cubs:</em> 15<br />
 <em>Yearlings:</em> 15<br />
@@ -544,10 +607,7 @@ div.tocify {
 <div id="using-the-sensitivity-testing-tool-to-evaluate-risk" class="section level5">
 <h5>using the sensitivity testing tool to evaluate risk</h5>
 <p>Use the “sensitivity testing” option in the “Tools” menu to run multiple simulations. You can visually assess the risk of falling below a certain abundance threshold by examining whether a particular quantile (e.g., 90%) of your simulation results (the output from the sensitivity testing tool) falls below a particular threshold (e.g., 1 individuals) over a specified number of years (e.g., 50 year). For example, the following figure illustrates a population with an extinction risk of approximately 5% (90% of the simulations fall within the blue region, so 5% of simulations fell below the threshold and the remaining 5% of of simulations were larger than the upper bound of the blue region) :</p>
-<div class="figure">
-<img src="MVP1.PNG" />
-
-</div>
+<p><img src="MVP1.PNG" /></p>
 <p>You can compute the risk of extinction or decline more quantitatively as the fraction of replicates that failed to meet the specified criterion. That is, you can divide the total number of simulations falling below the threshold by the total number of replicates.</p>
 <p><a href="PVA3_421.html">–go to loggerhead PVA–</a></p>
 </div>
@@ -573,6 +633,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
