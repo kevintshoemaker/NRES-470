@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Population Viability Analysis (PVA)
 
-For the next three class periods, we will explore the use of **population models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
+In this short course, we will explore the use of **population models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
 
 PVA is a set of practical approaches to problem-solving in conservation, and wildlife management via creative application of *demographic theory*, *simulation models* and *statistics*. 
 
@@ -89,7 +89,7 @@ Modern computers have reduced or eliminated many of the barriers to understandin
 
 Any **dynamic system** (like a wildlife population) essentially consists of [Stocks] and [Flows].
 
-A [Stock] simply represents a quantity of something. The [Stock] only changes over time ONLY via [Flows In] or [Flows Out]. 
+A [Stock] simply represents a quantity of something. The [Stock] changes over time ONLY via [Flows In] or [Flows Out]. 
 
 A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents *Moose*! 
 
@@ -105,7 +105,7 @@ If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over t
 
 If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time. In this case, the system is in **equilibrium**.
 
-[Please watch the "Intro to InsightMaker" video before moving on to the hands-on activities!]
+[Please make sure you watch the "Intro to InsightMaker" video before moving on to the hands-on activities!]
 
 
 ## In-class activity: a basic simulation model
