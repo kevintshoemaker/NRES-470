@@ -144,7 +144,7 @@ Your model should look something like this:
 
 ![](IM14.jpg)
 
-3. Hover your curser over the two [Flows] (Births and Deaths). Do these equations make sense? 
+3. Hover your cursor over the two [Flows] (Births and Deaths). Do these equations make sense? 
 
 4. Make sure the initial number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
 
@@ -156,7 +156,9 @@ One of the most fundamental quantities in population ecology is called the "intr
 
 $r=birth\ rate-death\ rate$
 
-**Q**: is this model realistic?  What is the NEXT thing you would like to change in this model to make it even more realistic?
+**Q**: What is the intrinsic rate of growth for this population (when birth rate is set to 0.5 and the death rate is set to 0.4)? 
+
+**Q**: What is the next thing you would like to change to make the model more realistic?
 
 
 ## An even more realistic model!!
@@ -221,65 +223,6 @@ A random number generator is like a box of (potentially infinite) possible numbe
 
 ![](lottery1.png)
 
-Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. 
-
-
-For example, the box might have 10 "ones", 5 "twos", and 2 "threes". In this case the distribution looks like this (*probability* of each *possibility*):
-
-```{r echo=TRUE}
-
-box <- c(rep(1,10),rep(2,5),rep(3,2))
-barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")
-
-```
-
-A probability distribution can be pretty much anything you want it to be. However, there are several key families of distributions that come up again and again in modeling (and in nature), and are often major building blocks of PVA!
-
-These distributions are: the **binomial distribution** for modeling the total number of deaths, the **Poisson distribution** for modeling the total number of births, and the **Normal distribution** for modeling variation in per-capita vital rates (e.g., percent death rate).
-
-#### Binomial random number generator (for modeling total deaths)
-
-Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this "experiment" over and over again. Your results should follow a *binomial distribution*! 
-
-```{r echo=FALSE}
-
-xvals <- seq(0,100,1)
-probs <- dbinom(xvals,100,prob=0.2)
-names(probs) <- xvals
-               
-barplot(probs,ylab="Probability",xlab="Total Deaths",main="Binomial distribution (total deaths)")
-
-```
-
-
-#### Poisson random number generator (for modeling total births)
-
-Another discrete distribution we will use in this PVA short-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of $\infty$, and is great for modeling the total number of new individuals entering a population each year (births).
-
-```{r echo=FALSE}
-
-xvals <- seq(0,140,1)
-probs <- dpois(xvals,lambda=90)
-names(probs) <- xvals
-               
-barplot(probs,ylab="Probability",xlab="Total births",main="Poisson distribution (total births)")
-
-
-```
-
-
-#### Normal distribution (variability in per-capita vital rates)
-
-You are probably already familiar with the *Normal distribution*. This distribution has a lower bound of $-\infty$ and an upper bound of $\infty$. This distribution is great for modeling variation in per-capita vital rates (e.g., death rate or birth rate). For example, a population might have a mean per-capita birth rate of 7.1 hatchlings per female, but in good years (lots of food resources, low numbers of parasites, etc) the population birth rate might be as high as 11 and in bad years it might be as low as around 3.
-
-
-```{r echo=TRUE}
-mean = 7.1
-stdev = 2.1
-
-curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Per-capita birth rate",main="Normal distribution (variation in vital rates)")   # probability density
-
-```
 
 
 ### Return to InsightMaker- add demographic stochasticity!
@@ -327,106 +270,12 @@ Now, please change the initial abundance to 500 and re-run the "Sensitivity Test
 
 **Please consider the following questions- write down your answers on a sheet of paper:**
 
-**Short Answer Question #5** Does the population-level impact of *environme ntal stochasticity* depend on the initial abundance? If so, how?  
+**Short Answer Question #5** Does the population-level impact of *environmental stochasticity* depend on the initial abundance? If so, how?  
 **Short Answer Question #6** Can you explain why populations with a restricted geographic range (e.g., a small island) would be more vulnerable to *environmental stochasticity* than populations with a large range?  
 
 [pause and record your answers on WebCampus]
 
 
-## Population Viability Analysis (PVA)
-
-Let's return to the topic of this unit: PVA.
-
-Population Viability Analysis (PVA) is the _process of building and running formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions_.
-
-### What are some questions you can address with PVA?
-
-In general, we are interested in evaluating population-level risk under various alternative **scenarios**. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions. 
-
-Setting up alternative scenarios is a bit like setting up experiments in a laboratory!
-
-We are often interested in evaluating the factors that threaten the present or future viability of a population. 
-
-Population threats can be classified as either deterministic or stochastic.
-
-### Deterministic threats
-
-![](Fragmentation1.jpg)
-![](harvest1.jpg)
-
-Given what we know (and what we don't know!) about our study system, what is the population-level impact of: 
-
-- Habitat fragmentation?
-- Habitat degradation or loss?
-- Direct Harvest?
-- Exotic invasive species?
-- Environmental toxins?
-
-### Stochastic threats
-
-Given what we know (and what we don't know!) about our study system, what is the population-level impact of: 
-
-- Demographic stochasticity?
-- Environmental stochasticity?
-- Catastrophes?
-- Loss of genetic diversity?
-
-**Q**: which is more likely to cause a large population to become small: stochastic threats or deterministic threats?
-
-**Q**: can you match the above concepts with the two "paradigms" of conservation biology (from Caughley 1994): the *small-population paradigm* and the *declining-population paradigm*?
-
-
-## A general PVA workflow
-
-
-![](PVAschematic1.png) 
-
-### Step 0: Define your questions/hypotheses
-
-### Step 1: Life history
-
-*How does your population work?*
-
-The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. In general, the following life history traits are often critical to consider:
-
-- Maximum and minimum reproductive age
-- Number of relevant age classes
-- Maximum population density
-- Density-dependence mechanisms
-- Variability in key vital rates
-
-
-### Step 2: Parameterize the demographic model!
-
-This is where you attach *real numbers* to the stocks and flows in your conceptual life history diagram!
-
-### Step 3: Spatial structure (metapopulations)!
-
-If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:
-
-- How many discrete populations? 
-- At what rate do individuals move among these populations?
-
-For the grizzly bear and loggerhead examples, we will not consider spatial structure!
-
-### Step 4: Simulate under alternative scenarios!
-
-There are lots of options for simulation software- R, [InsightMaker](https://insightmaker.com/), [Vortex](http://www.vortex10.org/Vortex10.aspx), [Ramas](http://www.ramas.com/metapop), and much more!
-
-The key question here is: what *scenarios* do you want to test in order to answer your original questions?
-
-### Step 5: Results
-
-Finally, you need to make sense of all the simulations you just ran!  
-
-There are two major tools that you will need to do this: **graphical visualization** and **statistical analysis**. 
-
-NOTE: The process of building a PVA model is **iterative** and **non-linear**. 
-
-For example -- after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back to the literature and change your parameter estimates to something more realistic (step 2).  
-
-
-Okay, now let's build a PVA model together!
 
 [--go to grizzly PVA!--](PVA2_421.html)
 
@@ -589,6 +438,67 @@ That is, the rate of inflow into the [Moose] stock is equal to the total number 
 Do the same for the outflow into the [Moose] stock (Deaths).
 
 12. Make sure the number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
+
+Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. 
+
+
+For example, the box might have 10 "ones", 5 "twos", and 2 "threes". In this case the distribution looks like this (*probability* of each *possibility*):
+
+```{r echo=TRUE}
+
+box <- c(rep(1,10),rep(2,5),rep(3,2))
+barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")
+
+```
+
+A probability distribution can be pretty much anything you want it to be. However, there are several key families of distributions that come up again and again in modeling (and in nature), and are often major building blocks of PVA!
+
+These distributions are: the **binomial distribution** for modeling the total number of deaths, the **Poisson distribution** for modeling the total number of births, and the **Normal distribution** for modeling variation in per-capita vital rates (e.g., percent death rate).
+
+#### Binomial random number generator (for modeling total deaths)
+
+Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this "experiment" over and over again. Your results should follow a *binomial distribution*! 
+
+```{r echo=FALSE}
+
+xvals <- seq(0,100,1)
+probs <- dbinom(xvals,100,prob=0.2)
+names(probs) <- xvals
+               
+barplot(probs,ylab="Probability",xlab="Total Deaths",main="Binomial distribution (total deaths)")
+
+```
+
+
+#### Poisson random number generator (for modeling total births)
+
+Another discrete distribution we will use in this PVA short-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of $\infty$, and is great for modeling the total number of new individuals entering a population each year (births).
+
+```{r echo=FALSE}
+
+xvals <- seq(0,140,1)
+probs <- dpois(xvals,lambda=90)
+names(probs) <- xvals
+               
+barplot(probs,ylab="Probability",xlab="Total births",main="Poisson distribution (total births)")
+
+
+```
+
+
+#### Normal distribution (variability in per-capita vital rates)
+
+You are probably already familiar with the *Normal distribution*. This distribution has a lower bound of $-\infty$ and an upper bound of $\infty$. This distribution is great for modeling variation in per-capita vital rates (e.g., death rate or birth rate). For example, a population might have a mean per-capita birth rate of 7.1 hatchlings per female, but in good years (lots of food resources, low numbers of parasites, etc) the population birth rate might be as high as 11 and in bad years it might be as low as around 3.
+
+
+```{r echo=TRUE}
+mean = 7.1
+stdev = 2.1
+
+curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Per-capita birth rate",main="Normal distribution (variation in vital rates)")   # probability density
+
+```
+
 
 #### Demographic stochasticity
 
@@ -912,7 +822,100 @@ abline(h=0.05,col="red",lwd=2)
 
 ```
 
+## Population Viability Analysis (PVA)
 
+Let's return to the topic of this unit: PVA.
+
+Population Viability Analysis (PVA) is the _process of building and running formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions_.
+
+### What are some questions you can address with PVA?
+
+In general, we are interested in evaluating population-level risk under various alternative **scenarios**. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions. 
+
+Setting up alternative scenarios is a bit like setting up experiments in a laboratory!
+
+We are often interested in evaluating the factors that threaten the present or future viability of a population. 
+
+Population threats can be classified as either deterministic or stochastic.
+
+### Deterministic threats
+
+![](Fragmentation1.jpg)
+![](harvest1.jpg)
+
+Given what we know (and what we don't know!) about our study system, what is the population-level impact of: 
+
+- Habitat fragmentation?
+- Habitat degradation or loss?
+- Direct Harvest?
+- Exotic invasive species?
+- Environmental toxins?
+
+### Stochastic threats
+
+Given what we know (and what we don't know!) about our study system, what is the population-level impact of: 
+
+- Demographic stochasticity?
+- Environmental stochasticity?
+- Catastrophes?
+- Loss of genetic diversity?
+
+**Q**: which is more likely to cause a large population to become small: stochastic threats or deterministic threats?
+
+**Q**: can you match the above concepts with the two "paradigms" of conservation biology (from Caughley 1994): the *small-population paradigm* and the *declining-population paradigm*?
+
+
+## A general PVA workflow
+
+
+![](PVAschematic1.png) 
+
+### Step 0: Define your questions/hypotheses
+
+### Step 1: Life history
+
+*How does your population work?*
+
+The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. In general, the following life history traits are often critical to consider:
+
+- Maximum and minimum reproductive age
+- Number of relevant age classes
+- Maximum population density
+- Density-dependence mechanisms
+- Variability in key vital rates
+
+
+### Step 2: Parameterize the demographic model!
+
+This is where you attach *real numbers* to the stocks and flows in your conceptual life history diagram!
+
+### Step 3: Spatial structure (metapopulations)!
+
+If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:
+
+- How many discrete populations? 
+- At what rate do individuals move among these populations?
+
+For the grizzly bear and loggerhead examples, we will not consider spatial structure!
+
+### Step 4: Simulate under alternative scenarios!
+
+There are lots of options for simulation software- R, [InsightMaker](https://insightmaker.com/), [Vortex](http://www.vortex10.org/Vortex10.aspx), [Ramas](http://www.ramas.com/metapop), and much more!
+
+The key question here is: what *scenarios* do you want to test in order to answer your original questions?
+
+### Step 5: Results
+
+Finally, you need to make sense of all the simulations you just ran!  
+
+There are two major tools that you will need to do this: **graphical visualization** and **statistical analysis**. 
+
+NOTE: The process of building a PVA model is **iterative** and **non-linear**. 
+
+For example -- after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back to the literature and change your parameter estimates to something more realistic (step 2).  
+
+
+Okay, now let's build a PVA model together!
 
 
 

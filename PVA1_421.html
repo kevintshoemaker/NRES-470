@@ -567,14 +567,15 @@ div.tocify {
 <p>Your model should look something like this:</p>
 <p><img src="IM14.jpg" /></p>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Hover your curser over the two [Flows] (Births and Deaths). Do these equations make sense?</p></li>
+<li><p>Hover your cursor over the two [Flows] (Births and Deaths). Do these equations make sense?</p></li>
 <li><p>Make sure the initial number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?</p></li>
 </ol>
 <p><strong>Q</strong>: what happens if you set the birth rate equal to the death rate?</p>
 <p><strong>Q</strong>: what happens if you set the birth rate less than the death rate?</p>
 <p>One of the most fundamental quantities in population ecology is called the “intrinsic rate of growth”, or <em>r</em>. R is simply the difference between birth and death rate:</p>
 <p><span class="math inline">\(r=birth\ rate-death\ rate\)</span></p>
-<p><strong>Q</strong>: is this model realistic? What is the NEXT thing you would like to change in this model to make it even more realistic?</p>
+<p><strong>Q</strong>: What is the intrinsic rate of growth for this population (when birth rate is set to 0.5 and the death rate is set to 0.4)?</p>
+<p><strong>Q</strong>: What is the next thing you would like to change to make the model more realistic?</p>
 </div>
 <div id="an-even-more-realistic-model" class="section level2">
 <h2>An even more realistic model!!</h2>
@@ -616,32 +617,6 @@ div.tocify {
 <p>To ensure that each model run (replicate) – or each year of each model run – is different from one another, we need to include at least one <strong>random number generator</strong> in our models!</p>
 <p>A random number generator is like a box of (potentially infinite) possible numbers – a lottery ball machine for example! Each time we want a new number we reach in and pull one out randomly, record the number, put it back in and shake it up again.</p>
 <p><img src="lottery1.png" /></p>
-<p>Every random-number generator has a <strong>distribution</strong>. This is a way of defining what exactly is in the box.</p>
-<p>For example, the box might have 10 “ones”, 5 “twos”, and 2 “threes”. In this case the distribution looks like this (<em>probability</em> of each <em>possibility</em>):</p>
-<pre class="r"><code>box &lt;- c(rep(1,10),rep(2,5),rep(3,2))
-barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possibility&quot;)</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>A probability distribution can be pretty much anything you want it to be. However, there are several key families of distributions that come up again and again in modeling (and in nature), and are often major building blocks of PVA!</p>
-<p>These distributions are: the <strong>binomial distribution</strong> for modeling the total number of deaths, the <strong>Poisson distribution</strong> for modeling the total number of births, and the <strong>Normal distribution</strong> for modeling variation in per-capita vital rates (e.g., percent death rate).</p>
-<div id="binomial-random-number-generator-for-modeling-total-deaths" class="section level4">
-<h4>Binomial random number generator (for modeling total deaths)</h4>
-<p>Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this “experiment” over and over again. Your results should follow a <em>binomial distribution</em>!</p>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-</div>
-<div id="poisson-random-number-generator-for-modeling-total-births" class="section level4">
-<h4>Poisson random number generator (for modeling total births)</h4>
-<p>Another discrete distribution we will use in this PVA short-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of <span class="math inline">\(\infty\)</span>, and is great for modeling the total number of new individuals entering a population each year (births).</p>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-</div>
-<div id="normal-distribution-variability-in-per-capita-vital-rates" class="section level4">
-<h4>Normal distribution (variability in per-capita vital rates)</h4>
-<p>You are probably already familiar with the <em>Normal distribution</em>. This distribution has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>. This distribution is great for modeling variation in per-capita vital rates (e.g., death rate or birth rate). For example, a population might have a mean per-capita birth rate of 7.1 hatchlings per female, but in good years (lots of food resources, low numbers of parasites, etc) the population birth rate might be as high as 11 and in bad years it might be as low as around 3.</p>
-<pre class="r"><code>mean = 7.1
-stdev = 2.1
-
-curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Per-capita birth rate&quot;,main=&quot;Normal distribution (variation in vital rates)&quot;)   # probability density</code></pre>
-<p><img src="PVA1_421_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-</div>
 <div id="return-to-insightmaker--add-demographic-stochasticity" class="section level3">
 <h3>Return to InsightMaker- add demographic stochasticity!</h3>
 <p>The term <strong>stochasticity</strong> just means randomness. A <strong>stochastic model</strong> is a model with one or more random number generators included!</p>
@@ -673,90 +648,9 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <li><p>Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool.</p></li>
 </ol>
 <p><strong>Please consider the following questions- write down your answers on a sheet of paper:</strong></p>
-<p><strong>Short Answer Question #5</strong> Does the population-level impact of <em>environme ntal stochasticity</em> depend on the initial abundance? If so, how?<br />
+<p><strong>Short Answer Question #5</strong> Does the population-level impact of <em>environmental stochasticity</em> depend on the initial abundance? If so, how?<br />
 <strong>Short Answer Question #6</strong> Can you explain why populations with a restricted geographic range (e.g., a small island) would be more vulnerable to <em>environmental stochasticity</em> than populations with a large range?</p>
 <p>[pause and record your answers on WebCampus]</p>
-</div>
-</div>
-<div id="population-viability-analysis-pva-1" class="section level2">
-<h2>Population Viability Analysis (PVA)</h2>
-<p>Let’s return to the topic of this unit: PVA.</p>
-<p>Population Viability Analysis (PVA) is the <em>process of building and running formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions</em>.</p>
-<div id="what-are-some-questions-you-can-address-with-pva" class="section level3">
-<h3>What are some questions you can address with PVA?</h3>
-<p>In general, we are interested in evaluating population-level risk under various alternative <strong>scenarios</strong>. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions.</p>
-<p>Setting up alternative scenarios is a bit like setting up experiments in a laboratory!</p>
-<p>We are often interested in evaluating the factors that threaten the present or future viability of a population.</p>
-<p>Population threats can be classified as either deterministic or stochastic.</p>
-</div>
-<div id="deterministic-threats" class="section level3">
-<h3>Deterministic threats</h3>
-<p><img src="Fragmentation1.jpg" /> <img src="harvest1.jpg" /></p>
-<p>Given what we know (and what we don’t know!) about our study system, what is the population-level impact of:</p>
-<ul>
-<li>Habitat fragmentation?</li>
-<li>Habitat degradation or loss?</li>
-<li>Direct Harvest?</li>
-<li>Exotic invasive species?</li>
-<li>Environmental toxins?</li>
-</ul>
-</div>
-<div id="stochastic-threats" class="section level3">
-<h3>Stochastic threats</h3>
-<p>Given what we know (and what we don’t know!) about our study system, what is the population-level impact of:</p>
-<ul>
-<li>Demographic stochasticity?</li>
-<li>Environmental stochasticity?</li>
-<li>Catastrophes?</li>
-<li>Loss of genetic diversity?</li>
-</ul>
-<p><strong>Q</strong>: which is more likely to cause a large population to become small: stochastic threats or deterministic threats?</p>
-<p><strong>Q</strong>: can you match the above concepts with the two “paradigms” of conservation biology (from Caughley 1994): the <em>small-population paradigm</em> and the <em>declining-population paradigm</em>?</p>
-</div>
-</div>
-<div id="a-general-pva-workflow" class="section level2">
-<h2>A general PVA workflow</h2>
-<p><img src="PVAschematic1.png" /></p>
-<div id="step-0-define-your-questionshypotheses" class="section level3">
-<h3>Step 0: Define your questions/hypotheses</h3>
-</div>
-<div id="step-1-life-history" class="section level3">
-<h3>Step 1: Life history</h3>
-<p><em>How does your population work?</em></p>
-<p>The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. In general, the following life history traits are often critical to consider:</p>
-<ul>
-<li>Maximum and minimum reproductive age</li>
-<li>Number of relevant age classes</li>
-<li>Maximum population density</li>
-<li>Density-dependence mechanisms</li>
-<li>Variability in key vital rates</li>
-</ul>
-</div>
-<div id="step-2-parameterize-the-demographic-model" class="section level3">
-<h3>Step 2: Parameterize the demographic model!</h3>
-<p>This is where you attach <em>real numbers</em> to the stocks and flows in your conceptual life history diagram!</p>
-</div>
-<div id="step-3-spatial-structure-metapopulations" class="section level3">
-<h3>Step 3: Spatial structure (metapopulations)!</h3>
-<p>If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:</p>
-<ul>
-<li>How many discrete populations?</li>
-<li>At what rate do individuals move among these populations?</li>
-</ul>
-<p>For the grizzly bear and loggerhead examples, we will not consider spatial structure!</p>
-</div>
-<div id="step-4-simulate-under-alternative-scenarios" class="section level3">
-<h3>Step 4: Simulate under alternative scenarios!</h3>
-<p>There are lots of options for simulation software- R, <a href="https://insightmaker.com/">InsightMaker</a>, <a href="http://www.vortex10.org/Vortex10.aspx">Vortex</a>, <a href="http://www.ramas.com/metapop">Ramas</a>, and much more!</p>
-<p>The key question here is: what <em>scenarios</em> do you want to test in order to answer your original questions?</p>
-</div>
-<div id="step-5-results" class="section level3">
-<h3>Step 5: Results</h3>
-<p>Finally, you need to make sense of all the simulations you just ran!</p>
-<p>There are two major tools that you will need to do this: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
-<p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
-<p>For example – after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back to the literature and change your parameter estimates to something more realistic (step 2).</p>
-<p>Okay, now let’s build a PVA model together!</p>
 <p><a href="PVA2_421.html">–go to grizzly PVA!–</a></p>
 </div>
 </div>
@@ -854,6 +748,32 @@ curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot
 <ol start="12" style="list-style-type: decimal">
 <li>Make sure the number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?</li>
 </ol>
+<p>Every random-number generator has a <strong>distribution</strong>. This is a way of defining what exactly is in the box.</p>
+<p>For example, the box might have 10 “ones”, 5 “twos”, and 2 “threes”. In this case the distribution looks like this (<em>probability</em> of each <em>possibility</em>):</p>
+<pre class="r"><code>box &lt;- c(rep(1,10),rep(2,5),rep(3,2))
+barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possibility&quot;)</code></pre>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>A probability distribution can be pretty much anything you want it to be. However, there are several key families of distributions that come up again and again in modeling (and in nature), and are often major building blocks of PVA!</p>
+<p>These distributions are: the <strong>binomial distribution</strong> for modeling the total number of deaths, the <strong>Poisson distribution</strong> for modeling the total number of births, and the <strong>Normal distribution</strong> for modeling variation in per-capita vital rates (e.g., percent death rate).</p>
+</div>
+<div id="binomial-random-number-generator-for-modeling-total-deaths" class="section level4">
+<h4>Binomial random number generator (for modeling total deaths)</h4>
+<p>Imagine you flip a coin 10 times and count up the number of heads. Then you repeat this “experiment” over and over again. Your results should follow a <em>binomial distribution</em>!</p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="poisson-random-number-generator-for-modeling-total-births" class="section level4">
+<h4>Poisson random number generator (for modeling total births)</h4>
+<p>Another discrete distribution we will use in this PVA short-course is the *Poisson distribution. This distribution has a lower bound of 0 and an upper bound of <span class="math inline">\(\infty\)</span>, and is great for modeling the total number of new individuals entering a population each year (births).</p>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="normal-distribution-variability-in-per-capita-vital-rates" class="section level4">
+<h4>Normal distribution (variability in per-capita vital rates)</h4>
+<p>You are probably already familiar with the <em>Normal distribution</em>. This distribution has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>. This distribution is great for modeling variation in per-capita vital rates (e.g., death rate or birth rate). For example, a population might have a mean per-capita birth rate of 7.1 hatchlings per female, but in good years (lots of food resources, low numbers of parasites, etc) the population birth rate might be as high as 11 and in bad years it might be as low as around 3.</p>
+<pre class="r"><code>mean = 7.1
+stdev = 2.1
+
+curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Per-capita birth rate&quot;,main=&quot;Normal distribution (variation in vital rates)&quot;)   # probability density</code></pre>
+<p><img src="PVA1_421_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="demographic-stochasticity" class="section level4">
 <h4>Demographic stochasticity</h4>
@@ -1079,6 +999,87 @@ for(scenario in 1:length(flood_lambdas)){
 plot(flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impact (lambda in flood year)&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="PVA1_421_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+<div id="population-viability-analysis-pva-1" class="section level2">
+<h2>Population Viability Analysis (PVA)</h2>
+<p>Let’s return to the topic of this unit: PVA.</p>
+<p>Population Viability Analysis (PVA) is the <em>process of building and running formal predictive population models for the purpose of gaining insight about present and future conservation status, or ranking alternative conservation actions</em>.</p>
+<div id="what-are-some-questions-you-can-address-with-pva" class="section level3">
+<h3>What are some questions you can address with PVA?</h3>
+<p>In general, we are interested in evaluating population-level risk under various alternative <strong>scenarios</strong>. These scenarios could involve alternative initial population sizes, alternative vital rates (e.g., survival rates), or alternative management actions.</p>
+<p>Setting up alternative scenarios is a bit like setting up experiments in a laboratory!</p>
+<p>We are often interested in evaluating the factors that threaten the present or future viability of a population.</p>
+<p>Population threats can be classified as either deterministic or stochastic.</p>
+</div>
+<div id="deterministic-threats" class="section level3">
+<h3>Deterministic threats</h3>
+<p><img src="Fragmentation1.jpg" /> <img src="harvest1.jpg" /></p>
+<p>Given what we know (and what we don’t know!) about our study system, what is the population-level impact of:</p>
+<ul>
+<li>Habitat fragmentation?</li>
+<li>Habitat degradation or loss?</li>
+<li>Direct Harvest?</li>
+<li>Exotic invasive species?</li>
+<li>Environmental toxins?</li>
+</ul>
+</div>
+<div id="stochastic-threats" class="section level3">
+<h3>Stochastic threats</h3>
+<p>Given what we know (and what we don’t know!) about our study system, what is the population-level impact of:</p>
+<ul>
+<li>Demographic stochasticity?</li>
+<li>Environmental stochasticity?</li>
+<li>Catastrophes?</li>
+<li>Loss of genetic diversity?</li>
+</ul>
+<p><strong>Q</strong>: which is more likely to cause a large population to become small: stochastic threats or deterministic threats?</p>
+<p><strong>Q</strong>: can you match the above concepts with the two “paradigms” of conservation biology (from Caughley 1994): the <em>small-population paradigm</em> and the <em>declining-population paradigm</em>?</p>
+</div>
+</div>
+<div id="a-general-pva-workflow" class="section level2">
+<h2>A general PVA workflow</h2>
+<p><img src="PVAschematic1.png" /></p>
+<div id="step-0-define-your-questionshypotheses" class="section level3">
+<h3>Step 0: Define your questions/hypotheses</h3>
+</div>
+<div id="step-1-life-history" class="section level3">
+<h3>Step 1: Life history</h3>
+<p><em>How does your population work?</em></p>
+<p>The first step (after you have formulated your research questions, of course!) is to conceptualize the key life history traits that you need to know to address your main questions. In general, the following life history traits are often critical to consider:</p>
+<ul>
+<li>Maximum and minimum reproductive age</li>
+<li>Number of relevant age classes</li>
+<li>Maximum population density</li>
+<li>Density-dependence mechanisms</li>
+<li>Variability in key vital rates</li>
+</ul>
+</div>
+<div id="step-2-parameterize-the-demographic-model" class="section level3">
+<h3>Step 2: Parameterize the demographic model!</h3>
+<p>This is where you attach <em>real numbers</em> to the stocks and flows in your conceptual life history diagram!</p>
+</div>
+<div id="step-3-spatial-structure-metapopulations" class="section level3">
+<h3>Step 3: Spatial structure (metapopulations)!</h3>
+<p>If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:</p>
+<ul>
+<li>How many discrete populations?</li>
+<li>At what rate do individuals move among these populations?</li>
+</ul>
+<p>For the grizzly bear and loggerhead examples, we will not consider spatial structure!</p>
+</div>
+<div id="step-4-simulate-under-alternative-scenarios" class="section level3">
+<h3>Step 4: Simulate under alternative scenarios!</h3>
+<p>There are lots of options for simulation software- R, <a href="https://insightmaker.com/">InsightMaker</a>, <a href="http://www.vortex10.org/Vortex10.aspx">Vortex</a>, <a href="http://www.ramas.com/metapop">Ramas</a>, and much more!</p>
+<p>The key question here is: what <em>scenarios</em> do you want to test in order to answer your original questions?</p>
+</div>
+<div id="step-5-results" class="section level3">
+<h3>Step 5: Results</h3>
+<p>Finally, you need to make sense of all the simulations you just ran!</p>
+<p>There are two major tools that you will need to do this: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
+<p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
+<p>For example – after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back to the literature and change your parameter estimates to something more realistic (step 2).</p>
+<p>Okay, now let’s build a PVA model together!</p>
 </div>
 </div>
 
