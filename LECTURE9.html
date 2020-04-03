@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -88,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -237,6 +235,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -265,6 +264,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -528,7 +533,7 @@ div.tocify {
 <p>The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size (MVP) is that <em>population size above which the extinction vortex can be safely averted</em>.</p>
 <p>However, the above definition is not strictly quantifiable for most species. Also MVP is often defined in relation to population models, many of which don’t have an explicit genetic component (becuase we often don’t know exactly how many deleterious recessive alleles are in a population!). The quantitative, operational definition that we will use in this course is:</p>
 <blockquote>
-<p><em>MVP: the smallest abundance that satisfies a specified extinction risk threshold (e.g., the smallest initial abundance such that the risk of extinction over 50 years is below 10%)</em></p>
+<p><em>MVP: the smallest abundance that satisfies a specified extinction risk threshold (e.g., the smallest initial abundance such that the risk of extinction over 50 years is below 5%)</em></p>
 </blockquote>
 </div>
 <div id="population-viability-analysis-pva" class="section level2">
