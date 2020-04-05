@@ -489,19 +489,19 @@ div.tocify {
 
 <div id="pva-for-yellowstone-grizzly-bears" class="section level2">
 <h2>PVA for Yellowstone grizzly bears!</h2>
-<p>In today’s class we will use a PVA to do some management-relevant <strong>scenario testing</strong> for the grizzly bear population in Yellowstone National Park.</p>
+<p>In this module we will use a PVA to do some management-relevant <strong>scenario testing</strong> for the grizzly bear population in Yellowstone National Park.</p>
 <p><img src="grizzly1.jpg" /></p>
-<p>Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may regulate this population!</p>
+<p>Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may <em>regulate</em> this population!</p>
 <p>Let’s walk together through the basic steps in building and running a PVA model:</p>
-<div id="step-1-life-history-diagram" class="section level4">
-<h4>Step 1: life history diagram</h4>
-<p>Based on the literature that we have read, we determine that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive!</p>
+<div id="step-1-conceptualize-the-life-history" class="section level4">
+<h4>Step 1: conceptualize the life history</h4>
+<p>Based on a literature review, we have determined that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive! Furthermore, the subadult stage lasts approximately 3 years, from the 3rd to the 5th year of life.</p>
 <p>Therefore, our conceptual life history diagram looks something like this!</p>
 <p><img src="IM16.jpg" /></p>
-<p>You can “clone” the base grizzly bear model <a href="https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized">here</a>. This model has not yet been parameterized!</p>
+<p>You can “clone” the base grizzly bear model <a href="https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized">here</a>. This model has not yet been <em>parameterized</em>!</p>
 </div>
-<div id="step-2-parameterize" class="section level4">
-<h4>Step 2: parameterize!</h4>
+<div id="step-2-parameterize-the-model" class="section level4">
+<h4>Step 2: parameterize the model!</h4>
 <p>Let’s use this table to parameterize the population vital rates in our model!</p>
 <p>This table actually has <em>two alternative parameterizations</em>, one summarized from data collected the period from 1983 through 2001, and the other representing data from the period from 2002-2011.</p>
 <p>NOTE: we are not paying any attention to males! Population models are often <em>female-only</em>, since females are usually the primary drivers of population dynamics.</p>
@@ -537,12 +537,12 @@ div.tocify {
 <ol start="2" style="list-style-type: decimal">
 <li>What if we configure the model to run for 100 years? What happens now?</li>
 </ol>
-<p><strong>Q</strong>: <em>NOW</em> do you think this model is biologically realistic? Why or why not?</p>
+<p><strong>Short Answer Question #1</strong>: Based on the 100-year simulation, do you think this model of the Yellowstone grizzly population is biologically realistic? Why or why not?</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Now let’s change the parameterization to reflect the vital rates observed for the period 2002 to 2011 in the table:</li>
 </ol>
 <p><img src="grizzly_table1.jpg" /></p>
-<p>In 2002 the population was more like 40 females- so let’s use the following initialization!</p>
+<p>In 2002 the population was more like 40 females- so let’s use the following values for the initial population size!</p>
 <p><em>Cubs:</em> 15<br />
 <em>Yearlings:</em> 15<br />
 <em>Subadult 1:</em> 5<br />
@@ -550,8 +550,7 @@ div.tocify {
 <em>Subadult 3:</em> 5<br />
 <em>Adults:</em> 40</p>
 <p><strong>Q</strong>: What do you notice about this model? Is the population still growing? What about the overall <em>rate of growth</em> of the population?</p>
-<p><strong>Q</strong>: Which vital rates changed the most from 1983 to 2002?</p>
-<p><strong>Q</strong>: Can you think of any reason for this change?</p>
+<p><strong>Short Answer Question #2</strong>: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?</p>
 <div id="density-dependence" class="section level5">
 <h5>Density-dependence</h5>
 <ol start="4" style="list-style-type: decimal">
@@ -583,11 +582,11 @@ div.tocify {
 <li><p>Make sure the initial abundances are set at the estimated values for 1983 to 2001, and the model is set to run for 100 years.</p></li>
 <li><p>“Comment out” the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (0.539). The “commenting out” trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value ‘0.539’; see below).</p></li>
 </ol>
-<p><strong>Please write down your responses to the following questions:</strong>:</p>
-<p><strong>Question 2.1</strong> What is the approximate <strong>carrying capacity</strong> (K) of the Yellowstone grizzly population? NOTE: this is an <strong>emergent property</strong> of our new, density-dependent model! We didn’t specify carrying capacity, but it <em>emerges</em> out of the model.</p>
-<p><strong>Question 2.2</strong> In each case (with density-dependence and without density-dependence; i.e., yearling survival = 0.539), what is the approximate 90% confidence interval for the total population abundance after 100 years? (hint: use the ‘Sensitivity Testing’ tool; see below for more details)</p>
+<p><strong>Short Answer Question #3</strong>: What is the approximate <strong>carrying capacity</strong> (K) of the Yellowstone grizzly population? NOTE: this is an <strong>emergent property</strong> of our new, density-dependent model! We didn’t specify carrying capacity, but it <em>emerges</em> out of the model.</p>
+<p><strong>Short Answer Question #4</strong> In each case (with density-dependence and without density-dependence; i.e., yearling survival = 0.539), what is the approximate 90% confidence interval for the total population abundance after 100 years? (hint: use the ‘Sensitivity Testing’ tool; see below for more details)</p>
+<p><strong>Optional Additional Question</strong></p>
 <p>Before answering the next question, comment out the density-dependence equation and set yearling survival to its lowest possible value from Table 1 (above; 0.346). This is an example of a <strong>worst-case scenario</strong></p>
-<p><strong>Question 2.3</strong> Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the 6 age-classes) such that you can’t reduce the population any further without having an unacceptable (&gt;5%) risk of falling below 30 individuals over the next 100 years.</p>
+<p><strong>Short Answer Question #5 (optional)</strong> Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the 6 age-classes) such that you can’t reduce the population any further without having an unacceptable (&gt;5%) risk of falling below 30 individuals over the next 100 years.</p>
 <div id="helpful-hints-to-answer-the-grizzly-bear-questions" class="section level4">
 <h4>Helpful hints to answer the grizzly bear questions</h4>
 <div id="commenting-out-the-density-dependence-equation" class="section level5">
