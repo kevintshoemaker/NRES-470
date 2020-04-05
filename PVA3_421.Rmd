@@ -35,16 +35,16 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 # PVA for loggerhead turtles!
 
-This PVA example shows the use of demographic data in projecting a population into the future. By the time we meet on Tuesday, April 3 be sure that this model is running on your laptop (in InsightMaker) because we will be exploring the model more fully in class together, and we will use this PVA to do some management-relevant **scenario testing**. Also make sure you have run through the Excel exercise- see below!
+This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant **scenario testing**. Also try to run through the Excel exercise (see below)!
 
 
 ## Constructing a demographic (matrix) model data for loggerhead turtles
 
 If you would like more background information on loggerhead turtles, visit these websites:     
 
-[USFWS site](http://ecos.fws.gov/species_profile/servlet/gov.doi.species_profile.servlets.SpeciesProfile?spcode=C00U)       
-[NMFS site](http://www.nmfs.noaa.gov/prot_res/species/turtles/loggerhead.html)       
-[Texas site](http://www.tpwd.state.tx.us/huntwild/wild/species/endang/animals/reptiles_amphibians/logghead.phtml)       
+[USFWS site](https://ecos.fws.gov/ecp0/profile/speciesProfile?spcode=C00U)       
+[NMFS site](https://www.fisheries.noaa.gov/species/loggerhead-turtle)       
+[Texas site](https://tpwd.texas.gov/huntwild/wild/species/logghead/)       
 
 ### Background
 
@@ -81,7 +81,7 @@ Because beaches are popular sites for human recreation and development, arriving
 
 Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.  
 
-- Juveniles (after the sargassum-feeding stage) feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common.  
+- After the sargassum-feeding stage, loggerhead turtle juveniles, subadults and adults feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common- especially for juveniles!  
 
 ![](trawl1.png)
 
@@ -128,11 +128,7 @@ Here are some relevant parameters, from [this paper](Crowder1994.pdf):
 
 For this model we will assume no stochasticity or uncertainty in any of these parameters. 
 
-### Step 3: spatial structure  
-
-We are not modeling spatial structure, so we can skip this one!
-
-### Step 4: simulate!
+### Step 3: simulate!
 
 We can project the loggerhead population into the future using *matrix multiplication*!
 
@@ -140,23 +136,16 @@ We can do this using any number of tools- including R, Excel, or Insightmaker.
 
 See the end of this lecture for a review of matrix population models and how they work. 
 
-Since you probably are most familiar with Excel, let's do it in Excel first! Or if you'd like to do it in R instead, I've provided some code to get you started!  You can download the R code [here](PVA3_421.R)
-
-## Population projection in Excel
-
-You can load the base Excel model [here](Loggerhead2019.xlsx)
 
 #### Build the baseline loggerhead projection matrix
 
-- Your initial spreadsheet should look something like this:
+- In Excel, your projection matrix would look something like this:
 
 ![](loggerhead6.jpg.png)
 
-- Note that the transition rates are already provided for you in the spreadsheet -- in the form of a transition matrix!
 
-- NOTE: Wherever a transition is not possible, e.g., from hatchlings to large juveniles, you will see a zero in the transition matrix.
 
-In R, your projection matrix should look like this!
+In R, your projection matrix would look like this!
 
 ```{r}
 
@@ -180,10 +169,102 @@ projection_matrix
 
 ```
 
+But we will use InsightMaker for this PVA:
+
+## Projecting the loggerhead population in InsightMaker
+
+First, clone the baseline loggerhead PVA model [here](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model). 
+
+Hit "Simulate". Your results should look similar to this (which was done in R):
+
+```{r}
+
+# Run the matrix projection model!
+
+nYears <- 100                                            # set the number of years to project
+TMat <- projection_matrix                               # define the projection matrix
+Abundance_year0 <- c(2000,500,300,300,20)   # vector of initial abundances
+InitAbund <- Abundance_year0                            # define the initial abundance
+
+  ## NOTE: the code below can be re-used without modification:
+allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+allYears[,1] <- InitAbund  # set the year 0 abundance                                    
+for(t in 2:(nYears+1)){   # loop through all years
+  allYears[,t] <-  TMat %*% allYears[,t-1]
+}
+plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+cols <- rainbow(5)    # set up colors to use
+for(s in 1:5){
+  points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
+}
+axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
+legend("topright",col=cols,lwd=rep(2,3),legend=rownames(TMat),bty="n")  # put a legend on the plot
+
+```
+
+
+NOTE: here we use the term "survival" to refer to surviving and staying in the same stage class, and "growth" to refer to surviving and moving on to the next life stage. 
+
+Look over the model, and make sure that you understand the inner workings!
+
+### Group exercise (in class!): loggerhead management
+
+Working in small groups if possible, investigate four management scenarios for the loggerhead turtle population:
+
+1. Improve fecundity (labeled "Sub Fecundity" and "Adult Fecundity" in the IM model) via *nest-site protection*!
+    - Improve fecundity to 1.5X the current value      
+    - Double fecundity (2X the current value)      
+2. Improve hatchling survival (labeled "hatchling growth" in the IM model) via *nest monitoring*
+    - Improve _to_ 90%    
+    - Improve _to_ 100%    
+3. Improve large juvenile survival (labeled "Lg Juv Surv" in the IM model) using *Turtle Excluder Devices (TEDs)*     
+    - Increase by 15% (add 0.15 to the existing juvenile survival)      
+    - Increase by 25% (add 0.25 to the existing juvenile survival)      
+4. Improve adult/subadult survival (labeled "Sub Surv" and "Adult Surv" in IM) by *restricting longline fisheries*.     
+    - Increase by 5% (add 0.05 to the existing subadult and adult survival)         
+    - Increase by 10% (add 0.1 to the existing subadult and adult survival)          
+    
+    
+![turtle excluder device](ted1.jpg)    
+
+For each scenario, consider:
+
+- The short-term outlook (4-6 years out)
+- The long-term outlook (100 years out)
+
+
+**Please write down your responses to the following questions:**:
+
+**Short Answer Question #1**: What is your management recommendation for this population? Why? [please take your time with this one]
+
+**Short Answer Question #2**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if the population ultimately declines over time?
 
 
 
-#### Forecast the population into the future in Excel
+
+
+#### References
+
+Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy.  1996.  Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set.  Conservation Biology 10 (3), 863-873.  doi: 10.1046/j.1523-1739.1996.10030863.x
+
+Morris, W. F. and D. F. Doak.  2002.  Quantitative conservation biology:  Theory and practice of population viability analysis.  Sinauer, Sunderland, MA.
+
+Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson.  1999. A practical handbook for population viability analysis.  The Nature Conservancy, Wash., DC.
+
+
+
+
+#### Optional: Forecast the population into the future in Excel
+
+Since you probably are most familiar with Excel, let's do it in Excel first! Or if you'd like to do it in R instead, I've provided some code to get you started!  You can download the R code [here](PVA3_421.R)
+
+#### Population projection in Excel
+
+You can load the base Excel model [here](Loggerhead2019.xlsx)
+
+- Note that the transition rates are already provided for you in the spreadsheet -- in the form of a transition matrix!
+
+- NOTE: Wherever a transition is not possible, e.g., from hatchlings to large juveniles, you will see a zero in the transition matrix.
 
 The projection matrix can be used to project future loggerhead population size assuming the transition probabilities (the $F_i$, $S_i$, and $G_i$) do not change over time. 
 
@@ -212,7 +293,7 @@ Using the 'size-distribution vector', we can project the population size of each
 
 This formula calculates the size distribution next year (i.e., in year *t + 1*) based on the projection matrix $\mathbf{A}$ and the size distribution this year $\mathbf{N}_{t}$.  
 
-For example, to calculate the first row of [n]t +1, the number of hatchlings:
+For example, to calculate the first row of [n]t+1, the number of hatchlings:
 
 *hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42*     
 
@@ -288,64 +369,8 @@ legend("topright",col=cols,lwd=rep(2,3),legend=rownames(TMat),bty="n")  # put a 
 
 **Q**: Is this model *deterministic* or *stochastic*? 
 
-## Projecting the loggerhead population in InsightMaker
 
-First, clone the baseline loggerhead PVA model [here](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model). 
-
-Hit "Simulate". Make sure that the model results look the same as the above figure! If not, make sure the parameters are correct!
-
-NOTE: here we use the term "survival" to refer to surviving and staying in the same stage class, and "growth" to refer to surviving and moving on to the next life stage. 
-
-Look over the model, and make sure that you understand the inner workings!
-
-### Group exercise (in class!): loggerhead management
-
-Working in groups of 2-3, investigate four management scenarios for the loggerhead turtle population:
-
-1. Improve fecundity (labeled "Sub Fecundity" and "Adult Fecundity" in the IM model) via *nest-site protection*!
-    - Improve fecundity to 1.5X the current value      
-    - Double fecundity (2X the current value)      
-2. Improve hatchling survival (labeled "hatchling growth" in the IM model) via *nest monitoring*
-    - Improve _to_ 90%    
-    - Improve _to_ 100%    
-3. Improve large juvenile survival (labeled "Lg Juv Surv" in the IM model) using *Turtle Excluder Devices (TEDs)*     
-    - Increase by 15% (add 0.15 to the existing juvenile survival)      
-    - Increase by 25% (add 0.25 to the existing juvenile survival)      
-4. Improve adult/subadult survival (labeled "Sub Surv" and "Adult Surv" in IM) by *restricting longline fisheries*.     
-    - Increase by 5% (add 0.05 to the existing subadult and adult survival)         
-    - Increase by 10% (add 0.1 to the existing subadult and adult survival)          
-    
-    
-![turtle excluder device](ted1.jpg)    
-
-For each scenario, consider:
-
-- The short-term outlook (4-6 years out)
-- The long-term outlook (100 years out)
-
-
-**Please write down your responses to the following questions:**:
-
-**Question 3.1**: What is your management recommendation for this population? Why?
-
-**Question 3.2**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if it ultimately declines?
-
-
-
-
-#### References
-
-Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy.  1996.  Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set.  Conservation Biology 10 (3), 863-873.  doi: 10.1046/j.1523-1739.1996.10030863.x
-
-Morris, W. F. and D. F. Doak.  2002.  Quantitative conservation biology:  Theory and practice of population viability analysis.  Sinauer, Sunderland, MA.
-
-Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson.  1999. A practical handbook for population viability analysis.  The Nature Conservancy, Wash., DC.
-
-
-
-
-
-## REVIEW: matrix population models: 
+### REVIEW: matrix population models: 
 
 We can present yearly fecundity and survival probabilities compactly in a **projection matrix** [A] which we use to project the population size year to year.
 
