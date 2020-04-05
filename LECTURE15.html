@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -409,14 +481,13 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Parameter estimation!</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
-<div id="parameter-estimation-for-wildlife-population-models" class="section level1">
-<h1>Parameter estimation for wildlife population models!</h1>
+<p>#Parameter estimation for wildlife population models!</p>
 <p>We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!</p>
 <p>This is the focus of the current lecture!</p>
 <div id="data-requirements" class="section level2">
@@ -516,18 +587,9 @@ div.tocify {
 <h3>Census data!</h3>
 <p>Census data is ultimately what we all <strong>wish</strong> we had! It means we follow a population over time, and we know exactly how many individuals of each stage are in the population each year. We have <em>perfect detection!!!!</em></p>
 <p>In this case, computing survival and fecundity (and variation in these parameters, and density-dependence) is relatively straightforward!</p>
-<div class="figure">
-<img src="census1.png" />
-
-</div>
-<div class="figure">
-<img src="census2.png" />
-
-</div>
-<div class="figure">
-<img src="census3.png" />
-
-</div>
+<p><img src="census1.png" /></p>
+<p><img src="census2.png" /></p>
+<p><img src="census3.png" /></p>
 <p><strong>PROS</strong> - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!</p>
 <p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores <strong>imperfect detection</strong> (assumes perfect detection), which is almost always not realistic.</p>
 </div>
@@ -583,9 +645,10 @@ div.tocify {
 <li>Under decline trends, use the worst case scenario<br />
 </li>
 </ul></li>
-<li>Use data from similar species!<br />
-</li>
+<li>Use data from similar species!
+<ul>
 <li>E.g., tamarin species have similar life histories, so use data on golden lion tamarins to model golden-headed lion tamarins.</li>
+</ul></li>
 <li>Expert Opinion
 <ul>
 <li>See below…</li>
@@ -600,14 +663,8 @@ div.tocify {
 <li>This type of thinking (looking for broad patterns across species) is often called “Macroecology”</li>
 </ul></li>
 </ul>
-<div class="figure">
-<img src="allometry2.jpg" />
-
-</div>
-<div class="figure">
-<img src="allometry1.jpg" />
-
-</div>
+<p><img src="allometry2.jpg" /></p>
+<p><img src="allometry1.jpg" /></p>
 </div>
 </div>
 <div id="aside--is-expert-opinion-okay-to-use" class="section level2">
@@ -622,10 +679,7 @@ div.tocify {
 </div>
 <div id="capture-mark-recapture-cmr-analysis" class="section level2">
 <h2>Capture-mark-recapture (CMR) analysis</h2>
-<div class="figure">
-<img src="statistics1.png" />
-
-</div>
+<p><img src="statistics1.png" /></p>
 <div id="pva-parameters-estimable-from-cmr-data" class="section level3">
 <h3>PVA Parameters estimable from CMR data</h3>
 <ul>
@@ -647,10 +701,7 @@ div.tocify {
 <p>A “1” indicates that an animal was successfully captured in a given year, and subsequently released.</p>
 <p>A “0” indicates that an animal was not successfully captured in a given year.</p>
 <p>A “2” indicates that an animal was successfully captured in a given year but was not released back into the population.</p>
-<div class="figure">
-<img src="caphist1.png" />
-
-</div>
+<p><img src="caphist1.png" /></p>
 </div>
 <div id="two-main-types-of-cmr-analyses" class="section level3">
 <h3>Two main types of CMR analyses</h3>
@@ -664,10 +715,7 @@ div.tocify {
 <li>No emigration</li>
 <li>All individuals are observable (but not necessarily observed…)</li>
 </ul>
-<div class="figure">
-<img src="peterson1.png" />
-
-</div>
+<p><img src="peterson1.png" /></p>
 <p>Parameters estimated:</p>
 <ul>
 <li>Abundance</li>
@@ -742,21 +790,18 @@ R = number of individuals in 2nd sample that are marked</p>
 <h2>Example of an open-population mark-recapture analysis!</h2>
 <p>Let’s run through a CJS analysis in R! To follow along, please <a href="LECTURE15.R">save this script and load it up in Rstudio</a>.</p>
 <p>NOTE: this analysis includes both males and females (unlike the example in Lab 7), so the results will look somewhat different!</p>
-<div class="figure">
-<img src="dipper1.png" />
-
-</div>
+<p><img src="dipper1.png" /></p>
 <p>The European dipper data is THE classic example of a CMR dataset. Let’s look at it!</p>
 <pre class="r"><code>###########
 # Cormack-Jolly-Seber (CJS) model in R
 ###########
 
 library(marked)      # install the &#39;marked&#39; package if you haven&#39;t already done this!</code></pre>
+<pre><code>## Warning: package &#39;marked&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Loading required package: lme4</code></pre>
-<pre><code>## Warning: package &#39;lme4&#39; was built under R version 3.5.1</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
 <pre><code>## Loading required package: parallel</code></pre>
-<pre><code>## This is marked 1.2.1</code></pre>
+<pre><code>## This is marked 1.2.6</code></pre>
 <pre class="r"><code>data(&quot;dipper&quot;)
 head(dipper,10)</code></pre>
 <pre><code>##         ch    sex
@@ -789,7 +834,7 @@ dipper.proc=process.data(dipper,model=&quot;cjs&quot;,begin.time=1)  # Helper fu
 # fit time-varying cjs model
 
 
-capture.output(suppressMessages( 
+capture.output(suppressMessages(   # note: this is just to suppress messages to avoid cluttering the website...
       mod.Phit.pt &lt;-  crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)),method=&quot;Nelder-Mead&quot;,hessian = T)
 ),file=&quot;temp.txt&quot;) 
 
@@ -803,18 +848,18 @@ mod.Phit.pt   # print out model</code></pre>
 ## 
 ## Beta
 ##                    Estimate        se        lcl       ucl
-## Phi.(Intercept)  0.75646636 0.6570805 -0.5314115 2.0443442
-## Phi.time2       -0.99255899 0.7541097 -2.4706141 0.4854961
-## Phi.time3       -0.84151202 0.6991671 -2.2118796 0.5288556
-## Phi.time4       -0.22522075 0.7051952 -1.6074033 1.1569618
-## Phi.time5       -0.36893542 0.6974964 -1.7360283 0.9981575
-## Phi.time6        0.10115137 1.5063608 -2.8513157 3.0536185
-## p.(Intercept)    1.00571207 0.8006506 -0.5635631 2.5749873
-## p.time3          1.49463757 1.3119502 -1.0767848 4.0660599
-## p.time4          1.37853596 1.0927335 -0.7632217 3.5202936
-## p.time5          1.12053506 0.9914941 -0.8227934 3.0638635
-## p.time6          1.57229762 1.0715539 -0.5279480 3.6725433
-## p.time7          0.07823848 1.7821190 -3.4147147 3.5711916</code></pre>
+## Phi.(Intercept)  0.75646636 0.6570806 -0.5314116 2.0443444
+## Phi.time2       -0.99255899 0.7541098 -2.4706142 0.4854962
+## Phi.time3       -0.84151202 0.6991672 -2.2118797 0.5288557
+## Phi.time4       -0.22522075 0.7051952 -1.6074034 1.1569619
+## Phi.time5       -0.36893542 0.6974964 -1.7360284 0.9981576
+## Phi.time6        0.10115137 1.5063624 -2.8513189 3.0536216
+## p.(Intercept)    1.00571207 0.8006508 -0.5635635 2.5749876
+## p.time3          1.49463757 1.3119503 -1.0767850 4.0660601
+## p.time4          1.37853596 1.0927336 -0.7632220 3.5202939
+## p.time5          1.12053506 0.9914942 -0.8227937 3.0638638
+## p.time6          1.57229762 1.0715540 -0.5279483 3.6725435
+## p.time7          0.07823848 1.7821210 -3.4147187 3.5711956</code></pre>
 <pre class="r"><code>mod.Phit.pt$results$AIC       # extract AIC</code></pre>
 <pre><code>## [1] 681.0644</code></pre>
 <pre class="r"><code>########
@@ -854,11 +899,11 @@ mod.Phisex.psex</code></pre>
 ## AIC  :  674.1518
 ## 
 ## Beta
-##                   Estimate        se        lcl       ucl
-## Phi.(Intercept) 0.22338784 0.1440981 -0.0590445 0.5058202
-## Phi.sexMale     0.04138178 0.2041878 -0.3588263 0.4415898
-## p.(Intercept)   2.01072100 0.4210671  1.1854294 2.8360126
-## p.sexMale       0.47587463 0.6630165 -0.8236377 1.7753870</code></pre>
+##                   Estimate        se         lcl       ucl
+## Phi.(Intercept) 0.22338784 0.1440981 -0.05904451 0.5058202
+## Phi.sexMale     0.04138178 0.2041878 -0.35882631 0.4415899
+## p.(Intercept)   2.01072100 0.4210671  1.18542943 2.8360126
+## p.sexMale       0.47587463 0.6630165 -0.82363774 1.7753870</code></pre>
 <pre class="r"><code>mod.Phisex.psex$results$AIC</code></pre>
 <pre><code>## [1] 674.1518</code></pre>
 <pre class="r"><code>###########
@@ -948,18 +993,18 @@ allmodels[[1]]</code></pre>
 ## 
 ## Beta
 ##                    Estimate        se        lcl       ucl
-## Phi.(Intercept)  0.75646636 0.6570805 -0.5314115 2.0443442
-## Phi.time2       -0.99255899 0.7541097 -2.4706141 0.4854961
-## Phi.time3       -0.84151202 0.6991671 -2.2118796 0.5288556
-## Phi.time4       -0.22522075 0.7051952 -1.6074033 1.1569618
-## Phi.time5       -0.36893542 0.6974964 -1.7360283 0.9981575
-## Phi.time6        0.10115137 1.5063608 -2.8513157 3.0536185
-## p.(Intercept)    1.00571207 0.8006506 -0.5635631 2.5749873
-## p.time3          1.49463757 1.3119502 -1.0767848 4.0660599
-## p.time4          1.37853596 1.0927335 -0.7632217 3.5202936
-## p.time5          1.12053506 0.9914941 -0.8227934 3.0638635
-## p.time6          1.57229762 1.0715539 -0.5279480 3.6725433
-## p.time7          0.07823848 1.7821190 -3.4147147 3.5711916</code></pre>
+## Phi.(Intercept)  0.75646636 0.6570806 -0.5314116 2.0443444
+## Phi.time2       -0.99255899 0.7541098 -2.4706142 0.4854962
+## Phi.time3       -0.84151202 0.6991672 -2.2118797 0.5288557
+## Phi.time4       -0.22522075 0.7051952 -1.6074034 1.1569619
+## Phi.time5       -0.36893542 0.6974964 -1.7360284 0.9981576
+## Phi.time6        0.10115137 1.5063624 -2.8513189 3.0536216
+## p.(Intercept)    1.00571207 0.8006508 -0.5635635 2.5749876
+## p.time3          1.49463757 1.3119503 -1.0767850 4.0660601
+## p.time4          1.37853596 1.0927336 -0.7632220 3.5202939
+## p.time5          1.12053506 0.9914942 -0.8227937 3.0638638
+## p.time6          1.57229762 1.0715540 -0.5279483 3.6725435
+## p.time7          0.07823848 1.7821210 -3.4147187 3.5711956</code></pre>
 <pre class="r"><code>#######
 # make predictions and plot them. 
 
@@ -991,7 +1036,6 @@ sd(Phi_by_year$estimate)</code></pre>
 <p><a href="LECTURE16.html">–go to next lecture–</a></p>
 </div>
 </div>
-</div>
 
 
 
@@ -1011,6 +1055,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

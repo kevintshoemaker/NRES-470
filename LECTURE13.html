@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -383,6 +455,9 @@ div.tocify {
       <a href="LAB6.html">Lab 6: metapopulations</a>
     </li>
     <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -406,75 +481,69 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Metapopulations</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
 <div id="upcoming-midterm-exam" class="section level3">
 <h3>Upcoming midterm exam</h3>
-<p><strong>when and where</strong> The second midterm exam (out of two) is coming up on <strong>April 11</strong>. You will have the whole 50 minute class period to take the exam. The exam will take place in our regular classroom, unless you make prior arrangements.</p>
+<p><strong>when and where</strong> The second midterm exam (out of two) is coming up on <strong>April 15</strong>. You will have the whole 50 minute class period to take the exam. The exam will take place in our regular classroom, unless you make prior arrangements.</p>
 <p><strong>what</strong> The exam will cover:</p>
 <ul>
 <li>Everything from the first midterm<br />
 </li>
-<li>Matrix population models, including Chapter 3 of Gotelli<br />
+<li>Matrix population models, including all of Gotelli Chapter 3<br />
 </li>
-<li>Stochasticity and uncertainty<br />
+<li>Stochasticity and uncertainty (lecture and lab)<br />
 </li>
-<li>Small-population paradigm and declining-population paradigm<br />
+<li>Small-population paradigm, declining-population paradigm and PVA lectures<br />
 </li>
-<li>Individual-based models (IBM)<br />
-</li>
-<li>Metapopulations, including Chapter 4 of Gotelli, and all material covered in lecture and lab through today’s lecture!</li>
+<li>Metapopulations and source-sink dynamics (lectures and lab), including Chapter 4 of Gotelli.</li>
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
+<p>I will host a review session via zoom on Monday April 13 at 5pm. See the zoom tab on webcampus for details.</p>
+<p>Finally, don’t forget that lab 5 (stochasticity) is due at the end of this week – Friday, April 10 – along with your PVA models and justifications.</p>
 </div>
 <div id="metapopulations" class="section level2">
 <h2>Metapopulations</h2>
 <p>Metapopulation ecology remains one of the most dynamic and active areas of population ecology!</p>
 <p>Broadly speaking, a <strong>metapopulation</strong> is just a <em>spatially structured</em> population.</p>
-<p>Now that we are thinking about animals living in particular areas in space, we need to start thinking about <strong>movements</strong> as well! Patches in a metapopulation are connected via <strong>dispersal</strong>. If there were no <em>connectivity</em> (dispersal among patches), it wouldn’t really be a metapopulation, but rather a set of isolated populations that you could model independently.</p>
+<p>Now that we’re thinking about animals living in particular areas in space, we need to start thinking about <strong>movement ecology</strong> in addition to <strong>population ecology</strong>! Patches in a metapopulation are connected via <strong>dispersal</strong>. If there were no <em>connectivity</em> (dispersal among patches), it wouldn’t really be a metapopulation, but rather a set of isolated populations that you could model independently.</p>
 <p>Including a dispersal process allows us (finally!) to think about the whole “BIDE” equation!</p>
 <p><span class="math inline">\(\Delta N = B + I - D - E\)</span></p>
+<p>But – in fact, many metapopulation models (‘classical metapopulations’, covered in this lecture and Gotelli’s Chapter 4) don’t consider individuals at all!</p>
 </div>
 <div id="what-is-a-metapopulation" class="section level2">
 <h2>What is a metapopulation?</h2>
-<p>In classical <em>metapopulation ecology</em>, we are generally considering a <strong>landscape</strong> with a certain number of habitable <strong>patches</strong> (also called ‘subpopulations’).</p>
-<p>A metapopulation is simply a <em>population of patches</em>, each of which may or may not be occupied by a species of interest at a given point in time.</p>
-<div class="figure">
-<img src="patch1.jpg" />
-
-</div>
-<p>To simplify, we often assume that all habitat areas outside a patch are completely unsuitable.</p>
+<p>In <em>metapopulation ecology</em>, we are generally considering a <strong>landscape</strong> with a certain number of potentially habitable <strong>patches</strong> of habitat.</p>
+<p>A metapopulation is simply a <em>population of patches</em>, each of which may or may not be <em>occupied</em> by a species of interest at a given point in time. Different sets of patches may be occupied at different points in time.</p>
+<p><img src="MP2.jpg" /></p>
+<p><img src="patch1.jpg" /></p>
+<p>To simplify, we often assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat).</p>
 <p>We also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable.</p>
-<p>Instead of keeping track of the individuals in each patch (<span class="math inline">\(N\)</span>), we often just keep track of the fraction of occupied patches in our landscape (<span class="math inline">\(f\)</span>!</p>
-<p>Instead of keeping track of the dispersal of indviduals among patches, we only consider the colonization of unoccupied (empty) patches via immigration (<span class="math inline">\(I\)</span>) and the “rescue effect” (immigration preventing extinction of a patch; see below).</p>
-<div class="figure">
-<img src="MP2.gif" />
-
-</div>
-<p>Metapopulation ecology generally focuses on the case where there is <em>some</em> dispersal, but not complete <strong>panmixia</strong>.</p>
-<div class="figure">
-<img src="MP1.jpg" />
-
-</div>
+<p>Instead of keeping track of the individuals in each patch (<span class="math inline">\(N\)</span>), we often just keep track of the fraction of occupied patches in our landscape (<span class="math inline">\(f\)</span>)!</p>
+<p>Instead of keeping track of the dispersal of indviduals among patches, we only consider the <em>colonization</em> of unoccupied (empty) patches via immigration (<span class="math inline">\(I\)</span>) and the <em>rescue effect</em> (immigration preventing extinction of a patch; see below).</p>
+<p>Metapopulation ecology covers a wide range of scenarios- as long as there are distinct habitat patches in a landscape, and as long as there is some dispersal among patches, then it is a type of metapopulation. When there is a very high rate of dispersal (and mating) among patches, then the metapopulation is described as “panmictic” (perfect genetic connectivity).</p>
+<p>NOTE: in some definitions (including for ‘classical’ metapopulations), a “metapopulation” is more narrowly defined as a set of patches with limited connectivity with at least some unoccupied patches at some points in time. I prefer the more inclusive definition!</p>
+<p><img src="MP1.jpg" /></p>
 <p>Although the term “metapopulation” is often used to refer to models where we don’t care about abundance (we only consider <strong>patch occupancy</strong> - like the models in Gotelli Chapter 4), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model.</p>
-<p>We will have a chance to use a metapopulation model in lab that is much more complex than the models in Gotelli Chapter 4!</p>
+<p>We will have a chance to use a metapopulation model in Lab 6 that is much more complex than the models in Gotelli Chapter 4!</p>
 <p><a href="https://insightmaker.com/insight/74948/Agent-based-metapopulation-model">Link to metapopulation model with explicit abundance</a></p>
 </div>
 <div id="classical-metapopulation-models" class="section level2">
 <h2>“Classical” metapopulation models</h2>
 <p>The simplest type of spatially structured population model is the “classical” metapopulation model.</p>
 <p>The metapopulation concept was first introduced by ecologist <a href="https://en.wikipedia.org/wiki/Richard_Levins">Richard Levins</a> in 1969, and further developed by <a href="https://en.wikipedia.org/wiki/Ilkka_Hanski">Ilkka Hanski</a> among others.</p>
-<p>In a classical metapopulation, patches are either <strong>occupied</strong> (coded as 1) or not (coded as 0) at any given point in time. We don’t consider abundance (<span class="math inline">\(N\)</span>) in these models- we just keep track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation at each time step.</p>
+<p>In a classical metapopulation, patches are either <strong>occupied</strong> (coded as 1) or <strong>unoccupied</strong> (coded as 0) at any given point in time. We don’t consider abundance (<span class="math inline">\(N\)</span>) in these models- we just keep track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation at each time step.</p>
 <p>That is, the [Stock] we are studying now is NOT the total number of individuals but instead it is the total number of occupied patches (or the fraction of patches occupied)!</p>
-<p>Instead of investigating population dynamics, we are investigating <strong>metapopulation dynamics</strong>. That is, how the number of occupied patches (or the fraction of patches occupied) changes over time.</p>
-<p>Under the classical model, it NOT a metapopulation unless there are local extinctions!</p>
+<p>Instead of investigating population dynamics, we are investigating <em>metapopulation occupancy dynamics</em>. That is, how the number of occupied patches (or the fraction of patches occupied) changes over time.</p>
+<p>Under the classical model, it NOT a metapopulation unless some patches are unoccupied at some points in time!</p>
 <p><strong>Q</strong>: how does a metapopulation grow?</p>
 <p><strong>Q</strong>: how does a metapopulation shrink?</p>
 <p><strong>Q</strong>: what is the equivalent of demographic stochasticity in a metapopulation model? [tophat]</p>
+<p>[pause video and answer TopHat question]</p>
 <p><strong>colonization</strong> is the process of a patch transitioning from unoccupied to occupied!</p>
 <p>How can a patch become colonized? The answer is <strong>immigration</strong> of course. That part of the “BIDE” equation that we have been ignoring up until now!</p>
 <p><strong>extirpation</strong> (or extinction) is the process of a patch transitioning from occupied to unoccupied.</p>
@@ -495,11 +564,11 @@ div.tocify {
 </li>
 <li>Extinction and colonization are insensitive to spatial context (spatial context, or “neighborhood effects”, do not affect <span class="math inline">\(p_e\)</span> and <span class="math inline">\(p_i\)</span>).<br />
 </li>
-<li>No time lags (metapopulation growth responds instantaneously to any changes in <span class="math inline">\(f\)</span>, <span class="math inline">\(p_e\)</span> and <span class="math inline">\(p_i\)</span>).<br />
+<li>No time lags (metapopulation growth responds instantaneously to any changes in <span class="math inline">\(f\)</span>).<br />
 </li>
-<li>Very large number of patches (even when the fraction of occupied patches is very small, the classical metapopulation still persists!). That is, global extinction is not possible!</li>
+<li>Very large number of patches (even when the fraction of occupied patches <span class="math inline">\(f\)</span> is very small, the classical metapopulation still persists!). That is, global extinction is not possible!</li>
 </ul>
-<p>We will start by making these assumptions, but then we will “relax” some of them!</p>
+<p>Clearly this is not a very realistic model, but it is a useful starting place. So.. we will start by making these assumptions, but then we will “relax” some of them!</p>
 <div id="variant-1-island-mainland-model" class="section level4">
 <h4>Variant #1: island-mainland model</h4>
 <p>Colonization occurs via immigration from a constant external source – a constant <strong>propagule rain</strong>.</p>
@@ -521,14 +590,14 @@ div.tocify {
 </div>
 </div>
 <div id="dynamic-stability" class="section level3">
-<h3>Dynamic stability</h3>
-<p>In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct – small patches can be highly vulnerable to demographic stochasiticity as we know! – but as long as patches can get re-colonized, we can reach an equlibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a <em>stable equilibrium</em>, and a stable metapopulation in which local extinctions are possible (<span class="math inline">\(p_e &gt; 0\)</span>) is called <strong>dynamically stable</strong>. That is, any given patch could be extinct at any given time, but on the whole, the size of the metapopulation is relatively stable and not at risk of <strong>regional (or global) extinction</strong>!</p>
-<p>The concept of metapopulation stability- in which extinctions and colonizations balance out - has much in common with the dynamic stability of a single population at carrying capacity - in which any given individual could die at any given time, but deaths and births approximately balance out!</p>
+<h3>‘Dynamic’ stability</h3>
+<p>In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct – small patches can be highly vulnerable to demographic stochasiticity as we know! – but as long as patches can get re-colonized, we can reach an equilibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a <em>stable equilibrium</em>, and a stable metapopulation in which local extinctions are possible (<span class="math inline">\(p_e &gt; 0\)</span>) is called <strong>dynamically stable</strong>. That is, any given patch could be extinct at any given time, but on the whole, the size of the metapopulation (total patches occupied) is relatively stable and not at risk of <strong>regional (or global) extinction</strong>!</p>
+<p>The concept of dynamic metapopulation stability- in which extinctions and colonizations balance out - has much in common with the dynamic stability of a single population at carrying capacity - in which any given individual could die at any given time, but deaths and births approximately balance out!</p>
 </div>
 <div id="spreading-the-risk" class="section level3">
 <h3>Spreading the risk!</h3>
 <p>In the classical metapopulation models, we assumed a very large number of patches, so there was no real chance of regional/global extinction. But most real metapopulations are small enough such that we often need to consider the risk of global extinction.</p>
-<p>Let’s consider a system in which a species occupies a single patch, and there is a probability of extinction <span class="math inline">\(p_e\)</span> of 0.15 per year.</p>
+<p>Let’s consider a system in which a species occupies a single patch, and there is a probability of extinction <span class="math inline">\(p_e\)</span> of 0.15 per patch per year.</p>
 <p><strong>Q</strong>: What is the probability of regional extinction after 10 years?</p>
 <p>The probability of persistence for 1 year is <span class="math inline">\(1-p_e\)</span>, so the probability of persistence for 10 years is <span class="math inline">\((1-p_e)^{10}\)</span> and the probability of regional extinction is <span class="math inline">\(1-((1-p_e)^{10})\)</span></p>
 <p>which works out to be about 80%. There is a substantial probability of regional extinction over 10 years!</p>
@@ -545,12 +614,9 @@ div.tocify {
 </div>
 <div id="sources-and-sinks" class="section level2">
 <h2>Sources and sinks!</h2>
-<p>One important concept related to metapopulations is that of <strong>source-sink dynamics</strong></p>
-<div class="figure">
-<img src="sourcesink1.gif" />
-
-</div>
-<p>In the real world, patches vary in size and quality. That is, the assumption of homogeneity (inherent to the classical metapopulation framework) is unlikely to be met in most real metapopulations!</p>
+<p>One important and practically useful concept related to metapopulations is that of <strong>source-sink dynamics</strong></p>
+<p><img src="sourcesink1.gif" /></p>
+<p>In the real world, patches vary in size and quality. That is, the assumption of homogeneity of patches (inherent to the classical metapopulation framework) is unlikely to be met in most real metapopulations!</p>
 <p>Just like with an age-structured population, where vital rates and equilibrium abundance can vary by age or size-class, <em>vital rates and abundances can vary over space</em>. Some areas might have better habitat, with higher overall population growth rates! On the other hand, some areas might have poor habitat- and these areas may be associated with lower vital rates…</p>
 <p>In fact, some patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., <span class="math inline">\(r\)</span> below zero, or <span class="math inline">\(\lambda\)</span> less than 1). Other patches may represent perfect conditions for population growth (at least if the habitat isn’t too crowded)!</p>
 <p>A <strong>source population</strong> is defined as a patch that provides a *net donation of immigrants** to nearby patches with lower-quality habitat (i.e., sink populations or pseudo-sink populations). A source population should persist indefinitely, even in isolation.</p>
@@ -564,10 +630,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>First click on this <a href="https://insightmaker.com/insight/107587/Source-Sink-2">link</a> and clone this <em>population-based source-sink model</em> in InsightMaker. This model represents a four-patch metapopulation with one large source population and three smaller sink populations. The sink populations are located at varying distances from the source population. Here is the approximate <em>spatial configuration</em> of this metapopulation:</li>
 </ol>
-<div class="figure">
-<img src="sourcesink1.png" />
-
-</div>
+<p><img src="sourcesink1.png" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Make sure the model parameters are at default values. The default parameters should be:</li>
 </ol>
@@ -663,6 +726,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
