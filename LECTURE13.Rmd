@@ -248,11 +248,11 @@ NOTE: maximum dispersal rate (in this model) is the rate of dispersal between ne
 
 **Q**: what data sources might be helpful in understanding dispersal rates in a metapopulation?
 
-4. Change the dispersal rate to zero and run the model. What happens? Is this realistic?     
+4. Change the dispersal rate to zero and run the model. What happens? Does this make sense?     
 
 5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is consistently (continuously) occupied (make sure the lower bound of the 95% region for abundance in this patch is above 2 for all years)? [tophat]
 
-6. Change the dispersal rate back to 10%. Now reduce the population growth rate in the source population to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population? 
+6. Change the dispersal rate back to 10%. Now reduce the population growth rate in the source population ("lambda good") to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population? 
 
 #### A pseudo-sink!
 
@@ -281,7 +281,7 @@ code here
 and
 some more
 random code
-/*
+*/
 ```
 
 This will force 50% of the source population to try to move to the sink habitat each year! Nearly all individuals that are in the sink habitat will attempt to stay there. 
@@ -302,13 +302,9 @@ newexp-[nearby sink]
 
 9. Run the model with the nearby sink as an ecological trap, and try to address the following questions:
 
-**Q**: in what way is the nearby sink now an *ecological trap*?
+**Q**: in what way is the nearby sink now an *ecological trap*? Are all sink populations really *ecological traps*?
 
-**Q**: are all sink populations really *ecological traps*?
-
-**Q**: are metapopulations better off without sink populations?
-
-**Q** could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? How does this relate to the concept of *density-dependence?
+**Q**: are metapopulations better off without sink populations? Could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? How does this relate to the concept of *density-dependence?
 
 
 #### Benefits of sink populations!
