@@ -17,33 +17,31 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 In this lab we will build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.   
 
-A classical metapopulation is best considered **a population of patches** -- patches which may or may not be occupied. If a patch is composed of individuals, a metapopulation is composed of patches!
+A classical metapopulation is best considered **a population of patches** -- patches which may or may not be occupied. A patch is composed of individuals, and a metapopulation is composed of patches!
 
 **colonization** is the process of a patch going from unoccupied to occupied! (via **immigration**).  
 
 **extirpation** (or extinction) is the process of a patch going from occupied to unoccupied.
 
-**regional extinction** represents extinction of all patches in the metapopulation. 
+**regional (or global) extinction** represents extinction of all patches in the metapopulation. 
 
 More formally, here are some terms we will consider:
 
-$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy**. This is the primary [Stock] in our classical metapopulation models.  
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **metapopulation occupancy**. This is the primary [Stock] in our classical metapopulation models.  
 
-$I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate) 
+$I$ is the total fraction of the metapopulation that is colonized by immigrants in a given time period (colonization rate, or "immigration" rate) 
 
-$E$ is the total fraction of patches that go extinct per time period (extirpation rate)
+$E$ is the total fraction of the metapopulation that goes extinct per time period (extirpation rate)
 
-Therefore, the change in occupancy can be expressed as:
+Therefore, the absolute change in occupancy can be expressed as:
 
 $\Delta f = I - E  \qquad \text{(Eq. 1)}$
 
-**Q**: If $f_t$ is the [Stock], what would $I$ and $E$ represent in a stock-and-flow modeling framework (e.g., InsightMaker)?
+**Q**: If $f_t$ is the [Stock], what would $I$ and $E$ represent in a stock-and-flow modeling framework (e.g., InsightMaker)? And what are the [Variables] (i.e., are there 'per-patch' rates that are analogous to per-capita rates?)?
 
-And what are the [Variables]?
+$p_i$ is the per-patch probability of colonization *for any given (unoccupied) patch*.
 
-$p_i$ is the probability of colonization for any given (unoccupied) patch.
-
-$p_e$ is the probability of extinction for any given (occupied) patch.
+$p_e$ is the per-patch probability of extinction *for any given (occupied) patch*.
 
 ## A basic metapopulation model:
 
@@ -60,18 +58,19 @@ Combining equation 1 with the above equations, we get our first metapopulation m
 
 $\Delta f = p_i(1-f)-p_ef  \qquad \text{(Eq. 4)}$
 
-This model assumes the following:   
+This model (and the following models) assume the following:   
 
 - Homogeneous patches (all patches are created equal -- patches are interchangeable)
 - Spatial context does not affect extinction and colonization parameters
 - No time lags
 - Very large number of patches
-- Extinction and colonization parameters are not dependent on the fraction of patches occupied. 
 
 
 ### Variant #1: island-mainland model
 
 Colonization occurs via immigration from a constant external source -- a constant **propagule rain**
+
+This model (and only this model) assumes that per-patch extinction and colonization rates ($p_i$ and $p_e$) are not dependent on the fraction of patches occupied ($f$). 
 
 This is the simplest metapopulation model. $p_i$ and $p_e$ are fixed, totally constant.
 
@@ -84,7 +83,12 @@ In this scenario, colonization can only happen via immigration from within the m
 
 $p_i = i \cdot f   \qquad \text{(Eq. 5)}$
 
-$i$ represents the strength of internal colonization (how much the probability of patch-level colonization increases with each new occupied patch in the metapopulation.
+$i$ represents the strength of internal colonization (how much the probability of patch-level colonization increases with each new occupied patch in the metapopulation. 
+
+In this model, the colonization rate is zero if all patches are unoccupied (there are no sources of immigrants to colonize any patches!)
+
+In this model, the colonization rate approaches $i$ as nearly all patches become occupied.
+
 
 ### Variant #3: rescue effect. 
 
@@ -94,10 +98,14 @@ $p_e = e(1-f)   \qquad \text{(Eq. 6)}$
 
 $e$ represents the strength of the rescue effect (maximum patch-level extinction risk, which occurs at complete metapopulation vacancy).
 
+In this model, the extinction rate approaches 0 as all patches become occupied [note, this may not be realistic, as it implies a perfectly successful rescue effect!]
+
+In this model, the extinction rate approaches $e$ as the metapopulation approaches global extirpation (fewer immigrants to 'rescue' a patch from extinction). 
+
 
 ### Variant #4: both internal colonization AND rescue effect!
 
-This one is pretty self-explanatory!
+This one is pretty self-explanatory. But it has some interesting emergent properties!
 
 ## What is a metapopulation?
 
@@ -109,13 +117,13 @@ Just as we can use metapopulation models to study the probability of **regional 
 
 HINT: _use the Gotelli book!!!_
 
-1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (assume the ponds are located far enough away from each other so you can reasonbly assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10% to 50%. Over the next 3 years, is it a better strategy to retain the single population or to split it into three (and "spread out the risk")? Show your calculations, and explain your reasoning! 
+1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (assume the ponds are located far enough away from each other so you can reasonbly assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10% to 50%. Over the next 3 years, is it a better strategy to retain the single population or to split it into three (and "spread out the risk")? Show your calculations, and explain your reasoning! [NOTE: you may want to refer to the 'spreading the risk' topic in the Metapopulations lecture and video. Also, recall that to compute the probability of three independent events of probability *p*, you simply multiply the probability by itself three times: $P(three\ events) = P(one\ event)^3$].
 
 1b. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied patches $f$ should be represented as a [Stock] (this stock can not go negative!) and there should be two [Flows]: one for *colonization* (I) and one for *extinction* (E). Initialize $f$ at 0.9. The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. Set $p_e$ to 0.15 and $p_i$ to 0.4. Clone your Insight and provide a link to your working InsightMaker metapopulation model as part of your lab write-up. 
 
-1c. On the basis of your Insightmaker model, what happens to $f$ over the course of the simulation? Does the metapopulation go extinct (regional extinction)? Does $f$ reach an equilibrium? If so, is this equilibrium **stable** or **unstable**? Explain your reasoning. 
+1c. On the basis of your Insightmaker model, what happens to $f$ over the course of the simulation? Does the metapopulation go extinct (regional extinction)? Does $f$ reach an equilibrium? If so, is this equilibrium **stable** or **unstable**? Explain your reasoning. [remember that to test for stability of equilibria, set the initial value of the stock at it's equilibrium value. From there, 'perturb' the initial value by setting it above and below the equilibrium. Does it return to the equilibrium state in all cases?] 
 
-1d. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.4 from Gotelli. Show your work. Do the two answers match?
+1d. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.4 from Gotelli. Show your work. Do the two answers match (i.e., do your results from applying the equation match with the equilibrium from your InsightMaker model)?
 
 1e. Change your InsightMaker model to reflect *internal colonization*. Set the parameter $i$ to 0.1. Clone the model and provide a link to your InsightMaker model as part of your lab write-up. 
 
@@ -132,7 +140,7 @@ HINT: _use the Gotelli book!!!_
 
 ## Exercise 2: a spatial metapopulation model!
 
-As we already know, agent-based models (individual-based models) are well-suited for considering spatial context. 
+Agent-based models (individual-based models- we skipped this lecture, so you are not expected to know this!) are well-suited for considering spatial context. 
 
 I have already prepared an agent-based metapopulation model for you. You can access and clone this model [here](https://insightmaker.com/insight/74948/Agent-based-metapopulation-model).
 
@@ -154,7 +162,7 @@ Population growth in each patch is also driven by migration to and from nearby p
 
 There is, of course, demographic stochasticity in this model!
 
-Graphical summaries are available, which illustrate the spatial configuration of the patches, the total metapopulation occupancy, the Total metapopulation abundance, and the total numbers of immigrants/emigrants.
+Graphical summaries are available, which illustrate the spatial configuration of the patches, the total metapopulation occupancy, the total metapopulation abundance, and the total numbers of immigrants/emigrants.
 
 Take some time to open the model (clone it!) and get familiar with the parameters and model behavior. If you don't understand something, ask your instructor! Make sure you have the following starting parameters:
 
@@ -180,7 +188,7 @@ iii. Restore habitat, effectively doubling the number of patches.
      
 Which management strategy would be most effective for ensuring that the metapopulation does not go exinct (prevent regional extinction)? Justify your answer with supporting figures.    
 
-2c. [thought question] Is it possible for $r_{max}$ to be positive and yet for the total regional abundance to exhibit a persistent declining trend? Explain your reasoning, using at least one biologically realistic example. You can use the agent-based metapopulation model in InsightMaker to help test your ideas, but this is not required.   
+2c. [thought question] Is it possible for $r_{max}$ to be positive and yet for the total regional abundance to exhibit a persistent declining trend? Explain your reasoning, using at least one biologically realistic example (i.e., describe a scenario under which this may actually occur in the real world). You can use the agent-based metapopulation model in InsightMaker to help test your ideas, but this is not required.   
 
 
 ##Checklist for Lab 6 completion
