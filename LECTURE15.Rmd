@@ -67,7 +67,7 @@ This is the focus of the current lecture!
 
 As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died. 
 
-NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohort (across the entire range of ages), at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method can be better than nothing!
+NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohorts (across the entire range of ages), at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method can be better than nothing!
 
 
 ```{r echo=FALSE}
@@ -86,7 +86,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 - Makes unrealistic assumptions (especially the *static life table* method).
 - Can not be used to estimate environmental stochasticity
 - Can not be used to estimate density dependence
-- Ignores **imperfect detection**  
+- Ignores **imperfect detection** and the fact that some age classes are less detectable than others   
 - Remember, it's not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!
 
 ### Census data!
@@ -120,7 +120,7 @@ In this case, computing survival and fecundity (and variation in these parameter
 - Estimating landscape-scale movements can require an even more costly and time-consuming study.
 - Emigration and survival can be difficult to tease apart in many cases. 
 
-See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the wildlife ecology and conservation sequence!)
+See below for more! Also this is the main focus of the Population Dynamics course (NRES 488, the next course in the Wildlife Ecology and Conservation sequence!)
 
 ### Data on spatial structure/habitat
 - See [links](FINAL_PROJECTS.html) on Final projects page
@@ -195,7 +195,7 @@ A "1" indicates that an animal was successfully captured in a given year, and su
 
 A "0" indicates that an animal was not successfully captured in a given year.
 
-A "2" indicates that an animal was successfully captured in a given year but was not released back into the population.
+A "2" indicates that an animal was successfully captured in a given year but was not released back into the population (probably died due to handling or capture).
 
 ![](caphist1.png)
 
@@ -283,7 +283,7 @@ $L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4)  \ri
 
 **Q**: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?
 
-**Q**: what about if survival were 100% and capture probability were 75%? 
+**Q**: what about if survival was 100% and capture probability was 75%? 
 
 Maximum likelihood estimation is the process of finding those values of the parameters $\phi$ and $p$ that would be most *likely* to generate the observed capture histories!
 
