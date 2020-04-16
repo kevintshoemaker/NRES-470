@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -409,8 +481,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Lab 7: Parameter estimation: mark-recapture analysis!</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -426,7 +498,7 @@ div.tocify {
 <h2>Overview of capture-recapture models:</h2>
 <p>It is important to note that for both closed- and open-population models, a primary task is to estimate the <em>probability of detection, p</em>. This is because most surveys of wild populations are <strong>imperfect</strong>- with few exceptions, we just can’t observe all individuals in a wild population every time we visit our study population in the wild.</p>
 <p>This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN’T SEE!! How do we know how many animals we didn’t see? We need to know the probability of capture- if we know the probability of capture we automatically know the probability of NOT capturing/detecting an animal in the population! From there we can estimate the number we didn’t capture from the number we did capture!</p>
-<p>If may not be as easy to see, but if we didn’t account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly <em>biased</em> in most cases.</p>
+<p>It may not be as easy to see, but if we didn’t account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly <em>biased</em> in most cases.</p>
 <p>Capture-mark-recapture models correct for that bias by estimating the probability of detection (<em>p</em>) in addition to fundamental parameters like abundance, recruitment and survival. If we can estimate the probability of detection, we can correct for the bias it introduces into our data.</p>
 <p>Let’s see how this works!</p>
 <div id="closed-population-models" class="section level3">
@@ -438,7 +510,7 @@ div.tocify {
 <div id="lincoln-petersen-model-l-p-estimating-abundance-on-the-basis-of-two-site-visits" class="section level4">
 <h4>LINCOLN-PETERSEN MODEL (L-P) (estimating abundance on the basis of two site visits!)</h4>
 <p>Basic underlying concept:</p>
-<p>On the first visit, a sample of <span class="math inline">\(M\)</span> animals is caught, <em>marked</em>, and released. Later, on a second visit to the study site, a sample of <span class="math inline">\(C\)</span> animals is <em>captured</em>, of which <span class="math inline">\(R\)</span> animals are <em>recaptures</em> that were previously Marked. No new animals are marked during the second visit.</p>
+<p>On the first visit, a sample of <span class="math inline">\(M\)</span> animals is caught, <em>marked</em>, and released. Later, on a second visit to the study site, a sample of <span class="math inline">\(C\)</span> animals is <em>captured</em>, of which <span class="math inline">\(R\)</span> animals are <em>recaptures</em> that were previously marked. No new animals are marked during the second visit.</p>
 <p>NOTE: animals do not need to be uniquely marked to estimate abundance using the L-P method.</p>
 <p>If the key assumptions of this analysis are met (see below), then the proportion of marked animals recaptured in the second visit (<span class="math inline">\(\frac{R}{C}\)</span>) should be equivalent to the proportion of marked animals (from the first visit) in the total population (<span class="math inline">\(\frac{M}{N}\)</span>) such that:</p>
 <p><span class="math inline">\(\frac{R}{C} = \frac{M}{N}\)</span></p>
@@ -541,6 +613,7 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 <p>NOTE: Program MARK is a Windows-based software. If you’re running MacOS, you can run MARK using a Windows partition or a Windows emulator. However, you don’t need to use Program MARK for this lab exercise – you can use R instead!</p>
 <p>The ‘marked’ package in R runs many of the same open-population models, and is much easier to use than Program MARK. Please install this package if haven’t already done so.</p>
 <p>These data should look like this! Here it is in R (just the first 15 lines)!</p>
+<pre><code>## mra (version 2.16.11)</code></pre>
 <pre><code>##    h1 h2 h3 h4 h5 h6 h7
 ## 1   1  1  1  1  1  1  0
 ## 2   1  1  1  1  1  0  0
@@ -562,11 +635,12 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 <p>Program MARK wants a particular type of input file (.INP; just a text file with special formatting). For the dipper data, it should look something like <a href="ed_males.txt">this</a></p>
 <p>Save this <a href="ed_males.txt">text file</a> and re-name it with the extension “.inp” rather than the extension “.txt”</p>
 <p>Your INP file should look something like this:</p>
+<pre><code>## Warning: package &#39;marked&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Loading required package: lme4</code></pre>
-<pre><code>## Warning: package &#39;lme4&#39; was built under R version 3.5.1</code></pre>
+<pre><code>## Warning: package &#39;lme4&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
 <pre><code>## Loading required package: parallel</code></pre>
-<pre><code>## This is marked 1.2.1</code></pre>
+<pre><code>## This is marked 1.2.6</code></pre>
 <pre><code>##         ch group
 ## 1  1111110    1;
 ## 2  1111000    1;
@@ -610,11 +684,11 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 
 library(marked)    # remember to install the &#39;marked&#39; package if you haven&#39;t already done this
 
-?crm  # to get help on the main parameter estimation function in &quot;marked&quot;</code></pre>
-<pre><code>## starting httpd help server ... done</code></pre>
-<pre class="r"><code># library(help=&quot;marked&quot;)
+#?crm  # to get help on the main parameter estimation function in &quot;marked&quot;
 
-vignette(&quot;markedVignette&quot;,&quot;marked&quot;)
+# library(help=&quot;marked&quot;)
+
+# vignette(&quot;markedVignette&quot;,&quot;marked&quot;)
 
 ##########
 # load data!
@@ -637,11 +711,8 @@ dipper.proc=process.data(dipper.male,model=&quot;cjs&quot;,begin.time=1)  # Help
 # fit time-varying cjs model
 
 mod.Phit.pt &lt;- crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)),method=&quot;Nelder-Mead&quot;,hessian = T)</code></pre>
-<pre><code>## Fitting model
-## 
-## Computing initial parameter estimates
-## 
-## Starting optimization for 12 parameters...</code></pre>
+<pre><code>## Computing initial parameter estimates</code></pre>
+<pre><code>## Starting optimization for 12 parameters...</code></pre>
 <pre><code>## 
  Number of evaluations:  100  -2lnl:  352.390871
  Number of evaluations:  200  -2lnl: 329.3590213
@@ -701,8 +772,9 @@ mod.Phit.pt &lt;- crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(form
  Number of evaluations:  300  -2lnl:  315.560414
  Number of evaluations:  400  -2lnl: 315.4597501
  Number of evaluations:  500  -2lnl: 315.4938468
- Number of evaluations:  600  -2lnl: 315.4685878
-## Elapsed time in minutes:  0.0102</code></pre>
+ Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
+<pre><code>## 
+## Elapsed time in minutes:  0.0075</code></pre>
 <pre class="r"><code>mod.Phit.pt   # print out model</code></pre>
 <pre><code>## 
 ## crm Model Summary
@@ -713,32 +785,29 @@ mod.Phit.pt &lt;- crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(form
 ## 
 ## Beta
 ##                    Estimate        se        lcl       ucl
-## Phi.(Intercept)  0.76917287 0.8246818 -0.8472034 2.3855491
-## Phi.time2       -0.93353673 0.9797199 -2.8537878 0.9867143
-## Phi.time3       -0.81355718 0.8953524 -2.5684478 0.9413335
-## Phi.time4       -0.30130169 0.9013876 -2.0680215 1.4654181
-## Phi.time5       -0.52970098 0.8840454 -2.2624300 1.2030280
-## Phi.time6       -0.24269895 1.1429802 -2.4829401 1.9975422
-## p.(Intercept)    2.29770785 2.4197391 -2.4449807 7.0403964
-## p.time3          0.36271463 2.9435492 -5.4066418 6.1320710
-## p.time4          0.12171286 2.6509843 -5.0742164 5.3176421
-## p.time5         -0.13875596 2.5714164 -5.1787321 4.9012202
-## p.time6          0.27351139 2.6085192 -4.8391863 5.3862091
-## p.time7          0.03276177 3.9285877 -7.6672701 7.7327937</code></pre>
+## Phi.(Intercept)  0.76917287 0.8246822 -0.8472042 2.3855500
+## Phi.time2       -0.93353673 0.9797204 -2.8537887 0.9867153
+## Phi.time3       -0.81355718 0.8953528 -2.5684486 0.9413342
+## Phi.time4       -0.30130169 0.9013880 -2.0680222 1.4654188
+## Phi.time5       -0.52970098 0.8840458 -2.2624307 1.2030288
+## Phi.time6       -0.24269895 1.1429824 -2.4829445 1.9975466
+## p.(Intercept)    2.29770785 2.4197424 -2.4449873 7.0404030
+## p.time3          0.36271463 2.9435519 -5.4066470 6.1320763
+## p.time4          0.12171286 2.6509874 -5.0742225 5.3176482
+## p.time5         -0.13875596 2.5714196 -5.1787384 4.9012265
+## p.time6          0.27351139 2.6085223 -4.8391924 5.3862152
+## p.time7          0.03276177 3.9286010 -7.6672962 7.7328198</code></pre>
 <pre class="r"><code>mod.Phit.pt$results$AIC       # extract AIC</code></pre>
 <pre><code>## [1] 339.4616</code></pre>
 <pre class="r"><code>########
 # fit time-invariant cjs model
 
 mod.Phidot.pdot &lt;- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)),method=&quot;Nelder-Mead&quot;,hessian = TRUE)</code></pre>
-<pre><code>## Fitting model
-## 
-## Computing initial parameter estimates
-## 
-## Starting optimization for 2 parameters...
-## Computing hessian...</code></pre>
+<pre><code>## Computing initial parameter estimates</code></pre>
+<pre><code>## Starting optimization for 2 parameters...</code></pre>
+<pre><code>## Computing hessian...</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.0027</code></pre>
+## Elapsed time in minutes:  0.002</code></pre>
 <pre class="r"><code>mod.Phidot.pdot</code></pre>
 <pre><code>## 
 ## crm Model Summary
@@ -771,20 +840,14 @@ cml=create.model.list(c(&quot;Phi&quot;,&quot;p&quot;))    # create list of all 
 
 allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method=&quot;Nelder-Mead&quot;,hessian=TRUE)</code></pre>
 <pre><code>## Phi.dot.p.dot</code></pre>
-<pre><code>## Fitting model
-## 
-## Computing initial parameter estimates
-## 
-## Starting optimization for 2 parameters...
-## Computing hessian...</code></pre>
+<pre><code>## Computing initial parameter estimates</code></pre>
+<pre><code>## Starting optimization for 2 parameters...</code></pre>
+<pre><code>## Computing hessian...</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.0023 
-## Phi.dot.p.time</code></pre>
-<pre><code>## Fitting model
-## 
-## Computing initial parameter estimates
-## 
-## Starting optimization for 7 parameters...</code></pre>
+## Elapsed time in minutes:  0.0018</code></pre>
+<pre><code>## Phi.dot.p.time</code></pre>
+<pre><code>## Computing initial parameter estimates</code></pre>
+<pre><code>## Starting optimization for 7 parameters...</code></pre>
 <pre><code>## 
  Number of evaluations:  100  -2lnl: 339.3932231
  Number of evaluations:  200  -2lnl: 320.8680856
@@ -810,12 +873,11 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
 <pre><code>## Computing hessian...</code></pre>
 <pre><code>## 
  Number of evaluations:  100  -2lnl: 316.1220471
- Number of evaluations:  200  -2lnl: 316.1169636
-## Elapsed time in minutes:  0.0043 
-## Phi.time.p.dot</code></pre>
-<pre><code>## Fitting model
-## 
-## Computing initial parameter estimates
+ Number of evaluations:  200  -2lnl: 316.1169636</code></pre>
+<pre><code>## 
+## Elapsed time in minutes:  0.0037</code></pre>
+<pre><code>## Phi.time.p.dot</code></pre>
+<pre><code>## Computing initial parameter estimates
 ## 
 ## Starting optimization for 7 parameters...</code></pre>
 <pre><code>## 
@@ -833,14 +895,12 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
 <pre><code>## Computing hessian...</code></pre>
 <pre><code>## 
  Number of evaluations:  100  -2lnl: 315.5145048
- Number of evaluations:  200  -2lnl: 315.5153169
-## Elapsed time in minutes:  0.0032 
-## Phi.time.p.time</code></pre>
-<pre><code>## Fitting model
-## 
-## Computing initial parameter estimates
-## 
-## Starting optimization for 12 parameters...</code></pre>
+ Number of evaluations:  200  -2lnl: 315.5153169</code></pre>
+<pre><code>## 
+## Elapsed time in minutes:  0.0027</code></pre>
+<pre><code>## Phi.time.p.time</code></pre>
+<pre><code>## Computing initial parameter estimates</code></pre>
+<pre><code>## Starting optimization for 12 parameters...</code></pre>
 <pre><code>## 
  Number of evaluations:  100  -2lnl:  352.390871
  Number of evaluations:  200  -2lnl: 329.3590213
@@ -900,8 +960,9 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
  Number of evaluations:  300  -2lnl:  315.560414
  Number of evaluations:  400  -2lnl: 315.4597501
  Number of evaluations:  500  -2lnl: 315.4938468
- Number of evaluations:  600  -2lnl: 315.4685878
-## Elapsed time in minutes:  0.0073</code></pre>
+ Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
+<pre><code>## 
+## Elapsed time in minutes:  0.006</code></pre>
 <pre class="r"><code>allmodels</code></pre>
 <pre><code>##                model npar      AIC  DeltaAIC       weight  neg2lnl
 ## 1       Phi(~1)p(~1)    2 322.4938  0.000000 0.9501710921 318.4938
@@ -937,15 +998,13 @@ predict(allmodels[[1]])$Phi</code></pre>
 <pre class="r"><code>Phi_by_year &lt;- predict(allmodels[[3]])$Phi    # predict Phi for all years (based on the best Phi(t) model)
 
 library(Hmisc)   #load Hmisc package- has a nice error bar function</code></pre>
-<pre><code>## Loading required package: lattice
-## Loading required package: survival
-## Loading required package: Formula
-## Loading required package: ggplot2</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.1</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: Formula</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
 <pre><code>## 
-## Attaching package: &#39;Hmisc&#39;
-## 
-## The following objects are masked from &#39;package:base&#39;:
+## Attaching package: &#39;Hmisc&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     format.pval, units</code></pre>
 <pre class="r"><code>plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab=&quot;Year&quot;,ylab=&quot;Survival&quot;,ylim=c(0,1),main=&quot;Variability in Survival, dipper demo&quot;)
@@ -961,14 +1020,12 @@ errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,
 <p>2a. [building off the demonstration in R and Program MARK]. Run the following model: capture probability varies by year, but survival is constant across time. Is this model better than the current top model (lower AIC value means a better model)? What are the parameter estimates for this model? What are the <em>confidence intervals</em> for these parameters?</p>
 <p>2b. Run the following model: capture probability is constant across time, but survival exhibits temporal variability. Is this model better than the current top model? What are the parameter estimates for this model? What are the <em>confidence intervals</em> for these parameters?</p>
 <p>2c. Use the results from the time-dependent model [phi(t)p(t)] to estimate the mean per-capita survival rate and the <em>environmental stochasticity</em> (annual variation) in survival for European dippers. In other words, what is the mean and standard deviation for the Normal random number generator you would you use to represent annual variation in survival for this population? Explain how you obtained your answer!</p>
-</div>
-<div id="checklist-for-lab-7-completion" class="section level2">
-<h2>Checklist for Lab 7 completion</h2>
+<p>##Checklist for Lab 7 completion</p>
 <ul>
 <li><p>Please prepare all written responses in a single Word document and submit <em>using WebCampus</em>!</p></li>
 <li><p>Where appropriate, Excel files and R scripts can be included as part of your lab submission (can be submitted separately in WebCampus .</p></li>
 </ul>
-<p><strong><em>Due Apr. 26 at midnight</em></strong></p>
+<p><strong><em>This lab is optional. For extra credit please submit by Wednesday May 6</em></strong></p>
 <ul>
 <li>Word document with short answers, and Excel document
 <ul>
@@ -1012,6 +1069,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

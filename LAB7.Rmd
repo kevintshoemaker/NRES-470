@@ -1,7 +1,7 @@
 ---
 title: "Lab 7: Parameter estimation: mark-recapture analysis!"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -49,7 +49,7 @@ It is important to note that for both closed- and open-population models, a prim
 
 This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN'T SEE!! How do we know how many animals we didn't see? We need to know the probability of capture- if we know the probability of capture we automatically know the probability of NOT capturing/detecting an animal in the population! From there we can estimate the number we didn't capture from the number we did capture!
 
-If may not be as easy to see, but if we didn't account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly *biased* in most cases. 
+It may not be as easy to see, but if we didn't account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly *biased* in most cases. 
 
 Capture-mark-recapture models correct for that bias by estimating the probability of detection (*p*) in addition to fundamental parameters like abundance, recruitment and survival. If we can estimate the probability of detection, we can correct for the bias it introduces into our data. 
 
@@ -65,7 +65,7 @@ Let's see how this works!
 
 Basic underlying concept:
 
-On the first visit, a sample of $M$ animals is caught, *marked*, and released. Later, on a second visit to the study site, a sample of $C$ animals is *captured*, of which $R$ animals are *recaptures* that were previously Marked. No new animals are marked during the second visit. 
+On the first visit, a sample of $M$ animals is caught, *marked*, and released. Later, on a second visit to the study site, a sample of $C$ animals is *captured*, of which $R$ animals are *recaptures* that were previously marked. No new animals are marked during the second visit. 
 
 NOTE: animals do not need to be uniquely marked to estimate abundance using the L-P method.
 
@@ -75,7 +75,7 @@ $\frac{R}{C} = \frac{M}{N}$
 
 where $N$ is the total population size. Solving for $N$ yields the estimator:
 
-$\hat N=\frac{C \cdot M}{R}  \qquad \text{(Eq. 1)}$ 
+$\hat N=\frac{C\cdot M}{R}  \qquad \text{(Eq. 1)}$ 
 
 **Q** What is the estimate of per-capita capture probability ($p$) in the L-P estimator?? This is the same as asking- what proportion of the total population was marked in the first visit?
 
@@ -83,11 +83,11 @@ $p = \frac{R}{C}$
 
 $\hat N = p \cdot N+(1-p)\cdot N$
 
-$\hat N = \frac{R}{C}\cdot N + (1-\frac{R}{C})\cdot N $
+$\hat N=\frac{R}{C}\cdot N+(1-\frac{R}{C})\cdot N$
 
-$M=\frac{R}{C}\cdot N = p \cdot N $
+$M=\frac{R}{C}\cdot N = p \cdot N$
 
-$\hat N = \frac{M}{p} = \frac{C \cdot M}{R}$
+$\hat N=\frac{M}{p}=\frac{C\cdot M}{R}$
 
 Imagine we were to capture 10 individuals during our first visit ($M=10$) and 8 individuals during our second visit ($C=10$). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, $p=\frac{R}{C}=0.5$. Another way of saying this is that for every individual we observed during the first site visit, we were likely to have missed one individual. 
 
@@ -111,7 +111,7 @@ This formula is a **statistic** estimating total population size on the basis of
 
 We still need to make inference about the **parameter**, $N$, on the basis of the statistic, $\hat N$.
 
-To do this, we need to understand the **sampling uncertainty** for this statistic (we need to ask: "what do we *really* know about the population, and what don't we know?". That is, if we collected a different sample from the *same population*, we might get a very different answer for $\hat N$. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for $\hat N$!! The variation among these estimates is the sampling uncertainty.
+To do this, we need to understand the **sampling uncertainty** for this statistic (we need to ask: "what do we *really* know about the population, and what don't we know?". That is, if we collected a different sample from the *same population*, we might get a very different answer for $N$. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for $N$!! The variation among these estimates is the sampling uncertainty.
 
 For the Lincoln-Peterson estimator, our uncertainty about this estimate (sampling variance) can be computed as:
 
@@ -313,11 +313,11 @@ Now retrieve the {phi(t) p(t)} model and examine parameter estimates for this mo
 
 library(marked)    # remember to install the 'marked' package if you haven't already done this
 
-?crm  # to get help on the main parameter estimation function in "marked"
+#?crm  # to get help on the main parameter estimation function in "marked"
 
 # library(help="marked")
 
-vignette("markedVignette","marked")
+# vignette("markedVignette","marked")
 
 ##########
 # load data!
@@ -413,7 +413,7 @@ Use R or MARK to answer the following questions:
 
 * Where appropriate, Excel files and R scripts can be included as part of your lab submission (can be submitted separately in WebCampus .  
 
-***Due Apr. 26 at midnight***
+***This lab is optional. For extra credit please submit by Wednesday May 6***
 
 *  Word document with short answers, and Excel document
     +  **Exercise 1**
