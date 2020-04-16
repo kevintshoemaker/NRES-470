@@ -1,7 +1,7 @@
 ---
 title: "Example: parameterizing a PVA model"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -166,14 +166,14 @@ We modeled plague dynamics within the prairie dog metapopulation as catastrophes
 ### Dispersal
 Dispersal rates (proportion of individuals dispersing between each pair of defined populations) were modeled as a function of centre to edge distances between populations, in order to avoid very large populations flooding small populations around them. Dispersing prairie dogs traveled a mean straight-line distance of 2.4 km (Garrett and Franklin 1988). Maximum dispersal distance is 10 km (Knowles 1985 cited in Knowles et al. 2002; Lomolino and Smith 2001). Thus, we used a dispersal-distance function 
 
-$a*e^{\frac{−D}{b}} = 0.083 e^{\frac{−D}{2.4}}$
+$a \cdot e^{\frac{-D}{b}}=0.083 \cdot e^{\frac{-D}{2.4}}$ 
 
 where D is distance from the centre of the source population to the closest edge of the target population, with a maximum dispersal distance of Dmax = 10 km. We calculated the intercept (the a parameter) as follows. Based on the spatial structure of populations, we calculated the average number of neighbors at distances of 0-0.5 km, 0.5-1 km, 1-2.5 km, 2.5-5 km and 5-10 km. We set the intercept such that the total expected rate of dispersal from this average population was about 0.37, which was calculated as the product of two numbers: (1) 59% of yearling males dispersing from a study population (based on data reported in Tables 1 and 2 in Garrett and Franklin 1988), and (2) relative survival rate of dispersers (calculated as 0.62, based on survival rate of 0.9 and 0.56 of residents and dispersers as reported by Garrett and Franklin 1988). For the spatial sensitivity analysis, we used a range of 0.061 to 0.105 for the a parameter, based on ± 0.10 for the total expected rate of dispersal from the average population.
 
 The above calculation refers to dispersal rate of yearling males. We calculated the relative dispersal of other age/sex classes as 0.46 for yearling females, 0.1 for adult males and 0.39 for adult females (based on data reported in Tables 1 and 2 in Garrett and Franklin 1988). These numbers are consistent with general observations of age- and sex-specific dispersal: Hoogland (1995) reported that female prairie dogs usually remain with their natal coterie, or they disperse long distance to other colonies, but "short-distance dispersal of females within the home colony almost never occurs" (p.383); male prairie dogs, on the other hand, disperse either long-distance to new colonies (mostly as yearlings, rarely as adults) or short-distance within the home colony.
 
 ### Spatial correlation
-Correlation of population dynamics among populations was based on a function of center-to-center distances between populations. Because annual fluctuations in vital rates are likely a function of weather conditions, we used temporal correlation in weather conditions as a proxy for describing correlation of population fluctuations.  Specifically, spatial autocorrelation in vital rates was modeled as a function of inter-colony distances based on 30 years of summer rainfall data from 15 sites randomly drawn from within the range of the black-tailed prairie dog. We fitted a negative exponential model using 30 years of summer rainfall data drawn from 15 random locations in the southwestern quarter of South Dakota (PRISM dataset; PRISM Climate Group, Oregon State University, http://prism.oregonstate.edu). The resulting equation, correlation= exp(−D/601), where D is the distance between populations, was used for all model runs and was not modified as part of spatial sensitivity analyses (Fig. 5).
+Correlation of population dynamics among populations was based on a function of center-to-center distances between populations. Because annual fluctuations in vital rates are likely a function of weather conditions, we used temporal correlation in weather conditions as a proxy for describing correlation of population fluctuations.  Specifically, spatial autocorrelation in vital rates was modeled as a function of inter-colony distances based on 30 years of summer rainfall data from 15 sites randomly drawn from within the range of the black-tailed prairie dog. We fitted a negative exponential model using 30 years of summer rainfall data drawn from 15 random locations in the southwestern quarter of South Dakota (PRISM dataset; PRISM Climate Group, Oregon State University, http://prism.oregonstate.edu). The resulting equation, correlation= exp(-D/601), where D is the distance between populations, was used for all model runs and was not modified as part of spatial sensitivity analyses (Fig. 5).
  
  
 ![Figure 5. Illustration of the correlation-distance function used for all prairie dog models in this study. Spatial correlation in rainfall was assumed to correspond more generally to spatial correlation in environmental variation.](pdcor1.png)

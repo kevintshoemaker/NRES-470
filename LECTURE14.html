@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -383,6 +455,9 @@ div.tocify {
       <a href="LAB6.html">Lab 6: metapopulations</a>
     </li>
     <li>
+      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
+    </li>
+    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
@@ -406,8 +481,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Example: parameterizing a PVA model</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -426,10 +501,7 @@ div.tocify {
 <li>The historic range of the black-footed ferret coincides with the three prairie dog species that constitute its prey.</li>
 <li><em>You can’t know what’s going on with BFF populations without knowing what’s going on with prairie dogs</em></li>
 </ul>
-<div class="figure">
-<img src="ferret1.jpg" />
-
-</div>
+<p><img src="ferret1.jpg" /></p>
 </div>
 <div id="ferret-facts" class="section level2">
 <h2>Ferret facts!</h2>
@@ -462,20 +534,14 @@ div.tocify {
 </div>
 <div id="prairie-dogs-in-conata-basin-and-surrounding-region" class="section level2">
 <h2>Prairie dogs in Conata Basin and surrounding region</h2>
-<div class="figure">
-<img src="prairie_dogs3.jpg" />
-
-</div>
+<p><img src="prairie_dogs3.jpg" /></p>
 <div id="spatial-structure-of-study-region" class="section level3">
 <h3>Spatial structure of study region</h3>
 <div class="figure">
 <img src="pdog_studyregion1.jpg" alt="Figure 2: study region" />
 <p class="caption">Figure 2: study region</p>
 </div>
-<div class="figure">
-<img src="flea1.jpg" />
-
-</div>
+<p><img src="flea1.jpg" /></p>
 </div>
 </div>
 <div id="sylvatic-plague" class="section level2">
@@ -493,10 +559,7 @@ div.tocify {
 <li>PVA is typically focused on a single species.</li>
 <li>Species interactions are not typically included explicitly!</li>
 </ul>
-<div class="figure">
-<img src="metamodel1.png" />
-
-</div>
+<p><img src="metamodel1.png" /></p>
 </div>
 <div id="prairie-dog-submodel" class="section level2">
 <h2>Prairie dog submodel</h2>
@@ -506,25 +569,16 @@ div.tocify {
 <li>RAMAS GIS</li>
 </ul>
 <p>This is what the prairie dog model looks like in the absence of plague. Robust population with essentially no risk of prairie dog extinction.</p>
-<div class="figure">
-<img src="pdogres1.png" />
-
-</div>
+<p><img src="pdogres1.png" /></p>
 </div>
 <div id="ferret-submodel" class="section level2">
 <h2>Ferret submodel</h2>
 <p>In the absence of plague…</p>
-<div class="figure">
-<img src="ferretres1.png" />
-
-</div>
+<p><img src="ferretres1.png" /></p>
 </div>
 <div id="the-linked-predator-prey-disease-model" class="section level2">
 <h2>The linked predator-prey-disease model…</h2>
-<div class="figure">
-<img src="linkedres1.png" />
-
-</div>
+<p><img src="linkedres1.png" /></p>
 <ul>
 <li>The prairie dog population declines and settles at a new lower equilibrium.</li>
 <li>The minimum abundance of Pdogs is around 12k for the Conata Basin, which really is insufficient for supporting ferrets.</li>
@@ -534,24 +588,12 @@ div.tocify {
 </div>
 <div id="an-emergent-property" class="section level2">
 <h2>An emergent property!</h2>
-<div class="figure">
-<img src="oscillation1.png" />
-
-</div>
+<p><img src="oscillation1.png" /></p>
 <p>BFF population and PD populations are now cycling due to PD plague dynamics!</p>
 <p><a href="https://www.youtube.com/watch?v=4hCBK_JZ-Mg">Link to video of simulation results</a></p>
-<div class="figure">
-<img src="oscillation2.jpg" />
-
-</div>
-<div class="figure">
-<img src="rfresults1.png" />
-
-</div>
-<div class="figure">
-<img src="finalpdresults1.png" />
-
-</div>
+<p><img src="oscillation2.jpg" /></p>
+<p><img src="rfresults1.png" /></p>
+<p><img src="finalpdresults1.png" /></p>
 </div>
 <div id="conclusions" class="section level2">
 <h2>Conclusions</h2>
@@ -571,9 +613,9 @@ div.tocify {
 <img src="pdog_studyregion1.jpg" alt="Figure 2: study region" />
 <p class="caption">Figure 2: study region</p>
 </div>
-<p>The spatial structure of the metapopulation was based on the distribution of prairie dogs in the <em>Conata Basin</em>, a subset of 71 prairie dog populations within the Conata/Badlands region in South Dakota and covering ca. 500 km2 (Fig. 2; delineated based on Biggins et al. 2011) is a portion of the Buffalo Gap National Grasslands directly south of Badlands National Park and is administered by the US Forest Service (Fig. 2). This area was chosen in the early 1990’s for reintroduction of black-footed ferrets due to the extensive network of high-density prairie dog colonies located on public lands (Livieri 2006).</p>
-<p>Prairie dog colonies in Conata Basin, Badlands National Park, and Buffalo Gap National Grasslands in southwestern South Dakota, USA (hereafter, Conata/Badlands region) were <em>mapped biennially by the US Forest Service</em> from 1996-2009 using differentially corrected Global Positioning Systems (GPS) units to connect the outermost prairie dog burrows into a polygon (Biggins et al. 2006a).</p>
-<p>Prairie dog colonies in the surrounding areas were mapped in 2004 using aerial transects and digital imaging (Sidle et al. 2001, Cooper and Gabriel 2005). We converted prairie dog colony maps to binary (0=non-habitat, 1=habitat) raster maps with 50m cell size. We re-imposed barriers (e.g., roads, pipelines) that were lost in the rasterization process.</p>
+<p>The spatial structure of the metapopulation was based on the distribution of prairie dogs in the <em>Conata Basin</em>, a subset of 71 prairie dog populations within the Conata/Badlands region in South Dakota and covering ca. 500 km2 (Fig. 2; delineated based on Biggins et al. 2011) is a portion of the Buffalo Gap National Grasslands directly south of Badlands National Park and is administered by the US Forest Service (Fig. 2). This area was chosen in the early 1990’s for reintroduction of black-footed ferrets due to the extensive network of high-density prairie dog colonies located on public lands (Livieri 2006).</p>
+<p>Prairie dog colonies in Conata Basin, Badlands National Park, and Buffalo Gap National Grasslands in southwestern South Dakota, USA (hereafter, Conata/Badlands region) were <em>mapped biennially by the US Forest Service</em> from 1996-2009 using differentially corrected Global Positioning Systems (GPS) units to connect the outermost prairie dog burrows into a polygon (Biggins et al. 2006a).</p>
+<p>Prairie dog colonies in the surrounding areas were mapped in 2004 using aerial transects and digital imaging (Sidle et al. 2001, Cooper and Gabriel 2005). We converted prairie dog colony maps to binary (0=non-habitat, 1=habitat) raster maps with 50m cell size. We re-imposed barriers (e.g., roads, pipelines) that were lost in the rasterization process.</p>
 <p>We used the union of all years to define potential habitat. We used neighborhood distance of 1 cell (50m) to define the population structure (see Akçakaya 2002 for details of how RAMAS GIS determines spatial structure). Thus, we assumed each colony is a distinct biological population, which may be connected to other such populations (see section on dispersal below). Excluding very small colonies with carrying capacity (K) &lt;100 (see below), this resulted in 1591 PD populations ranging from about 5 ha to 10,000 ha, with a median size of 16 ha and covering ca. 20,000 km2 (Fig. 3).</p>
 <div class="figure">
 <img src="s11.png" alt="Fig. 3: Histogram of patch areas (ha) for all prairie dog habitat patches (n = 1591) identified in the Conata-Badlands region of South Dakota, based on mapped records of prairie dog colony boundaries." />
@@ -582,7 +624,7 @@ div.tocify {
 </div>
 <div id="carrying-capacity-and-density-dependence" class="section level3">
 <h3>Carrying capacity and density-dependence</h3>
-<p>Reproduction in prairie dogs is often limited by resources (Hoogland 2001), suggesting a Ricker-type (scramble) density-dependent effect on fecundities. We therefore used this type of density dependence, and estimated the maximum growth rate (<span class="math inline">\(R_{max}\)</span>) based on the average of exponential growth rates exhibited by several populations following crashes. Three of these rates were following crashes due to plague: 1.466 (Biggins et al. 2006a, Fig 6.4), 2.024 (Cully and Williams 2001, Fig 4, years 1989-1991) and 3.806 (Cully and Williams 2001, Fig 4, years 1995-1997). We combined these rates with four growth rates following crashes due to other causes, including shooting, toxicants and removal and translocation (Reeve and Vosburgh 2006, Table 10-3, excluding the lowest and highest rates, which were from populations that had not undergone a recent population reduction). The average of these 7 exponential growth rates was 2.44. For sensitivity analysis, we used the quartiles, giving a range of 1.8 to 2.8. These values coincided with an independent estimate based on the intercept of the regression of population growth rate (<span class="math inline">\(R\)</span>) on population size (<span class="math inline">\(N\)</span>) from the data of Hoogland (1995, Table 16.1), which gave us estimates of 2.4 to 3.7, depending on the type of regression. Given that regression of R on N often overestimates <span class="math inline">\(R_{max}\)</span>, this range is consistent with the estimate based on exponential growth phases of the two populations mentioned above.</p>
+<p>Reproduction in prairie dogs is often limited by resources (Hoogland 2001), suggesting a Ricker-type (scramble) density-dependent effect on fecundities. We therefore used this type of density dependence, and estimated the maximum growth rate (<span class="math inline">\(R_{max}\)</span>) based on the average of exponential growth rates exhibited by several populations following crashes. Three of these rates were following crashes due to plague: 1.466 (Biggins et al. 2006a, Fig 6.4), 2.024 (Cully and Williams 2001, Fig 4, years 1989-1991) and 3.806 (Cully and Williams 2001, Fig 4, years 1995-1997). We combined these rates with four growth rates following crashes due to other causes, including shooting, toxicants and removal and translocation (Reeve and Vosburgh 2006, Table 10-3, excluding the lowest and highest rates, which were from populations that had not undergone a recent population reduction). The average of these 7 exponential growth rates was 2.44. For sensitivity analysis, we used the quartiles, giving a range of 1.8 to 2.8. These values coincided with an independent estimate based on the intercept of the regression of population growth rate (<span class="math inline">\(R\)</span>) on population size (<span class="math inline">\(N\)</span>) from the data of Hoogland (1995, Table 16.1), which gave us estimates of 2.4 to 3.7, depending on the type of regression. Given that regression of R on N often overestimates <span class="math inline">\(R_{max}\)</span>, this range is consistent with the estimate based on exponential growth phases of the two populations mentioned above.</p>
 <p>We assumed each mapped colony (see above) represented a distinct biological population, with carrying capacity (K) defined as a function of colony area and average densities of prairie dogs. At Conata Basin, the average density of prairie dogs prior to the arrival of plague was 28.7/ha (Livieri 2006). Thus, we multiplied the number of cells in each patch with 7.175 (=28.7x0.25) to calculate the carrying capacity of that patch (because under the Ricker-type density dependence we used, average abundance would approximately equal the equilibrium abundance or carrying capacity). Colonies with K&lt;100 were excluded from analysis, to decrease the number of populations and because very small populations do not contribute substantially to population dynamics. We assumed initial abundances were equal to K for each population, and we ran a 10-year burn-in period for all simulations to ensure that all colonies were at equilibrium with their environment and had reached a <em>stable age distribution</em> (S.A.D.).</p>
 </div>
 <div id="demographic-structure-and-vital-rates" class="section level3">
@@ -608,8 +650,8 @@ div.tocify {
 </div>
 <div id="dispersal" class="section level3">
 <h3>Dispersal</h3>
-<p>Dispersal rates (proportion of individuals dispersing between each pair of defined populations) were modeled as a function of centre to edge distances between populations, in order to avoid very large populations flooding small populations around them. Dispersing prairie dogs traveled a mean straight-line distance of 2.4 km (Garrett and Franklin 1988). Maximum dispersal distance is 10 km (Knowles 1985 cited in Knowles et al. 2002; Lomolino and Smith 2001). Thus, we used a dispersal-distance function</p>
-<p><span class="math inline">\(a*e^{\frac{−D}{b}} = 0.083 e^{\frac{−D}{2.4}}\)</span></p>
+<p>Dispersal rates (proportion of individuals dispersing between each pair of defined populations) were modeled as a function of centre to edge distances between populations, in order to avoid very large populations flooding small populations around them. Dispersing prairie dogs traveled a mean straight-line distance of 2.4 km (Garrett and Franklin 1988). Maximum dispersal distance is 10 km (Knowles 1985 cited in Knowles et al. 2002; Lomolino and Smith 2001). Thus, we used a dispersal-distance function</p>
+<p><span class="math inline">\(a\times e^{\frac{−D}{b}} = 0.083 e^{\frac{−D}{2.4}}\)</span></p>
 <p>where D is distance from the centre of the source population to the closest edge of the target population, with a maximum dispersal distance of Dmax = 10 km. We calculated the intercept (the a parameter) as follows. Based on the spatial structure of populations, we calculated the average number of neighbors at distances of 0-0.5 km, 0.5-1 km, 1-2.5 km, 2.5-5 km and 5-10 km. We set the intercept such that the total expected rate of dispersal from this average population was about 0.37, which was calculated as the product of two numbers: (1) 59% of yearling males dispersing from a study population (based on data reported in Tables 1 and 2 in Garrett and Franklin 1988), and (2) relative survival rate of dispersers (calculated as 0.62, based on survival rate of 0.9 and 0.56 of residents and dispersers as reported by Garrett and Franklin 1988). For the spatial sensitivity analysis, we used a range of 0.061 to 0.105 for the a parameter, based on ± 0.10 for the total expected rate of dispersal from the average population.</p>
 <p>The above calculation refers to dispersal rate of yearling males. We calculated the relative dispersal of other age/sex classes as 0.46 for yearling females, 0.1 for adult males and 0.39 for adult females (based on data reported in Tables 1 and 2 in Garrett and Franklin 1988). These numbers are consistent with general observations of age- and sex-specific dispersal: Hoogland (1995) reported that female prairie dogs usually remain with their natal coterie, or they disperse long distance to other colonies, but “short-distance dispersal of females within the home colony almost never occurs” (p.383); male prairie dogs, on the other hand, disperse either long-distance to new colonies (mostly as yearlings, rarely as adults) or short-distance within the home colony.</p>
 </div>
@@ -623,10 +665,7 @@ div.tocify {
 </div>
 <div id="black-footed-ferret-population-model" class="section level2">
 <h2>Black-footed Ferret Population Model</h2>
-<div class="figure">
-<img src="ferret2.jpg" />
-
-</div>
+<p><img src="ferret2.jpg" /></p>
 <div id="demographic-structure-and-vital-rates-1" class="section level3">
 <h3>Demographic structure and vital rates</h3>
 <p>We developed an age- and sex-structured matrix model, with 5 female and 5 male age classes. We parameterized the matrix according to a post-breeding census, with survival rates drawn from a Wyoming mark recapture study (Grenier 2008). Juvenile (first year) and adult (yearling and above) survival rates were set at 0.39 (SE 0.17) and 0.67 (SE 0.15), respectively. For sensitivity analysis, we used a range of 0.22 to 0.56 for juvenile survival rate, and 0.52 to 0.82 for adult survival rate, representing one standard error from the mean. Juvenile and adult fecundity were set at 0.73 and 1.25, respectively, based on observations of kits produced from 2004-2006 (Grenier 2008). For sensitivity analysis, we used a range of 0.36 to 0.92 for juvenile fecundity and 0.86 to 1.35 for adult fecundity.</p>
@@ -634,14 +673,14 @@ div.tocify {
 <div id="density-dependence-carrying-capacity-and-initial-abundances" class="section level3">
 <h3>Density dependence, carrying capacity, and initial abundances</h3>
 <p>The strong dependence of Black-footed Ferrets on Prairie Dogs as prey suggests density dependence based on resource limitation and linked to resource (prey) dynamics. We therefore modeled Black-footed Ferret density dependence with a Ricker-type density dependence, corresponding to a scramble competition model (Brannstrom and Sumpter 2005).</p>
-<p>We ran the black-footed ferret population model assuming either (1) ferrets could only access prairie dog colonies within the Conata Basin, or (2) ferrets could access all 1591 prairie dog colonies within the Conata/Badlands region. In the former case, we assumed the ferrets could only access PD colonies within the Conata Basin, a region of approximately 13,000 ha which we delineated as the aggregate of the three ferret subunits identified in Biggins et al. (2011). Thus, although the PD/plague model (see above) covered a larger area of southwestern South Dakota, only those populations in the Conata Basin were linked to the black-footed ferret model. Because ferret populations were rapidly extirpated by plague if limited to the Conata Basin proper, and because the maximum possible spatial extent for black-footed ferret populations is unclear (see main text), we also ran scenarios in which all prairie dog populations in the Conata-Badlands region were assumed to be available to the ferrets as prey.</p>
-<p>We calculated the black-footed ferret functional response based on the energy balance model of Stromberg et al. (1983), who concluded (via maximum sustainable yield computations) that a habitat area capable of supporting ca. 766 black-tailed prairie dogs was necessary to support the minimum energy requirements of a single black-footed ferret. We thereby equate a per-capita prey availability of 766 prairie dogs per ferret with a stable long-term ferret population growth rate (R = 1, corresponding to the carrying capacity in the scramble/Ricker density dependence function in RAMAS Metapop). Thus, carrying capacity (K) of the black-footed ferret population was calculated as 1/766 of the PD population size in Conata Basin at each time step. However, in years of high prairie dog abundance, ferrets typically maintain territories supporting more prairie dogs than they need to survive (Biggins et al. 2006b). In other words, the linear relationship between prairie dog density and black-footed ferret carrying capacity breaks down at high prairie dog densities. We capped the value of K at 462 for the Conata region based on the maximum ferret density of 0.04 ferrets per ha suggested by Biggins et al. (2006b). For global sensitivity analysis, we similarly capped the value of K to maintain a maximum density of 0.04 ferrets per ha (therefore, K varied based on landscape extent). Thus, even in years when prairie dog abundance is very high, the carrying capacity of the simulated ferret population does not exceed the maximum limit dictated by territoriality.</p>
-<p>The energy balance model of Stromberg et al. (1983), upon which we based the functional linkage between ferret carrying capacity and prairie dog abundance (see above), assumed that ferrets fed exclusively on prairie dogs. However, a small but non-negligible component (ca. 10%) of the diet of the black-footed ferret is believed to comprise alternate prey items such as mice and lagomorphs (Campbell et al. 1987). The existence of alternate prey species raises the possibility that our models may overestimate the per-capita prey availability necessary to accommodate stable ferret population growth. However, prairie dogs are consumed by many species aside from the black-footed ferret (including badgers, bobcats, and coyotes; Hoogland 1995), raising the possibility that our model may underestimate the number of prairie dogs necessary to support a population of ferrets. Clearly, there is a great deal of uncertainty around this estimate, and we are planning a follow-up study to test the sensitivity of the ferret/prairie dog system to alternative characterizions of the functional and numerical response. Nonetheless, an estimated ferret carrying capacity of 485 at Conata Basin, computed as 1/766 of estimated total prairie dog carrying capacity, is consistent with the observed growth of the reintroduced ferret population at Conata Basin, which was beginning to plateau at abundances ca. 350 prior to the arrival of plague in 2007 (Livieri 2006; Fig. 6).</p>
+<p>We ran the black-footed ferret population model assuming either (1) ferrets could only access prairie dog colonies within the Conata Basin, or (2) ferrets could access all 1591 prairie dog colonies within the Conata/Badlands region. In the former case, we assumed the ferrets could only access PD colonies within the Conata Basin, a region of approximately 13,000 ha which we delineated as the aggregate of the three ferret subunits identified in Biggins et al. (2011). Thus, although the PD/plague model (see above) covered a larger area of southwestern South Dakota, only those populations in the Conata Basin were linked to the black-footed ferret model. Because ferret populations were rapidly extirpated by plague if limited to the Conata Basin proper, and because the maximum possible spatial extent for black-footed ferret populations is unclear (see main text), we also ran scenarios in which all prairie dog populations in the Conata-Badlands region were assumed to be available to the ferrets as prey.</p>
+<p>We calculated the black-footed ferret functional response based on the energy balance model of Stromberg et al. (1983), who concluded (via maximum sustainable yield computations) that a habitat area capable of supporting ca. 766 black-tailed prairie dogs was necessary to support the minimum energy requirements of a single black-footed ferret. We thereby equate a per-capita prey availability of 766 prairie dogs per ferret with a stable long-term ferret population growth rate (R = 1, corresponding to the carrying capacity in the scramble/Ricker density dependence function in RAMAS Metapop). Thus, carrying capacity (K) of the black-footed ferret population was calculated as 1/766 of the PD population size in Conata Basin at each time step. However, in years of high prairie dog abundance, ferrets typically maintain territories supporting more prairie dogs than they need to survive (Biggins et al. 2006b). In other words, the linear relationship between prairie dog density and black-footed ferret carrying capacity breaks down at high prairie dog densities. We capped the value of K at 462 for the Conata region based on the maximum ferret density of 0.04 ferrets per ha suggested by Biggins et al. (2006b). For global sensitivity analysis, we similarly capped the value of K to maintain a maximum density of 0.04 ferrets per ha (therefore, K varied based on landscape extent). Thus, even in years when prairie dog abundance is very high, the carrying capacity of the simulated ferret population does not exceed the maximum limit dictated by territoriality.</p>
+<p>The energy balance model of Stromberg et al. (1983), upon which we based the functional linkage between ferret carrying capacity and prairie dog abundance (see above), assumed that ferrets fed exclusively on prairie dogs. However, a small but non-negligible component (ca. 10%) of the diet of the black-footed ferret is believed to comprise alternate prey items such as mice and lagomorphs (Campbell et al. 1987). The existence of alternate prey species raises the possibility that our models may overestimate the per-capita prey availability necessary to accommodate stable ferret population growth. However, prairie dogs are consumed by many species aside from the black-footed ferret (including badgers, bobcats, and coyotes; Hoogland 1995), raising the possibility that our model may underestimate the number of prairie dogs necessary to support a population of ferrets. Clearly, there is a great deal of uncertainty around this estimate, and we are planning a follow-up study to test the sensitivity of the ferret/prairie dog system to alternative characterizions of the functional and numerical response. Nonetheless, an estimated ferret carrying capacity of 485 at Conata Basin, computed as 1/766 of estimated total prairie dog carrying capacity, is consistent with the observed growth of the reintroduced ferret population at Conata Basin, which was beginning to plateau at abundances ca. 350 prior to the arrival of plague in 2007 (Livieri 2006; Fig. 6).</p>
 <div class="figure">
 <img src="ferretplot1.png" alt="Figure 6. Observed abundance of black-footed ferrets at Conata Basin (from Livieri 2006), plotted alongside a single random replicate trajectory from the ferret population model , indicating the relative agreement between the observed growth of this population since ferrets were reintroduced in 1996, and the simulated trajectories from our model." />
 <p class="caption">Figure 6. Observed abundance of black-footed ferrets at Conata Basin (from Livieri 2006), plotted alongside a single random replicate trajectory from the ferret population model , indicating the relative agreement between the observed growth of this population since ferrets were reintroduced in 1996, and the simulated trajectories from our model.</p>
 </div>
-<p>We set the maximum growth rate (Rmax) to 1.48, based on the average of two estimates of the rate of (exponential) growth in a Wyoming population (Grenier et al. 2007). One estimate is 1.35, the eigenvalue of the matrix fitted to mark-recapture data, and the other estimate is 1.60, the (scalar) rate of growth in the minimum number of live ferrets from 2000 to 2006. For sensitivity analysis, we used these two values.</p>
+<p>We set the maximum growth rate (Rmax) to 1.48, based on the average of two estimates of the rate of (exponential) growth in a Wyoming population (Grenier et al. 2007). One estimate is 1.35, the eigenvalue of the matrix fitted to mark-recapture data, and the other estimate is 1.60, the (scalar) rate of growth in the minimum number of live ferrets from 2000 to 2006. For sensitivity analysis, we used these two values.</p>
 <p>Black-footed ferret abundance for each iteration was initialized using known reintroduction events in the Conata Basin , as described by Livieri (2006; i.e., dates and ages of releases were modeled explicity). Ferret population viability was summarized using three metrics: quasi-extinction risk (defined as the proportion of simulation runs falling below 5 individuals at year 60 of the simulation), expected minimum abundance (defined as the minimum abundance after year 10 of the trajectory averaged over all 1000 simulations; McCarthy and Thompson 2001), and mean final abundance (at year 60).</p>
 </div>
 <div id="variability-1" class="section level3">
@@ -670,6 +709,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
