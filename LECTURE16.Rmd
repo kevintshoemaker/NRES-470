@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: competition!"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -51,7 +51,7 @@ Species interactions can be classified according to the effect of the interactio
 
 Competition is defined a type of inter-species interaction by which the *population vital rates of each species is negatively influenced by the presence of the other*. 
 
-There is not much essential difference between within-species competition and among-species competition for resources!
+There is not much essential difference between within-species competition (one of the primary mechanisms for density-dependent population regulation) and among-species competition for resources!
 
 #### Exploitation
 This is the kind of competition we probably think about first- all individuals are competing for resources and all have similar competitive abilities. It's a free-for-all: everyone gets some piece of a limited pie!  
@@ -124,7 +124,7 @@ Then, for each time step in the model, we plot out where we are in the phase pla
 
 For example:
 
-Let's build the basic lotka-volterra competion model in R. 
+Let's build the basic Lotka-Volterra competition model in R. 
 
 If you want to follow along, you can download the script [here](LECTURE16.R)
 
@@ -739,8 +739,6 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 1
 ```
 
 The red line represents the conditions under which the growth rate of species 1 is zero.
-
-**Q**: how many equilibrium solutions are there for species 1?
 
 **Q**: under what conditions is carrying capacity "used up" for species 1??
 

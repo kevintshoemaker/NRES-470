@@ -154,6 +154,9 @@ rmarkdown::render('LECTURE12.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LECTURE13.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LECTURE14.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LECTURE15.Rmd',rmarkdown::pdf_document())
+rmarkdown::render('LECTURE16.Rmd',rmarkdown::pdf_document())
+rmarkdown::render('LECTURE17.Rmd',rmarkdown::pdf_document())
+rmarkdown::render('LECTURE18.Rmd',rmarkdown::pdf_document())
 
 
 rmarkdown::render('PVA1_421.Rmd',rmarkdown::pdf_document())

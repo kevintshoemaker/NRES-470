@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -409,8 +481,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Species interactions: competition!</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
@@ -428,7 +500,7 @@ div.tocify {
 <div id="what-is-competition" class="section level3">
 <h3>What is competition?</h3>
 <p>Competition is defined a type of inter-species interaction by which the <em>population vital rates of each species is negatively influenced by the presence of the other</em>.</p>
-<p>There is not much essential difference between within-species competition and among-species competition for resources!</p>
+<p>There is not much essential difference between within-species competition (one of the primary mechanisms for density-dependent population regulation) and among-species competition for resources!</p>
 <div id="exploitation" class="section level4">
 <h4>Exploitation</h4>
 <p>This is the kind of competition we probably think about first- all individuals are competing for resources and all have similar competitive abilities. It’s a free-for-all: everyone gets some piece of a limited pie!</p>
@@ -438,10 +510,7 @@ div.tocify {
 <h4>Interference</h4>
 <p>Sometimes the negative effect of one actor (individual of the same or another species) on another actor is due to direct behavioral exclusion. This is the case with birds that maintain territories and keep other birds off the territory.</p>
 <p>Some plants engage in interference competition in a process called “allelopathy”.</p>
-<div class="figure">
-<img src="allelopathy.jpg" />
-
-</div>
+<p><img src="allelopathy.jpg" /></p>
 </div>
 </div>
 <div id="modeling-competition-extending-the-logistic-growth-equations-to-more-than-one-species" class="section level3">
@@ -481,11 +550,11 @@ div.tocify {
 </div>
 <div id="phase-plane" class="section level2">
 <h2>Phase plane!</h2>
-<p>In the study of dynamic systems (such as the lotka-volterra competition system) it can be very useful to visualize the system on the <strong>phase plane</strong>.</p>
+<p>In the study of dynamic systems (such as the Lotka-Volterra competition model) it can be very useful to visualize the system on the <strong>phase plane</strong>.</p>
 <p>To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species as the y axis and the other species as the x axis. This 2-D surface is called the phase plane.</p>
 <p>Then, for each time step in the model, we plot out where we are in the phase plane (plot the abundances of species 1 and species 2 as a point on the 2-D cartesian surface).</p>
 <p>For example:</p>
-<p>Let’s build the basic lotka-volterra competion model in R.</p>
+<p>Let’s build the basic Lotka-Volterra competition model in R.</p>
 <p>If you want to follow along, you can download the script <a href="LECTURE16.R">here</a></p>
 <pre class="r"><code>##### LOTKA VOLTERRA COMPETITION EXAMPLE
 
@@ -609,6 +678,7 @@ points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=
 abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><strong>Q</strong>: Does this two-species system have a stable equilibrium?</p>
+<pre><code>## Warning: package &#39;deSolve&#39; was built under R version 3.6.3</code></pre>
 <div id="working-in-the-phase-plane" class="section level3">
 <h3>Working in the phase plane!</h3>
 <p>There is a lot you can learn about an interacting two-species system by working with the phase plane.</p>
@@ -677,7 +747,6 @@ abline(K1/Alpha,-(K1/Alpha)/K1,col=&quot;red&quot;,lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 1</code></pre>
 <p><img src="LECTURE16_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>The red line represents the conditions under which the growth rate of species 1 is zero.</p>
-<p><strong>Q</strong>: how many equilibrium solutions are there for species 1?</p>
 <p><strong>Q</strong>: under what conditions is carrying capacity “used up” for species 1??</p>
 <p>Below the red line, species 1 will tend to increase.</p>
 <p>Above the red line, species 1 will tend to decrease.</p>
@@ -802,7 +871,7 @@ abline(K2,-K2/(K2/Beta),col=&quot;blue&quot;,lwd=3)   # species 2</code></pre>
 <p><strong>Q</strong>: is the point where the two isoclines cross a <em>stable equilibrium</em>?</p>
 <p><strong>Q</strong>: what would happen if species 1 was at K and species 2 tried to invade? And vice versa?</p>
 <p><strong>Q</strong>: what would happen if both species tried to invade a vacant habitat at the same time?</p>
-<p><strong>Q</strong>&quot; &quot;</p>
+<p><strong>Q</strong>" "</p>
 </div>
 </div>
 <div id="phase-space-in-insightmaker" class="section level3">
@@ -840,6 +909,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
