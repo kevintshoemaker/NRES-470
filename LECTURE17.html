@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="NRES 470/670" />
@@ -73,9 +73,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -89,13 +87,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +114,6 @@ body {
   padding-top: 57px;
   margin-top: -57px;
 }
-
 .section h2 {
   padding-top: 57px;
   margin-top: -57px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 57px;
   margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,47 +191,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -206,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -241,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -251,6 +313,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -409,27 +481,21 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Species interactions: prey-predator!</h1>
-<h4 class="author"><em>NRES 470/670</em></h4>
-<h4 class="date"><em>Spring 2019</em></h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2020</h4>
 
 </div>
 
 
 <div id="predation" class="section level2">
 <h2>Predation</h2>
-<div class="figure">
-<img src="predation1.jpg" />
-
-</div>
-<div class="figure">
-<img src="predation2.jpg" />
-
-</div>
+<p><img src="predation1.jpg" /></p>
+<p><img src="predation2.jpg" /></p>
 <p>In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two species species benefits greatly from the interaction – and the other species loses out!</p>
 <p>Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:</p>
 <p><span class="math inline">\(\Delta V = rV^* - f(V,P) \cdot P\)</span></p>
 <p>AND</p>
-<p><span class="math inline">\(\Delta P = g(V,P) \cdot P - qP^*\)</span></p>
+<p><span class="math inline">\(\Delta P = f(V,P)*conversion.factor \cdot P - qP^*\)</span></p>
 <p>Where</p>
 <p><span class="math inline">\(V\)</span> is the total prey abundance (V for victims!), and</p>
 <p><span class="math inline">\(P\)</span> is the total predator abundance, and</p>
@@ -438,24 +504,25 @@ div.tocify {
 <p>AND</p>
 <p><span class="math inline">\(f(V,P)\)</span> is known as the <strong>functional response</strong> – that is, the per capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities.</p>
 <p>AND</p>
-<p><span class="math inline">\(g(V,P)\)</span> is known as the <strong>numerical response</strong> – that is, the increase in per-capita predator population growth due to prey consumption, usually modeled as as a function of prey density, but sometimes modeled as a function of both predator and prey densities.</p>
-<p>There are many different types of possible functional response curves and numerical response curves. Let’s start simple!</p>
+<p><span class="math inline">\(f(V,P)\cdot conversion.factor\)</span> (alternatively represented as <span class="math inline">\(g(V,P)\)</span>) is known as the <strong>numerical response</strong> – that is, the increase in per-capita predator population growth due to prey consumption.</p>
+<p>There are many different types of possible functional and numerical response curves. Let’s start simple!</p>
 <div id="the-classical-prey-predator-model" class="section level3">
 <h3>The classical prey-predator model</h3>
 <p>Let’s look at predation mathematically, starting with the simplest possible model…</p>
 <div id="the-victims" class="section level4">
 <h4>The victims…</h4>
 <p>We will consider the prey, or “victims” first:</p>
-<p>In the absence of predators, let’s assume that the victim population grows according to the basic equation of population ecology:</p>
+<p>In the absence of predators, let’s assume that the victim population grows according to the basic exponential growth equation:</p>
 <p><span class="math inline">\(\Delta V = rV\)</span></p>
 <p>We will assume that the intrinsic rate of growth, <span class="math inline">\(r\)</span>, is positive! In the absence of predators, the population grows exponentially.</p>
-<p>If predators are present, the population growth rate of the victims will go down…</p>
+<p>If predators are present, the population growth of the victims will slow down…</p>
 <p>What expression could define the rate at which prey are consumed by predators?</p>
 <p>First of all, let’s assume that predators and prey walk randomly through their common environment, bumping into each other randomly. Every time the predator bumps into a prey item, the predator has some chance of consuming that prey item.</p>
 <p>This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way.</p>
-<p>Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a fixed number of prey in a given time period, depending on prey availability.</p>
-<p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator.</p>
-<p><strong>Q</strong>: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption in this example (<span class="math inline">\(\alpha\)</span>)?</p>
+<p>Under such circumstances, the predators do NOT interfere with one another and never get full. Each predator consumes a fixed number of prey in a given time period, depending only on prey availability.</p>
+<p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator in a hypothetical prey-predator system.</p>
+<p><strong>Q</strong>: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example (<span class="math inline">\(\alpha\)</span>)?</p>
+<p>In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30000 prey per day. (realistic?)</p>
 <p><strong>Q</strong> what is the shape of the functional response in this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
 <pre class="r"><code>#######
@@ -475,8 +542,6 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p>Does this make sense?</p>
 <p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em>?</p>
 <p><strong>Q</strong> what are the units of <em>alpha</em>? [tophat]</p>
-<p><strong>Q</strong> Can <em>alpha</em> go above 1? [this one is tricky]</p>
-<p><strong>Q</strong> Can <em>alpha</em> go below 0?</p>
 <p>Now, the (instantaneous) prey growth rate can be defined by the following equation:</p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
 <p>In the absence of predators, the prey population grows exponentially. However, with enough predators on the landscape, the population will decline.</p>
@@ -489,7 +554,7 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p><span class="math inline">\(\Delta P = -qP\)</span></p>
 <p>In the absence of prey, the predator population declines exponentially.</p>
 <p>If enough prey are present, the population growth rate of the predators will go up…</p>
-<p>Recall that predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:</p>
+<p>Recall that (in this simple model) predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:</p>
 <p><span class="math inline">\(f(V) = \alpha V\)</span></p>
 <p>The <em>numerical response</em> is the increase in the fractional growth rate of <em>predators</em> per unit prey consumed. The numerical response is related to the functional response. While the functional response describes the prey consumption per predator, the numerical response describes how that prey consumption translates into the growth of the predator population.</p>
 <p><span class="math inline">\(g(V) = some.function(f(V))\)</span></p>
@@ -512,10 +577,8 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 <p>The <em>increase in total predators due to prey consumption</em> now is:</p>
 <p><span class="math inline">\(g(V) \cdot P = \beta V \cdot P\)</span></p>
 <p>Does this make sense?</p>
-<p>The term <span class="math inline">\(\beta\)</span> is related to the <strong>conversion efficiency</strong> of the predator (how effieciently the predator converts its food into the production of new predators). Does this make sense? Consider a case where every predator consumes 100 prey per time step (<span class="math inline">\(\alpha \cdot V = 100\)</span>), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1… Which predator is more <em>efficient</em> at converting prey biomass into population growth?</p>
+<p>The term <span class="math inline">\(\beta\)</span> is related to the <strong>conversion efficiency</strong> of the predator (how effieciently the predator converts its food into the production of new predators). Consider a case where every predator consumes 100 prey per time step (<span class="math inline">\(\alpha \cdot V = 100\)</span>), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1… Which predator is more <em>efficient</em> at converting prey biomass into growth of the predator population (creating new predators)?</p>
 <p><strong>Q</strong> what are the units of <em>beta</em>?</p>
-<p><strong>Q</strong> Can <em>beta</em> go above 1?</p>
-<p><strong>Q</strong> Can <em>beta</em> go below 0?</p>
 <p>Now, the (instantaneous) PREDATOR growth rate can be defined by the following equation:</p>
 <p><span class="math inline">\(\Delta P = \beta VP - qP\)</span></p>
 <p>This model is the other half of what is known as the <strong>Lotka-Volterra</strong> prey-predator model.</p>
@@ -528,7 +591,7 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 <h3>L-V predation model in InsightMaker</h3>
 <p>Before we go deeper into predation modeling, let’s simulate prey and predator population growth under the L-V predation model.</p>
 <p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/78356/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
-<p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”&quot; and “numerical response”.</p>
+<p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”" and “numerical response”.</p>
 <p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator growth”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
 <p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)” (this makes InsightMaker behave more like a continuous growth model).</p>
 <p><strong>Step 5</strong>: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.</p>
@@ -659,6 +722,7 @@ points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=
 points(seq(1,100,length=nrow(System)), System[,2], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,lty=2)
 legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;green&quot;),legend=c(&quot;prey&quot;,&quot;predator&quot;),bty=&quot;n&quot;)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre><code>## Warning: package &#39;deSolve&#39; was built under R version 3.6.3</code></pre>
 <div id="more-with-the-l-v-predator-prey-phase-space" class="section level3">
 <h3>More with the L-V predator-prey phase space!</h3>
 <p>Just like before, let’s draw arrows throughout phase space, representing where the system would be expected to go from each point in phase space.</p>
@@ -912,7 +976,7 @@ curve(TypeIIIfuncresp(x,0.0005,0.1,1.6),0,1000,xlab=&quot;Victim abundance&quot;
 </div>
 <div id="final-insightmaker-activity-on-your-own" class="section level2">
 <h2>Final InsightMaker activity (on your own)!!</h2>
-<p><strong>Step 1</strong> Add prey density-dependence to your basic predator-prey model, using the equations in the Gotelli book. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with prey density dependence? Is this model more stable than the base L-V model?</p>
+<p><strong>Step 1</strong> Add prey density-dependence to your basic predator-prey model, using your knowledge of modeling density-dependence (or just use the equations in chapter 6 of the Gotelli book). Visualize the dynamics as time series and in phase space. Do you ever see oscillations with prey density dependence? Is this model more stable than the base L-V model?</p>
 <p><strong>Step 2</strong> Change the functional response to a type-II functional response. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with this model? Is this model more stable than the base L-V model?</p>
 <p><strong>Step 3</strong> Change the model to account for prey refuges. That is, there is a segment of the prey population that is not accessible to predators. How does this change the system dynamics?</p>
 <p><strong>Step 4</strong> Change the model to include a type II functional response AND prey density-dependence. How does this change the system dynamics? Is this system stable? Under what conditions?</p>
@@ -941,6 +1005,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
