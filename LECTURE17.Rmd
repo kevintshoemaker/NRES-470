@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: prey-predator!"
 author: "NRES 470/670"
-date: "Spring 2019"
+date: "Spring 2020"
 output: 
   html_document: 
     theme: spacelab
@@ -47,7 +47,7 @@ $\Delta V = rV^* - f(V,P) \cdot P$
 
 AND
 
-$\Delta P = g(V,P) \cdot P - qP^*$
+$\Delta P = f(V,P)*conversion.factor \cdot P - qP^*$
 
 Where
 
@@ -65,9 +65,9 @@ $f(V,P)$ is known as the **functional response** -- that is, the per capita rate
 
 AND
 
-$g(V,P)$ is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption, usually modeled as as a function of prey density, but sometimes modeled as a function of both predator and prey densities.
+$f(V,P)\cdot conversion.factor$ (alternatively represented as $g(V,P)$) is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption.
 
-There are many different types of possible functional response curves and numerical response curves. Let's start simple!
+There are many different types of possible functional and numerical response curves. Let's start simple!
 
 ### The classical prey-predator model
 
@@ -77,13 +77,13 @@ Let's look at predation mathematically, starting with the simplest possible mode
 
 We will consider the prey, or "victims" first:
 
-In the absence of predators, let's assume that the victim population grows according to the basic equation of population ecology:
+In the absence of predators, let's assume that the victim population grows according to the basic exponential growth equation:
 
 $\Delta V = rV$
 
 We will assume that the intrinsic rate of growth, $r$, is positive! In the absence of predators, the population grows exponentially.
 
-If predators are present, the population growth rate of the victims will go down... 
+If predators are present, the population growth of the victims will slow down... 
 
 What expression could define the rate at which prey are consumed by predators?
 
@@ -91,11 +91,13 @@ First of all, let's assume that predators and prey walk randomly through their c
 
 This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way. 
 
-Under such circumstances, the predators do NOT interfere with one another. Each predator consumes a fixed number of prey in a given time period, depending on prey availability. 
+Under such circumstances, the predators do NOT interfere with one another and never get full. Each predator consumes a fixed number of prey in a given time period, depending only on prey availability. 
 
-Consider the case where there are $V$ prey and only a single predator.  
+Consider the case where there are $V$ prey and only a single predator in a hypothetical prey-predator system.  
 
-**Q**: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption in this example ($\alpha$)? 
+**Q**: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example ($\alpha$)? 
+
+In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30000 prey per day. (realistic?) 
 
 **Q** what is the shape of the functional response in this case?
 
@@ -130,10 +132,6 @@ The term $\alpha$ is also known as the **capture efficiency**. Does this make se
 
 **Q** what are the units of *alpha*? [tophat]
 
-**Q** Can *alpha* go above 1? [this one is tricky]
-
-**Q** Can *alpha* go below 0?
-
 Now, the (instantaneous) prey growth rate can be defined by the following equation:
 
 $\Delta V = rV - \alpha VP$
@@ -154,7 +152,7 @@ In the absence of prey, the predator population declines exponentially.
 
 If enough prey are present, the population growth rate of the predators will go up... 
 
-Recall that predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:
+Recall that (in this simple model) predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:
 
 $f(V) = \alpha V$
 
@@ -195,13 +193,9 @@ $g(V) \cdot P = \beta V \cdot P$
 
 Does this make sense?
 
-The term $\beta$ is related to the **conversion efficiency** of the predator (how effieciently the predator converts its food into the production of new predators). Does this make sense? Consider a case where every predator consumes 100 prey per time step ($\alpha \cdot V = 100$), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1... Which predator is more *efficient* at converting prey biomass into population growth? 
+The term $\beta$ is related to the **conversion efficiency** of the predator (how effieciently the predator converts its food into the production of new predators). Consider a case where every predator consumes 100 prey per time step ($\alpha \cdot V = 100$), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1... Which predator is more *efficient* at converting prey biomass into growth of the predator population (creating new predators)? 
 
 **Q** what are the units of *beta*?
-
-**Q** Can *beta* go above 1?
-
-**Q** Can *beta* go below 0?
 
 Now, the (instantaneous) PREDATOR growth rate can be defined by the following equation:
 
