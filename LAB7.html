@@ -515,13 +515,13 @@ div.tocify {
 <p>If the key assumptions of this analysis are met (see below), then the proportion of marked animals recaptured in the second visit (<span class="math inline">\(\frac{R}{C}\)</span>) should be equivalent to the proportion of marked animals (from the first visit) in the total population (<span class="math inline">\(\frac{M}{N}\)</span>) such that:</p>
 <p><span class="math inline">\(\frac{R}{C} = \frac{M}{N}\)</span></p>
 <p>where <span class="math inline">\(N\)</span> is the total population size. Solving for <span class="math inline">\(N\)</span> yields the estimator:</p>
-<p><span class="math inline">\(\hat N=\frac{C \cdot M}{R} \qquad \text{(Eq. 1)}\)</span></p>
+<p><span class="math inline">\(\hat N=\frac{C\cdot M}{R} \qquad \text{(Eq. 1)}\)</span></p>
 <p><strong>Q</strong> What is the estimate of per-capita capture probability (<span class="math inline">\(p\)</span>) in the L-P estimator?? This is the same as asking- what proportion of the total population was marked in the first visit?</p>
 <p><span class="math inline">\(p = \frac{R}{C}\)</span></p>
 <p><span class="math inline">\(\hat N = p \cdot N+(1-p)\cdot N\)</span></p>
-<p>$N = N + (1-)N $</p>
-<p>$M=N = p N $</p>
-<p><span class="math inline">\(\hat N = \frac{M}{p} = \frac{C \cdot M}{R}\)</span></p>
+<p><span class="math inline">\(\hat N=\frac{R}{C}\cdot N+(1-\frac{R}{C})\cdot N\)</span></p>
+<p><span class="math inline">\(M=\frac{R}{C}\cdot N = p \cdot N\)</span></p>
+<p><span class="math inline">\(\hat N=\frac{M}{p}=\frac{C\cdot M}{R}\)</span></p>
 <p>Imagine we were to capture 10 individuals during our first visit (<span class="math inline">\(M=10\)</span>) and 8 individuals during our second visit (<span class="math inline">\(C=10\)</span>). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, <span class="math inline">\(p=\frac{R}{C}=0.5\)</span>. Another way of saying this is that for every individual we observed during the first site visit, we were likely to have missed one individual.</p>
 <p>To estimate abundance, we add up the total number of individuals we saw during our first visit and the total number of individuals we missed during our first visit- this should represent the entire population!</p>
 <p>The lower our estimate of <span class="math inline">\(p\)</span> (fraction of the total population marked in the first visit, derived from observations from the second visit), the more individuals we probably missed (failed to observe) in the first visit.</p>
@@ -533,7 +533,7 @@ div.tocify {
 <p><span class="math inline">\(\hat N=\frac{(M+1)(C+1)}{R+1}-1 \qquad \text{(Eq. 2)}\)</span></p>
 <p>This formula is a <strong>statistic</strong> estimating total population size on the basis of a <strong>sample</strong> (see <a href="LECTURE15.html">lecture on parameter estimation</a> for more).</p>
 <p>We still need to make inference about the <strong>parameter</strong>, <span class="math inline">\(N\)</span>, on the basis of the statistic, <span class="math inline">\(\hat N\)</span>.</p>
-<p>To do this, we need to understand the <strong>sampling uncertainty</strong> for this statistic (we need to ask: “what do we <em>really</em> know about the population, and what don’t we know?”. That is, if we collected a different sample from the <em>same population</em>, we might get a very different answer for <span class="math inline">\(\hat N\)</span>. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for <span class="math inline">\(\hat N\)</span>!! The variation among these estimates is the sampling uncertainty.</p>
+<p>To do this, we need to understand the <strong>sampling uncertainty</strong> for this statistic (we need to ask: “what do we <em>really</em> know about the population, and what don’t we know?”. That is, if we collected a different sample from the <em>same population</em>, we might get a very different answer for <span class="math inline">\(N\)</span>. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for <span class="math inline">\(N\)</span>!! The variation among these estimates is the sampling uncertainty.</p>
 <p>For the Lincoln-Peterson estimator, our uncertainty about this estimate (sampling variance) can be computed as:</p>
 <p><span class="math inline">\(Var(\hat N)=\frac{(M+1)(C+1)(M-R)(C-R)}{(R+1)^2(R+2)} \qquad \text{(Eq. 3)}\)</span></p>
 <p>This formula technically represents <em>Sampling Variance</em>, which is a common way to represent parameter uncertainty in statistics.</p>

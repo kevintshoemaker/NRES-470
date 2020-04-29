@@ -61,13 +61,24 @@ for(i in 1:(Nyears*10+1)){
   System[1+i,] <- doYear(System[i,])
 }
 
-
-
-
 plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="prey",ylab="predators")
 points(System[seq(1,1000,10),],col="green",type="p",pch=20,cex=0.85)
 points(System[1,],col="blue",pch=20,cex=3)
+points(System[50,],col="red",pch=20,cex=3)
+points(System[100,],col="yellow",pch=20,cex=3)
 
+##############
+# animation!
+
+x11()
+plotz()
+plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="prey",ylab="predators")
+points(System[1,],col="blue",pch=20,cex=3)
+for(i in seq(1,(Nyears*10+1),10)){
+  print(points(System[i,],col="green",pch=20,cex=3))
+  #Sys.sleep(0)
+  Sys.sleep(0.5)
+}
 
 ##### LOTKA VOLTERRA PREDATION EXAMPLE
 
@@ -104,6 +115,20 @@ points(System[1,],col="blue",pch=20,cex=3)
 plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="Prey",ylab="Predators")
 points(jitter(System[,1],200),jitter(System[,2],200),col="brown",pch=20,cex=0.3)
 #abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
+
+
+##############
+# animation!
+
+x11()
+plotz()
+plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="prey",ylab="predators")
+points(System[1,],col="blue",pch=20,cex=3)
+for(i in seq(1,(Nyears*10+1),10)){
+  print(points(System[i,],col="green",pch=20,cex=3))
+  #Sys.sleep(0)
+  Sys.sleep(0.5)
+}
 
 
 ##### LOTKA VOLTERRA PREDATION EXAMPLE
@@ -145,7 +170,7 @@ points(jitter(System2[,1],500),jitter(System2[,2],500),col="red",pch=20,cex=0.3)
 points(jitter(System3[,1],500),jitter(System3[,2],500),col="blue",pch=20,cex=0.3)
 #abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 
-
+   # plot as trajectories over time
 plot(seq(1,100,length=nrow(System)), System[,1], xlab="Time", ylab="Abundance",type="l",col="orange",lwd=2,ylim=c(0,160),xlim=c(0,95))
 points(seq(1,100,length=nrow(System)), System[,2], xlab="Time", ylab="Abundance",type="l",col="green",lwd=2,lty=2)
 legend("top",lwd=c(2,2),lty=c(1,2),col=c("orange","green"),legend=c("prey","predator"),bty="n")
@@ -523,10 +548,26 @@ new <- phasearrows.calc(toggle,xlim,ylim,resol=25,parms=parms)
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="Prey",ylab="Predators")
 phasearrows.draw(new)
 
+##############
+# animation!
+
+x11()
+plotz()
+plot(1,1,pch="",ylim=c(0,200),xlim=c(0,200),xlab="prey",ylab="predators")
+phasearrows.draw(new)
+points(System[1,],col="blue",pch=20,cex=3)
+for(i in seq(1,(Nyears*10+1),10)){
+  print(points(System[i,],col="green",pch=20,cex=3))
+  #Sys.sleep(0)
+  Sys.sleep(0.5)
+}
+
 #
 ## END MODEL SPECIFICATION AND INITIALIZATION
 #######################################################################################
 
+
+# ISOCLINES!
 
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="Prey",ylab="Predators")
 phasearrows.draw(new)
@@ -668,4 +709,7 @@ TypeIIIfuncresp <- function(V,alpha,h,k){
 }
 
 curve(TypeIIIfuncresp(x,0.0005,0.1,1.6),0,1000,xlab="Victim abundance",ylab="Total prey eaten per predator",col="red",lwd=3)
+
+
+
 
