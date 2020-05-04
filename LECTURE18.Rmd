@@ -16,51 +16,48 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Upcoming final exam
 
-**when and where** The final exam is coming up on Friday **May 8** (9:50am to 11:50 in our regular classroom). You will have the whole two hour period to take the exam (but you should not need the whole period). 
+**when and where** The final exam is coming up on Friday **May 8** (9:50am to 11:50). You will have the whole two hour period to take the exam (but you should not need the whole period). 
 
 **what** The exam will cover all material covered in lectures and lab.
 
 - All material in Chapters 1-6 of the Gotelli book
-    - Exponential pop growth
-    - Density-dependent pop growth
-    - Age-structured pop growth
-    - Metapopulations (additional suggested reading: [Griffin et al. 2008](griffin1.pdf))
-    - Competition
-    - Predation
-- *Systems thinking and modeling* (Ch. 1, 2, and 10 of ["Beyond Connecting the Dots"](http://beyondconnectingthedots.com/))
-- *Individual-based models* (IBM) (Ch. 10 of "Beyond Connecting the Dots").
+    - Exponential pop growth ([Gotelli Ch. 1], [lecture](LECTURE2.html), [lab](LAB1.html))
+    - Density-dependent pop growth (Gotelli Ch. 2, [lecture](LECTURE3.html), [lecture](LECTURE4.html), [lecture](LECTURE5.html), [lab](LAB2.html))
+    - Age-structured pop growth and matrix population models (Gotelli Ch. 3; [lecture](LECTURE6.html), [lecture](LECTURE7.html), [lab](LAB3.html), [lab](LAB4.html) additional suggested reading: [Heppell et al. 1998](heppell1.pdf))
+    - Metapopulations (Gotelli Ch. 4, [lecture](LECTURE13.html), [lab](LAB6.html); additional suggested reading: [Griffin et al. 2008](griffin1.pdf))
+    - Competition (Gotelli Ch. 5, [lecture](LECTURE16.html))
+    - Predation (Gotelli Ch. 6, [lecture](LECTURE17.html))
+- *Systems thinking and modeling* ([lecture](LECTURE1.html), Ch. 1, 2 of ["Beyond Connecting the Dots"](http://beyondconnectingthedots.com/))
 - Basic computer programming (e.g., if-then-else statements)
-- *Application of matrix population models to conservation and management* (including [Heppell 1998](heppell1.pdf))
-- *Stochasticity and Uncertainty*, including [Lande 1992](lande.pdf), [Regan 2002](Regan_2002.pdf) and all material covered in lecture and lab.
-- *Small-population paradigm and declining-population paradigm* (including [Beissinger and Westphal 1998](beissinger1.pdf), [Caughley 1988](caughley1.pdf))  
-- *Population Viability Analysis*, in theory and practice
-- *Parameter estimation for PVA* (including basic capture-recapture methods) (helpful reading: [Amstrup et al](amstrup1.pdf))
+- *Stochasticity and Uncertainty* ([lecture](LECTURE8.html), [lab](LAB5.html), suggested readings: [Lande 1992](lande.pdf); [Regan 2002](Regan_2002.pdf).
+- *Small-population paradigm and declining-population paradigm* ([lecture](LECTURE9.html), [lecture](LECTURE11.html), suggested reading: [Caughley 1988](caughley1.pdf))  
+- *Population Viability Analysis*, in theory and practice ([lecture](LECTURE12.html), suggested reading [Beissinger and Westphal 1998](beissinger1.pdf), [optional lecture](LECTURE14.html))
+- *Parameter estimation for PVA*, including basic capture-recapture methods ([lecture](LECTURE15.html), suggested reading: [Amstrup et al](amstrup1.pdf))
 
-*The exam will consist of a mixture of multiple-choice and short-answer questions.*
+NOTE: we skipped over the [lecture on individual-based models](LECTURE10.html)- this topic will (of course) *not be included on the final exam*
+
+*The exam will consist of a mixture of multiple-choice and short-answer questions (including a few definitions).*
 
 ### Final logistics
 
-#### Presentations
+#### Final exam
 
-- Please send me a copy of your final project presentation PowerPoint or Google slides if you haven't already (upload to WebCampus)
+- This Friday, May 8 from 9:50-11:50 (via zoom/tophat)
 
 #### Final papers
 
-- Should receive written feedback by the end of the day on Friday May 1.
+- Everyone should have received detailed feedback over the weekend - please let us know if you have any questions. 
+- Final papers due May 13 at 5pm (webcampus submission)
 
 #### Extra credit
 
-- Will accept up to four extra credit write-ups (two presentations and two papers) 
-- Due when final papers are due (May 13).
+- Will accept up to four extra credit write-ups (two presentations and two papers)
+- Submit extra credit assignments via webcampus (file submission) -- one submission per each of the four 'assignments'.
+- Due when final papers are due, by the end of finals period (Wed May 13 at 5pm).
 
 #### Office hours/Study session
 
-- Wed 5/6 at 4pm via zoom
-
-#### DISCUSSION: Modeling in the bigger context
-
-#### DISCUSSION: Suggestions for improving NRES 470/670
-
+- Wed 5/6 at 10am via zoom (regular class time, zoom link sent via email and webcampus announcement)
 
 #### PLEASE fill out your course evaluations!
 
