@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 **what** The exam will cover all material covered in lectures and lab.
 
 - All material in Chapters 1-6 of the Gotelli book
-    - Exponential pop growth ([Gotelli Ch. 1], [lecture](LECTURE2.html), [lab](LAB1.html))
+    - Exponential pop growth (Gotelli Ch. 1, [lecture](LECTURE2.html), [lab](LAB1.html))
     - Density-dependent pop growth (Gotelli Ch. 2, [lecture](LECTURE3.html), [lecture](LECTURE4.html), [lecture](LECTURE5.html), [lab](LAB2.html))
     - Age-structured pop growth and matrix population models (Gotelli Ch. 3; [lecture](LECTURE6.html), [lecture](LECTURE7.html), [lab](LAB3.html), [lab](LAB4.html) additional suggested reading: [Heppell et al. 1998](heppell1.pdf))
     - Metapopulations (Gotelli Ch. 4, [lecture](LECTURE13.html), [lab](LAB6.html); additional suggested reading: [Griffin et al. 2008](griffin1.pdf))
