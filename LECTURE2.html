@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -27,6 +26,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -88,7 +98,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -237,6 +246,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -265,6 +275,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -477,7 +493,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Intro to population ecology</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2021</h4>
 
 </div>
 
@@ -525,7 +541,7 @@ div.tocify {
 </div>
 <div id="exponential-growth-the-fundamental-principle-of-population-ecology" class="section level2">
 <h2>Exponential growth: the fundamental principle of population ecology</h2>
-<p><img src="puffball1.png" /></p>
+<p><img src="Puffball1.png" /></p>
 <p>Giant puffballs produce 7 trillion offspring (12 zeroes!) in one reproductive event … If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!</p>
 <p>The reason? Populations can exhibit <strong>exponential growth</strong>, in which each new addition to the population expands the reproductive potential of the population in a <strong>positive feedback loop</strong>.</p>
 </div>
@@ -560,13 +576,13 @@ div.tocify {
 <p><img src="Gopherus_agassizii.jpg" /></p>
 <ul>
 <li><p>What demographic traits determine the <strong>resilience</strong> of natural populations to disturbance and perturbation (e.g., climate change)?</p></li>
-<li>To what extent will climate change decouple trophic links due to <strong>phenological mismatches</strong>?<br />
-</li>
-<li>How do natural populations and communities respond to increased frequencies of <strong>extreme weather events</strong> predicted under global climate change?<br />
-</li>
+<li><p>To what extent will climate change decouple trophic links due to <strong>phenological mismatches</strong>?<br />
+</p></li>
+<li><p>How do natural populations and communities respond to increased frequencies of <strong>extreme weather events</strong> predicted under global climate change?<br />
+</p></li>
 <li><p>How do <strong>interspecific interactions</strong> affect species responses to global change?</p></li>
-<li>How important are <strong>rare species</strong> in the functioning of ecological communities?<br />
-</li>
+<li><p>How important are <strong>rare species</strong> in the functioning of ecological communities?<br />
+</p></li>
 <li><p>What is the magnitude of the <strong>‘extinction debt’</strong> following the loss and fragmentation of natural habitats, and when will it be paid?</p></li>
 </ul>
 <div id="and-many-more" class="section level4">
@@ -615,7 +631,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -654,7 +670,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
