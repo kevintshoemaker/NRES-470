@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -26,6 +25,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -87,7 +97,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -236,6 +245,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -264,6 +274,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -493,16 +509,16 @@ div.tocify {
 </div>
 <div id="textbook" class="section level2">
 <h2>Textbook</h2>
-<p>Please pick up a copy of the course textbook (A Primer of Ecology, by Nick Gotelli) as soon as possible. You can purchase the textbook new or used on <a href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1484867155&amp;sr=1-1&amp;keywords=a+primer+of+ecology">Amazon</a>. Previous editions (especially 3rd edition) are acceptable as well. All other readings will be posted on <a href="https://unr.instructure.com/">WebCampus</a>.</p>
+<p>I have provided PDF copies of all chapters of the course textbook (A Primer of Ecology, by Nick Gotelli) on WebCampus. However, I encourage you to pick up a copy of the textbook- you can purchase the textbook new or used on <a href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1484867155&amp;sr=1-1&amp;keywords=a+primer+of+ecology">Amazon</a>. Previous editions (especially 3rd edition) are acceptable as well. All other readings will be posted on <a href="https://unr.instructure.com/">WebCampus</a>.</p>
 </div>
 <div id="software" class="section level2">
 <h2>Software</h2>
-<p>Skills with specialized software and computer programming is critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with using some specialized tools (e.g., <a href="http://www.phidot.org/software/mark/">Program MARK</a>) and some computer programming (e.g., <a href="https://insightmaker.com/">InsightMaker</a>, <a href="https://cran.r-project.org/">R</a>) and I hope by the end of this class you will understand how powerful and useful these tools can be – and not just for population ecology!</p>
+<p>Skills with specialized software and computer programming are critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with using some specialized tools (e.g., <a href="http://www.phidot.org/software/mark/">Program MARK</a>) and some computer programming (e.g., <a href="https://insightmaker.com/">InsightMaker</a>, <a href="https://cran.r-project.org/">R</a>) and I hope by the end of this class you will understand how powerful and useful these tools can be – and not just for population ecology!</p>
 <p>See the <a href="Links.html">links page</a> for some useful references (I will post more links shortly, including some R tutorials!).</p>
 </div>
 <div id="in-class-activities" class="section level2">
 <h2>In-class activities</h2>
-<p>Most class periods will include a short hands-on modeling exercise (mini-lab) to give everyone a chance to apply the population ecology concepts we talked about in lecture. Many class periods will also include short Top Hat questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. <em>NOTE: you will not be penalized for incorrect responses in TopHat</em>!</p>
+<p>This semester I will provide lecture materials, videos and readings prior to our class meetings. Most class periods will be devoted to discussion and hands-on modeling exercises (mini-labs) to give everyone a chance to apply the population ecology concepts we talked about in lecture. Many class periods will also include short Top Hat questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. <em>NOTE: you will not be penalized for incorrect responses in TopHat</em>!</p>
 </div>
 <div id="out-of-class-activities" class="section level2">
 <h2>Out-of-class activities</h2>
@@ -517,7 +533,7 @@ div.tocify {
 </div>
 <div id="final-projects" class="section level2">
 <h2>Final projects</h2>
-<p>It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). I will compile a list of online databases that might be useful for your projects that I will post to the course website. In the meantime, start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test!</p>
+<p>It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to assess conservation or management actions for a species of conservation concern (species of your choice!). I will compile a list of online databases that might be useful for your projects that I will post to the course website. In the meantime, start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test!</p>
 </div>
 <div id="making-up-classes-and-labs" class="section level2">
 <h2>Making up classes and labs</h2>
@@ -529,7 +545,7 @@ div.tocify {
 </div>
 <div id="introductions" class="section level2">
 <h2>Introductions</h2>
-<p>Please take the time to introduce yourself in more detail on the “WebCampus” site – I posted a question on the discussion board.</p>
+<p>Please take the time to introduce yourself in more detail on WebCampus – I posted a question on the discussion board.</p>
 </div>
 <div id="any-questions" class="section level2">
 <h2>Any questions??</h2>
@@ -547,7 +563,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -586,7 +602,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
