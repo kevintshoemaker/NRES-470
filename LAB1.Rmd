@@ -27,9 +27,9 @@ The famous "BIDE" equation is a way to break down $\Delta N$ into components.
 
 $\Delta N = B + I - D - E \qquad \text{(Eq. 1)}$
 
-where $B$ represents the number of births, $I$ reprents the number of immigrants, $D$ represents the number of deaths, and $E$ represents the number of emigrants. 
+where $B$ represents the number of births, $I$ represents the number of immigrants, $D$ represents the number of deaths, and $E$ represents the number of emigrants. 
 
-If we ignore immigration and emigratrion, then the BIDE equation simplifies to:
+If we ignore immigration and emigration, then the BIDE equation simplifies to:
 
 $\Delta N = B - D \qquad \text{(Eq. 2)}$
 
@@ -43,17 +43,12 @@ Examples of per-capita rates:
 
 + "*for every individual in the population now*, we expect 0.1 (10%) to die in the coming year"
 + "*for every individual in the population now*, we expect 0.8 new juveniles to enter the population in the coming year"
-+ "*for every female in the population now*, we expect 1.1 offspring to be born"
++ "*for every female in the population now*, we expect 1.1 offspring to be born into the population in the coming year"
 + "*for every individual in the population now*, we expect 0.03 (3%) to be harvested in the coming year"
 + "*for every juvenile in the population now*, we expect 0.34 (34%) to disperse away in the coming year"
 
---or--
 
-+ "about 10% of the population will die in the coming year"
-+ "Females in the population each give birth to 1.1 newborns on average"
-
-
-These per-capita rates are often expressed as lower case letters. So $b$ represents per-capita birth rate, and $d$ represents per-capita death rate (see above for a way to think about per-capita deaths!). 
+These per-capita rates are often expressed as lower case letters. So $b$ represents per-capita birth rate, and $d$ represents per-capita death rate (see the first bullet point above for a way to think about per-capita deaths!). 
 
 To compute per-capita rates, you can just divide the total number of births (B) and deaths (D) by the population size N:
 
@@ -111,16 +106,16 @@ $N_{t+1}=N_t + B - D  \qquad \text{(Eq. 11)}$
 
 $N_{t+1}=N_t + b_d \cdot N_t - d_d \cdot N_t  \qquad \text{(Eq. 12)}$ 
 
-I am using the *d* subscript to indicate that the per-capita birth and death rates now represent discrete growth (these rates only apply once per time step and are not compounded continuously)
+I am using the *d* subscript to indicate that the per-capita birth and death rates now represent **discrete growth** (these rates only apply once per time step and are not compounded continuously)
 
-Here are some expressions to illustrate the difference between discrete and continuous growth:
+Here are some expressions to illustrate the difference between discrete and continuous rates:
 
-$b$: "New individuals enter into the population continuously at a rate of 0.9 per capita per year"         
-$d_d$: "For every individual living in the population today, about 0.9 new offspring will enter the population within the next year"       
-$d$: "Individuals are lost from the population continuously at a rate of 23% per year"          
-$d_d$: "About 23% of the individuals living today will die within the next year"      
-$r$: "The population is growing constantly (continuously) at a rate of 15% per year".     
-$r_d$: "The population size one year from now will be 15% higher than it is today"         
+$b$: "Babies enter into the population at a rate of 0.9 per adult female per year, but the pool of babies is distributed evenly throughout the year"             
+$b_d$: "Babies enter into the population at a rate of 0.9 per adult female per year, but the pool of babies enters the population simultaneously on April 1 each year"        
+$d$: "Approximately 23% of the population dies each year, but the deaths occur evenly throughout the year"          
+$d_d$: "Approximately 23% of the population dies each year, but all the deaths are assumed to occur on Jan 1 of each year"          
+$r$: "The population is growing constantly (continuously) at a rate of 15% per year (NOTE: this can be confusing- you will not have exactly 15% more individuals in the population one year later, but in fact you will have 16.2% more individuals! This should be more clear by the end of the lab)".          
+$r_d$: "The population size one year from now will be 15% higher than it is today"             
 
 $N_{t+1}=N_t + (b_d - d_d) \cdot N_t \qquad \text{(Eq. 13)}$       
 
@@ -130,7 +125,7 @@ $N_{t+1}=N_t \cdot (1 + r_d)  \qquad \text{(Eq. 15)}$
 
 $N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 16)}$
 
-Just so you know, you can convert between Lambda and the continuous rate of growth easily: all you need to do is use the natural logarithm:
+Just so you know, you can convert between Lambda and the continuous rate of growth (*r*) easily: all you need to do is use the natural logarithm:
 
 $e^r = \lambda$       
 $r = ln(\lambda)$
@@ -139,7 +134,7 @@ Okay let's start the lab! The first software we will use is our old friend, MS *
 
 ## Exponential growth in Excel
 
-1.	Open the Excel spreadsheet [ExpGrowthExcel.xlsx](ExpGrowthExcel.xlsx). To download this file, right click on the link and select "*Save link as..*". In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size ($N_0$) of 100 individuals.  We also have a per-capita rate of increase ($r$) that is currently set at 0.1 (10%) per year. Assume for now that $r$ represents $r_d$, or the *discrete rate of increase*. 
+1.	Open the Excel spreadsheet [ExpGrowthExcel.xlsx](ExpGrowthExcel.xlsx). To download this file, right click on the link and select "*Save link as..*". In the first column, we have a timestep of 1 year for 30 years. In the second column, we have an initial population size ($N_0$) of 100 individuals. We also have a per-capita rate of increase ($r$) that is currently set at 0.1 (10%) per year. Assume for now that $r$ represents $r_d$, or the *discrete rate of increase*. 
 
 
 2.	To generate $N_t$ for the remaining time steps, we need to apply our knowledge of population ecology. Specifically we need to apply equation 15 or 16, above (assuming discrete population growth). Do this by clicking in the empty $N_{1}$ cell (position B3), typing '=' in the cell, clicking on the $N_{0}$ cell (position B2), completing the equation and hitting enter. As you do this, you should see the equation you are creating appear in the equation editor.
@@ -317,7 +312,7 @@ The simulations that you ran above produced population growth curves that were v
 
 
 ##Checklist for Lab 1 completion
-*Please submit all files (Excel file, and R code as text file) and responses via WebCampus. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in WebCampus.
+*Please submit all files (Excel file, and R code as text file) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
 
 ***Due Feb. 1***
 
@@ -338,11 +333,11 @@ The simulations that you ran above produced population growth curves that were v
         -  *Short answer (3a.)*
         -  *Short answer (3b.)*
 
-*  Excel file (submit in WebCampus)
+*  Excel file (submit in Top Hat)
     +  **Exercise 1**
         -  Your Excel file should show that you were able to successfully use formulas to calculate $N_t$ for each time step (year and month) and show a plot of $N$ by Time.
 
-*  R file (submit in WebCampus)
+*  R file (submit in Top Hat)
     +  **Exercise 2**
         -  Your R code should show that you were able to (a) adapt the given code to run for 100 years, and can display a plot of the results;
         -  (b) change $r$ to 0.5 and run for 100 years and plot the results;
@@ -351,8 +346,8 @@ The simulations that you ran above produced population growth curves that were v
 
 *  InsightMaker models
     +  **Exercise 3**
-        -  Your first model should show that you were able to alter the given model as instructed so that the simulation runs correctly. This should be shared with Kevin and Jason (copy InsightMaker link in the appropriate place in WebCampus) .
+        -  Your first model should show that you were able to alter the given model as instructed so that the simulation runs correctly. This should be shared via Top Hat (copy InsightMaker link in the appropriate place in Top Hat).
 
-        -  Your second model should include stochasticity in *Birth Rate* and *Death Rate*. This should be shared with Kevin and Jason (insert InsightMaker link in WebCampus).
+        -  Your second model should include stochasticity in *Birth Rate* and *Death Rate*. This should be shared via Top Hat.
 
 

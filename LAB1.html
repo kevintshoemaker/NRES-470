@@ -505,8 +505,8 @@ div.tocify {
 <p><span class="math inline">\(\Delta N\)</span> represents the change in population size, <span class="math inline">\({N_{t+1}}-{N_t}\)</span></p>
 <p>The famous “BIDE” equation is a way to break down <span class="math inline">\(\Delta N\)</span> into components.</p>
 <p><span class="math inline">\(\Delta N = B + I - D - E \qquad \text{(Eq. 1)}\)</span></p>
-<p>where <span class="math inline">\(B\)</span> represents the number of births, <span class="math inline">\(I\)</span> reprents the number of immigrants, <span class="math inline">\(D\)</span> represents the number of deaths, and <span class="math inline">\(E\)</span> represents the number of emigrants.</p>
-<p>If we ignore immigration and emigratrion, then the BIDE equation simplifies to:</p>
+<p>where <span class="math inline">\(B\)</span> represents the number of births, <span class="math inline">\(I\)</span> represents the number of immigrants, <span class="math inline">\(D\)</span> represents the number of deaths, and <span class="math inline">\(E\)</span> represents the number of emigrants.</p>
+<p>If we ignore immigration and emigration, then the BIDE equation simplifies to:</p>
 <p><span class="math inline">\(\Delta N = B - D \qquad \text{(Eq. 2)}\)</span></p>
 <p>Now let’s focus on <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>. The important thing to recognize is that the number of births and deaths in a population is not constant.</p>
 <p>What does the number of births depend on?</p>
@@ -515,16 +515,11 @@ div.tocify {
 <ul>
 <li>“<em>for every individual in the population now</em>, we expect 0.1 (10%) to die in the coming year”</li>
 <li>“<em>for every individual in the population now</em>, we expect 0.8 new juveniles to enter the population in the coming year”</li>
-<li>“<em>for every female in the population now</em>, we expect 1.1 offspring to be born”</li>
+<li>“<em>for every female in the population now</em>, we expect 1.1 offspring to be born into the population in the coming year”</li>
 <li>“<em>for every individual in the population now</em>, we expect 0.03 (3%) to be harvested in the coming year”</li>
 <li>“<em>for every juvenile in the population now</em>, we expect 0.34 (34%) to disperse away in the coming year”</li>
 </ul>
-<p>–or–</p>
-<ul>
-<li>“about 10% of the population will die in the coming year”</li>
-<li>“Females in the population each give birth to 1.1 newborns on average”</li>
-</ul>
-<p>These per-capita rates are often expressed as lower case letters. So <span class="math inline">\(b\)</span> represents per-capita birth rate, and <span class="math inline">\(d\)</span> represents per-capita death rate (see above for a way to think about per-capita deaths!).</p>
+<p>These per-capita rates are often expressed as lower case letters. So <span class="math inline">\(b\)</span> represents per-capita birth rate, and <span class="math inline">\(d\)</span> represents per-capita death rate (see the first bullet point above for a way to think about per-capita deaths!).</p>
 <p>To compute per-capita rates, you can just divide the total number of births (B) and deaths (D) by the population size N:</p>
 <p><span class="math inline">\(b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}\)</span></p>
 <p>–or, refactored in terms of B–</p>
@@ -553,19 +548,19 @@ div.tocify {
 <p>Lambda is what you multiply the current population size by to compute the population size in the next time step.</p>
 <p><span class="math inline">\(N_{t+1}=N_t + B - D \qquad \text{(Eq. 11)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=N_t + b_d \cdot N_t - d_d \cdot N_t \qquad \text{(Eq. 12)}\)</span></p>
-<p>I am using the <em>d</em> subscript to indicate that the per-capita birth and death rates now represent discrete growth (these rates only apply once per time step and are not compounded continuously)</p>
-<p>Here are some expressions to illustrate the difference between discrete and continuous growth:</p>
-<p><span class="math inline">\(b\)</span>: “New individuals enter into the population continuously at a rate of 0.9 per capita per year”<br />
-<span class="math inline">\(d_d\)</span>: “For every individual living in the population today, about 0.9 new offspring will enter the population within the next year”<br />
-<span class="math inline">\(d\)</span>: “Individuals are lost from the population continuously at a rate of 23% per year”<br />
-<span class="math inline">\(d_d\)</span>: “About 23% of the individuals living today will die within the next year”<br />
-<span class="math inline">\(r\)</span>: “The population is growing constantly (continuously) at a rate of 15% per year”.<br />
+<p>I am using the <em>d</em> subscript to indicate that the per-capita birth and death rates now represent <strong>discrete growth</strong> (these rates only apply once per time step and are not compounded continuously)</p>
+<p>Here are some expressions to illustrate the difference between discrete and continuous rates:</p>
+<p><span class="math inline">\(b\)</span>: “Babies enter into the population at a rate of 0.9 per adult female per year, but the pool of babies is distributed evenly throughout the year”<br />
+<span class="math inline">\(b_d\)</span>: “Babies enter into the population at a rate of 0.9 per adult female per year, but the pool of babies enters the population simultaneously on April 1 each year”<br />
+<span class="math inline">\(d\)</span>: “Approximately 23% of the population dies each year, but the deaths occur evenly throughout the year”<br />
+<span class="math inline">\(d_d\)</span>: “Approximately 23% of the population dies each year, but all the deaths are assumed to occur on Jan 1 of each year”<br />
+<span class="math inline">\(r\)</span>: “The population is growing constantly (continuously) at a rate of 15% per year (NOTE: this can be confusing- you will not have exactly 15% more individuals in the population one year later, but in fact you will have 16.2% more individuals! This should be more clear by the end of the lab)”.<br />
 <span class="math inline">\(r_d\)</span>: “The population size one year from now will be 15% higher than it is today”</p>
 <p><span class="math inline">\(N_{t+1}=N_t + (b_d - d_d) \cdot N_t \qquad \text{(Eq. 13)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=N_t + r_d \cdot N_t \qquad \text{(Eq. 14)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=N_t \cdot (1 + r_d) \qquad \text{(Eq. 15)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 16)}\)</span></p>
-<p>Just so you know, you can convert between Lambda and the continuous rate of growth easily: all you need to do is use the natural logarithm:</p>
+<p>Just so you know, you can convert between Lambda and the continuous rate of growth (<em>r</em>) easily: all you need to do is use the natural logarithm:</p>
 <p><span class="math inline">\(e^r = \lambda\)</span><br />
 <span class="math inline">\(r = ln(\lambda)\)</span></p>
 <p>Okay let’s start the lab! The first software we will use is our old friend, MS <strong>Excel</strong>!</p>
@@ -712,7 +707,7 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <ul>
 <li><strong><em>Short answer (3b.)</em></strong> Is it possible to have a declining population even when <em>Birth Rate</em> and <em>Death Rate</em> are the same? Is it possible to have a declining population when <em>Birth Rate</em> is greater than <em>Death Rate</em>? Explain your reasoning!</li>
 </ul>
-<p>##Checklist for Lab 1 completion *Please submit all files (Excel file, and R code as text file) and responses via WebCampus. The InsightMaker models should be shared by saving your Insights as “public” and sharing the URL link with your instructors in WebCampus.</p>
+<p>##Checklist for Lab 1 completion *Please submit all files (Excel file, and R code as text file) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as “public” and sharing the URL link with your instructors in Top Hat.</p>
 <p><strong><em>Due Feb. 1</em></strong></p>
 <ul>
 <li>WebCampus short answers
@@ -737,14 +732,14 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <li><em>Short answer (3b.)</em></li>
 </ul></li>
 </ul></li>
-<li>Excel file (submit in WebCampus)
+<li>Excel file (submit in Top Hat)
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
 <li>Your Excel file should show that you were able to successfully use formulas to calculate <span class="math inline">\(N_t\)</span> for each time step (year and month) and show a plot of <span class="math inline">\(N\)</span> by Time.</li>
 </ul></li>
 </ul></li>
-<li>R file (submit in WebCampus)
+<li>R file (submit in Top Hat)
 <ul>
 <li><strong>Exercise 2</strong>
 <ul>
@@ -764,8 +759,8 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 <ul>
 <li><strong>Exercise 3</strong>
 <ul>
-<li><p>Your first model should show that you were able to alter the given model as instructed so that the simulation runs correctly. This should be shared with Kevin and Jason (copy InsightMaker link in the appropriate place in WebCampus) .</p></li>
-<li><p>Your second model should include stochasticity in <em>Birth Rate</em> and <em>Death Rate</em>. This should be shared with Kevin and Jason (insert InsightMaker link in WebCampus).</p></li>
+<li><p>Your first model should show that you were able to alter the given model as instructed so that the simulation runs correctly. This should be shared via Top Hat (copy InsightMaker link in the appropriate place in Top Hat).</p></li>
+<li><p>Your second model should include stochasticity in <em>Birth Rate</em> and <em>Death Rate</em>. This should be shared via Top Hat.</p></li>
 </ul></li>
 </ul></li>
 </ul>
