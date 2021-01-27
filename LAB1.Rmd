@@ -54,7 +54,7 @@ To compute per-capita rates, you can just divide the total number of births (B) 
 
 $b = \frac {B_t}{N_t} \qquad \text{(Eq. 3)}$
 
---or, refactored in terms of B--
+--or, re-factored in terms of B--
 
 $B_t = b \cdot N_t$
 
@@ -157,18 +157,18 @@ NOTE: you can format the cells in column B to be whole numbers using the context
 ### Exercise 1
 Please provide short answers to the following questions, and **provide your Excel spreadsheet to back up your answers**.  
 
-*  ***Short answer (1a.)*** Apply equation 10 (above) to compute expected population size in year 30 (now you are assuming that the per-capita rate of growth in cell D3 represents *continuous* and not *discrete* growth). Do you get the same answer? Why or why not?  What about year 100? NOTE: this is a *single calculation*- don't overthink this one. You could use a calculator HINT: use the EXP function in Excel to raise *e* to any power: to compute $e^1.7$ you type "=EXP(1.7)" in Excel. In general, if you don't know the syntax for a function in excel, click on the button labeled "fx" and you can search for functions easily!  
+*  ***Short answer (1a.)*** Apply equation 10 (above) to compute expected population size in year 30 (now you are assuming that the per-capita rate of growth in cell D3 represents *continuous* and not *discrete* growth). Do you get the same answer as you did for the discrete-time model (what we did together as a demo)? Why or why not?  What about year 100 (what is the abundance after 100 years for both the discrete-time and continuous-time models? NOTE: computing abundance at time t in the continuous-time model is a *single calculation*- don't overthink this one. You could use a calculator instead of Excel if you really want! HINT: use the EXP function in Excel to raise *e* (base of the natural logarithm) to any power: to compute $e^{1.7}$ you type "=EXP(1.7)" in Excel. In general, if you don't know the syntax for a function in Excel, click on the button labeled "fx" and you can search for functions easily!  
 
 *  ***Short answer (1b.)*** What are the *units* of the per-capita rate of population growth, $r$? HINT: The answer is in the Gotelli book 
 
-* ***Short answer (1c.)*** What if the time step for your simulation were in months instead of years? How Would $r$ change (i.e., assuming r represents 0.1 growth per year, what is the growth per month)? Try it in Excel! Use both methods (eq. 15 vs equation 10) to compute population size in year 30. (HINT: when you are applying equation 10, you should now use the monthly rate instead of the annual growth rate, and you should use months and not years to represent *t* ) Do you see any difference in final population size between the two methods (discrete vs continuous growth)? Is the difference between your discrete and continuous estimates for $N_{year=30}$ greater or less with a 1-month discrete time step than it was with a 1-year discrete time step? Why or why not? 
+* ***Short answer (1c.)*** What if the time step for your simulation were in months instead of years? How Would $r$ change (i.e., assuming r represents 0.1 growth per year, what is the growth per month)? Try it in Excel! Use both methods (eq. 15 vs equation 10) to compute population size in year 30 (that is, use both the discrete-time and continuous-time methods to compute the population size in year 30). (HINT: when you are applying equation 10, you should now use the monthly rate instead of the annual growth rate, and you should use months and not years to represent *t* ) Do you see any difference in final population size between the two methods (discrete vs continuous growth)? Is the discrepancy between your discrete and continuous estimates for $N_{year=30}$ greater or less with a 1-month discrete time step than it was with a 1-year discrete time step? Why or why not? [in other words, is the discrete-time estimate closer to the continuous-time abundance estimate when you use months instead of years as the time step?] 
 
 *  ***Short answer (1d.)*** What is the difference between continuous population growth and discrete population growth? Can you think of at least one case where continuous growth would be a more biologically realistic model than discrete growth? Can you think of at least one case where discrete growth would be a more biologically realistic model than continuous growth? Explain your answer.
 
 
 ## Exponential growth in R
 
-R is probably the most common software used by ecologists and conservation biologists for data analysis and simulation. There is a little bit of a learning curve with R, and I appreciate InsightMaker in many ways for making it easy to get started with programming and modeling, but R is much more powerful, much faster, and more widely used than InsightMaker. For that reason, I will try to integrate R into this class as much as I can. We will do more with R when we get into data analysis!
+R is probably the most common software used by ecologists and conservation biologists for data analysis and simulation. There is a little bit of a learning curve with R, and I appreciate InsightMaker in many ways for making it easy to get started with programming and modeling, but R is much more powerful, much faster, and more widely used than InsightMaker. For that reason, I will try to integrate R into this class as much as I can. We will do more with R when we get into data analysis! And you will do a LOT more with R in NRES 488!
 
 ### SET UP
 Open the R software from the program menu or desktop.     
@@ -186,7 +186,7 @@ If you already have some R expertise, this is your opportunity to help your peer
 
 Depending on whether you are already familiar with R, you may also find the remainder of this document useful as you work your way through the course (and there are many other good introductory R resources available online... let me know if there is one you particularly like and I will add it to the course website (Links page). As you work your way through this tutorial (on your own pace), please ask the instructor or your peers if you are uncertain about anything. 
 
-For a more detailed tutorial, see my "R Bootcamp" website: [https://naes.unr.edu/shoemaker/teaching/R-Bootcamp/](https://naes.unr.edu/shoemaker/teaching/R-Bootcamp/)!
+For a more detailed tutorial, see my "R Bootcamp" website: [https://kevintshoemaker.github.io/R-Bootcamp/](https://kevintshoemaker.github.io/R-Bootcamp/)!
 
 ### Set up the workspace
 
@@ -300,13 +300,13 @@ First, tweak the above model so that per-capita (discrete) birth rate ($b_d$) an
 
 ![](IM3.png)
 
-To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). For abundance, set the maximum value to 1000 and set the slider step size to 1 so we don't have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with your instructor and TA (save as a "public insight" and insert URL in the appropriate place in WebCampus). 
+To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). For abundance, set the maximum value to 1000 and set the slider step size to 1 so we don't have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with your instructor and TA (save as a "public insight" and insert URL in the appropriate place in Top Hat). 
 
 **Clone** your previous Insight before you move on to the next problem (otherwise any changes you make will carry over to your answer to the previous problem!). The "Clone Insight" link is located in the upper right corner. In general, always clone your Insights after you have copied a link to an insight into your lab write-up. That way, you won't inadvertently change a model before your instructors have a chance to verify you did everything right!  
 
 *  ***Short answer (3a.)*** Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions? Explain your answer. 
 
-The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don't grow in this manner because of **stochasticity** (randomness).  Let's add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + RandNormal(0, 0.1).  The RandNormal()  function generates a normally distributed random number with _mean (average) equal to the first argument_ and _standard deviation equal to the second argument_. This means that in each time step we have a slightly different birth rate. Since we specified a *mean* of zero, we are not actually changing the average birth rate! Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, add the URL for your InsightMaker model to WebCampus in the appropriate place. 
+The simulations that you ran above produced population growth curves that were very smooth, but we all know that populations don't grow in this manner because of **stochasticity** (randomness).  Let's add some randomness to our vital rates! Change the **Show Value Slider** option of the Birth Rate primitive to No.  Change the Equation to 0.1 + RandNormal(0, 0.1).  The RandNormal()  function generates a normally distributed random number with _mean (average) equal to the first argument_ and _standard deviation equal to the second argument_. This means that in each time step we have a slightly different birth rate. Since we specified a *mean* of zero, we are not actually changing the average birth rate! Do the same for *Death Rate*. Run multiple simulations (at least 10) and look for patterns. Use the **Compare Results** tool to compare and provide output. When you are confident the model is right, add the URL for your InsightMaker model to Top Hat in the appropriate place. 
 
 *  ***Short answer (3b.)*** Is it possible to have a declining population even when *Birth Rate* and *Death Rate* are the same? Is it possible to have a declining population when *Birth Rate* is greater than *Death Rate*? Explain your reasoning!
 
@@ -316,7 +316,7 @@ The simulations that you ran above produced population growth curves that were v
 
 ***Due Feb. 1***
 
-*  WebCampus short answers
+*  Top Hat short answers
     +  **Exercise 1**
         -  *Short answer (1a.)*
         -  *Short answer (1b.)*
