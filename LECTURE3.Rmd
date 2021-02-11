@@ -54,11 +54,11 @@ So, what do you think? Mathus' *Essay* was extremely influential, right!!
 
 Malthus was convinced that human population growth would **overshoot** the limit -- that is, populations will grow until they run out of food. What's the result? Starvation, suffering, disease! Let's model this! 
 
-Here is the scenario we will model: if the population exceeds a certain limit, then a famine occurs and 95% of the population dies.
+Here is the scenario we will model: if the population exceeds a certain limit, then a famine occurs and 99% of the population dies.
 
 How can we do this in InsightMaker? You already know how to make an exponentially growing population! The new feature we will learn today is a very important programming construct: the **conditional statement**.
 
-Conditional statements are also known as IF-THEN statements. In plain english: *IF some condition is true, THEN do something. ELSE if some other condition is true, THEN do something else. ELSE if none of the previous conditions are true, THEN do something else.*
+Conditional statements are also known as IF-THEN statements. In plain English: *IF some condition is true, THEN do something. ELSE if some other condition is true, THEN do something else. ELSE if none of the previous conditions are true, THEN do something else.*
 
 In today's in-class exercise, we will implement the following conditional statement (the "famine condition"): *IF human population is below the population limit, THEN the annual death rate is 0.01. ELSE if the population exceeds the population limit, a famine arises and the mortality rate jumps to 0.99*
 

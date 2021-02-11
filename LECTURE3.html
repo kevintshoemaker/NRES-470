@@ -530,9 +530,9 @@ div.tocify {
 <div id="in-class-exercise-limits-to-growth" class="section level2">
 <h2>In-class exercise: limits to growth</h2>
 <p>Malthus was convinced that human population growth would <strong>overshoot</strong> the limit – that is, populations will grow until they run out of food. What’s the result? Starvation, suffering, disease! Let’s model this!</p>
-<p>Here is the scenario we will model: if the population exceeds a certain limit, then a famine occurs and 95% of the population dies.</p>
+<p>Here is the scenario we will model: if the population exceeds a certain limit, then a famine occurs and 99% of the population dies.</p>
 <p>How can we do this in InsightMaker? You already know how to make an exponentially growing population! The new feature we will learn today is a very important programming construct: the <strong>conditional statement</strong>.</p>
-<p>Conditional statements are also known as IF-THEN statements. In plain english: <em>IF some condition is true, THEN do something. ELSE if some other condition is true, THEN do something else. ELSE if none of the previous conditions are true, THEN do something else.</em></p>
+<p>Conditional statements are also known as IF-THEN statements. In plain English: <em>IF some condition is true, THEN do something. ELSE if some other condition is true, THEN do something else. ELSE if none of the previous conditions are true, THEN do something else.</em></p>
 <p>In today’s in-class exercise, we will implement the following conditional statement (the “famine condition”): <em>IF human population is below the population limit, THEN the annual death rate is 0.01. ELSE if the population exceeds the population limit, a famine arises and the mortality rate jumps to 0.99</em></p>
 <p>To implement this in InsightMaker, we need to use the following <strong>syntax</strong>:</p>
 <pre><code>If [Humans]&lt;[Limit] Then
