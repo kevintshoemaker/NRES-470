@@ -110,7 +110,7 @@ I am using the *d* subscript to indicate that the per-capita birth and death rat
 
 Here are some expressions to illustrate the difference between discrete and continuous rates:
 
-$b$: "Babies enter into the population at a rate of 0.9 per adult female per year, but the pool of babies is distributed evenly throughout the year"             
+$b$: "Babies enter into the population at a rate of 0.9 per adult female per year, but babies enter enter the population continuously throughout the year"             
 $b_d$: "Babies enter into the population at a rate of 0.9 per adult female per year, but the pool of babies enters the population simultaneously on April 1 each year"        
 $d$: "Approximately 23% of the population dies each year, but the deaths occur evenly throughout the year"          
 $d_d$: "Approximately 23% of the population dies each year, but all the deaths are assumed to occur on Jan 1 of each year"          
