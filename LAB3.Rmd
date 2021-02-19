@@ -124,7 +124,7 @@ Let's build an age-structured model from scratch in InsightMaker. To do this, yo
 
 4. Make new flows from _Age 1 to Age 2_ and from _Age 2 to Age 3_, called *Transition to Age 2* and *Transition to Age 3*, respectively. These flows represent **growth**, or advancement from *Age 1* to *Age 2* and from *Age 2* to *Age 3*.
 
-5. Make three new flows representing, emerging respectively from each stock and called *Age 1 mortality*, *Age 2 mortality*, and *Age 3 mortality*.   
+5. Make three new flows representing mortality, emerging respectively from each stock and called *Age 1 mortality*, *Age 2 mortality*, and *Age 3 mortality*.   
 
 Your new insight should look something like this (but the flow into Age 1 can be called 'Births' rather than 'Recruitment): 
 
@@ -132,10 +132,12 @@ Your new insight should look something like this (but the flow into Age 1 can be
 
 NOTE: you don't need links from flows to connected stocks (they are already connected so they don't need a link!)- but you are welcome to add these links if it helps you! 
 
-6. Parameterize your new age-structured population!
-    6a. For births, make new variables called *Birth rate, age 2* and *Birth rate, age 3*, representing the per-capita reproductive rate for age 2 and age 3, respectively. Draw links from these variables to *Births*, and set these variables at 1.2 and 1.7, respectively. Click on the equation editor for *Births* and set the equation appropriately (see questions below)
-    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Draw links to the appropriate flows, and set these rates at 0.5 and 0.3, respectively. NOTE: these transition rates could also be called "survival rates"    
-    6c. For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately. 
+6. Parameterize your new age-structured population!   
+
+    6a. For births, make new variables called *Birth rate, age 2* and *Birth rate, age 3*, representing the per-capita reproductive rate for age 2 and age 3, respectively. Draw links from these variables to *Births*, and set these variables at 1.2 and 1.7, respectively. Click on the equation editor for *Births* and set the equation appropriately (see questions below)   
+    
+    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Draw links to the appropriate flows, and set these rates at 0.5 and 0.3, respectively. NOTE: these transition rates could also be called "survival rates"                
+    6c. For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately.              
 
 7. Explore the model- make sure you understand how it works! 
 
@@ -162,7 +164,7 @@ Try to implement the following model (adding onto the previous age-structured mo
 4b. Change the Age 1 survival rate to 0.7 (i.e., mortality drops to 30%). Run the simulation starting with 75 individuals, all in Age class 1. Describe the resulting population dynamics. Is this a **random (stochastic)** model (different results every time you run the model, even with the same initial conditions)? If so, explain how you determined that this model is random/stochastic. If not, please speculate on why the population fluctuates back and forth!  
 
 
-##Checklist for Lab 3 completion
+## Checklist for Lab 3 completion
 
 * Please type your responses into one Word document and submit _using Top Hat_!
 
