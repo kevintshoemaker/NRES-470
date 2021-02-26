@@ -26,6 +26,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -482,7 +493,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Final projects!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2021</h4>
 
 </div>
 
@@ -504,12 +515,12 @@ div.tocify {
 <div id="timeline" class="section level2">
 <h2>Timeline</h2>
 <ul>
-<li><strong>PROPOSAL:</strong> Due Mon March 9!</li>
-<li><strong>INITIAL PVA</strong> Due Fri April 10: description of how your PVA model works and where the parameter estimates come from.</li>
-<li><strong>SEND DRAFT FOR PEER REVIEW</strong> Due April 21 by midnight (for peer review on April 24)</li>
-<li><strong>DRAFT FINAL PAPER:</strong> Due Mon April 27</li>
-<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 13</li>
-<li><strong>FINAL PRESENTATIONS:</strong> Fri Apr 24 and May 1 in lab!</li>
+<li><strong>PROPOSAL:</strong> Due Fri March 12!</li>
+<li><strong>INITIAL PVA</strong> Due Fri April 9: description of how your PVA model works and where the parameter estimates come from.</li>
+<li><strong>SEND DRAFT FOR PEER REVIEW</strong> Due April 19 by midnight (for peer review on April 23)</li>
+<li><strong>DRAFT FINAL PAPER:</strong> Due Wed April 28</li>
+<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 12</li>
+<li><strong>FINAL PRESENTATIONS:</strong> Fri Apr 23 and Fri April 30 in lab!</li>
 </ul>
 <p>Remember that the semester will get crazy at the end (including for your instructors). Plan ahead!</p>
 </div>
@@ -519,7 +530,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><strong>Title</strong>: should indicate what species you are modeling, and at least hint at what question will be addressed<br />
 </li>
-<li><strong>Project participants</strong>: provide names of all participants (3-4, max of 5).<br />
+<li><strong>Project participants</strong>: provide names of all participants (3-5).<br />
 </li>
 <li><strong>Research question(s)</strong>: Provide one or more testable and management-relevant questions that you plan to address using your population model.</li>
 <li><strong>Project rationale</strong>: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructors that your project is <strong>interesting</strong>!<br />
@@ -533,7 +544,7 @@ div.tocify {
 <p>Your inital parameterized PVA will consist of:</p>
 <ol style="list-style-type: decimal">
 <li><p>A ready-to-run PVA model, in whatever software framework you are using (Vortex, InsightMaker, R). This model does not need to be the “final” model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).</p></li>
-<li>A written rationale/evidence for each of your parameter estimates and other key modeling decisions.
+<li><p>A written rationale/evidence for each of your parameter estimates and other key modeling decisions.</p>
 <ol style="list-style-type: lower-alpha">
 <li>For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source(s) of this information). Decisions include: how many populations, initial abundance(s), how many stages, how density-dependence operates for your species (e.g., which vital rates are density-dependent), Allee effects, survival and fecundity rates, environmental stochasticity, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.</li>
 <li>What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions?</li>
@@ -557,7 +568,7 @@ div.tocify {
 <p>Also, you should describe how you addressed the research questions you introduced in the introduction section (above)</p>
 <ul>
 <li><p>What different scenarios did you run?</p></li>
-<li>How did you use the simulation results to address your questions?
+<li><p>How did you use the simulation results to address your questions?</p>
 <ul>
 <li>How did you visualize the results?<br />
 </li>
@@ -732,7 +743,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -771,7 +782,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
