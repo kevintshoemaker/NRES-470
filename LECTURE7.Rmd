@@ -1,7 +1,7 @@
 ---
 title: "Matrix population models"
 author: "NRES 470/670"
-date: "Spring 2020"
+date: "Spring 2021"
 output: 
   html_document: 
     theme: spacelab
@@ -36,13 +36,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Upcoming midterm exam
 
-**when and where** The first midterm exam (out of two) is coming up Monday **March 2**. You will have the whole 50 minute class period to take the exam. The exam will be in our regular classroom. 
+**when and where** The first midterm exam (out of two) is coming up Monday **March 15**. You will have the whole 50 minute class period to take the exam. The exam will be online (of course) and administered on Top Hat. 
 
 **what** The exam will cover:
 
 - All material in Chapters 1-3 of the Gotelli book *including basic matrix population modeling concepts*.   
-- All material covered in lectures including today's lecture on matrix population models.   
-- All material covered in labs 1-3.    
+- All material covered in lectures up to and including this lecture on matrix population models.   
+- All material covered in labs 1-4.    
 - Ch. 1 of "Beyond Connecting the Dots" (basic systems thinking and stock-flow modeling, concepts of feedbacks and equilibria)
 - Basic programming concepts (IF-THEN-ELSE and iteration loops)
 
@@ -50,7 +50,6 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 *Please bring a calculator- a regular scientific calculator is fine (not absolutely necessary, but it could be helpful for at least one question on the exam!)*
 
-Any questions?
 
 # Matrix population models
 
@@ -62,11 +61,11 @@ First of all, this lecture is full of R code (R is pretty good at running matrix
 
 ![](IM8.jpg)
 
-You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5 or 5? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be very hard to debug! 
+You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5? Or from stage 5 back to stage 3? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be very hard to debug! 
 
 ![](teasel1.jpg)
 
-Consider the teasel example from our textbook. It's possible to implement this model in InsightMaker, but how tedious would this be? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can't do- for instance go backwards in developmental stage. With matrix models, there is an easier way!
+Consider the teasel example from our textbook. It's possible to implement this model in InsightMaker, but it would be tedious and potentially prone to error. And this is far from the most complicated populations out there (although notice that plants can do some things that animals can't do- for instance go backwards in developmental stage. With matrix models, there is an easier way!
 
 ![](gotelli3_6.jpg)
 
@@ -91,6 +90,31 @@ teasel_matrix                                          # print the matrix
 Isn't that *elegant*!!
 
 We'll go into more detail about matrices later!
+
+#### Aside: stage-structure vs age-structure
+
+In the previous lecture, we talked about 'age-structured populations'. What we meant by that is that the population vital rates (e.g., b and d) varied by age. 
+
+Sometimes, it is convenient to classify individuals within a certain age range as belonging to a particular life-history stage. For example, we might classify the life history of a grizzly bear like this:
+
+Age 0-1: newborn     
+Age 1-2: yearling     
+Age 2-5: subadult     
+Age 6+: adult     
+
+This can simplify our models considerably. For example, consider a species like a sea turtle, with up to 75 or 100 years of life. You could build a model in which you have 100 stocks, one for each year of life. OR, you could have 5 or so stocks representing age ranges in which sea turtles tend to have consistent(ish) vital rates. For example, we might divide the sea turtle life history into the following stages:
+
+Age 0-1: hatchling
+Age 1-5: young juvenile
+Age 5-10: older juvenile
+Age 10-17: subadult
+Age 18+: adult
+
+By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still capturing how vital rates change with age (the model is still biologically realistic). 
+
+Matrix population models can represent age-structured and stage-structured models with equal simplicity and elegance. 
+
+You won't be tested on this, but the commonly used 'Leslie Matrix' refers to a matrix population model that represents an age-structured population. When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" Matrix. 
 
 ### Reason 2: projection!
 
@@ -118,7 +142,7 @@ Initial_teasel
 
 Then all we need to do is 'matrix-multiply' this **vector** of abundances by the **transition matrix** from above! Each time we do this multiplication step, we advance one year! It's that easy!
 
-NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in class/lab a bit later.  
+NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in the intro to lab 4 a bit later.  
 
 Here's how we can do this in R!
 
@@ -200,7 +224,7 @@ There is a clear similarity between the finite population growth equation:
 
 $N_{t+1}=\lambda \cdot N_t$,
 
-where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multipicative growth rate over the time period $t \rightarrow t+1$
+where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multiplicative growth rate over the time period $t \rightarrow t+1$
 
 ... and the matrix population growth equation:
 
@@ -230,7 +254,7 @@ $\mathbf{A}$ is a **matrix** (the transition matrix)
 
 Okay one of the tricks is this:
 
-> In one step, you can compute $\lambda$ from $\mathbf{A}$!! 
+In one step, you can compute $\lambda$ from $\mathbf{A}$!!     
 
 All you need to do is obtain the _first, or dominant, **eigenvalue** of $\mathbf{A}$_! This number is the finite rate of growth, $\lambda$, for an age or stage-structured population.
 
@@ -250,7 +274,7 @@ Lambda
 
 ```
 
-Or we could use the handy "popbio" package in R:
+Or we could use the handy "popbio" package in R:    
 
 ```{r}
 
@@ -265,7 +289,7 @@ You don't have to understand the math here- but I do want you to understand how 
 
 Here's another nifty trick:
 
-> In one step, you can compute **stable age distribution (S.A.D)** from $\mathbf{A}$!!
+In one step, you can compute **stable age distribution (S.A.D)** from $\mathbf{A}$!!     
 
 All you need to do is obtain the _right-hand eigenvector of $\mathbf{A}$_! This vector represents the _relative abundances in each age class at the stable age distribution_. 
 
@@ -324,7 +348,7 @@ TMat                                               # now we have an all-zero tra
 
 You can read the **elements** of a transition matrix as follows:
 
-> "The per-capita production of _(row name)_ by _(col name)_ is _(value of element)_"      
+"The per-capita production of _(row name)_ by _(col name)_ is _(value of element)_"         
 
 Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix. This represents the per-capita production of Juveniles (col) by Juveniles (row). What is the value of this element? 
 
@@ -444,7 +468,7 @@ The reverse is NOT true: **you can not always convert InsightMaker models to mat
 
 ### Review of matrix multiplication
 
-(on the whiteboard during lab!)
+(on the whiteboard during lab!) (I will post the video demo to webcampus)
 
 ### In-class exercise: matrix projection models
 

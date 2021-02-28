@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -27,6 +26,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -88,7 +98,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -237,6 +246,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -265,6 +275,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -477,28 +493,27 @@ div.tocify {
 
 <h1 class="title toc-ignore">Matrix population models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2021</h4>
 
 </div>
 
 
 <div id="upcoming-midterm-exam" class="section level3">
 <h3>Upcoming midterm exam</h3>
-<p><strong>when and where</strong> The first midterm exam (out of two) is coming up Monday <strong>March 2</strong>. You will have the whole 50 minute class period to take the exam. The exam will be in our regular classroom.</p>
+<p><strong>when and where</strong> The first midterm exam (out of two) is coming up Monday <strong>March 15</strong>. You will have the whole 50 minute class period to take the exam. The exam will be online (of course) and administered on Top Hat.</p>
 <p><strong>what</strong> The exam will cover:</p>
 <ul>
 <li>All material in Chapters 1-3 of the Gotelli book <em>including basic matrix population modeling concepts</em>.<br />
 </li>
-<li>All material covered in lectures including today’s lecture on matrix population models.<br />
+<li>All material covered in lectures up to and including this lecture on matrix population models.<br />
 </li>
-<li>All material covered in labs 1-3.<br />
+<li>All material covered in labs 1-4.<br />
 </li>
 <li>Ch. 1 of “Beyond Connecting the Dots” (basic systems thinking and stock-flow modeling, concepts of feedbacks and equilibria)</li>
 <li>Basic programming concepts (IF-THEN-ELSE and iteration loops)</li>
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
 <p><em>Please bring a calculator- a regular scientific calculator is fine (not absolutely necessary, but it could be helpful for at least one question on the exam!)</em></p>
-<p>Any questions?</p>
 </div>
 <div id="matrix-population-models" class="section level1">
 <h1>Matrix population models</h1>
@@ -508,9 +523,9 @@ div.tocify {
 <div id="reason-1-simplify" class="section level3">
 <h3>Reason 1: simplify!</h3>
 <p><img src="IM8.jpg" /></p>
-<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5 or 5? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be very hard to debug!</p>
+<p>You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5? Or from stage 5 back to stage 3? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be very hard to debug!</p>
 <p><img src="teasel1.jpg" /></p>
-<p>Consider the teasel example from our textbook. It’s possible to implement this model in InsightMaker, but how tedious would this be? And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in developmental stage. With matrix models, there is an easier way!</p>
+<p>Consider the teasel example from our textbook. It’s possible to implement this model in InsightMaker, but it would be tedious and potentially prone to error. And this is far from the most complicated populations out there (although notice that plants can do some things that animals can’t do- for instance go backwards in developmental stage. With matrix models, there is an easier way!</p>
 <p><img src="gotelli3_6.jpg" /></p>
 <p>The population vital rates for pretty much any age-structured or stage-structured population can be represented as a <strong>transition matrix</strong> (or, projection matrix), which summarizes all the information about mortality, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)</p>
 <p>For example, the teasel vital rates can be summarized in <a href="teaselmatrix1.csv">this matrix</a>:</p>
@@ -532,6 +547,20 @@ teasel_matrix                                          # print the matrix</code>
 ## flowering 0.000  0.00 0.000 0.023 0.750     0.000</code></pre>
 <p>Isn’t that <em>elegant</em>!!</p>
 <p>We’ll go into more detail about matrices later!</p>
+<div id="aside-stage-structure-vs-age-structure" class="section level4">
+<h4>Aside: stage-structure vs age-structure</h4>
+<p>In the previous lecture, we talked about ‘age-structured populations’. What we meant by that is that the population vital rates (e.g., b and d) varied by age.</p>
+<p>Sometimes, it is convenient to classify individuals within a certain age range as belonging to a particular life-history stage. For example, we might classify the life history of a grizzly bear like this:</p>
+<p>Age 0-1: newborn<br />
+Age 1-2: yearling<br />
+Age 2-5: subadult<br />
+Age 6+: adult</p>
+<p>This can simplify our models considerably. For example, consider a species like a sea turtle, with up to 75 or 100 years of life. You could build a model in which you have 100 stocks, one for each year of life. OR, you could have 5 or so stocks representing age ranges in which sea turtles tend to have consistent(ish) vital rates. For example, we might divide the sea turtle life history into the following stages:</p>
+<p>Age 0-1: hatchling Age 1-5: young juvenile Age 5-10: older juvenile Age 10-17: subadult Age 18+: adult</p>
+<p>By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still capturing how vital rates change with age (the model is still biologically realistic).</p>
+<p>Matrix population models can represent age-structured and stage-structured models with equal simplicity and elegance.</p>
+<p>You won’t be tested on this, but the commonly used ‘Leslie Matrix’ refers to a matrix population model that represents an age-structured population. When a matrix is used to represent a stage-structured population, it is often called a ’Lefkovitch" Matrix.</p>
+</div>
 </div>
 <div id="reason-2-projection" class="section level3">
 <h3>Reason 2: projection!</h3>
@@ -555,7 +584,7 @@ Initial_teasel</code></pre>
 ## ros3            600
 ## flowering        25</code></pre>
 <p>Then all we need to do is ‘matrix-multiply’ this <strong>vector</strong> of abundances by the <strong>transition matrix</strong> from above! Each time we do this multiplication step, we advance one year! It’s that easy!</p>
-<p>NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in class/lab a bit later.</p>
+<p>NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R). We will go over this in the intro to lab 4 a bit later.</p>
 <p>Here’s how we can do this in R!</p>
 <pre class="r"><code>#########
 # Project the population at time 1
@@ -626,7 +655,7 @@ tenYears</code></pre>
 <h3>Reason 3: Matrix algebra tricks!</h3>
 <p>There is a clear similarity between the finite population growth equation:</p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t\)</span>,</p>
-<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
+<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multiplicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
 <p>… and the matrix population growth equation:</p>
 <p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}\)</span>,</p>
 <p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
@@ -642,9 +671,7 @@ tenYears</code></pre>
 <div id="what-about-those-tricks-you-promised" class="section level4">
 <h4>What about those tricks you promised??</h4>
 <p>Okay one of the tricks is this:</p>
-<blockquote>
 <p>In one step, you can compute <span class="math inline">\(\lambda\)</span> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
-</blockquote>
 <p>All you need to do is obtain the <em>first, or dominant, <strong>eigenvalue</strong> of <span class="math inline">\(\mathbf{A}\)</span></em>! This number is the finite rate of growth, <span class="math inline">\(\lambda\)</span>, for an age or stage-structured population.</p>
 <p>Recall that when a population is at stable age distribution, it grows in a discrete exponential growth pattern- this rate of exponential growth can be described by a single parameter – Lambda!</p>
 <p>Let’s do this in R!</p>
@@ -667,9 +694,7 @@ Lambda</code></pre>
 <pre><code>## [1] 2.32188</code></pre>
 <p>You don’t have to understand the math here- but I do want you to understand how simple that was- just one line of code and we computed the annual rate of growth from the teasel transition matrix!</p>
 <p>Here’s another nifty trick:</p>
-<blockquote>
 <p>In one step, you can compute <strong>stable age distribution (S.A.D)</strong> from <span class="math inline">\(\mathbf{A}\)</span>!!</p>
-</blockquote>
 <p>All you need to do is obtain the <em>right-hand eigenvector of <span class="math inline">\(\mathbf{A}\)</span></em>! This vector represents the <em>relative abundances in each age class at the stable age distribution</em>.</p>
 <p>Let’s do this in R!</p>
 <p>What is the stable age distribution for the teasel population. If you recall, the first seed stage looked like it dominated in the figure above.</p>
@@ -711,9 +736,7 @@ TMat                                               # now we have an all-zero tra
 ## Subadults         0         0      0
 ## Adults            0         0      0</code></pre>
 <p>You can read the <strong>elements</strong> of a transition matrix as follows:</p>
-<blockquote>
 <p>“The per-capita production of <em>(row name)</em> by <em>(col name)</em> is <em>(value of element)</em>”</p>
-</blockquote>
 <p>Now we can start filling in this matrix. Let’s begin with the top left <strong>element</strong> of the matrix. This represents the per-capita production of Juveniles (col) by Juveniles (row). What is the value of this element?</p>
 <p>Let’s update our transition matrix:</p>
 <pre class="r"><code>#####
@@ -820,12 +843,12 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p>Which vital rates are density-dependent? All? Some? It depends? Are the data available?</p>
 <p>How do you incorporate density-dependence into a matrix population model?</p>
 <p>How do you incorporate predator-prey dynamics into a matrix population model? [cue brain explosion]</p>
-<p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or other programming platform)</em> (but it might be complicated and messy)</p>
+<p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or R, or any other programming platform)</em> (but it might not be as ‘pretty’ or elegant as a matrix population model!)</p>
 <p>The reverse is NOT true: <strong>you can not always convert InsightMaker models to matrix population models</strong> (IM is a programming language, so is much more flexible!)</p>
 </div>
 <div id="review-of-matrix-multiplication" class="section level3">
 <h3>Review of matrix multiplication</h3>
-<p>(on the whiteboard)</p>
+<p>(on the whiteboard during lab!) (I will post the video demo to webcampus)</p>
 </div>
 <div id="in-class-exercise-matrix-projection-models" class="section level3">
 <h3>In-class exercise: matrix projection models</h3>
@@ -833,7 +856,7 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p>NOTE: this is also a question in Lab 4!</p>
 <p><img src="redtail1.jpg" /></p>
 <blockquote>
-<p>We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
+<p>We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
 </blockquote>
 <p><strong>Q:</strong> What does the transition matrix look like? [tophat]</p>
 <p><strong>Q:</strong> What does the initial stage abundance vector look like?</p>
@@ -858,7 +881,7 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -897,7 +920,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
