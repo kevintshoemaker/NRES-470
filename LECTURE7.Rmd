@@ -104,11 +104,11 @@ Age 6+: adult
 
 This can simplify our models considerably. For example, consider a species like a sea turtle, with up to 75 or 100 years of life. You could build a model in which you have 100 stocks, one for each year of life. OR, you could have 5 or so stocks representing age ranges in which sea turtles tend to have consistent(ish) vital rates. For example, we might divide the sea turtle life history into the following stages:
 
-Age 0-1: hatchling
-Age 1-5: young juvenile
-Age 5-10: older juvenile
-Age 10-17: subadult
-Age 18+: adult
+Age 0-1: hatchling      
+Age 1-5: young juvenile     
+Age 5-10: older juvenile      
+Age 10-17: subadult      
+Age 18+: adult      
 
 By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still capturing how vital rates change with age (the model is still biologically realistic). 
 
