@@ -26,6 +26,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -482,7 +493,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Extra credit options</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2021</h4>
 
 </div>
 
@@ -490,8 +501,8 @@ div.tocify {
 <p>You may submit up to four extra credit essays – a maximum of two of each of the options listed below…</p>
 <div id="extra-credit-option-1-journal-article-response" class="section level2">
 <h2>Extra Credit Option 1 – Journal Article Response</h2>
-<div id="total-points-possible-10" class="section level4">
-<h4>Total points possible: 10</h4>
+<div id="total-points-possible-10-up-to-two-submissions" class="section level4">
+<h4>Total points possible: 10 (up to two submissions)</h4>
 <p><strong>Due at the end of finals period</strong></p>
 <p><strong>Objectives:</strong><br />
 1. Connect the content of this course with active research areas in the expanding, dynamic field of population ecology.<br />
@@ -514,13 +525,13 @@ div.tocify {
 <li>Provide <strong>your personal response</strong> to the article - why did you choose to read it, what did you like about it, and what did you learn?</li>
 </ul></li>
 </ol>
-<p>Upload your written response and a PDF of the journal article to WebCampus by May 9.</p>
+<p>Upload your written response and a PDF of the journal article to WebCampus.</p>
 </div>
 </div>
 <div id="extra-credit-option-2-population-ecology-talk" class="section level2">
 <h2>Extra Credit Option #2 – Population Ecology Talk</h2>
-<div id="total-points-possible-10-1" class="section level4">
-<h4>Total points possible: 10</h4>
+<div id="total-points-possible-10-up-to-2-submissions" class="section level4">
+<h4>Total points possible: 10 (up to 2 submissions)</h4>
 <p><strong>Due at the end of finals period</strong></p>
 <p><strong>Objectives:</strong></p>
 <ol style="list-style-type: decimal">
@@ -548,7 +559,7 @@ div.tocify {
 <li>Provide <strong>your personal response</strong> to the talk - why did you choose to attend, and what did you like about it? Was there anything that was unclear or that you would like to learn more about?</li>
 </ul></li>
 </ol>
-<p>Upload your written response to WebCampus by May 9.</p>
+<p>Upload your written response to WebCampus.</p>
 </div>
 <div id="grading-rubric-option-1" class="section level4">
 <h4>Grading Rubric, option 1:</h4>
@@ -814,7 +825,7 @@ metapopulation dynamics AND (endangered species OR “species of concern”) pre
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -853,7 +864,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
