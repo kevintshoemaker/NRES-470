@@ -1,7 +1,7 @@
 ---
 title: "Metapopulations"
 author: "NRES 470/670"
-date: "Spring 2020"
+date: "Spring 2021"
 output: 
   html_document: 
     theme: spacelab
@@ -16,12 +16,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Upcoming midterm exam
 
-**when and where** The second midterm exam (out of two) is coming up on **April 15**. You will have the whole 50 minute class period to take the exam. The exam will take place in our regular classroom, unless you make prior arrangements. 
+**when and where** The second midterm exam (out of two) is coming up on **April 14**. You will have the whole 50 minute class period to take the exam. We will use the same format as the first midterm. 
 
 **what** The exam will cover:
 
 - Everything from the first midterm      
-- Matrix population models, including all of Gotelli Chapter 3          
 - Stochasticity and uncertainty (lecture and lab)       
 - Small-population paradigm, declining-population paradigm and PVA lectures        
 - Metapopulations and source-sink dynamics (lectures and lab), including Chapter 4 of Gotelli.
