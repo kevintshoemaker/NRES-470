@@ -607,17 +607,21 @@ div.tocify {
 <h3>Spreading the risk!</h3>
 <p>In the classical metapopulation models, we assumed a very large number of patches, so there was no real chance of regional/global extinction. But most real metapopulations are small enough such that we often need to consider the risk of global extinction.</p>
 <p>Let’s consider a system in which a species occupies a single patch, and there is a probability of extinction <span class="math inline">\(p_e\)</span> of 0.15 per patch per year.</p>
-<p><strong>Q</strong>: What is the probability of regional extinction after 10 years?</p>
+<p><strong>Q</strong>: What is the probability of regional extinction sometime in the next 10 years?</p>
 <p>The probability of persistence for 1 year is <span class="math inline">\(1-p_e\)</span>, so the probability of persistence for 10 years is <span class="math inline">\((1-p_e)^{10}\)</span> and the probability of regional extinction is <span class="math inline">\(1-((1-p_e)^{10})\)</span></p>
-<p>which works out to be about 80%. There is a substantial probability of regional extinction over 10 years!</p>
+<p>which works out to be about 80%. There is a substantial probability of regional extinction sometime over the next 10 years!</p>
 <p>What if there were two patches instead of just one?</p>
 <p>Let’s assume that the extinction risk for the two patches are <strong>independent</strong> – that is, the extinction of one patch doesn’t influence whether or not the other patch goes extinct!</p>
-<p>Regional extirpation therefore depends upon both populations going extinct- which can be computed as <span class="math inline">\(p_e^2\)</span>. So the probability of persistence for one year is <span class="math inline">\(1-p_e^2\)</span>. The probability of persisting for 10 years is <span class="math inline">\((1-p_e^2)^{10}\)</span>. Finally, the probability of regional extinction is <span class="math inline">\(1-((1-p_e^2)^{10})\)</span>.</p>
-<p>Which works out to about 20%. So the chance of regional extirpation is much reduced now!!</p>
+<p>If the probability of extinction of one patch over the next 10 years is 0.8, then the probability of both patches going extinct sometime over the next 10 years is 0.8*0.8 = 0.64</p>
+<p>So the chance of regional extirpation is somewhat reduced with two populations!!</p>
 <p>This is an example of <strong>spreading the risk</strong>.</p>
 <p>What if there are 5 independent populations instead of two? Then what is the chance of regional extirpation over 10 years?</p>
-<p><span class="math inline">\((1-p_e^5)^{10}\)</span></p>
-<p><em>This works out to be effectively zero!!!</em></p>
+<p><span class="math inline">\([1-(1-p_e)^{10}]^5\)</span></p>
+<p><em>This works out to be around 33%</em></p>
+<p>What if there are 15 independent populations instead of five? Then what is the chance of regional extirpation over 10 years?</p>
+<p><span class="math inline">\([1-(1-p_e)^{10}]^5\)</span></p>
+<p><em>This works out to be around 3% – we have effectively spread out the risk, so that despite a relatively high extinction risk at the patch level, the metapopulation is unlikely to experience global extinction</em></p>
+<p><strong>Q</strong>: if we included dispersal among patches, would dispersal serve to further reduce the risk of global extinction? Why or why not?</p>
 <p><strong>Q</strong>: What if the extinction of one patch was <em>perfectly correlated</em> with the extinction of all other patches. If one goes extinct, all go extinct. [tophat]</p>
 </div>
 </div>
