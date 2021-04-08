@@ -1,7 +1,7 @@
 ---
 title: "Lab 6: Metapopulation modeling"
 author: "NRES 470/670"
-date: "Spring 2020"
+date: "Spring 2021"
 output: 
   html_document: 
     theme: spacelab
@@ -79,7 +79,7 @@ This is actually the model we have already constructed!
 
 ### Variant #2: internal colonization
 
-In this scenario, colonization can only happen via immigration from within the metapopulation itself. So when few patches are colonized, colonization is low because of a lack of potential immigrants in the metapopultion. 
+In this scenario, colonization can only happen via immigration from within the metapopulation itself. So when few patches are colonized, colonization is low because of a lack of potential immigrants in the metapopulation. 
 
 $p_i = i \cdot f   \qquad \text{(Eq. 5)}$
 
@@ -109,7 +109,7 @@ This one is pretty self-explanatory. But it has some interesting emergent proper
 
 ## What is a metapopulation?
 
-The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *population of patches*. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
+The term *metapopulation* is often used to refer to models where we don't care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a *collection of interconnected patches*. We can keep track of patch abundance in a metapopulation model. In fact, if we want, each patch can contain a stage-structured, density dependent population if we really want! 
 
 Just as we can use metapopulation models to study the probability of **regional extinction**, we can also study **regional abundance** and regional abundance trends across the entire metapopulation. 
 
@@ -117,7 +117,7 @@ Just as we can use metapopulation models to study the probability of **regional 
 
 HINT: _use the Gotelli book!!!_
 
-1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (assume the ponds are located far enough away from each other so you can reasonbly assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population from 100 to 33 individuals will increase the annual risk of extinction from 10% to 50%. Over the next 3 years, is it a better strategy to retain the single population or to split it into three (and "spread out the risk")? Show your calculations, and explain your reasoning! [NOTE: you may want to refer to the 'spreading the risk' topic in the Metapopulations lecture and video. Also, recall that to compute the probability of three independent events of probability *p*, you simply multiply the probability by itself three times: $P(three\ events) = P(one\ event)^3$].
+1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (assume the ponds are located far enough away from each other so you can reasonably assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population in a pond from 100 to 33 individuals will increase the annual risk of extinction (per patch) from 10% to 25%. Over the next 3 years, is it a better strategy to retain the single population or to split it into three (and "spread out the risk")? Show your calculations, and explain your reasoning! You can assume that each of the three new ponds are independent, with no dispersal between them. [NOTE: you may want to refer to the 'spreading the risk' topic in the Metapopulations lecture and video. Also, recall that to compute the probability of three independent events of probability *p*, you simply multiply the probability by itself three times: $P(three\ events) = P(one\ event)^3$].
 
 1b. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied patches $f$ should be represented as a [Stock] (this stock can not go negative!) and there should be two [Flows]: one for *colonization* (I) and one for *extinction* (E). Initialize $f$ at 0.9. The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. Set $p_e$ to 0.15 and $p_i$ to 0.4. Clone your Insight and provide a link to your working InsightMaker metapopulation model as part of your lab write-up. 
 
@@ -150,7 +150,7 @@ The landscape is 200 km by 200 km. Each time a simulation is initiated, patches 
 
 Each patch potentially contains a population of animals. If it has >= 2 individuals living in it, it is considered "occupied".
 
-Each patch has its own carrying capacity (K)- some patches have very low carrying capacity, and some have very high carrying capacity. The distribution of K among patches is approximately *lognormal*. This means that there are usually a few very large patches in the landscape. The minimum K is 2. 
+Each patch has its own carrying capacity (K)- some patches have very low carrying capacity, and some have very high carrying capacity. The distribution of K among patches is approximately *lognormal*. This means that there are usually a few very large patches in the landscape but most patches are pretty small. The minimum K is 2. 
 
 Abundance dynamics are density-dependent, and population growth is computed as a function of **r_max**, **local carrying capacity**, and previous-year local abundance using the **Ricker** growth model:
 
@@ -186,7 +186,7 @@ i. Improve the intervening, or "matrix", habitat, effectively doubling the maxim
 ii. Improve existing habitats, doubling the mean per-patch carrying capacity.     
 iii. Restore habitat, effectively doubling the number of patches.      
      
-Which management strategy would be most effective for ensuring that the metapopulation does not go exinct (prevent regional extinction)? Justify your answer with supporting figures.    
+Which management strategy would be most effective for ensuring that the metapopulation does not go extinct (prevent regional extinction)? Justify your answer with supporting figures.    
 
 2c. [thought question] Is it possible for $r_{max}$ to be positive and yet for the total regional abundance to exhibit a persistent declining trend? Explain your reasoning, using at least one biologically realistic example (i.e., describe a scenario under which this may actually occur in the real world). You can use the agent-based metapopulation model in InsightMaker to help test your ideas, but this is not required.   
 
@@ -198,9 +198,9 @@ Which management strategy would be most effective for ensuring that the metapopu
 * Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document). 
 
 
-***Due Apr. 12 at midnight.***
+***Due Apr. 23 at 11:55pm***
 
-*  Word document with short answers, model URLs, and figures (where appropriate)
+*  Short answers, model URLs, and figures (where appropriate): all on Top Hat
     +  **Exercise 1**
         -  *Short answer (1a.)*   
         -  *Short answer (1b.)*   
