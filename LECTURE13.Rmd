@@ -241,11 +241,11 @@ Initial abundance in mid-range sink: 10
 Initial abundance in distant sink: 10    
 K for source population: 100    
 K for nearby sink: 50    
-K for mid-range sink: 25    
-K for distant sink: 15
-Maximum dispersal rate: 10% per year (0.1)
-Lambda (discrete growth rate) for sink populations [lambda bad]: 0.8     
-Lambda for source population [lambda good]: 2.1
+K for mid-range sink: 25     
+K for distant sink: 15    
+Maximum dispersal rate: 10% per year (0.1)       
+Lambda (discrete growth rate) for sink populations [lambda bad]: 0.8       
+Lambda for source population [lambda good]: 2.1       
 
 NOTE: maximum dispersal rate (in this model) is the rate of dispersal between neighboring patches. Patches that are located farther apart have dispersal rates that are computed as a fraction of the maximum rate. 
 
