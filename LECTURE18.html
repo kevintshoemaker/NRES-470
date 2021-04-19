@@ -26,6 +26,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -482,14 +493,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Final class review</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2021</h4>
 
 </div>
 
 
 <div id="upcoming-final-exam" class="section level3">
 <h3>Upcoming final exam</h3>
-<p><strong>when and where</strong> The final exam is coming up on Friday <strong>May 8</strong> (9:50am to 11:50). You will have the whole two hour period to take the exam (but you should not need the whole period).</p>
+<p><strong>when and where</strong> The final exam is coming up on Friday <strong>May 7</strong> (9:50am to 11:50). You will have the whole two hour period to take the exam (but you should not need the whole period).</p>
 <p><strong>what</strong> The exam will cover all material covered in lectures and lab.</p>
 <ul>
 <li>All material in Chapters 1-6 of the Gotelli book
@@ -507,9 +518,9 @@ div.tocify {
 <li><em>Small-population paradigm and declining-population paradigm</em> (<a href="LECTURE9.html">lecture</a>, <a href="LECTURE11.html">lecture</a>, suggested reading: <a href="caughley1.pdf">Caughley 1988</a>)<br />
 </li>
 <li><em>Population Viability Analysis</em>, in theory and practice (<a href="LECTURE12.html">lecture</a>, suggested reading <a href="beissinger1.pdf">Beissinger and Westphal 1998</a>, <a href="LECTURE14.html">optional lecture</a>)</li>
-<li><em>Parameter estimation for PVA</em>, including basic capture-recapture methods (<a href="LECTURE15.html">lecture</a>, suggested reading: <a href="amstrup1.pdf">Amstrup et al</a>)</li>
 </ul>
 <p>NOTE: we skipped over the <a href="LECTURE10.html">lecture on individual-based models</a>- this topic will (of course) <em>not be included on the final exam</em></p>
+<p>NOTE: we skipped over the <em>Parameter estimation for PVA</em>, including basic capture-recapture methods (<a href="LECTURE15.html">lecture</a>) - this topic will (of course) <em>not be included on the final exam</em></p>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions (including a few definitions).</em></p>
 </div>
 <div id="final-logistics" class="section level3">
@@ -517,14 +528,14 @@ div.tocify {
 <div id="final-exam" class="section level4">
 <h4>Final exam</h4>
 <ul>
-<li>This Friday, May 8 from 9:50-11:50 (via zoom/tophat)</li>
+<li>This Friday, May 7 from 9:50-11:50 (via zoom/tophat)</li>
 </ul>
 </div>
 <div id="final-papers" class="section level4">
 <h4>Final papers</h4>
 <ul>
 <li>Everyone should have received detailed feedback over the weekend - please let us know if you have any questions.</li>
-<li>Final papers due May 13 at 5pm (webcampus submission)</li>
+<li>Final papers due May 12 at 5pm (webcampus submission)</li>
 </ul>
 </div>
 <div id="extra-credit" class="section level4">
@@ -538,7 +549,7 @@ div.tocify {
 <div id="office-hoursstudy-session" class="section level4">
 <h4>Office hours/Study session</h4>
 <ul>
-<li>Wed 5/6 at 10am via zoom (regular class time, zoom link sent via email and webcampus announcement)</li>
+<li>Wed 5/5 at 10am via zoom (regular class time)</li>
 </ul>
 </div>
 <div id="please-fill-out-your-course-evaluations" class="section level4">
@@ -558,7 +569,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -597,7 +608,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
