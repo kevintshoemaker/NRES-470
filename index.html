@@ -9,25 +9,33 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Applied Population Ecology" />
+<meta name="author" content="Applied Population Ecology, Spring 2022" />
 
 
 <title>Welcome to NRES 470/670</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -384,60 +343,6 @@ div.tocify {
     <li>
       <a href="LECTURE3.html">Thomas Robert Malthus</a>
     </li>
-    <li>
-      <a href="LECTURE4.html">Population Regulation</a>
-    </li>
-    <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
-    </li>
-    <li>
-      <a href="LECTURE6.html">Age-structured populations</a>
-    </li>
-    <li>
-      <a href="LECTURE7.html">Matrix population models</a>
-    </li>
-    <li>
-      <a href="LECTURE8.html">Stochastic population models</a>
-    </li>
-    <li>
-      <a href="LECTURE9.html">Small population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
-      <a href="LECTURE11.html">Declining population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
-      <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
-    </li>
-    <li>
-      <a href="LECTURE15.html">Parameter estimation</a>
-    </li>
-    <li>
-      <a href="LECTURE16.html">Species interactions: competition</a>
-    </li>
-    <li>
-      <a href="LECTURE17.html">Species interactions: prey-predator</a>
-    </li>
-    <li>
-      <a href="LECTURE18.html">Wrap-up</a>
-    </li>
-    <li>
-      <a href="PVA1_421.html">NRES421: PVA basics</a>
-    </li>
-    <li>
-      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
-    </li>
-    <li>
-      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -451,28 +356,7 @@ div.tocify {
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
     <li>
-      <a href="LAB2.html">Lab 2: logistic growth</a>
-    </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
 </li>
@@ -487,32 +371,39 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Welcome to NRES 470/670</h1>
-<h4 class="author">Applied Population Ecology</h4>
+<h4 class="author">Applied Population Ecology, Spring 2022</h4>
 
 </div>
 
 
-<p><strong>Instructor:</strong> Kevin Shoemaker<br />
-<strong>Teaching Assistants</strong> Mia Goldman (miagoldman_at_nevada_dot_unr_dot_edu) and Adriana Parra (adrianaparra_at_nevada_dot_unr_dot_edu)<br />
-<strong>Website</strong>: <a href="https://kevintshoemaker.github.io/NRES-470/">https://kevintshoemaker.github.io/NRES-470/</a><br />
-<strong>Email</strong>: kevinshoemaker_at_unr_dot_edu</p>
+<p><strong>Instructor:</strong> Kevin Shoemaker <strong>Office:</strong> Fleischmann Agriculture, room 220e<br />
+<strong>Phone:</strong> 775-682-7449<br />
+<strong>Email</strong>: kevinshoemaker_at_unr_dot_edu <strong>Office hours</strong>: Wed 3pm in FA 220e <strong>Course Website</strong>: <a href="https://kevintshoemaker.github.io/NRES-470/">https://kevintshoemaker.github.io/NRES-470/</a></p>
+<p><strong>Teaching Assistant</strong> Margarete Walden (mwalden_at_nevada_dot_unr_dot_edu)<br />
+<strong>TA Office hours</strong>: TBD (check website for updates)</p>
 <div id="course-meeting-times" class="section level3">
 <h3>Course Meeting Times</h3>
-<p><strong>Lecture &amp; Discussion</strong>: M, W at 10am (50 mins)<br />
-<strong>Lab</strong>: F at 1pm (2 hrs 45 mins)</p>
+<p><strong>Lecture &amp; Discussion</strong>: M, W at 10am (50 mins) in AB 213<br />
+<strong>Lab</strong>: F at 1pm (2 hrs 45 mins) in FA 301</p>
 <ul>
-<li>Lectures and Labs will be online (due to the ongoing pandemic)</li>
+<li>Walden: TBD</li>
 </ul>
-<p><strong>Office hours</strong>:</p>
+</div>
+<div id="course-description" class="section level3">
+<h3>Course description</h3>
+<p>This class will explore how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We will emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management using simulation models and statistics. Topics will include population viability analysis (PVA), habitat suitability models, metapopulation models, competition and predation models, threats to population viability, wildlife population management and more. Laboratory exercises will provide students with hands-on experience with population models and their practical applications in the conservation and management of wild populations.</p>
+</div>
+<div id="prerequisites" class="section level3">
+<h3>Prerequisites</h3>
 <ul>
-<li>Shoemaker: Wednesdays at 11am (1 hour) (online)<br />
+<li>BIOL 314 or NRES 217 (Ecology)<br />
 </li>
-<li>Goldman: TBD (online)</li>
+<li>NRES 310 (Wildlife Ecology and Management)</li>
 </ul>
 </div>
 <div id="texts" class="section level3">
@@ -520,7 +411,7 @@ div.tocify {
 <ul>
 <li><a href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182">Gotelli, N. J. A primer of ecology</a><br />
 </li>
-<li><a href="http://beyondconnectingthedots.com/">Beyond Connecting the Dots</a> (free download)<br />
+<li>optional: <a href="http://beyondconnectingthedots.com/">Beyond Connecting the Dots</a> (free download)<br />
 </li>
 <li>Additional readings from the primary literature will be assigned for discussion periodically.</li>
 </ul>
@@ -535,34 +426,14 @@ div.tocify {
 <li>MS Excel (hopefully you already have this or equivalent spreadsheet software on your laptop!)</li>
 </ul>
 </div>
-<div id="prerequisites" class="section level3">
-<h3>Prerequisites</h3>
-<ul>
-<li>BIOL 314 or NRES 217 (Ecology)<br />
-</li>
-<li>NRES 310 (Wildlife Ecology and Management)</li>
-</ul>
-</div>
-<div id="class-description" class="section level3">
-<h3>Class description</h3>
-<p>This class will explore how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We will emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management via creative application of population ecology theory using simulation models and statistics. Topics will include population viability analysis (PVA), habitat suitability models, metapopulation models, species interaction models, threats to population viability, wildlife population management and more. Laboratory exercises will provide students with hands-on experience with ecological models and their practical applications in the conservation and management of wild populations.</p>
-</div>
-<div id="learning-outcomes" class="section level3">
-<h3>Learning outcomes</h3>
-<p>Students will be able to:</p>
-<ol style="list-style-type: decimal">
-<li>Identify the major classes of models used by ecologists (e.g., statistical vs mechanistic, quantitative vs heuristic, stochastic vs deterministic) and explain how and why ecologists use these models.<br />
-</li>
-<li>Apply tools such as population viability analysis (PVA) and metapopulation models to address the conservation and management of natural populations.<br />
-</li>
-<li>Perform basic statistics, data visualization, simulation modeling and model validation with Excel, the statistical computing language ‘R’, and the web-based software, InsightMaker.<br />
-</li>
-<li>Critically evaluate the strength of inferences drawn from ecological simulation models using tools such as sensitivity analysis.<br />
-</li>
-<li>Explain how species interactions can influence population dynamics (e.g., predictions of species range shifts).<br />
-</li>
-<li>Communicate original research in applied population and community ecology via professional-style oral and written presentations.</li>
-</ol>
+<div id="student-learning-outcomes" class="section level3">
+<h3>Student Learning outcomes</h3>
+<p>SLO 1. Identify the major classes of models used by ecologists (e.g., statistical vs mechanistic, quantitative vs heuristic, stochastic vs deterministic) and explain how and why ecologists use these models.<br />
+SLO 2. Apply tools such as population viability analysis (PVA) and metapopulation models to address the conservation and management of natural populations.<br />
+SLO 3. Perform basic statistics, data visualization, simulation modeling and model validation with Excel, the statistical computing language ‘R’, and the web-based software, InsightMaker.<br />
+SLO 4. Critically evaluate the strength of inferences drawn from ecological simulation models using tools such as sensitivity analysis.<br />
+SLO 5. Explain how species interactions can influence population dynamics (e.g., predictions of species range shifts).<br />
+SLO 6. Communicate original research in applied population and community ecology via professional-style oral and written presentations.</p>
 </div>
 <div id="grading" class="section level3">
 <h3>Grading:</h3>
@@ -578,15 +449,15 @@ Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82
 </div>
 <div id="exams" class="section level3">
 <h3>Exams:</h3>
-<p>There will be two midterm exams and a comprehensive (cumulative) final exam. These will consist of multiple-choice, short-answer questions, and essay questions requiring synthesis of ideas and critical thinking. The midterm and final exams will be cumulative, and based on all information presented up through the week prior to the exam.</p>
+<p>There will be two midterm exams and a final exam, all of which will be cumulative, covering all course material covered up to the week prior to the exam. These will consist of multiple-choice, short-answer questions, and essay questions requiring synthesis of ideas and critical thinking. The midterm and final exams will be cumulative, and based on all information presented up through the week prior to the exam.</p>
 </div>
 <div id="lectures" class="section level3">
 <h3>Lectures</h3>
-<p>Lecture grades will be based primarily on participation and short Top Hat quizzes. Participation is essential to the learning process (and to our mutual enjoyment of this class). Learning is not a passive process; students are expected to engage with the material in class rather than simply listen and take notes. You should be prepared in class to ask questions, to answer questions posed by other students, and to engage in in-class problem-solving activities.</p>
+<p>Lecture grades will be based primarily on participation and short quizzes. Participation is essential to the learning process (and to our mutual enjoyment of this class). Learning is not a passive process; students are expected to engage with the material in class rather than simply listen and take notes. You should be prepared in class to ask questions, to answer questions, and to engage in problem-solving activities.</p>
 </div>
 <div id="labs" class="section level3">
 <h3>Labs</h3>
-<p>Lab exercises will focus on applying concepts and methods introduced in lectures, and will involve real data and problems in wildlife conservation and management wherever possible. Graded lab assignments will involve figures, tables, InsightMaker models and R code (when applicable) and responses to questions in short-answer format. Laboratory write-ups will be due the following lab period, unless otherwise specified.</p>
+<p>Lab exercises will focus on applying concepts and methods introduced in lectures, and will involve real-world problems in wildlife conservation and management wherever possible. Graded lab assignments will involve figures, tables, InsightMaker models and R code (when applicable) and responses to questions in short-answer format.</p>
 </div>
 <div id="final-group-project" class="section level3">
 <h3>Final group project</h3>
@@ -602,10 +473,10 @@ Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82
 </div>
 <div id="top-hat" class="section level3">
 <h3>Top Hat</h3>
-<p>We will be using the <a href="www.tophat.com">Top Hat</a> (<a href="www.tophat.com">www.tophat.com</a>) classroom response system in class. You will be able to submit answers to in-class questions using Apple or Android smartphones and tablets, laptops, or through text message.</p>
+<p>We will be using the <a href="www.tophat.com">Top Hat</a> classroom response system in class. You will be able to submit answers to in-class questions using Apple or Android smartphones and tablets, laptops, or through text message.</p>
 <p>You can visit the Top Hat Overview (<a href="https://success.tophat.com/s/article/Student-Top-Hat-Overview-and-Getting-Started-Guide" class="uri">https://success.tophat.com/s/article/Student-Top-Hat-Overview-and-Getting-Started-Guide</a>) within the Top Hat Success Center which outlines how you will register for a Top Hat account, as well as providing a brief overview to get you up and running on the system.</p>
-<p>An invitation will be sent to you by email, but if don’t receive this email, you can register by simply visiting our course website: <a href="https://app.tophat.com/e/648264">https://app.tophat.com/e/648264</a></p>
-<p>Note: our Course Join Code is 648264</p>
+<p>An invitation will be sent to you by email, but if you don’t receive this email, you can register by simply visiting our course website: <a href="https://app.tophat.com/e/809153">https://app.tophat.com/e/809153</a></p>
+<p>Note: our Course Join Code is 809153</p>
 <p>Top Hat may require a paid subscription, and a full breakdown of all subscription options available can be found here: <a href="www.tophat.com/pricing">www.tophat.com/pricing</a>.</p>
 <p>Should you require assistance with Top Hat at any time, due to the fact that they require specific user information to troubleshoot these issues, please contact their Support Team directly by way of email (<a href="support@tophat.com">support@tophat.com</a>), the in app support button, or by calling 1-888-663-5491.</p>
 </div>
@@ -619,7 +490,14 @@ Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82
 </div>
 <div id="statement-on-audio-and-video-recording" class="section level3">
 <h3>Statement on Audio and Video Recording</h3>
-<p>Surreptitious or covert video-taping of class or unauthorized audio recording of class is prohibited by law and by Board of Regents policy. This class may be videotaped or audio recorded only with the written permission of the instructor. In order to accommodate students with disabilities, some students may have been given permission to record class lectures and discussions. Therefore, students should understand that their comments during class may be recorded.</p>
+<div id="student-created-recordings" class="section level4">
+<h4>Student-created Recordings</h4>
+<p>Surreptitious or covert video-taping of class or unauthorized audio recording of class is prohibited by law and by Board of Regents policy. This class may be videotaped, or audio recorded only with the written permission of the instructor. In order to accommodate students with disabilities, some students may have been given permission to record class lectures and discussions. Therefore, students should understand that their comments during class may be recorded.</p>
+</div>
+<div id="instructor-created-recordings" class="section level4">
+<h4>Instructor-created Recordings</h4>
+<p>Class sessions may be audio-visually recorded for students in the class to review and for enrolled students who are unable to attend live to view. Students who participate with their camera on or who use a profile image are consenting to have their video or image recorded. If you do not consent to have your profile or video image recorded, keep your camera off and do not use a profile image. Students who un-mute during class and participate orally are consenting to have their voices recorded. If you do not consent to have your voice recorded during class, keep your mute button activated and only communicate by using the “chat” feature, which allows you to type questions and comments live.</p>
+</div>
 </div>
 <div id="statement-for-academic-success-services" class="section level3">
 <h3>Statement for Academic Success Services</h3>
@@ -627,33 +505,32 @@ Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82
 </div>
 <div id="this-is-a-safe-space" class="section level3">
 <h3>This is a safe space</h3>
-<p>The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the University’s Equal Opportunity &amp; Title IX Office at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit: <a href="http://www.unr.edu/equal-opportunity-title-ix" class="uri">http://www.unr.edu/equal-opportunity-title-ix</a>.</p>
+<p>The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the University’s Equal Opportunity &amp; Title IX office at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit the Equal Opportunity and Title IX page: <a href="http://www.unr.edu/equal-opportunity-title-ix" class="uri">http://www.unr.edu/equal-opportunity-title-ix</a>.</p>
 </div>
-<div id="statement-on-covid-19-training-policies" class="section level3">
-<h3>Statement on COVID-19 Training Policies</h3>
-<p>Students must complete and follow all guidelines as stated in the Student COVID-19 Training modules, or any other trainings or directives provided by the University.</p>
-</div>
-<div id="statement-on-covid-19-face-coverings" class="section level3">
-<h3>Statement on COVID-19 Face Coverings</h3>
+<div id="statement-on-covid-19-policies" class="section level3">
+<h3>Statement on COVID-19 Policies</h3>
+<div id="face-coverings" class="section level4">
+<h4>Face Coverings</h4>
 <p>In response to COVID-19, and in alignment with State of Nevada Governor Executive Orders, Roadmap to Recovery for Nevada plans, Nevada System of Higher Education directives, the University of Nevada President directives, and local, state, and national health official guidelines face coverings are required at all times while on campus, except when alone in a private office. This includes the classroom, laboratory, studio, creative space, or any type of in-person instructional activity, and public spaces.</p>
 <p>A “face covering” is defined as a “covering that fully covers a person’s nose and mouth, including without limitation, cloth face mask, surgical mask, towels, scarves, and bandanas” (State of Nevada Emergency Directive 024).</p>
 <p>Students that cannot wear a face covering due to a medical condition or disability, or who are unable to remove a mask without assistance may seek an accommodation through the Disability Resource Center.</p>
 </div>
-<div id="statement-on-covid-19-social-distancing" class="section level3">
-<h3>Statement on COVID-19 Social Distancing:</h3>
-<p>Face coverings are not a substitute for social distancing. Students shall observe current social distancing guidelines where possible in accordance with the Phase we are in while in the classroom, laboratory, studio, creative space (hereafter referred to as instructional space) setting and in public spaces. Students should avoid congregating around instructional space entrances before or after class sessions. If the instructional space has designated entrance and exit doors students are required to use them. Students should exit the instructional space immediately after the end of instruction to help ensure social distancing and allow for the persons attending the next scheduled class session to enter.</p>
+<div id="social-distancing" class="section level4">
+<h4>Social Distancing:</h4>
+<p>In alignment with State of Nevada guidelines, social distancing is no longer required.</p>
 </div>
-<div id="statement-on-covid-19-disinfecting-your-learning-space" class="section level3">
-<h3>Statement on COVID-19 Disinfecting Your Learning Space</h3>
+<div id="disinfecting-your-learning-space" class="section level4">
+<h4>Disinfecting Your Learning Space</h4>
 <p>Disinfecting supplies are provided for you to disinfect your learning space. You may also use your own disinfecting supplies.</p>
 </div>
-<div id="statement-on-covid-19-covid-19-like-symptoms-and-contact-with-someone-testing-positive-for-covid-19" class="section level3">
-<h3>Statement on COVID-19, COVID-19 Like Symptoms, and Contact with Someone Testing Positive for COVID-19</h3>
-<p>Students must conduct daily health checks in accordance with CDC guidelines. Students testing positive for COVID 19, exhibiting COVID 19 symptoms or who have been in direct contact with someone testing positive for COVID 19 will not be allowed to attend in-person instructional activities and must leave the venue immediately. Students should contact the Student Health Center or their health care provider to receive care and who can provide the latest direction on quarantine and self-isolation. Contact your instructor immediately to make instructional and learning arrangements.</p>
+<div id="covid-19-like-symptoms-and-contact-with-someone-testing-positive-for-covid-19" class="section level4">
+<h4>COVID-19 Like Symptoms, and Contact with Someone Testing Positive for COVID-19</h4>
+<p>Students testing positive for COVID 19, exhibiting COVID 19 symptoms regardless of vaccination status will not be allowed to attend in-person instructional activities and must leave the venue immediately. Students should contact the Student Health Center or their health care provider to receive care and who can provide the latest direction on quarantine and self-isolation. Contact your instructor immediately to make instructional and learning arrangements.</p>
 </div>
-<div id="statement-on-failure-to-comply-with-policy-including-as-outlined-in-this-syllabus-or-directives-of-a-university-employee" class="section level3">
-<h3>Statement on Failure to Comply with Policy (including as outlined in this Syllabus) or Directives of a University Employee</h3>
+<div id="statement-on-failure-to-comply-with-policy-including-as-outlined-in-this-syllabus-or-directives-of-a-university-employee" class="section level4">
+<h4>Statement on Failure to Comply with Policy (including as outlined in this Syllabus) or Directives of a University Employee</h4>
 <p>In accordance with section 6,502 of the University Administrative Manual, a student may receive academic and disciplinary sanctions for failure to comply with policy, including this syllabus, for failure to comply with the directions of a University Official, for disruptive behavior in the classroom, or any other prohibited action. “Disruptive behavior” is defined in part as behavior, including but not limited to failure to follow course, laboratory or safety rules, or endangering the health of others. A student may be dropped from class at any time for misconduct or disruptive behavior in the classroom upon recommendation of the instructor and with approval of the college dean. A student may also receive disciplinary sanctions through the Office of Student Conduct for misconduct or disruptive behavior, including endangering the health of others, in the classroom. The student shall not receive a refund for course fees or tuition.</p>
+</div>
 </div>
 
 
@@ -685,7 +562,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -694,6 +571,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

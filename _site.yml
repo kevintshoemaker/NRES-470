@@ -17,62 +17,62 @@ navbar:
           href: LECTURE2.html
         - text: "Thomas Robert Malthus"
           href: LECTURE3.html
-        - text: "Population Regulation"
-          href: LECTURE4.html
-        - text: "Passenger Pigeon"
-          href: LECTURE5.html
-        - text: "Age-structured populations"
-          href: LECTURE6.html
-        - text: "Matrix population models"
-          href: LECTURE7.html
-        - text: "Stochastic population models"
-          href: LECTURE8.html
-        - text: "Small population paradigm"
-          href: LECTURE9.html
-        - text: "Individual-based models"
-          href: LECTURE10.html
-        - text: "Declining population paradigm"
-          href: LECTURE11.html
-        - text: "Population Viability Analysis"
-          href: LECTURE12.html
-        - text: "Metapopulations"
-          href: LECTURE13.html
-        - text: "PVA example: pdogs and ferrets"
-          href: LECTURE14.html
-        - text: "Parameter estimation"
-          href: LECTURE15.html
-        - text: "Species interactions: competition"
-          href: LECTURE16.html
-        - text: "Species interactions: prey-predator"
-          href: LECTURE17.html
-        - text: "Wrap-up"
-          href: LECTURE18.html
-        - text: "NRES421: PVA basics"
-          href: PVA1_421.html
-        - text: "NRES421: grizzly PVA"
-          href: PVA2_421.html
-        - text: "NRES421: loggerhead PVA"
-          href: PVA3_421.html
+        # - text: "Population Regulation"
+        #   href: LECTURE4.html
+        # - text: "Passenger Pigeon"
+        #   href: LECTURE5.html
+        # - text: "Age-structured populations"
+        #   href: LECTURE6.html
+        # - text: "Matrix population models"
+        #   href: LECTURE7.html
+        # - text: "Stochastic population models"
+        #   href: LECTURE8.html
+        # - text: "Small population paradigm"
+        #   href: LECTURE9.html
+        # - text: "Individual-based models"
+        #   href: LECTURE10.html
+        # - text: "Declining population paradigm"
+        #   href: LECTURE11.html
+        # - text: "Population Viability Analysis"
+        #   href: LECTURE12.html
+        # - text: "Metapopulations"
+        #   href: LECTURE13.html
+        # - text: "PVA example: pdogs and ferrets"
+        #   href: LECTURE14.html
+        # - text: "Parameter estimation"
+        #   href: LECTURE15.html
+        # - text: "Species interactions: competition"
+        #   href: LECTURE16.html
+        # - text: "Species interactions: prey-predator"
+        #   href: LECTURE17.html
+        # - text: "Wrap-up"
+        #   href: LECTURE18.html
+        # - text: "NRES421: PVA basics"
+        #   href: PVA1_421.html
+        # - text: "NRES421: grizzly PVA"
+        #   href: PVA2_421.html
+        # - text: "NRES421: loggerhead PVA"
+        #   href: PVA3_421.html
     - text: "Labs"
       menu:
         - text: "Lab 1: exponential growth"
           href: LAB1.html
-        - text: "Lab 2: logistic growth"
-          href: LAB2.html
-        - text: "Lab 3: age-structured population growth"
-          href: LAB3.html
-        - text: "Lab 4: matrix population models"
-          href: LAB4.html
-        - text: "Lab 5: stochasticity and uncertainty"
-          href: LAB5.html
-        - text: "Lab 6: metapopulations"
-          href: LAB6.html
-        - text: "Lab 7: capture-mark-recapture"
-          href: LAB7.html
+        # - text: "Lab 2: logistic growth"
+        #   href: LAB2.html
+        # - text: "Lab 3: age-structured population growth"
+        #   href: LAB3.html
+        # - text: "Lab 4: matrix population models"
+        #   href: LAB4.html
+        # - text: "Lab 5: stochasticity and uncertainty"
+        #   href: LAB5.html
+        # - text: "Lab 6: metapopulations"
+        #   href: LAB6.html
+        # - text: "Lab 7: capture-mark-recapture"
+        #   href: LAB7.html
         - text: "Final Projects!"
           href: FINAL_PROJECTS.html
-        - text: "Extra Credit!"
-          href: EXTRA_CREDIT.html
+        # - text: "Extra Credit!"
+        #   href: EXTRA_CREDIT.html
     - text: "Links"
       href: Links.html
       
