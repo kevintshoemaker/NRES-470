@@ -13,20 +13,28 @@
 
 <title>Intro to NRES 470/670</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -38,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -55,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -383,60 +342,6 @@ div.tocify {
     <li>
       <a href="LECTURE3.html">Thomas Robert Malthus</a>
     </li>
-    <li>
-      <a href="LECTURE4.html">Population Regulation</a>
-    </li>
-    <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
-    </li>
-    <li>
-      <a href="LECTURE6.html">Age-structured populations</a>
-    </li>
-    <li>
-      <a href="LECTURE7.html">Matrix population models</a>
-    </li>
-    <li>
-      <a href="LECTURE8.html">Stochastic population models</a>
-    </li>
-    <li>
-      <a href="LECTURE9.html">Small population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
-      <a href="LECTURE11.html">Declining population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
-      <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
-    </li>
-    <li>
-      <a href="LECTURE15.html">Parameter estimation</a>
-    </li>
-    <li>
-      <a href="LECTURE16.html">Species interactions: competition</a>
-    </li>
-    <li>
-      <a href="LECTURE17.html">Species interactions: prey-predator</a>
-    </li>
-    <li>
-      <a href="LECTURE18.html">Wrap-up</a>
-    </li>
-    <li>
-      <a href="PVA1_421.html">NRES421: PVA basics</a>
-    </li>
-    <li>
-      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
-    </li>
-    <li>
-      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -450,28 +355,7 @@ div.tocify {
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
     <li>
-      <a href="LAB2.html">Lab 2: logistic growth</a>
-    </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
 </li>
@@ -486,7 +370,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -498,7 +382,7 @@ div.tocify {
 <p><img src="prairie_dogs2.jpg" /></p>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p>In this class we will explore how the concepts of <em>population ecology</em> can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart’s class in wildlife ecology and management (NRES 310). NRES 470 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers advanced population modeling and fitting these models to data in R in detail. This class is closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers – quantitative population models!</p>
+<p>In this class we will explore how the concepts of <em>population ecology</em> can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Dr. Stewart’s class in wildlife ecology and management (NRES 310). NRES 470 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), which covers fitting population models to data in R. This class is also closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers – population models!</p>
 </div>
 <div id="syllabus" class="section level2">
 <h2>Syllabus:</h2>
@@ -513,18 +397,15 @@ div.tocify {
 </div>
 <div id="software" class="section level2">
 <h2>Software</h2>
-<p>Skills with specialized software and computer programming are critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with using some specialized tools (e.g., <a href="http://www.phidot.org/software/mark/">Program MARK</a>) and some computer programming (e.g., <a href="https://insightmaker.com/">InsightMaker</a>, <a href="https://cran.r-project.org/">R</a>) and I hope by the end of this class you will understand how powerful and useful these tools can be – and not just for population ecology!</p>
+<p>Skills with specialized software and computer programming are critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with computer programming and model building in <a href="https://insightmaker.com/">InsightMaker</a>, <a href="https://cran.r-project.org/">R</a>, and Excel. I hope by the end of this class you will understand how powerful and useful these tools can be – and not just for population ecology!</p>
 <p>See the <a href="Links.html">links page</a> for some useful references (I will post more links shortly, including some R tutorials!).</p>
 </div>
 <div id="in-class-activities" class="section level2">
 <h2>In-class activities</h2>
-<p>This semester I will provide lecture materials, videos and readings prior to our class meetings. Most class periods will be devoted to discussion and hands-on modeling exercises (mini-labs) to give everyone a chance to apply the population ecology concepts we talked about in lecture. Many class periods will also include short Top Hat questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. <em>NOTE: you will not be penalized for incorrect responses in TopHat</em>!</p>
-</div>
-<div id="out-of-class-activities" class="section level2">
-<h2>Out-of-class activities</h2>
-<p>To make the most of this course, you will need to devote significant time outside of class on:</p>
+<p>This semester I will provide lecture materials, videos and readings prior to our class meetings. Most class periods will be devoted to discussion and hands-on modeling exercises (mini-labs) to give everyone a chance to apply the population ecology concepts from lectures and readings. Many class periods will also include short Top Hat questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. <em>NOTE: you will not be penalized for incorrect responses in TopHat</em>!<br />
+## Out-of-class activities To make the most of this course, you will need to devote significant time outside of class on:</p>
 <ol style="list-style-type: decimal">
-<li>Studying the assigned readings (see <a href="schedule.html">the schedule</a>) and online lecture materials<br />
+<li>Studying assigned readings (see <a href="schedule.html">the schedule</a>) and online lecture materials<br />
 </li>
 <li>Finishing any problems/exercises you didn’t complete during class or lab<br />
 </li>
@@ -533,7 +414,7 @@ div.tocify {
 </div>
 <div id="final-projects" class="section level2">
 <h2>Final projects</h2>
-<p>It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to assess conservation or management actions for a species of conservation concern (species of your choice!). I will compile a list of online databases that might be useful for your projects that I will post to the course website. In the meantime, start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test!</p>
+<p>It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to assess conservation or management actions for a species of conservation concern (species of your choice!). Start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test!</p>
 </div>
 <div id="making-up-classes-and-labs" class="section level2">
 <h2>Making up classes and labs</h2>
@@ -581,7 +462,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -590,6 +471,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

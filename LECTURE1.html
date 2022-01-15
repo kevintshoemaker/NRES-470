@@ -14,20 +14,28 @@
 
 <title>A whole-systems approach to population ecology</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -384,60 +343,6 @@ div.tocify {
     <li>
       <a href="LECTURE3.html">Thomas Robert Malthus</a>
     </li>
-    <li>
-      <a href="LECTURE4.html">Population Regulation</a>
-    </li>
-    <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
-    </li>
-    <li>
-      <a href="LECTURE6.html">Age-structured populations</a>
-    </li>
-    <li>
-      <a href="LECTURE7.html">Matrix population models</a>
-    </li>
-    <li>
-      <a href="LECTURE8.html">Stochastic population models</a>
-    </li>
-    <li>
-      <a href="LECTURE9.html">Small population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
-      <a href="LECTURE11.html">Declining population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
-      <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
-    </li>
-    <li>
-      <a href="LECTURE15.html">Parameter estimation</a>
-    </li>
-    <li>
-      <a href="LECTURE16.html">Species interactions: competition</a>
-    </li>
-    <li>
-      <a href="LECTURE17.html">Species interactions: prey-predator</a>
-    </li>
-    <li>
-      <a href="LECTURE18.html">Wrap-up</a>
-    </li>
-    <li>
-      <a href="PVA1_421.html">NRES421: PVA basics</a>
-    </li>
-    <li>
-      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
-    </li>
-    <li>
-      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -451,28 +356,7 @@ div.tocify {
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
     <li>
-      <a href="LAB2.html">Lab 2: logistic growth</a>
-    </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
 </li>
@@ -487,13 +371,13 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">A whole-systems approach to population ecology</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
@@ -593,7 +477,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -602,6 +486,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -12,19 +12,27 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Schedule, Spring 2021</title>
+<title>Schedule, Spring 2022</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -36,11 +44,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -53,32 +56,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -88,10 +66,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -108,40 +82,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -169,7 +116,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -181,7 +128,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -192,10 +139,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -207,7 +167,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -308,60 +267,6 @@ $(document).ready(function () {
     <li>
       <a href="LECTURE3.html">Thomas Robert Malthus</a>
     </li>
-    <li>
-      <a href="LECTURE4.html">Population Regulation</a>
-    </li>
-    <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
-    </li>
-    <li>
-      <a href="LECTURE6.html">Age-structured populations</a>
-    </li>
-    <li>
-      <a href="LECTURE7.html">Matrix population models</a>
-    </li>
-    <li>
-      <a href="LECTURE8.html">Stochastic population models</a>
-    </li>
-    <li>
-      <a href="LECTURE9.html">Small population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
-      <a href="LECTURE11.html">Declining population paradigm</a>
-    </li>
-    <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
-      <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
-    </li>
-    <li>
-      <a href="LECTURE15.html">Parameter estimation</a>
-    </li>
-    <li>
-      <a href="LECTURE16.html">Species interactions: competition</a>
-    </li>
-    <li>
-      <a href="LECTURE17.html">Species interactions: prey-predator</a>
-    </li>
-    <li>
-      <a href="LECTURE18.html">Wrap-up</a>
-    </li>
-    <li>
-      <a href="PVA1_421.html">NRES421: PVA basics</a>
-    </li>
-    <li>
-      <a href="PVA2_421.html">NRES421: grizzly PVA</a>
-    </li>
-    <li>
-      <a href="PVA3_421.html">NRES421: loggerhead PVA</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -375,28 +280,7 @@ $(document).ready(function () {
       <a href="LAB1.html">Lab 1: exponential growth</a>
     </li>
     <li>
-      <a href="LAB2.html">Lab 2: logistic growth</a>
-    </li>
-    <li>
-      <a href="LAB3.html">Lab 3: age-structured population growth</a>
-    </li>
-    <li>
-      <a href="LAB4.html">Lab 4: matrix population models</a>
-    </li>
-    <li>
-      <a href="LAB5.html">Lab 5: stochasticity and uncertainty</a>
-    </li>
-    <li>
-      <a href="LAB6.html">Lab 6: metapopulations</a>
-    </li>
-    <li>
-      <a href="LAB7.html">Lab 7: capture-mark-recapture</a>
-    </li>
-    <li>
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
-    </li>
-    <li>
-      <a href="EXTRA_CREDIT.html">Extra Credit!</a>
     </li>
   </ul>
 </li>
@@ -411,18 +295,17 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
-<h1 class="title toc-ignore">Schedule, Spring 2021</h1>
+<h1 class="title toc-ignore">Schedule, Spring 2022</h1>
 <h4 class="author">NRES 470/670</h4>
 
 </div>
 
 
 <p>Please check for updates frequently!</p>
-<p>NOTE: in 2021 we are online, the course materials are available for you to work through on your own pace, and you are only required to attend one ‘lecture’ period per week (M or W). So we will mostly follow the schedule listed below, but the items labeled ‘LECTURE’ are available online (asynchronously). Hope this makes sense!!</p>
 <table>
 <colgroup>
 <col width="4%" />
@@ -441,277 +324,295 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td align="left">Week 1</td>
-<td align="left">1/25/2021</td>
-<td align="left">LECTURE: Course overview; Intro to Systems Thinking</td>
-<td align="left">BCTD Chapter 1</td>
+<td align="left">1/17/2022</td>
+<td align="left">NO CLASS (MLK day)</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">1/27/2021</td>
-<td align="left">LECTURE: Intro to Population Ecology; Exponential growth</td>
-<td align="left">Gotelli Chapter 1</td>
+<td align="left">1/19/2022</td>
+<td align="left">LECTURE: Course overview; Intro to Systems Thinking</td>
+<td align="left">BCTD Chapter 1 (optional)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">1/29/2021</td>
+<td align="left">1/21/2022</td>
 <td align="left">LAB 1: Introduction to population modeling in Excel, InsightMaker, and R</td>
 <td align="left">Gotelli Chapter 1</td>
 </tr>
 <tr class="even">
 <td align="left">Week 2</td>
-<td align="left">2/1/2021</td>
-<td align="left">LECTURE: Malthus and exponential growth</td>
-<td align="left"></td>
+<td align="left">1/24/2022</td>
+<td align="left">LECTURE: Intro to Population Ecology; Exponential growth</td>
+<td align="left">Gotelli Chapter 1</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">2/3/2021</td>
-<td align="left">LECTURE: Density-dependent growth</td>
-<td align="left">Gotelli Chapter 2</td>
+<td align="left">1/26/2022</td>
+<td align="left">LECTURE: Malthus and exponential growth</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">2/5/2021</td>
+<td align="left">1/28/2022</td>
 <td align="left">LAB 1 (cont’d)</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 3</td>
-<td align="left">2/8/2021</td>
+<td align="left">1/31/2022</td>
 <td align="left">LECTURE: Density-dependent growth</td>
 <td align="left">Gotelli Chapter 2</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">2/10/2021</td>
+<td align="left">2/2/2022</td>
+<td align="left">LECTURE: Density-dependent growth</td>
+<td align="left">Gotelli Chapter 2</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">2/4/2022</td>
+<td align="left">LAB 2: Density-dependent populations in InsightMaker; maximum sustainable yield (MSY) and more</td>
+<td align="left">BCTD Chapter 2 (optional)</td>
+</tr>
+<tr class="even">
+<td align="left">Week 4</td>
+<td align="left">2/7/2022</td>
 <td align="left">LECTURE: Passenger pigeon/Allee Effect</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">2/12/2021</td>
-<td align="left">LAB 2: Density-dependent populations in InsightMaker; maximum sustainable yield (MSY) and more</td>
-<td align="left">BCTD Chapter 2 (skim)</td>
-</tr>
-<tr class="even">
-<td align="left">Week 4</td>
-<td align="left">2/15/2021</td>
-<td align="left">NO CLASS: President’s Day</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">2/17/2021</td>
+<td align="left">2/9/2022</td>
 <td align="left">LECTURE: Age-structured populations</td>
 <td align="left">Gotelli Chapter 3</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">2/19/2021</td>
+<td align="left">2/11/2022</td>
 <td align="left">LAB 3: Age-structured populations in Excel and InsightMaker</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 5</td>
-<td align="left">2/22/2021</td>
+<td align="left">2/14/2022</td>
 <td align="left">LECTURE: Matrix population models</td>
 <td align="left"><a href="heppell1.pdf">Heppell 1998</a></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">2/24/2021</td>
+<td align="left">2/16/2022</td>
 <td align="left">LECTURE: Matrix population models</td>
 <td align="left">Gotelli Chapter 3</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">2/26/2021</td>
+<td align="left">2/18/2022</td>
 <td align="left">Work on PVA proposals</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">Week 6</td>
-<td align="left">3/1/2021</td>
-<td align="left">LECTURE: Matrix population models</td>
-<td align="left">Gotelli Chapter 3</td>
+<td align="left">2/21/2022</td>
+<td align="left">NO CLASS: President’s Day</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">3/3/2021</td>
-<td align="left">LECTURE: Stochasticity and uncertainty</td>
-<td align="left"><a href="Regan_2002.pdf">Regan 2002</a></td>
+<td align="left">2/23/2022</td>
+<td align="left">LECTURE: Matrix population models</td>
+<td align="left">Gotelli Chapter 3</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">3/5/2021</td>
+<td align="left">2/25/2022</td>
 <td align="left">LAB 4: Matrix population models in R and InsightMaker</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 7</td>
-<td align="left">3/8/2021</td>
+<td align="left">2/28/2022</td>
 <td align="left">LECTURE: Stochasticity and uncertainty</td>
-<td align="left"></td>
+<td align="left"><a href="Regan_2002.pdf">Regan 2002</a></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">3/10/2021</td>
-<td align="left">NO CLASS: READING DAY</td>
+<td align="left">3/2/2022</td>
+<td align="left">LECTURE: Stochasticity and uncertainty (proposals due)</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">3/12/2021</td>
-<td align="left">PVA proposals (proposals due)</td>
+<td align="left">3/4/2022</td>
+<td align="left">LAB 5: Stochasticity and uncertainty</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">Week 8</td>
-<td align="left">3/15/2021</td>
+<td align="left">3/7/2022</td>
 <td align="left">MIDTERM #1</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">3/17/2021</td>
+<td align="left">3/9/2022</td>
 <td align="left">LECTURE: Stochasticity and uncertainty</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">3/19/2021</td>
-<td align="left">Work on group PVA projects (proposal meetings)</td>
+<td align="left">3/11/2022</td>
+<td align="left">PVA projects: group meetings</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 9</td>
-<td align="left">3/22/2021</td>
-<td align="left">LECTURE: Small population paradigm</td>
-<td align="left"><a href="caughley1.pdf">Caughley 1994</a></td>
+<td align="left">3/14/2022</td>
+<td align="left">NO CLASS: spring break</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">3/24/2021</td>
-<td align="left">NO CLASS (No Instruction Day)</td>
+<td align="left">3/16/2022</td>
+<td align="left">NO CLASS: spring break</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">3/26/2021</td>
-<td align="left">LAB 5: Stochasticity and uncertainty</td>
+<td align="left">3/18/2022</td>
+<td align="left">NO CLASS: spring break</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">Week 10</td>
-<td align="left">3/29/2021</td>
-<td align="left">LECTURE: Declining population paradigm</td>
+<td align="left">3/21/2022</td>
+<td align="left">LECTURE: Small population paradigm</td>
 <td align="left"><a href="caughley1.pdf">Caughley 1994</a></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">3/31/2021</td>
-<td align="left">LECTURE: PVA!</td>
-<td align="left"><a href="beissinger1.pdf">Beissinger and Westphal 1998</a></td>
+<td align="left">3/23/2022</td>
+<td align="left">LECTURE: Declining population paradigm</td>
+<td align="left"><a href="caughley1.pdf">Caughley 1994</a></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">4/2/2021</td>
+<td align="left">3/25/2022</td>
 <td align="left">Final projects (PVA models due next week)</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 11</td>
-<td align="left">4/5/2021</td>
-<td align="left">LECTURE: Metapopulations</td>
-<td align="left">Gotelli Chapter 4</td>
+<td align="left">3/28/2022</td>
+<td align="left">LECTURE: PVA!</td>
+<td align="left"><a href="beissinger1.pdf">Beissinger and Westphal 1998</a></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">4/7/2021</td>
+<td align="left">3/30/2022</td>
+<td align="left">LECTURE: Metapopulations (PVA models due)</td>
+<td align="left">Gotelli Chapter 4</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">4/1/2022</td>
+<td align="left">LAB 6: Metapopulation modeling in InsightMaker</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Week 12</td>
+<td align="left">4/4/2022</td>
 <td align="left">LECTURE: Source-sink dynamics</td>
 <td align="left"><a href="griffin1.pdf">Griffin et al</a></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">4/9/2021</td>
-<td align="left">LAB 6: Metapopulation modeling in InsightMaker (PVA models due)</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Week 12</td>
-<td align="left">4/12/2021</td>
+<td align="left">4/6/2022</td>
 <td align="left">LECTURE: Parameter estimation</td>
 <td align="left"><a href="amstrup1.pdf">Amstrup et al Chapter 1</a></td>
 </tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">4/14/2021</td>
-<td align="left">LECTURE: Species interactions: competition</td>
-<td align="left">Gotelli Chapter 5</td>
-</tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">4/16/2021</td>
+<td align="left">4/8/2022</td>
 <td align="left">LAB 7 (optional): Parameter estimation: mark-recapture data</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 13</td>
-<td align="left">4/19/2021</td>
-<td align="left">LECTURE: MIDTERM #2</td>
-<td align="left"></td>
+<td align="left">4/11/2022</td>
+<td align="left">LECTURE: Species interactions: competition (peer review papers due)</td>
+<td align="left">Gotelli Chapter 5</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">4/21/2021</td>
-<td align="left">NO CLASS: READING DAY (peer review papers due)</td>
+<td align="left">4/13/2022</td>
+<td align="left">LECTURE: MIDTERM #2</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">4/23/2021</td>
-<td align="left">LAB: PEER REVIEW</td>
+<td align="left">4/15/2022</td>
+<td align="left">LAB: Final Project Peer Review</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">Week 14</td>
-<td align="left">4/26/2021</td>
+<td align="left">4/18/2022</td>
 <td align="left">LECTURE: Species interactions: competition</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">4/28/2021</td>
+<td align="left">4/20/2022</td>
 <td align="left">LECTURE: Species interactions: predator-prey (final project: complete drafts due)</td>
 <td align="left">Gotelli Chapter 6</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">4/30/2021</td>
+<td align="left">4/22/2022</td>
 <td align="left">LAB: STUDENT PRESENTATIONS</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">Week 15</td>
-<td align="left">5/3/2021</td>
-<td align="left">LECTURE: Final Class Review</td>
+<td align="left">4/25/2022</td>
+<td align="left">TBD</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">5/5/2021</td>
-<td align="left">NO CLASS: Prep Day</td>
+<td align="left">4/27/2022</td>
+<td align="left">TBD</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">5/7/2021</td>
-<td align="left">FINAL EXAM (9:50 to 11:50am)</td>
+<td align="left">4/29/2022</td>
+<td align="left">LAB: STUDENT PRESENTATIONS</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">Week 16</td>
-<td align="left">5/12/2021</td>
+<td align="left">5/2/2022</td>
+<td align="left">LECTURE: Final Class Review</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">5/4/2022</td>
+<td align="left">NO CLASS: Prep Day</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">5/6/2022</td>
+<td align="left">FINAL EXAM (9:50 to 11:50am)</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Week 17</td>
+<td align="left">5/11/2022</td>
 <td align="left">FINAL PAPERS DUE (last day of finals)</td>
 <td align="left"></td>
 </tr>
@@ -745,7 +646,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
