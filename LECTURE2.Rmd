@@ -1,7 +1,7 @@
 ---
 title: 'Intro to population ecology'
 author: 'NRES 470/670'
-date: 'Spring 2021'
+date: 'Spring 2022'
 output: 
   html_document: 
     theme: spacelab
@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
   - How do anthropogenic structures and land uses affect populations?
   - What is the *Maximum Sustainable Yield* for a focal game species?
   - How can pest species be effectively controlled?
-  - What specific land areas should be pretected to preserve at-risk populations and metapopulations?
+  - What specific land areas should be protected to preserve at-risk populations and metapopulations?
   - What are the likely population-level effects of alternative conservation or management strategies? 
 
 ## What is a population?
@@ -84,22 +84,21 @@ You may not understand all these questions now- we will revisit this list at the
 
 - What are the ecological mechanisms that govern species’ **range margins**? (figure is for common juniper)
 
-- How can we upscale detailed processes at the level of individuals (e.g., behavioral interactions) into patterns at the population scale? (emergent properties!)
+- How do patterns at the population scale (e.g., density-dependence) relate to processes at the level of individuals (e.g., behavioral interactions)? (emergent properties!)
 
 ![](Wolves_and_bones.jpg)
 
-- What is the relative importance of direct (**predation, competition**) vs. indirect (induced behavioural change; e.g., fear) interactions in determining the effect of one species on others?    
+- What is the relative importance of direct (**predation, contest competition**) vs. indirect (induced behavioral change; e.g., fear) interactions in determining the effects of one species on others?    
 
 ![](Gopherus_agassizii.jpg)
 
 - What demographic traits determine the **resilience** of natural populations to disturbance and perturbation (e.g., climate change)?  
 
-- To what extent will climate change decouple trophic links due to **phenological mismatches**?    
+- To what extent will climate change de-couple trophic links due to **phenological mismatches**?    
 - How do natural populations and communities respond to increased frequencies of **extreme weather events** predicted under global climate change?    
 - How do **interspecific interactions** affect species responses to global change?     
 
 - How important are **rare species** in the functioning of ecological communities?     
-- What is the magnitude of the **‘extinction debt’** following the loss and fragmentation of natural habitats, and when will it be paid?    
 
 #### And many more... 
 
@@ -147,7 +146,7 @@ You should notice that the population tends to grow slowly at first and then ver
 
 **Q** Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate ($r$) of the human population?? [TopHat]  (NOTE: this is totally optional, but you could solve this analytically!)
 
-And just for fun, here is a [video](https://www.youtube.com/watch?v=DZCm2QQZVYk) about exponential growth you might want to check out..
+And just for fun, here is a [video](https://www.youtube.com/watch?v=9znsuCphHUU&list=PLE431532ABEAD0082) about exponential growth you might want to check out..
 
 
 [--go to next lecture--](LECTURE3.html)
