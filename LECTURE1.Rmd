@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ## Systems ecology: a way of thinking   
 Ecology is messy. When we work in natural environments, we are dealing with *inherently complex systems*. _All elements in a natural system are connected_, full of dynamic interactions. Interactions among organisms, between organisms and their environments -- these linkages are what makes ecology messy, but also endlessly fascinating. 
 
-We can think of humans as just another element in these complex systems. And wildlife conservation and mangement is the task of manipulating these linkages to meet societal objectives for natural systems.  
+We can think of humans as just another element in these complex systems. And wildlife conservation and management is the task of manipulating these linkages to meet societal objectives for natural systems.  
 
 This is not a systems ecology class! 
 
@@ -49,30 +49,31 @@ We will make extensive use of InsightMaker, both during class and in lab- this w
 
 Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including **ecosystems** analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations**.  
 
-By the end of this course, students will have the ability to program their own *whole-systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., Program MARK, **R**)
+By the end of this course, students will have the ability to program their own *whole-systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., **R**)
 
-A famous statistician ([George Box](https://en.wikipedia.org/wiki/George_E._P._Box)) once said ["All models are wrong but some are useful"](https://en.wikipedia.org/wiki/All_models_are_wrong). What he meant was that no model can perfectly describe any real-world system (e.g., population dynamics). However, some models can help us to undersand how the real-world works and how to manage natural systems.
+A famous statistician ([George Box](https://en.wikipedia.org/wiki/George_E._P._Box)) once said ["All models are wrong but some are useful"](https://en.wikipedia.org/wiki/All_models_are_wrong). What he meant was that no model can perfectly describe any real-world system (e.g., population dynamics). However, some models can help us to understand how the real-world works and how to manage natural systems.
 
 **This is especially true in ecology**: ecological systems are complex and messy, and it is clear that no mathematical model can perfectly describe and predict any ecological phenomena. But that does not mean that ecological models can't be *useful*!    
+
 In this class (and beyond), _don't be afraid to model messy systems_. And above all, **don't be afraid to be wrong** - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don't forget that all models are wrong!
 
 Of course, this means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.
 
 ## In-class Exercise: InsightMaker
 
-A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents *Moose*! *Moose Births* would then be the input [Flow] to the population of *Moose* over time. 
+A [Stock] of stuff increases over time via what [Flows In]. Imagine our stock represents *Moose*! *Moose Births* would then be the input [Flow In] to the population of *Moose* over time. 
 
-A [Stock] of stuff decreases over time via what [Flows] out. For example, *Moose Deaths* could represent the [Flow] out of the population of *Moose*.
+A [Stock] of stuff decreases over time via what [Flows out]. For example, *Moose Deaths* could represent the [Flow Out] of the population of *Moose*.
 
-If the [Flow] in is larger than the [Flow] out then the [Stock] increases over time. 
+If the [Flow In] is larger than the [Flow Out] then the [Stock] increases over time. 
 
-If the [Flow] out is larger than the [Flow] in then the [Stock] decreases over time.
+If the [Flow Out] is larger than the [Flow In] then the [Stock] decreases over time.
 
-If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time.
+If the [Flow In] equals the [Flow Out] then the amount in the [Stock] will not change over time.
 
 The important takeaway is that a [Stock] represents a quantity of something. The [Stock] only changes over time via [Flows In] or [Flows Out]. A [Stock] doesn't change instantaneously. If there are no [Flows] then the [Stock] can not change.
 
-Finally, a [Variable] is an object that stores an important piece of information for your model (e.g., birth rate could be a [Variable] that informs the total [Flow] of individuals into a [Stock] representing a wild population). [Variables] are generally connected to [Flows] with [Links] -- unlike [Flows], links do not represent any physical process. Instead, links simply represent *information*.   
+Finally, a [Variable] is an object that stores an important piece of information for your model (e.g., birth rate could be a [Variable] that informs the total [Flow In] of individuals into a [Stock] representing a wild population). [Variables] are generally connected to [Flows] with [Links] -- unlike [Flows], [Links] can not change the amount of stuff in a [Stock]. Instead, links simply represent transfer of *information* among model components.   
 
 1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
 
@@ -80,9 +81,7 @@ Finally, a [Variable] is an object that stores an important piece of information
 
 3. **Create a population of Moose!** Right click in the center of the screen and select **Create Stock** from the pop-up. Notice that the name is *New Stock* and is selected. Type in a name for what this [Stock] represents (Moose!). Note the **Configuration Panel** on the right is now for a [Stock]. In the configuration panel, set the *Initial Value* to 50. That is, there will be 50 moose at the start of the simulation! 
 
-- **OPTIONAL**: insert a picture of the animal you are modeling to your work canvas. The instructor will show you how in class!
-
-4. **Specify the births process** Select the [Flows/Transitions] button in the upper left corner of your screen. Now notice that when you place your cursor over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. Type in a name for what this arrow represents (Births). NOTE: you have actually just created a [Flow] *out* of a [Stock]. To create a [Flow] *into* a [Stock], click on the **Reverse** button in the top menu (looks like two opposing arrows). Please do that now. Also in the **Configuration Panel** set **Flow Rate** equal to 1.
+4. **Specify the births process** Select the [Flows/Transitions] button in the upper left corner of your screen. Now notice that when you place your cursor over the [Stock] a small right-arrow displays. Click on the right-arrow and drag a couple inches to the left of the [Stock] and release. Type in a name for what this arrow represents (Births). NOTE: you have actually just created a [Flow Out] of the [Stock]. To create a [Flow In] to the [Stock], click on the **Reverse** button in the top menu (looks like two opposing arrows). Please do that now. Also in the **Configuration Panel** set **Flow Rate** equal to 1.
 
 5. Now click **Run Simulation** and you have just finished your first population simulation model.
 
