@@ -320,7 +320,7 @@ To enable easy manipulation of these variables, change the **Show Value** Slider
 
 
 ##Checklist for Lab 1 completion
-*Please submit all files (Excel file, and R code as text file) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
+*Please submit all files (Excel file as attachment in Top Hat and R script as text pasted into Top Hat) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
 
 ***Due Feb. 4***
 
@@ -333,11 +333,11 @@ To enable easy manipulation of these variables, change the **Show Value** Slider
         -  *Submit Excel file (1e.)*   Your Excel file should show that you were able to successfully use formulas to calculate $N_t$ for each time step (year and half-year) and show a plot of $N$ by Time.
 
     +  **Exercise 2**
-        -  *Short answer (2a.)*
-        -  *Short answer (2b.)*
+        -  *Short answer and plot (2a.)*
+        -  *Short answer and plot (2b.)*
         -  *Short answer (2c.)*
         -  *Short answer (2d.)*
-        -  *Submit r script (2e.)*  Your R code should show that you were able to:        
+        -  *Copy and paste R code (2e.)*  Your R code should show that you were able to:        
             a. adapt the given code to run for 85 years, and can display a plot of the results;     
             b. change $r$ to 0.35 and run for 85 years and plot the results;     
             c. identify a value of $r$ that gives a population size of 1000 after 85 years; and     
@@ -345,7 +345,7 @@ To enable easy manipulation of these variables, change the **Show Value** Slider
 
     +  **Exercise 3**
         -  *Short answer (3a.)*
-        -  *Submit InsightMaker link*
+        -  *Submit InsightMaker link (3b.)*
 
 
 
