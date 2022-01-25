@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## What is density dependence (D-D)?
 
-Last week we went through the mathematics of exponential growth. This week we will explore basic models of **density dependence**. Exponential growth, as you have seen, leads to craziness. It is not sustainable. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits. 
+As part of Lab 1 we went through the mathematics of exponential growth. This week we will explore basic models of **density dependence**. Exponential growth, as you have seen, leads to craziness. It is not sustainable. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits. 
 
 **Density**: In D-D, *density* basically refers to the number of conspecific individuals that you are competing with for food and other resources. The more you compete with others of your own species, the less favorable your **vital rates** (e.g., per-capita death rate, *d*, increases or per-capita birth rate, *b*, decreases)! As *N* goes up, vital rates take a turn for the worse. 
 
@@ -23,9 +23,9 @@ Last week we went through the mathematics of exponential growth. This week we wi
 
 First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increases mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That's right- it is a *negative feedback*! Which is also known as a *stabilizing feedback*. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa. 
 
-Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate. In population ecology (and especially fisheries science), the latter is often called *compensatory growth*! You can't have a regulated population without some kind of negative feedback. 
+Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate (*compensatory growth*). You can't have a regulated population without some kind of negative feedback. 
 
-**thought Q**: What are some possible mechanisms of density-dependence? That is, why could vital rates become less favorable at higher densities?
+**thought Q**: What are some possible mechanisms for density-dependence? That is, why could vital rates become less favorable at higher densities?
 
 **thought Q**: Are all wild populations regulated? Is density-dependent population regulation a "law of nature"?
 
@@ -37,7 +37,7 @@ $\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
 
 This is probably the *second most important equation of population ecology* (after basic exponential growth!). 
 
-We will go into more detail in lab, but Let's break this equation down a bit. 
+We will go into more detail in lab, but let's break this equation down a bit. 
 
 The first part of this equation looks familiar, right?
 
@@ -166,7 +166,6 @@ Your model should look something like this! (if you don't already have a model l
 **Q:** What happens if population size starts out *at* carrying capacity?  [tophat]  
 **Q:** What happens if population size starts out *above* carrying capacity? [tophat]    
 **Q:** Is this a stable equilibrium? [tophat]    
-**Q:** Can a wild population ever be at a non-stable equilibrium? What about a stable equilibrium? Why is it important to know about non-stable equilibria?
 
 8. Consider the basic logistic growth equation:   
 
@@ -182,9 +181,6 @@ Make your initial population size very small compared to carrying capacity.
 **Q:** Which population is more likely to be found at or near K in nature? A population with very large $r$ or very small $r$?     
 **Q:** How does this discussion relate to the concept of "r-selected" and "K-selected" species?
  
-
-**Q:** Is a high value of $r$ good or bad for conservation?
-
 
 
 [--go to next lecture--](LECTURE5.html)
