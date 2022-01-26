@@ -467,7 +467,7 @@ div.tocify {
 <blockquote>
 <p>“I think I may make fairly two postulata. First, that food is necessary to the existence of man. Secondly, that the passion between the sexes is necessary and will remain nearly in its present state … Assuming then my postulata as granted, I say, that the power of population is indefinitely greater than the power in the earth to produce subsistence for man. Population, when unchecked, increases in a <em>geometrical ratio</em>. Subsistence increases only in an <em>arithmetical ratio</em>. A slight acquaintance with numbers will show the immensity of the first power in comparison of the second. By the law of our nature which makes food necessary to the life of man, the effects of these two unequal powers must be kept equal. This implies a strong and constantly operating check on population from the difficulty of subsistence. This difficulty must fall somewhere and must necessarily be severely felt by a large portion of mankind…”</p>
 </blockquote>
-<p>Finally, his economic argument can be summed up as follows:</p>
+<p>Finally, his argument can be summed up as follows:</p>
 <ol style="list-style-type: decimal">
 <li>There are always hard limits to (human) population growth, and these limits have to do with food availability,</li>
 <li>When there is more food available, humans will tend to apply that toward increased reproduction,</li>
@@ -479,7 +479,7 @@ div.tocify {
 </blockquote>
 <p><strong>Discussion Question:</strong> Was Malthus right? For humans? For wildlife? Can you think of any examples for or against?</p>
 <p><img src="darwin1.jpg" /></p>
-<p>Interestingly, in 1838 (four years after Malthus’ death), Charles Darwin, just back from his trip on HMS Beagle (1831–1836), was searching for possible mechanisms to explain the origin of species. On reading Malthus’ <em>Essay on the principle of population</em>, he realized one of the possible implications of the checks that controlled population growth (i.e., that the power of exponential growth means that many individuals will be born that won’t be able to survive to adulthood due to resource limitations) and wrote:</p>
+<p>Interestingly, in 1838 (four years after Malthus’ death), Charles Darwin, just back from his trip on HMS Beagle (1831–1836), was searching for possible mechanisms to explain the origin of species. On reading Malthus’ <em>Essay on the principle of population</em>, he realized one of the possible implications of the checks that controlled population growth (i.e., that the power of exponential growth, confronted with hard resource limitations, implies a ‘population surplus’ destined to die early) and wrote:</p>
 <blockquote>
 <p>‘…favourable variations would tend to be preserved, and unfavourable ones to be destroyed … The result of this would be the formation of a new species. Here, then, I had at last got a theory by which to work.’ - Charles Darwin</p>
 </blockquote>
@@ -499,11 +499,11 @@ Else
   0.99
 End If</code></pre>
 <ol style="list-style-type: decimal">
-<li><p>Put together a basic exponential-growth model for a new [Stock] named <em>Humans</em> (or just clone and modify a basic exponential growth model with birth and death rate). This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>Humans</em> and per-capita rate constants, respectively called <em>Birth rate</em> and <em>Death rate</em> (each defined on the canvas as [Variables]). This model is identical to the one you made in lab last week.</p></li>
+<li><p>Put together a basic exponential-growth model for a new [Stock] named <em>Humans</em> (or just clone and modify a basic exponential growth model with birth and death rate). This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>Humans</em> and per-capita rate constants, respectively called <em>Birth rate</em> and <em>Death rate</em> (each defined on the canvas as [Variables]). This model is identical to one of the models you will (or have already made) in lab 1.</p></li>
 <li><p>Initialize the population of <em>Humans</em> to 1000. Set the <em>Birth rate</em> to 0.1 (humans produced per human per year). Set the <em>Death rate</em> to 0.01 (humans lost per human per year). Change the settings so that the simulation runs for 100 years.</p></li>
 <li><p>Run this model, make sure it behaves like you would expect it to (yielding exponential growth!). How many humans are there after 100 years?</p></li>
 <li><p>Now make a new [Stock] called <em>Limit</em>, representing the population limit for <em>Humans</em>. This could, for instance, represent the <em>maximum number of humans that could be supported indefinitely if all arable land were cultivated with the most energy-rich crop possible</em>. Initialize the “Limit” to half a million.</p></li>
-<li><p>In preparation for implementing the “famine” condition (death rate increases to 99% if <em>Humans</em> exceeds <em>Limit</em>), create new <strong>Links</strong> from <em>Humans</em> to <em>Death rate</em> and from <em>Limit</em> to <em>Death rate</em>. Your canvas should look something like the image below:</p></li>
+<li><p>In preparation for implementing the “famine” condition (death rate increases to 99% if <em>Humans</em> exceeds <em>Limit</em> – otherwise remains at 1%), create new <strong>Links</strong> from <em>Humans</em> to <em>Death rate</em> and from <em>Limit</em> to <em>Death rate</em>. Your canvas should look something like the image below:</p></li>
 </ol>
 <p><img src="IM4.jpg" /></p>
 <ol start="6" style="list-style-type: decimal">
