@@ -190,17 +190,21 @@ Depending on whether you are already familiar with R, you may also find the rema
 
 For a more detailed tutorial, see my "R Bootcamp" website: [https://kevintshoemaker.github.io/R-Bootcamp/](https://kevintshoemaker.github.io/R-Bootcamp/)!
 
-### Set up the workspace
+### Set up the workspace/environment
 
-The first thing we usually do when we start an R session is we set up the workspace. That is, we load **packages** (extensions), assign key parameters and initialize variables. When you write code, always type in the "script" window in Rstudio. You can execute commands using command-enter or control-enter in Rstudio. 
+The first thing we usually do when we start an R session is we:       
 
-In this case, setting up the workspace is easy. We just need to define our parameter of interest - $r$ -, and set up a **vector** to represent the years of interest. 
+1. Open an new or existing RStudio Project
+2. Open a new or existing **script**
+3. In the script, define key variables and functions, and load any additional **packages** (extensions) into our environment (or workspace). When you write code, always type in the "script" window in Rstudio. You can execute commands using command-enter or control-enter in Rstudio. 
+
+In this lab, setting up the workspace is easy. We don't need to load any packages or define any new functions. We just need to define our parameter of interest - $r$ -, and set up a **storage vector** to store population abundance over time. 
 
 We can store data in memory by assigning it to an "object" using the assignment operator **<-**. For example, this would assign the object "x" the value of 5.  
 
 ```{r eval=FALSE}
-x <- 5     #Assign the value of 5 to the object "x"
-x          #Print the value of the object "x"
+x <- 5     # define the variable 'x' as representing the value 5
+x          # Print the value stored in the object "x"
 ```
 
 Note that any text after a pound sign (#) is not evaluated by R. These are *comments* and are intended to help you follow the code. You should always include comments in any code that you write- we humans tend to read and understand written language better than computer code!
@@ -209,7 +213,7 @@ Let's assign our per-capita population growth rate, $r$ (but this could be calle
 
 ```{r}
 r <- 0.1     #Assign the value of 0.1 to the object "r", or per-capita growth rate (discrete)
-lambda <- 1+r  # define lambda
+lambda <- 1 + r           # (1 + r) is equal to lambda, the finite rate of growth.  This stores the result of the calculation (1 + 0.1 = 1.1) in the object "lambda".
 N0 <- 100    #Assign the value of 100 to the object "N0", or initial population size
 nyears <- 30 #Assign the value of 30 to the object "nyears", or the number of time steps to simulate
 ```
@@ -222,9 +226,9 @@ N0 * lambda   #Multiplies the value stored in the object "N0" by lambda. As soon
 How can we find the population size for the next 30 years? Let's first make an object that is a vector of years using the **seq()** or "sequence" function.
 ```{r}
 
-years <- seq(from=0, to=nyears, by=1)   #Creates a sequence of numbers from 0 to the value stored in the object "nyears" (in this case, 50). Because you've told this sequence to increment by 1, you've created a string of numbers from 0 - 50 that contains 51 elements. A single series of elements (e.g., a single column of numbers) is called a vector. You then assign this vector to the object "years".
+year <- seq(from=0, to=nyears, by=1)   #Creates a sequence of numbers from 0 to the value stored in the object "nyears" (in this case, 50). Because you've told this sequence to increment by 1, you've created a string of numbers from 0 - 50 that contains 51 elements. A single series of elements (e.g., a single column of numbers) is called a vector. You then assign this vector to the object "years".
 
-years                                   #Print the value of the object "years" that you just created.
+year                                   #Print the value of the object "years" that you just created.
 
 ```
 
@@ -233,6 +237,8 @@ Now, let's build a storage structure to store simulated population size over thi
 ```{r}
 
 N <- numeric(nyears+1)    #Make an empty storage vector. The numeric() function takes the contents within the parentheses and converts those contents to the "numeric" class. Don't worry if this doesn't make sense -- what you need to know is that the value within the parentheses (in this case, 50+1=51) is used to tell this function how many zeros to create. So, this line of code creates a vector of 51 zeros, and assigns that vector to the object "N".
+
+names(N) <- year
 
 N                         #Prints the contents of the object "N".
 
@@ -246,10 +252,8 @@ Then we can use a **for loop** (a very powerful computer programming trick) to a
 ```{r}
 N[1] <- N0                # The brackets [] are used to indicate the position of an element within a vector. This line of code assigns the value of the object "N0" (100) to the first element in the "N" object. Remember, the "N" object is a vector of 51 zeros. Now, the first zero is changed to 100.
 
-lambda <- 1 + r           # (1 + r) is equal to lambda, the finite rate of growth.  This stores the result of the calculation (1 + 0.1 = 1.1) in the object "lambda".
-
-for (i in 2:(nyears+1)){  # This for-loop will run through the line of code between the curly brackets {}. "i" is simply the name of a variable (you can use "j", or "k", instead -- any variable name will do). "i" changes each time the loop iterates; basically, it will increase by 1 each time the loop is run, starting at "2" up until the specified maximum number of loops "50+1". 
-  N[i] <- lambda*N[i-1]   # This takes the [i - 1] element of "N", multiplies that element by the value of lambda, then assigns that calculated result to the [i] element of "N".
+for (i in 2:(nyears+1)){  # This for-loop will run through the line of code between the curly brackets {}. "i" is simply the name of a variable (you can use "j", or "k", instead -- any variable name will do). "i" changes each time the loop iterates; basically, it will increase by 1 each time the loop is run, starting at "2" up until the specified maximum number of loops "nyears+1". 
+  N[i] <- N[i-1] * lambda  # This takes the [i - 1] element of "N", multiplies that element by the value of lambda, then assigns that calculated result to the [i] element of "N".
 }                         # This ends the for-loop.
 
 N                         # Now print the contents of the object "N".
@@ -268,11 +272,11 @@ plot(N~years)   #This plot() function tells R to plot the y variable by the x va
 
 Please provide short answers to the following questions. You will also be asked to **provide your R code via tophat to back up your answers**.
 
-*  ***Short answer (2a.)*** Tweak the above code to run for 85 years. Plot your results (abundance vs time). What is the final population size at year 85? 
+*  ***Short answer (2a.)*** Modify the above code to run for 85 years. Plot your results (abundance vs time). What is the final population size at year 85? 
 
 *  ***Short answer (2b.)*** Change r to 0.35 and run again for 85 years (and plot the results). What is the final population size now? Include your plot as part of your answer (abundance vs time). 
 
-*  ***Short answer (2c.)*** Try to tweak the value of $r$ such that the final population size after 85 years is 1000. What is the value of $r$? After you solve it by trial and error, try to solve this problem analytically using Eq. 10. Show your calculations.
+*  ***Short answer (2c.)*** Try to modify the value of $r$ such that the final population size after 85 years is 1000 (initial population size stays at 100). What is the value of $r$? After you solve it by trial and error, try to solve this problem analytically using Eq. 10. Show your calculations.
 
 *  ***Short answer (2d.)*** Change the value of $r$ to -0.08. How long until the population goes extinct? NOTE: please define extinction as <1 individual in the population- a fraction of an individual is not much of a population! Finally, propose one alternative definition of extinction and justify why this definition might make more sense than the definition stated above (feel free to use a real-world example).   
 
@@ -308,11 +312,13 @@ Can you already tell whether this is a growing or declining population? (just a 
 
 Please provide short answers to the following questions, and (when prompted) **provide your "Insights" to back up your answers**.
 
-First, tweak the above model so that per-capita (discrete) birth rate ($b_d$) and death rate ($d_d$) are separate elements of the model (using the "Variable" primitive). Your Insight should look something like this:
+First, modify the above model so that per-capita (discrete) birth rate ($b_d$) and death rate ($d_d$) are separate elements of the model (using the "Variable" primitive). Your Insight should look something like this:
 
 ![](IM3.png)
 
-To enable easy manipulation of these variables, change the **Show Value** Slider option of *Birth Rate* (in the properties window for this Variable) to Yes.  Change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01.  Do the same for *Death Rate* and *Population* (initial abundance $N_0$). For abundance, set the maximum slider value to 1000 and set the slider step size to 1 so we don't have fractional individuals! Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with your instructor and TA (save as a "public insight" and insert URL in the appropriate place in Top Hat). 
+To enable easy manipulation of these variables, change the **Show Value Slider** options for *Birth Rate* and *Death Rate* (in the properties windows for these variables) to 'Yes'. For both of these two variables, change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01. For *Population*, set the **Show Value Slider** option to 'Yes'; for this slider (which represents initial abundance $N_0$), set the maximum slider value to 1000 and set the slider step size to 1 so we don't have fractional individuals!  
+
+Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with your instructor and TA (save as a "public insight" and insert URL in the appropriate place in Top Hat). 
 
 **Clone** your previous Insight before you move on to the next problem (otherwise any changes you make will carry over to your answer to the previous problem!). The "Clone Insight" link is located in the upper right corner. In general, always clone your Insights after you have copied a link to an insight into your lab write-up. That way, you won't inadvertently change a model before your instructors have a chance to verify you did everything right!  
 
