@@ -265,7 +265,7 @@ N                         # Now print the contents of the object "N".
 Let's plot our population size against time.
 
 ```{r}
-plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "years" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
+plot(N~year)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "year" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
 ```
 
 ### Exercise 2 (R-related problems)
@@ -325,8 +325,8 @@ Now click on the white space of your model; you should now see the Birth Rate, P
 *  ***Short answer (3a.)*** Starting with a growing population, can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions (ie, starting with the version you just submitted)? Explain your answer. 
 
 
-##Checklist for Lab 1 completion
-*Please submit all files (Excel file as attachment in Top Hat and R script as text pasted into Top Hat) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
+## Checklist for Lab 1 completion
+* Please submit all files (Excel file as attachment in Top Hat and R script as text pasted into Top Hat) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
 
 ***Due Feb. 4***
 
