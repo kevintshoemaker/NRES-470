@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## What is density dependence (D-D)?
 
-As part of Lab 1 we went through the mathematics of exponential growth. This week we will explore basic models of **density dependence**. Exponential growth, as you have seen, leads to craziness. It is not sustainable. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits. 
+As part of Lab 1 we went through the mathematics of exponential growth. This week we will explore basic models of **density dependence**. Exponential growth, as you have seen, leads to a runaway 'snowball effect'. It is not **sustainable**. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits. 
 
 **Density**: In D-D, *density* basically refers to the number of conspecific individuals that you are competing with for food and other resources. The more you compete with others of your own species, the less favorable your **vital rates** (e.g., per-capita death rate, *d*, increases or per-capita birth rate, *b*, decreases)! As *N* goes up, vital rates take a turn for the worse. 
 
@@ -25,9 +25,9 @@ First of all, we mentioned in our systems ecology discussion that positive feedb
 
 Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate (*compensatory growth*). You can't have a regulated population without some kind of negative feedback. 
 
-**thought Q**: What are some possible mechanisms for density-dependence? That is, why could vital rates become less favorable at higher densities?
+**thought Q**: What are some possible reasons why vital rates become less favorable at higher densities?
 
-**thought Q**: Are all wild populations regulated? Is density-dependent population regulation a "law of nature"?
+**thought Q**: Is density-dependent population regulation a "law of nature"?
 
 ## Logistic growth
 

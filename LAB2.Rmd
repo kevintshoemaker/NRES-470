@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Density-dependence and more!"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will get familiar with are *density dependence*, *chaos* and *time delays*.  
+In this lab we will have an opportunity to build more complex population models in InsightMaker. The most fundamental concept we cover in this lab is *density dependence*, but we will also look at concepts like *chaos* and *time delays*.  
 
 First let's do some math!
 
@@ -58,7 +58,7 @@ This is called the **Logistic population growth equation**. This lab will give u
 
 Please provide short answers to the following questions:
 
-1a. Tell a plausible story about two (possibly hypothetical) wildlife populations, one of which experiences *lower survival* (higher mortality) as densities increase and another that experiences *lower reproduction*. In 2-3 sentences (for each of your two hypothetical populations), describe the mechanism(s) underlying the reduction in vital rates for your hypothetical populations. Be creative- we will not grade these on whether these mechanisms actually occur in nature- we just want to give you a chance to think about the many possible mechanisms that could potentially regulate wild populations. You can use real-world examples if you would rather- that is up to you.   
+1a. Tell a plausible story about two (possibly hypothetical) wildlife populations, one of which experiences *lower survival* (higher mortality) as densities increase and another that experiences *lower reproduction*. In 2-3 sentences (for each of your two hypothetical populations), describe the mechanism(s) underlying the reduction in vital rates for your hypothetical populations. Be creative- we just want to give you a chance to think about the many possible mechanisms that could potentially regulate wild population in ecological systems. You can use real-world examples if you would rather- that is up to you.   
 
 1b. For _one of the above mechanisms_, draw (electronically-see below for an easy way to do this) two graphs to illustrate how this hypothetical mechanism might manifest at a population level:         
 
@@ -67,7 +67,7 @@ Please provide short answers to the following questions:
   
 For each graph, provide a short (1-2 sentences) description of why you think your hypothetical D-D mechanism would result in this relationship!  
 
-NOTE: you can use a web app like ["A web whiteboard"](https://awwapp.com/) to quickly and easily make and save sketches! I encourage you to use this method, and to embed your sketches in your Top Hat answer.
+NOTE: you can use a web app like ["Web whiteboard"](https://webwhiteboard.com/) to quickly and easily make and save sketches! I encourage you to use this method, and to embed your sketches in your Top Hat answer.
 
 
 ## Exercise 2: Determining Peruvian anchovy optimal harvest levels!
@@ -124,32 +124,32 @@ legend("topleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate
 
 4.  Next, you'll need to update the equations to calculate the per-capita birth and death rates. Click on the **=** sign in the corner of each variable, and enter the appropriate equations for the appropriate rates (see above):
 
-5.  Enter starting values for your variables. Let's use 8,125 for the initial *Anchovy Population*, 0.9 for the *Ideal Birth Rate* (maximum  birth rate), 0.00006 for *Density Dependence* for birth rate, 0.25 for *Ideal Death Rate*, and 0.00002 for *Density Dependence* for death rate.
+5.  Enter starting values for your variables. Let's use 5500 for the initial *Anchovy Population*, 0.85 for the *Ideal Birth Rate* (maximum  birth rate), 0.00007 for *Density Dependence* for birth rate, 0.3 for *Ideal Death Rate*, and 0.00003 for *Density Dependence* for death rate.
 
-6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis. Run the model to see if it is working. _Since the abundance is initialized at carrying capacity (K), abundance should not change over time_. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an "S-shaped" logistic growth curve. Once you have confirmed that you see S-shaped growth, return the initial population size to 8,125. 
+6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis. Run the model to see if it is working. _Since the abundance is initialized at carrying capacity (K), abundance should not change over time_. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an "S-shaped" logistic growth curve. Once you have confirmed that you see S-shaped growth, return the initial population size to 5500. 
 
-7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a given number are harvested each year, regardless of the size of the population (no feedback!).
+7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a constant number are harvested each year, regardless of the size of the population (no feedback!).
 
 8. One last thing before we play around with harvest rates: in the properties menu for the anchovy stock, set the property **Allow Negatives** to "No" (the default is "Yes"). We don't want to harvest the population into negative numbers!!!
 
-9.  Finally, try to find the **maximum sustainable yield (MSY)** for this population. That is, find the *maximum harvest rate* that results in a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 200 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! 
+9.  Finally, try to find the **maximum sustainable yield (MSY)** for this population. That is, find the *maximum harvest rate* that results in a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 100 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! 
 
 
 ### QUESTIONS, Exercise 2:
 
-2a. What is the (approximate) MSY for this population (here, the maximum number of individuals that can be harvested sustainably each month)?  [HINT: you might want to increase the simulation length to make sure it's really sustainable!]  [HINT: the answer is not one half of carrying capacity. However, when you harvest the population at its maximum sustainable rate, the new equilibrium population size will be half of carrying capacity!]
+2a. What is the (approximate) maximum sustainable yield (MSY) for this population (i.e., the maximum number of individuals that can be harvested sustainably each month)?  [HINT: you might want to increase the simulation length to make sure it's really sustainable!]  [HINT: the answer is not one half of carrying capacity. However, when you harvest the population at its maximum sustainable rate, the new equilibrium population size will be half of carrying capacity!]
 
 2b. Does the harvest process change the **carrying capacity** (total number of individuals that can be supported sustainably in this system) for the Peruvian anchovies? Explain your reasoning. 
 
-2c. Does the MSY change if you reduce the initial population size down to 1,000 instead of 8,125? If so, what is the new MSY? 
+2c. Does the maximum number of individuals you can harvest each month (MSY) change if you reduce the initial population size to 1000 instead of 5500? If so, what is the new MSY? 
 
-2d. Does the equilibrium point from your answer for 2a (the equilibrium point for the anchovy system with harvest set to MSY) represent a **stable equilibrium**? That is, does the total anchovy abundance return to the same equilibrium condition even if you alter the initial conditions of the model (i.e., alter the initial abundance by making it lower or higher)? Why? Why not? Include one or more plots from InsightMaker to illustrate. [HINT: set the initial abundance to the equilibrium point at MSY. Then try altering the initial abundance in various ways and try re-running the model. Does abundance return to the same equilibrium point, or to a new equilibrium?]
+2d. Does the equilibrium point from your answer for 2a (the equilibrium point for the anchovy system with harvest set to MSY) represent a **stable equilibrium**? That is, does the total anchovy abundance return to the same equilibrium condition even if you alter the initial anchovy abundance (i.e., try altering initial abundance by making it lower or higher and see what happens)? Why? Why not? Include one or more plots from InsightMaker to illustrate. [HINT: first set the initial abundance to the equilibrium abundance at MSY. Then try setting the initial abundance a little higher/lower and re-run the model. Does abundance return to the same equilibrium point -- or to a new equilibrium?]
 
-2e. If you were managing this Peruvian anchovy system, would you recommend that catch limits be set at the MSY you determined in part 2a? Why or why not? (More generally, is it sustainable to harvest at the maximum 'sustainable' rate?). Consider the fact that population vital rates (birth and death rates) in real systems exhibit *stochasticity* (random fluctuations) and that we never know population vital rates (e.g., the intrinsic rate of growth, density dependence parameters) with complete certainty.  
+2e. If you were managing this Peruvian anchovy system, would you recommend that harvest limits be set at the MSY level you determined in part 2a? Why or why not? (More generally, is it sustainable to harvest a population at the maximum 'sustainable' rate?). Consider the fact that population vital rates (birth and death rates) in real systems exhibit *stochasticity* (random fluctuations) and that we never know population vital rates (e.g., the intrinsic rate of growth, birth and death rates, density dependence parameters) with complete certainty.  
 
-2f. Think back to your Wildlife Ecology and Management course. If you know $K$ and $r$ (intrinsic, or maximum, rate of growth for the population), how can you analytically solve for **Maximum Sustainable Yield** (maximum number of individuals that can be harvested sustainably)? Show your calculations. Does your computed MSY (maximum sustainable harvest rate) match the MSY you found by trial-and-error? (HINT: $r$ in this case is the difference between the maximum birth rate and the minimum death rate! Also, note that the population should have its highest growth potential at 1/2 of K [e.g., K/2]). 
+2f. Think back to your Wildlife Ecology and Management course. If you know $K$ and $r$ (intrinsic, or maximum, rate of growth for the population), how can you analytically solve for **Maximum Sustainable Yield** (maximum number of individuals that can be harvested sustainably)? Show your calculations. Does your analytical solution for MSY (maximum sustainable harvest rate) match the MSY you found by trial-and-error? (HINTS: use equation 6 as a starting point. Note that $r$ in this case is the difference between the maximum birth rate and the minimum death rate! Also, note that the population should have its highest growth potential at 1/2 of K [e.g., K/2]). 
 
-**NOTE**: remember to copy the URL for your Insight (saved as a Public Insight), insert the URL into Top Hat in the appropriate place. And don't make any more changes to this insight once you have submitted it (clone it if you want to keep making changes)!   
+**NOTE**: remember to copy the URL for your Insight (saved as a Public Insight), insert the URL into Top Hat in the appropriate place. And don't make any more changes to this insight once you have submitted it (use a 'cloned' version if you want to keep making changes)!   
 
 ## Exercise 3: basic logistic growth model
 
@@ -157,11 +157,11 @@ For this exercise we will set up a simpler model in InsightMaker- this time, we 
 
 1. Starting from a blank canvas, add a [Stock] called *Population*. This population should be initialized at 10 individuals, and the *Allow Negatives* field in the properties window should be set to "No" (doesn't make sense to have negative numbers of individuals in the population). Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 1000 (with a slider step of 1). 
 
-2. Make a new [Flow] coming out of *Population*, called *Delta N*. In the properties window, set *Only Positive Rates* to "No". You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in *Population* each time step, which can either be positive or negative! [NOTE: the _tiny white triangle in one of the two arrow heads should be facing **out**_ -- this means that a positive value for the flow will mean an addition to the population and a negative flow will be a subtraction from the population]
+2. Make a new [Flow] coming out of *Population*, called *Delta N*. In the properties window, set *Only Positive Rates* to "No". You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in *Population* each time step (delta N!), which can either be positive or negative! [NOTE: the _tiny white triangle in one of the two arrow heads should be facing **out**_ -- this means that a positive value for the flow will mean an addition to the population and a negative flow will be a subtraction from the population]
 
-3. Make a new [Variable] called *Max growth rate* (also known as $r_{max}$), and set it at 0.1. Make a link from *Max growth rate* to *Delta N*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5. 
+3. Make a new [Variable] called *Max growth rate* (also known as $r_{max}$), and set it at 0.15. Make a link from *Max growth rate* to *Delta N*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5. 
 
-4. Make a new [Variable] called *Carrying capacity* (also known as $K$), and set it at 600. Make a link from *Carrying Capacity* to *Delta N*.
+4. Make a new [Variable] called *Carrying capacity* (also known as $K$), and set it at 650. Make a link from *Carrying Capacity* to *Delta N*.
 
 5. Finally, open the equation editor for *Delta N* and type in the logistic growth equation (**Eq. 6**). 
 
@@ -170,17 +170,14 @@ For this exercise we will set up a simpler model in InsightMaker- this time, we 
 
 ### QUESTIONS, Exercise 3:
 
-3a. What happens if you initialize the *Population* at above carrying capacity? Do you still see "S-shaped" (logistic) growth? What if you initialize abundance **at** carrying capacity? Is carrying capacity a **stable equilibrium**? Explain your reasoning (include plots from InsightMaker to illustrate). [NOTE: this should be easy because you already should have addressed this in the 'population regulation' lecture page on Top Hat!] [HINT: remember, when testing if an equilibrium is stable or not, first initialize the population at the equilibrium point and verify that the population neither grows or declines. Next, 'perturb' the system by changing the initial abundance and run the model again to see if it returns to the equilibrium state!]. 
+3a. Is carrying capacity a **stable equilibrium**? Explain your reasoning. [NOTE: you already addressed this in the 'population regulation' lecture page on Top Hat!] [HINT: remember, when testing if an equilibrium is stable or not, first initialize the population at the equilibrium point and verify that the population neither grows or declines. Next, 'perturb' the system by changing the initial abundance and run the model again to see if it returns to the equilibrium state!]. 
 
-3b. Return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes in your 'abundance over time' plots as the growth rate increases from 1 to 5? You should be able to identify _at least_ four unique patterns of population dynamics! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as **Chaos** (yes, that is the technical name)!! Can you figure out which pattern is known as chaos?? Provide four plots -- one that illustrates each of the four unique patterns you identified. 
+3b. Return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes in your 'abundance over time' plots as the growth rate increases from 1 to 5? You should be able to identify _at least_ four unique patterns of population dynamics! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as **Chaos** (yes, that is the technical name)!! Can you figure out which pattern is known as chaos?? Provide *four plots* -- one that illustrates each of the four unique patterns you identified. 
 
-3c. Can you figure out why the patterns in question 3b emerge? This may be somewhat difficult, but try to come up with an explanation for the differences you observe in population dynamics as the rate of growth (*Max Growth Rate*) changes. 
-
-3d. Can you think of a hypothetical or real-world case where **chaos** could emerge as a result of density-dependent processes? Be creative, and explain your reasoning!
 
 **NOTE**: remember to copy the URL for your Insight, insert the URL in the appropriate place on Top Hat. And don't make any more changes to this insight once you have submitted it (clone it if you want to keep making changes)!
 
-## Exercise 4: delayed density-dependence! [extra credit!]
+## Exercise 4: delayed density-dependence! [optional- not part of the 'official' lab]
 
 What happens when the effects of resource competition are delayed? In this case, the effects of competition (reduction in fitness) will not manifest immediately- but will emerge later down the road!
 
@@ -205,11 +202,11 @@ The second "Population" in this function is there just to help the simulation ge
 ```
 
 
-### QUESTIONS, Exercise 4: [NOTE: these are extra credit]
+### OPTIONAL QUESTIONS, Exercise 4: [NOTE: these are not part of the 'official' lab and do not count toward your Lab 2 grade]
 
-4a. Run the model with different values for the time delay. How does the system behave with a time delay? Do you see any similarities with exercise 3? 
+4a (optional). Run the model with different values for the time delay. How does the system behave with a time delay? Do you see any similarities with exercise 3? 
 
-4b. Parasitoid wasps help to keep many lepidopteran populations in check. The wasps lay their eggs in caterpillars, and the caterpillars end up dying a horrific death as the wasp larva grows. Wasp parasitism on caterpillar populations often results in delayed density-dependence -- which in turn results in oscillations in caterpillar populations. Can you think of why this might be the case? Explain your reasoning. 
+4b (optional). Parasitoid wasps help to keep many lepidopteran populations in check. The wasps lay their eggs in caterpillars, and the caterpillars end up dying a horrific death as the wasp larva grows. Wasp parasitism on caterpillar populations often results in delayed density-dependence -- which in turn results in oscillations in caterpillar populations. Can you think of why this might be the case? Explain your reasoning. 
 
 
 
@@ -235,12 +232,7 @@ Your lab answers and pertinent figures, tables and InsightMaker links (make sure
     +  **Exercise 3**
         -  *Short answer (3a.)*
         -  *Short answer (3b.)*
-        -  *Short answer (3c.)*
-        -  *Short answer (3d.)*
         
-    +  **Exercise 4** [extra credit]
-        -  *Short answer (4a.)*
-        -  *Short answer (4b.)*
 
 *  InsightMaker models
     +  **Exercises 2,3 and 4**
