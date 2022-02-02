@@ -459,15 +459,15 @@ div.tocify {
 
 <div id="what-is-density-dependence-d-d" class="section level2">
 <h2>What is density dependence (D-D)?</h2>
-<p>As part of Lab 1 we went through the mathematics of exponential growth. This week we will explore basic models of <strong>density dependence</strong>. Exponential growth, as you have seen, leads to craziness. It is not sustainable. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits.</p>
+<p>As part of Lab 1 we went through the mathematics of exponential growth. This week we will explore basic models of <strong>density dependence</strong>. Exponential growth, as you have seen, leads to a runaway ‘snowball effect’. It is not <strong>sustainable</strong>. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits.</p>
 <p><strong>Density</strong>: In D-D, <em>density</em> basically refers to the number of conspecific individuals that you are competing with for food and other resources. The more you compete with others of your own species, the less favorable your <strong>vital rates</strong> (e.g., per-capita death rate, <em>d</em>, increases or per-capita birth rate, <em>b</em>, decreases)! As <em>N</em> goes up, vital rates take a turn for the worse.</p>
 </div>
 <div id="regulation" class="section level2">
 <h2>Regulation!</h2>
 <p>First of all, we mentioned in our systems ecology discussion that positive feedbacks are not sustainable, because increases mean faster increases, mean faster increases, etc. (a vicious circle). Density dependence is a kind of feedback, but it is NOT a positive feedback. That’s right- it is a <em>negative feedback</em>! Which is also known as a <em>stabilizing feedback</em>. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa.</p>
 <p>Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate (<em>compensatory growth</em>). You can’t have a regulated population without some kind of negative feedback.</p>
-<p><strong>thought Q</strong>: What are some possible mechanisms for density-dependence? That is, why could vital rates become less favorable at higher densities?</p>
-<p><strong>thought Q</strong>: Are all wild populations regulated? Is density-dependent population regulation a “law of nature”?</p>
+<p><strong>thought Q</strong>: What are some possible reasons why vital rates become less favorable at higher densities?</p>
+<p><strong>thought Q</strong>: Is density-dependent population regulation a “law of nature”?</p>
 </div>
 <div id="logistic-growth" class="section level2">
 <h2>Logistic growth</h2>
@@ -510,7 +510,7 @@ b &lt;- b_max - a*Density
 d &lt;- d_min + c*Density
 
 plot(Density,b,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,ylim=c(0,1),main=&quot;Density-Dependence!&quot;,ylab=&quot;b or d&quot;)
-points(Density,d,type=&quot;l&quot;,col=&quot;red&quot;,lwd=2)
+lines(Density,d,col=&quot;red&quot;,lwd=2)
 axis(4,at=seq(0,1,0.2))
 #mtext(&quot;d&quot;,4)
 legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1),legend=c(&quot;per-capita birth rate&quot;,&quot;per-capita mortality&quot;),bty=&quot;n&quot;)</code></pre>
@@ -538,34 +538,33 @@ legend(&quot;bottomleft&quot;,col=c(&quot;green&quot;,&quot;red&quot;),lty=c(1,1
 - [Density dependence on fecundity] (a) = 0.001    
 - [Density dependence on mortality] (c) = 0.0005  </code></pre>
 <pre><code>EQUATIONS
-- [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Turtles] 
-- [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Turtles] </code></pre>
+- [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Abundance] 
+- [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Abundance] </code></pre>
 <p>How can we do this in InsightMaker?</p>
 <ol style="list-style-type: decimal">
-<li><p>Load a basic exponential-growth model. Rename the main [Stock] <em>Box Turtles</em>. This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>turtles</em> and per-capita rates, respectively called <em>Births per capita</em> and <em>Deaths per capita</em> (each defined on the canvas as [Variables]). This model should be very familiar!!</p></li>
+<li><p>Load a basic exponential-growth model. Rename the main [Stock] <em>Turtles</em>. This [Stock] should have two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should be defined as the product of <em>turtles</em> and per-capita rates, respectively called <em>Births per capita</em> and <em>Deaths per capita</em> (each defined on the canvas as [Variables]). This model should be very familiar!!</p></li>
 <li><p>Initialize the population of <em>Turtles</em> to 5 (way below carrying capacity).</p></li>
 <li><p>Make four new [Variables] on the canvas, to represent the four constants in our model.</p></li>
 <li><p>Set the <em>Maximum per-capita birth rate</em> to 0.8 (turtles produced per turtle per year). Set the <em>Minimum per-capita Death rate</em> to 0.3. Set the <em>Density dependence on fecundity</em> to 0.001. Set the <em>Density dependence on mortality</em> to 0.0005.</p></li>
 <li><p>Make the appropriate connections, as in the figure above, and use the equation window to make sure the equations are correct.</p></li>
 <li><p>Change the settings so that the simulation runs for 100 years.</p></li>
 </ol>
-<p>Your model should look something like this! (if you don’t already have a model like this, clone <a href="https://insightmaker.com/insight/70353/Logistic-Growth-1#">this model</a>)</p>
+<p>Your model should look something like this!</p>
 <p><img src="IM5.jpg" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Run this model. Does the model behave as you would expect?</li>
 </ol>
-<p><strong>Q:</strong> What happens if population size starts out <em>at</em> carrying capacity? [tophat]<br />
+<p><strong>Q:</strong> What is carrying capacity in this model? <strong>Q:</strong> What happens if population size starts out <em>at</em> carrying capacity? [tophat]<br />
 <strong>Q:</strong> What happens if population size starts out <em>above</em> carrying capacity? [tophat]<br />
-<strong>Q:</strong> Is this a stable equilibrium? [tophat]</p>
+<strong>Q:</strong> Is carrying capacity (K) a stable equilibrium in this model? [tophat]</p>
+<p><strong>Q:</strong> Is the Malthus/famine model a stable equilibrium? Is it an equilibrium at all?</p>
+<p><strong>Q:</strong> In real-world systems, is carrying capacity stable? Is it an equilibrium point?</p>
 <ol start="8" style="list-style-type: decimal">
 <li>Consider the basic logistic growth equation:</li>
 </ol>
-<p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K} \right )\)</span></p>
-<p>Pull up your InsightMaker model for basic logistic growth with an <span class="math inline">\(r_{max}\)</span> term (double-headed arrow). Or you can clone it from <a href="https://insightmaker.com/insight/71146/Basic-logistic-growth-rmax">here</a>. It should look something like this:</p>
-<p><img src="IM6.jpg" /></p>
-<p>Make your initial population size very small compared to carrying capacity.</p>
-<p><strong>Q:</strong> What happens if <span class="math inline">\(r\)</span> is zero? What happens to carrying capacity?<br />
-<strong>Q:</strong> Which population is more likely to be found at or near K in nature? A population with very large <span class="math inline">\(r\)</span> or very small <span class="math inline">\(r\)</span>?<br />
+<p><span class="math inline">\(\Delta N = r_{max} \cdot N_t \cdot \left ( 1 - \frac{N}{K} \right )\)</span></p>
+<p><strong>Q:</strong> What happens if <span class="math inline">\(r_{max}\)</span> is zero? What happens to carrying capacity?<br />
+<strong>Q:</strong> Which population is more likely to be found at or near K in nature? A population with very large <span class="math inline">\(r_{max}\)</span> or very small <span class="math inline">\(r_{max}\)</span>?<br />
 <strong>Q:</strong> How does this discussion relate to the concept of “r-selected” and “K-selected” species?</p>
 <p><a href="LECTURE5.html">–go to next lecture–</a></p>
 </div>

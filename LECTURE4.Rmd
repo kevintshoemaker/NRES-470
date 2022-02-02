@@ -92,7 +92,7 @@ b <- b_max - a*Density
 d <- d_min + c*Density
 
 plot(Density,b,type="l",col="green",lwd=2,ylim=c(0,1),main="Density-Dependence!",ylab="b or d")
-points(Density,d,type="l",col="red",lwd=2)
+lines(Density,d,col="red",lwd=2)
 axis(4,at=seq(0,1,0.2))
 #mtext("d",4)
 legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate","per-capita mortality"),bty="n")
@@ -138,13 +138,13 @@ CONSTANTS
 
 ```
 EQUATIONS
-- [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Turtles] 
-- [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Turtles] 
+- [Per-capita birth rate] = [Maximum per-capita birth rate] - [Density dependence on fecundity] * [Abundance] 
+- [Per-capita death rate] = [Minimum per-capita death rate] - [Density dependence on mortality] * [Abundance] 
 ```
 
 How can we do this in InsightMaker? 
 
-1. Load a basic exponential-growth model. Rename the main [Stock] *Box Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
+1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
 
 2. Initialize the population of *Turtles* to 5 (way below carrying capacity).   
 
@@ -156,29 +156,28 @@ How can we do this in InsightMaker?
 
 6. Change the settings so that the simulation runs for 100 years.   
 
-Your model should look something like this! (if you don't already have a model like this, clone [this model](https://insightmaker.com/insight/70353/Logistic-Growth-1#))
+Your model should look something like this!
 
 ![](IM5.jpg)
 
 
 7. Run this model. Does the model behave as you would expect?   
 
+**Q:** What is carrying capacity in this model?
 **Q:** What happens if population size starts out *at* carrying capacity?  [tophat]  
 **Q:** What happens if population size starts out *above* carrying capacity? [tophat]    
-**Q:** Is this a stable equilibrium? [tophat]    
+**Q:** Is carrying capacity (K) a stable equilibrium in this model? [tophat]    
+
+**Q:** Is the Malthus/famine model a stable equilibrium? Is it an equilibrium at all? 
+
+**Q:** In real-world systems, is carrying capacity stable? Is it an equilibrium point? 
 
 8. Consider the basic logistic growth equation:   
 
-$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
+$\Delta N = r_{max} \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
 
-Pull up your InsightMaker model for basic logistic growth with an $r_{max}$ term (double-headed arrow). Or you can clone it from [here](https://insightmaker.com/insight/71146/Basic-logistic-growth-rmax). It should look something like this:
-
-![](IM6.jpg)
-
-Make your initial population size very small compared to carrying capacity.     
-
-**Q:** What happens if $r$ is zero? What happens to carrying capacity?      
-**Q:** Which population is more likely to be found at or near K in nature? A population with very large $r$ or very small $r$?     
+**Q:** What happens if $r_{max}$ is zero? What happens to carrying capacity?      
+**Q:** Which population is more likely to be found at or near K in nature? A population with very large $r_{max}$ or very small $r_{max}$?     
 **Q:** How does this discussion relate to the concept of "r-selected" and "K-selected" species?
  
 
