@@ -1,7 +1,7 @@
 ---
 title: "Final projects!"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -20,23 +20,20 @@ Students will work in groups of ~3-4 people to perform a population viability an
 ## Overview
 
 - Select a species and management question of interest. 
-
-- Perform a thorough literature review on your species of interest- collect all information you can about life history, key vital rates and their variability. 
-
-- Construct a PVA model, parameterized using the best available information from the literature (free PVA software platforms: InsightMaker, Vortex, R). 
-
-- Use your PVA model to address a conservation or management question and _write up the results_. 
-
-- Present your results to the class!
+- Perform a thorough literature review on your species of interest- collect all the information you can about life history (e.g., age at maturity), key vital rates (e.g., b, d), carrying capacity, etc. 
+- Construct a population viability analysis (PVA) model, parameterized using the best information you can find in the literature (using InsightMaker, R, or Vortex as a modeling platform). 
+- Use your PVA model to run **scenario tests** that address a conservation or management question (to test your research question)
+- Use the model results to rank conservation or management actions for your species or population of interest
+- _Write up the results_ and present your results to the class!
 
 ## Timeline
 
-- **PROPOSAL:** Due Fri March 12!
-- **INITIAL PVA** Due Fri April 9: description of how your PVA model works and where the parameter estimates come from.
-- **SEND DRAFT FOR PEER REVIEW** Due April 21 by 5pm (for peer review on April 23)
-- **DRAFT FINAL PAPER:** Due Wed April 28 by 5pm
-- **FINAL FINAL PAPER:** Due Wed May 12
-- **FINAL PRESENTATIONS:** Fri Apr 23 and Fri April 30 in lab!
+- **PROPOSAL:** Due Fri March 4!
+- **INITIAL PVA** Due Fri April 1: description of how your PVA model works and where the parameter estimates come from -- and a link to a working PVA model
+- **SEND DRAFT FOR PEER REVIEW** Due April 11 by 5pm (for peer reviews on April 15)
+- **DRAFT FINAL PAPER:** Due Wed April 22 by 5pm
+- **FINAL FINAL PAPER:** Due Wed May 11
+- **FINAL PRESENTATIONS:** Fri Apr 22 and Fri April 29 in lab!
 
 Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
@@ -54,9 +51,9 @@ Your project proposal (approx 1 pg) will consist of:
 
 ## Second project-related assignment: the initial PVA!
 
-Your inital parameterized PVA will consist of:  
+Your initial parameterized PVA will consist of:  
 
-1. A ready-to-run PVA model, in whatever software framework you are using (Vortex, InsightMaker, R). This model does not need to be the "final" model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).
+1. A ready-to-run PVA model, in whatever software framework you are using (InsightMaker, R, Vortex). This model does not need to be the "final" model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).
 
 2. A written rationale/evidence for each of your parameter estimates and other key modeling decisions.       
     a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source(s) of this information). Decisions include: how many populations, initial abundance(s), how many stages, how density-dependence operates for your species (e.g., which vital rates are density-dependent), Allee effects, survival and fecundity rates, environmental stochasticity, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.
@@ -64,6 +61,8 @@ Your inital parameterized PVA will consist of:
     c. Literature cited (format not important, as long as it includes all key information).        
     
 ## Third project-related assignment: the written project (rough draft)!
+
+You will submit two rough drafts: one for our group peer review in lab, and the other so your instructor and TA can give detailed feedback. 
 
 Your final written paper is expected to be in the style of a **scientific manuscript**. That is, it should have an *introduction*, *methods*, *results* and *discussion* sections, and should cite relevant literature. 
 
@@ -106,7 +105,7 @@ A rubric for the final written presentation can be found [here](WrittenProject_r
 
 ## Fourth project-related assignment: the oral presentation!
 
-Your group presentation should be in the style of an oral presentation at a conference. See below for guidance on giving a good oral presenation! 
+Your group presentation should be in the style of an oral presentation at a conference. See below for guidance on giving a good oral presentation! 
 
 Presentations will take place during our final two lab periods. 
 
@@ -130,20 +129,7 @@ The way it will work is as follows:
 
 4. After that, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person (and on paper).
 
-5. For any remaining time in lab, you will have a chance to work on yourwrite-ups and presentations!
-
-### In-class peer review: manuscript drafts
-
-Here are the peer review assignments:
-
-```{r include=FALSE}
-#assignments <- read.csv("GroupAssignments.csv")
-```
-
-```{r results='asis', echo=FALSE}
-#knitr::kable(assignments,caption="")
-
-```
+5. For any remaining time in lab, you will have a chance to work on your write-ups and presentations!
 
 Bring your laptops to lab as usual so you can write, save and share your peer-review electronically with your classmates/instructors. 
 

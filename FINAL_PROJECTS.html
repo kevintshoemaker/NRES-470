@@ -14,20 +14,28 @@
 
 <title>Final projects!</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,13 +446,13 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Final projects!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
@@ -505,22 +464,23 @@ div.tocify {
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <ul>
-<li><p>Select a species and management question of interest.</p></li>
-<li><p>Perform a thorough literature review on your species of interest- collect all information you can about life history, key vital rates and their variability.</p></li>
-<li><p>Construct a PVA model, parameterized using the best available information from the literature (free PVA software platforms: InsightMaker, Vortex, R).</p></li>
-<li><p>Use your PVA model to address a conservation or management question and <em>write up the results</em>.</p></li>
-<li><p>Present your results to the class!</p></li>
+<li>Select a species and management question of interest.</li>
+<li>Perform a thorough literature review on your species of interest- collect all the information you can about life history (e.g., age at maturity), key vital rates (e.g., b, d), carrying capacity, etc.</li>
+<li>Construct a population viability analysis (PVA) model, parameterized using the best information you can find in the literature (using InsightMaker, R, or Vortex as a modeling platform).</li>
+<li>Use your PVA model to run <strong>scenario tests</strong> that address a conservation or management question (to test your research question)</li>
+<li>Use the model results to rank conservation or management actions for your species or population of interest</li>
+<li><em>Write up the results</em> and present your results to the class!</li>
 </ul>
 </div>
 <div id="timeline" class="section level2">
 <h2>Timeline</h2>
 <ul>
-<li><strong>PROPOSAL:</strong> Due Fri March 12!</li>
-<li><strong>INITIAL PVA</strong> Due Fri April 9: description of how your PVA model works and where the parameter estimates come from.</li>
-<li><strong>SEND DRAFT FOR PEER REVIEW</strong> Due April 21 by 5pm (for peer review on April 23)</li>
-<li><strong>DRAFT FINAL PAPER:</strong> Due Wed April 28 by 5pm</li>
-<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 12</li>
-<li><strong>FINAL PRESENTATIONS:</strong> Fri Apr 23 and Fri April 30 in lab!</li>
+<li><strong>PROPOSAL:</strong> Due Fri March 4!</li>
+<li><strong>INITIAL PVA</strong> Due Fri April 1: description of how your PVA model works and where the parameter estimates come from – and a link to a working PVA model</li>
+<li><strong>SEND DRAFT FOR PEER REVIEW</strong> Due April 11 by 5pm (for peer reviews on April 15)</li>
+<li><strong>DRAFT FINAL PAPER:</strong> Due Wed April 22 by 5pm</li>
+<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 11</li>
+<li><strong>FINAL PRESENTATIONS:</strong> Fri Apr 22 and Fri April 29 in lab!</li>
 </ul>
 <p>Remember that the semester will get crazy at the end (including for your instructors). Plan ahead!</p>
 </div>
@@ -541,9 +501,9 @@ div.tocify {
 </div>
 <div id="second-project-related-assignment-the-initial-pva" class="section level2">
 <h2>Second project-related assignment: the initial PVA!</h2>
-<p>Your inital parameterized PVA will consist of:</p>
+<p>Your initial parameterized PVA will consist of:</p>
 <ol style="list-style-type: decimal">
-<li><p>A ready-to-run PVA model, in whatever software framework you are using (Vortex, InsightMaker, R). This model does not need to be the “final” model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).</p></li>
+<li><p>A ready-to-run PVA model, in whatever software framework you are using (InsightMaker, R, Vortex). This model does not need to be the “final” model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).</p></li>
 <li><p>A written rationale/evidence for each of your parameter estimates and other key modeling decisions.</p>
 <ol style="list-style-type: lower-alpha">
 <li>For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source(s) of this information). Decisions include: how many populations, initial abundance(s), how many stages, how density-dependence operates for your species (e.g., which vital rates are density-dependent), Allee effects, survival and fecundity rates, environmental stochasticity, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.</li>
@@ -554,6 +514,7 @@ div.tocify {
 </div>
 <div id="third-project-related-assignment-the-written-project-rough-draft" class="section level2">
 <h2>Third project-related assignment: the written project (rough draft)!</h2>
+<p>You will submit two rough drafts: one for our group peer review in lab, and the other so your instructor and TA can give detailed feedback.</p>
 <p>Your final written paper is expected to be in the style of a <strong>scientific manuscript</strong>. That is, it should have an <em>introduction</em>, <em>methods</em>, <em>results</em> and <em>discussion</em> sections, and should cite relevant literature.</p>
 <p><strong>There are no formatting guidelines or page limits</strong>. Please be as concise as possible while still covering all the key elements in the rubric. You can use any standard format for your references, all we ask is that you be consistent!</p>
 <div id="introduction" class="section level3">
@@ -595,7 +556,7 @@ div.tocify {
 </div>
 <div id="fourth-project-related-assignment-the-oral-presentation" class="section level2">
 <h2>Fourth project-related assignment: the oral presentation!</h2>
-<p>Your group presentation should be in the style of an oral presentation at a conference. See below for guidance on giving a good oral presenation!</p>
+<p>Your group presentation should be in the style of an oral presentation at a conference. See below for guidance on giving a good oral presentation!</p>
 <p>Presentations will take place during our final two lab periods.</p>
 <p>You will have 15 minutes to give your presentations, with at least 3 additional minutes for questions.</p>
 <p>We will hand out a simple peer-review form so you can give feedback to your peers.</p>
@@ -610,13 +571,9 @@ div.tocify {
 <li><p>Before lab, please thoroughly read the manuscript you have been assigned, and make comments, paying particular attention to the <a href="WrittenProject_rubric.docx">grading rubric</a>.</p></li>
 <li><p>During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 30 minutes to compare notes and prepare a written “peer review” of the manuscript that highlights both the strengths and the weaknesses. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! <em>Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA</em></p></li>
 <li><p>After that, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give the feedback in person (and on paper).</p></li>
-<li><p>For any remaining time in lab, you will have a chance to work on yourwrite-ups and presentations!</p></li>
+<li><p>For any remaining time in lab, you will have a chance to work on your write-ups and presentations!</p></li>
 </ol>
-<div id="in-class-peer-review-manuscript-drafts" class="section level3">
-<h3>In-class peer review: manuscript drafts</h3>
-<p>Here are the peer review assignments:</p>
 <p>Bring your laptops to lab as usual so you can write, save and share your peer-review electronically with your classmates/instructors.</p>
-</div>
 <div id="peer-review-presentations" class="section level3">
 <h3>Peer review: presentations</h3>
 <p>During the final project presentations, please provide feedback to your classmates using <a href="presentation_handout_for_students.docx">this form</a> (these will be handed out in class on the day of the final project presentations)</p>
@@ -761,7 +718,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -770,6 +727,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

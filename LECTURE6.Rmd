@@ -1,7 +1,7 @@
 ---
 title: "Age-structured populations"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -14,12 +14,12 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-## When $d$ and $b$ depend on more than just density...
+## When population vital rates (b and d) depend on more than just density...
 
 
 ![](elephant1.jpg)
 
-Take this Indian elephant for example. How does reproductive rate depend on age in this case?
+Take this Indian elephant for example. How does the per-capita birth rate (b) depend on age for this species?
 
 We might imagine it looks something like this!
 
