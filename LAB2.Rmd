@@ -23,7 +23,7 @@ Recall the basic population growth equation:
 
 $\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 1)}$
 
-Previously we considered *b* and *d* and *r* to be constants. 
+Previously we considered *b* and *d* (that is, *r*) to be constant. 
 
 Now we want them to be functions of abundance! In particular, as abundance goes up, *b* goes down (becomes less favorable):
 
