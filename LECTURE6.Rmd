@@ -158,7 +158,7 @@ Just looking at this equation, you see that organisms with longer generation tim
 
     4a. Initialize the population like the spadefoot toad example from above- with only the first (juvenile) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
     
-    4b. Can you tweak the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three age classes (and the population as a whole)? This is called **Stable Age Distribution (S.A.D.)**
+    4b. Can you modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three age classes (and the population as a whole)? This is called **Stable Age Distribution (S.A.D.)**
     
     4c. Now change the vital rates (*Juv mort rate*, *Sub mort rate*, *Transition rate to Subadult*, etc.). Is population growth still smooth? If not, can you find the NEW *Stable Age Distribution*??
     
