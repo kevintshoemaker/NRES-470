@@ -123,7 +123,7 @@ There are three main types of survivorship curves (also called survivorship sche
 
 In this exercise we will explore some facets of **age-stuctured populations**. 
 
-1. Load up the life table from earlier in this lecture, by clicking [here](life_table.csv). Use this table to compute the **net reproductive rate, $R_0$**. This represents the mean (expected) number of female offspring produced per female over her entire lifetime. This is also known as *lifetime reproductive potential*! This can be computed as:
+1. Load up the life table from earlier in this lecture, by clicking [here](life_table.csv). Use this table to compute the **net reproductive rate, $R_0$**. This represents the expected number of female offspring produced per female over her entire lifetime. This is also known as *lifetime reproductive potential*! This can be computed as:
 
 $R_0 = \sum_{x=0}^k l(x)\cdot b(x)$
 
