@@ -14,20 +14,28 @@
 
 <title>Lab 3: Age-structured populations</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,7 +446,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -509,15 +468,15 @@ div.tocify {
 <p><strong>x:</strong> Age, or time elapsed since the birth date of the cohort (often in years).</p>
 <p><strong>S(x):</strong> Survivors, or Census size – the number of individuals in the study population who survive to time x.</p>
 <p><strong>D(x):</strong> Deaths – the number of age x individuals who die before reaching age x+1</p>
-<p><strong>Birth rate, b(x):</strong> Average number of offspring produced by an individual in age category x (per-capita birth rate for a given age). NOTE: this parameter is sometimes called m(x) for “maternity”</p>
+<p><strong>Birth rate, b(x):</strong> Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x). NOTE: this parameter is sometimes called m(x) for “maternity”</p>
 <p><strong>Survivorship, l(x):</strong> <span class="math inline">\(l(x) = \frac{S_x}{S_0} \qquad \text{(Eq. 1)}\)</span> , where <span class="math inline">\(S_x\)</span> is the number of survivors from the original cohort at year <span class="math inline">\(x\)</span>. Survivorship represents the fraction of the cohort that is expected to survive to a given age.</p>
 <p><strong>Survival rate, g(x):</strong> <span class="math inline">\(g(x) = \frac{S_{x+1}}{S_x} \qquad \text{(Eq. 2)}\)</span> , where <span class="math inline">\(S_x\)</span> is the number of survivors from the original cohort at year <span class="math inline">\(x\)</span> (per-capita survival rate at age x). Survival rate is the probability of survival from age x to age (x+1).</p>
 <p><strong>Lifetime reproductive potential:</strong> <span class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot b(x) \qquad \text{(Eq. 3)}\)</span>, where <span class="math inline">\(k\)</span> is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.</p>
 <p><strong>Life Expectancy (for a newborn)</strong> can be <em>approximated</em> as: <span class="math inline">\(LE_0 = \frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)} \qquad \text{(Eq. 4)}\)</span></p>
 <p><strong>Q</strong>: why is the above estimate for life expectancy (LE) <em>approximate</em> and not exact? Is it likely to be biased or unbiased?</p>
-<p><strong>Generation time</strong> is defined as the <em>Average age of the parents within a cohort (for all offspring born to the cohort, record the age of the mom when she gave birth and then take the average of all these ages!)</em>. This can be computed as: <span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)} \qquad \text{(Eq. 5)}\)</span></p>
+<p><strong>Generation time</strong> is defined as the <em>Average age of the parents within a cohort</em> (for all offspring born to the cohort, first record the age of the mom at the time she gave birth, and then take the average of all these ages!). This can be computed as: <span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)} \qquad \text{(Eq. 5)}\)</span></p>
 <p><strong>Intrinsic rate of growth,</strong> <span class="math inline">\(r\)</span> is defined (to a first-order approximation) as: <span class="math inline">\(r = \frac{ln(R_0)}{G} \qquad \text{(Eq. 6)}\)</span></p>
-<p>NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the <em>Euler method</em>.</p>
+<p>NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the <em>Euler method</em>. You are not required to know how to use the Euler method in this class.</p>
 <p>One more concept I want to introduce here is <strong>reproductive value</strong>, or V(x). This represents the expected future reproductive output of an individual of age x, <em>adjusted for the intrinsic rate of growth</em>: <span class="math inline">\(V(x) = \frac{e^{rx}}{l_x} \cdot \sum_{y=x+1}^{k}e^{-ry}l_yb_y \qquad \text{(Eq. 7)}\)</span>. Different individuals in a population tend to have different “value” in terms of contributing to future generations. Caswell (2001) said “The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class”. Knowing something about the relative “value” of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, reproductive value is critical for applied population ecology! Reproductive Value also factors heavily in evolutionary studies and life history theory.</p>
 <p><strong>Q:</strong> Why is the reproductive value discounted by the population growth rate??</p>
 </div>
@@ -527,14 +486,14 @@ div.tocify {
 <p><img src="blackrobin.jpg" /></p>
 <p>Let’s imagine that we are following a <em>cohort</em> of reintroduced Chatham Island robins on a small island through time.</p>
 <ul>
-<li>First, we establish artificial nests and place 400 captive-laid eggs in them.<br />
+<li>First, we establish artificial nests and place 200 captive-laid eggs in them.<br />
 </li>
 <li>All individuals are given a unique marking as soon as they hatch (hatching is 100% successful!). These markings are permanent and not affected by tag loss!<br />
 </li>
 <li>We visit the island once per year, and count all the female individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!<br />
 </li>
-<li>We record the following numbers of robins over 5 years revisiting the island (starting with 400 at year 0): 85, 40, 31, 5, and 0.</li>
-<li>We record the following per-capita reproductive rates for each age: 0, 2.1, 5.8, 4.5, 3.3, and 0</li>
+<li>Of the original robins released on the island, we record the following numbers over 5 years revisiting the island (starting with 200 at year 0): 55 (year 1), 25 (year 2), 14 (year 3), 5 (year 4), and 0 (year 5).</li>
+<li>We record the following per-capita reproductive rates for each age: 0, 1.9, 5.8, 5.5, 4.2, and 0</li>
 </ul>
 <p>You can load these data in <a href="life_table2.xlsx">this file</a>. It should look something like this:</p>
 <table>
@@ -578,28 +537,27 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<div id="questions-exercise-1-basic-life-tables" class="section level3">
-<h3>QUESTIONS, Exercise 1 (basic life tables):</h3>
-<p>1a. Plot the survivorship curve (survivorship over age) in two ways: (1) raw survivorship vs. age, and (2) log (base 10) transformed survivorship vs. age (this is the “correct” way!). Does this population most closely resemble type I, II, or III survivorship? You only need to include the log-transformed figure in your submitted response. Why do you need to log-transform the survivorship values in order to properly classify this population as type I, II or III? [HINT: would you be able to distinguish type II and III survivorship curves if you didn’t log-transform the y axis?]. Please refer to the ‘age-structured populations’ lecture page for more information on survivorship curves.</p>
-<p>1b. What is the lifetime reproductive potential, <span class="math inline">\(R_0\)</span> for this population? Based on your estimate of <span class="math inline">\(R_0\)</span> is this population growing, declining or stable? What happens to <span class="math inline">\(R_0\)</span> if “age 1” individuals do not reproduce – that is, if b(1) is set to zero?</p>
-<p>1c. What is the life expectancy from birth, <span class="math inline">\(LE\)</span>, and generation time, <span class="math inline">\(G\)</span> for this population? What happens to <span class="math inline">\(G\)</span> if “age 1” individuals do not reproduce – that is, if b(1) is set to zero?</p>
-<p>1d. What is the reproductive value(<span class="math inline">\(V\)</span>) for each age (x) in this population? Which age has the highest reproductive value? If you were to remove some of this population to translocate to another island (to start a new population), why might you select individuals at this age (that is, the age with highest reproductive value)?</p>
-<p>1e. Are the per-capita vital rates (e.g., b(x) or g(x)) in this population <strong>Density-dependent</strong> (do they increase or decrease as the population density changes?? If so, explain your reasoning. If not, explain what additional information you would need to evaluate density-dependence in this population.</p>
+<div id="questions-exercise-1-black-robin-example" class="section level3">
+<h3>QUESTIONS, Exercise 1 (black robin example):</h3>
+<p>1a. Plot the survivorship curve (log-survivorship vs. age). Does this population most closely resemble type I, II, or III survivorship? Include the plot of your survivorship curve in your submitted response. Please refer to the ‘age-structured populations’ lecture page for more information on survivorship curves.</p>
+<p>1b. What is the lifetime reproductive potential, <span class="math inline">\(R_0\)</span> for this population? Based on your estimate of <span class="math inline">\(R_0\)</span> is this population growing, declining or stable? What would happen to <span class="math inline">\(R_0\)</span> if “age 1” individuals did not reproduce – that is, what if b(1) were set to zero?</p>
+<p>1c. What is the life expectancy from birth, <span class="math inline">\(LE\)</span>, and generation time, <span class="math inline">\(G\)</span> for this population? What would happen to <span class="math inline">\(G\)</span> if “age 1” individuals did not reproduce – that is, if b(1) were set to zero?</p>
+<p>1d. What is the reproductive value(<span class="math inline">\(V\)</span>) for each age (x) in this population? Which age is associated with the highest reproductive value? If you wanted to start a new population on a different island, why might you select individuals at this age (that is, the age with highest reproductive value) to translocate?</p>
+<p>1e. Imagine you have the following population of black robins this year: 100 individuals of age 0 (newborns) and 10 individuals of age 1 (no older individuals). How many newborn robins (age 0) would you expect to be born one year from now, assuming no new robins will be born in the population until right before you survey the population next year? Explain how you got your answer! [NOTE: you do not need to use InsightMaker or Excel here- just think it through and use a calculator if needed] [HINT: the age 0 individuals will be 1 years old next year, and the 1-year-olds this year will be two years old next year] [HINT: in order to reproduce next year, individuals must survive to next year!]</p>
 </div>
 </div>
 <div id="exercise-2-another-life-table-analysis" class="section level2">
 <h2>Exercise 2: another life table analysis</h2>
 <p><img src="uinta.jpg" /></p>
 <p>Let’s take the Uinta ground squirrel example from the Gotelli book. Take a minute to read the description in Gotelli (end of Ch. 3)…</p>
-<p>This is <em>real data</em> from a long-term experimental study.</p>
+<p>This is <em>real data</em> from a long-term experimental study. The version you see below is modified from the Gotelli book so it’s easier to work with!</p>
 <p>The first life table (on the left) represents a cohort of ground squirrels in a population at typical densities.</p>
 <p>The second life table (right) represents a cohort of ground squirrels in a population at lower-than-average densities (many conspecifics removed prior to the start of the experiment).</p>
-<p>Load up the <a href="life_table3.csv">Uinta ground squirrel life table data</a> given to us by Gotelli (reproduced from Slade and Balph 1974).</p>
-<div id="questions-exercise-2-more-advanced-life-table-analysis" class="section level3">
-<h3>QUESTIONS, Exercise 2 (more advanced life table analysis):</h3>
-<p>2a. [for the Uinta squirrel life table] Compare the two life tables using the following major life-table metrics: <span class="math inline">\(R0\)</span>, <span class="math inline">\(G\)</span>, and <span class="math inline">\(r\)</span> (extra credit: compare the reproductive values <span class="math inline">\(V\)</span> for the squirrels at each age). What differences do you notice between these two life tables?</p>
-<p>2b. [for the Uinta squirrel life table] Is generation time (<span class="math inline">\(G\)</span>) an intrinsic trait of a species, or can it vary as a function of factors like forage quality? How could you test this in Excel? What l(x) or b(x) entries might change in the Excel spreadsheet if the population experienced a substantial improvement in forage quality? Try it- describe what you changed, and how (and if) it affected generation time.</p>
-<p>2c. [<strong>return to the black robin example</strong>] Imagine you have the following initial population of black robins: 10 individuals of age 2, 10 individuals of age 3 and 10 individuals of age 4. How would you <strong>simulate</strong> the abundance of robins in each of the possible ages (age 0,1,2,3,4,and 5) next year? Try it, and show how you got your answer!</p>
+<p>Load up the <a href="life_table3.xlsx">Uinta ground squirrel life table data</a> given to us by Gotelli (reproduced from Slade and Balph 1974 – and modified slightly to make it easier to work with).</p>
+<div id="questions-exercise-2-uinta-ground-squirrel-example" class="section level3">
+<h3>QUESTIONS, Exercise 2: Uinta ground squirrel example</h3>
+<p>2a. Compare the two life tables (pre-density reduction and post-density reduction) using the following two major life-table metrics: <span class="math inline">\(R0\)</span> and <span class="math inline">\(r\)</span>. What key differences do you notice between these two life tables? If these changes were due to density-dependence, would this represent negative density-dependence (negative feedback) or positive density-dependence (Allee effect)? Explain your reasoning.</p>
+<p>2b. Try altering b(2) in the pre-density-reduction table from 1.29 to 3.5 to reflect a substantial improvement in forage quality. How did generation time (<span class="math inline">\(G\)</span>) change after you did this? Based on this result, would you say that <span class="math inline">\(G\)</span> is an intrinsic trait of a species, or can it change as a function of factors like resource availability? Explain your reasoning.</p>
 </div>
 </div>
 <div id="exercise-3-age-structured-models-in-insightmaker" class="section level2">
@@ -608,34 +566,34 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Open a blank workspace and save it.</p></li>
 <li><p>Make three new stocks: <em>Age 1</em>, <em>Age 2</em> and <em>Age 3</em>.</p></li>
-<li><p>Make a new flow (flow in) called <em>Births</em>. This should represent new <em>Age 1</em> individuals. We will ignore immigration for now, so new additions into the “Age 1” stock is the only way new individuals can be added to the population. We will assume that <em>Age 2</em> and <em>Age 3</em> are the only reproductively active ages. Therefore, draw links from <em>Age 2</em> and <em>Age 3</em> to <em>Births</em>.</p></li>
+<li><p>Make a new flow (flow in) called <em>Births</em>. This should represent new <em>Age 1</em> individuals. We will ignore immigration for now, so new additions into the “Age 1” stock is the only way new individuals can be added to the population. We will assume that <em>Age 2</em> and <em>Age 3</em> are the only reproductively active ages. Therefore, draw [Links] from <em>Age 2</em> and <em>Age 3</em> to <em>Births</em>.</p></li>
 <li><p>Make new flows from <em>Age 1 to Age 2</em> and from <em>Age 2 to Age 3</em>, called <em>Transition to Age 2</em> and <em>Transition to Age 3</em>, respectively. These flows represent <strong>growth</strong>, or advancement from <em>Age 1</em> to <em>Age 2</em> and from <em>Age 2</em> to <em>Age 3</em>.</p></li>
 <li><p>Make three new flows representing mortality, emerging respectively from each stock and called <em>Age 1 mortality</em>, <em>Age 2 mortality</em>, and <em>Age 3 mortality</em>.</p></li>
 </ol>
 <p>Your new insight should look something like this (but the flow into Age 1 can be called ‘Births’ rather than ’Recruitment):</p>
 <p><img src="IM7.jpg" /></p>
-<p>NOTE: you don’t need links from flows to connected stocks (they are already connected so they don’t need a link!)- but you are welcome to add these links if it helps you!</p>
+<p>NOTE: you don’t need links from flows to connected stocks (they are already connected so they don’t need a link!)- but you are welcome to add these links if it helps you! Also note the flow in to the Age 1 stock should be called “Births”, not “Recruitment”.</p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Parameterize your new age-structured population!</p>
-<p>6a. For births, make new variables called <em>Birth rate, age 2</em> and <em>Birth rate, age 3</em>, representing the per-capita reproductive rate for age 2 and age 3, respectively. Draw links from these variables to <em>Births</em>, and set these variables at 1.2 and 1.7, respectively. Click on the equation editor for <em>Births</em> and set the equation appropriately (see questions below)</p>
-<p>6b. For the transitions, make new variables representing the per-capita transition rates, called <em>Transition rate, Age 1 to 2</em> and <em>Transition rate, Age 2 to 3</em>. Draw links to the appropriate flows, and set these rates at 0.5 and 0.3, respectively. NOTE: these transition rates could also be called “survival rates”<br />
+<p>6a. For births, make new variables called <em>Birth rate, age 2</em> and <em>Birth rate, age 3</em>, representing the per-capita reproductive rate for age 2 and age 3, respectively. Draw links from these variables to <em>Births</em>, and set these variables at 1.3 and 1.6, respectively. Click on the equation editor for <em>Births</em> and set the equation appropriately (see questions below)</p>
+<p>6b. For the transitions, make new variables representing the per-capita transition rates, called <em>Transition rate, Age 1 to 2</em> and <em>Transition rate, Age 2 to 3</em>. Draw links to the appropriate flows, and set these rates at 0.45 and 0.35, respectively. NOTE: these transition rates could also be called “survival rates”<br />
 6c. For the mortality rates, note that all individuals in the <em>Age 1</em> stock must either transition to <em>Age 2</em> or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the <em>Age 3</em> stock must die- there is no <em>Age 4</em> class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately.</p></li>
+<li><p>For each flow in the model, use the equation editor to specify the appropriate equations.</p></li>
 <li><p>Explore the model- make sure you understand how it works!</p></li>
 </ol>
 <div id="questions-exercise-3-age-structured-model-in-insightmaker" class="section level3">
 <h3>QUESTIONS, Exercise 3 (age-structured model in InsightMaker):</h3>
-<p>3a. What is the equation for <em>Births</em> in the above model (flow into the ‘Age 1’ stock)? Copy and paste your equation from InsightMaker. Now explain this equation in plain English!</p>
-<p>3b. What is the equation for <em>Age 1 Mortality</em> in the above model? Copy and paste the equation from InsightMaker. Now explain this equation in plain English! What about <em>Age 3 mortality</em>?</p>
-<p>3c. Initialize the population abundances (Age 1, Age2, and Age 3 initial abundances) so that the population consists of only individuals in the first (<em>Age 1</em>) age class (e.g., 100 individuals in Age 1, no individuals in the other age classes). How do the population dynamics at the beginning of the simulation differ from the dynamics at the end of the simulation?</p>
-<p>3d. Can you tweak the initial abundances so that the population exhibits smooth growth or decline for all three age classes? This distribution is called the <strong>Stable Age Distribution</strong>. What is the approximate <strong>Stable Age Distribution</strong> for this population (fraction of individuals in each stage)? Does the stable age distribution change if you change the vital rates (birth rates, transition rates etc.)? Try changing one of the vital rates and seeing if the stable age distribution changes. Describe what you changed and how/if the stable age distribution changed. When you are done, please return all population vital rates to their original specifications.</p>
-<p>3e. Is this a growing or declining population (make sure you use the originally specified vital rates)? Imagine you could enact a predator-control program and reduce the mortality of <em>Age 1</em> individuals. How much would you have to reduce mortality (i.e., increase the proportion transitioning from Age 1 to age 2) of this age class to make a growing population? What about <em>Age 2</em> mortality – how much would you have to reduce mortality of this age class (increase the proportion transitioning from Age 2 and Age 3) to make a growing population?</p>
+<p>3a. What is the equation for <em>Births</em> in the above model (flow into the ‘Age 1’ stock)? Copy and paste your equation from InsightMaker. Using plain English, explain how this equation correctly computes the number of births each year.</p>
+<p>3b. Initialize the population abundances (Age 1, Age2, and Age 3 initial abundances) so that the population consists of only 100 individuals in the first (<em>Age 1</em>) age class (i.e., 100 individuals in Age 1, no individuals in the other age classes). Run the model for 30 years. Describe how the population dynamics at the beginning of the simulation differs from the dynamics at the end of the simulation. Optionally, you may include an image of an InsightMaker plot to help illustrate your answer.</p>
+<p>3c. Is this a growing or declining population (make sure you use the originally specified vital rates)? Imagine you could enact a predator-control program and reduce the mortality of <em>Age 1</em> individuals. How much would you have to reduce mortality (i.e., increase the proportion transitioning from Age 1 to age 2) of this age class to make a growing population? Optionally, you may include an image of an InsightMaker plot to help illustrate your answer.</p>
+<p>3d. Please share the URL for your Insight: save your model as a ‘Public Insight’ and insert the URL into Top Hat in the appropriate place. And don’t make any more changes to this insight once you have submitted it (use a ‘cloned’ version if you want to keep making changes)!</p>
 </div>
 </div>
-<div id="exercise-4-more-complex-age-structured-models-in-insightmaker" class="section level2">
-<h2>Exercise 4: more complex age-structured models in InsightMaker!</h2>
-<p>Try to implement the following model (adding onto the previous age-structured model in InsightMaker). <em>If the total population (all three age classes combined!) exceeds 75 individuals, then reproduction rates drop to 25% of normal rates.</em></p>
-<p>4a. Please provide your full InsightMaker model (copy URL in the appropriate place in Top Hat).</p>
-<p>4b. Change the Age 1 survival rate to 0.7 (i.e., mortality drops to 30%). Run the simulation starting with 75 individuals, all in Age class 1. Describe the resulting population dynamics. Is this a <strong>random (stochastic)</strong> model (different results every time you run the model, even with the same initial conditions)? If so, explain how you determined that this model is random/stochastic. If not, please speculate on why the population fluctuates back and forth!</p>
+<div id="optional-exercise-4-more-complex-age-structured-models-in-insightmaker" class="section level2">
+<h2>Optional: exercise 4: more complex age-structured models in InsightMaker!</h2>
+<p>Implement the following density-dependent model (modifying your previous age-structured model in InsightMaker). <em>If the total population (all three age classes combined!) exceeds 75 individuals, then reproduction rates drop to 25% of normal rates.</em></p>
+<p>4a (optional). Change the Age 2 survival rate to 0.75 (from 0.35). Run the simulation starting with 75 individuals, all in Age class 1. Describe the resulting population dynamics. Is this a <strong>random (stochastic)</strong> model (different results every time you run the model, even with the same initial conditions)? Explain your reasoning.</p>
+<p>4b (optional). Please share the URL for your Insight: save your model as a ‘Public Insight’ and insert the URL into Top Hat in the appropriate place. And don’t make any more changes to this insight once you have submitted it (use a ‘cloned’ version if you want to keep making changes)!</p>
 </div>
 <div id="checklist-for-lab-3-completion" class="section level2">
 <h2>Checklist for Lab 3 completion</h2>
@@ -659,20 +617,18 @@ div.tocify {
 <ul>
 <li><em>Short answer (2a.)</em></li>
 <li><em>Short answer (2b.)</em></li>
-<li><em>Short answer (2c.)</em></li>
 </ul></li>
 <li><strong>Exercise 3</strong>
 <ul>
 <li><em>Short answer (3a.)</em></li>
 <li><em>Short answer (3b.)</em></li>
 <li><em>Short answer (3c.)</em></li>
-<li><em>Short answer (3d.)</em></li>
-<li><em>Short answer (3e.)</em></li>
+<li><em>InsightMaker model (3d.)</em></li>
 </ul></li>
-<li><strong>Exercise 4</strong>
+<li><strong>Exercise 4 (optional)</strong>
 <ul>
-<li><em>InsightMaker model (4a.)</em></li>
-<li><em>Short answer (4b.)</em></li>
+<li><em>Short answer (4a.)</em></li>
+<li><em>InsightMaker model (4b.)</em></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -707,7 +663,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -716,6 +672,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
