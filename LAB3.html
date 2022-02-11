@@ -457,7 +457,7 @@ div.tocify {
 </div>
 
 
-<p>In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are <em>age structure</em>, <em>life tables</em>, and <em>age/stage matrices</em>.</p>
+<p>In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are <em>age structure</em>, <em>life tables</em>, and <em>simulating age-structured population dynamics</em>.</p>
 <p>First let’s do some math!</p>
 <div id="mathematics-of-age-structured-populations" class="section level2">
 <h2>Mathematics of Age-structured populations</h2>
@@ -466,9 +466,9 @@ div.tocify {
 <p>Let’s start with some definitions- population ecology, and life tables in particular, are full of terms and equations. We should at least be aware of the meaning of the major terms involved in life table analysis!</p>
 <p><strong>Cohort:</strong> A group of organisms of the same species that are born during the same year or the same breeding season</p>
 <p><strong>x:</strong> Age, or time elapsed since the birth date of the cohort (often in years).</p>
-<p><strong>S(x):</strong> Survivors, or Census size – the number of individuals in the study population who survive to time x.</p>
-<p><strong>D(x):</strong> Deaths – the number of age x individuals who die before reaching age x+1</p>
-<p><strong>Birth rate, b(x):</strong> Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x). NOTE: this parameter is sometimes called m(x) for “maternity”</p>
+<p><strong>S(x):</strong> Survivors, or Census size – the number of individuals in the cohort who survived to time x.</p>
+<p><strong>D(x):</strong> Deaths – the number of age x individuals in the cohort who died before reaching age x+1</p>
+<p><strong>Birth rate, b(x):</strong> Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x).</p>
 <p><strong>Survivorship, l(x):</strong> <span class="math inline">\(l(x) = \frac{S_x}{S_0} \qquad \text{(Eq. 1)}\)</span> , where <span class="math inline">\(S_x\)</span> is the number of survivors from the original cohort at year <span class="math inline">\(x\)</span>. Survivorship represents the fraction of the cohort that is expected to survive to a given age.</p>
 <p><strong>Survival rate, g(x):</strong> <span class="math inline">\(g(x) = \frac{S_{x+1}}{S_x} \qquad \text{(Eq. 2)}\)</span> , where <span class="math inline">\(S_x\)</span> is the number of survivors from the original cohort at year <span class="math inline">\(x\)</span> (per-capita survival rate at age x). Survival rate is the probability of survival from age x to age (x+1).</p>
 <p><strong>Lifetime reproductive potential:</strong> <span class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot b(x) \qquad \text{(Eq. 3)}\)</span>, where <span class="math inline">\(k\)</span> is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.</p>
@@ -476,6 +476,7 @@ div.tocify {
 <p><strong>Q</strong>: why is the above estimate for life expectancy (LE) <em>approximate</em> and not exact? Is it likely to be biased or unbiased?</p>
 <p><strong>Generation time</strong> is defined as the <em>Average age of the parents within a cohort</em> (for all offspring born to the cohort, first record the age of the mom at the time she gave birth, and then take the average of all these ages!). This can be computed as: <span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)} \qquad \text{(Eq. 5)}\)</span></p>
 <p><strong>Intrinsic rate of growth,</strong> <span class="math inline">\(r\)</span> is defined (to a first-order approximation) as: <span class="math inline">\(r = \frac{ln(R_0)}{G} \qquad \text{(Eq. 6)}\)</span></p>
+<p><strong>lambda,</strong> <span class="math inline">\(r\)</span> is defined (to a first-order approximation) as: <span class="math inline">\(\lambda = e^{r}\)</span></p>
 <p>NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the <em>Euler method</em>. You are not required to know how to use the Euler method in this class.</p>
 <p>One more concept I want to introduce here is <strong>reproductive value</strong>, or V(x). This represents the expected future reproductive output of an individual of age x, <em>adjusted for the intrinsic rate of growth</em>: <span class="math inline">\(V(x) = \frac{e^{rx}}{l_x} \cdot \sum_{y=x+1}^{k}e^{-ry}l_yb_y \qquad \text{(Eq. 7)}\)</span>. Different individuals in a population tend to have different “value” in terms of contributing to future generations. Caswell (2001) said “The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class”. Knowing something about the relative “value” of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, reproductive value is critical for applied population ecology! Reproductive Value also factors heavily in evolutionary studies and life history theory.</p>
 <p><strong>Q:</strong> Why is the reproductive value discounted by the population growth rate??</p>

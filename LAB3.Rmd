@@ -27,9 +27,9 @@ Let's start with some definitions- population ecology, and life tables in partic
 
 **x:** Age, or time elapsed since the birth date of the cohort (often in years).       
 
-**S(x):** Survivors, or Census size -- the number of individuals in the study population who survive to time x. 
+**S(x):** Survivors, or Census size -- the number of individuals in the cohort who survived to time x. 
 
-**D(x):** Deaths -- the number of age x individuals who die before reaching age x+1
+**D(x):** Deaths -- the number of age x individuals in the cohort who died before reaching age x+1
 
 **Birth rate, b(x):** Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x).
 
@@ -46,6 +46,8 @@ Let's start with some definitions- population ecology, and life tables in partic
 **Generation time** is defined as the _Average age of the parents within a cohort_ (for all offspring born to the cohort, first record the age of the mom at the time she gave birth, and then take the average of all these ages!). This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
 
 **Intrinsic rate of growth,** $r$ is defined (to a first-order approximation) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$
+
+**lambda,** $r$ is defined (to a first-order approximation) as: $\lambda = e^{r}$
 
 NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the *Euler method*. You are not required to know how to use the Euler method in this class.      
 
