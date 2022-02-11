@@ -14,20 +14,28 @@
 
 <title>Matrix population models</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,13 +446,13 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Matrix population models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
@@ -538,8 +497,8 @@ teasel_matrix &lt;- as.matrix(teasel)                     # convert to a matrix 
 colnames(teasel_matrix) &lt;- names(teasel)               # assign row and column names
 rownames(teasel_matrix) &lt;- names(teasel)
 teasel_matrix                                          # print the matrix</code></pre>
-<pre><code>##           Seed1 seed2  ros1  ros2  ros3 flowering
-## Seed1     0.000  0.00 0.000 0.000 0.000   322.380
+<pre><code>##           seed1 seed2  ros1  ros2  ros3 flowering
+## seed1     0.000  0.00 0.000 0.000 0.000   322.380
 ## seed2     0.966  0.00 0.000 0.000 0.000     0.000
 ## ros1      0.013  0.01 0.125 0.000 0.000     3.448
 ## ros2      0.007  0.00 0.125 0.238 0.000    30.170
@@ -581,7 +540,7 @@ rownames(Initial_teasel) &lt;- rownames(teasel_matrix)                  # add ro
 colnames(Initial_teasel) &lt;- &quot;Abundance&quot;
 Initial_teasel</code></pre>
 <pre><code>##           Abundance
-## Seed1          1000
+## seed1          1000
 ## seed2          1500
 ## ros1            200
 ## ros2            300
@@ -596,7 +555,7 @@ Initial_teasel</code></pre>
 Year1 &lt;- teasel_matrix %*% Initial_teasel   # note: the &#39;%*%&#39; denotes &#39;matrix multiplication&#39; in R. We&#39;ll go through this more later.     
 Year1</code></pre>
 <pre><code>##           Abundance
-## Seed1       8059.50
+## seed1       8059.50
 ## seed2        966.00
 ## ros1         139.20
 ## ros2         857.65
@@ -611,7 +570,7 @@ thisYear &lt;- Year1
 nextYear &lt;- teasel_matrix %*% thisYear
 nextYear  # now we get the (age structured) population size at time 2!     </code></pre>
 <pre><code>##             Abundance
-## Seed1     147295.4220
+## seed1     147295.4220
 ## seed2       7785.4770
 ## ros1        1707.2247
 ## ros2       14062.6102
@@ -638,14 +597,14 @@ for(t in 2:(nYears+1)){    # here we use &#39;t&#39; as our looping variable, bu
 
 tenYears</code></pre>
 <pre><code>##              0       1           2           3          4           5
-## Seed1     1000 8059.50 147295.4220  55502.0530 274098.158 1254742.541
+## seed1     1000 8059.50 147295.4220  55502.0530 274098.158 1254742.541
 ## seed2     1500  966.00   7785.4770 142287.3777  53614.983  264778.821
 ## ros1       200  139.20   1707.2247   2799.7179   5425.969   18197.711
 ## ros2       300  857.65  14062.6102   9785.5436  28718.972  126857.393
 ## ros3       600  203.25    702.3908   4889.4070   4390.907   13317.225
 ## flowering   25  456.90    172.1635    850.2331   3892.123    3953.716
 ##                    6          7           8          9         10
-## Seed1     1274599.05 4160519.75 12493783.29 19821259.9 54739267.1
+## seed1     1274599.05 4160519.75 12493783.29 19821259.9 54739267.1
 ## seed2     1212081.29 1231262.68  4019062.08 12068994.7 19147337.1
 ## ros1        34866.57   77547.56   209719.50   440822.1  1018930.3
 ## ros2       160533.59  440850.62  1312972.86  2281135.7  5859547.7
@@ -687,14 +646,8 @@ Lambda &lt;- as.numeric(round(eigen(teasel_matrix)$values[1],2))
 Lambda</code></pre>
 <pre><code>## [1] 2.32</code></pre>
 <p>Or we could use the handy “popbio” package in R:</p>
-<pre class="r"><code>library(popbio)      # or... it&#39;s easier to use the &#39;popbio&#39; library in R!</code></pre>
-<pre><code>## Warning: package &#39;popbio&#39; was built under R version 3.6.2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;popbio&#39;</code></pre>
-<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
-## 
-##     teasel</code></pre>
-<pre class="r"><code>lambda(teasel_matrix)</code></pre>
+<pre class="r"><code>library(popbio)      # or... it&#39;s easier to use the &#39;popbio&#39; library in R!
+lambda(teasel_matrix)</code></pre>
 <pre><code>## [1] 2.32188</code></pre>
 <p>You don’t have to understand the math here- but I do want you to understand how simple that was- just one line of code and we computed the annual rate of growth from the teasel transition matrix!</p>
 <p>Here’s another nifty trick:</p>
@@ -711,7 +664,7 @@ SAD/sum(SAD)      # stable age distribution as a percentage of the total populat
 <p>Or you can use the ‘popbio’ package in R:</p>
 <pre class="r"><code>library(popbio)    # ... and it&#39;s even easier if we use the &#39;popbio&#39; package...
 stable.stage(teasel_matrix)</code></pre>
-<pre><code>##       Seed1       seed2        ros1        ros2        ros3   flowering 
+<pre><code>##       seed1       seed2        ros1        ros2        ros3   flowering 
 ## 0.636901968 0.264978062 0.012174560 0.069281759 0.012076487 0.004587164</code></pre>
 <p><strong>Q:</strong> Does a stage-structured population grow at the rate of <span class="math inline">\(\lambda\)</span> per time step if it is NOT at stable age distribution? [tophat]</p>
 <p>To answer this question, you may find it helps to load an stage-structured model in InsightMaker like <a href="https://insightmaker.com/insight/70809/Age-structured-population">this one</a>).</p>
@@ -812,18 +765,18 @@ allYears</code></pre>
 ## Juveniles 8.451123 8.732991 9.024259 9.325242 9.636263 9.957658 10.289772
 ## Subadults 4.003042 4.136554 4.274519 4.417085 4.564407 4.716641  4.873954
 ## Adults    2.183248 2.256065 2.331310 2.409066 2.489414 2.572443  2.658241
-##                  24        25        26        27        28        29
-## Juveniles 10.632962 10.987600 11.354065 11.732753 12.124071 12.528440
-## Subadults  5.036513  5.204494  5.378077  5.557450  5.742806  5.934344
-## Adults     2.746900  2.838516  2.933188  3.031018  3.132110  3.236574
-##                  30        31        32        33        34        35
-## Juveniles 12.946297 13.378090 13.824284 14.285360 14.761814 15.254160
-## Subadults  6.132270  6.336797  6.548146  6.766543  6.992225  7.225434
-## Adults     3.344522  3.456071  3.571340  3.690454  3.813540  3.940731
-##                  36        37        38        39        40
-## Juveniles 15.762926 16.288661 16.831930 17.393319 17.973432
-## Subadults  7.466422  7.715446  7.972777  8.238690  8.513472
-## Adults     4.072165  4.207983  4.348330  4.493358  4.643223</code></pre>
+##                  24        25        26        27        28        29        30
+## Juveniles 10.632962 10.987600 11.354065 11.732753 12.124071 12.528440 12.946297
+## Subadults  5.036513  5.204494  5.378077  5.557450  5.742806  5.934344  6.132270
+## Adults     2.746900  2.838516  2.933188  3.031018  3.132110  3.236574  3.344522
+##                  31        32        33        34        35        36        37
+## Juveniles 13.378090 13.824284 14.285360 14.761814 15.254160 15.762926 16.288661
+## Subadults  6.336797  6.548146  6.766543  6.992225  7.225434  7.466422  7.715446
+## Adults     3.456071  3.571340  3.690454  3.813540  3.940731  4.072165  4.207983
+##                  38        39        40
+## Juveniles 16.831930 17.393319 17.973432
+## Subadults  7.972777  8.238690  8.513472
+## Adults     4.348330  4.493358  4.643223</code></pre>
 <p>Now let’s plot it out!</p>
 <pre class="r"><code>#####
 # and plot out the results!
@@ -903,7 +856,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -912,6 +865,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
