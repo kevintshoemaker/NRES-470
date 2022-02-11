@@ -586,7 +586,7 @@ barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot
 <p>Where <span class="math inline">\(k\)</span> is the maximum age.</p>
 <p><strong>Q:</strong> Can you implement this formula in Excel? What’s the answer?</p>
 <ol start="2" style="list-style-type: decimal">
-<li>If the net reproductive rate, <span class="math inline">\(R_0\)</span> is positive, then the population is above the <strong>replacement rate</strong> of 1, and therefore the population will grow. If <span class="math inline">\(R_0\)</span> is negative, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, <span class="math inline">\(\lambda\)</span>.</li>
+<li>If the net reproductive rate, <span class="math inline">\(R_0\)</span> is above one, then the population is above the <strong>replacement rate</strong> of 1, and therefore the population will grow. If <span class="math inline">\(R_0\)</span> is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, <span class="math inline">\(\lambda\)</span>.</li>
 </ol>
 <p>BUT, what is the time frame of <span class="math inline">\(R_0\)</span>? What is the timeframe of <span class="math inline">\(\lambda\)</span>? They are different right? The difference is that <span class="math inline">\(R_0\)</span> describes growth per <strong>generation</strong>!.</p>
 <p>What is a <strong>generation</strong>? The most common definition (for generation time) is the <em>Average age of the parents of all the offspring produced by a single cohort</em>. This can be computed from the life table as:</p>
@@ -599,6 +599,8 @@ barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot
 <p>To a first-order approximation, you can use this equation:</p>
 <p><span class="math inline">\(r = \frac{ln(R_0)}{G}\)</span> [tophat]</p>
 <p>Just looking at this equation, you see that organisms with longer generation times (<span class="math inline">\(G\)</span>) have slower intrinsic rates of growth, all else being equal.</p>
+<p>And- again as a first-order approximation - you can estimate the lambda for this population (annual multiplier) like this:</p>
+<p><span class="math inline">\(\lambda = e^{r}\)</span></p>
 <p><strong>Q:</strong> Implement this equation in Excel. Is this an exponentially growing population?</p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Load up an age-structured model in InsightMaker. You can clone <a href="https://insightmaker.com/insight/70809/Age-structured-population">this one, here</a>.</p>

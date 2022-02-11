@@ -131,7 +131,7 @@ Where $k$ is the maximum age.
 
 **Q:** Can you implement this formula in Excel? What's the answer?
 
-2. If the net reproductive rate, $R_0$ is positive, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is negative, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$. 
+2. If the net reproductive rate, $R_0$ is above one, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$. 
 
 BUT, what is the time frame of $R_0$? What is the timeframe of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
 
@@ -151,7 +151,12 @@ $r = \frac{ln(R_0)}{G}$ [tophat]
 
 Just looking at this equation, you see that organisms with longer generation times ($G$) have slower intrinsic rates of growth, all else being equal. 
 
+And- again as a first-order approximation - you can estimate the lambda for this population (annual multiplier) like this:
+
+$\lambda = e^{r}$
+
 **Q:** Implement this equation in Excel. Is this an exponentially growing population?
+
 
 4. Load up an age-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/70809/Age-structured-population). 
 
