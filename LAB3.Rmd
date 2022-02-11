@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are *age structure*, *life tables*, and *age/stage matrices*.  
+In this lab we will have an opportunity to build more complex population models in InsightMaker. Among the concepts we will play around with are *age structure*, *life tables*, and *simulating age-structured population dynamics*.  
 
 First let's do some math!
 
@@ -31,7 +31,7 @@ Let's start with some definitions- population ecology, and life tables in partic
 
 **D(x):** Deaths -- the number of age x individuals who die before reaching age x+1
 
-**Birth rate, b(x):** Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x). NOTE: this parameter is sometimes called m(x) for "maternity"
+**Birth rate, b(x):** Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x).
 
 **Survivorship, l(x):** $l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$. Survivorship represents the fraction of the cohort that is expected to survive to a given age.        
 
