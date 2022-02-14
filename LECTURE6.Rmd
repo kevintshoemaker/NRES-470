@@ -80,7 +80,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 
 ### Fecundity schedule
 
-The fecundity component of the life table is called the "fedundity schedule"! The term $b(x)$ represents the per-capita birth rate for females of age x.  
+The fecundity component of the life table is called the "fecundity schedule"! The term $b(x)$ represents the per-capita birth rate for females of age x.  
 
 ### Survivorship schedule
 

@@ -98,7 +98,7 @@ By using stages, we have simplified our model from having 100 stocks (with even 
 
 Matrix population models can represent age-structured and stage-structured models with equal simplicity and elegance. 
 
-You won't be tested on this, but the commonly used 'Leslie Matrix' refers to a matrix population model that represents an age-structured population. When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" Matrix. 
+The commonly used 'Leslie Matrix' refers to an age-structured population matrix. When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" Matrix. 
 
 ### Reason 2: projection!
 
