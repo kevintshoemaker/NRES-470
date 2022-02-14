@@ -482,7 +482,7 @@ barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot
 <p><img src="LECTURE6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>So, for many species per-capita birth rate and death rate are fundamentally dependent on age!</p>
 <p><img src="spadefoot1.jpg" /></p>
-<p><strong>Q:</strong> Imagine you were trying to re-establish a population of spadefoot toads. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm. What would population growth look like over the next few years, assuming the reintroduction strategy was successful? [tophat]</p>
+<p><strong>Q:</strong> Imagine you were trying to re-establish a population of spadefoot toads, which tend to reproduce for the first time in their third year of life. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm (to maximize survival rate). What would population growth look like over the next few years, assuming the reintroduction strategy was successful? [tophat]</p>
 </div>
 <div id="aside-sex-structured-vital-rates" class="section level2">
 <h2>Aside: sex-structured vital rates</h2>
@@ -544,7 +544,7 @@ barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot
 </table>
 <div id="fecundity-schedule" class="section level3">
 <h3>Fecundity schedule</h3>
-<p>The fecundity component of the life table is called the “fedundity schedule”! The term <span class="math inline">\(b(x)\)</span> represents the per-capita birth rate for females of age x.</p>
+<p>The fecundity component of the life table is called the “fecundity schedule”! The term <span class="math inline">\(b(x)\)</span> represents the per-capita birth rate for females of age x.</p>
 </div>
 <div id="survivorship-schedule" class="section level3">
 <h3>Survivorship schedule</h3>
@@ -578,7 +578,7 @@ barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot
 </div>
 <div id="in-class-exercise-age-structured-population-growth" class="section level2">
 <h2>In-class exercise: age-structured population growth</h2>
-<p>In this exercise we will explore some facets of <strong>age-stuctured populations</strong>.</p>
+<p>In this exercise we will explore some facets of <strong>age-structured populations</strong>.</p>
 <ol style="list-style-type: decimal">
 <li>Load up the life table from earlier in this lecture, by clicking <a href="life_table.csv">here</a>. Use this table to compute the <strong>net reproductive rate, <span class="math inline">\(R_0\)</span></strong>. This represents the expected number of female offspring produced per female over her entire lifetime. This is also known as <em>lifetime reproductive potential</em>! This can be computed as:</li>
 </ol>
@@ -599,7 +599,7 @@ barplot(Death_rate,xlab=&quot;Age&quot;,ylab=&quot;d, per-capita death rate&quot
 <p>To a first-order approximation, you can use this equation:</p>
 <p><span class="math inline">\(r = \frac{ln(R_0)}{G}\)</span> [tophat]</p>
 <p>Just looking at this equation, you see that organisms with longer generation times (<span class="math inline">\(G\)</span>) have slower intrinsic rates of growth, all else being equal.</p>
-<p>And- again as a first-order approximation - you can estimate the lambda for this population (annual multiplier) like this:</p>
+<p>And you can estimate the lambda for this population (annual multiplier) like this:</p>
 <p><span class="math inline">\(\lambda = e^{r}\)</span></p>
 <p><strong>Q:</strong> Implement this equation in Excel. Is this an exponentially growing population?</p>
 <ol start="4" style="list-style-type: decimal">

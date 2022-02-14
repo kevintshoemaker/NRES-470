@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 # Matrix population models
 
-First of all, this lecture is full of R code (R is pretty good at running matrix population models!). If you want to follow along in R, you can find the R script [here](LECTURE7.R). I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.     
+First of all, this lecture is full of R code (R makes it easy to run matrix population models!). If you want to follow along in R, you can find the R script [here](LECTURE7.R). I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.     
 
 ## Why matrices? 
 
