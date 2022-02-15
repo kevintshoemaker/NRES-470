@@ -241,7 +241,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 #lifetable
 ```
 
-1a. Translate the above *life table* into a five-age-class transition matrix (age class 0 to age class 4). In your written lab report, provide the full transition matrix and describe the formula used to compute the matrix element in row 1 column 3. This is a bit harder than it sounds! 
+1a. Translate the above *life table* into a five-age-class transition matrix (age class 0 to age class 4). In your written lab report, provide the full transition matrix and describe the formula used to compute the matrix element in row 1 column 3. This is a bit harder than it sounds! Also, it can be difficult to do this as a standard text entry submission, so if you would rather upload an image (e.g., a photo of your hand-drawn matrix and calculations), you can use the optional image upload in Top Hat.
 
 Keep the following points in mind: 
 
@@ -273,7 +273,7 @@ Make sure the parameters are at the original values specified in Exercise 3 of L
 - For transition rates, set *Transition rate, Age 0 to 1* at 0.45 and *Transition rate, Age 1 to 2* at 0.35. NOTE: these transition rates could also be called "survival rates"    
 - For the mortality rates, note that all individuals in the *Age 0* stock must either transition to *Age 1* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 2* stock must die- there is no *Age 3* class! 
 
-2a. Translate this InsightMaker model into a projection matrix. This shouldn't be too difficult, but pay close attention to the difference between survival (transition to the next stage class) and mortality. Please enter your transition matrix into TopHat (I know it is difficult to make it look nice, but just do your best!).   
+2a. Translate this InsightMaker model into a projection matrix. This shouldn't be too difficult, but pay close attention to the difference between survival (transition to the next stage class) and mortality. Please enter your full transition matrix into TopHat. It can be difficult to do this as a standard text entry submission, so if you would rather upload an image (e.g., a photo of your hand-drawn matrix and calculations), you can use the optional image upload in Top Hat.  
 
 2b. Starting with 75 individuals, all in Age 0, project the population 20 years into the future, using both InsightMaker and R. *You don't need to show your R code or the InsightMaker model this time*. Please provide two plots- one showing the results of the R simulation and the other showing the results of the InsightMaker simulation). These plots should look essentially identical! 
 
@@ -292,36 +292,44 @@ stmat <- as.matrix(stmat[,-1])
 rownames(stmat) <- colnames(stmat)
 stmat
 
+# lambda(stmat) 
+
 ```
 
-2c. Build an InsightMaker model that represents the same population as the stage-based matrix above. Provide the URL to your InsightMaker model via top hat (and remember to clone your Insight to ensure that you don't alter the model once you submit it) .  
+2c. Build an InsightMaker model that represents the same population as the stage-based matrix above. Provide the URL to your InsightMaker model via top hat (and remember to clone your Insight to ensure that you don't alter the model once you submit it).  
 
 2d. Use this stage matrix to project the population 20 years into the future using b, starting with 100 individuals at S.A.D. Please provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide both the InsightMaker and R plots to show that the two models are identical.    
 
-NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of wild populations. Were any of the population models in this lab density-dependent? [Answer: NO!]
+NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of real populations. Were any of the population models in this lab density-dependent? [Answer: NO!]
 
-#### EXTRA CREDIT question:
+#### Optional challenge:
 
-Let's build a density-dependent vital rate into our model. BUT instead of doing what we have done before (birth and death rates are density-dependent), let's build a model where the transition rate from one stage to the next is density dependent but stage-specific survival does not change! Here is the scenario:   
+Build a density-dependent vital rate into your model. BUT instead of doing what we have done before (birth and death rates are density-dependent), build a model where the transition rate from one stage to the next is density dependent but stage-specific survival does not change! Here is the scenario:   
 
-> The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the carrying capacity of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.    
-
-EXTRA CREDIT. Provide the URL for your new, density-dependent InsightMaker model (based on your model from question 2c). Describe briefly what components and equations you added to the model to implement density-dependent growth from stage 2 to stage 3. Run the model for 20 years and provide a plot of abundance over time. Is this population *regulated*? Explain your reasoning.     
+> The stage matrix in this exercise is representative of a population at very low abundance (near 0). If abundance increases above the threshold of 100 individuals, no individuals can transition from stage 2 to stage 3 (grow to full maturity)- however, overall survival rates and stage-specific fecundity rates remain unchanged.    
 
 
-
-## Exercise 3. Translate plain English to projection matrix!
+## Exercise 3. Translate written population description to projection matrix!
 
 As a test of your understanding, try to implement the following passage as a matrix projection model:
 
 ![](redtail1.jpg)
 
-> We assumed that the Red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. 
+> We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). We assumed that adults experienced an average of 20% mortality each year. Juvenile mortality was set at 25% per year. Approximately 10% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 22% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles that fail to transition to the Adult stage tend to produce only 1 new hatchling each year on average.  
+
+```{r eval=FALSE, echo=FALSE}
+
+mymat = matrix(c(0,    0.1*1+0.65*3,        3*0.8, 
+                 0.22,  0.1,                 0,
+                 0,    0.65,                 0.8),   nrow=3,byrow = T)
+lambda(mymat)
 
 
-3a. Provide your transition matrix in your write-up. Please indicate your fecundity calculations so we can give partial credit for incorrect answers!     
+```
 
-3b. Is this population at S.A.D. at time 0? If not, provide an example of an initial population structure that IS at S.A.D.     
+3a. Provide your full transition matrix in Top Hat. Please also indicate your fecundity calculations (top row of the matrix) so we can give partial credit for incorrect answers! It can be difficult to do this as a standard text entry submission, so if you would rather upload an image (e.g., a photo of your hand-drawn matrix and calculations), you can use the optional image upload in Top Hat.      
+
+3b. How many hatchlings, juveniles and adults would there be in the population at time 0 if you were to initialize the population at S.A.D.? Use the same initial population size as the example above (1155 total individuals at time 0).      
 
 3c. What is the finite growth rate, Lambda, for this population?     
 
@@ -332,7 +340,7 @@ As a test of your understanding, try to implement the following passage as a mat
 
 * As always, URLs for your InsightMaker models should be pasted in your lab submission (in Top Hat). See details below...  
 
-***Due Mar. 19 at 11:55pm***
+***Due Fri Mar. 4 at 11:59pm***
 
 *  Word document with short answers
     +  **Exercise 1**
@@ -344,10 +352,9 @@ As a test of your understanding, try to implement the following passage as a mat
  
     +  **Exercise 2**
         -  *Short answer (2a.)* 
-        -  *Short answer (2b.)* 
-        -  *Short answer (2c.)* 
-        -  *Short answer (2d.)*  
-        -  EXTRA CREDIT question *Short answer*  
+        -  *IM and R plots (2b.)* 
+        -  *InsightMaker url (2c.)* 
+        -  *IM and R plots (2d.)*  
 
     +  **Exercise 3**
         -  *Short answer (3a.)* 
