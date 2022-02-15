@@ -36,11 +36,11 @@ head(read.csv("simple_closed.csv"))
 
 library(marked)    # remember to install the 'marked' package if you haven't already done this
 
-?crm  # to get help on the main parameter estimation function in "marked"
+#?crm  # to get help on the main parameter estimation function in "marked"
 
 # library(help="marked")
 
-vignette("markedVignette","marked")
+# vignette("markedVignette","marked")
 
 ##########
 # load data!

@@ -138,7 +138,7 @@ legend("topleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate
 
 2a. What is the approximate maximum sustainable yield (MSY) for this population (i.e., the maximum number of individuals that can be harvested sustainably each month)?  [HINT: you might want to increase the simulation length to make sure it's really sustainable!]. What does the graph of abundance over time look like when the population is harvested at a value that is close to, but exceeds, the MSY (e.g., 10 individuals greater than MSY harvested each year)?
 
-2b. What is the approximate equilibrium abundance when the population is harvested at the rate you identified in 2a.? Try to express this new equilibrium rate as a fraction of the equilibrium abundance with no harvest (i.e., carrying capacity!).  
+2b. What is the approximate equilibrium abundance (the population size when it stabilizes) when the population is harvested at the maximum sustainable yield (MSY) you identified in 2a.? Express this new equilibrium as a fraction of carrying capacity.  
 
 2c. Does the maximum number of individuals you can sustainably harvest each month (the MSY harvest level) change if you reduce the initial population size to 1000 instead of 5500? If so, what is the new MSY when you initialize abundance at 1000? 
 

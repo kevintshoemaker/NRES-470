@@ -24,4 +24,4 @@ for (i in 2:(nyears+1)){  # This for-loop will run through the line of code betw
 }                         # This ends the for-loop.
 
 N                         # Now print the contents of the object "N".
-plot(N~years)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "years" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
+plot(N~year)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "year" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.

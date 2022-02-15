@@ -27,7 +27,7 @@ teasel_matrix                                          # print the matrix
 
 
 #############
-# Summarize initial age-structured abundance as a vector
+# Summarize initial age-structured abundance as a matrix with one column
 
 Initial_teasel <- matrix(c(1000,1500,200,300,600,25),ncol=1)         # initial population size (population vector; matrix with 1 column!)
 rownames(Initial_teasel) <- rownames(teasel_matrix)                  # add row and column names
@@ -74,25 +74,23 @@ tenYears
 ###########
 # Use the transition matrix to compute Lambda, or the finite rate of population growth!
 
-Lambda <- as.numeric(round(eigen(teasel_matrix)$values[1],2))
+library(popbio)      # load the 'popbio' package in R!
+Lambda <- lambda(teasel_matrix) 
 Lambda
 
-
-
-library(popbio)      # or... it's easier to use the 'popbio' library in R!
-lambda(teasel_matrix)
+#   as.numeric(round(eigen(teasel_matrix)$values[1],2))  # this is an alternative method- if you don't want to use the 'popbio' package
 
 
 ##########
 # Compute stable age distribution from the transition matrix!
 
-SAD <- abs(as.numeric(round(eigen(teasel_matrix)$vectors[,1],3)))
-SAD/sum(SAD)      # stable age distribution as a percentage of the total population
-
-
 library(popbio)    # ... and it's even easier if we use the 'popbio' package...
-stable.stage(teasel_matrix)
+SAD <- stable.stage(teasel_matrix)  
+SAD      # stable age distribution as a percentage of the total population
 
+
+# #abs(as.numeric(round(eigen(teasel_matrix)$vectors[,1],3)))  # alternative- doesn't use 'popbio'
+# SAD/sum(SAD)
 
 
 ###################
