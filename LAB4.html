@@ -14,20 +14,28 @@
 
 <title>Lab 4: Matrix population models</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,18 +446,18 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Lab 4: Matrix population models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
 
-<p>In this lab we will get back to age-structured populations: specifically, we will get familiar with <strong>matrix projection models</strong>! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth (<span class="math inline">\(N_{t+1} = N_t \cdot \lambda\)</span>)!</p>
+<p>In this lab we will continue to work with age-structured populations: specifically, we will get familiar with <strong>matrix projection models</strong>! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth (<span class="math inline">\(N_{t+1} = N_t \cdot \lambda\)</span>)!</p>
 <div id="mathematics-of-matrix-population-models" class="section level2">
 <h2>Mathematics of matrix population models:</h2>
 <p>We all remember the finite-population-growth equation:</p>
@@ -514,7 +473,7 @@ div.tocify {
 <p>NOTE: <em>survival <em>P</em> in a stage transition matrix is NOT the same thing as the survival rate <em>g(x)</em> in a life table</em>. What’s the difference?</p>
 <p>In a stage-based matrix model, individuals can survive in one of two ways- they can stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage!</p>
 <p>NOTE: <em>fecundity <em>F</em> in a stage transition matrix is NOT the same thing as age-specific birth rate <em>b(x)</em></em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate <span class="math inline">\(b_t\)</span> from life tables is the <em>per-capita rate of offspring</em> for age <span class="math inline">\(t\)</span> individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.</p>
+<p>Birth rate <span class="math inline">\(b_t\)</span> from life tables is the <em>per-capita rate of offspring production</em> for age <span class="math inline">\(t\)</span> individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.</p>
 <p>Fecundity, <span class="math inline">\(F_s\)</span>, is the per-capita rate by which individuals that were in stage <span class="math inline">\(s\)</span> at time <span class="math inline">\(t\)</span> contribute new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference?? Well, the difference is exactly <em>one time step</em> (which is typically one year)!</p>
 <p>That is, Fecundity <span class="math inline">\(F_s\)</span> also takes into account the <em>survival rate</em> to the next time step (e.g., <span class="math inline">\(P_{1 \rightarrow 2}\)</span>)!! For an adult of stage <span class="math inline">\(s\)</span> to contribute to the next generation, <em>it must first survive to the next time step</em> before it can reproduce!.</p>
 <p><span class="math inline">\(F_s = P_{surv.this.year} \cdot b_{age.next.year} \qquad \text{(Eq. 4)}\)</span></p>
@@ -523,7 +482,7 @@ div.tocify {
 <p>There is a lot we can do with matrix population models. The most obvious one is <em>projection</em>:</p>
 <div id="projection" class="section level4">
 <h4>Projection:</h4>
-<p>This lab demo contains a bunch of R code (R is pretty good at running matrix population models!). If you want to follow along in R, you can find the R script <a href="LAB4.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.</p>
+<p>This lab demo contains a bunch of R code (R makes it pretty easy to run matrix population models!). If you want to follow along in R, you can find the R script <a href="LAB4.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.</p>
 <p>We have already seen the projection equation (Eq. 2, above). Here is how we can implement this in R:</p>
 <pre class="r"><code>########
 # Syntax for projecting abundance using a transition matrix (NOTE: this code won&#39;t run until we specify the terms on the right)
@@ -605,9 +564,9 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,ncol(TMat)),legend=paste(&quot;Sta
 <pre class="r"><code>############
 # Use the &#39;popbio&#39; package to compute lambda (NOTE: you first have to install the popbio package! You only have to install the package once...)
 
-library(popbio)</code></pre>
-<pre><code>## Warning: package &#39;popbio&#39; was built under R version 4.0.3</code></pre>
-<pre class="r"><code>lambda(projection_matrix)</code></pre>
+library(popbio)
+
+lambda(projection_matrix)</code></pre>
 <pre><code>## [1] 1.138728</code></pre>
 <p>Pretty easy right?</p>
 <p>NOTE: we are using a “package” in R to make these analyses super easy! So if you don’t already have the “popbio” package, go to the “Packages” tab in Rstudio (should be at the top of the lower right panel), click on “Install”, and then type “popbio” in the “Packages” field in the pop-up window, then click on the “Install” button.</p>
@@ -629,18 +588,53 @@ stable.stage(projection_matrix)</code></pre>
 </div>
 </div>
 </div>
-<div id="exercise-1-play-with-matrix-projection-models" class="section level2">
-<h2>Exercise 1: play with matrix projection models!</h2>
+<div id="exercise-1-matrix-projection-models" class="section level2">
+<h2>Exercise 1: matrix projection models!</h2>
 <p>In this exercise, you will have a chance to play around with a very simple matrix population model. But first, you need to translate a life table into a transition matrix!</p>
-<p>Here is a life table you may remember. You can find this life table <a href="life_table4.csv">here</a>.</p>
-<pre><code>##   x..age. S.x. b.x.
-## 1       0  400  0.0
-## 2       1   85  2.1
-## 3       2   40  5.8
-## 4       3   31  4.5
-## 5       4    5  3.3
-## 6       5    0  0.0</code></pre>
-<p>1a. Translate the above <em>life table</em> into a five-age-class transition matrix (age class 0 to age class 4). In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds!</p>
+<p>Here is the life table: <a href="life_table4.xlsx">Excel format</a><br />
+<a href="life_table4.csv">CSV format</a></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">x</th>
+<th align="right">S(x)</th>
+<th align="right">b(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">500</td>
+<td align="right">0.0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">101</td>
+<td align="right">1.9</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">59</td>
+<td align="right">5.8</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">31</td>
+<td align="right">6.1</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">2.5</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+</tr>
+</tbody>
+</table>
+<p>1a. Translate the above <em>life table</em> into a five-age-class transition matrix (age class 0 to age class 4). In your written lab report, provide the full transition matrix and describe the formula used to compute the matrix element in row 1 column 3. This is a bit harder than it sounds!</p>
 <p>Keep the following points in mind:</p>
 <ul>
 <li>Individuals are in the “age 0” stage if they are between the ages of 0 and 1. They transition to the “age 1” stage (<span class="math inline">\(P_{0 \rightarrow 1}\)</span>) if they survive to age 1 (thereby entering their second year of life).<br />
@@ -651,20 +645,19 @@ stable.stage(projection_matrix)</code></pre>
 </li>
 <li>No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die (this simple type of matrix model is called a <strong>Leslie Matrix</strong> model).</li>
 </ul>
-<p>NOTE: Gotelli uses the term ‘age class 1’ to refer to individuals in their first year of life and ‘age class 2’ for individuals in their second year of life, but I think it’s easier to think of this as age class 0, age class 1, etc…</p>
-<p>1b. Use R (‘popbio’ package) to compute the finite rate of growth for the population (<span class="math inline">\(\lambda\)</span>). Is this a growing or declining population? Show your R code (just copy and paste the relevant R code into your lab write-up)!</p>
-<p>1c. Use R (‘popbio’ package) to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class? (NOTE: you can’t have fractional individuals, so please round to the nearest whole numbers)</p>
-<p>1d. Use R to project this population for 30 years, initializing your population at S.A.D. (computed in part 1c). Show your R code. What is the total abundance after 30 years? Re-do the calculation using the equation below and the “Lambda” value you computed in part 1b. Do you get the same answer (or approximately so)?</p>
-<p><span class="math inline">\(N_t = \lambda^t \cdot No\)</span></p>
-<p>1e. Finally, run your simulation again, this time starting with all 671 individuals in age-class 1. Why is the final abundance estimate different from your previous calculation?</p>
+<p>NOTE: Gotelli uses the term ‘age class 1’ to refer to individuals in their first year of life (0-year-olds) and ‘age class 2’ for individuals in their second year of life (one-year-olds), but I think it’s easier to think of this as age class 0, age class 1, etc. That way, our age classes will match the way we usually talk about age in years!</p>
+<p>1b. Use R (‘popbio’ package) to compute the finite rate of growth for the population (<span class="math inline">\(\lambda\)</span>). What is the finite rate of growth <span class="math inline">\(\lambda\)</span> for this population? Based on this result, is this a growing or declining population?</p>
+<p>1c. Use R (‘popbio’ package) to compute the stable-age distribution for the population (S.A.D.). What is the stable age distribution for this population (fraction of the population in each age-class at S.A.D.)? Now imagine you have a total population size of 850. Assuming this population is at S.A.D., how many individuals are in each age-class? (NOTE: you can’t have fractional individuals, so please round to the nearest whole numbers)</p>
+<p>1d. Use R to project this population for 30 years. Initialize your population with 850 individuals, and set the initial population to the stable age distribution you computed in part 1c. What is the total number of individuals in age class 3 (3-year-olds) after 15 years? What is the total abundance (sum across all age classes) after 30 years?</p>
+<p>1e. Finally, run your simulation again, this time starting with all 850 individuals in age-class 0 (all newborns!). What is the final abundance after 30 years (sum across all age classes)? Is the final abundance smaller or larger than the final abundance (after 30 years) you computed in part 1d, above? Why do you think the final abundance estimate is different from the calculation you did in question 1d?</p>
 </div>
 <div id="exercise-2-translate-insightmaker-to-projection-matrix" class="section level2">
 <h2>Exercise 2: translate InsightMaker to projection matrix!</h2>
 <p>Return to the InsightMaker model you created in Lab 3 (exercise 3 – that is, a basic age structured population model, without the carrying capacity component you implemented in Exercise 4 of Lab 3). Your model should look something like this:</p>
-<p><img src="IM11.jpg" /></p>
+<p><img src="IM_lab3.JPG" /></p>
 <p>Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e). As a reminder, here they are again:</p>
 <ul>
-<li>For recruitment, set <em>Recruitment rate, age 2</em> at 1.2 and <em>Recruitment rate, age 3</em> at 1.7.<br />
+<li>For recruitment, set <em>Recruitment rate, age 2</em> at 1.3 and <em>Recruitment rate, age 3</em> at 1.6.<br />
 </li>
 <li>For transition rates, set <em>Transition rate, Age 1 to 2</em> at 0.5 and <em>Transition rate, Age 2 to 3</em> at 0.3. NOTE: these transition rates could also be called “survival rates”<br />
 </li>
@@ -774,7 +767,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -783,6 +776,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
