@@ -711,7 +711,7 @@ TMat</code></pre>
 ## Juveniles       0.0       0.0   4.00
 ## Subadults       0.3       0.4   0.00
 ## Adults          0.0       0.1   0.85</code></pre>
-<p>Now we can run a 40-year projection and compare it with the InsightMaker model. It had better look the same!!</p>
+<p>Now we can run a 40-year projection and compare it with the InsightMaker model. It should look the same!!</p>
 <p>First we must specify the initial abundances in each stage:</p>
 <pre class="r"><code>######
 # specify initial abundance vector
@@ -786,9 +786,9 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or R, or any other programming platform)</em> (but it might not be as ‘pretty’ or elegant as a matrix population model!)</p>
 <p>The reverse is NOT true: <strong>you can not always convert InsightMaker models to matrix population models</strong> (IM is a programming language, so is much more flexible!)</p>
 </div>
-<div id="review-of-matrix-multiplication" class="section level3">
-<h3>Review of matrix multiplication</h3>
-<p>(on the whiteboard during lab!) (I will post the video demo to webcampus)</p>
+<div id="overview-of-matrix-multiplication" class="section level3">
+<h3>Overview of matrix multiplication</h3>
+<p>(we will do this on the whiteboard during lab!- I will post the video demo to webcampus!</p>
 </div>
 <div id="in-class-exercise-matrix-projection-models" class="section level3">
 <h3>In-class exercise: matrix projection models</h3>
@@ -799,8 +799,8 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p>We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles are expected to produce only 1 new hatchling each year. We assumed that adults experienced an average of 18% mortality each year. Juvenile mortality was set at 30% per year. Approximately 5% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 20% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults.</p>
 </blockquote>
 <p><strong>Q:</strong> What does the transition matrix look like? [tophat]</p>
-<p><strong>Q:</strong> What does the initial stage abundance vector look like?</p>
-<p><strong>Q:</strong> Is this population at a stable stage-distribution?</p>
+<p><strong>Q:</strong> What does the initial abundance vector look like?</p>
+<p><strong>Q:</strong> Is this population at stable stage-distribution? How can you tell?</p>
 <p><strong>Q:</strong> What is the growth rate of this population?</p>
 <p>For more on matrix population models, the bible of this subject is <a href="https://www.amazon.com/gp/huc/view.html?ie=UTF8&amp;newItems=C1DH1414B1C6AK%2C1">this book by Hal Caswell</a>.</p>
 <p>And finally, check this out- this is a database of thousands of stage matrices for plants and animals around the world:</p>

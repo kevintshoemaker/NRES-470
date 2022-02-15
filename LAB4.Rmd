@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Matrix population models"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```
 
-In this lab we will get back to age-structured populations: specifically, we will get familiar with **matrix projection models**! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth ($N_{t+1} = N_t \cdot \lambda$)!
+In this lab we will continue to work with age-structured populations: specifically, we will get familiar with **matrix projection models**! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth ($N_{t+1} = N_t \cdot \lambda$)!
 
 ## Mathematics of matrix population models: 
 
@@ -62,7 +62,7 @@ In a stage-based matrix model, individuals can survive in one of two ways- they 
 
 NOTE: _fecundity *F* in a stage transition matrix is NOT the same thing as age-specific birth rate *b(x)*_, $b$. What's the difference?
 
-Birth rate $b_t$ from life tables is the _per-capita rate of offspring_ for age $t$ individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
+Birth rate $b_t$ from life tables is the _per-capita rate of offspring production_ for age $t$ individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
 
 Fecundity, $F_s$, is the per-capita rate by which individuals that were in stage $s$ at time $t$ contribute new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference?? Well, the difference is exactly *one time step* (which is typically one year)!
 
@@ -76,7 +76,7 @@ There is a lot we can do with matrix population models. The most obvious one is 
 
 #### Projection:
 
-This lab demo contains a bunch of R code (R is pretty good at running matrix population models!). If you want to follow along in R, you can find the R script [here](LAB4.R). I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.
+This lab demo contains a bunch of R code (R makes it pretty easy to run matrix population models!). If you want to follow along in R, you can find the R script [here](LAB4.R). I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.
 
 We have already seen the projection equation (Eq. 2, above). Here is how we can implement this in R:
 
@@ -226,20 +226,22 @@ stable.stage(projection_matrix)
 And that is really all we need to know to get started with matrix-based population models!
 
 
-## Exercise 1: play with matrix projection models!
+## Exercise 1: matrix projection models!
 
 In this exercise, you will have a chance to play around with a very simple matrix population model. But first, you need to translate a life table into a transition matrix! 
 
-Here is a life table you may remember. You can find this life table [here](life_table4.csv).
+Here is the life table:
+    [Excel format](life_table4.xlsx)     
+    [CSV format](life_table4.csv)       
 
 ```{r echo=FALSE}
 
 lifetable <- read.csv("life_table4.csv")
-lifetable
-
+knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
+#lifetable
 ```
 
-1a. Translate the above *life table* into a five-age-class transition matrix (age class 0 to age class 4). In your written lab report, provide the transition matrix and describe the formulae used to compute the following two elements: (1) row 1 column 4 and (2) row 4 column 3. This is a bit harder than it sounds! 
+1a. Translate the above *life table* into a five-age-class transition matrix (age class 0 to age class 4). In your written lab report, provide the full transition matrix and describe the formula used to compute the matrix element in row 1 column 3. This is a bit harder than it sounds! 
 
 Keep the following points in mind: 
 
@@ -248,17 +250,15 @@ Keep the following points in mind:
 - Use five age classes for your transition matrix (age class 0 through 4). Individuals in the final age class (age class 4) have zero survival (you can't survive to age 5) and zero fecundity (if there are no individuals left at age 5, how can they reproduce!)      
 - No individual ever stays in the same age-class two time steps in a row- they either transition to the next age class or they die (this simple type of matrix model is called a **Leslie Matrix** model).   
 
-NOTE: Gotelli uses the term 'age class 1' to refer to individuals in their first year of life and 'age class 2' for individuals in their second year of life, but I think it's easier to think of this as age class 0, age class 1, etc...
+NOTE: Gotelli uses the term 'age class 1' to refer to individuals in their first year of life (0-year-olds) and 'age class 2' for individuals in their second year of life (one-year-olds), but I think it's easier to think of this as age class 0, age class 1, etc. That way, our age classes will match the way we usually talk about age in years!  
 
-1b. Use R ('popbio' package) to compute the finite rate of growth for the population ($\lambda$). Is this a growing or declining population? Show your R code (just copy and paste the relevant R code into your lab write-up)!   
+1b. Use R ('popbio' package) to compute the finite rate of growth for the population ($\lambda$). What is the finite rate of growth $\lambda$ for this population? Based on this result, is this a growing or declining population?   
 
-1c. Use R ('popbio' package) to compute the stable-age distribution for the population (S.A.D.). Show your R code! Now imagine you have a total population size of 671. Assuming this population is at S.A.D., how many individuals are in each age-class? (NOTE: you can't have fractional individuals, so please round to the nearest whole numbers)    
+1c. Use R ('popbio' package) to compute the stable-age distribution for the population (S.A.D.). What is the stable age distribution for this population (fraction of the population in each age-class at S.A.D.)? Now imagine you have a total population size of 850. Assuming this population is at S.A.D., how many individuals are in each age-class? (NOTE: you can't have fractional individuals, so please round to the nearest whole numbers)     
 
-1d. Use R to project this population for 30 years, initializing your population at S.A.D. (computed in part 1c). Show your R code. What is the total abundance after 30 years? Re-do the calculation using the equation below and the "Lambda" value you computed in part 1b. Do you get the same answer (or approximately so)? 
+1d. Use R to project this population for 30 years. Initialize your population with 850 individuals, and set the initial population to the stable age distribution you computed in part 1c. What is the total number of individuals in age class 3 (3-year-olds) after 15 years? What is the total abundance (sum across all age classes) after 30 years?
 
-$N_t = \lambda^t \cdot No$
-
-1e. Finally, run your simulation again, this time starting with all 671 individuals in age-class 1. Why is the final abundance estimate different from your previous calculation? 
+1e. Finally, run your simulation again, this time starting with all 850 individuals in age-class 0 (all newborns!). What is the final abundance after 30 years (sum across all age classes)? Is the final abundance smaller or larger than the final abundance (after 30 years) you computed in part 1d, above? Why do you think the final abundance estimate is different from the calculation you did in question 1d?  
 
 
 ## Exercise 2: translate InsightMaker to projection matrix!
@@ -269,7 +269,7 @@ Return to the InsightMaker model you created in Lab 3 (exercise 3 -- that is, a 
 
 Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e). As a reminder, here they are again:
 
-- For recruitment, set *Recruitment rate, age 2* at 1.2 and *Recruitment rate, age 3* at 1.7.    
+- For recruitment, set *Recruitment rate, age 2* at 1.3 and *Recruitment rate, age 3* at 1.6.    
 - For transition rates, set *Transition rate, Age 1 to 2* at 0.5 and *Transition rate, Age 2 to 3* at 0.3. NOTE: these transition rates could also be called "survival rates"    
 - For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! 
 

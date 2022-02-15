@@ -117,39 +117,41 @@ Let's build an age-structured model from scratch in InsightMaker. To do this, yo
 
 1. Open a blank workspace and save it. 
 
-2. Make three new stocks: *Age 1*, *Age 2* and *Age 3*. 
+2. Make three new stocks in your canvas: *Age 0*, *Age 1* and *Age 2*. 
 
-3. Make a new flow (flow in) called *Births*. This should represent new *Age 1* individuals. We will ignore immigration for now, so new additions into the "Age 1" stock is the only way new individuals can be added to the population. We will assume that *Age 2* and *Age 3* are the only reproductively active ages. Therefore, draw [Links] from *Age 2* and *Age 3* to *Births*. 
+3. Make a new flow (flow in) called *Births*. This should represent new *Age 0* individuals. We will ignore immigration for now, so new additions into the "Age 0" stock is the only way new individuals can be added to the population. We will assume that *Age 1* and *Age 2* are the only reproductively active ages. Therefore, draw [Links] from *Age 1* and *Age 2* to *Births*. 
 
-4. Make new flows from _Age 1 to Age 2_ and from _Age 2 to Age 3_, called *Transition to Age 2* and *Transition to Age 3*, respectively. These flows represent **growth**, or advancement from *Age 1* to *Age 2* and from *Age 2* to *Age 3*.
+4. Make new flows from _Age 0 to Age 1_ and from _Age 1 to Age 2_, called *Transition to Age 1* and *Transition to Age 2*, respectively. These flows represent **growth**, or advancement from *Age 0* to *Age 1* and from *Age 1* to *Age 2*.
 
-5. Make three new flows representing mortality, emerging respectively from each stock and called *Age 1 mortality*, *Age 2 mortality*, and *Age 3 mortality*.  
+5. Make three new flows representing mortality, emerging respectively from each stock and called *Age 0 mortality*, *Age 1 mortality*, and *Age 2 mortality*.  
 
-Your new insight should look something like this (but the flow into Age 1 can be called 'Births' rather than 'Recruitment): 
+Your new insight should look something like this: 
 
 ![](IM7.jpg)
 
-NOTE: you don't need links from flows to connected stocks (they are already connected so they don't need a link!)- but you are welcome to add these links if it helps you! Also note the flow in to the Age 1 stock should be called "Births", not "Recruitment".  
-
 6. Parameterize your new age-structured population!   
 
-    6a. For births, make new variables called *Birth rate, age 2* and *Birth rate, age 3*, representing the per-capita reproductive rate for age 2 and age 3, respectively. Draw links from these variables to *Births*, and set these variables at 1.3 and 1.6, respectively. Click on the equation editor for *Births* and set the equation appropriately (see questions below)   
+    6a. For births, make new variables called *Birth rate, age 1* and *Birth rate, age 2*, representing the per-capita reproductive rate for age 1 and age 2, respectively. Draw links from these variables to *Births*, and set these variables at 1.3 and 1.6, respectively. Click on the equation editor for *Births* and set the equation appropriately (see questions below)   
     
-    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 1 to 2* and *Transition rate, Age 2 to 3*. Draw links to the appropriate flows, and set these rates at 0.45 and 0.35, respectively. NOTE: these transition rates could also be called "survival rates"                
-    6c. For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately.              
+    6b. For the transitions, make new variables representing the per-capita transition rates, called *Transition rate, Age 0 to 1* and *Transition rate, Age 1 to 2*. Draw links to the appropriate flows, and set these rates at 0.45 and 0.35, respectively. NOTE: these transition rates could also be called "survival rates"                
+    6c. For the mortality rates, note that all individuals in the *Age 0* stock must either transition to *Age 1* or die (mortality rates are 1 minus the corresponding transition rate). In addition, all individuals in the *Age 2* stock must die- there is no *Age 3* class! Now click on the equation editors for the mortality rates, and specify the mortality rates appropriately.              
 
 7. For each flow in the model, use the equation editor to specify the appropriate equations. 
 
-8. Explore the model- make sure you understand how it works! 
+8. Explore the model- make sure you understand how it works!
+
+Your final model should look something like this:
+
+![](IM_lab3.jpg)
 
 
 ### QUESTIONS, Exercise 3 (age-structured model in InsightMaker):
 
-3a. What is the equation for *Births* in the above model (flow into the 'Age 1' stock)? Copy and paste your equation from InsightMaker. Using plain English, explain how this equation correctly computes the number of births each year.
+3a. What is the equation for *Births* in the above model (flow into the 'Age 0' stock)? Copy and paste your equation from InsightMaker. Using plain English, explain how this equation correctly computes the number of births each year.
 
-3b. Initialize the population abundances (Age 1, Age2, and Age 3 initial abundances) so that the population consists of only 100 individuals in the first (*Age 1*) age class (i.e., 100 individuals in Age 1, no individuals in the other age classes). Run the model for 30 years. Describe how the population dynamics at the beginning of the simulation differs from the dynamics at the end of the simulation. Optionally, you may include an image of an InsightMaker plot to help illustrate your answer.  
+3b. Initialize the population abundances (Age 0, Age 1, and Age 2 initial abundances) so that the population consists of only 100 individuals in the first (*Age 0*) age class (i.e., 100 individuals in Age 0, no individuals in the other age classes). Run the model for 30 years. Describe how the population dynamics at the beginning of the simulation differs from the dynamics at the end of the simulation. Optionally, you may include an image of an InsightMaker plot to help illustrate your answer.  
 
-3c. Is this a growing or declining population (make sure you use the originally specified vital rates)? Imagine you could enact a predator-control program and reduce the mortality of *Age 1* individuals. How much would you have to reduce mortality (i.e., increase the proportion transitioning from Age 1 to age 2) of this age class to make a growing population? Optionally, you may include an image of an InsightMaker plot to help illustrate your answer.
+3c. Is this a growing or declining population (make sure you use the originally specified vital rates)? Imagine you could enact a predator-control program and reduce the mortality of *Age 0* individuals. How much would you have to reduce mortality (i.e., increase the proportion transitioning from Age 0 to age 1) of this age class to make a growing population? Optionally, you may include an image of an InsightMaker plot to help illustrate your answer.
 
 3d. Please share the URL for your Insight: save your model as a 'Public Insight' and insert the URL into Top Hat in the appropriate place. And don't make any more changes to this insight once you have submitted it (use a 'cloned' version if you want to keep making changes)! 
     
@@ -158,7 +160,7 @@ NOTE: you don't need links from flows to connected stocks (they are already conn
 
 Implement the following density-dependent model (modifying your previous age-structured model in InsightMaker). _If the total population (all three age classes combined!) exceeds 75 individuals, then reproduction rates drop to 25% of normal rates._ 
 
-4a (optional). Change the Age 2 survival rate to 0.75 (from 0.35). Run the simulation starting with 75 individuals, all in Age class 1. Describe the resulting population dynamics. Is this a **random (stochastic)** model (different results every time you run the model, even with the same initial conditions)? Explain your reasoning. 
+4a (optional). Change the Age 1 survival rate to 0.75 (from 0.35). Run the simulation starting with 75 individuals, all in Age class 0. Describe the resulting population dynamics. Is this a **random (stochastic)** model (different results every time you run the model, even with the same initial conditions)? Explain your reasoning. 
 
 4b (optional). Please share the URL for your Insight: save your model as a 'Public Insight' and insert the URL into Top Hat in the appropriate place. And don't make any more changes to this insight once you have submitted it (use a 'cloned' version if you want to keep making changes)! 
 

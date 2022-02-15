@@ -376,7 +376,7 @@ TMat
 
 ```
 
-Now we can run a 40-year projection and compare it with the InsightMaker model. It had better look the same!!
+Now we can run a 40-year projection and compare it with the InsightMaker model. It should look the same!!
 
 First we must specify the initial abundances in each stage:
 
@@ -450,9 +450,9 @@ _Whatever you can do with a matrix population model, you can also do in InsightM
 
 The reverse is NOT true: **you can not always convert InsightMaker models to matrix population models** (IM is a programming language, so is much more flexible!)   
 
-### Review of matrix multiplication
+### Overview of matrix multiplication
 
-(on the whiteboard during lab!) (I will post the video demo to webcampus)
+(we will do this on the whiteboard during lab!- I will post the video demo to webcampus!
 
 ### In-class exercise: matrix projection models
 
@@ -467,9 +467,9 @@ NOTE: this is also a question in Lab 4!
 
 **Q:** What does the transition matrix look like? [tophat]
 
-**Q:** What does the initial stage abundance vector look like?
+**Q:** What does the initial abundance vector look like?
 
-**Q:** Is this population at a stable stage-distribution?
+**Q:** Is this population at stable stage-distribution? How can you tell?
 
 **Q:** What is the growth rate of this population? 
 
