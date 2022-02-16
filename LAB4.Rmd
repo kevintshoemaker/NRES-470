@@ -322,8 +322,8 @@ As a test of your understanding, try to implement the following passage as a mat
 mymat = matrix(c(0,    0.1*1+0.65*3,        3*0.8, 
                  0.22,  0.1,                 0,
                  0,    0.65,                 0.8),   nrow=3,byrow = T)
-lambda(mymat)
-
+popbio::lambda(mymat)
+mymat
 
 ```
 
