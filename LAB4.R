@@ -104,3 +104,5 @@ stmat <- as.matrix(stmat[,-1])
 rownames(stmat) <- colnames(stmat)
 stmat
 
+# lambda(stmat) 
+
