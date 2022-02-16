@@ -198,7 +198,7 @@ legend("topleft",col=cols,lwd=rep(2,6),legend=rownames(tenYears))      # add leg
 
 ```
 
-So projection is easy with matrices! What more reason to we need to convince ourselves of why matrix population models are worth knowing? Well, how about this...
+So projection is easy with matrices! What more reason do we need to convince ourselves of why matrix population models are worth knowing? Well, how about this...
 
 ### Reason 3: Matrix algebra tricks!
 
