@@ -298,7 +298,7 @@ stmat
 
 2c. Build an InsightMaker model that represents the same population as the stage-based matrix above. Provide the URL to your InsightMaker model via top hat (and remember to clone your Insight to ensure that you don't alter the model once you submit it).  
 
-2d. Use this stage matrix to project the population 20 years into the future using b, starting with 100 individuals at S.A.D. Please provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide both the InsightMaker and R plots to show that the two models are identical.    
+2d. Use this stage matrix to project the population 20 years into the future using R, starting with 100 individuals at S.A.D. Please provide a plot of projected abundance of each stage over the 20 year simulation. Do the same in InsightMaker (project the population 20 years into the future), and make sure the population dynamics look the same in R and InsightMaker. Provide both the InsightMaker and R plots to show that the two models are identical.    
 
 NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of real populations. Were any of the population models in this lab density-dependent? [Answer: NO!]
 
