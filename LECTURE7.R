@@ -54,7 +54,7 @@ nextYear  # now we get the (age structured) population size at time 2!
 # Use a for loop to project the population dynamics for the next 10 years!
 
 nYears <- 10
-tenYears <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storate array for recording age structured abundances for the next 10 years. 
+tenYears <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
 rownames(tenYears) <- rownames(Initial_teasel)      # assign row and column names
 colnames(tenYears) <- seq(0,10)
 tenYears[,1] <- Initial_teasel                      # initialize the simulated abundances

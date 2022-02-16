@@ -14,8 +14,8 @@
 
 <title>Matrix population models</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -564,7 +564,7 @@ nextYear  # now we get the (age structured) population size at time 2!     </cod
 # Use a for loop to project the population dynamics for the next 10 years!
 
 nYears &lt;- 10
-tenYears &lt;- matrix(0,nrow=6,ncol=nYears+1)          # initialize storate array for recording age structured abundances for the next 10 years. 
+tenYears &lt;- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
 rownames(tenYears) &lt;- rownames(Initial_teasel)      # assign row and column names
 colnames(tenYears) &lt;- seq(0,10)
 tenYears[,1] &lt;- Initial_teasel                      # initialize the simulated abundances
