@@ -14,8 +14,8 @@
 
 <title>Lab 4: Matrix population models</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -457,24 +457,24 @@ div.tocify {
 </div>
 
 
-<p>In this lab we will continue to work with age-structured populations: specifically, we will get familiar with <strong>matrix projection models</strong>! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth (<span class="math inline">\(N_{t+1} = N_t \cdot \lambda\)</span>)!</p>
+<p>In this lab we will continue to work with age-structured populations: specifically, we will get familiar with <strong>matrix projection models</strong>! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth (<span class="math inline">\(N_{t+1}=\lambda \cdot N_t\)</span>)!</p>
 <div id="mathematics-of-matrix-population-models" class="section level2">
 <h2>Mathematics of matrix population models:</h2>
 <p>We all remember the finite-population-growth equation:</p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 1)}\)</span>,</p>
-<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
+<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multiplicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
 <p>In other words, <span class="math inline">\(\lambda\)</span> is the population multiplier per time step. You want next year’s expected abundance? Just multiply last year’s abundance by <span class="math inline">\(\lambda\)</span>!</p>
 <p>The matrix population growth equation looks pretty much the same!</p>
 <p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
 <p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
 <p>We can be more explicit about this if we re-write the above equation this way:</p>
 <p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_1 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
-<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2 (per capita ‘production’ of stage 2 individuals next year by stage 1 individuals this year), and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2 (per capita production of offspring next year by stage 2 individuals this year).</p>
-<p>NOTE: <em>survival <em>P</em> in a stage transition matrix is NOT the same thing as the survival rate <em>g(x)</em> in a life table</em>. What’s the difference?</p>
-<p>In a stage-based matrix model, individuals can survive in one of two ways- they can stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage!</p>
-<p>NOTE: <em>fecundity <em>F</em> in a stage transition matrix is NOT the same thing as age-specific birth rate <em>b(x)</em></em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate <span class="math inline">\(b_t\)</span> from life tables is the <em>per-capita rate of offspring production</em> for age <span class="math inline">\(t\)</span> individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.</p>
-<p>Fecundity, <span class="math inline">\(F_s\)</span>, is the per-capita rate by which individuals that were in stage <span class="math inline">\(s\)</span> at time <span class="math inline">\(t\)</span> contribute new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference?? Well, the difference is exactly <em>one time step</em> (which is typically one year)!</p>
+<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2 (per capita ‘production’ of stage 2 individuals next year by stage 1 individuals this year), and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2 (per-capita production of offspring next year by stage 2 individuals this year).</p>
+<p>NOTE: <em>survival <em>P</em> in a stage transition matrix is NOT necessarily the same thing as survival rate</em> (e.g., g(x) from a life table). What’s the difference?</p>
+<p>In a stage-based matrix model, individuals can survive in one of two ways - they can either stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage! (NOTE: in a <strong>Leslie matrix</strong>, all individuals must either transition to the next stage or die.)</p>
+<p>NOTE: <em>fecundity <em>F</em> in a stage transition matrix is NOT the same thing as age-specific birth rate <em>b(x)</em></em> from a life table, <span class="math inline">\(b\)</span>. What’s the difference?</p>
+<p>Birth rate <span class="math inline">\(b_t\)</span> from life tables is the per-capita rate of offspring production for age <span class="math inline">\(t\)</span> individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach <span class="math inline">\(t\)</span> years of age.<br />
+Fecundity, <span class="math inline">\(F_s\)</span>, is the per-capita rate by which individuals that were in stage <span class="math inline">\(s\)</span> at time <span class="math inline">\(t\)</span> contribute new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference?? Well, the difference is exactly <em>one time step</em> (which is typically one year)!</p>
 <p>That is, Fecundity <span class="math inline">\(F_s\)</span> also takes into account the <em>survival rate</em> to the next time step (e.g., <span class="math inline">\(P_{1 \rightarrow 2}\)</span>)!! For an adult of stage <span class="math inline">\(s\)</span> to contribute to the next generation, <em>it must first survive to the next time step</em> before it can reproduce!.</p>
 <p><span class="math inline">\(F_s = P_{surv.this.year} \cdot b_{age.next.year} \qquad \text{(Eq. 4)}\)</span></p>
 <div id="matrix-operations" class="section level3">

@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```
 
-In this lab we will continue to work with age-structured populations: specifically, we will get familiar with **matrix projection models**! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth ($N_{t+1} = N_t \cdot \lambda$)!
+In this lab we will continue to work with age-structured populations: specifically, we will get familiar with **matrix projection models**! Remember that while matrix population models may look complicated, they are just a fancy, age/stage structured version of basic discrete exponential growth ($N_{t+1}=\lambda \cdot N_t$)!
 
 ## Mathematics of matrix population models: 
 
@@ -40,7 +40,7 @@ We all remember the finite-population-growth equation:
 
 $N_{t+1}=\lambda \cdot N_t   \qquad \text{(Eq. 1)}$,
 
-where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multipicative growth rate over the time period $t \rightarrow t+1$
+where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multiplicative growth rate over the time period $t \rightarrow t+1$
 
 In other words, $\lambda$ is the population multiplier per time step. You want next year's expected abundance? Just multiply last year's abundance by $\lambda$!
 
@@ -54,16 +54,15 @@ We can be more explicit about this if we re-write the above equation this way:
 
 $\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_1 & F_2 & F_3\\ P_{1 \rightarrow 2} & P_{2 \rightarrow 2} & 0\\ 0 & P_{2 \rightarrow 3} & P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
 
-Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2 (per capita 'production' of stage 2 individuals next year by stage 1 individuals this year), and $F_2$ is the **fecundity** of stage 2 (per capita production of offspring next year by stage 2 individuals this year).
+Where $P_{1 \rightarrow 2}$ is the probability of advancing from stage 1 to 2 (per capita 'production' of stage 2 individuals next year by stage 1 individuals this year), and $F_2$ is the **fecundity** of stage 2 (per-capita production of offspring next year by stage 2 individuals this year).
 
-NOTE: _survival *P* in a stage transition matrix is NOT the same thing as the survival rate *g(x)* in a life table_. What's the difference? 
+NOTE: _survival *P* in a stage transition matrix is NOT necessarily the same thing as survival rate_ (e.g., g(x) from a life table). What's the difference? 
 
-In a stage-based matrix model, individuals can survive in one of two ways- they can stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage! 
+In a stage-based matrix model, individuals can survive in one of two ways - they can either stay in the same stage, or they can transition to the next stage. To compute total survival, you have to add up the probability of staying in the same stage and the probability of moving on to the next stage! (NOTE: in a **Leslie matrix**, all individuals must either transition to the next stage or die.) 
 
-NOTE: _fecundity *F* in a stage transition matrix is NOT the same thing as age-specific birth rate *b(x)*_, $b$. What's the difference?
+NOTE: _fecundity *F* in a stage transition matrix is NOT the same thing as age-specific birth rate *b(x)*_ from a life table, $b$. What's the difference?
 
-Birth rate $b_t$ from life tables is the _per-capita rate of offspring production_ for age $t$ individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
-
+Birth rate $b_t$ from life tables is the per-capita rate of offspring production for age $t$ individuals (individuals that are exactly age t). We can think of this as the number of offspring produced per female at the moment they reach $t$ years of age.   
 Fecundity, $F_s$, is the per-capita rate by which individuals that were in stage $s$ at time $t$ contribute new offspring to the population at time $t+1$. Sounds pretty similar, right? What's the difference?? Well, the difference is exactly *one time step* (which is typically one year)!
 
 That is, Fecundity $F_s$ also takes into account the *survival rate* to the next time step (e.g., $P_{1 \rightarrow 2}$)!! For an adult of stage $s$ to contribute to the next generation, _it must first survive to the next time step_ before it can reproduce!.
