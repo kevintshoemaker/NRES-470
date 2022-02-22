@@ -1,7 +1,7 @@
 ---
 title: "Loggerhead PVA"
 author: "NRES 421/621"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -37,6 +37,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant **scenario testing**. Also try to run through the Excel exercise (see below)!
 
+If you'd like to follow along in R, you can use [this script](PVA3_421.R)
 
 ## Constructing a demographic (matrix) model data for loggerhead turtles
 
