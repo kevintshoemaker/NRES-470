@@ -430,16 +430,37 @@ Which vital rates are density-dependent? All? Some? It depends? Are the data ava
 How do you incorporate density-dependence into a matrix population model?  
 
 How do you incorporate predator-prey dynamics into a matrix population model? [cue brain explosion]     
-
-_Whatever you can do with a matrix population model, you can also do in InsightMaker (or R, or any other programming platform)_ (but it might not be as 'pretty' or elegant as a matrix population model!)
-
-The reverse is NOT true: **you can not always convert InsightMaker models to matrix population models** (IM is a programming language, so is much more flexible!)   
+ANSWER: use computer programming (e.g., InsightMaker!) 
 
 ### Overview of matrix multiplication
 
 (we will do this on the whiteboard during lab!)
 
-### In-class exercise: matrix projection models
+### In-class exercise: loggerhead conservation!
+
+First, please review the introduction to loggerhead sea turtles [here](PVA3_421.html). 
+
+Next, download the Excel document for this example [here](Loggerhead2022.xlsx). We will work through the Excel example in class. 
+
+Using your Excel spreadsheet, investigate four management scenarios for the loggerhead turtle population:
+
+1. Improve fecundity (labeled "Sub Fecundity" and "Adult Fecundity" in the IM model) via *nest-site protection*!
+    - Double fecundity (improve to 2X the current value)      
+2. Improve hatchling survival (labeled "hatchling growth" in the IM model) via *nest monitoring*
+    - Improve _to_ 100%    
+3. Improve large juvenile survival (labeled "Lg Juv Surv" in the IM model) using *Turtle Excluder Devices (TEDs)*     
+    - Add 0.25 to the existing large juvenile survival      
+4. Improve adult/subadult survival (labeled "Sub Surv" and "Adult Surv" in IM) by *restricting longline fisheries*.     
+    - Increase by 10% (add 0.1 to the existing subadult and adult survival)          
+    
+    
+![turtle excluder device](ted1.jpg)    
+
+In Top Hat, please respond to the following question
+
+**Short Answer Question #1**: Which of the four management recommendations would have the greatest positive effect on this population?
+
+### In-class exercise: translate life history description into matrix population model
 
 Translate the following paragraph into a matrix population model. Remember a matrix population model has two components- an **initial abundance vector** and a **transition matrix**.  
 

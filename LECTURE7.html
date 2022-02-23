@@ -14,8 +14,8 @@
 
 <title>Matrix population models</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -778,16 +778,48 @@ legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears))</cod
 <p>In some ways, while introducing a new level of realism in our models – age-structure – we have been ignoring another type of realism that we introduced in earlier lectures- <strong>density-dependence</strong> (both positive and negative)!</p>
 <p>Which vital rates are density-dependent? All? Some? It depends? Are the data available?</p>
 <p>How do you incorporate density-dependence into a matrix population model?</p>
-<p>How do you incorporate predator-prey dynamics into a matrix population model? [cue brain explosion]</p>
-<p><em>Whatever you can do with a matrix population model, you can also do in InsightMaker (or R, or any other programming platform)</em> (but it might not be as ‘pretty’ or elegant as a matrix population model!)</p>
-<p>The reverse is NOT true: <strong>you can not always convert InsightMaker models to matrix population models</strong> (IM is a programming language, so is much more flexible!)</p>
+<p>How do you incorporate predator-prey dynamics into a matrix population model? [cue brain explosion]<br />
+ANSWER: use computer programming (e.g., InsightMaker!)</p>
 </div>
 <div id="overview-of-matrix-multiplication" class="section level3">
 <h3>Overview of matrix multiplication</h3>
 <p>(we will do this on the whiteboard during lab!)</p>
 </div>
-<div id="in-class-exercise-matrix-projection-models" class="section level3">
-<h3>In-class exercise: matrix projection models</h3>
+<div id="in-class-exercise-loggerhead-conservation" class="section level3">
+<h3>In-class exercise: loggerhead conservation!</h3>
+<p>First, please review the introduction to loggerhead sea turtles <a href="PVA3_421.html">here</a>.</p>
+<p>Next, download the Excel document for this example <a href="Loggerhead2022.xlsx">here</a>. We will work through the Excel example in class.</p>
+<p>Using your Excel spreadsheet, investigate four management scenarios for the loggerhead turtle population:</p>
+<ol style="list-style-type: decimal">
+<li>Improve fecundity (labeled “Sub Fecundity” and “Adult Fecundity” in the IM model) via <em>nest-site protection</em>!
+<ul>
+<li>Double fecundity (improve to 2X the current value)<br />
+</li>
+</ul></li>
+<li>Improve hatchling survival (labeled “hatchling growth” in the IM model) via <em>nest monitoring</em>
+<ul>
+<li>Improve <em>to</em> 100%<br />
+</li>
+</ul></li>
+<li>Improve large juvenile survival (labeled “Lg Juv Surv” in the IM model) using <em>Turtle Excluder Devices (TEDs)</em>
+<ul>
+<li>Add 0.25 to the existing large juvenile survival<br />
+</li>
+</ul></li>
+<li>Improve adult/subadult survival (labeled “Sub Surv” and “Adult Surv” in IM) by <em>restricting longline fisheries</em>.
+<ul>
+<li>Increase by 10% (add 0.1 to the existing subadult and adult survival)</li>
+</ul></li>
+</ol>
+<div class="figure">
+<img src="TED1.jpg" alt="" />
+<p class="caption">turtle excluder device</p>
+</div>
+<p>In Top Hat, please respond to the following question</p>
+<p><strong>Short Answer Question #1</strong>: Which of the four management recommendations would have the greatest positive effect on this population?</p>
+</div>
+<div id="in-class-exercise-translate-life-history-description-into-matrix-population-model" class="section level3">
+<h3>In-class exercise: translate life history description into matrix population model</h3>
 <p>Translate the following paragraph into a matrix population model. Remember a matrix population model has two components- an <strong>initial abundance vector</strong> and a <strong>transition matrix</strong>.</p>
 <p>NOTE: this is also a question in Lab 4!</p>
 <p><img src="redtail1.jpg" /></p>
