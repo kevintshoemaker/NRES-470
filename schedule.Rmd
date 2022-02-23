@@ -14,12 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Please check for updates frequently!
 
-
 ```{r include=FALSE}
 courseSchedule <- read.csv("CourseSchedule.csv")
 ```
 
 ```{r results='asis', echo=FALSE}
 knitr::kable(courseSchedule,caption="")
-
 ```
