@@ -14,20 +14,28 @@
 
 <title>Lab 5: Intro to stochastic models</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,18 +446,18 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Lab 5: Intro to stochastic models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
 
-<p>Now we are going to shift focus from age-structured population models for now!</p>
+<p>As ecologists, we work with ‘messy’ systems- we must therefore <em>embrace uncertainty</em>!!</p>
 <p>In this lab we will continue to add complexity (and realism) to our population models in InsightMaker. Among the concepts we will explore are <em>parameter uncertainty</em>, <em>demographic stochasticity</em> and <em>environmental stochasticity</em>.</p>
 <p>Here are the concepts we need for this lab (review!):</p>
 <ol style="list-style-type: decimal">
@@ -550,16 +509,17 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 <p><img src="IM10.jpg" /></p>
 <p>This should look familiar!</p>
 <p>Set <em>Birth rate</em> equal to 0.3 and <em>Death rate</em> equal to 0.2. <em>Set initial abundance to 20</em>. Under the “Settings” menu set the model to run for 15 years. Make sure your <em>Population</em> stock can NOT go negative (this is a setting in the configurations panel). Hit “Simulate”- you should see <em>exponential growth</em>!</p>
-<p>What if we have imperfect knowledge about birth rate? The data we have are consistent with a birth rate <span class="math inline">\(b\)</span> as low as 0.15 and as high as 0.35. Run the model with the lowest and the highest possible birth rate. Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> about the per-capita birth rate.</p>
-<p>1a. Provide the plot you just made in your write-up. What is the range of possible final abundances after 15 years? Can we conclude that the population growth rate is positive in this population?</p>
-<p>1b. Another way to do <em>uncertainty analysis</em> is to use a <em>uniform distribution</em> to represent the range of uncertainty about the parameter value – in this case, we define Birth rate as a <strong>uniformly distributed</strong> random variable with minimum of 0.15 and maximum of 0.35. We can do this in InsightMaker in one of two ways (one of which is more correct than the other!!). One is to define birth rate like this:</p>
+<p>What if we have imperfect knowledge about birth rate? The data we have are consistent with a birth rate <span class="math inline">\(b\)</span> as low as 0.15 and as high as 0.35. Run the model with the lowest and the highest possible birth rate. Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> about the per-capita birth rate (i.e., plot the “worst-case scenario” and the “best-case scenario” in the same plot).</p>
+<p>1a. What is the range of possible final abundances after 15 years (report the lower and upper bound)? Given the uncertainty we have about the birth rate in this system, would it be reasonable to conclude that the population growth rate is positive in this population? Please justify your response. As part of your response, please upload the figure you generated using the ‘compare results’ tool.</p>
+<p>Another way to do <em>uncertainty analysis</em> is to use a random number generator to represent uncertainty. Specifically, we can use a <em>uniform distribution</em> to represent the range of uncertainty about the parameter value. In this case, we can define Birth rate as a <strong>uniformly distributed</strong> random variable with minimum of 0.15 and maximum of 0.35 (so that the random number generator produces values within this range). We can do this in InsightMaker in one of two ways: one way is to define birth rate like this (within the ‘birth rate’ variable):</p>
 <pre><code>Rand(0.15, 0.35)</code></pre>
 <p>and the other is to define birth rate like this:</p>
 <pre><code>Fix(Rand(0.15, 0.35))</code></pre>
+<p>Try running both of these methods a few times using the ‘sensitivity analysis’ tool in InsightMaker, and compare the results.</p>
 <p>The next three questions relate to comparing these two methods:</p>
-<p>1c. Try both of these methods a few times. Compare the results: what difference(s) do you notice between these two methods? Explain your answer.</p>
-<p>1d. Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times using each of the two methods described above. Choose [Population] as the “Monitored Primitive” (otherwise use the default settings). Run the sensitivity testing module (using the “Run Analysis” button) and provide these two resulting plots as part of your write-up (one plot for each of the two methods). Look at the range of final abundances in the two plots. Which method results in the greatest uncertainty (biggest range of possible values) about the final abundance (after 15 years)? Can you explain why one method produces greater uncertainty about the final abundance than the other method? (this last part is challenging, but give it a try!).</p>
-<p>1e. Let’s think through the problem one more time- we are uncertain about the <em>true</em> value of the per-capita birth rate, <span class="math inline">\(b\)</span>, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can’t say! Given this uncertainty, we want to know <em>what the abundance will be after 15 years</em>. If you were tasked with evaluating this question, which of the two plots you generated in (1d) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the final abundance)? Why?</p>
+<p>1b. What is the most important difference you can identify between these two methods? Explain your answer, using [KTS: delete this question?]</p>
+<p>1b. Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times using each of the two methods described above. Choose [Population] as the “Monitored Primitive” (otherwise use the default settings). Run the sensitivity testing module (using the “Run Analysis” button) and provide these two resulting plots as part of your write-up (one plot for each of the two methods). Look at the range of final abundances in the two plots. Which method results in the greatest uncertainty (biggest range of possible values) about the final abundance (after 15 years)? Can you explain why one method produces greater uncertainty about the final abundance than the other method? (this last part is challenging, but give it a try!).</p>
+<p>1c. Let’s think through the problem one more time- we are uncertain about the <em>true</em> value of the per-capita birth rate, <span class="math inline">\(b\)</span>, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can’t say! Given this uncertainty, we want to know <em>what the abundance will be after 15 years</em>. If you were tasked with evaluating this question, which of the two plots you generated in (1d) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the final abundance)? Why?</p>
 </div>
 <div id="exercise-2-demographic-and-environmental-stochasticity" class="section level2">
 <h2>Exercise 2: Demographic and Environmental Stochasticity</h2>
@@ -647,7 +607,7 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 <li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
 <li><p>Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).</p></li>
 </ul>
-<p><strong><em>Due Mar. 26 at midnight</em></strong></p>
+<p><strong><em>Due Mar. 25 at midnight (11:59pm)</em></strong></p>
 <ul>
 <li>Word document with short answers, model URLs, and figures (where appropriate)
 <ul>
@@ -657,9 +617,7 @@ hist(rnorm(10000,1.1,0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual bir
 </li>
 <li><em>Short answer (1b.)</em><br />
 </li>
-<li><em>Short answer (1e.)</em></li>
-<li><em>Short answer (1d.)</em></li>
-<li><em>Short answer (1e.)</em></li>
+<li><em>Short answer (1c.)</em></li>
 </ul></li>
 <li><strong>Exercise 2</strong>
 <ul>
@@ -710,7 +668,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -719,6 +677,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -1,7 +1,7 @@
 ---
 title: "Lab 5: Intro to stochastic models"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -32,7 +32,8 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```
 
-Now we are going to shift focus from age-structured population models for now! 
+
+As ecologists, we work with 'messy' systems- we must therefore *embrace uncertainty*!!
 
 In this lab we will continue to add complexity (and realism) to our population models in InsightMaker. Among the concepts we will explore are *parameter uncertainty*, *demographic stochasticity* and *environmental stochasticity*. 
 
@@ -124,11 +125,11 @@ This should look familiar!
 
 Set *Birth rate* equal to 0.3 and *Death rate* equal to 0.2. *Set initial abundance to 20*. Under the "Settings" menu set the model to run for 15 years. Make sure your *Population* stock can NOT go negative (this is a setting in the configurations panel). Hit "Simulate"- you should see *exponential growth*! 
 
-What if we have imperfect knowledge about birth rate? The data we have are consistent with a birth rate $b$ as low as 0.15 and as high as 0.35. Run the model with the lowest and the highest possible birth rate. Now use the "Compare Results" tool (under the "Tools" menu in the upper right corner...) to visualize the range of possible population growth trajectories that would be possible given our *uncertainty* about the per-capita birth rate.   
+What if we have imperfect knowledge about birth rate? The data we have are consistent with a birth rate $b$ as low as 0.15 and as high as 0.35. Run the model with the lowest and the highest possible birth rate. Now use the "Compare Results" tool (under the "Tools" menu in the upper right corner...) to visualize the range of possible population growth trajectories that would be possible given our *uncertainty* about the per-capita birth rate (i.e., plot the "worst-case scenario" and the "best-case scenario" in the same plot).   
 
-1a. Provide the plot you just made in your write-up. What is the range of possible final abundances after 15 years? Can we conclude that the population growth rate is positive in this population?    
+1a. What is the range of possible final abundances after 15 years (report the lower and upper bound)? Given the uncertainty we have about the birth rate in this system, would it be reasonable to conclude that the population growth rate is positive in this population? Please justify your response. As part of your response, please upload the figure you generated using the 'compare results' tool.     
 
-1b. Another way to do *uncertainty analysis* is to use a *uniform distribution* to represent the range of uncertainty about the parameter value -- in this case, we define Birth rate as a **uniformly distributed** random variable with minimum of 0.15 and maximum of 0.35. We can do this in InsightMaker in one of two ways (one of which is more correct than the other!!). One is to define birth rate like this:
+Another way to do *uncertainty analysis* is to use a random number generator to represent uncertainty. Specifically, we can use a *uniform distribution* to represent the range of uncertainty about the parameter value. In this case, we can define Birth rate as a **uniformly distributed** random variable with minimum of 0.15 and maximum of 0.35 (so that the random number generator produces values within this range). We can do this in InsightMaker in one of two ways: one way is to define birth rate like this (within the 'birth rate' variable):
 
 ```
 Rand(0.15, 0.35)
@@ -139,13 +140,16 @@ and the other is to define birth rate like this:
 ```
 Fix(Rand(0.15, 0.35))
 ```
+
+Try running both of these methods a few times using the 'sensitivity analysis' tool in InsightMaker, and compare the results. 
+
 The next three questions relate to comparing these two methods: 
 
-1c. Try both of these methods a few times. Compare the results: what difference(s) do you notice between these two methods? Explain your answer.
+1b. What is the most important difference you can identify between these two methods? Explain your answer, using [KTS: delete this question?]
 
-1d. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times using each of the two methods described above. Choose [Population] as the "Monitored Primitive" (otherwise use the default settings). Run the sensitivity testing module (using the "Run Analysis" button) and provide these two resulting plots as part of your write-up (one plot for each of the two methods). Look at the range of final abundances in the two plots. Which method results in the greatest uncertainty (biggest range of possible values) about the final abundance (after 15 years)? Can you explain why one method produces greater uncertainty about the final abundance than the other method? (this last part is challenging, but give it a try!).  
+1b. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times using each of the two methods described above. Choose [Population] as the "Monitored Primitive" (otherwise use the default settings). Run the sensitivity testing module (using the "Run Analysis" button) and provide these two resulting plots as part of your write-up (one plot for each of the two methods). Look at the range of final abundances in the two plots. Which method results in the greatest uncertainty (biggest range of possible values) about the final abundance (after 15 years)? Can you explain why one method produces greater uncertainty about the final abundance than the other method? (this last part is challenging, but give it a try!).  
 
-1e. Let's think through the problem one more time- we are uncertain about the *true* value of the per-capita birth rate, $b$, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can't say! Given this uncertainty, we want to know _what the abundance will be after 15 years_. If you were tasked with evaluating this question, which of the two plots you generated in (1d) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the final abundance)? Why? 
+1c. Let's think through the problem one more time- we are uncertain about the *true* value of the per-capita birth rate, $b$, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can't say! Given this uncertainty, we want to know _what the abundance will be after 15 years_. If you were tasked with evaluating this question, which of the two plots you generated in (1d) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the final abundance)? Why? 
 
 
 ## Exercise 2: Demographic and Environmental Stochasticity  
@@ -257,15 +261,13 @@ Here are the key model parameters! (note that much of this is simplified and/or 
 * Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).  
 
 
-***Due Mar. 26 at midnight***
+***Due Mar. 25 at midnight (11:59pm)***
 
 *  Word document with short answers, model URLs, and figures (where appropriate)
     +  **Exercise 1**
         -  *Short answer (1a.)*   
         -  *Short answer (1b.)*   
-        -  *Short answer (1e.)*
-        -  *Short answer (1d.)*
-        -  *Short answer (1e.)*
+        -  *Short answer (1c.)*
  
     +  **Exercise 2**
         -  *Short answer (2a.)*
