@@ -47,12 +47,13 @@ Your project proposal (approx 1 pg) will consist of:
 4. **Project rationale**: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructor/TA that your project is **interesting**!    
 5. **Data sources**: Describe one or more information sources you plan to use to guide PVA construction and parameterization (we want to make sure your project is **possible**!)  
 
-The key parameters you will likely need for your PVA model (and will be searching the literature for!) are: 
+Some key parameters you will likely need for your PVA model (and will be searching the literature for!) are: 
 
 - *survival rates* (usually age-structured)  
 - *fecundity rates* (often age-structured as well) and *age at maturity*    
 - *stochasticity* (amount of year-to-year variability in the above vital rates)  
 - *initial abundance*   
+- *mode of population regulation* (which vital rates have negative density dependence? Linear or threshold?)
 - *carrying capacity (K)* (potentially for multiple subpopulations in a metapopulation!)
 - *dispersal rates* (for metapopulation models)
 - *habitat quality* (for metapopulation models)
