@@ -80,7 +80,7 @@ There are two major reasons we can be uncertain. Either we _lack sufficient know
 
 - **You lack sufficient knowledge**. This is also known variously as *sampling uncertainty*, parameter uncertainty, structural uncertainty, and more. *In practical terms: if you collected more data you could (in principle) make a better model that more closely represents reality.*
 
-- **The system is inherently variable and unpredictable**. In population ecology and systems modeling, this is also known as **stochasticity**. *In practical terms: no matter how much we study and understand a natural system, we will never be able to predict the future with certainty*. Ecological systems are inherently variable and unpredictable. We can't know with certainty whether or not an individual will mate, or die. We can't really even be certain whether the environmental conditions (e.g., weather) will be favorable or unfavorable for offspring production or mortality! 
+- **The system is inherently variable and unpredictable**. In population ecology and systems modeling, this is also known as **stochasticity**. *In practical terms: no matter how much we study and understand a natural system, we can not predict the future with certainty*. Ecological systems are inherently variable and unpredictable. We can't know with certainty whether or not an individual will mate, or die. We can't really even be certain whether the environmental conditions (e.g., weather) will be favorable or unfavorable for offspring production or mortality! 
 
 ## How to deal with uncertainty
 As applied population ecologists, we must **embrace uncertainty**. we have two major tools to help us manage and account for uncertainty in our study systems: _uncertainty analysis_ and _stochastic models_
@@ -91,7 +91,7 @@ What if we simply don't have enough data to build a perfect model? This is an ex
 
 ### Stochastic models (demographic and environmental stochasticity)
 
-1. Second, we usually can't predict whether an individual will live or die, breed or not breed, etc. All we can know is the *probability* of mating, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly which individiuals live or die (whether an individual will "get lucky" so to speak!), who gives birth and who doesn't, and how many females are born, we _just can't know for sure_. This is an example of a system being inherently unpredictable. In population ecology, this is called **demographic stochasticity**. In this case, we **randomly vary total births and deaths** (the [Flows] in InsightMaker) to represent the inherent unpredictability of individual fates within a population.
+1. Second, we usually can't predict whether an individual will live or die, breed or not breed, etc. All we can know is the *probability* of mating, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly which individuals live or die (whether an individual will "get lucky" so to speak!), who gives birth and who doesn't, and how many females are born, we _just can't know for sure_. This is an example of a system being inherently unpredictable. In population ecology, this is called **demographic stochasticity**. In this case, we **randomly vary total births and deaths** (the [Flows] in InsightMaker) to represent the inherent unpredictability of individual fates within a population.
 
 2. Third, we usually can't predict whether next year or the year after will be favorable or unfavorable for population growth- that is, whether the per-capita vital rates (e.g., $b$, or $d$ or $r$) will be more or less optimal at a future point in time (whether a _population_ will "get lucky", so to speak). This is another example of a system being *inherently unpredictable*. In population ecology this is called **environmental stochasticity**. In this case, we **randomly vary per-capita vital rates** (represented as [Variables] in InsightMaker) to represent the inherent unpredictability of environmental conditions. 
 
@@ -129,7 +129,7 @@ A probability distribution can be pretty much anything you want it to be. Howeve
 ### Probability distributions
 
 ### Discrete vs. continuous
-In *discrete distributions*, each unique outcome has a specific probability (like the probability of flipping a coin 10 times and getting 4 heads). For example, let's consider a *binomial distribution*  
+In *discrete distributions*, each unique outcome has a specific probability (like the probability of flipping a coin 10 times and getting 4 heads). For practical purposes in this class, discrete distributions produce integers and are used to represent demographic stochasticity (variation in the total number of births and deaths even if per-capita vital rates don't change). For example, let's consider a *binomial distribution*  
 
 ```{r}
 
@@ -154,6 +154,8 @@ barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distributio
 
 **Q** What population parameter might the binomial distribution be useful for modeling?
 
+**tophat** In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3
+
 Another discrete distribution we will use in this class is the *Poisson distribution*:
 
 ```{r}
@@ -172,7 +174,7 @@ barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution
 
 **Q** What population parameter might the Poisson distribution be useful for modeling?
 
-In *continuous distributions*, there are an infinite number of possibilities between any two unique possibilities.  
+In *continuous distributions*, there are an infinite number of possibilities between any two unique possibilities. For practical purposes in this class, continuous distributions produce numbers with decimal components and are used to represent environmental stochasticity (variability in per-capita vital rates).  
 
 Let's consider the *uniform distribution*: 
 
@@ -196,8 +198,6 @@ This isn't a very intersting looking distribution. All possible numbers from 0 t
 
 Another continuous distribution you should know is called the *Normal distribution*. This distribution (the classic bell-shaped distribution) has a lower bound of $-\infty$ and an upper bound of $\infty$.
 
-**Q** What population parameter might this distribution be useful for modeling?
-
 ```{r}
 
 #########
@@ -209,6 +209,11 @@ stdev = 1.9
 curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities",main="Normal distribution (continuous)")   # probability density
 
 ```
+
+**Q** What population parameter might this distribution be useful for modeling?
+
+**tophat** In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
+
 
 Another continuous distribution you should know is called the *Log-normal distribution*. This distribution has a lower bound of zero and an upper bound of $\infty$.
 
