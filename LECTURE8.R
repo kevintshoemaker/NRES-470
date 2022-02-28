@@ -77,24 +77,6 @@ stdev = 1.9
 curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities",main="Normal distribution (continuous)")   # probability density
 
 
-############
-# Log-normal distribution
-
-meanlog = 1.4
-stdevlog = 0.6
-
-curve(dlnorm(x,meanlog,stdevlog),0,15,ylab="Probability (density)",xlab="Possibilities",main="Lognormal distribution (continuous)")   # probability density
-
-
-##########
-# Beta distribution
-
-shape1 = 10
-shape2 = 4
-
-curve(dbeta(x,shape1,shape2),0,1,ylab="Probability (density)",xlab="Possibilities",main="Beta distribution (continuous)")   # probability density
-
-
 ################
 # Random number generation!
 
@@ -119,14 +101,6 @@ rbeta(1,shape1=10,shape2=3)  # beta distribution is defined by "shape1" and "sha
 
 
 
-########
-# sample from an arbitrary distribution!
-
-distribution <- c(5,3,5,4,3,6,4,5,5,1,6,5,4,3,6,6,4,2,8,4,4,5,2)     # make up a set of possibilities
-hist(distribution,freq = F, ylab="Probability",xlab="Possibilities")  # visualize distribution
-sample(distribution,1)  # take one random sample from this distribution!
-
-
 #############
 # Demonstration: use data to determine a distribution!
 #############
@@ -142,20 +116,20 @@ hist(hatch_perfem)
 
 
 ############
-# Try to identify a lognormal random number distribution to represent the canvasback data
+# Try to identify a normal distribution to represent the canvasback data
 
 ## first, plot a histogram of the data from the 20-year study
 hist(hatch_perfem,freq=F,main="Histogram of avg number hatched per female",xlab="possibilities",ylab="probability",xlim=c(0,10),ylim=c(0,1))
 
-## now, overlay a lognormal probability distribution with arbitrary parameters (meanlog and sdlog). This is just a starting point.
+## now, overlay a normal probability distribution with arbitrary parameters (mean and sd). This is just a starting point.
 
-curve(dlnorm(x,meanlog=1.5,sdlog=0.39),col="green",lty=2,lwd=2,add=T)
+curve(dnorm(x,mean=4,sd=2),col="green",lty=2,lwd=2,add=T)
 
-curve(dlnorm(x,meanlog=1.8,sdlog=0.39),col="green",lty=2,lwd=2,add=T)    # try a different value...
+curve(dnorm(x,mean=1.8,sd=0.39),col="green",lty=2,lwd=2,add=T)    # try a different value...
 
-#### Keep changing the value for 'meanlog' until you find best parameters to fit the data!
+#### Keep changing the value for 'mean' and 'sd' until you find best parameters to fit the data!
 
-#### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the "rlnorm()" function in R
+#### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the "rnorm()" function in R
 
-rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example! (remember to change the "meanlog" parameter to the value you identified above!)
+rnorm(5,mean=4,sd=1)    # for example! (remember to change the "mean" and "sd" parameters to the values you identified above!)
 

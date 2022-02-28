@@ -565,7 +565,6 @@ names(probs) &lt;- xvals
 barplot(probs,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Binomial distribution (discrete)&quot;)</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><strong>Q</strong> What population parameter might the binomial distribution be useful for modeling?</p>
-<p><strong>tophat</strong> In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3</p>
 <p>Another discrete distribution we will use in this class is the <em>Poisson distribution</em>:</p>
 <pre class="r"><code>#########
 # Poisson distribution
@@ -591,7 +590,7 @@ upper = 10
 
 curve(dunif(x,lower,upper),0,10,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Uniform distribution (continuous)&quot;,ylim=c(0,1))   # probability density</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>This isn’t a very intersting looking distribution. All possible numbers from 0 to 10 are equally probable.</p>
+<p>This isn’t a very interesting looking distribution. All possible numbers from 0 to 10 are equally probable.</p>
 <p>Another continuous distribution you should know is called the <em>Normal distribution</em>. This distribution (the classic bell-shaped distribution) has a lower bound of <span class="math inline">\(-\infty\)</span> and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
 <pre class="r"><code>#########
 # Normal distribution
@@ -601,28 +600,7 @@ stdev = 1.9
 
 curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Normal distribution (continuous)&quot;)   # probability density</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p><strong>Q</strong> What population parameter might this distribution be useful for modeling?</p>
-<p><strong>tophat</strong> In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9</p>
-<p>Another continuous distribution you should know is called the <em>Log-normal distribution</em>. This distribution has a lower bound of zero and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
-<p><strong>Q</strong> What population parameter might the log-normal distribution be useful for modeling?</p>
-<pre class="r"><code>############
-# Log-normal distribution
-
-meanlog = 1.4
-stdevlog = 0.6
-
-curve(dlnorm(x,meanlog,stdevlog),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Lognormal distribution (continuous)&quot;)   # probability density</code></pre>
-<p><img src="LECTURE8_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>Another continuous distribution you might want to know is called the <em>Beta distribution</em>. This distribution has a lower bound of zero and an upper bound of 1.</p>
-<p><strong>Q</strong> What population parameter might the beta distribution be useful for modeling?</p>
-<pre class="r"><code>##########
-# Beta distribution
-
-shape1 = 10
-shape2 = 4
-
-curve(dbeta(x,shape1,shape2),0,1,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Beta distribution (continuous)&quot;)   # probability density</code></pre>
-<p><img src="LECTURE8_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><strong>Q</strong> What population parameter(s) might this distribution be useful for modeling?</p>
 </div>
 <div id="explore-distributions-in-r" class="section level3">
 <h3>Explore distributions in R</h3>
@@ -660,17 +638,10 @@ rlnorm(1,meanlog=0.5,sdlog=0.2)    # lognormal distribution is defined by &quot;
 
 ### beta random number generator (bounded between 0 and 1- just like survival rate!)
 rbeta(1,shape1=10,shape2=3)  # beta distribution is defined by &quot;shape1&quot; and &quot;shape2&quot;, which together define the mean and spread within the range from 0 to 1.</code></pre>
-<p>Can you change one of the above functions to produce more than 1 random number?</p>
-<p>Try to change one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the “hist()” function to produce a histogram of the random distribution you just generated!</p>
-<p>You can even make up your own distribution if you want!</p>
-<pre class="r"><code>########
-# sample from an arbitrary distribution!
-
-distribution &lt;- c(5,3,5,4,3,6,4,5,5,1,6,5,4,3,6,6,4,2,8,4,4,5,2)     # make up a set of possibilities
-hist(distribution,freq = F, ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;)  # visualize distribution</code></pre>
-<p><img src="LECTURE8_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<pre class="r"><code>sample(distribution,1)  # take one random sample from this distribution!</code></pre>
-<pre><code>## [1] 3</code></pre>
+<p><strong>tophat</strong> In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3</p>
+<p><strong>tophat</strong> In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9</p>
+<p>Can you modify one of the above functions to produce more than 1 random number?</p>
+<p>Try to modify one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the “hist()” function to produce a histogram of the random distribution you just generated!</p>
 </div>
 <div id="in-class-exercise-fit-a-distribution" class="section level3">
 <h3>In-Class Exercise: Fit a distribution!</h3>
@@ -689,34 +660,34 @@ hatch_perfem &lt;- c(3.05, 1.45, 0.99, 3.24, 1.49, 1.70, 1.66, 2.32, 0.83, 2.41,
 2.33, 1.68, 1.43, 2.74, 2.05, 3.13, 1.90, 3.69, 1.55, 2.79)
 
 hist(hatch_perfem)</code></pre>
-<p><img src="LECTURE8_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="LECTURE8_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><strong>Q</strong>: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [tophat]</p>
-<p>Now let’s try to fit a distribution to these data! We could use a normal distribution (which would be perfectly fine), but because the total per-capita number of eggs successfully hatched cannot go below zero (but has no defined upper bound) it’s even more appropriate to use a lognormal distribution!</p>
+<p>Now let’s try to fit a distribution to these data! Let’s use a normal distribution. (NOTE: technically speaking we might want to use a distribution that can’t produce negative numbers- like the log-normal distribution, but we will usually use the normal distribution in this class for simplicity)</p>
 <p>We could use statistics to fit the distribution, but we are just going to use trial and error for now! Here is some code to help you get started.</p>
-<p>Note that the lognormal distribution has two parameters: the first (‘meanlog’) helps to define the mean and the other (‘sdlog’) helps to determine the variability of the distribution.</p>
+<p>Note that the normal distribution has two parameters: the first (‘mean’) helps to define the mean (obviously!) and the other (‘sd’) determines the variability of the distribution.</p>
 <pre class="r"><code>############
-# Try to identify a lognormal random number distribution to represent the canvasback data
+# Try to identify a normal distribution to represent the canvasback data
 
 ## first, plot a histogram of the data from the 20-year study
 hist(hatch_perfem,freq=F,main=&quot;Histogram of avg number hatched per female&quot;,xlab=&quot;possibilities&quot;,ylab=&quot;probability&quot;,xlim=c(0,10),ylim=c(0,1))
 
-## now, overlay a lognormal probability distribution with arbitrary parameters (meanlog and sdlog). This is just a starting point.
+## now, overlay a normal probability distribution with arbitrary parameters (mean and sd). This is just a starting point.
 
-curve(dlnorm(x,meanlog=1.5,sdlog=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)
+curve(dnorm(x,mean=4,sd=2),col=&quot;green&quot;,lty=2,lwd=2,add=T)
 
-curve(dlnorm(x,meanlog=1.8,sdlog=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)    # try a different value...</code></pre>
-<p><img src="LECTURE8_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<pre class="r"><code>#### Keep changing the value for &#39;meanlog&#39; until you find best parameters to fit the data!
+curve(dnorm(x,mean=1.8,sd=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)    # try a different value...</code></pre>
+<p><img src="LECTURE8_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>#### Keep changing the value for &#39;mean&#39; and &#39;sd&#39; until you find best parameters to fit the data!
 
-#### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the &quot;rlnorm()&quot; function in R
+#### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the &quot;rnorm()&quot; function in R
 
-rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example! (remember to change the &quot;meanlog&quot; parameter to the value you identified above!)</code></pre>
-<pre><code>## [1] 7.692559 2.315045 4.992253 5.103773 3.564848</code></pre>
+rnorm(5,mean=4,sd=1)    # for example! (remember to change the &quot;mean&quot; and &quot;sd&quot; parameters to the values you identified above!)</code></pre>
+<pre><code>## [1] 3.113705 2.953660 4.181119 4.316831 3.027695</code></pre>
 <ol style="list-style-type: decimal">
-<li><p>Use trial-and-error to find appropriate “meanlog” parameter for the lognormal distribution.</p></li>
-<li><p>Use your fitted distribution to predict the average number of hatchlings per female for the next 5 years. To do this, use the “rlnorm()” function in R.</p></li>
+<li><p>Use trial-and-error to find appropriate “mean” and “sd” parameters for the normal distribution.</p></li>
+<li><p>Use your fitted distribution to predict the per-capita production of hatchlings for the next 5 years. To do this, use the “rnorm()” function in R.</p></li>
 </ol>
-<p><strong>Q</strong>: what is the best-fit value for “meanlog”? [tophat]</p>
+<p><strong>Q</strong>: what is the best-fit value for “mean”? [tophat] <strong>Q</strong>: what is the best-fit value for “sd”? [tophat]</p>
 </div>
 <div id="in-class-exercise-2-stochasticity-and-uncertainty-in-insightmaker" class="section level3">
 <h3>In-Class Exercise 2: Stochasticity and Uncertainty in InsightMaker</h3>
