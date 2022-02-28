@@ -14,8 +14,8 @@
 
 <title>Stochasticity and Uncertainty</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -457,6 +457,7 @@ div.tocify {
 </div>
 
 
+<p>To download the R script for this lecture, click <a href="LECTURE8.R">here</a></p>
 <div id="upcoming-midterm-exam" class="section level3">
 <h3>Upcoming midterm exam</h3>
 <p><strong>when and where</strong> The first midterm exam (out of two) is coming up Wednesday <strong>March 9</strong>. You will have the whole 50 minute class period to take the exam. The exam will be on paper/scantron this year.</p>
@@ -492,12 +493,13 @@ div.tocify {
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions</em></p>
 <p><em>Please bring a calculator- a regular scientific calculator is fine</em></p>
+<p>We will have a review session during our regular class meeting on the Monday prior to the exam (next Monday, March 7). Please make note of any questions that come up as you study- we can talk these over during the review session!</p>
 <p><img src="uncertainty2.jpg" /></p>
 </div>
 <div id="uncertainty" class="section level2">
 <h2>Uncertainty!</h2>
-<p>All ecological systems are full of uncertainty. We all know it intuitively. But what <em>exactly</em> do we mean by that? And how can we deal with it? How can we incorporate it into our models?</p>
-<p>This is one of the most important modules in this course. But it is <em>not in the Gotelli book</em>, nor is it in highlighted in most basic ecology textbooks.</p>
+<p>All ecological systems are full of uncertainty. We all know it intuitively. But what <em>exactly</em> do we mean by that? And how can we deal with it? How can we incorporate it into our models? How can we communicate it to other researchers, and to managers?</p>
+<p>Clearly this is a very important topic- but it is <em>not in the Gotelli book</em>, nor is it in highlighted in most basic ecology textbooks. For this module we are actually diving into the field of <em>probability and statistics</em>!</p>
 <div id="a-taxonomy-of-uncertainty" class="section level3">
 <h3>A taxonomy of uncertainty</h3>
 <p>There are two major reasons we can be uncertain. Either we <em>lack sufficient knowledge</em> or the <em>system itself is variable and unpredictable</em>. Let’s explore these two types of uncertainty.</p>
@@ -527,8 +529,8 @@ div.tocify {
 <h2>Random number generation</h2>
 <p>To incorporate uncertainty and randomness into our models, we often include <em>stochastic</em> components so that each model run (replicate) – or each year of each model run – is different from one another (the results are variable). That is, we need to include at least one <strong>random number generator</strong> in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.</p>
 <p><img src="lottery1.png" /></p>
-<p>Every random-number generator has a <strong>distribution</strong>. This is a way of defining what exactly is in the box.This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis.</p>
-<p>If you want to follow along with this lecture in R, you can find the R script <a href="LECTURE8.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder, and loading up the script in RStudio.</p>
+<p>Every random-number generator has a <strong>distribution</strong>. This is a way of defining what exactly is in the box. This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis.</p>
+<p>If you want to follow along with this lecture in R, you can find the R script <a href="LECTURE8.R">here</a>. I recommend right-clicking on the link, saving the script to a designated folder (ideally, your project directory), and loading up the script in RStudio.</p>
 <p>For example, the box might have 10 “ones”, 5 “twos”, and 2 “threes”. In this case the distribution looks like this (<em>probability</em> of each <em>possibility</em>):</p>
 <pre class="r"><code>#############
 # Random number generation!
@@ -540,7 +542,7 @@ div.tocify {
 box &lt;- c(rep(1,10),rep(2,5),rep(3,2))                                           # define what&#39;s in the lottery ball machine (10 &quot;1&quot; balls, 5 &quot;2&quot; balls and 2 &quot;3&quot; balls)
 barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possibility&quot;)       # visualize the distribution of possibilities</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>A probability distribution can be pretty much anything you want it to be. However, there are several key types of probability distribution that come up again and again, and we should learn them!</p>
+<p>A probability distribution can be pretty much anything you want it to be. However, there are several key families of probability distributions that come up again and again, and we should learn them!</p>
 <div id="probability-distributions" class="section level3">
 <h3>Probability distributions</h3>
 </div>
@@ -553,7 +555,7 @@ barplot(table(box)/sum(table(box)),ylab=&quot;probability&quot;,xlab=&quot;possi
 
 
 #######
-# Example: binomial distribuition (coin flipping distribution)
+# Example: binomial distribution (coin flipping distribution)
 
              # plot a discrete distribution!
 xvals &lt;- seq(0,10,1)
@@ -599,8 +601,8 @@ stdev = 1.9
 
 curve(dnorm(x,mean,stdev),0,15,ylab=&quot;Probability (density)&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Normal distribution (continuous)&quot;)   # probability density</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Another continuous distribution you should know is called the <em>Lognormal distribution</em>. This distribution has a lower bound of zero and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
-<p><strong>Q</strong> What population parameter might the lognormal distribution be useful for modeling?</p>
+<p>Another continuous distribution you should know is called the <em>Log-normal distribution</em>. This distribution has a lower bound of zero and an upper bound of <span class="math inline">\(\infty\)</span>.</p>
+<p><strong>Q</strong> What population parameter might the log-normal distribution be useful for modeling?</p>
 <pre class="r"><code>############
 # Log-normal distribution
 
@@ -707,7 +709,7 @@ curve(dlnorm(x,meanlog=1.8,sdlog=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T) 
 #### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the &quot;rlnorm()&quot; function in R
 
 rlnorm(5,meanlog=1.5,sdlog=0.39)    # for example! (remember to change the &quot;meanlog&quot; parameter to the value you identified above!)</code></pre>
-<pre><code>## [1] 5.291802 4.638486 5.381203 4.861501 3.141861</code></pre>
+<pre><code>## [1] 7.589431 5.213440 3.247581 5.628209 3.744931</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Use trial-and-error to find appropriate “meanlog” parameter for the lognormal distribution.</p></li>
 <li><p>Use your fitted distribution to predict the average number of hatchlings per female for the next 5 years. To do this, use the “rlnorm()” function in R.</p></li>

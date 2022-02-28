@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```
 
-
+To download the R script for this lecture, click [here](LECTURE8.R)
 
 ### Upcoming midterm exam
 
@@ -64,15 +64,15 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 *Please bring a calculator- a regular scientific calculator is fine*
 
-We will have a review session during our regular class meeting on the Monday prior to the exam (March 7). Please make note of any questions that come up as you study- we can talk these over during the review session!
+We will have a review session during our regular class meeting on the Monday prior to the exam (next Monday, March 7). Please make note of any questions that come up as you study- we can talk these over during the review session!
 
 ![](uncertainty2.jpg)
 
 ## Uncertainty!
 
-All ecological systems are full of uncertainty. We all know it intuitively. But what *exactly* do we mean by that? And how can we deal with it? How can we incorporate it into our models? 
+All ecological systems are full of uncertainty. We all know it intuitively. But what *exactly* do we mean by that? And how can we deal with it? How can we incorporate it into our models? How can we communicate it to other researchers, and to managers?
 
-This is one of the most important modules in this course. But it is *not in the Gotelli book*, nor is it in highlighted in most basic ecology textbooks.
+Clearly this is a very important topic- but it is *not in the Gotelli book*, nor is it in highlighted in most basic ecology textbooks. For this module we are actually diving into the field of *probability and statistics*!
 
 ### A taxonomy of uncertainty
 
@@ -103,7 +103,7 @@ To incorporate uncertainty and randomness into our models, we often include *sto
 ![](lottery1.png)
 
 
-Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box.This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis. 
+Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis. 
 
 If you want to follow along with this lecture in R, you can find the R script [here](LECTURE8.R). I recommend right-clicking on the link, saving the script to a designated folder (ideally, your project directory), and loading up the script in RStudio.
 
@@ -124,7 +124,7 @@ barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")       
 ```
 
 
-A probability distribution can be pretty much anything you want it to be. However, there are several key types of probability distribution that come up again and again, and we should learn them!
+A probability distribution can be pretty much anything you want it to be. However, there are several key families of probability distributions that come up again and again, and we should learn them!
 
 ### Probability distributions
 
@@ -139,7 +139,7 @@ In *discrete distributions*, each unique outcome has a specific probability (lik
 
 
 #######
-# Example: binomial distribuition (coin flipping distribution)
+# Example: binomial distribution (coin flipping distribution)
 
              # plot a discrete distribution!
 xvals <- seq(0,10,1)
@@ -210,9 +210,9 @@ curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities"
 
 ```
 
-Another continuous distribution you should know is called the *Lognormal distribution*. This distribution has a lower bound of zero and an upper bound of $\infty$.
+Another continuous distribution you should know is called the *Log-normal distribution*. This distribution has a lower bound of zero and an upper bound of $\infty$.
 
-**Q** What population parameter might the lognormal distribution be useful for modeling?
+**Q** What population parameter might the log-normal distribution be useful for modeling?
 
 ```{r}
 
