@@ -32,7 +32,7 @@ barplot(table(box)/sum(table(box)),ylab="probability",xlab="possibility")       
 
 
 #######
-# Example: binomial distribuition (coin flipping distribution)
+# Example: binomial distribution (coin flipping distribution)
 
              # plot a discrete distribution!
 xvals <- seq(0,10,1)
