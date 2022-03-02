@@ -516,7 +516,7 @@ hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibil
 <p>1b. Please upload the two plots you produced using the Sensitivity Testing tool (see above instructions)</p>
 <p>1c. Examine the range (maximum abundance minus minimum abundance) of final abundances at year 15 in the two plots. Which method yielded the greatest uncertainty (largest range of possible values) about the final abundance? Try to explain why this method produced greater uncertainty about the final abundance than the other method? (this last part is challenging, but give it a try! It’s not cheating if you try to read about what the “Fix” function does in InsightMaker!).</p>
 <p>Let’s think through the problem one more time- we are uncertain about the <em>true</em> value of the per-capita birth rate, <span class="math inline">\(b\)</span>, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can’t say! Given this uncertainty, we want to know <em>what the abundance will be after 15 years</em>.</p>
-<p>1c. If you were tasked with evaluating with predicting the abundance of this population 15 years into the future, which of the two plots you generated in (1b) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the future population size)? Explain your reasoning. [Hint: try to compare each of the two plots with the results from question 1a: that is, when you ran the model with the lowest possible value of b (worst case scenario) and the highest possible value of b (best case scenario) and used the “Compare Results” tool to plot these two results together]</p>
+<p>1d. If you were tasked with evaluating with predicting the abundance of this population 15 years into the future, which of the two plots you generated in (1b) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the future population size)? Explain your reasoning. [Hint: try to compare each of the two plots with the results from question 1a: that is, when you ran the model with the lowest possible value of b (worst case scenario) and the highest possible value of b (best case scenario) and used the “Compare Results” tool to plot these two results together]</p>
 </div>
 <div id="exercise-2-demographic-and-environmental-stochasticity" class="section level2">
 <h2>Exercise 2: Demographic and Environmental Stochasticity</h2>
@@ -544,7 +544,8 @@ hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibil
 <pre><code>RandNormal(0.2, 0.25)</code></pre>
 <p>Note that InsightMaker automatically insures that the birth rate is not negative (in-flows cannot draw out of the stock) and that the mortality process is not adding to the population (out-flows cannot add to the stock). As always, make sure your [Population] stock is set so that it cannot go negative!</p>
 <p>2d. Copy and paste the link to your InsightMaker model into TopHat (and clone the model if you think you might make changes later!).</p>
-<p>2e. Use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times for 30 years. Provide the resulting plot in your write-up. Choose [Population] as the “Monitored Primitive”. Change the initial abundance to 500 and re-run the “Sensitivity Testing” tool. Provide the resulting plot in your write-up. (note: you need to upload two sensitivity analysis plots to fully answer the question!)</p>
+<p>Next, use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times for 30 years with a starting abundance of 10 individuals. Choose [Population] as the “Monitored Primitive”. Save a screenshot of the resulting plot. Next, change the initial abundance to 500 and re-run the “Sensitivity Testing” tool. Save a screenshot of the resulting plot.</p>
+<p>2e. Upload the two plots you just generated using the ‘sensitivity testing’ tool (you must upload both plots to fully answer the question!)</p>
 <p>2f. Use the plots from (2e) above to evaluate the following question: For which of the following is <em>environmental stochasticity</em> a more important driver of population dynamics and extinction risk: higher initial abundance or lower initial abundance? Explain your answer.</p>
 </div>
 </div>
@@ -602,35 +603,34 @@ hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibil
 <div id="checklist-for-lab-5-completion" class="section level2">
 <h2>Checklist for Lab 5 completion</h2>
 <ul>
-<li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
-<li><p>Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).</p></li>
+<li>Please submit your respoinses <em>on top hat</em>!</li>
 </ul>
 <p><strong><em>Due Mar. 25 at midnight (11:59pm)</em></strong></p>
 <ul>
-<li>Word document with short answers, model URLs, and figures (where appropriate)
+<li>Short answers, InsightMaker model URLs, and plots (where appropriate)
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
 <li><em>Short answer (1a.)</em><br />
 </li>
-<li><em>Short answer (1b.)</em><br />
-</li>
+<li><em>plots (1b.)</em></li>
 <li><em>Short answer (1c.)</em></li>
+<li><em>Short answer (1d.)</em></li>
 </ul></li>
 <li><strong>Exercise 2</strong>
 <ul>
-<li><em>Short answer (2a.)</em></li>
-<li><em>Short answer (2b.)</em></li>
+<li><em>InsightMaker URL (2a.)</em></li>
+<li><em>plots (2b.)</em></li>
 <li><em>Short answer (2c.)</em></li>
-<li><em>Short answer (2d.)</em></li>
-<li><em>Short answer (2e.)</em></li>
+<li><em>InsightMaker URL (2d.)</em></li>
+<li><em>plots (2e.)</em></li>
 <li><em>Short answer (2f.)</em></li>
 </ul></li>
 <li><strong>Exercise 3</strong>
 <ul>
-<li><em>Short answer (3a.)</em></li>
+<li><em>InsightMaker URL (3a.)</em></li>
 <li><em>Short answer (3b.)</em></li>
-<li><em>Short answer (3c.)</em></li>
+<li><em>Short answer and plot (3c.)</em></li>
 <li><em>Short answer (3d.)</em></li>
 </ul></li>
 </ul></li>

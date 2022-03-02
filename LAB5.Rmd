@@ -144,7 +144,7 @@ The next three questions relate to comparing these two methods:
 
 Let's think through the problem one more time- we are uncertain about the *true* value of the per-capita birth rate, $b$, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can't say! Given this uncertainty, we want to know _what the abundance will be after 15 years_. 
 
-1c. If you were tasked with evaluating with predicting the abundance of this population 15 years into the future, which of the two plots you generated in (1b) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the future population size)? Explain your reasoning. [Hint: try to compare each of the two plots with the results from question 1a: that is, when you ran the model with the lowest possible value of b (worst case scenario) and the highest possible value of b (best case scenario) and used the "Compare Results" tool to plot these two results together]
+1d. If you were tasked with evaluating with predicting the abundance of this population 15 years into the future, which of the two plots you generated in (1b) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the future population size)? Explain your reasoning. [Hint: try to compare each of the two plots with the results from question 1a: that is, when you ran the model with the lowest possible value of b (worst case scenario) and the highest possible value of b (best case scenario) and used the "Compare Results" tool to plot these two results together]
 
 
 ## Exercise 2: Demographic and Environmental Stochasticity  
@@ -198,7 +198,10 @@ Note that InsightMaker automatically insures that the birth rate is not negative
 
 2d. Copy and paste the link to your InsightMaker model into TopHat (and clone the model if you think you might make changes later!). 
 
-2e. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times for 30 years. Provide the resulting plot in your write-up. Choose [Population] as the "Monitored Primitive". Change the initial abundance to 500 and re-run the "Sensitivity Testing" tool. Provide the resulting plot in your write-up. (note: you need to upload two sensitivity analysis plots to fully answer the question!)
+Next, use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 50 times for 30 years with a starting abundance of 10 individuals. Choose [Population] as the "Monitored Primitive". Save a screenshot of the resulting plot. 
+Next, change the initial abundance to 500 and re-run the "Sensitivity Testing" tool. Save a screenshot of the resulting plot.
+ 
+2e. Upload the two plots you just generated using the 'sensitivity testing' tool (you must upload both plots to fully answer the question!)
 
 2f. Use the plots from (2e) above to evaluate the following question: For which of the following is _environmental stochasticity_ a more important driver of population dynamics and extinction risk: higher initial abundance or lower initial abundance? Explain your answer. 
 
@@ -254,31 +257,29 @@ Here are the key model parameters! (note that much of this is simplified and/or 
 
 ## Checklist for Lab 5 completion
 
-* Please bundle all your responses into a single Word document and submit _using WebCampus_!
-
-* Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).  
-
+* Please submit your respoinses _on top hat_!
 
 ***Due Mar. 25 at midnight (11:59pm)***
 
-*  Word document with short answers, model URLs, and figures (where appropriate)
+*  Short answers, InsightMaker model URLs, and plots (where appropriate)
     +  **Exercise 1**
         -  *Short answer (1a.)*   
-        -  *Short answer (1b.)*   
+        -  *plots (1b.)*
         -  *Short answer (1c.)*
+        -  *Short answer (1d.)*
  
     +  **Exercise 2**
-        -  *Short answer (2a.)*
-        -  *Short answer (2b.)*
+        -  *InsightMaker URL (2a.)*
+        -  *plots (2b.)*
         -  *Short answer (2c.)*
-        -  *Short answer (2d.)* 
-        -  *Short answer (2e.)*
+        -  *InsightMaker URL (2d.)* 
+        -  *plots (2e.)*
         -  *Short answer (2f.)*
  
     +  **Exercise 3**
-        -  *Short answer (3a.)*
+        -  *InsightMaker URL (3a.)*
         -  *Short answer (3b.)*
-        -  *Short answer (3c.)*
+        -  *Short answer and plot (3c.)*
         -  *Short answer (3d.)*
         
 
