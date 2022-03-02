@@ -261,7 +261,6 @@ rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by "mean" and "sd" (st
 
 **tophat** In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
 
-
 Can you modify one of the above functions to produce more than 1 random number?
 
 Try to modify one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the "hist()" function to produce a histogram of the random distribution you just generated!    
@@ -301,7 +300,7 @@ hist(hatch_perfem)
 
 Now let's try to fit a distribution to these data! Let's use a normal distribution. (NOTE: technically speaking we might want to use a distribution that can't produce negative numbers- like the log-normal distribution, but we will usually use the normal distribution in this class for simplicity)
 
-We could use statistics to fit the distribution, but we are just going to use trial and error for now! Here is some code to help you get started.
+We could use statistics to fit the distribution, but for now we are just going to use trial and error! Here is some code to help you get started.
 
 Note that the normal distribution has two parameters: the first ('mean') helps to define the mean (obviously!) and the other ('sd') determines the variability of the distribution. 
 
@@ -337,10 +336,11 @@ fitdistr(hatch_perfem,"normal")
 
 1) Use trial-and-error to find appropriate "mean" and "sd" parameters for the normal distribution.
 
-2) Use your fitted distribution to predict the per-capita production of hatchlings for the next 5 years. To do this, use the "rnorm()" function in R.
-
 **Q**: what is the best-fit value for "mean"?  [tophat]
 **Q**: what is the best-fit value for "sd"?  [tophat]
+
+2) Use your fitted distribution to predict the per-capita production of hatchlings for the next 5 years. To do this, use the "rnorm()" function in R.
+
 
 
 ### In-Class Exercise 2: Stochasticity and Uncertainty in InsightMaker
