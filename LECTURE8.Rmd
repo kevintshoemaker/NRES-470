@@ -352,6 +352,8 @@ Let's start with a basic exponentially growing population that looks something l
 
 ![](IM10.jpg)
 
+You can clone this one if you'd like: [https://insightmaker.com/insight/2WNEa6ZT3Z23CfLbuQqfJR/base-exp-growth-b-and-d](https://insightmaker.com/insight/2WNEa6ZT3Z23CfLbuQqfJR/base-exp-growth-b-and-d)
+
 #### _Parameter Uncertainty_    
 
 1. Set *Birth rate* equal to 0.4 and *Death rate* equal to 0.3. Set initial abundance to 10. Under the "Settings" menu, set the model to run for 10 years. Make sure your *Population* stock can not go negative (this is a setting in the configuration panel). Hit "Simulate"- you should see exponential growth! 

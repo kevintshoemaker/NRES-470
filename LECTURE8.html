@@ -14,8 +14,8 @@
 
 <title>Stochasticity and Uncertainty</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -633,6 +633,7 @@ runif(1,min=1,max=3.5)   # &quot;min&quot; and &quot;max&quot; are pretty obviou
 ### Normal random number generator
 rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by &quot;mean&quot; and &quot;sd&quot; (standard deviation).</code></pre>
 <p><strong>tophat</strong> In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3</p>
+<p><strong>tophat</strong> In R, generate one random number from a Poisson distribution with mean of 2.1</p>
 <p><strong>tophat</strong> In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9</p>
 <p>Can you modify one of the above functions to produce more than 1 random number?</p>
 <p>Try to modify one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the “hist()” function to produce a histogram of the random distribution you just generated!</p>
@@ -676,7 +677,7 @@ curve(dnorm(x,mean=1.8,sd=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)    # tr
 #### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the &quot;rnorm()&quot; function in R
 
 rnorm(5,mean=4,sd=1)    # for example! (remember to change the &quot;mean&quot; and &quot;sd&quot; parameters to the values you identified above!)</code></pre>
-<pre><code>## [1] 4.346721 4.271566 5.856070 3.359215 3.634686</code></pre>
+<pre><code>## [1] 4.004980 3.606375 3.100934 4.527763 3.447750</code></pre>
 <ol style="list-style-type: decimal">
 <li>Use trial-and-error to find appropriate “mean” and “sd” parameters for the normal distribution.</li>
 </ol>
@@ -690,6 +691,7 @@ rnorm(5,mean=4,sd=1)    # for example! (remember to change the &quot;mean&quot; 
 <p>These concepts (like everything in this class) are best understood by building models.</p>
 <p>Let’s start with a basic exponentially growing population that looks something like this:</p>
 <p><img src="IM10.jpg" /></p>
+<p>You can clone this one if you’d like: <a href="https://insightmaker.com/insight/2WNEa6ZT3Z23CfLbuQqfJR/base-exp-growth-b-and-d">https://insightmaker.com/insight/2WNEa6ZT3Z23CfLbuQqfJR/base-exp-growth-b-and-d</a></p>
 <div id="parameter-uncertainty" class="section level4">
 <h4><em>Parameter Uncertainty</em></h4>
 <ol style="list-style-type: decimal">
