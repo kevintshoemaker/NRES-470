@@ -145,7 +145,6 @@ rmarkdown::render('schedule.Rmd', 'word_document')
 
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
-
 rmarkdown::render('LAB1.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LAB2.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LAB3.Rmd',rmarkdown::pdf_document())
