@@ -93,13 +93,6 @@ runif(1,min=1,max=3.5)   # "min" and "max" are pretty obvious!
 ### Normal random number generator
 rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by "mean" and "sd" (standard deviation).
 
-### lognormal random number generator (like normal distribution, but can not go below zero)
-rlnorm(1,meanlog=0.5,sdlog=0.2)    # lognormal distribution is defined by "meanlog", the mean on the log scale and "sdlog" (standard deviation on the log scale).
-
-### beta random number generator (bounded between 0 and 1- just like survival rate!)
-rbeta(1,shape1=10,shape2=3)  # beta distribution is defined by "shape1" and "shape2", which together define the mean and spread within the range from 0 to 1.
-
-
 
 #############
 # Demonstration: use data to determine a distribution!

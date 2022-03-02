@@ -257,6 +257,8 @@ rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by "mean" and "sd" (st
 
 **tophat** In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3
 
+**tophat** In R, generate one random number from a Poisson distribution with mean of 2.1
+
 **tophat** In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
 
 
