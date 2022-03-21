@@ -1,7 +1,7 @@
 ---
 title: "Grizzly bear PVA example"
 author: "NRES 421/621"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## PVA for Yellowstone grizzly bears!
 
-In this module we will use a PVA to do some management-relevant **scenario testing** for the grizzly bear population in Yellowstone National Park.
+In this module we will use a PVA to do investigate the future of the grizzly bear population in Yellowstone National Park.
 
 ![](grizzly1.jpg)
 
@@ -78,7 +78,7 @@ Okay, let's run the model!
 
 2. What if we configure the model to run for 100 years? What happens now?
 
-**Short Answer Question #1**: Based on the 100-year simulation, do you think this model of the Yellowstone grizzly population is biologically realistic? Why or why not?
+**Short Answer Question**: Based on the 100-year simulation, do you think this model of the Yellowstone grizzly population is biologically realistic? Why or why not?
 
 
 3. Now let's change the parameterization to reflect the vital rates observed for the period 2002 to 2011 in the table:
@@ -97,7 +97,7 @@ In 2002 the population was more like 40 females- so let's use the following valu
 
 **Q**: What do you notice about this model? Is the population still growing? What about the overall *rate of growth* of the population?
 
-**Short Answer Question #2**: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?
+**Short Answer Question**: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?
 
 
 ##### Density-dependence
@@ -143,9 +143,9 @@ To start off, you can clone a full, density-dependent version of the grizzly mod
 
 2. "Comment out" the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (0.539). The "commenting out" trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value '0.539'; see below). 
 
-**Short Answer Question #3**: What is the approximate **carrying capacity** (K) of the Yellowstone grizzly population? NOTE: this is an **emergent property** of our new, density-dependent model! We didn't specify carrying capacity, but it *emerges* out of the model.
+**Short Answer Question**: What is the approximate **carrying capacity** (K) of the Yellowstone grizzly population? NOTE: this is an **emergent property** of our new, density-dependent model! We didn't specify carrying capacity, but it *emerges* out of the model.
 
-**Short Answer Question #4** In each case (with density-dependence and without density-dependence; i.e., yearling survival = 0.539), what is the approximate 90% confidence interval for the total population abundance after 100 years? (hint: use the 'Sensitivity Testing' tool; see below for more details) 
+**Short Answer Question #4** In each case (with density-dependence and without density-dependence), what can we say about the final population abundance after 100 years?? (hint: use the 'Sensitivity Testing' tool; see below for more details) 
 
 **Optional Additional Question**
 
