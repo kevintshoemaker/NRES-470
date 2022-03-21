@@ -1,7 +1,7 @@
 ---
 title: "Intro to individual-based models (IBM)"
 author: "NRES 470/670"
-date: "Spring 2020"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-NOTE: Many thanks to Elizabeth Hunter (Georgia Southern Univerisity) for helping to develop the demonstration at the end of this lecture!
+NOTE: Many thanks to Dr. Elizabeth Hunter (USGS and Virginia Tech) for helping to develop the demonstration at the end of this lecture!
 
 ![](birds1.jpg)
 
