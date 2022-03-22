@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 In this short course, we will explore the use of **population models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
 
-PVA is a set of practical approaches to problem-solving in conservation, and wildlife management via creative application of *demographic theory*, *simulation models* and *statistics*. 
+PVA is a set of practical approaches to problem-solving in conservation and wildlife management via creative application of *population ecology theory*, *simulation models* and *statistics*. 
 
 As much as possible we will use hands-on activities to explore the fundamentals of PVA. We will use [InsightMaker- a free web-based systems modeling tool](https://insightmaker.com/) for running simulation models. 
 
@@ -84,14 +84,16 @@ text(25,20000000, "annual rate of growth = 0.15%")
 
 ![](positivefeedback1.png)
 
-The takeaway? With sufficient resources, populations grow in a **positive feedback** process. More individuals means greater potential for population growth (e.g., more total births!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
+The takeaway? With sufficient resources, populations grow in a **positive feedback** process. More individuals in the population means greater potential for population growth (e.g., making more babies!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
 
 
 ## Modeling!!
 
 ### Computer programming and systems thinking
 
-Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including models of population and ecosystem dynamics. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this short-course, we will use computer simulations for understanding and managing natural populations**. We'll start simple, and quickly build up to relatively complex simulation models.  
+Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern ecosystem studies and conservation biology, which deal with understanding complex systems. 
+
+Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this short-course, we will use computer simulations for understanding and performing 'experiments' with natural populations**. We'll start simple, and quickly build up to more complex simulation models.  
 
 ### *InsightMaker*: a simulation modeling framework for dynamic systems!
 
@@ -144,7 +146,7 @@ Your model should look something like this:
 
 ![](IM14.jpg)
 
-3. Hover your cursor over the two [Flows] (Births and Deaths). Do these equations make sense? 
+3. Hover your cursor over the two [Flows] (Births and Deaths) and click on the equals sign to open up the equation editor. Do these equations make sense? 
 
 4. Make sure the initial number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
 
@@ -211,7 +213,7 @@ Here we see that the population went extinct three times out of a total of 50 re
 
 **Please pause and take a minute to write down your response to the following question:** 
 
-**Short Answer Question**: What is the extinction risk for this population? Is this extinction risk *acceptable*?
+**Short Answer Question**: What is the extinction risk for this population? Is this extinction risk *acceptable*? If not, what is an acceptable risk of extinction?
 
 [Pause and answer the discussion question on WebCampus!]
 
