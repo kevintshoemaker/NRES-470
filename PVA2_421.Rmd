@@ -38,7 +38,7 @@ You can "clone" the base grizzly bear model [here](https://insightmaker.com/insi
 
 Let's use this table to parameterize the population vital rates in our model! 
 
-This table actually has *two alternative parameterizations*, one summarized from data collected the period from 1983 through 2001, and the other representing data from the period from 2002-2011. 
+This table actually has *two alternative parameterizations*, one summarized from data collected during the period from 1983 through 2001, and the other representing data from the period from 2002-2011. 
 
 NOTE: we are not paying any attention to males! Population models are often *female-only*, since females are usually the primary drivers of population dynamics.
 
@@ -50,7 +50,7 @@ What about population size?
 
 From [Schwartz et al 2006](schwarz_grizzly1.pdf) we know that:
 
-1. Adult (reproductive) females represent approximately a half (50%) of the total female population. 
+1. Adult (reproductive) females represent approximately half (50%) of the total female population. 
 2. Total abundance of adult females in the greater Yellowstone park area (solid squares plus the open triangles) was ca. 10 in 1983 and ca. 40 in 2001/2002 
 
 ![](grizzly_table2.jpg)
@@ -74,7 +74,7 @@ Okay, let's run the model!
 
 *REALITY CHECK*:       
 
-**Q**: Given that the population of adult females is known to have increased to around 40 individuals by the year 2002, is this model realistic??      
+**Q**: Given that the population of adult females is known to have increased to around 40 by the year 2002, is this model realistic??      
 
 2. What if we configure the model to run for 100 years? What happens now?
 
@@ -130,8 +130,7 @@ Run the model! What do you notice?
 
 Try running the model for 100 years. 
 
-**Q**: Why is this type of model called **density-dependent**?
-
+What happens??
 
 ### Grizzly bear in-class exercises
 
@@ -140,18 +139,16 @@ Working in groups is encouraged!!
 To start off, you can clone a full, density-dependent version of the grizzly model [here](https://insightmaker.com/insight/162305/Yellowstone-Grizzlies-densdep)
 
 1. Make sure the initial abundances are set at the estimated values for 1983 to 2001, and the model is set to run for 100 years.    
-
-2. "Comment out" the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (0.539). The "commenting out" trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value '0.539'; see below). 
-
 **Short Answer Question**: What is the approximate **carrying capacity** (K) of the Yellowstone grizzly population? NOTE: this is an **emergent property** of our new, density-dependent model! We didn't specify carrying capacity, but it *emerges* out of the model.
+
+2. "Comment out" the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (survival is 0.539). The "commenting out" trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value '0.539'; see below). 
+
 
 **Short Answer Question #4** In each case (with density-dependence and without density-dependence), what can we say about the final population abundance after 100 years?? (hint: use the 'Sensitivity Testing' tool; see below for more details) 
 
-**Optional Additional Question**
-
 Before answering the next question, comment out the density-dependence equation and set yearling survival to its lowest possible value from Table 1 (above; 0.346). This is an example of a **worst-case scenario** 
 
-**Short Answer Question #5 (optional)** Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate **minimum viable population size (MVP)** for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the 6 age-classes) such that you can't reduce the population any further without having an unacceptable (>5%) risk of falling below 30 individuals over the next 100 years.
+**Short Answer Question #5** Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate **minimum viable population size (MVP)** for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the six age-classes) such that you can't reduce the population any further without having an unacceptable (>5%) risk of falling below 30 individuals over the next 100 years.
 
 
 #### Helpful hints to answer the grizzly bear questions

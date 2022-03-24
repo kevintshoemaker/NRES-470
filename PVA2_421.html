@@ -14,20 +14,28 @@
 
 <title>Grizzly bear PVA example</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,20 +446,20 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Grizzly bear PVA example</h1>
 <h4 class="author">NRES 421/621</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
 
 <div id="pva-for-yellowstone-grizzly-bears" class="section level2">
 <h2>PVA for Yellowstone grizzly bears!</h2>
-<p>In this module we will use a PVA to do some management-relevant <strong>scenario testing</strong> for the grizzly bear population in Yellowstone National Park.</p>
+<p>In this module we will use a PVA to do investigate the future of the grizzly bear population in Yellowstone National Park.</p>
 <p><img src="grizzly1.jpg" /></p>
 <p>Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may <em>regulate</em> this population!</p>
 <p>Let’s walk together through the basic steps in building and running a PVA model:</p>
@@ -514,14 +473,14 @@ div.tocify {
 <div id="step-2-parameterize-the-model" class="section level4">
 <h4>Step 2: parameterize the model!</h4>
 <p>Let’s use this table to parameterize the population vital rates in our model!</p>
-<p>This table actually has <em>two alternative parameterizations</em>, one summarized from data collected the period from 1983 through 2001, and the other representing data from the period from 2002-2011.</p>
+<p>This table actually has <em>two alternative parameterizations</em>, one summarized from data collected during the period from 1983 through 2001, and the other representing data from the period from 2002-2011.</p>
 <p>NOTE: we are not paying any attention to males! Population models are often <em>female-only</em>, since females are usually the primary drivers of population dynamics.</p>
 <p><img src="grizzly_table1.jpg" /></p>
 <p>The table is from <a href="YellowstoneScience-BearIssue.pdf">this scientific report</a> (<a href="https://www.nps.gov/yell/learn/upload/YellowstoneScience-BearIssue.pdf">alternative link</a>)</p>
 <p>What about population size?</p>
 <p>From <a href="schwarz_grizzly1.pdf">Schwartz et al 2006</a> we know that:</p>
 <ol style="list-style-type: decimal">
-<li>Adult (reproductive) females represent approximately a half (50%) of the total female population.</li>
+<li>Adult (reproductive) females represent approximately half (50%) of the total female population.</li>
 <li>Total abundance of adult females in the greater Yellowstone park area (solid squares plus the open triangles) was ca. 10 in 1983 and ca. 40 in 2001/2002</li>
 </ol>
 <p><img src="grizzly_table2.jpg" /></p>
@@ -541,11 +500,11 @@ div.tocify {
 <li>Try running the model with the parameterization we discussed above. What do you notice? Is the population growing?</li>
 </ol>
 <p><em>REALITY CHECK</em>:</p>
-<p><strong>Q</strong>: Given that the population of adult females is known to have increased to around 40 individuals by the year 2002, is this model realistic??</p>
+<p><strong>Q</strong>: Given that the population of adult females is known to have increased to around 40 by the year 2002, is this model realistic??</p>
 <ol start="2" style="list-style-type: decimal">
 <li>What if we configure the model to run for 100 years? What happens now?</li>
 </ol>
-<p><strong>Short Answer Question #1</strong>: Based on the 100-year simulation, do you think this model of the Yellowstone grizzly population is biologically realistic? Why or why not?</p>
+<p><strong>Short Answer Question</strong>: Based on the 100-year simulation, do you think this model of the Yellowstone grizzly population is biologically realistic? Why or why not?</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Now let’s change the parameterization to reflect the vital rates observed for the period 2002 to 2011 in the table:</li>
 </ol>
@@ -558,7 +517,7 @@ div.tocify {
 <em>Subadult 3:</em> 5<br />
 <em>Adults:</em> 40</p>
 <p><strong>Q</strong>: What do you notice about this model? Is the population still growing? What about the overall <em>rate of growth</em> of the population?</p>
-<p><strong>Short Answer Question #2</strong>: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?</p>
+<p><strong>Short Answer Question</strong>: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?</p>
 <div id="density-dependence" class="section level5">
 <h5>Density-dependence</h5>
 <ol start="4" style="list-style-type: decimal">
@@ -579,7 +538,7 @@ div.tocify {
 </ul>
 <p>Run the model! What do you notice?</p>
 <p>Try running the model for 100 years.</p>
-<p><strong>Q</strong>: Why is this type of model called <strong>density-dependent</strong>?</p>
+<p>What happens??</p>
 </div>
 </div>
 <div id="grizzly-bear-in-class-exercises" class="section level3">
@@ -587,14 +546,13 @@ div.tocify {
 <p>Working in groups is encouraged!!</p>
 <p>To start off, you can clone a full, density-dependent version of the grizzly model <a href="https://insightmaker.com/insight/162305/Yellowstone-Grizzlies-densdep">here</a></p>
 <ol style="list-style-type: decimal">
-<li><p>Make sure the initial abundances are set at the estimated values for 1983 to 2001, and the model is set to run for 100 years.</p></li>
-<li><p>“Comment out” the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (0.539). The “commenting out” trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value ‘0.539’; see below).</p></li>
+<li><p>Make sure the initial abundances are set at the estimated values for 1983 to 2001, and the model is set to run for 100 years.<br />
+<strong>Short Answer Question</strong>: What is the approximate <strong>carrying capacity</strong> (K) of the Yellowstone grizzly population? NOTE: this is an <strong>emergent property</strong> of our new, density-dependent model! We didn’t specify carrying capacity, but it <em>emerges</em> out of the model.</p></li>
+<li><p>“Comment out” the density dependence equation in the equation editor for yearling survival (place a pound sign before the equation; see below for more explanation). Instead, use the yearling survival estimate for the 2002-2011 time period (survival is 0.539). The “commenting out” trick enables you to easily run the grizzly bear PVA with and without the density-dependence process (using the pound signs to alternately comment out the density-dependence equation or the value ‘0.539’; see below).</p></li>
 </ol>
-<p><strong>Short Answer Question #3</strong>: What is the approximate <strong>carrying capacity</strong> (K) of the Yellowstone grizzly population? NOTE: this is an <strong>emergent property</strong> of our new, density-dependent model! We didn’t specify carrying capacity, but it <em>emerges</em> out of the model.</p>
-<p><strong>Short Answer Question #4</strong> In each case (with density-dependence and without density-dependence; i.e., yearling survival = 0.539), what is the approximate 90% confidence interval for the total population abundance after 100 years? (hint: use the ‘Sensitivity Testing’ tool; see below for more details)</p>
-<p><strong>Optional Additional Question</strong></p>
+<p><strong>Short Answer Question #4</strong> In each case (with density-dependence and without density-dependence), what can we say about the final population abundance after 100 years?? (hint: use the ‘Sensitivity Testing’ tool; see below for more details)</p>
 <p>Before answering the next question, comment out the density-dependence equation and set yearling survival to its lowest possible value from Table 1 (above; 0.346). This is an example of a <strong>worst-case scenario</strong></p>
-<p><strong>Short Answer Question #5 (optional)</strong> Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the 6 age-classes) such that you can’t reduce the population any further without having an unacceptable (&gt;5%) risk of falling below 30 individuals over the next 100 years.</p>
+<p><strong>Short Answer Question #5</strong> Local managers have decided that a viable grizzly bear population should have no more than a 5% risk of falling below 30 total individuals at any time over the next 100 years, can you identify an approximate <strong>minimum viable population size (MVP)</strong> for this population under the worst-case scenario above? That is, try to find a set of initial abundances (initial abundance for each of the six age-classes) such that you can’t reduce the population any further without having an unacceptable (&gt;5%) risk of falling below 30 individuals over the next 100 years.</p>
 <div id="helpful-hints-to-answer-the-grizzly-bear-questions" class="section level4">
 <h4>Helpful hints to answer the grizzly bear questions</h4>
 <div id="commenting-out-the-density-dependence-equation" class="section level5">
@@ -651,7 +609,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -660,6 +618,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
