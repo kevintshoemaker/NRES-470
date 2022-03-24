@@ -14,19 +14,83 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-## PVA for Yellowstone grizzly bears!
-
 In this module we will use a PVA to do investigate the future of the grizzly bear population in Yellowstone National Park.
 
 ![](grizzly1.jpg)
 
-Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may *regulate* this population!
+Our goal is to better understand the conservation outlook for the grizzly bear population in Yellowstone park, and how many bears the park may be able to support!
 
-Let's walk together through the basic steps in building and running a PVA model: 
+But first, let's look at the process of building a PVA model:
 
-#### Step 1: conceptualize the life history
+## A general PVA workflow
 
-Based on a literature review, we have determined that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive! Furthermore, the subadult stage lasts approximately 3 years, from the 3rd to the 5th year of life.
+### Step 0: Define your questions/hypotheses!
+
+Like any scientific research, you first need to start with one or more testable research questions. For PVA, this might be:
+
+* What is the extinction risk for a focal population over a specific time horizon (e.g., 100 years)?
+* What is the minimum viable population size for my focal population?
+* Of the conservation actions currently being proposed for my focal species, which is likely to have the greatest bang for the buck?
+* Many more!
+
+Once you have your research questions, the basic process looks something like this:
+
+
+![](PVAschematic1.png) 
+
+
+### Step 1: Life history
+
+*How does your population work?*
+
+The first step (after you have formulated your research questions, of course!) is to conceptualize the life history of your focal species. In general, the following life history traits are often critical to consider:
+
+- Maximum and minimum reproductive age
+- Number of relevant age classes
+- Density-dependence mechanisms
+- Which vital rates may be sensitive to environmental conditions (e.g., annual rainfall)? 
+- And more...
+
+
+### Step 2: Parameterize the demographic model!
+
+This is where you attach numbers to the stocks and flows in your conceptual life history diagram! 
+
+These numbers include survival rates, birth rates, density-dependence terms, year-to-year environmental variability, initial abundance, and more. 
+
+### Step 3: Spatial structure (metapopulations)!
+
+If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:
+
+- How many discrete subpopulations in your focal landscape? 
+- At what rate do individuals move/disperse among these populations?
+
+For the grizzly bear and loggerhead examples, we will not consider spatial structure!
+
+### Step 4: Simulate under alternative scenarios!
+
+There are lots of options for simulation software- R, [InsightMaker](https://insightmaker.com/), [Vortex](http://www.vortex10.org/Vortex10.aspx), [Ramas](http://www.ramas.com/metapop), and much more!
+
+The key question here is: what *scenarios* do you want to test in order to answer your original research questions?
+
+### Step 5: Results
+
+Finally, you need to make sense of all the simulations you just ran!  
+
+There are two major tools that you will need to do this: **graphical visualization** and **statistical analysis**. 
+
+NOTE: The process of building a PVA model is **iterative** and **non-linear**. 
+
+For example -- after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back to the literature and change your parameter estimates to something more realistic (step 2).  
+
+
+## PVA for Yellowstone grizzly bears!
+
+Okay, now let's build a PVA model together- this time focusing on the Yellowstone grizzly bear population!
+
+### Step 1: conceptualize the life history
+
+Based on a literature review, we determined that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive! Furthermore, the subadult stage lasts approximately 3 years, from the 3rd to the 5th year of life.
 
 Therefore, our conceptual life history diagram looks something like this!
 
@@ -34,9 +98,9 @@ Therefore, our conceptual life history diagram looks something like this!
 
 You can "clone" the base grizzly bear model [here](https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized). This model has not yet been *parameterized*!
 
-#### Step 2: parameterize the model!
+### Step 2: parameterize the model!
 
-Let's use this table to parameterize the population vital rates in our model! 
+Let's use the following table to *parameterize* the population vital rates and initial abundances in our model! 
 
 This table actually has *two alternative parameterizations*, one summarized from data collected during the period from 1983 through 2001, and the other representing data from the period from 2002-2011. 
 
@@ -66,7 +130,7 @@ Let's use the initial (1983) abundances (all female!) to initialize our model:
 
 Take a few minutes to parameterize the model, using the 1983 to 2001 estimates from the table above!
 
-#### Step 3: Simulate!
+### Step 3: Simulate!
 
 Okay, let's run the model!
 
@@ -100,7 +164,7 @@ In 2002 the population was more like 40 females- so let's use the following valu
 **Short Answer Question**: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?
 
 
-##### Density-dependence
+#### Density-dependence
 
 4. Let's implement a new process into our model- **density-dependence**!
 
@@ -122,7 +186,7 @@ NOTE: we divide by 100 to convert the result from a percentage to a fraction
 
 Let's implement this *density-dependent process* in Insightmaker!
 
-- First, load [this InsightMaker model](https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation). Clone it so you can make edits!
+- Use your existing model or load and clone [this InsightMaker model](https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation).
 
 - Open the *equation editor* for yearling survival, and input the equation above! Let's do it together!  
 
@@ -132,7 +196,7 @@ Try running the model for 100 years.
 
 What happens??
 
-### Grizzly bear in-class exercises
+## Grizzly bear in-class exercises
 
 Working in groups is encouraged!!
 

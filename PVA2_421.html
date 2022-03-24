@@ -457,22 +457,76 @@ div.tocify {
 </div>
 
 
-<div id="pva-for-yellowstone-grizzly-bears" class="section level2">
-<h2>PVA for Yellowstone grizzly bears!</h2>
 <p>In this module we will use a PVA to do investigate the future of the grizzly bear population in Yellowstone National Park.</p>
 <p><img src="grizzly1.jpg" /></p>
-<p>Our goal is to better understand the future of the grizzly bear population in Yellowstone park, and the processes that may <em>regulate</em> this population!</p>
-<p>Let’s walk together through the basic steps in building and running a PVA model:</p>
-<div id="step-1-conceptualize-the-life-history" class="section level4">
-<h4>Step 1: conceptualize the life history</h4>
-<p>Based on a literature review, we have determined that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive! Furthermore, the subadult stage lasts approximately 3 years, from the 3rd to the 5th year of life.</p>
+<p>Our goal is to better understand the conservation outlook for the grizzly bear population in Yellowstone park, and how many bears the park may be able to support!</p>
+<p>But first, let’s look at the process of building a PVA model:</p>
+<div id="a-general-pva-workflow" class="section level2">
+<h2>A general PVA workflow</h2>
+<div id="step-0-define-your-questionshypotheses" class="section level3">
+<h3>Step 0: Define your questions/hypotheses!</h3>
+<p>Like any scientific research, you first need to start with one or more testable research questions. For PVA, this might be:</p>
+<ul>
+<li>What is the extinction risk for a focal population over a specific time horizon (e.g., 100 years)?</li>
+<li>What is the minimum viable population size for my focal population?</li>
+<li>Of the conservation actions currently being proposed for my focal species, which is likely to have the greatest bang for the buck?</li>
+<li>Many more!</li>
+</ul>
+<p>Once you have your research questions, the basic process looks something like this:</p>
+<p><img src="PVAschematic1.png" /></p>
+</div>
+<div id="step-1-life-history" class="section level3">
+<h3>Step 1: Life history</h3>
+<p><em>How does your population work?</em></p>
+<p>The first step (after you have formulated your research questions, of course!) is to conceptualize the life history of your focal species. In general, the following life history traits are often critical to consider:</p>
+<ul>
+<li>Maximum and minimum reproductive age</li>
+<li>Number of relevant age classes</li>
+<li>Density-dependence mechanisms</li>
+<li>Which vital rates may be sensitive to environmental conditions (e.g., annual rainfall)?</li>
+<li>And more…</li>
+</ul>
+</div>
+<div id="step-2-parameterize-the-demographic-model" class="section level3">
+<h3>Step 2: Parameterize the demographic model!</h3>
+<p>This is where you attach numbers to the stocks and flows in your conceptual life history diagram!</p>
+<p>These numbers include survival rates, birth rates, density-dependence terms, year-to-year environmental variability, initial abundance, and more.</p>
+</div>
+<div id="step-3-spatial-structure-metapopulations" class="section level3">
+<h3>Step 3: Spatial structure (metapopulations)!</h3>
+<p>If you want to ask spatial questions, your model needs to be spatially explicit. The kinds of questions you might think about include:</p>
+<ul>
+<li>How many discrete subpopulations in your focal landscape?</li>
+<li>At what rate do individuals move/disperse among these populations?</li>
+</ul>
+<p>For the grizzly bear and loggerhead examples, we will not consider spatial structure!</p>
+</div>
+<div id="step-4-simulate-under-alternative-scenarios" class="section level3">
+<h3>Step 4: Simulate under alternative scenarios!</h3>
+<p>There are lots of options for simulation software- R, <a href="https://insightmaker.com/">InsightMaker</a>, <a href="http://www.vortex10.org/Vortex10.aspx">Vortex</a>, <a href="http://www.ramas.com/metapop">Ramas</a>, and much more!</p>
+<p>The key question here is: what <em>scenarios</em> do you want to test in order to answer your original research questions?</p>
+</div>
+<div id="step-5-results" class="section level3">
+<h3>Step 5: Results</h3>
+<p>Finally, you need to make sense of all the simulations you just ran!</p>
+<p>There are two major tools that you will need to do this: <strong>graphical visualization</strong> and <strong>statistical analysis</strong>.</p>
+<p>NOTE: The process of building a PVA model is <strong>iterative</strong> and <strong>non-linear</strong>.</p>
+<p>For example – after running your model (step 4) you might realize that your results (step 5) are unrealistic. This might prompt you to go back to the literature and change your parameter estimates to something more realistic (step 2).</p>
+</div>
+</div>
+<div id="pva-for-yellowstone-grizzly-bears" class="section level2">
+<h2>PVA for Yellowstone grizzly bears!</h2>
+<p>Okay, now let’s build a PVA model together- this time focusing on the Yellowstone grizzly bear population!</p>
+<div id="step-1-conceptualize-the-life-history" class="section level3">
+<h3>Step 1: conceptualize the life history</h3>
+<p>Based on a literature review, we determined that there are four main stages in the grizzly bear life history: cub, yearling, subadult and adult! The adult stage is the only one that is reproductive! Furthermore, the subadult stage lasts approximately 3 years, from the 3rd to the 5th year of life.</p>
 <p>Therefore, our conceptual life history diagram looks something like this!</p>
 <p><img src="IM16.jpg" /></p>
 <p>You can “clone” the base grizzly bear model <a href="https://insightmaker.com/insight/162303/Yellowstone-Grizzlies-Unparameterized">here</a>. This model has not yet been <em>parameterized</em>!</p>
 </div>
-<div id="step-2-parameterize-the-model" class="section level4">
-<h4>Step 2: parameterize the model!</h4>
-<p>Let’s use this table to parameterize the population vital rates in our model!</p>
+<div id="step-2-parameterize-the-model" class="section level3">
+<h3>Step 2: parameterize the model!</h3>
+<p>Let’s use the following table to <em>parameterize</em> the population vital rates and initial abundances in our model!</p>
 <p>This table actually has <em>two alternative parameterizations</em>, one summarized from data collected during the period from 1983 through 2001, and the other representing data from the period from 2002-2011.</p>
 <p>NOTE: we are not paying any attention to males! Population models are often <em>female-only</em>, since females are usually the primary drivers of population dynamics.</p>
 <p><img src="grizzly_table1.jpg" /></p>
@@ -493,8 +547,8 @@ div.tocify {
 <em>Adults:</em> 10</p>
 <p>Take a few minutes to parameterize the model, using the 1983 to 2001 estimates from the table above!</p>
 </div>
-<div id="step-3-simulate" class="section level4">
-<h4>Step 3: Simulate!</h4>
+<div id="step-3-simulate" class="section level3">
+<h3>Step 3: Simulate!</h3>
 <p>Okay, let’s run the model!</p>
 <ol style="list-style-type: decimal">
 <li>Try running the model with the parameterization we discussed above. What do you notice? Is the population growing?</li>
@@ -518,8 +572,8 @@ div.tocify {
 <em>Adults:</em> 40</p>
 <p><strong>Q</strong>: What do you notice about this model? Is the population still growing? What about the overall <em>rate of growth</em> of the population?</p>
 <p><strong>Short Answer Question</strong>: Which vital rates changed the most from 1983 to 2002? Can you think of any reason for this change?</p>
-<div id="density-dependence" class="section level5">
-<h5>Density-dependence</h5>
+<div id="density-dependence" class="section level4">
+<h4>Density-dependence</h4>
 <ol start="4" style="list-style-type: decimal">
 <li>Let’s implement a new process into our model- <strong>density-dependence</strong>!</li>
 </ol>
@@ -533,7 +587,7 @@ div.tocify {
 <p>NOTE: we divide by 100 to convert the result from a percentage to a fraction</p>
 <p>Let’s implement this <em>density-dependent process</em> in Insightmaker!</p>
 <ul>
-<li><p>First, load <a href="https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation">this InsightMaker model</a>. Clone it so you can make edits!</p></li>
+<li><p>Use your existing model or load and clone <a href="https://insightmaker.com/insight/162306/Yellowstone-Grizzlies-densdep-noequation">this InsightMaker model</a>.</p></li>
 <li><p>Open the <em>equation editor</em> for yearling survival, and input the equation above! Let’s do it together!</p></li>
 </ul>
 <p>Run the model! What do you notice?</p>
@@ -541,8 +595,9 @@ div.tocify {
 <p>What happens??</p>
 </div>
 </div>
-<div id="grizzly-bear-in-class-exercises" class="section level3">
-<h3>Grizzly bear in-class exercises</h3>
+</div>
+<div id="grizzly-bear-in-class-exercises" class="section level2">
+<h2>Grizzly bear in-class exercises</h2>
 <p>Working in groups is encouraged!!</p>
 <p>To start off, you can clone a full, density-dependent version of the grizzly model <a href="https://insightmaker.com/insight/162305/Yellowstone-Grizzlies-densdep">here</a></p>
 <ol style="list-style-type: decimal">
@@ -575,7 +630,6 @@ div.tocify {
 <p><img src="MVP1.PNG" /></p>
 <p>You can compute the risk of extinction or decline more quantitatively as the fraction of replicates that failed to meet the specified criterion. That is, you can divide the total number of simulations falling below the threshold by the total number of replicates.</p>
 <p><a href="PVA3_421.html">–go to loggerhead PVA–</a></p>
-</div>
 </div>
 </div>
 </div>
