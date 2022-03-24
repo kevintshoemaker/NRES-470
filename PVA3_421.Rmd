@@ -127,7 +127,7 @@ Here are some relevant parameters, from [this paper](Crowder1994.pdf):
 *Transition from stage 4-1 (reproduction by subadults)*: 4.67      
 *Transition from stage 5-1 (reproduction by adults)*: 61.90      
 
-For this model we will assume no stochasticity or uncertainty in any of these parameters. 
+For this model we will follow Crowder et al. in assuming no stochasticity or uncertainty in any of these parameters. 
 
 ### Step 3: simulate!
 
@@ -239,9 +239,6 @@ For each scenario, consider:
 **Short Answer Question #1**: What is your management recommendation for this population? Why? [please take your time with this one]
 
 **Short Answer Question #2**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if the population ultimately declines over time?
-
-
-
 
 
 #### References
