@@ -26,14 +26,14 @@ Students will work in groups of ~3-4 people (maximum of 5) to perform a populati
 - Use the model results to rank conservation or management actions for your species or population of interest
 - _Write up the results_ and present your results to the class!
 
-## Timeline
+## Timeline (updated)
 
 - **PROPOSAL:** Due Fri March 4!
-- **INITIAL PVA** Due Fri April 1: description of how your PVA model works and where the parameter estimates come from -- and a link to a working PVA model!     
-- **SEND DRAFT FOR PEER REVIEW** Due April 11 by 5pm (for peer reviews on April 15)
-- **DRAFT FINAL PAPER:** Due Wed April 22 by 5pm
+- **INITIAL PVA** Due Wed April 6: description of how your PVA model works and where the parameter estimates come from -- and a link to a working PVA model!     
+- **DRAFT FINAL PAPER:** Due Mon April 18.
+- **PEER REVIEWS:** Fri Apr 22 in lab.
+- **FINAL PRESENTATIONS:** Wed Apr 27 and Fri April 29!
 - **FINAL FINAL PAPER:** Due Wed May 11
-- **FINAL PRESENTATIONS:** Fri Apr 22 and Fri April 29 in lab!
 
 Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
@@ -63,25 +63,23 @@ We have gone over many of these concepts in class already- PVA is just a way of 
 
 ## Second project-related assignment: the initial PVA!
 
-Your initial parameterized PVA will consist of:  
+Your initial parameterized PVA model will consist of:  
 
-1. A ready-to-run PVA model, in whatever software framework you are using (InsightMaker, R, Vortex). This model does not need to be the "final" model, but it should work (e.g., produce results) and the parameter estimates should be reasonable and backed by evidence (see below).
+1. A ready-to-run PVA model, in whatever software framework you are using (InsightMaker, R, Vortex). This model does not need to be the "final" model, but it should work (e.g., produce results) and the parameter estimates should be backed by some evidence or rationale (see below).
 
 2. A written rationale/evidence for each of your parameter estimates and other key modeling decisions.       
-    a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source(s) of this information). Decisions include: how many populations, initial abundance(s), how many stages, how density-dependence operates for your species (e.g., which vital rates are density-dependent), Allee effects, survival and fecundity rates, environmental stochasticity, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.
-    b. What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions?
-    c. Literature cited (format not important, as long as it includes all key information).        
+    a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source(s) of this information). Decisions include: how many populations, initial abundance(s), how many stages, how density-dependence operates for your species (e.g., which vital rates are density-dependent), Allee effects (if present), survival and fecundity rates, environmental stochasticity on one or more vital rates, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.
+    b. What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions? NOTE: you don't need to run your scenario tests- just state what scenario tests you propose to run!
+    c. Literature cited (format not important, as long as it includes all key information)        
     
 ## Third project-related assignment: the written project (rough draft)!
-
-You will submit two rough drafts: one for our group peer review, and the other so your instructor and TA can give detailed feedback. 
 
 Your final written paper is expected to be in the style of a **scientific manuscript**. That is, it should have a *title*, *introduction*, *methods*, *results*, *discussion*, *acknowledgements* and *literature cited* sections. Please also include your working PVA model (e.g., InsightMaker link or R code). 
 
 **There are no formatting guidelines or page limits**. Please be as concise as possible while still covering all the key elements in the grading rubric. You can use any standard format for your references (e.g., APA), all we ask is that you be consistent!
 
 ### Introduction
-This is where you introduce the topic and describe why it's important. You should also include your research questions here, along with any hypotheses that you are testing. You can recycle and flesh out the material from your proposal! This should be at least a 2-3 paragraphs.
+This is where you introduce the topic and describe why it's important. You should also include your research questions here, along with any hypotheses that you are testing (this is usually the last paragraph of your introduction). You can recycle and flesh out the material from your proposal! This should be at least 3 paragraphs long.
 
 Remember to cite literature here (and use a consistent format)!
 
@@ -99,7 +97,7 @@ Also, you should describe how you addressed the research questions you introduce
     - Did you perform any statistical analyses?      
 
 ### Results
-This is where you describe and present the relevant outputs from your model (mostly can be recycled from your 'final PVA' assignment). Provide figures and tables to summarize your *relevant* results. You should include at least 2-3 figures as part of your results section. Each figure should have an informative caption placed directly below the figure. 
+This is where you describe and present the relevant outputs from your model. Provide figures and tables to summarize your *relevant* results. You should include at least 2-3 figures as part of your results section. Each figure should have an informative caption placed directly below the figure. 
 
 With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it *relevant* to your main questions?
 
@@ -129,11 +127,11 @@ A rubric for the presentations can be found [here](presentationProject_rubric.do
 
 ## Final paper peer review/feedback session
 
-In lab on Fri Apr 15 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
+In lab on Fri Apr 22 we will have a "peer review" session where we will have a chance to give each other feedback on draft manuscripts. 
 
 The way it will work is as follows:
 
-1. By the end of the day on April 11, you will receive another group's draft manuscript via WebCampus (see list below). 
+1. By the end of the day on April 22, you will receive another group's draft manuscript via WebCampus (see list below). 
 
 2. Before lab, please thoroughly read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
 
