@@ -14,7 +14,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-The final extinction of a population usually is probabilistic. That is, once the population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deliver the final death knell to a population. In conservation biology the study of the drivers of extinction for small populations is called the *small-population paradigm*. That is: the small-population paradigm refers to the tendency in **conservation biology** to study those largely *stochastic* factors that can result in the extinction or degradation of small populations. 
+The final extinction of a population is usually caused by factors that small populations are uniquely sensitive to; once a population gets small enough, *demographic stochasticity*, *genetic drift*, and *inbreeding depression* can together deliver the final death knell to a population. 
+
+In conservation biology the study of the drivers of extinction for small populations is called the *small-population paradigm*. The small-population paradigm refers to the tendency in **conservation biology** to study those largely *stochastic* factors that can result in the extinction or degradation of small populations. 
 
 ### Demographic stochasticity
 
@@ -24,7 +26,7 @@ The simple fact is: _it is much more likely for all 10 individuals in a populati
 
 This illustrates the very important concept, that small populations can go extinct due to demographic stochasticity alone, whereas this possibility is vanishingly small for large populations (this is basically impossible). 
 
-The moral of the story for demographic stochasticity is: weird and dramatic things (e.g., extinction) can happen in small populations for no other reason than that the population is small!
+The moral of the story is: weird and dramatic things (e.g., extinction) can happen in small populations for no other reason than that the population is small!
 
 Dramatic events like random extinction just would **never happen** in large populations due to random mating, birth, and mortality processes (assuming a stable, favorable environment and no range-wide catastrophic events)!
 
@@ -37,7 +39,7 @@ In large populations, random forces are just not strong enough to eradicate a re
 
 ![](geneticdrift1.png)
 
-Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). The different colored balls represent different genetic variants. Each jar, left to right, represents a different (non-overlappling) generation. 
+Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring that individual will have (thereby passing on its genes). The different colored balls represent different genetic variants. Each jar, left to right, represents a different (non-overlapping) generation. 
 
 Does this sound familiar? Just by random chance, some individuals will breed and some will not. Just by random chance, some individuals will have more of their offspring survive. Genetic drift is simply a consequence of **demographic stochasticity**. 
 
@@ -72,7 +74,7 @@ One of the important ideas emerging from the small population paradigm is the co
 
 Once a population gets small enough, it becomes subject to catastrophic declines due to demographic (and environmental) stochasticity, leading to inbreeding and random loss of useful genes, leading to reduced vital rates, leading to smaller population sizes, leading to further genetic degradation, leading to more possibility of catastrophic declines due to demographic stochasticity, leading inevitably to extinction...
 
-In general, extinction is often caused by stochastic processes, but stochastic processes are unlikely to be the reason the population got small in the first place!
+In general, extinction is often caused by stochastic processes, but stochastic processes are unlikely to be the reason the population got small in the first place! (that is the topic of the 'declining population paradigm' lecture!)
 
 ## Minimum Viable Populations (MVP)
 
@@ -82,7 +84,7 @@ When we talked about [Allee effects](LECTURE5.html), we saw a case in which a de
 
 However, the MVP concept is derived from *conservation biology* and not from theoretical population biology. Conservation biology deals with real-world systems which are messy, variable and uncertain. Therefore, the MVP concept is usually quantified using stochastic population models.  
 
-The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size (MVP) is that *population size above which the extinction vortex can be safely avoided*.
+The most satisfying general definition of MVP (in my opinion) directly relates to the extinction vortex concept: Minimum Viable Population size (MVP) is that *population size above which the extinction vortex can be safely avoided*. 
 
 However, the above definition is not strictly quantifiable for most species. Also MVP is often defined in relation to population models, many of which don't have an explicit genetic component (because we often don't know exactly how many deleterious recessive alleles are in a population!). The quantitative, operational definition that we will use in this course is:
 
@@ -105,7 +107,7 @@ The most widely-used PVA software, [Vortex](https://www.cpsg.org/our-approach/sc
 
 ## Example: Aruba island rattlesnake
 
-The aruba island rattlesnake, or Cascabel (*Crotalus durissus unicolor*), is the top predator on the island of Aruba, and primarily consumes rodents. 
+The Aruba Island Rattlesnake, or Cascabel (*Crotalus durissus unicolor*), is the top predator on the island of Aruba, and primarily consumes rodents. 
 
 ![](aruba_rattlesnake1.jpg)
 
@@ -113,7 +115,7 @@ The Aruba island rattlesnake, as you might expect, occurs only on the island of 
 
 ![](aruba1.png)
 
-The Aruba rattlesnake is listed as *Critically Endangered* by IUCN (actually, it is no longer listed as of 2021 due to lack of information), and has several attributes that make it particularly susceptible to falling into the extinction vortex:
+The Aruba rattlesnake was listed as *Critically Endangered* by IUCN (it is no longer listed as of 2021 due to lack of information), and has several attributes that make it particularly susceptible to falling into the extinction vortex:
 
 See [Lab 5](LAB5.html) for the related MVP activity.  
 
@@ -124,7 +126,7 @@ See [Lab 5](LAB5.html) for the related MVP activity.
 
 
 
-[--go to next lecture--](LECTURE10.html)
+[--go to next lecture--](LECTURE11.html)
 
 
 

@@ -18,17 +18,17 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 **Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why???
 
-**Q**: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations declining despite their intrinsic ability to grow? Is it all random, or is it more systematic?
+**Q**: Given that all species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations declining despite their natural ability to grow and thrive under favorable conditions?
 
 ## Threats to populations
 
-The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births *under present conditions* the population will decline until these unfavorable conditions are reversed. 
+The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Simply put, conditions are not always favorable to growth. If mortalities exceed births *under present conditions* the population will decline until these unfavorable conditions are reversed. 
 
 In the "small-population paradigm" lecture, we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, and catastrophic environmental events. These threats only really affect small populations. *Large populations are mostly resilient to these stochastic threats.*
 
 Large populations can be threatened too though! Factors that threaten large populations are generally **deterministic** (not random/stochastic)! 
 
-The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those deterministic processes that cause population decline (that tip the balance and cause deaths to exceed births), and how these processes may be reversed through effective conservation management*. 
+The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those processes that can cause population decline in both large and small populations (that tip the balance and cause deaths to exceed births), and how these processes may be reversed through effective conservation management*. 
 
 What are some factors that can *tip the balance* so to speak- so that growing or stable populations become declining populations? 
 
@@ -55,7 +55,7 @@ This map shows the difference (anomaly) between current temperatures and mean (n
 ![](bullfrog1.jpg)
 
 
-### Pollution
+### Environmental contamination
 
 ![](pollution1.png)
 
@@ -81,13 +81,11 @@ In this paper, Caughley coined the terms 'small population paradigm' and 'declin
 
 Let's try a worked example to illustrate the above points.
 
-Let's start with a souped up scalar, density-dependent population -- should look something like this:
+Let's start with a souped-up scalar, density-dependent population -- should look something like this:
 
 You can clone this model by clicking [here](https://insightmaker.com/insight/74417/declining-population-paradigm)
 
-
 ![](IM5.PNG)
-
 
 You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the base model and make sure you understand how it works.
 
@@ -113,13 +111,13 @@ Note that we are modeling habitat loss as a decline in carrying capacity. To do 
 
 - Remove any fractional harvest process for now (set frac harvested terms to 0)     
 
-- Let's first model the case where 10% of K is lost each year (fractional habitat loss). 
+- Let's first model the case where 5% of K is lost each year (fractional habitat loss). 
 
 - Run the simulation to visually track K along with population dynamics! 
 
 **Q**: Does the reduction in K over time look realistic? Can you imagine other plausible shapes for this curve?
 
-- Try running the model with 10% habitat loss (fractional habitat loss) AND 10% harvest (fractional harvest and fractional habitat loss). 
+- Try running the model with 5% habitat loss (fractional habitat loss) AND 10% harvest (fractional harvest and fractional habitat loss). 
 
 **Q**: Are the results different from what you expected?  
 
