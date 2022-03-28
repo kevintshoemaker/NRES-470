@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Final projects:
 
-Just a heads up about [final projects](FINAL_PROJECTS.html). Your working PVA and a document justifying your modeling decisions is *due Friday, April 9*!
+Just a heads up about [final projects](FINAL_PROJECTS.html). Your working PVA and a document justifying your modeling decisions is *due Wed, April 6*!
 
 
 ## Population Viability Analysis (PVA)
@@ -43,9 +43,9 @@ Population Viability Analysis (PVA) integrates everything we have studied so far
 
 At its most basic level, PVA is the _process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options_.
 
-**Q:** Does PVA align well with the small-population paradigm?
+**Q:** Does PVA align with the small-population paradigm?
 
-**Q:** Does PVA align well the declining-population paradigm?
+**Q:** Does PVA align with the declining-population paradigm?
 
 **Q:** Are PVA models always stochastic?
 
@@ -91,18 +91,17 @@ The first step is to conceptualize the life history for your species of interest
 
 Lecture 3: exponential growth    
 Lecture 4: density dependence    
-Lecture 5: allee effect    
+Lecture 5: allee effect (if applicable)    
 Lecture 7: matrix population models    
 Lecture 8: stochasticity and uncertainty    
-Labs 1,2,3,4,5,7    
-
+(Labs 1,2,3,4,5)    
 
 This is where you attach real numbers to the stocks and flows in your conceptual life history diagram. Remember that these parameters are more than just survival and fecundity. It's also:
 
 - Annual variation in survival and fecundity (environmental stochasticity)    
 - Initial abundances    
 - Density dependence functions and parameters (including K)    
-- Allee thresholds    
+- Allee threshold (if applicable)    
 - Catastrophe effect sizes and probabilities    
 - Effects of management actions    
 - And more...    
@@ -122,12 +121,12 @@ If you want to ask spatial questions, your model needs to be spatially explicit,
 - Do different populations have different mean vital rates? Are some populations likely to be sources and others likely to be sinks?   
 - Is environmental stochasticity **spatially correlated**? (is a bad year in one subpopulation likely to be a bad year in every subpopulation?)
 - At what rate do individuals move among these populations?
-- Can connectivity be enhanced via management?
+- Can connectivity be enhanced via habitat management?
 - Are dispersal rates density-dependent?
 
 #### Step 4: Simulate!
 
-In class exercises, all labs
+(In class exercises, all labs)
 
 You know how to simulate populations now- you can choose whether it makes sense to use R, InsightMaker, Vortex, or some other software or programming platform for your simulations!
 
@@ -348,7 +347,7 @@ abline(v=25,col="red",lwd=2)
 
 What if our question is about the effect of flooding on extinction risk. Let's imagine that the probability of flooding is not expected to change with climate change, but that the intensity of the flood damage is likely to increase substantially!
 
-Currently, floods generally result in a 10% population reduction. But climate change could increase this number to as much as 90%. Let's look at how much this could increase extinction risk!
+Currently, floods generally result in a 25% population reduction. But climate change could increase this number to as much as 90%. Let's look at how much this could increase extinction risk!
 
 ```{r}
 
