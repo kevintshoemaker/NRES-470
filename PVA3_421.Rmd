@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 # PVA for loggerhead turtles!
 
-This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant **scenario testing**. Also try to run through the Excel exercise (see below)!
+This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant **scenario testing**. 
 
 If you'd like to follow along in R, you can use [this script](PVA3_421.R)
 
@@ -47,6 +47,8 @@ If you would like more background information on loggerhead turtles, visit these
 [NMFS site](https://www.fisheries.noaa.gov/species/loggerhead-turtle)       
 [Texas site](https://tpwd.texas.gov/huntwild/wild/species/logghead/)       
 
+And here is a YouTube video that gives a quick introduction to the Loggerhead and the threats it faces: [https://www.youtube.com/watch?v=yhFCOWMsBZQ&t=266s](https://www.youtube.com/watch?v=yhFCOWMsBZQ&t=266s)
+
 ### Background
 
 ![](loggerhead2.jpg)
@@ -55,9 +57,9 @@ The loggerhead sea turtle, *C. caretta*, is a large marine turtle with a nearly 
 
 ![](loggerhead4.jpg)
 
-The species has been federally listed as 'threatened' since 1978. When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.
+The species has been federally listed since 1978 (some population segments listed as "Threatened", and others as "Endangered". When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.
 
-Loggerheads are listed as "Threatened" under the IUCN Red List.   
+Loggerheads are listed as "Threatened (Vulnerable)" under the IUCN Red List.   
 
 ![](loggerhead3.jpg)
 
@@ -70,7 +72,7 @@ Biologists have identified two key types of threats facing loggerheads: alterati
 ![](loggerhead5.jpg)
 
 Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.  
-Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including 
+Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including: 
 
 - *poaching* (eggs or adults)
 - *beach erosion* or beach fortification to prevent erosion
@@ -239,6 +241,11 @@ For each scenario, consider:
 **Short Answer Question #1**: What is your management recommendation for this population? Why? [please take your time with this one]
 
 **Short Answer Question #2**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if the population ultimately declines over time?
+
+
+
+And finally, let's watch this video together: [https://www.youtube.com/watch?v=F7j5yXnZo2Y](https://www.youtube.com/watch?v=F7j5yXnZo2Y)!
+
 
 
 #### References

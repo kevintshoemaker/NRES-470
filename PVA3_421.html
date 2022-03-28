@@ -459,7 +459,7 @@ div.tocify {
 
 <div id="pva-for-loggerhead-turtles" class="section level1">
 <h1>PVA for loggerhead turtles!</h1>
-<p>This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant <strong>scenario testing</strong>. Also try to run through the Excel exercise (see below)!</p>
+<p>This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant <strong>scenario testing</strong>.</p>
 <p>If you’d like to follow along in R, you can use <a href="PVA3_421.R">this script</a></p>
 <div id="constructing-a-demographic-matrix-model-data-for-loggerhead-turtles" class="section level2">
 <h2>Constructing a demographic (matrix) model data for loggerhead turtles</h2>
@@ -467,13 +467,14 @@ div.tocify {
 <p><a href="https://ecos.fws.gov/ecp0/profile/speciesProfile?spcode=C00U">USFWS site</a><br />
 <a href="https://www.fisheries.noaa.gov/species/loggerhead-turtle">NMFS site</a><br />
 <a href="https://tpwd.texas.gov/huntwild/wild/species/logghead/">Texas site</a></p>
+<p>And here is a YouTube video that gives a quick introduction to the Loggerhead and the threats it faces: <a href="https://www.youtube.com/watch?v=yhFCOWMsBZQ&amp;t=266s">https://www.youtube.com/watch?v=yhFCOWMsBZQ&amp;t=266s</a></p>
 <div id="background" class="section level3">
 <h3>Background</h3>
 <p><img src="loggerhead2.jpg" /></p>
 <p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine turtle with a nearly global distribution. Nesting areas in the USA occur along the Atlantic coast from New Jersey to Texas, although individuals may be observed along the Pacific coast and in Hawaii.</p>
 <p><img src="loggerhead4.jpg" /></p>
-<p>The species has been federally listed as ‘threatened’ since 1978. When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.</p>
-<p>Loggerheads are listed as “Threatened” under the IUCN Red List.</p>
+<p>The species has been federally listed since 1978 (some population segments listed as “Threatened”, and others as “Endangered”. When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.</p>
+<p>Loggerheads are listed as “Threatened (Vulnerable)” under the IUCN Red List.</p>
 <p><img src="loggerhead3.jpg" /></p>
 </div>
 <div id="threats" class="section level3">
@@ -484,7 +485,7 @@ div.tocify {
 </ol>
 <p><img src="loggerhead5.jpg" /></p>
 <p>Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.<br />
-Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including</p>
+Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including:</p>
 <ul>
 <li><em>poaching</em> (eggs or adults)</li>
 <li><em>beach erosion</em> or beach fortification to prevent erosion</li>
@@ -538,7 +539,7 @@ Because beaches are popular sites for human recreation and development, arriving
 <em>Transition from stage 5-5 (stay adult)</em>: 0.809<br />
 <em>Transition from stage 4-1 (reproduction by subadults)</em>: 4.67<br />
 <em>Transition from stage 5-1 (reproduction by adults)</em>: 61.90</p>
-<p>For this model we will assume no stochasticity or uncertainty in any of these parameters.</p>
+<p>For this model we will follow Crowder et al. in assuming no stochasticity or uncertainty in any of these parameters.</p>
 </div>
 <div id="step-3-simulate" class="section level3">
 <h3>Step 3: simulate!</h3>
@@ -650,6 +651,7 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quo
 <p><strong>Please write down your responses to the following questions:</strong>:</p>
 <p><strong>Short Answer Question #1</strong>: What is your management recommendation for this population? Why? [please take your time with this one]</p>
 <p><strong>Short Answer Question #2</strong>: In the base model, why does the population always seem to grow during the first few years of the simulation, even if the population ultimately declines over time?</p>
+<p>And finally, let’s watch this video together: <a href="https://www.youtube.com/watch?v=F7j5yXnZo2Y">https://www.youtube.com/watch?v=F7j5yXnZo2Y</a>!</p>
 <div id="references" class="section level4">
 <h4>References</h4>
 <p>Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy. 1996. Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set. Conservation Biology 10 (3), 863-873. doi: 10.1046/j.1523-1739.1996.10030863.x</p>
