@@ -39,6 +39,10 @@ This PVA example, like the grizzly bear example, demonstrates the use of real de
 
 If you'd like to follow along in R, you can use [this script](PVA3_421.R)
 
+If you'd like to follow along in Excel, you can load the base Excel model [here](Loggerhead2019.xlsx)
+
+And here is the InsightMaker link we will use: [https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model](https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model).
+
 ## Constructing a demographic (matrix) model data for loggerhead turtles
 
 If you would like more background information on loggerhead turtles, visit these websites:     
@@ -53,30 +57,30 @@ And here is a YouTube video that gives a quick introduction to the Loggerhead an
 
 ![](loggerhead2.jpg)
 
-The loggerhead sea turtle, *C. caretta*, is a large marine turtle with a nearly global distribution. Nesting areas in the USA occur along the Atlantic coast from New Jersey to Texas, although individuals may be observed along the Pacific coast and in Hawaii.  
-
-![](loggerhead4.jpg)
-
-The species has been federally listed since 1978 (some population segments listed as "Threatened", and others as "Endangered". When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list.
-
-Loggerheads are listed as "Threatened (Vulnerable)" under the IUCN Red List.   
+The loggerhead sea turtle, *C. caretta*, is a large marine turtle with a nearly global distribution. Nesting areas in the USA occur along the Atlantic coast from New Jersey to Texas, although individuals may be observed along the Pacific coast and in Hawaii.
 
 ![](loggerhead3.jpg)
 
+![](loggerhead4.jpg)
+
+The species has been federally listed since 1978 (some population segments listed as "Threatened", and others as "Endangered". When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list. In this exercise we will imagine we are part of a team drafting the recovery plan for this species. 
+
+Loggerheads are listed as "Threatened (Vulnerable)" under the IUCN Red List.   
+
 ### Threats
 
-Biologists have identified two key types of threats facing loggerheads: alteration of nesting beaches and bycatch from commercial fisheries. 
+Biologists have identified two major threats facing loggerheads: alteration of nesting beaches and bycatch from commercial fisheries. 
 
 1. **Threats to nesting beaches**
 
 ![](loggerhead5.jpg)
 
-Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for about 2 months, and juveniles make a mad dash for the water upon hatching.  
+Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for 2-3 months, and juveniles make a mad scramble for the water upon hatching.  
 Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including: 
 
 - *poaching* (eggs or adults)
 - *beach erosion* or beach fortification to prevent erosion
-- *artificial lighting*
+- *artificial lighting* (disorientation of hatchlings)
 - *recreational vehicles*
 - ... and many others.
 
@@ -84,7 +88,7 @@ Because beaches are popular sites for human recreation and development, arriving
 
 Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.  
 
-- After the sargassum-feeding stage, loggerhead turtle juveniles, subadults and adults feed in coastal seagrass mats which are also frequented by shrimp boats and other inshore trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common- especially for juveniles!  
+- After the sargassum-feeding stage, loggerhead turtle juveniles, subadults and adults feed in coastal seagrass mats which are also frequented by inshore shrimp trawling vessels. Hence *accidental capture ("bycatch")* and subsequent drowning in the nets and traps used by these vessels is common- especially for juveniles!  
 
 ![](trawl1.png)
 
@@ -92,7 +96,7 @@ Once hatchlings reach the ocean, they face different threats as they slowly deve
 
 3. **Additional threats**
 
-- During cold temperatures turtles may go dormant, burying themselves in muddy bays and estuaries. While dormant they can be killed by periodic *dredging* to maintain bays and waterways.  
+- During colder temperatures turtles may go dormant, burying themselves in muddy bays and estuaries. While dormant they can be killed by periodic *dredging* to maintain bays and waterways.  
 
 - Human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause *entanglement*, stranding, and drowning.
 
@@ -102,7 +106,9 @@ Once hatchlings reach the ocean, they face different threats as they slowly deve
 
 - Finally, although rare in the US, *illegal harvest* of eggs  as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras).  Turtle eggs are occasionally seen in open-air markets in Panama.
 
-### Step 1: a size-structured model
+Okay, let's walk through the five stages of building a PVA model- this time focusing on the loggerhead sea turtle:
+
+### Step 1: a stage-structured model
 
 The loggerhead is a long-lived species -- sexual maturity often doesn't occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct **stage classes** defined by body size (carapace length).
 
@@ -116,7 +122,7 @@ Once turtle life-stages with similar vital rates have been identified, three pie
 
 Transition rates for turtles and other species are often estimated on the basis of *capture-mark-recapture* (CMR) data. 
 
-Here are some relevant parameters, from [this paper](Crowder1994.pdf):
+Here are some relevant parameters, from [this paper](Crowder1994.pdf) (originally from Crouse et al. 1987):
 
 *Transition from stage 1-2 (hatchling to small juvenile)*: 0.675     
 *Transition from stage 2-3 (small to large juvenile)*: 0.047    
@@ -126,12 +132,16 @@ Here are some relevant parameters, from [this paper](Crowder1994.pdf):
 *Transition from stage 3-3 (stay large juvenile)*: 0.657       
 *Transition from stage 4-4 (stay subadult)*: 0.682      
 *Transition from stage 5-5 (stay adult)*: 0.809      
-*Transition from stage 4-1 (reproduction by subadults)*: 4.67      
-*Transition from stage 5-1 (reproduction by adults)*: 61.90      
+*Transition from stage 4-1 (reproduction by subadults)*: 4.67 (reflects transition probability and adult egg production)      
+*Transition from stage 5-1 (reproduction by adults)*: 61.90  (reflects adult survival and adult egg production)     
 
-For this model we will follow Crowder et al. in assuming no stochasticity or uncertainty in any of these parameters. 
+For this model we will follow Crowder et al. (1994) in assuming no stochasticity or uncertainty in any of these parameters. 
 
-### Step 3: simulate!
+### Step 3: spatial structure
+
+None, we can skip this!
+
+### Step 4: simulate!
 
 We can project the loggerhead population into the future using *matrix multiplication*!
 
@@ -145,8 +155,6 @@ See the end of this lecture for a review of matrix population models and how the
 - In Excel, your projection matrix would look something like this:
 
 ![](loggerhead6.jpg.png)
-
-
 
 In R, your projection matrix would look like this!
 
@@ -208,24 +216,24 @@ legend("topright",col=cols,lwd=rep(2,3),legend=rownames(TMat),bty="n")  # put a 
 
 NOTE: here we use the term "survival" to refer to surviving and staying in the same stage class, and "growth" to refer to surviving and moving on to the next life stage. 
 
-Look over the model, and make sure that you understand the inner workings!
+Look over the model, and make sure that you understand how it works before you start running conservation scenarios! 
 
 ### Group exercise (in class!): loggerhead management
 
-Working in small groups if possible, investigate four management scenarios for the loggerhead turtle population:
+Working in small groups if possible, investigate the following four management scenarios for the loggerhead turtle population (see below). Remember to revert to the baseline model before trying the next management scenario. 
 
-1. Improve fecundity (labeled "Sub Fecundity" and "Adult Fecundity" in the IM model) via *nest-site protection*!
+1. Improve fecundity (labeled "Sub Fecundity" and "Adult Fecundity" in the InsightMaker model) via *nest-site protection*!
     - Improve fecundity to 1.5X the current value      
     - Double fecundity (2X the current value)      
 2. Improve hatchling survival (labeled "hatchling growth" in the IM model) via *nest monitoring*
-    - Improve _to_ 90%    
-    - Improve _to_ 100%    
+    - Improve _to_ 0.9 (90%)    
+    - Improve _to_ 1 (100%)    
 3. Improve large juvenile survival (labeled "Lg Juv Surv" in the IM model) using *Turtle Excluder Devices (TEDs)*     
     - Add 0.15 to the existing large juvenile survival      
     - Add 0.25 to the existing large juvenile survival      
 4. Improve adult/subadult survival (labeled "Sub Surv" and "Adult Surv" in IM) by *restricting longline fisheries*.     
-    - Increase by 5% (add 0.05 to the existing subadult and adult survival)         
-    - Increase by 10% (add 0.1 to the existing subadult and adult survival)          
+    - Add 0.05 to the existing subadult and adult survival         
+    - Add 0.1 to the existing subadult and adult survival          
     
     
 ![turtle excluder device](ted1.jpg)    
@@ -236,11 +244,21 @@ For each scenario, consider:
 - The long-term outlook (100 years out)
 
 
+### Step 5: results!
+
+Now that we have a parameterized model, we can communicate our results to stakeholders!!
+
 **Please write down your responses to the following questions:**:
 
 **Short Answer Question #1**: What is your management recommendation for this population? Why? [please take your time with this one]
 
 **Short Answer Question #2**: In the base model, why does the population always seem to grow during the first few years of the simulation, even if the population ultimately declines over time?
+
+Bonus questions!
+
+**Bonus question #1**: Under your chosen management recommendation, how long would it take the population to increase by one order of magnitude? 
+
+**Bonus question #2**: How might this time horizon change if you alter the initial age distribution (i.e., the fraction of the population in each of the stage classes at time 0)?
 
 
 
@@ -256,7 +274,9 @@ Morris, W. F. and D. F. Doak.  2002.  Quantitative conservation biology:  Theory
 
 Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson.  1999. A practical handbook for population viability analysis.  The Nature Conservancy, Wash., DC.
 
+[Crowder, L. B., Crouse, D. T., Heppell, S. S., & Martin, T. H. (1994). Predicting the impact of turtle excluder devices on loggerhead sea turtle populations. Ecological applications, 4(3), 437-445.](Crowder1994.pdf)
 
+Crouse, D. T., Crowder, L. B., & Caswell, H. (1987). A stage‐based population model for loggerhead sea turtles and implications for conservation. Ecology, 68(5), 1412-1423.
 
 
 #### Optional: Forecast the population into the future in Excel
