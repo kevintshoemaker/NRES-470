@@ -14,20 +14,28 @@
 
 <title>Metapopulations</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,57 +446,60 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Metapopulations</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
 
-<div id="upcoming-midterm-exam" class="section level3">
-<h3>Upcoming midterm exam</h3>
-<p><strong>when and where</strong> The second midterm exam (out of two) is coming up on <strong>April 19</strong>. You will have the whole 50 minute class period to take the exam. We will use the same format as the first midterm.</p>
+<div id="upcoming-midterm-exam-april-13" class="section level3">
+<h3>Upcoming midterm exam: April 13</h3>
+<p><strong>when and where</strong> The second midterm exam (out of two) is coming up on <strong>Wednesday April 13</strong>. You will have the whole 50 minute class period to take the exam (really, you have the whole hour if you need it). We will use the same basic format as we used for the first midterm.</p>
 <p><strong>what</strong> The exam will cover:</p>
 <ul>
-<li>Everything from the first midterm<br />
+<li>Everything from the first midterm!<br />
 </li>
 <li>Stochasticity and uncertainty (lecture and lab)<br />
 </li>
-<li>Small-population paradigm, declining-population paradigm and PVA lectures<br />
-</li>
+<li>Small-population paradigm</li>
+<li>Declining-population paradigm</li>
+<li>Population Viability Analysis</li>
 <li>Metapopulations and source-sink dynamics (lectures and lab), including Chapter 4 of Gotelli.</li>
+<li>Parameter estimation</li>
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
-<p>I will host a review session via zoom on Wed April 14 during our regular class time.</p>
-<p>Finally, don’t forget that lab 5 (stochasticity) is due at the end of this week – Friday, April 9 – along with your PVA models and justifications.</p>
+<p>We will do a review session in class on Monday April 11.</p>
+<p>I will also host an optional review session on the evening of Tuesday April 12 (location TBD). Margarete and I will also set up some additional office hours, as we did for the first midterm.</p>
 </div>
 <div id="metapopulations" class="section level2">
 <h2>Metapopulations</h2>
 <p>Metapopulation ecology remains one of the most dynamic and active areas of population ecology!</p>
-<p>Broadly speaking, a <strong>metapopulation</strong> is just a <em>spatially structured</em> population.</p>
+<p>Broadly speaking, a <strong>metapopulation</strong> is a group of populations (called **subpopulations) that are demographically connected via dispersal.</p>
+<p>We often think of such models as “spatially structured” or “spatially explicit”, although some metapopulation models (like the models considered below, and in the Gotelli textbook) use a rather abstract representation of space!</p>
 <p>Now that we’re thinking about animals living in particular areas in space, we need to start thinking about <strong>movement ecology</strong> in addition to <strong>population ecology</strong>! Patches in a metapopulation are connected via <strong>dispersal</strong>. If there were no <em>connectivity</em> (dispersal among patches), it wouldn’t really be a metapopulation, but rather a set of isolated populations that you could model independently.</p>
 <p>Including a dispersal process allows us (finally!) to think about the whole “BIDE” equation!</p>
 <p><span class="math inline">\(\Delta N = B + I - D - E\)</span></p>
-<p>But – in fact, many metapopulation models (‘classical metapopulations’, covered in this lecture and Gotelli’s Chapter 4) don’t consider individuals at all!</p>
+<p>But – in fact, many metapopulation models (‘classical metapopulations’, covered in this lecture and Gotelli’s Chapter 4) don’t consider individuals at all! Instead, we only care about whether a subpopualation, or patch, is occupied (N &gt; 0) or not (N = 0).</p>
 </div>
-<div id="what-is-a-metapopulation" class="section level2">
-<h2>What is a metapopulation?</h2>
-<p>In <em>metapopulation ecology</em>, we are generally considering a <strong>landscape</strong> with a certain number of potentially habitable <strong>patches</strong> of habitat.</p>
-<p>A metapopulation is simply a <em>population of patches</em>, each of which may or may not be <em>occupied</em> by a species of interest at a given point in time. Different sets of patches may be occupied at different points in time.</p>
+<div id="a-classical-metapopulation" class="section level2">
+<h2>A ‘classical’ metapopulation?</h2>
+<p>In classical <em>metapopulation ecology</em>, we are generally considering a <strong>landscape</strong> with a certain number of potentially habitable <strong>patches</strong> of habitat. NOTE: we will use the term ‘patch’ and ‘subpopulation’ interchangeably in this lecture.</p>
+<p>A classical metapopulation is simply a <em>population of patches</em>, each of which may or may not be <em>occupied</em> by a species of interest at a given point in time. Different sets of patches may be occupied at different points in time.</p>
 <p><img src="MP2.jpg" /></p>
 <p><img src="patch1.jpg" /></p>
-<p>To simplify, we often assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat).</p>
-<p>We also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable.</p>
-<p>Instead of keeping track of the individuals in each patch (<span class="math inline">\(N\)</span>), we often just keep track of the fraction of occupied patches in our landscape (<span class="math inline">\(f\)</span>)!</p>
-<p>Instead of keeping track of the dispersal of indviduals among patches, we only consider the <em>colonization</em> of unoccupied (empty) patches via immigration (<span class="math inline">\(I\)</span>) and the <em>rescue effect</em> (immigration preventing extinction of a patch; see below).</p>
-<p>Metapopulation ecology covers a wide range of scenarios- as long as there are distinct habitat patches in a landscape, and as long as there is some dispersal among patches, then it is a type of metapopulation. When there is a very high rate of dispersal (and mating) among patches, then the metapopulation is described as “panmictic” (perfect genetic connectivity).</p>
+<p>To simplify, classical metapopulation models assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat).</p>
+<p>We also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable. [NOTE: we revise this assumption when we start to consider ‘source and sink’ models below]</p>
+<p>Instead of keeping track of the individuals in each patch (<span class="math inline">\(N\)</span>), we often just keep track of whether or not each patch is occupied (N &gt; 0) or not (N = 0). Or even more simply, we just keep track of the fraction of occupied patches in our landscape (<span class="math inline">\(f\)</span>)!</p>
+<p>Instead of keeping track of the dispersal of individuals among patches, we only consider the <em>colonization</em> of unoccupied (empty) patches via immigration (<span class="math inline">\(I\)</span>) and the <em>rescue effect</em> (immigration preventing extinction of a patch; see below).</p>
+<p>Metapopulation ecology covers a wide range of scenarios- as long as there are distinct habitat patches (subpopulations) in a landscape, and as long as there is some dispersal among patches, then it is a type of metapopulation. When there is a very high rate of dispersal (and mating) among patches, then the metapopulation is described as “panmictic” (perfect genetic connectivity).</p>
 <p>NOTE: in some definitions (including for ‘classical’ metapopulations), a “metapopulation” is more narrowly defined as a set of patches with limited connectivity with at least some unoccupied patches at some points in time. I prefer the more inclusive definition!</p>
 <p><img src="MP1.jpg" /></p>
-<p>Although the term “metapopulation” is often used to refer to models where we don’t care about abundance (we only consider <strong>patch occupancy</strong> - like the models in Gotelli Chapter 4), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model.</p>
+<p>Although the term “metapopulation” is often used to refer to models where we don’t keep track of abundance in each patch (we only consider <strong>patch occupancy</strong> - like the models in Gotelli Chapter 4), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model.</p>
 <p>We will have a chance to use a metapopulation model in Lab 6 that is much more complex than the models in Gotelli Chapter 4!</p>
 <p><a href="https://insightmaker.com/insight/74948/Agent-based-metapopulation-model">Link to metapopulation model with explicit abundance</a></p>
 </div>
@@ -545,20 +507,20 @@ div.tocify {
 <h2>“Classical” metapopulation models</h2>
 <p>The simplest type of spatially structured population model is the “classical” metapopulation model.</p>
 <p>The metapopulation concept was first introduced by ecologist <a href="https://en.wikipedia.org/wiki/Richard_Levins">Richard Levins</a> in 1969, and further developed by <a href="https://en.wikipedia.org/wiki/Ilkka_Hanski">Ilkka Hanski</a> among others.</p>
-<p>In a classical metapopulation, patches are either <strong>occupied</strong> (coded as 1) or <strong>unoccupied</strong> (coded as 0) at any given point in time. We don’t consider abundance (<span class="math inline">\(N\)</span>) in these models- we just keep track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation at each time step.</p>
-<p>That is, the [Stock] we are studying now is NOT the total number of individuals but instead it is the total number of occupied patches (or the fraction of patches occupied)!</p>
-<p>Instead of investigating population dynamics, we are investigating <em>metapopulation occupancy dynamics</em>. That is, how the number of occupied patches (or the fraction of patches occupied) changes over time.</p>
-<p>Under the classical model, it NOT a metapopulation unless some patches are unoccupied at some points in time!</p>
+<p>In a classical metapopulation, patches are either <strong>occupied</strong> (coded as 1) or <strong>unoccupied</strong> (coded as 0) at any given point in time. We don’t consider abundance (<span class="math inline">\(N\)</span>) in these models- we just keep track of whether each patch is occupied or not, and what fraction of patches in our landscape are occupied at each time step.</p>
+<p>That is, the [Stock] we are studying now is NOT the total number of individuals but instead it is the fraction of patches occupied!</p>
+<p>Instead of investigating population dynamics, we are investigating <em>metapopulation occupancy dynamics</em> – that is, how the fraction of patches occupied changes over time.</p>
+<p>Under the classical approach, it NOT a metapopulation unless some patches are unoccupied at some points in time!</p>
 <p><strong>Q</strong>: how does a metapopulation grow?</p>
 <p><strong>Q</strong>: how does a metapopulation shrink?</p>
 <p><strong>Q</strong>: what is the equivalent of demographic stochasticity in a metapopulation model? [tophat]</p>
-<p>[pause video and answer TopHat question]</p>
+<p>[pause and answer TopHat question]</p>
 <p><strong>colonization</strong> is the process of a patch transitioning from unoccupied to occupied!</p>
 <p>How can a patch become colonized? The answer is <strong>immigration</strong> of course. That part of the “BIDE” equation that we have been ignoring up until now!</p>
 <p><strong>extirpation</strong> (or extinction) is the process of a patch transitioning from occupied to unoccupied.</p>
-<p><strong>regional (or global) extinction</strong> represents extinction (extirpation) of all patches in the metapopulation.</p>
+<p><strong>global extinction</strong> represents extinction (extirpation) of all patches in the metapopulation.</p>
 <p>More formally, here are some terms we will consider:</p>
-<p><span class="math inline">\(f_t\)</span> is the fraction, or proportion, of patches that are occupied at time <span class="math inline">\(t\)</span>. This is also known as the <strong>occupancy rate</strong>. This is the primary [Stock] we model in a classical metapopulation model.</p>
+<p><span class="math inline">\(f_t\)</span> is the fraction, or proportion, of patches that are occupied at time <span class="math inline">\(t\)</span>. This is also known as the <strong>occupancy fraction</strong>. This is the primary [Stock] we model in a classical metapopulation model.</p>
 <p><span class="math inline">\(I\)</span> is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or “immigration” rate).</p>
 <p><span class="math inline">\(E\)</span> is the total fraction of patches that are extirpated per time period (extirpation rate).</p>
 <p>Therefore, the change in occupancy can be expressed as:</p>
@@ -623,6 +585,7 @@ div.tocify {
 <p><em>This works out to be around 3% – we have effectively spread out the risk, so that despite a relatively high extinction risk at the patch level, the metapopulation is unlikely to experience global extinction</em></p>
 <p><strong>Q</strong>: if we included dispersal among patches, would dispersal serve to further reduce the risk of global extinction? Why or why not?</p>
 <p><strong>Q</strong>: What if the extinction of one patch was <em>perfectly correlated</em> with the extinction of all other patches. If one goes extinct, all go extinct. [tophat]</p>
+<p>bonus question: what is the risk of global extinction assuming the risk of extinction in each of the two patches is not correlated (completely independent of one another)?</p>
 </div>
 </div>
 <div id="sources-and-sinks" class="section level2">
@@ -750,7 +713,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -759,6 +722,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

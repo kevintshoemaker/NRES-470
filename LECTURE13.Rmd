@@ -1,7 +1,7 @@
 ---
 title: "Metapopulations"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -14,28 +14,33 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-### Upcoming midterm exam
+### Upcoming midterm exam: April 13
 
-**when and where** The second midterm exam (out of two) is coming up on **April 19**. You will have the whole 50 minute class period to take the exam. We will use the same format as the first midterm. 
+**when and where** The second midterm exam (out of two) is coming up on **Wednesday April 13**. You will have the whole 50 minute class period to take the exam (really, you have the whole hour if you need it). We will use the same basic format as we used for the first midterm. 
 
 **what** The exam will cover:
 
-- Everything from the first midterm      
+- Everything from the first midterm!     
 - Stochasticity and uncertainty (lecture and lab)       
-- Small-population paradigm, declining-population paradigm and PVA lectures        
+- Small-population paradigm
+- Declining-population paradigm 
+- Population Viability Analysis
 - Metapopulations and source-sink dynamics (lectures and lab), including Chapter 4 of Gotelli.
+- Parameter estimation
     
 *The exam will consist of a mixture of multiple-choice and short-answer questions.*  
 
-I will host a review session via zoom on Wed April 14 during our regular class time. 
+We will do a review session in class on Monday April 11.  
 
-Finally, don't forget that lab 5 (stochasticity) is due at the end of this week -- Friday, April 9 -- along with your PVA models and justifications.
+I will also host an optional review session on the evening of Tuesday April 12 (location TBD). Margarete and I will also set up some additional office hours, as we did for the first midterm. 
 
 ## Metapopulations
 
 Metapopulation ecology remains one of the most dynamic and active areas of population ecology!
 
-Broadly speaking, a **metapopulation** is just a *spatially structured* population.
+Broadly speaking, a **metapopulation** is a group of populations (called **subpopulations) that are demographically connected via dispersal. 
+
+We often think of such models as "spatially structured" or "spatially explicit", although some metapopulation models (like the models considered below, and in the Gotelli textbook) use a rather abstract representation of space!
 
 Now that we're thinking about animals living in particular areas in space, we need to start thinking about **movement ecology** in addition to **population ecology**! Patches in a metapopulation are connected via **dispersal**. If there were no *connectivity* (dispersal among patches), it wouldn't really be a metapopulation, but rather a set of isolated populations that you could model independently.   
 
@@ -43,33 +48,33 @@ Including a dispersal process allows us (finally!) to think about the whole "BID
 
 $\Delta N = B + I - D - E$
 
-But -- in fact, many metapopulation models ('classical metapopulations', covered in this lecture and Gotelli's Chapter 4) don't consider individuals at all!  
+But -- in fact, many metapopulation models ('classical metapopulations', covered in this lecture and Gotelli's Chapter 4) don't consider individuals at all! Instead, we only care about whether a subpopualation, or patch, is occupied (N > 0) or not (N = 0).  
 
-## What is a metapopulation?
+## A 'classical' metapopulation?
 
-In *metapopulation ecology*, we are generally considering a **landscape** with a certain number of potentially habitable **patches** of habitat. 
+In classical *metapopulation ecology*, we are generally considering a **landscape** with a certain number of potentially habitable **patches** of habitat. NOTE: we will use the term 'patch' and 'subpopulation' interchangeably in this lecture.
 
-A metapopulation is simply a *population of patches*, each of which may or may not be *occupied* by a species of interest at a given point in time. Different sets of patches may be occupied at different points in time. 
+A classical metapopulation is simply a *population of patches*, each of which may or may not be *occupied* by a species of interest at a given point in time. Different sets of patches may be occupied at different points in time. 
 
 ![](MP2.jpg)
 
 ![](patch1.jpg)
 
-To simplify, we often assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat).   
+To simplify, classical metapopulation models assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat).   
 
-We also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable.   
+We also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable. [NOTE: we revise this assumption when we start to consider 'source and sink' models below]   
 
-Instead of keeping track of the individuals in each patch ($N$), we often just keep track of the fraction of occupied patches in our landscape ($f$)!
+Instead of keeping track of the individuals in each patch ($N$), we often just keep track of whether or not each patch is occupied (N > 0) or not (N = 0). Or even more simply, we just keep track of the fraction of occupied patches in our landscape ($f$)!
 
-Instead of keeping track of the dispersal of indviduals among patches, we only consider the *colonization* of unoccupied (empty) patches via immigration ($I$) and the *rescue effect* (immigration preventing extinction of a patch; see below). 
+Instead of keeping track of the dispersal of individuals among patches, we only consider the *colonization* of unoccupied (empty) patches via immigration ($I$) and the *rescue effect* (immigration preventing extinction of a patch; see below). 
 
-Metapopulation ecology covers a wide range of scenarios- as long as there are distinct habitat patches in a landscape, and as long as there is some dispersal among patches, then it is a type of metapopulation. When there is a very high rate of dispersal (and mating) among patches, then the metapopulation is described as "panmictic" (perfect genetic connectivity).
+Metapopulation ecology covers a wide range of scenarios- as long as there are distinct habitat patches (subpopulations) in a landscape, and as long as there is some dispersal among patches, then it is a type of metapopulation. When there is a very high rate of dispersal (and mating) among patches, then the metapopulation is described as "panmictic" (perfect genetic connectivity).
 
 NOTE: in some definitions (including for 'classical' metapopulations), a "metapopulation" is more narrowly defined as a set of patches with limited connectivity with at least some unoccupied patches at some points in time. I prefer the more inclusive definition!
 
 ![](MP1.jpg)
 
-Although the term "metapopulation" is often used to refer to models where we don't care about abundance (we only consider **patch occupancy** - like the models in Gotelli Chapter 4), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model.     
+Although the term "metapopulation" is often used to refer to models where we don't keep track of abundance in each patch (we only consider **patch occupancy** - like the models in Gotelli Chapter 4), we can keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population. Or it can contain an assemblage of individuals, as in an individual-based model.     
 
 We will have a chance to use a metapopulation model in Lab 6 that is much more complex than the models in Gotelli Chapter 4!
 
@@ -82,13 +87,13 @@ The simplest type of spatially structured population model is the "classical" me
 
 The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski) among others.    
 
-In a classical metapopulation, patches are either **occupied** (coded as 1) or **unoccupied** (coded as 0) at any given point in time. We don't consider abundance ($N$) in these models- we just keep track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation at each time step.
+In a classical metapopulation, patches are either **occupied** (coded as 1) or **unoccupied** (coded as 0) at any given point in time. We don't consider abundance ($N$) in these models- we just keep track of whether each patch is occupied or not, and what fraction of patches in our landscape are occupied at each time step.
 
-That is, the [Stock] we are studying now is NOT the total number of individuals but instead it is the total number of occupied patches (or the fraction of patches occupied)!
+That is, the [Stock] we are studying now is NOT the total number of individuals but instead it is the fraction of patches occupied!
 
-Instead of investigating population dynamics, we are investigating *metapopulation occupancy dynamics*. That is, how the number of occupied patches (or the fraction of patches occupied) changes over time.
+Instead of investigating population dynamics, we are investigating *metapopulation occupancy dynamics* -- that is, how the fraction of patches occupied changes over time.
 
-Under the classical model, it NOT a metapopulation unless some patches are unoccupied at some points in time!
+Under the classical approach, it NOT a metapopulation unless some patches are unoccupied at some points in time!
 
 **Q**: how does a metapopulation grow?
 
@@ -96,7 +101,7 @@ Under the classical model, it NOT a metapopulation unless some patches are unocc
 
 **Q**: what is the equivalent of demographic stochasticity in a metapopulation model? [tophat]
 
-[pause video and answer TopHat question]
+[pause and answer TopHat question]
 
 **colonization** is the process of a patch transitioning from unoccupied to occupied!
 
@@ -104,16 +109,15 @@ How can a patch become colonized? The answer is **immigration** of course. That 
 
 **extirpation** (or extinction) is the process of a patch transitioning from occupied to unoccupied.
 
-**regional (or global) extinction** represents extinction (extirpation) of all patches in the metapopulation. 
+**global extinction** represents extinction (extirpation) of all patches in the metapopulation. 
 
 More formally, here are some terms we will consider:
 
-$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy rate**. This is the primary [Stock] we model in a classical metapopulation model.   
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy fraction**. This is the primary [Stock] we model in a classical metapopulation model.   
 
 $I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate).   
 
 $E$ is the total fraction of patches that are extirpated per time period (extirpation rate).    
-
 
 Therefore, the change in occupancy can be expressed as: 
 
@@ -203,6 +207,8 @@ _This works out to be around 3% -- we have effectively spread out the risk, so t
 **Q**: if we included dispersal among patches, would dispersal serve to further reduce the risk of global extinction? Why or why not? 
 
 **Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. [tophat] 
+
+bonus question: what is the risk of global extinction assuming the risk of extinction in each of the two patches is not correlated (completely independent of one another)?
 
 ## Sources and sinks!
 
