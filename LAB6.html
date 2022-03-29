@@ -14,20 +14,28 @@
 
 <title>Lab 6: Metapopulation modeling</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,13 +446,13 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Lab 6: Metapopulation modeling</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
@@ -502,40 +461,39 @@ div.tocify {
 <h2>Some definitions</h2>
 <p>In this lab we will build spatially structured population models for the first time. The simplest type of spatially structured population model is the <strong>classical metapopulation model</strong>. In this model, we have a <strong>landscape</strong> with a certain number of habitable <strong>patches</strong>. Patches are either <strong>occupied</strong> (coded as 1) or not (coded as 0). We are not keeping track of abundance (<span class="math inline">\(N\)</span>) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.</p>
 <p>A classical metapopulation is best considered <strong>a population of patches</strong> – patches which may or may not be occupied. A patch is composed of individuals, and a metapopulation is composed of patches!</p>
-<p><strong>colonization</strong> is the process of a patch going from unoccupied to occupied! (via <strong>immigration</strong>).</p>
-<p><strong>extirpation</strong> (or extinction) is the process of a patch going from occupied to unoccupied.</p>
+<p><strong>colonization</strong> is the process of a patch transitioning from unoccupied to occupied! (via <strong>immigration</strong>).</p>
+<p><strong>extinction</strong> (or extirpation) is the process of a patch transitioning from occupied to unoccupied.</p>
 <p><strong>regional (or global) extinction</strong> represents extinction of all patches in the metapopulation.</p>
 <p>More formally, here are some terms we will consider:</p>
 <p><span class="math inline">\(f_t\)</span> is the fraction, or proportion, of patches that are occupied at time <span class="math inline">\(t\)</span>. This is also known as the <strong>metapopulation occupancy</strong>. This is the primary [Stock] in our classical metapopulation models.</p>
 <p><span class="math inline">\(I\)</span> is the total fraction of the metapopulation that is colonized by immigrants in a given time period (colonization rate, or “immigration” rate)</p>
 <p><span class="math inline">\(E\)</span> is the total fraction of the metapopulation that goes extinct per time period (extirpation rate)</p>
-<p>Therefore, the absolute change in occupancy can be expressed as:</p>
+<p>Therefore, the absolute change in metapopulation occupancy can be expressed as:</p>
 <p><span class="math inline">\(\Delta f = I - E \qquad \text{(Eq. 1)}\)</span></p>
 <p><strong>Q</strong>: If <span class="math inline">\(f_t\)</span> is the [Stock], what would <span class="math inline">\(I\)</span> and <span class="math inline">\(E\)</span> represent in a stock-and-flow modeling framework (e.g., InsightMaker)? And what are the [Variables] (i.e., are there ‘per-patch’ rates that are analogous to per-capita rates?)?</p>
 <p><span class="math inline">\(p_i\)</span> is the per-patch probability of colonization <em>for any given (unoccupied) patch</em>.</p>
 <p><span class="math inline">\(p_e\)</span> is the per-patch probability of extinction <em>for any given (occupied) patch</em>.</p>
 </div>
-<div id="a-basic-metapopulation-model" class="section level2">
-<h2>A basic metapopulation model:</h2>
-<p>The more sites are available for colonization (not currently occupied), the higher the rate of patch colonization!</p>
+<div id="classical-metapopulation-models" class="section level2">
+<h2>Classical metapopulation models:</h2>
+<div id="variant-1-island-mainland-model" class="section level3">
+<h3>Variant #1: island-mainland model</h3>
+<p>Colonization occurs via immigration from a constant external source – a constant <strong>propagule rain</strong></p>
+<p>This model (and only this model) assumes that per-patch extinction and colonization rates (<span class="math inline">\(p_i\)</span> and <span class="math inline">\(p_e\)</span>) are not dependent on the fraction of patches occupied (<span class="math inline">\(f\)</span>).</p>
+<p>This is the simplest metapopulation model. <span class="math inline">\(p_i\)</span> and <span class="math inline">\(p_e\)</span> are fixed, totally constant.</p>
+<p>If most patches in the landscape are unoccupied, then the majority of the metapopulation is available to be colonized. If most patches in the landscape are already occupied, then most of the metapopulation is closed to colonization. We can express this mathematically:</p>
 <p><span class="math inline">\(I = p_i\cdot (1-f) \qquad \text{(Eq. 2)}\)</span></p>
-<p>The more sites are occupied, the higher the rate of patch extinction!</p>
+<p>If most patches in the landscape are occupied, then the majority of the metapopulation can potentially go extinct. If most patches in the landscape are unoccupied, then most of the metapopulation is closed to extinction. We can express this mathematically:</p>
 <p><span class="math inline">\(E = p_e\cdot f \qquad \text{(Eq. 3)}\)</span></p>
-<p>Combining equation 1 with the above equations, we get our first metapopulation model:</p>
+<p>Combining equation 1 with the above equations, we get our first fully developed metapopulation model:</p>
 <p><span class="math inline">\(\Delta f = p_i(1-f)-p_ef \qquad \text{(Eq. 4)}\)</span></p>
-<p>This model (and the following models) assume the following:</p>
+<p>This model (and the following models) assumes the following:</p>
 <ul>
 <li>Homogeneous patches (all patches are created equal – patches are interchangeable)</li>
 <li>Spatial context does not affect extinction and colonization parameters</li>
 <li>No time lags</li>
 <li>Very large number of patches</li>
 </ul>
-<div id="variant-1-island-mainland-model" class="section level3">
-<h3>Variant #1: island-mainland model</h3>
-<p>Colonization occurs via immigration from a constant external source – a constant <strong>propagule rain</strong></p>
-<p>This model (and only this model) assumes that per-patch extinction and colonization rates (<span class="math inline">\(p_i\)</span> and <span class="math inline">\(p_e\)</span>) are not dependent on the fraction of patches occupied (<span class="math inline">\(f\)</span>).</p>
-<p>This is the simplest metapopulation model. <span class="math inline">\(p_i\)</span> and <span class="math inline">\(p_e\)</span> are fixed, totally constant.</p>
-<p>This is actually the model we have already constructed!</p>
 </div>
 <div id="variant-2-internal-colonization" class="section level3">
 <h3>Variant #2: internal colonization</h3>
@@ -544,6 +502,7 @@ div.tocify {
 <p><span class="math inline">\(i\)</span> represents the strength of internal colonization (how much the probability of patch-level colonization increases with each new occupied patch in the metapopulation.</p>
 <p>In this model, the colonization rate is zero if all patches are unoccupied (there are no sources of immigrants to colonize any patches!)</p>
 <p>In this model, the colonization rate approaches <span class="math inline">\(i\)</span> as nearly all patches become occupied.</p>
+<p>All other elements remain unchanged from the island-mainland model.</p>
 </div>
 <div id="variant-3-rescue-effect." class="section level3">
 <h3>Variant #3: rescue effect.</h3>
@@ -552,6 +511,7 @@ div.tocify {
 <p><span class="math inline">\(e\)</span> represents the strength of the rescue effect (maximum patch-level extinction risk, which occurs at complete metapopulation vacancy).</p>
 <p>In this model, the extinction rate approaches 0 as all patches become occupied [note, this may not be realistic, as it implies a perfectly successful rescue effect!]</p>
 <p>In this model, the extinction rate approaches <span class="math inline">\(e\)</span> as the metapopulation approaches global extirpation (fewer immigrants to ‘rescue’ a patch from extinction).</p>
+<p>All other elements remain unchanged from the island-mainland model.</p>
 </div>
 <div id="variant-4-both-internal-colonization-and-rescue-effect" class="section level3">
 <h3>Variant #4: both internal colonization AND rescue effect!</h3>
@@ -560,26 +520,22 @@ div.tocify {
 </div>
 <div id="what-is-a-metapopulation" class="section level2">
 <h2>What is a metapopulation?</h2>
-<p>The term <em>metapopulation</em> is often used to refer to models where we don’t care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a <em>collection of interconnected patches</em>. We can keep track of patch abundance in a metapopulation model. In fact, each patch can contain a stage-structured, density dependent population if we really want!</p>
-<p>Just as we can use metapopulation models to study the probability of <strong>regional extinction</strong>, we can also study <strong>regional abundance</strong> and regional abundance trends across the entire metapopulation.</p>
+<p>The term <em>metapopulation</em> is often used to refer to models where we don’t care about abundance, we only care about occupancy- as in the model described above. However, a metapopulation is simply a <em>collection of interconnected habitat patches</em>. We can keep track of patch abundance in a metapopulation model. In fact, each patch can contain a stage-structured, density dependent population if we really want!</p>
+<p>Just as we can use metapopulation models to study the probability of <strong>global extinction</strong>, we can also study <strong>global abundance</strong> and global abundance trends across the entire metapopulation.</p>
 </div>
-<div id="exercise-1-basic-metapopulation-terms-and-concepts" class="section level2">
-<h2>Exercise 1: basic metapopulation terms and concepts!</h2>
+<div id="exercise-1-classical-metapopulation-models-in-insightmaker" class="section level2">
+<h2>Exercise 1: classical metapopulation models in InsightMaker</h2>
 <p>HINT: <em>use the Gotelli book!!!</em></p>
-<p>1a. An endangered population of 100 frogs lives in a single large pond. One proposal for conserving the frog population is to split it into three populations of 33 frogs, each in a separate pond (assume the ponds are located far enough away from each other so you can reasonably assume that extinction risks are independent of one another). You know from your demographic models that decreasing the frog population in a pond from 100 to 33 individuals will increase the annual risk of extinction (per patch) from 10% to 25%. Over the next 3 years, is it a better strategy to retain the single population or to split it into three (and “spread out the risk”)? Show your calculations, and explain your reasoning! You can assume that each of the three new ponds are independent, with no dispersal between them. [NOTE: you may want to refer to the ‘spreading the risk’ topic in the Metapopulations lecture and video. Also, recall that to compute the probability of three independent events of probability <em>p</em>, you simply multiply the probability by itself three times: <span class="math inline">\(P(three\ events) = P(one\ event)^3\)</span>].</p>
-<p>1b. Build an InsightMaker model for the basic island-mainland metapopulation model. The total fraction of occupied patches <span class="math inline">\(f\)</span> should be represented as a [Stock] (this stock can not go negative!) and there should be two [Flows]: one for <em>colonization</em> (I) and one for <em>extinction</em> (E). Initialize <span class="math inline">\(f\)</span> at 0.9. The extinction and colonization probabilities (<span class="math inline">\(p_e\)</span> and <span class="math inline">\(p_i\)</span>) should be represented as [Variables]. Set <span class="math inline">\(p_e\)</span> to 0.15 and <span class="math inline">\(p_i\)</span> to 0.4. Clone your Insight and provide a link to your working InsightMaker metapopulation model as part of your lab write-up.</p>
-<p>1c. On the basis of your Insightmaker model, what happens to <span class="math inline">\(f\)</span> over the course of the simulation? Does the metapopulation go extinct (regional extinction)? Does <span class="math inline">\(f\)</span> reach an equilibrium? If so, is this equilibrium <strong>stable</strong> or <strong>unstable</strong>? Explain your reasoning. [remember that to test for stability of equilibria, set the initial value of the stock at it’s equilibrium value. From there, ‘perturb’ the initial value by setting it above and below the equilibrium. Does it return to the equilibrium state in all cases?]</p>
-<p>1d. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.4 from Gotelli. Show your work. Do the two answers match (i.e., do your results from applying the equation match with the equilibrium from your InsightMaker model)?</p>
-<p>1e. Change your InsightMaker model to reflect <em>internal colonization</em>. Set the parameter <span class="math inline">\(i\)</span> to 0.1. Clone the model and provide a link to your InsightMaker model as part of your lab write-up.</p>
-<p>1f. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.6 from Gotelli. Show your work. Do the two answers match?</p>
-<p>1g. Change your InsightMaker model to reflect the <em>rescue effect</em>. Restore the colonization model to represent “propagule rain” (constant colonization rate for vacant patches). Set the parameter <span class="math inline">\(e\)</span> in the “rescue effect” model to 0.25. Clone the model and provide a link to your InsightMaker model as part of your lab write-up.</p>
-<p>1h. Compare your InsightMaker results at equilibrium (provide a plot) with the results from applying Equation 4.8 from Gotelli. Show your work. Do the two answers match?</p>
-<p>1i. Change your InsightMaker model to reflect the <em>rescue effect</em> AND <em>internal colonization</em> (both processes operating in the same model). Set the parameter <span class="math inline">\(i\)</span> to 0.1. Set the parameter <span class="math inline">\(e\)</span> to 0.25. Clone your model and provide a link to your InsightMaker model as part of your lab write-up.</p>
-<p>1j. Try some alternative parameterizations for the e and i parameters in the model you built for question 1i. Provide two plots illustrating two qualitatively different alternative stable states (e.g., provide one figure illustrating complete colonization over time [f=1] and another illustrating an equilibrium at an intermediate level of patch occupancy [e.g., f=0.25]). Make sure you indicate which parameters were used for each plot.</p>
+<p>1a. Build an InsightMaker model to represent the basic island-mainland metapopulation model described above. The total fraction of occupied patches <span class="math inline">\(f\)</span> should be represented as a [Stock] (make sure this stock can not go negative!) and there should be two [Flows]: one for <em>colonization</em> (I) and one for <em>extinction</em> (E). Initialize <span class="math inline">\(f\)</span> at 0.25 (set the initial value of the stock to 0.25). The extinction and colonization probabilities (<span class="math inline">\(p_e\)</span> and <span class="math inline">\(p_i\)</span>) should be represented as [Variables]. Set <span class="math inline">\(p_e\)</span> to 0.2 and <span class="math inline">\(p_i\)</span> to 0.35. Use the description of the island-mainland model (above) to complete your model (drawing the appropriate links, setting the equations for I and E). Run a simulation for 100 years and make sure that <span class="math inline">\(f\)</span> reaches an equilibrium value between 0 and 1. Clone your Insight and provide a link to your working InsightMaker metapopulation model in TopHat.</p>
+<p>1b. Using your Insightmaker model above (submitted in 1a), test to see if the equilibrium state that the model reaches (constant <span class="math inline">\(f\)</span> over time) is <strong>stable</strong> or <strong>unstable</strong>? Explain how you got your answer. [NOTE: remember that to test for stability of equilibria, start with the initial value of the stock set at it’s equilibrium value. From there, try setting the initial value slightly above and below the equilibrium. Does it return to the equilibrium state in all cases? If not, it is unstable…]</p>
+<p>1c. Compare the equilibrium value of <span class="math inline">\(f\)</span> from your simulation (the one submitted in 1a.) with the equilibrium value of <span class="math inline">\(f\)</span> computed by applying Equation 4.4 from the Gotelli book: the two values should match. Show how you computed your answer using Gotelli’s equation 4.4 (you may submit an image if that’s easier!).</p>
+<p>1d. Working with a clone of the model you submitted in part 1a, please change your InsightMaker model to reflect <em>internal colonization</em> (see above). Set the parameter <span class="math inline">\(i\)</span> to 0.3 and run a 100 year simulation. Compare the equilibrium value of <span class="math inline">\(f\)</span> from your simulation with the equilibrium value of <span class="math inline">\(f\)</span> computed by applying Equation 4.6 from the Gotelli book: the two values should match. Show how you computed your answer using Gotelli’s equation 4.6 (you may submit an image if that’s easier!).</p>
+<p>1e. Working with a clone of the model you submitted in part 1a, please change your InsightMaker model to reflect the <em>rescue effect</em> (see above. Restore the colonization model to represent “propagule rain” (constant colonization rate for vacant patches). Set the parameter <span class="math inline">\(e\)</span> in the “rescue effect” model to 0.75. Compare the equilibrium value of <span class="math inline">\(f\)</span> from your simulation with the equilibrium value of <span class="math inline">\(f\)</span> computed by applying Equation 4.8 from the Gotelli book: the two values should match. Show how you computed your answer using Gotelli’s equation 4.8 (you may submit an image if that’s easier!).</p>
+<p>1f. Working with a clone of the model you built above (1e), please change your InsightMaker model to reflect the <em>rescue effect</em> AND <em>internal colonization</em> (both processes operating in the same model). Set the parameter <span class="math inline">\(i\)</span> to 0.3. Set the parameter <span class="math inline">\(e\)</span> to 0.75. Try some alternative parameterizations for the e and i parameters and simulate for 100 years. Provide <strong>two plots</strong> illustrating two qualitatively different alternative equilibrium states (e.g., provide one figure illustrating complete colonization over time [f=1] and another illustrating an equilibrium at an intermediate level of patch occupancy [e.g., f=0.25]).</p>
 </div>
 <div id="exercise-2-a-spatial-metapopulation-model" class="section level2">
 <h2>Exercise 2: a spatial metapopulation model!</h2>
-<p>Agent-based models (individual-based models- we skipped this lecture, so you are not expected to know this!) are well-suited for considering spatial context.</p>
+<p>Agent-based models (individual-based models) are well-suited for considering spatial context. In addition to being a flexible system for stock-flow modeling, Insightmaker also has the capability of running agent-based simulation models.</p>
 <p>I have already prepared an agent-based metapopulation model for you. You can access and clone this model <a href="https://insightmaker.com/insight/74948/Agent-based-metapopulation-model">here</a>.</p>
 <p>Each population/patch in the metapopulation is represented by an “individual”, or “agent”. These individuals cannot move (they are patches of land, after all), but they can influence each other via immigration and emigration!</p>
 <p>The landscape is 200 km by 200 km. Each time a simulation is initiated, patches are placed randomly in the landscape. The <strong>metapopulation size</strong> (total number of patches) is initialized at 10 (but you can change this quantity using a slider bar).</p>
@@ -588,10 +544,10 @@ div.tocify {
 <p>Abundance dynamics are density-dependent, and population growth is computed as a function of <strong>r_max</strong>, <strong>local carrying capacity</strong>, and previous-year local abundance using the <strong>Ricker</strong> growth model:</p>
 <p><span class="math inline">\(N_{t+1} = N_t e^{r_{max}(1-\frac{N_t}{K})}\)</span></p>
 <p>This is one of the most commonly used models for discrete logistic population growth (very analogous to the logistic growth model we have already seen!).</p>
-<p>Population growth in each patch is also driven by migration to and from nearby patches. A fixed proportion of the population in each patch disperses each year (<strong>dispersal rate</strong>, set to 25% initially), and the <strong>maximum dispersal distance</strong> is set initially at 50 kilometers. If no neighboring patch exists within that distance, all dispersers perish.</p>
+<p>Population growth in each patch is also driven by migration to and from nearby patches. A fixed proportion of the population in each patch disperses each year (<strong>dispersal rate</strong>, set to 25% initially), and the <strong>maximum dispersal distance</strong> is set initially at 50 kilometers. If no neighboring patch exists within that distance, all dispersers die.</p>
 <p>There is, of course, demographic stochasticity in this model!</p>
 <p>Graphical summaries are available, which illustrate the spatial configuration of the patches, the total metapopulation occupancy, the total metapopulation abundance, and the total numbers of immigrants/emigrants.</p>
-<p>Take some time to open the model (clone it!) and get familiar with the parameters and model behavior. If you don’t understand something, ask your instructor! Make sure you have the following starting parameters:</p>
+<p>Take some time to open the model (clone it!) and get familiar with the parameters and model behavior. If you don’t understand something, ask your instructor or TA! Make sure you have the following starting parameters:</p>
 <p>Metapopulation size: 10 patches<br />
 r_max: 0.11<br />
 maxdist (maximum dispersal distance): 50 kilometers<br />
@@ -599,47 +555,41 @@ dispersal rate: 0.25<br />
 Mean K per population: 10</p>
 <p>NOTE: there is one parameter (max dispersal distance, maxdist) you will need to pay attention to, but it is not represented by a value slider (I couldn’t get it to work that way, unfortunately). To alter the maximum dispersal distance, you need to open the equation editor for the [Immigrants] variable, and change the value in the top line, which should look something like this:</p>
 <pre><code>maxdist &lt;- 50</code></pre>
-<p>2a. Use InsightMaker’s <em>sensitivity testing tool</em> to run the model 50 times. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? What is the abundance trend (that is, overall regional abundance) over time? Provide plots to justify your answer.</p>
-<p>2b. Imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:</p>
+<p>2a. Use InsightMaker’s <em>sensitivity testing tool</em> to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation occupancy. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? Briefly describe how you got your answer.</p>
+<p>2b. Use InsightMaker’s <em>sensitivity testing tool</em> to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation abundance. Using the results, briefly describe (i) the abundance trend over time (that is, the trend in overall metapopulation abundance) and (ii) your uncertainty about the final abundance at year 100. Justify your answer.</p>
+<p>2c. Imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:</p>
 <ol style="list-style-type: lower-roman">
-<li>Improve the intervening, or “matrix”, habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances).<br />
+<li>Improve the intervening, or “matrix”, habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances). [see note above about how to change the max dispersal distance]<br />
 </li>
-<li>Improve existing habitats, doubling the mean per-patch carrying capacity.<br />
+<li>Improve existing habitats, doubling the mean per-patch carrying capacity (labeled “Mean K per population”).<br />
 </li>
-<li>Restore habitat, effectively doubling the number of patches.</li>
+<li>Restore habitat, effectively doubling the number of patches (labeled “metapopulation”).</li>
 </ol>
-<p>Which management strategy would be most effective for ensuring that the metapopulation does not go extinct (prevent regional extinction)? Justify your answer with supporting figures.</p>
-<p>2c. [thought question] Is it possible for <span class="math inline">\(r_{max}\)</span> to be positive and yet for the total regional abundance to exhibit a persistent declining trend? Explain your reasoning, using at least one biologically realistic example (i.e., describe a scenario under which this may actually occur in the real world). You can use the agent-based metapopulation model in InsightMaker to help test your ideas, but this is not required.</p>
+<p>Which management strategy would be most effective for ensuring that the metapopulation does not go extinct? Please justify your answer with 1-2 supporting figures.</p>
 <p>##Checklist for Lab 6 completion</p>
 <ul>
-<li><p>Please bundle all your responses into a single Word document and submit <em>using WebCampus</em>!</p></li>
-<li><p>Where appropriate, URLs for your InsightMaker models should be pasted in your lab submission (MS Word document).</p></li>
+<li>Please submit all answers <em>using TopHat</em>!</li>
 </ul>
-<p><strong><em>Due Apr. 23 at 11:55pm</em></strong></p>
+<p><strong><em>Due Apr. 15 at 11:55pm</em></strong></p>
 <ul>
 <li>Short answers, model URLs, and figures (where appropriate): all on Top Hat
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
-<li><em>Short answer (1a.)</em><br />
+<li><em>InsightMaker link (1a.)</em><br />
 </li>
 <li><em>Short answer (1b.)</em><br />
 </li>
-<li><em>Short answer (1c.)</em></li>
-<li><em>Short answer (1d.)</em></li>
-<li><em>Short answer (1e.)</em></li>
-<li><em>Short answer (1f.)</em><br />
-</li>
-<li><em>Short answer (1g.)</em></li>
-<li><em>Short answer (1h.)</em></li>
-<li><em>Short answer (1i.)</em></li>
-<li><em>Short answer (1j.)</em></li>
+<li><em>Short answer (and optional image) (1c.)</em></li>
+<li><em>Short answer (and optional image) (1d.)</em></li>
+<li><em>Short answer (and optional image) (1e.)</em></li>
+<li><em>Short answer (and optional image) (1f.)</em></li>
 </ul></li>
 <li><strong>Exercise 2</strong>
 <ul>
 <li><em>Short answer (2a.)</em></li>
 <li><em>Short answer (2b.)</em></li>
-<li><em>Short answer (2c.)</em></li>
+<li><em>Short answer and 1-2 images (2c.)</em></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -674,7 +624,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -683,6 +633,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
