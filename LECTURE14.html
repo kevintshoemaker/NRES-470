@@ -14,12 +14,22 @@
 
 <title>Example: parameterizing a PVA model</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -27,12 +37,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -45,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -80,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -100,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -161,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -173,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -184,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -199,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -325,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -476,13 +446,13 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Example: parameterizing a PVA model</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
@@ -490,7 +460,7 @@ div.tocify {
 <div id="pva-case-study--modeling-the-recovery-of-the-black-footed-ferret-in-a-linked-predator-prey-disease-system" class="section level1">
 <h1>PVA case study- Modeling the recovery of the black-footed ferret in a linked predator-prey-disease system</h1>
 <div class="figure">
-<img src="pdog_range1.jpg" alt="Figure 1: prairie dog and black-footed ferret range" />
+<img src="pdog_range1.jpg" alt="" />
 <p class="caption">Figure 1: prairie dog and black-footed ferret range</p>
 </div>
 <div id="an-obligate-predator" class="section level2">
@@ -518,7 +488,7 @@ div.tocify {
 <li>As part of black-footed ferret reintroduction efforts, 150 captive-born ferret kits were released over a 4-year period to prairie dog colonies in Conata Basin beginning in 1996.</li>
 </ul>
 <div class="figure">
-<img src="conata1.jpg" alt="Conata basin" />
+<img src="conata1.jpg" alt="" />
 <p class="caption">Conata basin</p>
 </div>
 <ul>
@@ -538,7 +508,7 @@ div.tocify {
 <div id="spatial-structure-of-study-region" class="section level3">
 <h3>Spatial structure of study region</h3>
 <div class="figure">
-<img src="pdog_studyregion1.jpg" alt="Figure 2: study region" />
+<img src="pdog_studyregion1.jpg" alt="" />
 <p class="caption">Figure 2: study region</p>
 </div>
 <p><img src="flea1.jpg" /></p>
@@ -610,7 +580,7 @@ div.tocify {
 <div id="spatial-structure-of-study-region-1" class="section level3">
 <h3>Spatial structure of study region</h3>
 <div class="figure">
-<img src="pdog_studyregion1.jpg" alt="Figure 2: study region" />
+<img src="pdog_studyregion1.jpg" alt="" />
 <p class="caption">Figure 2: study region</p>
 </div>
 <p>The spatial structure of the metapopulation was based on the distribution of prairie dogs in the <em>Conata Basin</em>, a subset of 71 prairie dog populations within the Conata/Badlands region in South Dakota and covering ca. 500 km2 (Fig. 2; delineated based on Biggins et al. 2011) is a portion of the Buffalo Gap National Grasslands directly south of Badlands National Park and is administered by the US Forest Service (Fig. 2). This area was chosen in the early 1990’s for reintroduction of black-footed ferrets due to the extensive network of high-density prairie dog colonies located on public lands (Livieri 2006).</p>
@@ -618,7 +588,7 @@ div.tocify {
 <p>Prairie dog colonies in the surrounding areas were mapped in 2004 using aerial transects and digital imaging (Sidle et al. 2001, Cooper and Gabriel 2005). We converted prairie dog colony maps to binary (0=non-habitat, 1=habitat) raster maps with 50m cell size. We re-imposed barriers (e.g., roads, pipelines) that were lost in the rasterization process.</p>
 <p>We used the union of all years to define potential habitat. We used neighborhood distance of 1 cell (50m) to define the population structure (see Akçakaya 2002 for details of how RAMAS GIS determines spatial structure). Thus, we assumed each colony is a distinct biological population, which may be connected to other such populations (see section on dispersal below). Excluding very small colonies with carrying capacity (K) &lt;100 (see below), this resulted in 1591 PD populations ranging from about 5 ha to 10,000 ha, with a median size of 16 ha and covering ca. 20,000 km2 (Fig. 3).</p>
 <div class="figure">
-<img src="s11.png" alt="Fig. 3: Histogram of patch areas (ha) for all prairie dog habitat patches (n = 1591) identified in the Conata-Badlands region of South Dakota, based on mapped records of prairie dog colony boundaries." />
+<img src="s11.png" alt="" />
 <p class="caption">Fig. 3: Histogram of patch areas (ha) for all prairie dog habitat patches (n = 1591) identified in the Conata-Badlands region of South Dakota, based on mapped records of prairie dog colony boundaries.</p>
 </div>
 </div>
@@ -631,7 +601,7 @@ div.tocify {
 <h3>Demographic structure and vital rates</h3>
 <p>We developed an age- and sex-structured matrix model for prairie dogs using RAMAS Metapop software (v. 6.0; Akçakaya and Root 2013), with eight female and six male age classes, parameterized using survival rates and fecundities drawn from Hoogland (2001). We parameterized the matrix according to a pre-breeding census. We used survival rates based on Hoogland (2001, Figs. 1a and 2a), and fitted a polynomial regression of survival rate vs. age for each sex to obtain a smooth function of age (Fig. 4). We calculated litter size as 3.1 (from Hoogland 2001, figure 3a). Combining this value with proportion of females breeding (0.43; Hoogland 2001), and survival rate of zero-year olds, we estimated fecundity as 0.418 daughters and 0.379 sons per adult female (age 2+) and 0.209 daughters and 0.189 sons per yearling female (age 1). We assumed polygynous mating system with each male mating with up to 4 females. Because the density dependence function modifies the stage matrix as a function of population size, the model results would be sensitive to the <span class="math inline">\(R_{max}\)</span> value of the density-dependence function, not to the exact vales of survival rates and fecundities. Therefore, the sensitivity to vital rates was modeled through the <span class="math inline">\(R_{max}\)</span> sensitivity (see section on sensitivity analysis, below). All colonies were initialized at <span class="math inline">\(K\)</span> and at stable age distribution, and all simulations were run with a 10 year burn-in period (to reach approximate equilibrium in the prairie dog metapopulation).</p>
 <div class="figure">
-<img src="pdsurv1.png" alt="Figure 4. Illustration of polynomial regressions used to estimate expected age-specific survival rates for prairie dogs in this study, based on Hoogland (2001)." />
+<img src="pdsurv1.png" alt="" />
 <p class="caption">Figure 4. Illustration of polynomial regressions used to estimate expected age-specific survival rates for prairie dogs in this study, based on Hoogland (2001).</p>
 </div>
 </div>
@@ -651,15 +621,15 @@ div.tocify {
 <div id="dispersal" class="section level3">
 <h3>Dispersal</h3>
 <p>Dispersal rates (proportion of individuals dispersing between each pair of defined populations) were modeled as a function of centre to edge distances between populations, in order to avoid very large populations flooding small populations around them. Dispersing prairie dogs traveled a mean straight-line distance of 2.4 km (Garrett and Franklin 1988). Maximum dispersal distance is 10 km (Knowles 1985 cited in Knowles et al. 2002; Lomolino and Smith 2001). Thus, we used a dispersal-distance function</p>
-<p><span class="math inline">\(a\times e^{\frac{−D}{b}} = 0.083 e^{\frac{−D}{2.4}}\)</span></p>
+<p><span class="math inline">\(a \cdot e^{\frac{-D}{b}}=0.083 \cdot e^{\frac{-D}{2.4}}\)</span></p>
 <p>where D is distance from the centre of the source population to the closest edge of the target population, with a maximum dispersal distance of Dmax = 10 km. We calculated the intercept (the a parameter) as follows. Based on the spatial structure of populations, we calculated the average number of neighbors at distances of 0-0.5 km, 0.5-1 km, 1-2.5 km, 2.5-5 km and 5-10 km. We set the intercept such that the total expected rate of dispersal from this average population was about 0.37, which was calculated as the product of two numbers: (1) 59% of yearling males dispersing from a study population (based on data reported in Tables 1 and 2 in Garrett and Franklin 1988), and (2) relative survival rate of dispersers (calculated as 0.62, based on survival rate of 0.9 and 0.56 of residents and dispersers as reported by Garrett and Franklin 1988). For the spatial sensitivity analysis, we used a range of 0.061 to 0.105 for the a parameter, based on ± 0.10 for the total expected rate of dispersal from the average population.</p>
 <p>The above calculation refers to dispersal rate of yearling males. We calculated the relative dispersal of other age/sex classes as 0.46 for yearling females, 0.1 for adult males and 0.39 for adult females (based on data reported in Tables 1 and 2 in Garrett and Franklin 1988). These numbers are consistent with general observations of age- and sex-specific dispersal: Hoogland (1995) reported that female prairie dogs usually remain with their natal coterie, or they disperse long distance to other colonies, but “short-distance dispersal of females within the home colony almost never occurs” (p.383); male prairie dogs, on the other hand, disperse either long-distance to new colonies (mostly as yearlings, rarely as adults) or short-distance within the home colony.</p>
 </div>
 <div id="spatial-correlation" class="section level3">
 <h3>Spatial correlation</h3>
-<p>Correlation of population dynamics among populations was based on a function of center-to-center distances between populations. Because annual fluctuations in vital rates are likely a function of weather conditions, we used temporal correlation in weather conditions as a proxy for describing correlation of population fluctuations. Specifically, spatial autocorrelation in vital rates was modeled as a function of inter-colony distances based on 30 years of summer rainfall data from 15 sites randomly drawn from within the range of the black-tailed prairie dog. We fitted a negative exponential model using 30 years of summer rainfall data drawn from 15 random locations in the southwestern quarter of South Dakota (PRISM dataset; PRISM Climate Group, Oregon State University, <a href="http://prism.oregonstate.edu" class="uri">http://prism.oregonstate.edu</a>). The resulting equation, correlation= exp(−D/601), where D is the distance between populations, was used for all model runs and was not modified as part of spatial sensitivity analyses (Fig. 5).</p>
+<p>Correlation of population dynamics among populations was based on a function of center-to-center distances between populations. Because annual fluctuations in vital rates are likely a function of weather conditions, we used temporal correlation in weather conditions as a proxy for describing correlation of population fluctuations. Specifically, spatial autocorrelation in vital rates was modeled as a function of inter-colony distances based on 30 years of summer rainfall data from 15 sites randomly drawn from within the range of the black-tailed prairie dog. We fitted a negative exponential model using 30 years of summer rainfall data drawn from 15 random locations in the southwestern quarter of South Dakota (PRISM dataset; PRISM Climate Group, Oregon State University, <a href="http://prism.oregonstate.edu" class="uri">http://prism.oregonstate.edu</a>). The resulting equation, correlation= exp(-D/601), where D is the distance between populations, was used for all model runs and was not modified as part of spatial sensitivity analyses (Fig. 5).</p>
 <div class="figure">
-<img src="pdcor1.png" alt="Figure 5. Illustration of the correlation-distance function used for all prairie dog models in this study. Spatial correlation in rainfall was assumed to correspond more generally to spatial correlation in environmental variation." />
+<img src="pdcor1.png" alt="" />
 <p class="caption">Figure 5. Illustration of the correlation-distance function used for all prairie dog models in this study. Spatial correlation in rainfall was assumed to correspond more generally to spatial correlation in environmental variation.</p>
 </div>
 </div>
@@ -677,7 +647,7 @@ div.tocify {
 <p>We calculated the black-footed ferret functional response based on the energy balance model of Stromberg et al. (1983), who concluded (via maximum sustainable yield computations) that a habitat area capable of supporting ca. 766 black-tailed prairie dogs was necessary to support the minimum energy requirements of a single black-footed ferret. We thereby equate a per-capita prey availability of 766 prairie dogs per ferret with a stable long-term ferret population growth rate (R = 1, corresponding to the carrying capacity in the scramble/Ricker density dependence function in RAMAS Metapop). Thus, carrying capacity (K) of the black-footed ferret population was calculated as 1/766 of the PD population size in Conata Basin at each time step. However, in years of high prairie dog abundance, ferrets typically maintain territories supporting more prairie dogs than they need to survive (Biggins et al. 2006b). In other words, the linear relationship between prairie dog density and black-footed ferret carrying capacity breaks down at high prairie dog densities. We capped the value of K at 462 for the Conata region based on the maximum ferret density of 0.04 ferrets per ha suggested by Biggins et al. (2006b). For global sensitivity analysis, we similarly capped the value of K to maintain a maximum density of 0.04 ferrets per ha (therefore, K varied based on landscape extent). Thus, even in years when prairie dog abundance is very high, the carrying capacity of the simulated ferret population does not exceed the maximum limit dictated by territoriality.</p>
 <p>The energy balance model of Stromberg et al. (1983), upon which we based the functional linkage between ferret carrying capacity and prairie dog abundance (see above), assumed that ferrets fed exclusively on prairie dogs. However, a small but non-negligible component (ca. 10%) of the diet of the black-footed ferret is believed to comprise alternate prey items such as mice and lagomorphs (Campbell et al. 1987). The existence of alternate prey species raises the possibility that our models may overestimate the per-capita prey availability necessary to accommodate stable ferret population growth. However, prairie dogs are consumed by many species aside from the black-footed ferret (including badgers, bobcats, and coyotes; Hoogland 1995), raising the possibility that our model may underestimate the number of prairie dogs necessary to support a population of ferrets. Clearly, there is a great deal of uncertainty around this estimate, and we are planning a follow-up study to test the sensitivity of the ferret/prairie dog system to alternative characterizions of the functional and numerical response. Nonetheless, an estimated ferret carrying capacity of 485 at Conata Basin, computed as 1/766 of estimated total prairie dog carrying capacity, is consistent with the observed growth of the reintroduced ferret population at Conata Basin, which was beginning to plateau at abundances ca. 350 prior to the arrival of plague in 2007 (Livieri 2006; Fig. 6).</p>
 <div class="figure">
-<img src="ferretplot1.png" alt="Figure 6. Observed abundance of black-footed ferrets at Conata Basin (from Livieri 2006), plotted alongside a single random replicate trajectory from the ferret population model , indicating the relative agreement between the observed growth of this population since ferrets were reintroduced in 1996, and the simulated trajectories from our model." />
+<img src="ferretplot1.png" alt="" />
 <p class="caption">Figure 6. Observed abundance of black-footed ferrets at Conata Basin (from Livieri 2006), plotted alongside a single random replicate trajectory from the ferret population model , indicating the relative agreement between the observed growth of this population since ferrets were reintroduced in 1996, and the simulated trajectories from our model.</p>
 </div>
 <p>We set the maximum growth rate (Rmax) to 1.48, based on the average of two estimates of the rate of (exponential) growth in a Wyoming population (Grenier et al. 2007). One estimate is 1.35, the eigenvalue of the matrix fitted to mark-recapture data, and the other estimate is 1.60, the (scalar) rate of growth in the minimum number of live ferrets from 2000 to 2006. For sensitivity analysis, we used these two values.</p>
@@ -702,7 +672,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -720,7 +690,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -729,6 +699,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
@@ -741,7 +714,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
