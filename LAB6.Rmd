@@ -170,9 +170,9 @@ NOTE: there is one parameter (max dispersal distance, maxdist) you will need to 
 maxdist <- 50
 ```
 
-2a. Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation occupancy. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? Briefly describe how you got your answer. 
+2a. Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation occupancy. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? 
 
-2b. Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation abundance. Using the results, briefly describe (i) the abundance trend over time (that is, the trend in overall metapopulation abundance) and (ii) your uncertainty about the final abundance at year 100. Justify your answer. 
+2b. Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation abundance. Using the results, briefly describe (i) the abundance trend over time (that is, the trend in overall metapopulation abundance) and (ii) your uncertainty about the final abundance at year 100.  
 
 2c. Imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:    
       
