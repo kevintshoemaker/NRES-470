@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Some definitions
 
-In this lab we will build spatially structured population models for the first time. The simplest type of spatially structured population model is the **classical metapopulation model**. In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). We are not keeping track of abundance ($N$) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.   
+In this lab we will step back from single-population models to consider multiple populations! A collection of populations that are connected via dispersal is called a **metapopulation**. The simplest type of spatially structured population model is the **classical metapopulation model** (covered in Gotelli Ch 4). In this model, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). In the classical metapopulation framework, we are not keeping track of abundance ($N$) any more- we are just keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation.   
 
 A classical metapopulation is best considered **a population of patches** -- patches which may or may not be occupied. A patch is composed of individuals, and a metapopulation is composed of patches!
 
@@ -150,7 +150,7 @@ $N_{t+1} = N_t e^{r_{max}(1-\frac{N_t}{K})}$
 
 This is one of the most commonly used models for discrete logistic population growth (very analogous to the logistic growth model we have already seen!).
 
-Population growth in each patch is also driven by migration to and from nearby patches. A fixed proportion of the population in each patch disperses each year (**dispersal rate**, set to 25% initially), and the **maximum dispersal distance** is set initially at 50 kilometers. If no neighboring patch exists within that distance, all dispersers die. 
+Population growth in each patch is also driven by migration to and from nearby patches. A fixed proportion of the population in each patch disperses each year (**dispersal rate**, set to 25% initially), and the **maximum dispersal distance** is set initially at 50 kilometers. If no neighboring patch exists within that distance, all dispersers die. Therefore, spatial context matters! 
 
 There is, of course, demographic stochasticity in this model!
 
