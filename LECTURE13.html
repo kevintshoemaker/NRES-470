@@ -607,7 +607,7 @@ div.tocify {
 <p><em>This works out to be around 33%</em></p>
 <p>What if there are 15 independent populations instead of five? Then what is the chance of regional extirpation over 10 years?</p>
 <p><span class="math inline">\([1-(1-p_e)^{10}]^5\)</span></p>
-<p><em>This works out to be around 3% – we have effectively spread out the risk, so that despite a relatively high extinction risk at the patch level, the metapopulation is unlikely to experience global extinction</em></p>
+<p><em>This works out to be around 4% – we have effectively spread out the risk, so that despite a relatively high extinction risk at the patch level, the metapopulation is unlikely to experience global extinction</em></p>
 <p><strong>Q</strong>: if we included dispersal among patches, would dispersal serve to further reduce the risk of global extinction? Why or why not?</p>
 <p><strong>Q</strong>: What if the extinction of one patch was <em>perfectly correlated</em> with the extinction of all other patches. If one goes extinct, all go extinct. [tophat]</p>
 <p>bonus question: what is the risk of global extinction assuming the risk of extinction in each of the two patches is not correlated (completely independent of one another)?</p>
@@ -620,8 +620,8 @@ div.tocify {
 <p>In the real world, patches vary in size and quality. That is, the assumption of homogeneity of patches (inherent to the classical metapopulation framework) is unlikely to be met in most real metapopulations!</p>
 <p>Just like with an age-structured population, where vital rates and equilibrium abundance can vary by age or size-class, <em>vital rates and abundances can vary over space</em>. Some areas might have better habitat, with higher overall population growth rates! On the other hand, some areas might have poor habitat- and these areas may be associated with lower vital rates…</p>
 <p>In fact, some patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., <span class="math inline">\(r\)</span> below zero, or <span class="math inline">\(\lambda\)</span> less than 1). Other patches may represent perfect conditions for population growth (at least if the habitat isn’t too crowded)!</p>
-<p>A <strong>source population</strong> is defined as a patch that provides a *net donation of immigrants** to nearby patches with lower-quality habitat (i.e., sink populations or pseudo-sink populations). A source population should persist indefinitely, even in isolation.</p>
-<p>A <strong>sink population</strong> is defined as a patch that <em>would go extinct</em> if it were not for the constant input of immigrants from nearby <strong>source populations</strong>.</p>
+<p>A <strong>source population</strong> is defined as a patch that maintains a positive growth rate (r&gt;0) and contributes more <strong>immigrants</strong> to nearby patches (i.e., sink populations or pseudo-sink populations) than it receives back from these neighboring patches. A source population should persist indefinitely, even in isolation.</p>
+<p>A <strong>sink population</strong> is defined as a patch that <em>would go extinct</em> if it were not for the constant input of immigrants from nearby <strong>source populations</strong> (r&lt;0). A sink population can only persist if paired with a source population.</p>
 <p><strong>Q</strong>: how is the concept of a sink population related to the <em>rescue effect</em>?</p>
 <p>A <strong>pseudo-sink population</strong> is defined as a patch that is <em>artifically augmented</em> by immigrants from nearby source populations. In isolation (in the absence of a nearby source population) a psuedo-sink would not go extinct (a true sink would go extinct!), but would settle down at a much lower equilibrium abundance (carrying capacity). That is, a pseudo-sink <em>maintains an equlibrium abundance above its carrying capacity due to the influx of immigrants from one or more nearby source populations</em>.</p>
 </div>
@@ -648,14 +648,10 @@ Lambda (discrete growth rate) for sink populations [lambda bad]: 0.8<br />
 Lambda for source population [lambda good]: 2.1</p>
 <p>NOTE: maximum dispersal rate (in this model) is the rate of dispersal between neighboring patches. Patches that are located farther apart have dispersal rates that are computed as a fraction of the maximum rate.</p>
 <ol start="3" style="list-style-type: decimal">
-<li>Run the model, view the results and make sure you understand how the model works.</li>
-</ol>
-<p><strong>Q</strong>: in this scenario, a constant fraction of each population disperses to each neighboring patch each year. Is this realistic? Can you think of real-world scenarios that would lead to different dispersal patterns?</p>
-<p><strong>Q</strong>: what data sources might be helpful in understanding dispersal rates in a metapopulation?</p>
-<ol start="4" style="list-style-type: decimal">
+<li><p>Run the model, view the results and make sure you understand how the model works.</p></li>
 <li><p>Change the dispersal rate to zero and run the model. What happens? Does this make sense?</p></li>
 <li><p>Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is consistently (continuously) occupied (make sure the lower bound of the 95% region for abundance in this patch is above 2 for all years)? [tophat]</p></li>
-<li><p>Change the dispersal rate back to 10%. Now reduce the population growth rate in the source population (“lambda good”) to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population?</p></li>
+<li><p>Now reduce the population growth rate in the source population (“lambda good”) to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population?</p></li>
 </ol>
 <div id="a-pseudo-sink" class="section level4">
 <h4>A pseudo-sink!</h4>
