@@ -288,7 +288,7 @@ NOTE: you may want to clone your model now to enable you to easily go back and f
 
 > The nearby sink patch is now extremely attractive to our focal species- since it contains abundant food resources and what seems like good shelter! However, in this habitat there is also a novel, introduced predator that the species is unable to detect. Therefore, dispersal rates to the sink habitat are very high, but mortality rates are also very high.    
 
-To force a disproportionate number of individuals into the nearby sink, open the equation editor for the flow from the source to the nearby sink. Change the first line to read:
+To force a disproportionate number of individuals into the nearby sink, open the equation editor for the flow from the source to the nearby sink. Change the equation to:
 
 ```
 0.01*[nearby sink] - 0.5*[SOURCE]
@@ -308,7 +308,7 @@ random code
 
 This will force 50% of the source population to try to move to the sink habitat each year! Nearly all individuals that are in the sink habitat will attempt to stay there. 
 
-Also, change the lambda for the nearby sink to 0.25, (meaning 75% of the sink population dies each year due to predation). To do this, replace the [lambda bad] term in the births/deaths flow for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
+Also, change the lambda for the nearby sink to 0.25, (meaning 75% decline each year due to predation). To do this, replace the [lambda bad] term in the births/deaths equation for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
 
 ```
 growth <- [nearby sink]*Ln(0.25)
