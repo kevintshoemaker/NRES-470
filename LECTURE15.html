@@ -14,8 +14,8 @@
 
 <title>Parameter estimation</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -457,6 +457,7 @@ div.tocify {
 </div>
 
 
+<p>NOTE: Mia Goldman MS defense Thursday Apr 21 at 2pm in FA 301.</p>
 <div id="parameter-estimation-for-wildlife-population-models" class="section level1">
 <h1>Parameter estimation for wildlife population models!</h1>
 <p>We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!</p>
@@ -498,62 +499,6 @@ div.tocify {
 </div>
 <div id="data-sources" class="section level2">
 <h2>Data sources!</h2>
-<div id="life-tables" class="section level3">
-<h3>Life tables</h3>
-<p>As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died.</p>
-<p>NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the <strong>static life table</strong>, which compares population size from multiple different cohorts (across the entire range of ages), at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method can be better than nothing!</p>
-<table>
-<thead>
-<tr class="header">
-<th align="right">x</th>
-<th align="right">S(x)</th>
-<th align="right">b(x)</th>
-<th align="right">l(x)</th>
-<th align="right">g(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">500</td>
-<td align="right">0</td>
-<td align="right">1.0</td>
-<td align="right">0.80</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">400</td>
-<td align="right">2</td>
-<td align="right">0.8</td>
-<td align="right">0.50</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">200</td>
-<td align="right">3</td>
-<td align="right">0.4</td>
-<td align="right">0.25</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">50</td>
-<td align="right">1</td>
-<td align="right">0.1</td>
-<td align="right">0.00</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0.0</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
-<p><strong>PROS</strong> - Summary of survival and fecundity schedules, often available in the literature. Be careful when using data from captive populations!</p>
-<p><strong>CONS</strong> - Makes unrealistic assumptions (especially the <em>static life table</em> method). - Can not be used to estimate environmental stochasticity - Can not be used to estimate density dependence - Ignores <strong>imperfect detection</strong> and the fact that some age classes are less detectable than others<br />
-- Remember, it’s not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!</p>
-</div>
 <div id="census-data" class="section level3">
 <h3>Census data!</h3>
 <p>Census data is ultimately what we all <strong>wish</strong> we had! It means we follow a population over time, and we know exactly how many individuals of each stage are in the population each year. We have <em>perfect detection!!!!</em></p>
@@ -562,7 +507,7 @@ div.tocify {
 <p><img src="census2.png" /></p>
 <p><img src="census3.png" /></p>
 <p><strong>PROS</strong> - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!</p>
-<p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores <strong>imperfect detection</strong> (assumes perfect detection), which is almost always not realistic.</p>
+<p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores <strong>imperfect detection</strong> (assumes no observation errors), which is almost always not realistic.</p>
 </div>
 <div id="capture-mark-recapture-cmr" class="section level3">
 <h3>Capture-mark-recapture (CMR)</h3>
@@ -706,41 +651,6 @@ R = number of individuals in 2nd sample that are marked</p>
 <li>Often of great interest to ecologists and managers.</li>
 </ul>
 </div>
-</div>
-<div id="maximum-likelihood-a-framework-for-statistical-inference" class="section level3">
-<h3>Maximum likelihood: a framework for statistical inference!</h3>
-<p><strong>FOR CMR ANALYSIS</strong>: - What value of survival maximizes the probability of generating the observed capture histories?</p>
-<p>EXAMPLE:</p>
-<p>Consider the following capture history for a single individual:</p>
-<pre><code>1 0 1 1</code></pre>
-<p>This individual was marked and released upon initial capture. It was not captured in the next survey, but then was captured in each of the next two subsequent surveys.</p>
-<p>What is the probability of observing this capture history?</p>
-<blockquote>
-<p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X [(Probability of surviving from time 3 to 4) X (Probability of being seen at time 4)]</p>
-</blockquote>
-<p>This can be written:</p>
-<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \phi_3p_4\)</span></p>
-<p>How about the following capture history for a single individual:</p>
-<pre><code>1 0 1 0</code></pre>
-<p>What is the probability of observing this capture history?</p>
-<blockquote>
-<p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X</p>
-</blockquote>
-<p>– either –</p>
-<blockquote>
-<p>[(Probability of surviving from time 3 to 4) X (Probability of not being seen at time 4)]</p>
-</blockquote>
-<p>– or –</p>
-<blockquote>
-<p>[(Probability of NOT surviving from time 3 to 4)</p>
-</blockquote>
-<p>This can be written:</p>
-<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4) \right \}\)</span></p>
-<p><strong>Q</strong>: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?</p>
-<p><strong>Q</strong>: what about if survival was 100% and capture probability was 75%?</p>
-<p>Maximum likelihood estimation is the process of finding those values of the parameters <span class="math inline">\(\phi\)</span> and <span class="math inline">\(p\)</span> that would be most <em>likely</em> to generate the observed capture histories!</p>
-<p>This model is known as the <em>Cormack-Jolly-Seber</em> model (CJS), and is the most common analysis performed by Program MARK.</p>
-<p><strong>Q</strong>: Why is <span class="math inline">\(\phi\)</span> also known as “apparent” survival? Why is it not “true” survival???</p>
 <div id="key-assumptions-of-the-cjs-model" class="section level4">
 <h4>Key assumptions of the CJS model</h4>
 <ul>
@@ -982,7 +892,7 @@ predict(allmodels[[1]])$Phi</code></pre>
 suppressWarnings( suppressMessages( library(Hmisc,quietly = T) ))    #load Hmisc package- has a nice error bar function
 plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab=&quot;Year&quot;,ylab=&quot;Survival&quot;,ylim=c(0,1),main=&quot;Variability in Survival, dipper demo&quot;)
 errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)</code></pre>
-<p><img src="LECTURE15_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="LECTURE15_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>What is our estimate for mean survival?</p>
 <pre class="r"><code>#######
 # Compute the mean survival rate for the population
@@ -1000,6 +910,44 @@ sd(Phi_by_year$estimate)</code></pre>
 <p>MARK is free software, and can be downloaded from <a href="http://warnercnr.colostate.edu/~gwhite/mark/mark.htm">here</a></p>
 <p>The demo from Lab 7 can be found <a href="LAB7.html#open-population_models">here</a></p>
 <p><a href="LECTURE16.html">–go to next lecture–</a></p>
+</div>
+</div>
+<div id="extras" class="section level2">
+<h2>Extras</h2>
+<div id="maximum-likelihood-a-framework-for-statistical-inference" class="section level3">
+<h3>Maximum likelihood: a framework for statistical inference!</h3>
+<p><strong>FOR CMR ANALYSIS</strong>: - What value of survival maximizes the probability of generating the observed capture histories?</p>
+<p>EXAMPLE:</p>
+<p>Consider the following capture history for a single individual:</p>
+<pre><code>1 0 1 1</code></pre>
+<p>This individual was marked and released upon initial capture. It was not captured in the next survey, but then was captured in each of the next two subsequent surveys.</p>
+<p>What is the probability of observing this capture history?</p>
+<blockquote>
+<p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X [(Probability of surviving from time 3 to 4) X (Probability of being seen at time 4)]</p>
+</blockquote>
+<p>This can be written:</p>
+<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \phi_3p_4\)</span></p>
+<p>How about the following capture history for a single individual:</p>
+<pre><code>1 0 1 0</code></pre>
+<p>What is the probability of observing this capture history?</p>
+<blockquote>
+<p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X</p>
+</blockquote>
+<p>– either –</p>
+<blockquote>
+<p>[(Probability of surviving from time 3 to 4) X (Probability of not being seen at time 4)]</p>
+</blockquote>
+<p>– or –</p>
+<blockquote>
+<p>[(Probability of NOT surviving from time 3 to 4)</p>
+</blockquote>
+<p>This can be written:</p>
+<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4) \right \}\)</span></p>
+<p><strong>Q</strong>: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?</p>
+<p><strong>Q</strong>: what about if survival was 100% and capture probability was 75%?</p>
+<p>Maximum likelihood estimation is the process of finding those values of the parameters <span class="math inline">\(\phi\)</span> and <span class="math inline">\(p\)</span> that would be most <em>likely</em> to generate the observed capture histories!</p>
+<p>This model is known as the <em>Cormack-Jolly-Seber</em> model (CJS), and is the most common analysis performed by Program MARK.</p>
+<p><strong>Q</strong>: Why is <span class="math inline">\(\phi\)</span> also known as “apparent” survival? Why is it not “true” survival???</p>
 </div>
 </div>
 </div>
