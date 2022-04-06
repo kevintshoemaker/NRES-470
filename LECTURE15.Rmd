@@ -32,6 +32,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```
 
+
+NOTE: Mia Goldman MS defense Thursday Apr 21 at 2pm in FA 301.
+
 # Parameter estimation for wildlife population models!
 
 We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!
@@ -63,32 +66,6 @@ This is the focus of the current lecture!
 
 ## Data sources!
 
-### Life tables
-
-As you recall, classical life tables represent a single cohort that has been followed over time until the last one has died. 
-
-NOTE: in practice, it is nearly impossible to follow a single cohort over time in the wild (although life tables are commonly available for captive populations). Therefore, in practice, most published life tables for wild populations use the **static life table**, which compares population size from multiple different cohorts (across the entire range of ages), at a single point in time. Static life tables assume the population has a stable age structure —- that is, the proportion of individuals in each age class does not change from generation to generation. This assumption is often violated in natural populations, but in the absence of better data, this method can be better than nothing!
-
-
-```{r echo=FALSE}
-lifetable <- read.csv("life_table.csv")
-```
-
-```{r results='asis', echo=FALSE}
-knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)"))
-
-```
-
-**PROS**
-- Summary of survival and fecundity schedules, often available in the literature. Be careful when using data from captive populations!
-
-**CONS**
-- Makes unrealistic assumptions (especially the *static life table* method).
-- Can not be used to estimate environmental stochasticity
-- Can not be used to estimate density dependence
-- Ignores **imperfect detection** and the fact that some age classes are less detectable than others   
-- Remember, it's not always perfectly straightforward to translate into a matrix-based (age-structured) population model- but it can be done!
-
 ### Census data!
 
 Census data is ultimately what we all **wish** we had! It means we follow a population over time, and we know exactly how many individuals of each stage are in the population each year. We have *perfect detection!!!!*
@@ -106,7 +83,7 @@ In this case, computing survival and fecundity (and variation in these parameter
 
 **CONS**
 - Very rarely (if ever) available!!
-- Ignores **imperfect detection** (assumes perfect detection), which is almost always not realistic.
+- Ignores **imperfect detection** (assumes no observation errors), which is almost always not realistic.
 
 ### Capture-mark-recapture (CMR)
 
@@ -235,61 +212,7 @@ We attempt to estimate the processes driving abundance change (often, survival r
 - Often of great interest to ecologists and managers.
 
 
-### Maximum likelihood: a framework for statistical inference!
 
-**FOR CMR ANALYSIS**:
-- What value of survival maximizes the probability of generating the observed capture histories?
-
-EXAMPLE:
-
-Consider the following capture history for a single individual: 
-
-```
-1 0 1 1
-```
-
-This individual was marked and released upon initial capture. It was not captured in the next survey, but then was captured in each of the next two subsequent surveys.  
-
-What is the probability of observing this capture history?
-
-> [(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X [(Probability of surviving from time 3 to 4) X (Probability of being seen at time 4)]
-
-This can be written:
-
-$L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \phi_3p_4$
-
-
-How about the following capture history for a single individual: 
-
-```
-1 0 1 0
-```
-
-What is the probability of observing this capture history?
-
-> [(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X
-
--- either -- 
-
->  [(Probability of surviving from time 3 to 4) X (Probability of not being seen at time 4)]
-
--- or --
-
->  [(Probability of NOT surviving from time 3 to 4) 
-
-This can be written:
-
-$L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4)  \right \}$
-
-**Q**: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?
-
-**Q**: what about if survival was 100% and capture probability was 75%? 
-
-Maximum likelihood estimation is the process of finding those values of the parameters $\phi$ and $p$ that would be most *likely* to generate the observed capture histories!
-
-This model is known as the *Cormack-Jolly-Seber* model (CJS), and is the most common analysis performed by Program MARK. 
-
-**Q**: Why is $\phi$ also known as "apparent" survival? Why is it not "true" survival???
 
 #### Key assumptions of the CJS model
 
@@ -453,9 +376,64 @@ The demo from Lab 7 can be found [here](LAB7.html#open-population_models)
 [--go to next lecture--](LECTURE16.html)
 
 
+## Extras
 
 
+### Maximum likelihood: a framework for statistical inference!
 
+**FOR CMR ANALYSIS**:
+- What value of survival maximizes the probability of generating the observed capture histories?
+
+EXAMPLE:
+
+Consider the following capture history for a single individual: 
+
+```
+1 0 1 1
+```
+
+This individual was marked and released upon initial capture. It was not captured in the next survey, but then was captured in each of the next two subsequent surveys.  
+
+What is the probability of observing this capture history?
+
+> [(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X [(Probability of surviving from time 3 to 4) X (Probability of being seen at time 4)]
+
+This can be written:
+
+$L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \phi_3p_4$
+
+
+How about the following capture history for a single individual: 
+
+```
+1 0 1 0
+```
+
+What is the probability of observing this capture history?
+
+> [(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X
+
+-- either -- 
+
+>  [(Probability of surviving from time 3 to 4) X (Probability of not being seen at time 4)]
+
+-- or --
+
+>  [(Probability of NOT surviving from time 3 to 4) 
+
+This can be written:
+
+$L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4)  \right \}$
+
+**Q**: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?
+
+**Q**: what about if survival was 100% and capture probability was 75%? 
+
+Maximum likelihood estimation is the process of finding those values of the parameters $\phi$ and $p$ that would be most *likely* to generate the observed capture histories!
+
+This model is known as the *Cormack-Jolly-Seber* model (CJS), and is the most common analysis performed by Program MARK. 
+
+**Q**: Why is $\phi$ also known as "apparent" survival? Why is it not "true" survival???
 
 
 
