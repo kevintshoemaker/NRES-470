@@ -59,7 +59,7 @@ Let's see how this works!
 
 - *two visits* – Lincoln-Petersen model
 
-- *several visits* (k>2) – Schnabel and Schumacher-Eschmeyer models -- and other models that can be run via program CAPTURE (which can be run through Program MARK).
+- *several visits* (k>2) – Schnabel model -- and other models that can be run via program CAPTURE (which can be run through Program MARK).
 
 #### LINCOLN-PETERSEN MODEL (L-P) (estimating abundance on the basis of two site visits!)
 
@@ -77,31 +77,19 @@ where $N$ is the total population size. Solving for $N$ yields the estimator:
 
 $\hat N=\frac{C\cdot M}{R}  \qquad \text{(Eq. 1)}$ 
 
-**Q** What is the estimate of per-capita capture probability ($p$) in the L-P estimator?? This is the same as asking- what proportion of the total population was marked in the first visit?
-
-$p = \frac{R}{C}$
-
-$\hat N = p \cdot N+(1-p)\cdot N$
-
-$\hat N=\frac{R}{C}\cdot N+(1-\frac{R}{C})\cdot N$
-
-$M=\frac{R}{C}\cdot N = p \cdot N$
-
-$\hat N=\frac{M}{p}=\frac{C\cdot M}{R}$
-
 Imagine we were to capture 10 individuals during our first visit ($M=10$) and 8 individuals during our second visit ($C=10$). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, $p=\frac{R}{C}=0.5$. Another way of saying this is that for every individual we observed during the first site visit, we were likely to have missed one individual. 
 
 To estimate abundance, we add up the total number of individuals we saw during our first visit and the total number of individuals we missed during our first visit- this should represent the entire population! 
-
-The lower our estimate of $p$ (fraction of the total population marked in the first visit, derived from observations from the second visit), the more individuals we probably missed (failed to observe) in the first visit. 
 
 **Q:** How many individuals did we miss in this case?
 
 **Q:** What is the total abundance?
 
+The lower the fraction of the total population marked in the first visit (estimated as $\frac{R}{C}$), the more individuals we probably missed (failed to observe) in the first visit.
+
 **Q:** What if we had only observed 2 (out of 8) marked individuals during the second visit?
 
-NOTE: If sample size is small, the basic L-P estimator can be biased. For example, what happens if the number of recaptures is zero? 
+NOTE: If sample size is small, the basic L-P estimator can be biased. For example, what happens if the number of recaptures in the second sample is zero? 
 
 A modified version with less bias was originally developed by Chapman (1951) and is commonly called the *modified Petersen estimate* or the *Chapman estimator*:
 
@@ -111,7 +99,7 @@ This formula is a **statistic** estimating total population size on the basis of
 
 We still need to make inference about the **parameter**, $N$, on the basis of the statistic, $\hat N$.
 
-To do this, we need to understand the **sampling uncertainty** for this statistic (we need to ask: "what do we *really* know about the population, and what don't we know?". That is, if we collected a different sample from the *same population*, we might get a very different answer for $N$. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for $N$!! The variation among these estimates is the sampling uncertainty.
+To do this, we need to understand the **sampling uncertainty** for this statistic (we need to ask: "what do we *really* know about the population, and what don't we know?"). That is, if we collected a different sample from the *same population*, we might get a very different answer for $N$. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for $N$!! The variation among these estimates is the sampling uncertainty.
 
 For the Lincoln-Peterson estimator, our uncertainty about this estimate (sampling variance) can be computed as:
 
@@ -157,9 +145,9 @@ $Var(\frac{1}{\hat N})=\frac{\sum{R_t}}{(\sum{(C_tM_t))^2}}   \qquad \text{(Eq. 
 
 Note that this formula gives you the sampling uncertainty (variance) for the *inverse* of N ($\frac{1}{N}$)! 
 
-**Q** How do we compute a confidence interval around $\hat N$??
+How do we compute a confidence interval around $\hat N$??
 
-One simple way to is to first compute a confidence interval on the inverse of N using the same method described above (take square root of the variance, and then ):
+One simple way to is to first compute a confidence interval on the *inverse of N* using the same method described above (take square root of the variance):
 
 $\frac{1}{\hat N} \pm 1.965 * \sqrt[](Var(\frac{1}{\hat N}))   \qquad \text{(Eq. 8)}$
 
@@ -231,10 +219,7 @@ See the [parameter estimation lecture](LECTURE15.html) for more information abou
 
 For this exercise, we will use the classic European Dipper data!
 
-NOTE: Program MARK is a Windows-based software. If you're running MacOS, you can run MARK using a Windows partition or a Windows emulator. However, you don't need to use Program MARK for this lab exercise -- you can use R instead!
-
 The 'marked' package in R runs many of the same open-population models, and is much easier to use than Program MARK. Please install this package if haven't already done so.
-
 
 These data should look like this! Here it is in R (just the first 15 lines)!
 
@@ -392,8 +377,6 @@ errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,
 ```
 
 
-
-
 ## Exercise 2- Open population (CJS) models
 
 Use R or MARK to answer the following questions:
@@ -409,13 +392,13 @@ Use R or MARK to answer the following questions:
 
 ##Checklist for Lab 7 completion
 
-* Please prepare all written responses in a single Word document and submit _using WebCampus_!
+* Please enter all written responses in Top Hat and submit!
 
-* Where appropriate, Excel files and R scripts can be included as part of your lab submission (can be submitted separately in WebCampus .  
+* Where appropriate, Excel files and R scripts can be included as part of your lab submission (can be submitted separately in top hat.  
 
-***This lab is optional. For extra credit please submit by Wednesday May 6***
+***This lab is optional. For extra credit please submit by Friday Apr 29***
 
-*  Word document with short answers, and Excel document
+*  Short answers, and Excel document
     +  **Exercise 1**
         -  *Short answer (1a.)*   
         -  *Short answer (1b.)*   
