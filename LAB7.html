@@ -14,20 +14,28 @@
 
 <title>Lab 7: Parameter estimation: mark-recapture analysis!</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,19 +446,19 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Lab 7: Parameter estimation: mark-recapture analysis!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
 
 <p>First, <a href="LAB7.R">please download this R script and load it in Rstudio</a> for later.</p>
-<p>Next, since we haven’t had the lecture on this topic yet, let’s go over the basics from the lecture first- <a href="LECTURE15.html#capture-mark-recapture_(cmr)_analysis">click here</a></p>
+<p>Next, let’s go over the basics from the lecture first- <a href="LECTURE15.html#capture-mark-recapture_(cmr)_analysis">click here</a></p>
 <div id="open-versus-closed-populations" class="section level2">
 <h2>Open versus closed populations</h2>
 <p><strong>Closed population</strong> – a population in which there is no recruitment (birth or immigration) or losses (death or emigration) during the period of study. Geographic and demographic closure.</p>
@@ -508,8 +467,8 @@ div.tocify {
 <div id="overview-of-capture-recapture-models" class="section level2">
 <h2>Overview of capture-recapture models:</h2>
 <p>It is important to note that for both closed- and open-population models, a primary task is to estimate the <em>probability of detection, p</em>. This is because most surveys of wild populations are <strong>imperfect</strong>- with few exceptions, we just can’t observe all individuals in a wild population every time we visit our study population in the wild.</p>
-<p>This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN’T SEE!! How do we know how many animals we didn’t see? We need to know the probability of capture- if we know the probability of capture we automatically know the probability of NOT capturing/detecting an animal in the population! From there we can estimate the number we didn’t capture from the number we did capture!</p>
-<p>It may not be as easy to see, but if we didn’t account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly <em>biased</em> in most cases.</p>
+<p>This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN’T SEE!! How do we know how many animals we didn’t see? We need to know the probability of detection- that is, the probability that any individual in the population is in our sample. If we know the probability of being in our sample, we automatically know the probability of NOT being in our sample (the number of individuals we didn’t capture)!</p>
+<p>If we didn’t account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly <em>biased</em> in most cases.</p>
 <p>Capture-mark-recapture models correct for that bias by estimating the probability of detection (<em>p</em>) in addition to fundamental parameters like abundance, recruitment and survival. If we can estimate the probability of detection, we can correct for the bias it introduces into our data.</p>
 <p>Let’s see how this works!</p>
 <div id="closed-population-models" class="section level3">
@@ -624,7 +583,6 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 <p>NOTE: Program MARK is a Windows-based software. If you’re running MacOS, you can run MARK using a Windows partition or a Windows emulator. However, you don’t need to use Program MARK for this lab exercise – you can use R instead!</p>
 <p>The ‘marked’ package in R runs many of the same open-population models, and is much easier to use than Program MARK. Please install this package if haven’t already done so.</p>
 <p>These data should look like this! Here it is in R (just the first 15 lines)!</p>
-<pre><code>## mra (version 2.16.11)</code></pre>
 <pre><code>##    h1 h2 h3 h4 h5 h6 h7
 ## 1   1  1  1  1  1  1  0
 ## 2   1  1  1  1  1  0  0
@@ -646,12 +604,6 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 <p>Program MARK wants a particular type of input file (.INP; just a text file with special formatting). For the dipper data, it should look something like <a href="ed_males.txt">this</a></p>
 <p>Save this <a href="ed_males.txt">text file</a> and re-name it with the extension “.inp” rather than the extension “.txt”</p>
 <p>Your INP file should look something like this:</p>
-<pre><code>## Warning: package &#39;marked&#39; was built under R version 3.6.3</code></pre>
-<pre><code>## Loading required package: lme4</code></pre>
-<pre><code>## Warning: package &#39;lme4&#39; was built under R version 3.6.3</code></pre>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## Loading required package: parallel</code></pre>
-<pre><code>## This is marked 1.2.6</code></pre>
 <pre><code>##         ch group
 ## 1  1111110    1;
 ## 2  1111000    1;
@@ -785,7 +737,7 @@ mod.Phit.pt &lt;- crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(form
  Number of evaluations:  500  -2lnl: 315.4938468
  Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.0075</code></pre>
+## Elapsed time in minutes:  0.011</code></pre>
 <pre class="r"><code>mod.Phit.pt   # print out model</code></pre>
 <pre><code>## 
 ## crm Model Summary
@@ -818,7 +770,7 @@ mod.Phidot.pdot &lt;- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=lis
 <pre><code>## Starting optimization for 2 parameters...</code></pre>
 <pre><code>## Computing hessian...</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.002</code></pre>
+## Elapsed time in minutes:  0.0032</code></pre>
 <pre class="r"><code>mod.Phidot.pdot</code></pre>
 <pre><code>## 
 ## crm Model Summary
@@ -855,7 +807,7 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
 <pre><code>## Starting optimization for 2 parameters...</code></pre>
 <pre><code>## Computing hessian...</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.0018</code></pre>
+## Elapsed time in minutes:  0.0032</code></pre>
 <pre><code>## Phi.dot.p.time</code></pre>
 <pre><code>## Computing initial parameter estimates</code></pre>
 <pre><code>## Starting optimization for 7 parameters...</code></pre>
@@ -886,7 +838,7 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
  Number of evaluations:  100  -2lnl: 316.1220471
  Number of evaluations:  200  -2lnl: 316.1169636</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.0037</code></pre>
+## Elapsed time in minutes:  0.005</code></pre>
 <pre><code>## Phi.time.p.dot</code></pre>
 <pre><code>## Computing initial parameter estimates
 ## 
@@ -908,7 +860,7 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
  Number of evaluations:  100  -2lnl: 315.5145048
  Number of evaluations:  200  -2lnl: 315.5153169</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.0027</code></pre>
+## Elapsed time in minutes:  0.0043</code></pre>
 <pre><code>## Phi.time.p.time</code></pre>
 <pre><code>## Computing initial parameter estimates</code></pre>
 <pre><code>## Starting optimization for 12 parameters...</code></pre>
@@ -973,18 +925,13 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
  Number of evaluations:  500  -2lnl: 315.4938468
  Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
 <pre><code>## 
-## Elapsed time in minutes:  0.006</code></pre>
+## Elapsed time in minutes:  0.0083</code></pre>
 <pre class="r"><code>allmodels</code></pre>
-<pre><code>##                model npar      AIC  DeltaAIC       weight  neg2lnl
-## 1       Phi(~1)p(~1)    2 322.4938  0.000000 0.9501710921 318.4938
-## 3    Phi(~time)p(~1)    7 329.4989  7.005072 0.0286200070 315.4989
-## 2    Phi(~1)p(~time)    7 330.1169  7.623055 0.0210124331 316.1169
-## 4 Phi(~time)p(~time)   12 339.4616 16.967798 0.0001964678 315.4616
-##   convergence
-## 1           0
-## 3           0
-## 2           0
-## 4           0</code></pre>
+<pre><code>##                model npar      AIC  DeltaAIC       weight  neg2lnl convergence
+## 1       Phi(~1)p(~1)    2 322.4938  0.000000 0.9501710921 318.4938           0
+## 3    Phi(~time)p(~1)    7 329.4989  7.005072 0.0286200070 315.4989           0
+## 2    Phi(~1)p(~time)    7 330.1169  7.623055 0.0210124331 316.1169           0
+## 4 Phi(~time)p(~time)   12 339.4616 16.967798 0.0001964678 315.4616           0</code></pre>
 <pre class="r"><code>#######
 # get parameter estimates and confidence intervals for best model
 
@@ -1008,17 +955,8 @@ predict(allmodels[[1]])$Phi</code></pre>
 ## 1   6 0.565868 0.03554077 0.495363 0.6338044</code></pre>
 <pre class="r"><code>Phi_by_year &lt;- predict(allmodels[[3]])$Phi    # predict Phi for all years (based on the best Phi(t) model)
 
-library(Hmisc)   #load Hmisc package- has a nice error bar function</code></pre>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## Loading required package: survival</code></pre>
-<pre><code>## Loading required package: Formula</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Hmisc&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     format.pval, units</code></pre>
-<pre class="r"><code>plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab=&quot;Year&quot;,ylab=&quot;Survival&quot;,ylim=c(0,1),main=&quot;Variability in Survival, dipper demo&quot;)
+library(Hmisc)   #load Hmisc package- has a nice error bar function
+plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab=&quot;Year&quot;,ylab=&quot;Survival&quot;,ylim=c(0,1),main=&quot;Variability in Survival, dipper demo&quot;)
 errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)</code></pre>
 <p><img src="LAB7_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
@@ -1091,7 +1029,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -1100,6 +1038,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -1,7 +1,7 @@
 ---
 title: "Lab 7: Parameter estimation: mark-recapture analysis!"
 author: "NRES 470/670"
-date: "Spring 2021"
+date: "Spring 2022"
 output: 
   html_document: 
     theme: spacelab
@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 First, [please download this R script and load it in Rstudio](LAB7.R) for later.
 
-Next, since we haven't had the lecture on this topic yet, let's go over the basics from the lecture first- [click here](LECTURE15.html#capture-mark-recapture_(cmr)_analysis)
+Next, let's go over the basics from the lecture first- [click here](LECTURE15.html#capture-mark-recapture_(cmr)_analysis)
 
 ## Open versus closed populations
 
@@ -47,9 +47,9 @@ Next, since we haven't had the lecture on this topic yet, let's go over the basi
 
 It is important to note that for both closed- and open-population models, a primary task is to estimate the *probability of detection, p*. This is because most surveys of wild populations are **imperfect**- with few exceptions, we just can't observe all individuals in a wild population every time we visit our study population in the wild.
 
-This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN'T SEE!! How do we know how many animals we didn't see? We need to know the probability of capture- if we know the probability of capture we automatically know the probability of NOT capturing/detecting an animal in the population! From there we can estimate the number we didn't capture from the number we did capture!
+This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN'T SEE!! How do we know how many animals we didn't see? We need to know the probability of detection- that is, the probability that any individual in the population is in our sample. If we know the probability of being in our sample, we automatically know the probability of NOT being in our sample (the number of individuals we didn't capture)! 
 
-It may not be as easy to see, but if we didn't account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly *biased* in most cases. 
+If we didn't account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly *biased* in most cases. 
 
 Capture-mark-recapture models correct for that bias by estimating the probability of detection (*p*) in addition to fundamental parameters like abundance, recruitment and survival. If we can estimate the probability of detection, we can correct for the bias it introduces into our data. 
 
