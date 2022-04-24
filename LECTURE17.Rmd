@@ -39,15 +39,15 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![](predation2.jpg)
 
-In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two species species benefits greatly from the interaction -- and the other species loses out!
+In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two actors benefits greatly from the interaction -- and the other actor loses out!
 
 Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:
 
-$\Delta V = rV^* - f(V,P) \cdot P$
+$\Delta V = rV^* - f(V) \cdot P$
 
 AND
 
-$\Delta P = f(V,P)*conversion.factor \cdot P - qP^*$
+$\Delta P = f(V)*conversion\space factor \cdot P - qP^*$
 
 Where
 
@@ -57,15 +57,15 @@ $P$ is the total predator abundance, and
 
 $rV^*$ represents the growth of the prey population *in the absence of predators* -- usually, this is some form of the standard single-species population growth models we have considered throughout most of this course (possibly density-dependent),
 
-$qP^*$ represents the growth of the predator population *in the absence of prey* -- usually this is simply exponential decline!,
+$-qP^*$ represents the growth of the predator population *in the absence of prey* -- usually this is simply exponential decline!,
 
 AND
 
-$f(V,P)$ is known as the **functional response** -- that is, the per capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities.
+$f(V)$ is known as the **functional response** -- that is, the per-capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities ($f(V,P)$).
 
 AND
 
-$f(V,P)\cdot conversion.factor$ (alternatively represented as $g(V,P)$) is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption.
+$f(V)\cdot conversion\space factor$ (alternatively represented as $g(V)$) is known as the **numerical response** -- that is, the increase in per-capita predator population growth due to prey consumption.
 
 There are many different types of possible functional and numerical response curves. Let's start simple!
 
@@ -146,9 +146,9 @@ The other half is the predator population growth model, of course!!
 
 In the absence of prey, let's assume that the predator population grows just how we might imagine it grows- BADLY!
 
-$\Delta P = -qP$
-
 In the absence of prey, the predator population declines exponentially.
+
+$\Delta P = -qP$
 
 If enough prey are present, the population growth rate of the predators will go up... 
 
@@ -156,7 +156,7 @@ Recall that (in this simple model) predators and prey walk randomly through thei
 
 $f(V) = \alpha V$
 
-The *numerical response* is the increase in the fractional growth rate of *predators* per unit prey consumed. The numerical response is related to the functional response. While the functional response describes the prey consumption per predator, the numerical response describes how that prey consumption translates into the growth of the predator population.
+The *numerical response* is the increase in the fractional growth rate of *predators* per unit prey consumed. The numerical response is related to the functional response. While the functional response describes the prey consumption rate per predator, the numerical response describes how that prey consumption translates into the growth of the predator population.
 
 $g(V) = some.function(f(V))$
 
@@ -164,9 +164,9 @@ The simplest numerical response is that predator population growth increases as 
 
 $g(V) = \gamma (\alpha \cdot V)$
 
-Where $\gamma$ is the conversion efficiency and $\alpha$ is the capture efficency and $\alpha \cdot V$ is the total prey consumed per predator.
+Where $\gamma$ is the conversion efficiency and $\alpha$ is the capture efficiency and $\alpha \cdot V$ is the total prey consumed per predator.
 
-Or, more simply stated:
+Or, since two constants multiplied together results in another constant:
 
 $g(V)=\beta \cdot V$
 
@@ -189,13 +189,9 @@ Note the intercept- does the numerical response need to have an intercept of zer
 
 The *increase in total predators due to prey consumption* now is:
 
-$g(V) \cdot P = \beta V \cdot P$
+$g(V) \cdot P = \beta \cdot V \cdot P$
 
 Does this make sense?
-
-The term $\beta$ is related to the **conversion efficiency** of the predator (how effieciently the predator converts its food into the production of new predators). Consider a case where every predator consumes 100 prey per time step ($\alpha \cdot V = 100$), but the predator population growth increases by only 0.01 relative to a scenario with no prey. Now consider a predator that consumes 1 prey per time step, and growth increases by 0.1... Which predator is more *efficient* at converting prey biomass into growth of the predator population (creating new predators)? 
-
-**Q** what are the units of *beta*?
 
 Now, the (instantaneous) PREDATOR growth rate can be defined by the following equation:
 
@@ -224,13 +220,11 @@ Before we go deeper into predation modeling, let's simulate prey and predator po
 
 **Step 5**: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.
 
-**Step 6**: Add a new display to represent the **phase plane**: Choose the "scatter plot" type, and under "Data" select *Prey* first, then *Predator*. What does this system look like on the phase plane? 
-
 **Q** What happens if you change the initial abundances?
 
 **Q** What happens if you change initial abundance of both species to 100? Is this an **equilibrium**? If so, is it **stable**?
 
-**Step 7**: Try some other parameter values for alpha, beta, r, and q...
+**Step 6**: Try some other parameter values for alpha, beta, r, and q...
 
 **Q** Does the prey or predator ever go extinct?
 
