@@ -97,7 +97,7 @@ Consider the case where there are $V$ prey and only a single predator in a hypot
 
 **Q**: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example ($\alpha$)? 
 
-In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30000 prey per day. (realistic?) 
+In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30,000 prey per day. (realistic?) 
 
 **Q** what is the shape of the functional response in this case?
 
@@ -116,9 +116,7 @@ curve(LVfuncresp(x,0.03),0,200,xlab="Victim abundance",ylab="Total prey eaten pe
 
 ```
 
-Note the intercept- does the functional response need to have an intercept of zero?
-
-...Of course, this *alpha* term has a different meaning from the *alpha* in the L-V competition models! Sorry! 
+...Of course, this *alpha* term has a different meaning from the *alpha* in the L-V competition models! Sorry but you can thank Alfred Lotka for that! 
 
 Now consider the case where there is more than one predator -- that is, there are $P$ predators and there are $V$ prey. Recall that each predator has *no influence* on the consumption rates of other predators. The predators are just like molecules randomly bumping into prey molecules. 
 
@@ -128,9 +126,7 @@ $f(V) \cdot P = \alpha VP$
 
 Does this make sense?
 
-The term $\alpha$ is also known as the **capture efficiency**. Does this make sense? Consider a case where every predator "bumps into" all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more *efficient*? 
-
-**Q** what are the units of *alpha*? [tophat]
+The term $\alpha$ is sometimes referred to as **capture efficiency**. Does this make sense? Consider a case where every predator "bumps into" all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more *efficient* at capturing prey? 
 
 Now, the (instantaneous) prey growth rate can be defined by the following equation:
 
@@ -164,7 +160,7 @@ The simplest numerical response is that predator population growth increases as 
 
 $g(V) = \gamma (\alpha \cdot V)$
 
-Where $\gamma$ is the conversion efficiency and $\alpha$ is the capture efficiency and $\alpha \cdot V$ is the total prey consumed per predator.
+Where $\gamma$ is sometimes referred to as 'conversion efficiency' and $\alpha$ is the capture efficiency and $\alpha \cdot V$ is the total prey consumed per predator.
 
 Or, since two constants multiplied together results in another constant:
 
@@ -184,8 +180,6 @@ LVnumresp <- function(V,beta){
 curve(LVnumresp(x,0.001),0,200,xlab="Victim abundance",ylab="Increase in r for predator population",col="blue",lwd=3)
 
 ```
-
-Note the intercept- does the numerical response need to have an intercept of zero?
 
 The *increase in total predators due to prey consumption* now is:
 
@@ -210,7 +204,7 @@ $\Delta V = rV - \alpha VP$
 
 Before we go deeper into predation modeling, let's simulate prey and predator population growth under the L-V predation model. 
 
-**Step 1**: First, clone [this Insight](https://insightmaker.com/insight/78356/Base-prey-predator-model), which provides the skeleton for a basic prey-predator model
+**Step 1**: First, clone [this Insight](https://insightmaker.com/insight/5rui2efFmW8cBmVDyxPw5h/Base-prey-predator-model), which provides the skeleton for a basic prey-predator model
 
 **Step 2**: Correctly set up the equations for the variables "functional response"" and "numerical response".  
 

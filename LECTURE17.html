@@ -14,8 +14,8 @@
 
 <title>Species interactions: prey-predator!</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -492,7 +492,7 @@ div.tocify {
 <p>Under such circumstances, the predators do NOT interfere with one another and never get full. Each predator consumes a fixed number of prey in a given time period, depending only on prey availability.</p>
 <p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator in a hypothetical prey-predator system.</p>
 <p><strong>Q</strong>: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example (<span class="math inline">\(\alpha\)</span>)?</p>
-<p>In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30000 prey per day. (realistic?)</p>
+<p>In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30,000 prey per day. (realistic?)</p>
 <p><strong>Q</strong> what is the shape of the functional response in this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
 <pre class="r"><code>#######
@@ -504,14 +504,12 @@ LVfuncresp &lt;- function(V,alpha){
 
 curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Note the intercept- does the functional response need to have an intercept of zero?</p>
-<p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the L-V competition models! Sorry!</p>
+<p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the L-V competition models! Sorry but you can thank Alfred Lotka for that!</p>
 <p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just like molecules randomly bumping into prey molecules.</p>
 <p>The <em>total rate of predation</em> now is:</p>
 <p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
 <p>Does this make sense?</p>
-<p>The term <span class="math inline">\(\alpha\)</span> is also known as the <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em>?</p>
-<p><strong>Q</strong> what are the units of <em>alpha</em>? [tophat]</p>
+<p>The term <span class="math inline">\(\alpha\)</span> is sometimes referred to as <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em> at capturing prey?</p>
 <p>Now, the (instantaneous) prey growth rate can be defined by the following equation:</p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
 <p>In the absence of predators, the prey population grows exponentially. However, with enough predators on the landscape, the population will decline.</p>
@@ -530,7 +528,7 @@ curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Tota
 <p><span class="math inline">\(g(V) = some.function(f(V))\)</span></p>
 <p>The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption:</p>
 <p><span class="math inline">\(g(V) = \gamma (\alpha \cdot V)\)</span></p>
-<p>Where <span class="math inline">\(\gamma\)</span> is the conversion efficiency and <span class="math inline">\(\alpha\)</span> is the capture efficiency and <span class="math inline">\(\alpha \cdot V\)</span> is the total prey consumed per predator.</p>
+<p>Where <span class="math inline">\(\gamma\)</span> is sometimes referred to as ‘conversion efficiency’ and <span class="math inline">\(\alpha\)</span> is the capture efficiency and <span class="math inline">\(\alpha \cdot V\)</span> is the total prey consumed per predator.</p>
 <p>Or, since two constants multiplied together results in another constant:</p>
 <p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
 <p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
@@ -543,7 +541,6 @@ LVnumresp &lt;- function(V,beta){
 
 curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Note the intercept- does the numerical response need to have an intercept of zero?</p>
 <p>The <em>increase in total predators due to prey consumption</em> now is:</p>
 <p><span class="math inline">\(g(V) \cdot P = \beta \cdot V \cdot P\)</span></p>
 <p>Does this make sense?</p>
@@ -558,7 +555,7 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 <div id="l-v-predation-model-in-insightmaker" class="section level3">
 <h3>L-V predation model in InsightMaker</h3>
 <p>Before we go deeper into predation modeling, let’s simulate prey and predator population growth under the L-V predation model.</p>
-<p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/78356/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
+<p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/5rui2efFmW8cBmVDyxPw5h/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
 <p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”" and “numerical response”.</p>
 <p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator growth”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
 <p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)” (this makes InsightMaker behave more like a continuous growth model).</p>
