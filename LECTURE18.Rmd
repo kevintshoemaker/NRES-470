@@ -16,27 +16,54 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Upcoming final exam
 
-**when and where** The final exam is coming up on Friday **May 6** (9:50am to 11:50) in our regular classroom. You will have the whole two hour period to take the exam (but you should not need the whole period). 
+
+**when and where** The optional final exam is on Friday **May 6** (9:50am to 11:50) in our regular classroom. You will have the whole two hour period to take the exam (but you should not need the whole period). The exam will be in the same basic format as the midterm exams.
 
 **what** The exam will cover all material covered in lectures and lab.
 
-- All material in Chapters 1-6 of the Gotelli book
-    - Exponential pop growth (Gotelli Ch. 1, [lecture](LECTURE2.html), [lab](LAB1.html))
-    - Density-dependent pop growth (Gotelli Ch. 2, [lecture](LECTURE3.html), [lecture](LECTURE4.html), [lecture](LECTURE5.html), [lab](LAB2.html))
-    - Age-structured pop growth and matrix population models (Gotelli Ch. 3; [lecture](LECTURE6.html), [lecture](LECTURE7.html), [lab](LAB3.html), [lab](LAB4.html) additional suggested reading: [Heppell et al. 1998](heppell1.pdf))
-    - Metapopulations (Gotelli Ch. 4, [lecture](LECTURE13.html), [lab](LAB6.html); additional suggested reading: [Griffin et al. 2008](griffin1.pdf))
-    - Competition (Gotelli Ch. 5, [lecture](LECTURE16.html))
-    - Predation (Gotelli Ch. 6, [lecture](LECTURE17.html))
-- *Systems thinking and modeling* ([lecture](LECTURE1.html), Ch. 1, 2 of ["Beyond Connecting the Dots"](http://beyondconnectingthedots.com/))
-- Basic computer programming (e.g., if-then-else statements)
-- *Stochasticity and Uncertainty* ([lecture](LECTURE8.html), [lab](LAB5.html), suggested readings: [Lande 1992](lande.pdf); [Regan 2002](Regan_2002.pdf).
-- *Small-population paradigm and declining-population paradigm* ([lecture](LECTURE9.html), [lecture](LECTURE11.html), suggested reading: [Caughley 1988](caughley1.pdf))  
-- *Population Viability Analysis*, in theory and practice ([lecture](LECTURE12.html), suggested reading [Beissinger and Westphal 1998](beissinger1.pdf), [optional lecture](LECTURE14.html))
+- All material in Chapters 1-6 of the Gotelli book:
+    * Chapter 1: Exponential growth
+    * Chapter 2: Logistic growth
+    * Chapter 3: Age structured population and matrix models
+    * Chapter 4: Metapopulations
+    * Chapter 5: Competition
+    * Chapter 6: Predation
+- All material covered in lectures, including the following web pages and corresponding lectures and top hat pages:    
+    * [Systems thinking and modeling](LECTURE1.html)
+    * [Exponential growth](LECTURE2.html)
+    * [Malthus and limits to growth](LECTURE3.html)
+    * [Logistic population growth](LECTURE4.html)
+    * [Allee effect](LECTURE5.html)
+    * [Age-structured populations](LECTURE6.html)
+    * [Matrix population models](LECTURE7.html)
+    * ["Embracing" uncertainty](LECTURE8.html) 
+    * [Small-population paradigm](LECTURE9.html)
+    * [Declining-population paradigm](LECTURE11.html) 
+    * [Population Viability Analysis](LECTURE12.html)
+    * [Metapopulations and source-sink dynamics](LECTURE13.html)]
+    * [Parameter estimation](LECTURE15.html)
+    * [Competition models](LECTURE16.html)
+    * [Predation models](LECTURE17.html)
+    * NOTE: all lectures have been recorded and are available via the "Zoom" link on WebCampus in case you missed any or in case you'd like to use these recordings as review/study materials   
+- All material covered in labs 1-6, including:
+    * [Lab 1: exponential growth](LAB1.html)
+    * [Lab 2: logistic growth](LAB2.html)
+    * [Lab 3: age-structured populations](LAB3.html)
+    * [Lab 4: matrix population models](LAB4.html)
+    * [Lab 5: stochasticity and uncertainty](LAB5.html)
+    * [Lab 6: metapopulations](LAB6.html)
+- Basic programming concepts:
+    * Conditional logic (IF-THEN-ELSE): see examples in Malthus and Allee effect lectures
+    * Iteration ('FOR loops'): see examples in Lab 1 and Lab 4. 
+    * NOTE: you will NOT be tested on how to run population models in R (or how to do anything else in R).    
 
+*The exam will consist of a mixture of multiple-choice and short-answer questions.*  
+
+We will do a review session in class on Wed May 4 (regular class time, regular classroom). Please make note of any questions that come up as you study- we can talk these over during the review session! 
+
+Margarete will also provide an additional office hour on Thursday May 5 (look for announcement).
 
 NOTE: we skipped over the [lecture on individual-based models](LECTURE10.html)- this topic will (of course) *not be included on the final exam*
-
-NOTE: we skipped over the *Parameter estimation for PVA*, including basic capture-recapture methods ([lecture](LECTURE15.html)) - this topic will (of course) *not be included on the final exam*
 
 *The exam will consist of a mixture of multiple-choice and short-answer questions (including a few definitions).*
 
@@ -48,7 +75,7 @@ NOTE: we skipped over the *Parameter estimation for PVA*, including basic captur
 
 #### Final papers
 
-- Everyone should have received detailed feedback over the weekend - please let us know if you have any questions. 
+- Everyone has received detailed feedback from peer review and instructors. Please let me and/or Margarete know if you have any questions. We can not do additional full reviews of your paper but you're welcome to send short sections for us to look at and we will try to provide comments as quickly as we can! 
 - Final papers due May 11 at 5pm (WebCampus submission)
 
 #### Extra credit
@@ -60,7 +87,6 @@ NOTE: we skipped over the *Parameter estimation for PVA*, including basic captur
 #### Review session
 
 - Wed 5/4 at 10am (regular class time) in our regular classroom.
-
 
 #### PLEASE fill out your course evaluations!
 

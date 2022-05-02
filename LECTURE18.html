@@ -14,20 +14,28 @@
 
 <title>Final class review</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,32 +59,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -91,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -336,7 +295,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -487,40 +446,71 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Final class review</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2021</h4>
+<h4 class="date">Spring 2022</h4>
 
 </div>
 
 
 <div id="upcoming-final-exam" class="section level3">
 <h3>Upcoming final exam</h3>
-<p><strong>when and where</strong> The final exam is coming up on Friday <strong>May 7</strong> (9:50am to 11:50). You will have the whole two hour period to take the exam (but you should not need the whole period).</p>
+<p><strong>when and where</strong> The optional final exam is on Friday <strong>May 6</strong> (9:50am to 11:50) in our regular classroom. You will have the whole two hour period to take the exam (but you should not need the whole period). The exam will be in the same basic format as the midterm exams.</p>
 <p><strong>what</strong> The exam will cover all material covered in lectures and lab.</p>
 <ul>
-<li>All material in Chapters 1-6 of the Gotelli book
+<li>All material in Chapters 1-6 of the Gotelli book:
 <ul>
-<li>Exponential pop growth (Gotelli Ch. 1, <a href="LECTURE2.html">lecture</a>, <a href="LAB1.html">lab</a>)</li>
-<li>Density-dependent pop growth (Gotelli Ch. 2, <a href="LECTURE3.html">lecture</a>, <a href="LECTURE4.html">lecture</a>, <a href="LECTURE5.html">lecture</a>, <a href="LAB2.html">lab</a>)</li>
-<li>Age-structured pop growth and matrix population models (Gotelli Ch. 3; <a href="LECTURE6.html">lecture</a>, <a href="LECTURE7.html">lecture</a>, <a href="LAB3.html">lab</a>, <a href="LAB4.html">lab</a> additional suggested reading: <a href="heppell1.pdf">Heppell et al. 1998</a>)</li>
-<li>Metapopulations (Gotelli Ch. 4, <a href="LECTURE13.html">lecture</a>, <a href="LAB6.html">lab</a>; additional suggested reading: <a href="griffin1.pdf">Griffin et al. 2008</a>)</li>
-<li>Competition (Gotelli Ch. 5, <a href="LECTURE16.html">lecture</a>)</li>
-<li>Predation (Gotelli Ch. 6, <a href="LECTURE17.html">lecture</a>)</li>
+<li>Chapter 1: Exponential growth</li>
+<li>Chapter 2: Logistic growth</li>
+<li>Chapter 3: Age structured population and matrix models</li>
+<li>Chapter 4: Metapopulations</li>
+<li>Chapter 5: Competition</li>
+<li>Chapter 6: Predation</li>
 </ul></li>
-<li><em>Systems thinking and modeling</em> (<a href="LECTURE1.html">lecture</a>, Ch. 1, 2 of <a href="http://beyondconnectingthedots.com/">“Beyond Connecting the Dots”</a>)</li>
-<li>Basic computer programming (e.g., if-then-else statements)</li>
-<li><em>Stochasticity and Uncertainty</em> (<a href="LECTURE8.html">lecture</a>, <a href="LAB5.html">lab</a>, suggested readings: <a href="lande.pdf">Lande 1992</a>; <a href="Regan_2002.pdf">Regan 2002</a>.</li>
-<li><em>Small-population paradigm and declining-population paradigm</em> (<a href="LECTURE9.html">lecture</a>, <a href="LECTURE11.html">lecture</a>, suggested reading: <a href="caughley1.pdf">Caughley 1988</a>)<br />
+<li>All material covered in lectures, including the following web pages and corresponding lectures and top hat pages:
+<ul>
+<li><a href="LECTURE1.html">Systems thinking and modeling</a></li>
+<li><a href="LECTURE2.html">Exponential growth</a></li>
+<li><a href="LECTURE3.html">Malthus and limits to growth</a></li>
+<li><a href="LECTURE4.html">Logistic population growth</a></li>
+<li><a href="LECTURE5.html">Allee effect</a></li>
+<li><a href="LECTURE6.html">Age-structured populations</a></li>
+<li><a href="LECTURE7.html">Matrix population models</a></li>
+<li><a href="LECTURE8.html">“Embracing” uncertainty</a></li>
+<li><a href="LECTURE9.html">Small-population paradigm</a></li>
+<li><a href="LECTURE11.html">Declining-population paradigm</a></li>
+<li><a href="LECTURE12.html">Population Viability Analysis</a></li>
+<li><a href="LECTURE13.html">Metapopulations and source-sink dynamics</a>]</li>
+<li><a href="LECTURE15.html">Parameter estimation</a></li>
+<li><a href="LECTURE16.html">Competition models</a></li>
+<li><a href="LECTURE17.html">Predation models</a></li>
+<li>NOTE: all lectures have been recorded and are available via the “Zoom” link on WebCampus in case you missed any or in case you’d like to use these recordings as review/study materials<br />
 </li>
-<li><em>Population Viability Analysis</em>, in theory and practice (<a href="LECTURE12.html">lecture</a>, suggested reading <a href="beissinger1.pdf">Beissinger and Westphal 1998</a>, <a href="LECTURE14.html">optional lecture</a>)</li>
+</ul></li>
+<li>All material covered in labs 1-6, including:
+<ul>
+<li><a href="LAB1.html">Lab 1: exponential growth</a></li>
+<li><a href="LAB2.html">Lab 2: logistic growth</a></li>
+<li><a href="LAB3.html">Lab 3: age-structured populations</a></li>
+<li><a href="LAB4.html">Lab 4: matrix population models</a></li>
+<li><a href="LAB5.html">Lab 5: stochasticity and uncertainty</a></li>
+<li><a href="LAB6.html">Lab 6: metapopulations</a></li>
+</ul></li>
+<li>Basic programming concepts:
+<ul>
+<li>Conditional logic (IF-THEN-ELSE): see examples in Malthus and Allee effect lectures</li>
+<li>Iteration (‘FOR loops’): see examples in Lab 1 and Lab 4.</li>
+<li>NOTE: you will NOT be tested on how to run population models in R (or how to do anything else in R).</li>
+</ul></li>
 </ul>
+<p><em>The exam will consist of a mixture of multiple-choice and short-answer questions.</em></p>
+<p>We will do a review session in class on Wed May 4 (regular class time, regular classroom). Please make note of any questions that come up as you study- we can talk these over during the review session!</p>
+<p>Margarete will also provide an additional office hour on Thursday May 5 (look for announcement).</p>
 <p>NOTE: we skipped over the <a href="LECTURE10.html">lecture on individual-based models</a>- this topic will (of course) <em>not be included on the final exam</em></p>
-<p>NOTE: we skipped over the <em>Parameter estimation for PVA</em>, including basic capture-recapture methods (<a href="LECTURE15.html">lecture</a>) - this topic will (of course) <em>not be included on the final exam</em></p>
 <p><em>The exam will consist of a mixture of multiple-choice and short-answer questions (including a few definitions).</em></p>
 </div>
 <div id="final-logistics" class="section level3">
@@ -528,28 +518,28 @@ div.tocify {
 <div id="final-exam" class="section level4">
 <h4>Final exam</h4>
 <ul>
-<li>This Friday, May 7 from 9:50-11:50 (via zoom/tophat)</li>
+<li>This Friday, May 6 from 9:50-11:50 in our regular classroom.</li>
 </ul>
 </div>
 <div id="final-papers" class="section level4">
 <h4>Final papers</h4>
 <ul>
-<li>Everyone should have received detailed feedback over the weekend - please let us know if you have any questions.</li>
-<li>Final papers due May 12 at 5pm (webcampus submission)</li>
+<li>Everyone has received detailed feedback from peer review and instructors. Please let me and/or Margarete know if you have any questions. We can not do additional full reviews of your paper but you’re welcome to send short sections for us to look at and we will try to provide comments as quickly as we can!</li>
+<li>Final papers due May 11 at 5pm (WebCampus submission)</li>
 </ul>
 </div>
 <div id="extra-credit" class="section level4">
 <h4>Extra credit</h4>
 <ul>
-<li>Will accept up to four extra credit write-ups (two presentations and two papers)</li>
+<li>Will accept up to three extra credit write-ups</li>
 <li>Submit extra credit assignments via webcampus (file submission) – one submission per each of the four ‘assignments’.</li>
-<li>Due when final papers are due, by the end of finals period (Wed May 13 at 5pm).</li>
+<li>Due when final papers are due, by Mon May 9 at 11:59pm).</li>
 </ul>
 </div>
-<div id="office-hoursstudy-session" class="section level4">
-<h4>Office hours/Study session</h4>
+<div id="review-session" class="section level4">
+<h4>Review session</h4>
 <ul>
-<li>Wed 5/5 at 10am via zoom (regular class time)</li>
+<li>Wed 5/4 at 10am (regular class time) in our regular classroom.</li>
 </ul>
 </div>
 <div id="please-fill-out-your-course-evaluations" class="section level4">
@@ -587,7 +577,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -596,6 +586,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
