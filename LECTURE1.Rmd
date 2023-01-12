@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-![](FoodWeb1.jpg)
+![](FoodWeb1.jpg){width=25%}
 
 ## Systems ecology: a way of thinking   
 Ecology is messy. When we work in natural environments, we are dealing with *inherently complex systems*. _All elements in a natural system are connected_, full of dynamic interactions. Interactions among organisms, between organisms and their environments -- these linkages are what makes ecology messy, but also endlessly fascinating. 
@@ -93,7 +93,7 @@ Finally, a [Variable] is an object that stores an important piece of information
 
 **Q**: Is this Moose model realistic? What are the first things you would like to change to make the model more realistic?
 
-*Top Hat: take a few minutes to list the things you would like to change to make this model more realistic!*
+*PointSolutions: take a few minutes to list the things you would like to change to make this model more realistic!*
 
 9. Finally, take a few minutes to check out "Insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of Insights. Pick one or two of these insights and run them. How does the system behave? Does this make sense to you? We can (and will) add to this database as part of this class! 
 
