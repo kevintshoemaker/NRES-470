@@ -14,7 +14,7 @@
 
 <title>Intro to population ecology</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -400,7 +404,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -452,13 +456,15 @@ div.tocify {
 
 <h1 class="title toc-ignore">Intro to population ecology</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<p><img src="Human_population_growth_from_1800_to_2000.png" /></p>
-<div id="central-questions-of-population-ecology" class="section level2">
+<p><img src="Human_population_growth_from_1800_to_2000.png"
+style="width:50.0%" /></p>
+<div id="central-questions-of-population-ecology"
+class="section level2">
 <h2>Central Questions of Population Ecology</h2>
 <div id="ecological" class="section level3">
 <h3>Ecological</h3>
@@ -471,81 +477,175 @@ div.tocify {
 </li>
 <li>What processes <em>regulate</em> population growth?
 <ul>
-<li>Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)</li>
+<li>Extrinsic vs intrinsic factors (Nicholson vs Andrewartha
+debate)</li>
 </ul></li>
 <li>What prevents predator-prey relationships from collapsing?<br />
 </li>
 <li>What factors allow competitors to coexist?</li>
-<li>What factors allow metapopulations to be stable and self-sustaining?</li>
+<li>What factors allow metapopulations to be stable and
+self-sustaining?</li>
 </ul>
 <p><img src="White-tailed_deer.jpg" /></p>
 </div>
 <div id="conservation-and-management" class="section level3">
 <h3>Conservation and Management</h3>
 <ul>
-<li>What is the conservation status of a focal species or population?</li>
-<li>How do anthropogenic structures and land uses affect populations?</li>
-<li>What is the <em>Maximum Sustainable Yield</em> for a focal game species?</li>
+<li>What is the conservation status of a focal species or
+population?</li>
+<li>How do anthropogenic structures and land uses affect
+populations?</li>
+<li>What is the <em>Maximum Sustainable Yield</em> for a focal game
+species?</li>
 <li>How can pest species be effectively controlled?</li>
-<li>What specific land areas should be protected to preserve at-risk populations and metapopulations?</li>
-<li>What are the likely population-level effects of alternative conservation or management strategies?</li>
+<li>What specific land areas should be protected to preserve at-risk
+populations and metapopulations?</li>
+<li>What are the likely population-level effects of alternative
+conservation or management strategies?</li>
 </ul>
 </div>
 </div>
 <div id="what-is-a-population" class="section level2">
 <h2>What is a population?</h2>
-<p>From Krebs (1972): “A population is defined as a group of organisms of the same species occupying a particular space at a particular time, with the potential to breed with each other’</p>
-<p>Spatial boundaries defining populations sometimes are easily defined, but more typically are vague and difficult to determine.</p>
-<p>Population size, or abundance, is often represented as <span class="math inline">\(N\)</span>, and is the most basic measurement of a wild population.</p>
+<p>From Krebs (1972): “A population is defined as a group of organisms
+of the same species occupying a particular space at a particular time,
+with the potential to breed with each other’</p>
+<p>Spatial boundaries defining populations sometimes are easily defined,
+but more typically are vague and difficult to determine.</p>
+<p>Population size, or abundance, is often represented as <span
+class="math inline">\(N\)</span>, and is the most basic measurement of a
+wild population.</p>
 </div>
-<div id="exponential-growth-the-fundamental-principle-of-population-ecology" class="section level2">
-<h2>Exponential growth: the fundamental principle of population ecology</h2>
+<div
+id="exponential-growth-the-fundamental-principle-of-population-ecology"
+class="section level2">
+<h2>Exponential growth: the fundamental principle of population
+ecology</h2>
 <p><img src="Puffball1.png" /></p>
-<p>Giant puffballs produce 7 trillion offspring (12 zeroes!) in one reproductive event … If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!</p>
-<p>The reason? Populations can exhibit <strong>exponential growth</strong>, in which each new addition to the population expands the reproductive potential of the population in a <strong>positive feedback loop</strong>.</p>
+<p>Giant puffballs produce 7 trillion offspring (12 zeroes!) in one
+reproductive event … If all of those individuals reached adulthood, the
+descendants from just two parent puffballs would weigh more than the
+entire planet in two generations!</p>
+<p>The reason? Populations can exhibit <strong>exponential
+growth</strong>, in which each new addition to the population expands
+the reproductive potential of the population in a <strong>positive
+feedback loop</strong>.</p>
 </div>
 <div id="mathematics-and-population-ecology" class="section level2">
 <h2>Mathematics and Population Ecology</h2>
 <p>‘Mathematics seems to endow one with a new sense’<br />
 - Charles Darwin</p>
-<p>‘Like most mathematicians, he takes the hopeful biologist to the edge of the pond, points out that a good swim will help his work, and then pushes him in and leaves him to drown’<br />
+<p>‘Like most mathematicians, he takes the hopeful biologist to the edge
+of the pond, points out that a good swim will help his work, and then
+pushes him in and leaves him to drown’<br />
 - Charles Elton, in reference to a work by Alfred Lotka</p>
 <p><img src="1976_Elton.jpg" /></p>
-<p>The importance of the method is this: if we know certain variables, mostly desired by ecologists and in some cases already determined by them, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated, and we look forward to seeing the further volumes of Lotka’s studies.<br />
+<p>The importance of the method is this: if we know certain variables,
+mostly desired by ecologists and in some cases already determined by
+them, we can predict certain results which would not normally be
+predictable or even expected by ecologists. The stage of verification of
+these mathematical predictions has hardly begun; but their importance
+cannot be under-estimated, and we look forward to seeing the further
+volumes of Lotka’s studies.<br />
 - Charles Elton</p>
 </div>
 <div id="exponential-growth" class="section level2">
 <h2>Exponential growth</h2>
-<p>In lab we went over the mathematics of exponential growth. Now we will go over the concept of exponential growth, focusing on the idea of exponential growth as a <strong>positive feedback loop</strong>.</p>
+<p>In lab we went over the mathematics of exponential growth. Now we
+will go over the concept of exponential growth, focusing on the idea of
+exponential growth as a <strong>positive feedback loop</strong>.</p>
 <p><img src="positivefeedback1.png" /></p>
 </div>
 <div id="in-class-exercise-positive-feedbacks" class="section level2">
 <h2>In-class Exercise: positive feedbacks</h2>
-<p><strong>Feedbacks</strong> in systems occur when the input and output rates (e.g., births and deaths per year) depend upon the value of the stock (e.g., a wild population!).</p>
-<p>Feedbacks are what leads to complex (‘interesting’) system behaviors and unexpected emergent properties.</p>
-<p>A reinforcing, or <strong>positive feedback</strong> (often called a ‘vicious circle’) leads to <em>exponential growth</em>, leading to insanely high numbers given enough time!</p>
-<p>A <strong>negative feedback</strong> is stabilizing, leading to nice, orderly, regulated systems (and homeostasis in organismal biology!). We’ll talk more about negative feedbacks in populations soon enough (population regulation).</p>
-<p>In the previous in-class exercise the model structure produced linear growth as the [Flow] added a fixed amount to the [Stock] in each time step.</p>
-<p><strong>Q</strong>: What do the following have in common: snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer?</p>
+<p><strong>Feedbacks</strong> in systems occur when the input and output
+rates (e.g., births and deaths per year) depend upon the value of the
+stock (e.g., a wild population!).</p>
+<p>Feedbacks are what leads to complex (‘interesting’) system behaviors
+and unexpected emergent properties.</p>
+<p>A reinforcing, or <strong>positive feedback</strong> (often called a
+‘vicious circle’) leads to <em>exponential growth</em>, leading to
+insanely high numbers given enough time!</p>
+<p>A <strong>negative feedback</strong> is stabilizing, leading to nice,
+orderly, regulated systems (and homeostasis in organismal biology!).
+We’ll talk more about negative feedbacks in populations soon enough
+(population regulation).</p>
+<p>In the previous in-class exercise the model structure produced linear
+growth as the [Flow] added a fixed amount to the [Stock] in each time
+step.</p>
+<p><strong>Q</strong>: What do the following have in common: snowball,
+people, rabbits, fire, bacteria, fleas, savings accounts, cancer?</p>
 <p>Let’s build a model to help us better understand this process.</p>
-<p>This model adds a <strong>feedback</strong> using a [Link] from the [Stock] back into the [Flow]. The [Link] communicates the value of the [Stock] to the [Flow]. A [Link] only communicates information from one element of the model to another, it doesn’t actually change the value of the [Stock] (that is what a [Flow] does).</p>
+<p>This model adds a <strong>feedback</strong> using a [Link] from the
+[Stock] back into the [Flow]. The [Link] communicates the value of the
+[Stock] to the [Flow]. A [Link] only communicates information from one
+element of the model to another, it doesn’t actually change the value of
+the [Stock] (that is what a [Flow] does).</p>
 <ol style="list-style-type: decimal">
-<li><p>Open InsightMaker. Create a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and just name them <em>Stock</em> and <em>Flow</em> for now.</p></li>
-<li><p>If you mouse over <em>Stock</em> or <em>Flow</em> a small [<span class="math inline">\(=\)</span> Sign] will appear. If you click this it will open the <strong>Equation</strong> window where you can set values or equations. Open this window for the [Stock], enter a value of 1, then close the window.</p></li>
-<li><p>The value of the [Stock] can be communicated to the [Flow] with a [Link] (representing a feedback process!). To create a [Link], click <strong>Link</strong> in the <strong>Connections</strong> part of the toolbar (at the top). When you mouse over the [Stock] click on the blue arrow, drag the [Link] to the [Flow] and release. You now have a [Link] on top of the [Flow]. Now hold the Shift Key and click in the middle of the [Link] and a little green node will be created on the [Link]. You can select this node and drag it up so the [Link] isn’t directly on top of the [Flow] (now you can see the [Link]).</p></li>
-<li><p>Usually there is some type of factor governing the <strong>rate</strong> the [Stock] influences the [Flow]. Let’s introduce a [Variable] named <em>Rate</em>. To create a [Variable], right-click on the canvas and select <strong>Variable</strong> from the drop-down. Now draw a [Link] from <em>Rate</em> to the [Flow]. Open the <strong>Equation</strong> window for <em>Rate</em> and set it to 0.5.</p></li>
-<li><p>Open the <strong>Equation</strong> window for the [Flow] and set it to [Stock] times [Rate]. That is, the total inflow into the [Stock] is equal to the value of the [Stock] multiplied by the value of <em>Rate</em>.</p></li>
-<li><p>Now click [Run Simulation] and you have just finished your first reinforcing loop simulation model! Does it do what you would expect?</p></li>
+<li><p>Open InsightMaker. Create a [Stock] and a [Flow] as you did in
+the previous model (flow should be an input, not an output) and just
+name them <em>Stock</em> and <em>Flow</em> for now.</p></li>
+<li><p>If you mouse over <em>Stock</em> or <em>Flow</em> a small [<span
+class="math inline">\(=\)</span> Sign] will appear. If you click this it
+will open the <strong>Equation</strong> window where you can set values
+or equations. Open this window for the [Stock], enter a value of 1, then
+close the window.</p></li>
+<li><p>The value of the [Stock] can be communicated to the [Flow] with a
+[Link] (representing a feedback process!). To create a [Link], click
+<strong>Link</strong> in the <strong>Connections</strong> part of the
+toolbar (at the top). When you mouse over the [Stock] click on the blue
+arrow, drag the [Link] to the [Flow] and release. You now have a [Link]
+on top of the [Flow]. Now hold the Shift Key and click in the middle of
+the [Link] and a little green node will be created on the [Link]. You
+can select this node and drag it up so the [Link] isn’t directly on top
+of the [Flow] (now you can see the [Link]).</p></li>
+<li><p>Usually there is some type of factor governing the
+<strong>rate</strong> the [Stock] influences the [Flow]. Let’s introduce
+a [Variable] named <em>Rate</em>. To create a [Variable], right-click on
+the canvas and select <strong>Variable</strong> from the drop-down. Now
+draw a [Link] from <em>Rate</em> to the [Flow]. Open the
+<strong>Equation</strong> window for <em>Rate</em> and set it to
+0.5.</p></li>
+<li><p>Open the <strong>Equation</strong> window for the [Flow] and set
+it to [Stock] times [Rate]. That is, the total inflow into the [Stock]
+is equal to the value of the [Stock] multiplied by the value of
+<em>Rate</em>.</p></li>
+<li><p>Now click [Run Simulation] and you have just finished your first
+reinforcing loop simulation model! Does it do what you would
+expect?</p></li>
 </ol>
-<p><strong>Q:</strong> If [Stock] is a population – say, rabbits – then what is the interpretation of [Flow]? What is the interpretation of <em>Rate</em>? <em>Rename your variables accordingly</em> and change the parameters to make the model more biologically realistic. Run the simulation again.</p>
-<p><strong>Q</strong> Recall the basic equation of exponential growth: <span class="math inline">\(\Delta N = r \cdot N_t\)</span>. How does it relate to the InsightMaker model you have just created? Which component of the equation refers to which component of the model in InsightMaker? [TopHat]</p>
+<p><strong>Q:</strong> If [Stock] is a population – say, rabbits – then
+what is the interpretation of [Flow]? What is the interpretation of
+<em>Rate</em>? <em>Rename your variables accordingly</em> and change the
+parameters to make the model more biologically realistic. Run the
+simulation again.</p>
+<p><strong>Q</strong> Recall the basic equation of exponential growth:
+<span class="math inline">\(\Delta N = r \cdot N_t\)</span>. How does it
+relate to the InsightMaker model you have just created? Which component
+of the equation refers to which component of the model in InsightMaker?
+[TopHat]</p>
 <ol start="7" style="list-style-type: decimal">
-<li>Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick a couple of these and try it out!</li>
+<li>Think about the first question above while doing this (snowball,
+people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How
+would you change the values to represent each of these quantities? Pick
+a couple of these and try it out!</li>
 </ol>
-<p>You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as <em>exponential growth</em>. If you’ve read the first chapter of the Gotelli book, you will recognize this as the <em>foundational concept of population ecology</em>!</p>
-<p><strong>Q</strong> Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations?? [TopHat]</p>
-<p><strong>Q</strong> Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate (<span class="math inline">\(r\)</span>) of the human population?? [TopHat] (NOTE: this is totally optional, but you could solve this analytically!)</p>
-<p>And just for fun, here is a <a href="https://www.youtube.com/watch?v=9znsuCphHUU&amp;list=PLE431532ABEAD0082">video</a> about exponential growth you might want to check out..</p>
+<p>You should notice that the population tends to grow slowly at first
+and then very rapidly. This is referred to as <em>exponential
+growth</em>. If you’ve read the first chapter of the Gotelli book, you
+will recognize this as the <em>foundational concept of population
+ecology</em>!</p>
+<p><strong>Q</strong> Can you model the puffball example from earlier in
+the lecture? How many giant puffballs are in the population after two
+generations?? [TopHat]</p>
+<p><strong>Q</strong> Can you (approximately) replicate the human
+population graph at the beginning of this lecture? What is the
+per-capita growth rate (<span class="math inline">\(r\)</span>) of the
+human population?? [TopHat] (NOTE: this is totally optional, but you
+could solve this analytically!)</p>
+<p>And just for fun, here is a <a
+href="https://www.youtube.com/watch?v=9znsuCphHUU&amp;list=PLE431532ABEAD0082">video</a>
+about exponential growth you might want to check out..</p>
 <p><a href="LECTURE3.html">–go to next lecture–</a></p>
 </div>
 

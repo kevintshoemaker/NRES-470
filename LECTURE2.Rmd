@@ -1,7 +1,7 @@
 ---
 title: 'Intro to population ecology'
 author: 'NRES 470/670'
-date: 'Spring 2022'
+date: 'Spring 2023'
 output: 
   html_document: 
     theme: spacelab
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-![](Human_population_growth_from_1800_to_2000.png)
+![](Human_population_growth_from_1800_to_2000.png){width=50%}
 
 ## Central Questions of Population Ecology
 
@@ -106,15 +106,15 @@ This model adds a **feedback** using a [Link] from the [Stock] back into the [Fl
 
 **Q:** If [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of *Rate*? *Rename your variables accordingly* and change the parameters to make the model more biologically realistic. Run the simulation again. 
 
-**Q** Recall the basic equation of exponential growth: $\Delta N = r \cdot N_t$. How does it relate to the InsightMaker model you have just created? Which component of the equation refers to which component of the model in InsightMaker? [TopHat]
+**Q** Recall the basic equation of exponential growth: $\Delta N = r \cdot N_t$. How does it relate to the InsightMaker model you have just created? Which component of the equation refers to which component of the model in InsightMaker? [PointSolutions]
 
 7. Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick a couple of these and try it out!
 
 You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
 
-**Q** Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations?? [TopHat]
+**Q** Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations?? [PointSolutions]
 
-**Q** Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate ($r$) of the human population?? [TopHat]  (NOTE: this is totally optional, but you could solve this analytically!)
+**Q** Can you (approximately) replicate the human population graph at the beginning of this lecture? What is the per-capita growth rate ($r$) of the human population?? [PointSolutions]  (NOTE: this is totally optional, but you could solve this analytically!)
 
 And just for fun, here is a [video](https://www.youtube.com/watch?v=9znsuCphHUU&list=PLE431532ABEAD0082) about exponential growth you might want to check out..
 
