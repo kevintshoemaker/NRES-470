@@ -1,50 +1,50 @@
-Week,Dates,Topic,Readings
-Week 1,1/17/2022,NO CLASS (MLK day),
-,1/19/2022,LECTURE: Course overview; Intro to Systems Thinking,BCTD Chapter 1 (optional)
-,1/21/2022,"LAB 1: Introduction to population modeling  in Excel, InsightMaker, and R",Gotelli Chapter 1
-Week 2,1/24/2022,LECTURE: Intro to Population Ecology; Exponential growth,Gotelli Chapter 1
-,1/26/2022,LECTURE: Malthus and exponential growth,
-,1/28/2022,LAB 1 (cont'd),
-Week 3,1/31/2022,LECTURE: Density-dependent growth,Gotelli Chapter 2
-,2/2/2022,LECTURE: Density-dependent growth,Gotelli Chapter 2
-,2/4/2022,LAB 2: Density-dependent populations in InsightMaker; maximum sustainable yield (MSY) and more (lab 1 due),
-Week 4,2/7/2022,LECTURE: Passenger pigeon/Allee Effect,
-,2/9/2022,LECTURE: Age-structured populations (instructor away),Gotelli Chapter 3
-,2/11/2022,LAB 3: Age-structured populations in Excel and InsightMaker (lab 2 due),
-Week 5,2/14/2022,LECTURE: Age-structured populations,
-,2/16/2022,LECTURE: Matrix population models (get in project groups),[Heppell 1998](heppell1.pdf)
-,2/18/2022,LAB 4: Matrix population models in R and InsightMaker (lab 3 due),
-Week 6,2/21/2022,NO CLASS: President's Day,
-,2/23/2022,LECTURE: Matrix population models,
-,2/25/2022,Work in final project groups: PVA proposals,
-Week 7,2/28/2022,LECTURE: Stochasticity and uncertainty,[Regan 2002](Regan_2002.pdf)
-,3/2/2022,LECTURE: Stochasticity and uncertainty,
-,3/4/2022,LAB 5: Stochasticity and uncertainty (lab 4 due) (group assignment: PVA proposals due),
-Week 8,3/7/2022,Review for Midterm #1,
-,3/9/2022,MIDTERM #1,
-,3/11/2022,PVA projects: group meetings (or make alternate arrangements for a group meeting time),
-Week 9,3/14/2022,NO CLASS: spring break,
-,3/16/2022,NO CLASS: spring break,
-,3/18/2022,NO CLASS: spring break,
-Week 10,3/21/2022,LECTURE: Small population paradigm,[Caughley 1994](caughley1.pdf) 
-,3/23/2022,LECTURE: Declining population paradigm,[Caughley 1994](caughley1.pdf) 
-,3/25/2022,Work on final projects (PVA models due apr 6) (lab 5 due),
-Week 11,3/28/2022,LECTURE: Population Viability Analysis,[Beissinger and Westphal 1998](beissinger1.pdf)
-,3/30/2022,LECTURE: Metapopulations,Gotelli Chapter 4
-,4/1/2022,LAB 6: Metapopulation modeling in InsightMaker ,
-Week 12,4/4/2022,LECTURE: Source-sink dynamics,[Griffin et al](griffin1.pdf)
-,4/6/2022,LECTURE: Parameter estimation (group assignment: PVA models due),[Amstrup et al Chapter 1](amstrup1.pdf)
-,4/8/2022,PVA projects: group meetings (working model and description),
-Week 13,4/11/2022,Review for Midterm #2 ,
-,4/13/2022,MIDTERM #2,
-,4/15/2022,LAB 7 (optional): Parameter estimation: mark-recapture data (lab 6 due),
-Week 14,4/18/2022,LECTURE: Species interactions: competition (final project: complete drafts due),Gotelli Chapter 5
-,4/20/2022,LECTURE: Species interactions: competition,
-,4/22/2022,LAB: Final Project Peer Review (submit peer review),
-Week 15,4/25/2022,LECTURE: Species interactions: predator-prey ,Gotelli Chapter 6
-,4/27/2022,LECTURE: STUDENT PRESENTATIONS,
-,4/29/2022,LAB: STUDENT PRESENTATIONS,
-Week 16,5/2/2022,LECTURE: Final Class Review,
-,5/4/2022,NO CLASS: Prep Day,
-,5/6/2022,FINAL EXAM (9:50 to 11:50am),
-Week 17,5/11/2022,FINAL PAPERS DUE (last day of finals),
+Week,Dates,Topic,Readings,Due
+Week 1,1/23/2023,LECTURE: [Course overview](INTRO.html); [Intro to Systems Thinking](LECTURE1.html),,
+,1/25/2023,LECTURE: [Intro to Population Ecology; Exponential growth](LECTURE2.html),Gotelli Chapter 1,
+,1/27/2023,"LAB 1: [Introduction to population modeling  in Excel, InsightMaker, and R](LAB1.html)",Gotelli Chapter 1,
+Week 2,1/30/2023,LECTURE: [Malthus and exponential growth](LECTURE3.html),,
+,2/1/2023,LECTURE: [Density-dependent population growth](LECTURE4.html),Gotelli Chapter 2,
+,2/3/2023,[LAB 1 (cont'd)](LAB1.html),,
+Week 3,2/6/2023,LECTURE: [Density-dependent population growth](LECTURE4.html),Gotelli Chapter 2,
+,2/8/2023,LECTURE: [Passenger pigeon/Allee Effect](LECTURE5.html),,
+,2/10/2023,LAB 2: [Density-dependent populations in InsightMaker; MSY](LAB2.html),,Lab 1
+Week 4,2/13/2023,LECTURE: [Age-structured populations](LECTURE6.html),Gotelli Chapter 3,
+,2/15/2023,LECTURE: [Age-structured populations](LECTURE6.html),Gotelli Chapter 3,
+,2/17/2023,LAB 3: [Age-structured populations in Excel and InsightMaker](LAB3.html),,Lab 2
+Week 5,2/20/2023,President's Day (no class),,
+,2/22/2023,LECTURE: [Matrix population models](LECTURE7.html),Gotelli Chapter 3,[Get in project groups](FINAL_PROJECTS.html)
+,2/24/2023,LAB 4: [Matrix population models in R and InsightMaker](LAB4.html),,Lab 3
+Week 6,2/27/2023,LECTURE: [Matrix population models](LECTURE7.html),[Heppell 1998](heppell1.pdf),
+,3/1/2023,LECTURE: [Stochasticity and uncertainty](LECTURE8.html),[Regan 2002](Regan_2002.pdf),
+,3/3/2023,[Work in final project groups: PVA proposals](FINAL_PROJECTS.html),,
+Week 7,3/6/2023,LECTURE: [Stochasticity and uncertainty](LECTURE8.html),,
+,3/8/2023,TBD,,
+,3/10/2023,LAB 5: [Stochasticity and uncertainty](LAB5.html),,"PVA proposals, Lab 4"
+Week 8,3/13/2023,Review for Midterm #1,,
+,3/15/2023,MIDTERM #1,,
+,3/17/2023,[PVA projects](FINAL_PROJECTS.html): group meetings (or make alternate arrangements for a group meeting time),,
+Week 9,3/20/2023,Spring Break (no class),,
+,3/22/2023,Spring Break (no class),,
+,3/24/2023,Spring Break (no class),,
+Week 10,3/27/2023,LECTURE: [Small population paradigm](LECTURE9.html),[Caughley 1994](caughley1.pdf) ,
+,3/29/2023,LECTURE: [Declining population paradigm](LECTURE11.html),[Caughley 1994](caughley1.pdf) ,
+,3/31/2023,Work on final projects (PVA models due apr 6) (lab 5 due),,
+Week 11,4/3/2023,LECTURE: [Population Viability Analysis](LECTURE12.html),[Beissinger and Westphal 1998](beissinger1.pdf),
+,4/5/2023,LECTURE: [Metapopulations](LECTURE13.html),Gotelli Chapter 4,
+,4/7/2023,LAB 6: [Metapopulation modeling in InsightMaker](LAB6.html),,
+Week 12,4/10/2023,LECTURE: [Source-sink dynamics](LECTURE13.html),[Griffin et al](griffin1.pdf),
+,4/12/2023,LECTURE: [Parameter estimation](LECTURE15.html),[Amstrup et al Chapter 1](amstrup1.pdf),PVA models due
+,4/14/2023,[PVA projects](FINAL_PROJECTS.html): group meetings (working model and description),,
+Week 13,4/17/2023,Review for Midterm #2 ,,
+,4/19/2023,MIDTERM #2,,
+,4/21/2023,LAB 7: [Parameter estimation: mark-recapture data](LAB7.html),,Lab 6
+Week 14,4/24/2023,LECTURE: [Species interactions: competition](LECTURE16.html),Gotelli Chapter 5,Complete PVA drafts
+,4/26/2023,LECTURE: [Species interactions: competition](LECTURE16.html),,
+,4/28/2023,LAB: Final Project Peer Review (submit peer review),,
+Week 15,5/1/2023,LECTURE: [Species interactions: predator-prey](LECTURE17.html),Gotelli Chapter 6,
+,5/3/2023,LECTURE: STUDENT PRESENTATIONS,,
+,5/5/2023,LAB: STUDENT PRESENTATIONS,,
+Week 16,5/8/2023,LECTURE: Final Class Review,,
+,5/10/2023,NO CLASS: Prep Day,,
+,5/12/2023,FINAL EXAM (9:50 to 11:50am),,
+Week 17,5/15/2023,FINAL PAPERS DUE (last day of finals),,Final PVA write-up

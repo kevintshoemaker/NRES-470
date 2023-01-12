@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Applied Population Ecology, Spring 2022" />
+<meta name="author" content="Applied Population Ecology, Spring 2023" />
 
 
 <title>Welcome to NRES 470/670</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -400,7 +404,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -451,7 +455,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Welcome to NRES 470/670</h1>
-<h4 class="author">Applied Population Ecology, Spring 2022</h4>
+<h4 class="author">Applied Population Ecology, Spring 2023</h4>
 
 </div>
 
@@ -461,17 +465,29 @@ div.tocify {
 <strong>Phone:</strong> 775-682-7449<br />
 <strong>Email</strong>: kevinshoemaker_at_unr_dot_edu<br />
 <strong>Office hours</strong>: M 4pm in FA 220e<br />
-<strong>Course Website</strong>: <a href="https://kevintshoemaker.github.io/NRES-470/">https://kevintshoemaker.github.io/NRES-470/</a></p>
-<p><strong>Teaching Assistant</strong> Margarete Walden (mwalden_dot_unr_dot_edu)<br />
-<strong>TA Office hours</strong>: T 3pm in FA 235</p>
+<strong>Course Website</strong>: <a
+href="https://kevintshoemaker.github.io/NRES-470/">https://kevintshoemaker.github.io/NRES-470/</a></p>
+<p><strong>Teaching Assistant</strong> Sage Ellis<br />
+<strong>TA Office hours</strong>: TBD</p>
 <div id="course-meeting-times" class="section level3">
 <h3>Course Meeting Times</h3>
-<p><strong>Lecture &amp; Discussion</strong>: M, W at 10am (50 mins) in AB 213<br />
+<p><strong>Lecture &amp; Discussion</strong>: M, W at 10am (50 mins) in
+WRB 3046<br />
 <strong>Lab</strong>: F at 1pm (2 hrs 45 mins) in FA 301</p>
 </div>
 <div id="course-description" class="section level3">
 <h3>Course description</h3>
-<p>This class will explore how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We will emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management using simulation models and statistics. Topics will include population viability analysis (PVA), habitat suitability models, metapopulation models, competition and predation models, threats to population viability, wildlife population management and more. Laboratory exercises will provide students with hands-on experience with population models and their practical applications in the conservation and management of wild populations.</p>
+<p>This class will explore how concepts of population ecology can be
+used to inform the conservation and management of natural populations
+and ecosystems. We will emphasize practical approaches to
+problem-solving in ecology, conservation, and wildlife management using
+simulation models and inferential statistics. Topics will include
+Population Viability Analysis (PVA), habitat suitability,
+metapopulations, species interactions (competition and predation),
+threats to wild populations, wildlife management and more. Laboratory
+exercises will provide students with hands-on experience with wildlife
+population models and their practical applications in wildlife ecology
+and management.</p>
 </div>
 <div id="prerequisites" class="section level3">
 <h3>Prerequisites</h3>
@@ -484,128 +500,260 @@ div.tocify {
 <div id="texts" class="section level3">
 <h3>Texts</h3>
 <ul>
-<li><a href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182">Gotelli, N. J. A primer of ecology</a><br />
+<li><a
+href="https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182">Gotelli,
+N. J. A primer of ecology</a><br />
 </li>
-<li>optional: <a href="http://beyondconnectingthedots.com/">Beyond Connecting the Dots</a> (free download)<br />
-</li>
-<li>Additional readings from the primary literature will be assigned for discussion periodically.</li>
+<li>Additional readings will be assigned for discussion
+periodically.</li>
 </ul>
 </div>
 <div id="software" class="section level3">
 <h3>Software</h3>
 <ul>
-<li><a href="https://insightmaker.com/">InsightMaker- free web-based systems modeling tool</a>(no installation needed)<br />
+<li><a href="https://insightmaker.com/">InsightMaker- web-based systems
+modeling tool</a>(free, no installation needed)<br />
 </li>
-<li><a href="https://cran.r-project.org/">R- free statistical programming language</a><br />
+<li><a href="https://cran.r-project.org/">R- software for statistical
+computing and graphics</a> (free, open-source)<br />
 </li>
-<li>MS Excel (hopefully you already have this or equivalent spreadsheet software on your laptop!)</li>
+<li>Spreadsheet software (MS Excel, Google Sheets or equivalent)</li>
+<li>PointSolutions (interactive classroom software- sign up via
+WebCampus)</li>
 </ul>
 </div>
 <div id="student-learning-outcomes" class="section level3">
 <h3>Student Learning outcomes</h3>
-<p>SLO 1. Identify the major classes of models used by ecologists (e.g., statistical vs mechanistic, quantitative vs heuristic, stochastic vs deterministic) and explain how and why ecologists use these models.<br />
-SLO 2. Apply tools such as population viability analysis (PVA) and metapopulation models to address the conservation and management of natural populations.<br />
-SLO 3. Perform basic statistics, data visualization, simulation modeling and model validation with Excel, the statistical computing language ‘R’, and the web-based software, InsightMaker.<br />
-SLO 4. Critically evaluate the strength of inferences drawn from ecological simulation models using tools such as sensitivity analysis.<br />
-SLO 5. Explain how species interactions can influence population dynamics (e.g., predictions of species range shifts).<br />
-SLO 6. Communicate original research in applied population and community ecology via professional-style oral and written presentations.</p>
+<p>SLO 1. Explain how and why simulation models are used by ecologists
+and wildlife professionals.<br />
+SLO 2. Apply tools such as population viability analysis (PVA) and
+metapopulation models to address the conservation and management of wild
+populations.<br />
+SLO 3. Perform basic statistics, data visualization, simulation modeling
+and model validation with Excel, the statistical computing language ‘R’,
+and the web-based software, InsightMaker.<br />
+SLO 4. Critically evaluate the strength of inferences drawn from
+ecological simulation models using tools such as sensitivity
+analysis.<br />
+SLO 5. Explain how species interactions can influence population
+dynamics (e.g., predictions of species range shifts).<br />
+SLO 6. Communicate original research in applied population and community
+ecology via professional-style oral and written presentations.</p>
 </div>
 <div id="grading" class="section level3">
 <h3>Grading:</h3>
 <p>The course grade will be based on the following components:</p>
-<p>Lab exercises (7 total) 20% (70 points)<br />
-Quizzes and participation 10% (40 points)<br />
-Group project 25% (100 points)<br />
+<p>Lab exercises (7 total) 20% (80 points)<br />
+Lectures/participation 10% (40 points)<br />
+Group project 30% (120 points)<br />
 Midterm exam # 1 (date TBD) 10% (40 points)<br />
 Midterm exam # 2 (date TBD) 10% (40 points)<br />
-Final exam (5/8/2020) 25% (100 points)</p>
-<p>NOTE: Graduate students enrolled in NRES 670 will have an additional 50 pts used to calculate their grade (see below) of a total of 370 points.<br />
-Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82 to 80), C+ (79 to 77), C (76 to 73), C- (72 to 70), D+ (69 to 67), D (66 to 63), D- (62 to 60), F (below 60).</p>
+Final exam 20% (80 points)</p>
+<p>NOTE: Graduate students enrolled in NRES 670 will have an additional
+50 pts used to calculate their grade (see below) of a total of 370
+points.<br />
+Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to
+83), B- (82 to 80), C+ (79 to 77), C (76 to 73), C- (72 to 70), D+ (69
+to 67), D (66 to 63), D- (62 to 60), F (below 60).</p>
 </div>
 <div id="exams" class="section level3">
 <h3>Exams:</h3>
-<p>There will be two midterm exams and a final exam, all of which will be cumulative, covering all course material covered up to the week prior to the exam. These will consist of multiple-choice, short-answer questions, and essay questions requiring synthesis of ideas and critical thinking. The midterm and final exams will be cumulative, and based on all information presented up through the week prior to the exam.</p>
+<p>There will be two midterm exams and a final exam, all of which will
+be cumulative, covering all course material covered up to the week prior
+to the exam. These will consist of multiple-choice, short-answer
+questions, and essay questions requiring synthesis of key concepts.</p>
 </div>
 <div id="lectures" class="section level3">
 <h3>Lectures</h3>
-<p>Lecture grades will be based primarily on participation and short quizzes. Participation is essential to the learning process (and to our mutual enjoyment of this class). Learning is not a passive process; students are expected to engage with the material in class rather than simply listen and take notes. You should be prepared in class to ask questions, to answer questions, and to engage in problem-solving activities.</p>
+<p>Lecture grades will be based primarily on participation and short
+quizzes. Participation is essential to the learning process (and to our
+mutual enjoyment of this class). Learning is not a passive process;
+students are expected to engage with the material in class rather than
+simply listen and take notes. You should be prepared in class to ask
+questions, to answer questions, and to engage in problem-solving
+activities.</p>
 </div>
 <div id="labs" class="section level3">
 <h3>Labs</h3>
-<p>Lab exercises will focus on applying concepts and methods introduced in lectures, and will involve real-world problems in wildlife conservation and management wherever possible. Graded lab assignments will involve figures, tables, InsightMaker models and R code (when applicable) and responses to questions in short-answer format.</p>
+<p>Lab exercises will focus on applying concepts and methods introduced
+in lectures, and will involve real-world problems in wildlife
+conservation and management wherever possible. Graded lab assignments
+will involve figures, tables, InsightMaker models and R code (when
+applicable) and responses to questions in short-answer format.</p>
 </div>
 <div id="final-group-project" class="section level3">
 <h3>Final group project</h3>
-<p>Students will work in groups of ~4 to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations.</p>
+<p>Students will work in groups of 3-4 to perform a population viability
+analysis (PVA) to rank conservation or management actions for a species
+of conservation concern (species of your choice!). Grading will be based
+on finished products (written and oral presentations) as well as
+participation and peer evaluations.</p>
 </div>
-<div id="graduate-credit-for-students-enrolled-in-nres-670" class="section level3">
+<div id="graduate-credit-for-students-enrolled-in-nres-670"
+class="section level3">
 <h3>Graduate credit (for students enrolled in NRES 670)</h3>
-<p>Graduate students will be subject to additional expectations in order to receive graduate credit for this course. In particular, graduate students will be expected to develop an original lecture and lead an original lab activity related to their lecture. Graduate students will also be expected to achieve a deeper understanding of the course material, and therefore will be assigned additional readings from the scientific literature and will be expected to participate as leaders in discussions and lab activities.</p>
+<p>Graduate students will be subject to additional expectations in order
+to receive graduate credit for this course. In particular, graduate
+students will be expected to develop an original lecture and lead an
+original lab activity related to their lecture. Graduate students will
+also be expected to achieve a deeper understanding of the course
+material, and therefore will be assigned additional readings from the
+scientific literature and will be expected to participate as leaders in
+discussions and lab activities.</p>
 </div>
 <div id="make-up-policy-and-late-work" class="section level3">
 <h3>Make-up policy and late work:</h3>
-<p>Missed exams and labs cannot be made up, except in the case of emergencies. If you miss a class meeting, it is your responsibility to talk to one of your classmates about what you missed. If you miss a lab meeting, you are still responsible for completing the lab activities and write-up on your own time. Whenever possible, please let me know in advance if you are going to miss class or lab.</p>
+<p>Missed exams and labs cannot be made up, except in the case of
+emergencies. If you miss a class meeting, it is your responsibility to
+talk to one of your classmates about what you missed. If you miss a lab
+meeting, you are still responsible for completing the lab activities and
+write-up. Let me or your TA know in advance if you are going to miss
+class or lab.</p>
 </div>
-<div id="top-hat" class="section level3">
-<h3>Top Hat</h3>
-<p>We will be using the <a href="www.tophat.com">Top Hat</a> interactive learning platform in class. You will be able to submit answers to in-class questions using Apple or Android smartphones and tablets, laptops, or through text message.</p>
-<p>You can visit the Top Hat Overview (<a href="https://success.tophat.com/s/article/Student-Top-Hat-Overview-and-Getting-Started-Guide" class="uri">https://success.tophat.com/s/article/Student-Top-Hat-Overview-and-Getting-Started-Guide</a>) within the Top Hat Success Center which outlines how you will register for a Top Hat account, as well as providing a brief overview to get you up and running on the system.</p>
-<p>An invitation will be sent to you by email, but if you don’t receive this email, you can register by simply visiting our course website: <a href="https://app.tophat.com/e/809153">https://app.tophat.com/e/809153</a><br />
-Note: our Course Join Code is 809153</p>
-<p>Top Hat may require a paid subscription, and a full breakdown of all subscription options available can be found here: <a href="www.tophat.com/pricing">www.tophat.com/pricing</a>.</p>
-<p>Should you require assistance with Top Hat at any time, due to the fact that they require specific user information to troubleshoot these issues, please contact their Support Team directly by way of email (<a href="support@tophat.com">support@tophat.com</a>), the in-app support button, or by calling 1-888-663-5491.</p>
+<div id="pointsolutions" class="section level3">
+<h3>PointSolutions</h3>
+<p>We will be using the PointSolutions interactive learning platform in
+class. You will be able to submit answers to in-class questions using
+Apple or Android smartphones and tablets, laptops, or through text
+message.</p>
+<p>You can sign up using the link on WebCampus. The cost is $15 per year
+for UNR students. For more information please see <a
+href="https://www.unr.edu/digital-learning/tools-and-technologies/student-response-systems/pointsolutions-students">https://www.unr.edu/digital-learning/tools-and-technologies/student-response-systems/pointsolutions-students</a></p>
 </div>
-<div id="students-with-disabilities" class="section level3">
-<h3>Students with Disabilities</h3>
-<p>Any student with a disability needing academic adjustments or accommodations is requested to speak with the Disability Resource Center (Thompson Building, Suite 101) as soon as possible to arrange for appropriate accommodations.</p>
+<div id="statment-on-disabilities-services" class="section level3">
+<h3>Statment on Disabilities Services</h3>
+<p>Any student with a disability needing academic adjustments or
+accommodations is requested to speak with me or the <a
+href="http://www.unr.edu/drc">Disability Resource Center</a> (Pennington
+Achievement Center Suite 230) as soon as possible to arrange for
+appropriate accommodations.</p>
 </div>
 <div id="statement-on-academic-dishonesty" class="section level3">
 <h3>Statement on Academic Dishonesty</h3>
-<p>Cheating, plagiarism or otherwise obtaining grades under false pretenses constitute academic dishonesty according to the code of this university. Plagiarism is using the ideas or words of another person without giving credit to the original source; this includes copying another student in class. Always cite the source of your information. This includes copying or paraphrasing from a book, journal, or unpublished material without giving credit to the author(s), and submitting a term paper that was used in another course. Academic dishonesty will not be tolerated and penalties can include filing a final grade of “F”; reducing the student’s final course grade one or two full grade points; awarding a failing mark on the coursework in question; or requiring the student to retake or resubmit the coursework. For more details, see the <a href="http://catalog.unr.edu/">University of Nevada, Reno General Catalog</a>.</p>
+<p>The University Academic Standards Policy defines academic dishonesty,
+and mandates specific sanctions for violations. See the University
+Academic Standards policy: <a
+href="https://www.unr.edu/administrative-manual/6000-6999-curricula-teaching-research/instruction-research-procedures/6502-academic-standards">UAM
+6,502</a>.</p>
+</div>
+<div id="statement-on-student-compliance-with-university-policies"
+class="section level3">
+<h3>Statement on Student Compliance with University Policies</h3>
+<p>In accordance with section 6,502 of the University Administrative
+Manual, a student may receive academic and disciplinary sanctions for
+failure to comply with policy, including this syllabus, for failure to
+comply with the directions of a University Official, for disruptive
+behavior in the classroom, or any other prohibited action. “Disruptive
+behavior” is defined in part as behavior, including but not limited to
+failure to follow course, laboratory or safety rules, or endangering the
+health of others. A student may be dropped from class at any time for
+misconduct or disruptive behavior in the classroom upon recommendation
+of the instructor and with approval of the college dean. A student may
+also receive disciplinary sanctions through the Office of Student
+Conduct for misconduct or disruptive behavior, including endangering the
+health of others, in the classroom. The student shall not receive a
+refund for course fees or tuition.</p>
 </div>
 <div id="statement-on-audio-and-video-recording" class="section level3">
 <h3>Statement on Audio and Video Recording</h3>
 <div id="student-created-recordings" class="section level4">
 <h4>Student-created Recordings</h4>
-<p>Surreptitious or covert video-taping of class or unauthorized audio recording of class is prohibited by law and by Board of Regents policy. This class may be videotaped, or audio recorded only with the written permission of the instructor. In order to accommodate students with disabilities, some students may have been given permission to record class lectures and discussions. Therefore, students should understand that their comments during class may be recorded.</p>
+<p>Surreptitious or covert video-taping of class or unauthorized audio
+recording of class is prohibited by law and by Board of Regents policy.
+This class may be videotaped, or audio recorded only with the written
+permission of the instructor. In order to accommodate students with
+disabilities, some students may have been given permission to record
+class lectures and discussions. Therefore, students should understand
+that their comments during class may be recorded.</p>
 </div>
 <div id="instructor-created-recordings" class="section level4">
 <h4>Instructor-created Recordings</h4>
-<p>Class sessions may be audio-visually recorded for students in the class to review and for enrolled students who are unable to attend live to view. Students who participate with their camera on or who use a profile image are consenting to have their video or image recorded. If you do not consent to have your profile or video image recorded, keep your camera off and do not use a profile image. Students who un-mute during class and participate orally are consenting to have their voices recorded. If you do not consent to have your voice recorded during class, keep your mute button activated and only communicate by using the “chat” feature, which allows you to type questions and comments live.</p>
+<p>Class sessions may be audio-visually recorded for students in the
+class to review and for enrolled students who are unable to attend live
+to view. Students who participate with their camera on or who use a
+profile image are consenting to have their video or image recorded. If
+you do not consent to have your profile or video image recorded, keep
+your camera off and do not use a profile image. Students who un-mute
+during class and participate orally are consenting to have their voices
+recorded. If you do not consent to have your voice recorded during
+class, keep your mute button activated and only communicate by using the
+“chat” feature, which allows you to type questions and comments
+live.</p>
 </div>
 </div>
-<div id="statement-for-academic-success-services" class="section level3">
+<div id="statement-for-academic-success-services"
+class="section level3">
 <h3>Statement for Academic Success Services</h3>
-<p>Your student fees cover usage of the University Math Center [(775) 784-4433], University Tutoring Center [(775) 784-6801], and [University Writing Center (775) 784-6030]. These centers support your classroom learning; it is your responsibility to take advantage of their services.</p>
+<p>Your student fees cover usage of the University Math Center [(775)
+784-4433], University Tutoring Center [(775) 784-6801], and [University
+Writing Center (775) 784-6030]. These centers support your classroom
+learning; it is your responsibility to take advantage of their
+services.</p>
 </div>
-<div id="this-is-a-safe-space" class="section level3">
-<h3>This is a safe space</h3>
-<p>The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the University’s Equal Opportunity &amp; Title IX office at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit the Equal Opportunity and Title IX page: <a href="http://www.unr.edu/equal-opportunity-title-ix" class="uri">http://www.unr.edu/equal-opportunity-title-ix</a>.</p>
+<div id="statement-on-maintaining-a-safe-learning-and-work-environment"
+class="section level3">
+<h3>Statement on Maintaining a Safe Learning and Work Environment</h3>
+<p>The University of Nevada, Reno is committed to providing a safe
+learning and work environment for all. If you believe you have
+experienced discrimination, sexual harassment, sexual assault,
+domestic/dating violence, or stalking, whether on or off campus, or need
+information related to immigration concerns, please contact the <a
+href="https://www.unr.edu/equal-opportunity-title-ix">University’s Equal
+Opportunity &amp; Title IX office</a> at 775-784-1547. Resources and
+interim measures are available to assist you. For more information,
+please visit the Equal Opportunity and Title IX page.</p>
 </div>
 <div id="statement-on-covid-19-policies" class="section level3">
 <h3>Statement on COVID-19 Policies</h3>
 <div id="face-coverings" class="section level4">
 <h4>Face Coverings</h4>
-<p>In response to COVID-19, and in alignment with State of Nevada Governor Executive Orders, Roadmap to Recovery for Nevada plans, Nevada System of Higher Education directives, the University of Nevada President directives, and local, state, and national health official guidelines face coverings are required at all times while on campus, except when alone in a private office. This includes the classroom, laboratory, studio, creative space, or any type of in-person instructional activity, and public spaces.</p>
-<p>A “face covering” is defined as a “covering that fully covers a person’s nose and mouth, including without limitation, cloth face mask, surgical mask, towels, scarves, and bandanas” (State of Nevada Emergency Directive 024).</p>
-<p>Students that cannot wear a face covering due to a medical condition or disability, or who are unable to remove a mask without assistance may seek an accommodation through the Disability Resource Center.</p>
-</div>
-<div id="social-distancing" class="section level4">
-<h4>Social Distancing:</h4>
-<p>In alignment with State of Nevada guidelines, social distancing is no longer required.</p>
+<p>Pursuant to Nevada law, NSHE employees, students and members of the
+public are not required to wear face coverings while inside NSHE
+buildings irrespective of vaccination status. However, students may
+elect wear face coverings if they choose.</p>
 </div>
 <div id="disinfecting-your-learning-space" class="section level4">
 <h4>Disinfecting Your Learning Space</h4>
-<p>Disinfecting supplies are provided for you to disinfect your learning space. You may also use your own disinfecting supplies.</p>
+<p>Disinfecting supplies are provided for your convenience to disinfect
+your learning space. You may also use your own disinfecting
+supplies.</p>
 </div>
-<div id="covid-19-like-symptoms-and-contact-with-someone-testing-positive-for-covid-19" class="section level4">
-<h4>COVID-19 Like Symptoms, and Contact with Someone Testing Positive for COVID-19</h4>
-<p>Students testing positive for COVID 19, exhibiting COVID 19 symptoms regardless of vaccination status will not be allowed to attend in-person instructional activities and must leave the venue immediately. Students should contact the Student Health Center or their health care provider to receive care and who can provide the latest direction on quarantine and self-isolation. Contact your instructor immediately to make instructional and learning arrangements.</p>
+<div id="testing-positive-for-covid-19-or-exhibiting-covid-19-symptoms"
+class="section level4">
+<h4>Testing Positive for COVID-19 or Exhibiting COVID-19 Symptoms</h4>
+<p>Students testing positive for COVID 19 or exhibiting COVID 19
+symptoms will not be allowed to attend in-person instructional
+activities and must leave the venue immediately. Students should contact
+the Student Health Center or their health care provider to receive care
+and information pertaining to the latest COVID 19 quarantine and
+self-isolation protocols. If you are required to quarantine or
+self-isolate, you must contact your instructor immediately to make
+instructional and learning arrangements.</p>
 </div>
-<div id="statement-on-failure-to-comply-with-policy-including-as-outlined-in-this-syllabus-or-directives-of-a-university-employee" class="section level4">
-<h4>Statement on Failure to Comply with Policy (including as outlined in this Syllabus) or Directives of a University Employee</h4>
-<p>In accordance with section 6,502 of the University Administrative Manual, a student may receive academic and disciplinary sanctions for failure to comply with policy, including this syllabus, for failure to comply with the directions of a University Official, for disruptive behavior in the classroom, or any other prohibited action. “Disruptive behavior” is defined in part as behavior, including but not limited to failure to follow course, laboratory or safety rules, or endangering the health of others. A student may be dropped from class at any time for misconduct or disruptive behavior in the classroom upon recommendation of the instructor and with approval of the college dean. A student may also receive disciplinary sanctions through the Office of Student Conduct for misconduct or disruptive behavior, including endangering the health of others, in the classroom. The student shall not receive a refund for course fees or tuition.</p>
+<div id="accommodations-for-covid-19-quarantined-students"
+class="section level4">
+<h4>Accommodations for COVID 19 Quarantined Students</h4>
+<p>For students who are required to quarantine or self-isolate due to
+testing positive for COVID or exhibiting COVID 19 symptoms, instructors
+must provide opportunities to make-up missed course work, including
+assignments, quizzes or exams. In courses with mandatory attendance
+policies, instructors shall not penalize students for missing classes
+while quarantined.</p>
 </div>
+</div>
+<div id="statement-for-academic-success-services-1"
+class="section level3">
+<h3>Statement for Academic Success Services</h3>
+<p>Your student fees cover usage of the <a
+href="https://www.unr.edu/university-math-center">University Math
+Center</a>, (775) 784-4433; <a
+href="https://www.unr.edu/tutoring-center">University Tutoring
+Center</a>, (775) 784-6801; and <a
+href="https://www.unr.edu/writing-speaking-center">University Writing
+&amp; Speaking Center</a>, (775) 784-6030. These centers support your
+classroom learning; it is your responsibility to take advantage of their
+services. Keep in mind that seeking help outside of class is the sign of
+a responsible and successful student.</p>
 </div>
 
 
