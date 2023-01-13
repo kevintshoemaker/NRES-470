@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-![](FoodWeb1.jpg){width=25%}
+![](FoodWeb1.jpg){width=50%}
 
 ## Systems ecology: a way of thinking   
 Ecology is messy. When we work in natural environments, we are dealing with *inherently complex systems*. _All elements in a natural system are connected_, full of dynamic interactions. Interactions among organisms, between organisms and their environments -- these linkages are what makes ecology messy, but also endlessly fascinating. 
@@ -58,6 +58,10 @@ A famous statistician ([George Box](https://en.wikipedia.org/wiki/George_E._P._B
 In this class (and beyond), _don't be afraid to model messy systems_. And above all, **don't be afraid to be wrong** - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don't forget that all models are wrong!
 
 Of course, this means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.
+
+## Class example: harvest of horseshoe crabs in Delaware Bay
+
+Brief intro to real-world example!
 
 ## In-class Exercise: InsightMaker
 
