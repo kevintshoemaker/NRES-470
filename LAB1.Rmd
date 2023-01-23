@@ -367,7 +367,7 @@ Modify the code again, this time change r to 0.3 instead of 0.09, and run this m
 
 *  ***Short answer (2h.)*** In 2g above, we defined extinction as <1 individual in the population. Propose one alternative definition of extinction and justify why your definition might make more sense than the definition used in 2g (feel free to use a real-world example).
 
-*  ***Text entry (2g.)*** Please copy and paste the R script you used to answer the above questions.
+*  ***Text entry (2i.)*** Please copy and paste the R script you used to answer the above questions.
 
 ## Exponential growth in InsightMaker
 
@@ -417,7 +417,7 @@ Now click on the white space of your model; you should now see the Birth Rate, P
 
 
 ## Checklist for Lab 1 completion
-* Please submit all files (Excel file as attachment in Top Hat and R script as text pasted into Top Hat) and responses via Top Hat. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
+* Please submit all files (Excel file as attachment in WebCampus and R script as text pasted into WebCampus) and responses via WebCampus. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
 
 ***Due Feb. 10***
 
@@ -441,7 +441,8 @@ Now click on the white space of your model; you should now see the Birth Rate, P
         -  *Short answer (2e.)*
         -  *Image upload (2f.)*
         -  *Short answer (2g.)*
-        -  *Copy and paste R code (2h.)*  Your R code should show that you were able to:        
+        -  *Short answer (2h.)*
+        -  *Copy and paste R code (2i.)*  Your R code should show that you were able to:        
             a. adapt the given code to run for 85 years, and can display a plot of the results;     
             b. change $r$ to 0.35 and run for 85 years and plot the results;     
             c. identify a value of $r$ that gives a population size of 1000 after 85 years; and     
