@@ -127,7 +127,7 @@ for(i in 2:length(x)){
     y[i] <- y[i-1]
   }
 }
-y
+#y
 plot(x,y,type="l",ylab="Abundance N",xlab="Time (years)",lwd=2,col="brown")
 
 
