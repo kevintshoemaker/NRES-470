@@ -1,3 +1,18 @@
+
+x <- c(1,rep(2:20,each=2))
+y = numeric(length(x)) 
+y[1] = 30
+for(i in 2:length(x)){
+  if(i%%2){
+    y[i] = y[i-1]*1.07
+  }else{
+    y[i] <- y[i-1]
+  }
+}
+y
+plot(x,y,type="l",ylab="Abundance N",xlab="Time (years)",lwd=2,col="brown")
+
+
 x <- 5     # define the variable 'x' as representing the value 5
 x          # Print the value stored in the object "x"
 r <- 0.1     #Assign the value of 0.1 to the object "r", or per-capita growth rate (discrete)
@@ -24,4 +39,7 @@ for (i in 2:(nyears+1)){  # This for-loop will run through the line of code betw
 }                         # This ends the for-loop.
 
 N                         # Now print the contents of the object "N".
+
+N30 = N0*lambda^nyears
+N30
 plot(N~year)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "year" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
