@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Density-dependence and more!"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -13,11 +13,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-In this lab we will have an opportunity to build more complex population models in InsightMaker. The most fundamental concept we cover in this lab is *density dependence*, but we will also look at concepts like *chaos* and *time delays*.  
+In this lab we will have an opportunity to build more complex population models in InsightMaker. The most fundamental concept we cover in this lab is *logistic population growth* (the simplest model of "regulated", density-dependent population growth), but we will also look at concepts like *chaos* and *time delays*.  
 
 First let's do some math!
 
-## Mathematics of Density-Dependent population regulation
+## Mathematics of Density-Dependent population growth
 
 Recall the basic population growth equation:
 
@@ -33,11 +33,11 @@ For the death rate *d* we might expect it to go up as abundance goes up (becomes
 
 $d = d_{min}+c*N_t \qquad \text{(Eq. 3)}$
 
-The above equations nicely illustrate the meaning of density dependence. That is, one or more vital rates are *dependent* on density!
+The above equations nicely illustrate the meaning of density dependence. That is, one or more of the 'population vital rates' (b and d, which we previously modeled as constants in lab 1) are actually *dependent* on density!
 
 **Q**: what do the *a* and *c* constants in the above equations really represent? You will have a chance to think more about this in the first exercise. 
 
-Okay, now we can substitute the above equations into **Eq. 1**:
+Now we can substitute the above equations into **Eq. 1**:
 
 $\Delta N = ((b_{max}-a*N_t) - (d_{min}+c*N_t)) \cdot N_t \qquad \text{(Eq. 4)}$
 
@@ -51,31 +51,31 @@ Which, if we define $\frac{b-d}{a+c}$ as a constant, $K$, we can re-write like t
 
 $\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )  \qquad \text{(Eq. 6)}$
 
-This is called the **Logistic population growth equation**. This lab will give us an opportunity to get to know this equation and its implications for population ecology!
+You should be aware that this equation is equivalent to $\Delta N = r \cdot N_t \cdot \left ( \frac{K-N}{K}  \right )$. You will see both versions used in the literature!
 
+This is called the **Logistic population growth equation**. This lab will give us an opportunity to get to know this equation and its implications for population ecology!
 
 ## Exercise 1: hypothetical mechanisms of density dependence
 
 Please provide short answers to the following questions:
 
-1a. Tell a plausible story about a wildlife population that experiences *lower population growth* (per-capita growth rate, *r*, decreases) as population density increases. Please write ~2-3 sentences describing why the per-capita rate of population growth decreases as density increases. Be creative- this is a chance to think about the many possible mechanisms that could regulate wild populations in real ecological systems. Try to be as realistic as possible- but hypothetical examples are okay too, as long as they are plausible!   
+1a. Tell a plausible story about a wildlife population that experiences *lower population growth rates* as population size (density) increases (i.e., per-capita growth rate, *r*, decreases as abundance *N* increases). Please write ~2-3 sentences describing why the per-capita rate of population growth decreases as density increases. Be creative- this is a chance to think about the many possible mechanisms that could regulate wild populations in the real world. Try to be as realistic as possible- but hypothetical examples are okay too, as long as they are plausible!   
 
-1b. For the population you described in 1a above, please draw two graphs (see below for an easy way to do this electronically): one illustrating how the per-capita growth rate, *r*) changes with increasing population density, and the other illustrating how abundance (N) is likely to change over time (starting with very low abundance- much less than K). Specifically:         
+NOTE: for the following two questions, you can use a web app like ["Web whiteboard"](https://webwhiteboard.com/) to quickly and easily make and save sketches! You could also simply take a photo of a hand-drawing on paper, or use any drawing application (e.g., MS Paint). Either way, upload your sketches as an image in WebCampus.
 
-  i. Draw a plot with the per-capita population growth rate (*r*) on the Y axis, and abundance (N) on the X axis. Please also indicate the location of carrying capacity (K) on the X axis, and the location of the maximum rate of population growth ($r_{max}) on the Y axis.      
-  ii. Draw a plot with abundance (N) on the Y axis and time (t) on the X axis. Assume the initial population size (N0) is well below carrying capacity (N << K). Please also indicate carrying capacity (K) on your figure.      
+1b. For the population you described in 1a above, please draw a graph illustrating how the per-capita growth rate, (*r*) changes with increasing population density. Specifically, draw a plot with the per-capita population growth rate (*r*) on the Y axis, and abundance (*N*) on the X axis. Indicate the location of carrying capacity (K) on the X axis, and the location of the maximum rate of population growth ($r_{max}$) on the Y axis.  
+
+1c. For the population you described in 1a above, please draw a graph illustrating how abundance (N) is likely to change over time (starting with very low abundance- much less than K). Specifically, draw a plot with abundance (N) on the Y axis and time (t) on the X axis. Assume the initial population size (N0, or abundance at time 0) is well below carrying capacity (N << K). Indicate carrying capacity (K) as a horizontal line on your figure.      
     
-NOTE: you can use a web app like ["Web whiteboard"](https://webwhiteboard.com/) to quickly and easily make and save sketches! You could also simply take a photo of a hand-drawing on paper. Either way, embed your sketches in your Top Hat answer. 
-  
-1c. For your first plot (r vs. N) above, please provide a short (2-3 sentence) description of why the density-dependence mechanism you described in 1a would produce the shape of the curve you chose to draw! (i.e., if you drew a constant linear decline in r as N increases, justify why per-capita growth would drop off by a constant amount for each new individual added to the population).   
+1d. Referring to your answers to 1a (description of why per-capita growth rate declines with abundance for your specific example) and 1b (graph of how r changes as N increases for your specific example), please provide a short (2-3 sentence) justification for the shape of the curve you chose to draw to represent this density-dependence relationship (r vs N; answer to 1b) (i.e., if you drew a constant linear decline in r as N increases, justify why per-capita growth would fall by an equal amount for each new individual added to the population).   
 
 ## Exercise 2: Determining Peruvian anchovy optimal harvest levels!
 
-Let's use InsightMaker to create a logistic growth model based on the collapse of the Peruvian anchovy fisheries (pages 45-47 in Gotelli).
+In this exercise we will use InsightMaker to create a logistic growth model based on the collapse of the Peruvian anchovy fisheries (pages 45-47 in Gotelli).
 
 As you develop the logistic growth model for the Peruvian anchovy stock in InsightMaker, you might want to refer to the in-class example for [the population regulation lecture](LECTURE4.html).
 
-**The Goal**: find the maximum sustainable harvest yield!
+**The Goal**: find the maximum sustainable yield! (i.e., identify the maximum amount you can harvest each time step without causing the population to crash)
 
 1.   In InsightMaker, open your basic exponential growth model (with explicit terms for birth and death rates, like you did in lab 1) and choose "Clone Insight" in the upper right corner to create a new copy that you can edit for this exercise. It should look something like this (see below; except for anchovies, not rabbits!). Note that it is not strictly necessary to have [Links] going from [Stocks] (e.g., *Population*) to connected [Flows] (e.g., *Total Births* and *Total Deaths*; InsightMaker assumes that flows may depend on the stocks they connect to). But it makes your models more visually explicit- now you know which parts of the system are interacting and what feedback mechanisms are occurring!)
 
@@ -102,11 +102,11 @@ Density <- seq(0,15000,10)  # create a sequence of numbers from 0 to 15000, repr
 
 ## CONSTANTS
 
-b_max <- 0.85   # maximum reproduction (at low densities)
-d_min <- 0.3  # minimum mortality (at low densities)
+b_max <- 0.9   # maximum reproduction (at low densities)
+d_min <- 0.2  # minimum mortality (at low densities)
 
-a <- 0.00007    # D-D terms
-c <- 0.00003
+a <- 0.00009    # D-D terms
+c <- 0.00006
 
 b <- b_max - a*Density
 d <- d_min + c*Density
@@ -121,90 +121,110 @@ legend("topleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate
 
 ```
 
-4.  Next, you'll need to update the equations to calculate the per-capita birth and death rates. Click on the **=** sign in the corner of each variable, and enter the appropriate equations for the appropriate rates (see above):
+4.  Next, you'll need to update the equations to calculate the per-capita birth and death rates. Open the equation editor window for each variable, and enter the appropriate equations for the appropriate rates (see above):
 
-5.  Enter starting values for your variables. Let's use 5500 for the initial *Anchovy Population*, 0.85 for the *Ideal Birth Rate* (maximum  birth rate), 0.00007 for *Density Dependence* for birth rate, 0.3 for *Ideal Death Rate*, and 0.00003 for *Density Dependence* for death rate.
+5.  Enter starting values for your variables. Let's use 4670 for the initial *Anchovy Population*, 0.9 for the *Ideal Birth Rate* (maximum  birth rate), 0.00009 for *Density Dependence* for birth rate, 0.2 for *Ideal Death Rate*, and 0.00006 for *Density Dependence* for death rate.
 
-6.  Use the **Settings** button to change the **Simulation Length** to 24 and the timescale to "Months". Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis. Run the model to see if it is working. _Since the abundance is initialized at carrying capacity (K), abundance should not change over time_. Change the initial abundance to a small number (e.g., 10) temporarily to make sure that you see an "S-shaped" logistic growth curve. Once you have confirmed that you see S-shaped (logistic) population growth, return the initial population size to 5500. 
+6.  Use the **Settings** button to change the **Simulation Length** to 120 and the timescale to "Months" (run the model for 10 years, in time increments of 1 month). Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis. Run the model to see if it is working. _Since the abundance is initialized at carrying capacity (K), abundance should not change over time_. Change the initial abundance to a small number (e.g., 10) temporarily to confirm that you see an "S-shaped" logistic growth curve. Once you have confirmed that you see S-shaped (logistic) population growth, return the initial population size to 4670. 
 
-7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality (40% per year) and density-dependent effects). This new source of mortality is commercial fishing! This source of mortality should be a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a constant number are harvested each year, regardless of the size of the population (no feedback!).
+7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality and density-dependent effects). This new source of mortality is commercial fishing! To add this source of mortality, create a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a constant number are harvested each year, regardless of the size of the population.
 
-8. One last thing before we play around with harvest rates: in the properties menu for the anchovy stock (abundance), set the property **Allow Negatives** to "No" (the default is "Yes"). We don't want any possibility of over-harvest producing negative abundances!!!
+8. One last thing before we play around with harvest rates: in the properties menu for the anchovy stock (abundance), set the property **Allow Negatives** to "No" (the default is "Yes"). We don't want any possibility of over-harvest producing negative abundances!!
 
-9.  Finally, try to find the **maximum sustainable yield (MSY)** for this population. That is, find the *maximum harvest rate* that results in a sustainable (non-declining) population. To do this, try different rates of harvest- I recommend using increments of 100 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! 
+9.  Finally, try to find the **maximum sustainable yield (MSY)** for this population. That is, find the *maximum harvest rate* that results in a sustainable population (i.e., that doesn't cause the population to crash). To do this, try different rates of harvest- I recommend using increments of 100 at first, then narrowing down to smaller increments. Otherwise you might be here a while!! 
+
+HINT: you may want to create a slider bar so you can easily adjust the monthly harvest rate in this model.
+
+HINT: you might want to increase the simulation length to make sure your harvest rate is really sustainable- that is, to make absolutely sure that the population won't crash even many years into the future!
 
 
 ### QUESTIONS, Exercise 2:
 
-2a. What is the approximate maximum sustainable yield (MSY) for this population (i.e., the maximum number of individuals that can be harvested sustainably each month)?  [HINT: you might want to increase the simulation length to make sure it's really sustainable!]. What does the graph of abundance over time look like when the population is harvested at a value that is close to, but exceeds, the MSY (e.g., 10 individuals greater than MSY harvested each year)?
+2a. What is the approximate maximum sustainable yield (MSY) for this population (i.e., the maximum number of individuals that can be harvested each month without causing the population to crash)?
 
-2b. What is the approximate equilibrium abundance (the population size when it stabilizes) when the population is harvested at the maximum sustainable yield (MSY) you identified in 2a.? Express this new equilibrium as a fraction of carrying capacity.  
+2b. Please set the harvest rate to 10 more than the harvest rate you identified in 2a above. Run this model in InsightMaker for 120 time steps (months) and upload the resulting plot of abundance over time.
 
-2c. Does the maximum number of individuals you can sustainably harvest each month (the MSY harvest level) change if you reduce the initial population size to 1000 instead of 5500? If so, what is the new MSY when you initialize abundance at 1000? 
+2c. What is the approximate equilibrium abundance when the population is harvested at the maximum sustainable harvest rate identified in 2a? Given carrying capacity $K$ for this population is approximately 4670, express this new equilibrium as a fraction of carrying capacity.  
 
-2d. Does the MSY equilibrium point (the equilibrium when harvest rate is set to its maximum sustainable rate) represent a **stable equilibrium**? That is, does the total anchovy abundance return to the same equilibrium point even if you alter the initial anchovy abundance? Why? Why not? Include one or two plots from InsightMaker to illustrate. [HINT: start with initial abundance set to the equilibrium abundance at MSY (answer to question 2b) and harvest level set to MSY (answer to 2a). Then, try setting the initial abundance a little higher/lower and re-run the model. Does abundance return to the same equilibrium point (stable equilibrium) -- or to a new equilibrium (unstable equilibrium)?]
+2d. Does the maximum number of individuals you can sustainably harvest each month (the MSY, or maximum sustainable harvest level) change if you reduce the initial population size to 1000 instead of 4670? If so, what is the new MSY when you initialize abundance at 1000? 
 
-2e. If you were managing this Peruvian anchovy system, would you recommend that harvest limits be set at the MSY level you determined in part 2a? Why or why not? (More generally, is it sustainable to harvest a population at the maximum 'sustainable' rate?). Consider the fact that population vital rates (birth and death rates) in real systems exhibit *stochasticity* (random fluctuations) and that we never know population vital rates (e.g., the intrinsic rate of growth, birth and death rates, density dependence parameters) with complete certainty.  
+2e. Does the MSY equilibrium (the equilibrium abundance when harvest rate is set to its maximum sustainable rate) represent a **stable equilibrium**? That is, does the total anchovy abundance return to the same equilibrium point even if you alter the initial anchovy abundance? Why? Why not? Justify your response. 
 
-2f. Think back to your Wildlife Ecology and Management course. If you know carrying capacity $K$ and the maximum per-capita rate of growth $r_{max}$ (intrinsic, or maximum, rate of growth for the population), how can you analytically solve for **Maximum Sustainable Yield** (maximum number of individuals that can be harvested sustainably)? Show your calculations. Does your analytical solution for MSY (maximum sustainable harvest rate) match the MSY you found by trial-and-error? (HINTS: use equation 6 as a starting point. Note that $r$ in this case is the difference between the maximum birth rate and the minimum death rate! Also, note that the population should have its highest growth potential (potentially sustainable yield) at exactly one-half of K [e.g., K/2]). 
+HINT: start with initial abundance set to the equilibrium abundance at MSY (answer to question 2c) and harvest rate set to MSY (answer to 2a). Then, try making the initial abundance a little higher or lower and then re-run the model. Does abundance return to this equilibrium point (making it a *stable equilibrium*) -- or does the system move to a new equilibrium (making it an *unstable equilibrium*)?]
 
-2g. Please share the URL for your Insight: save your Anchovy model as a 'Public Insight' and insert the URL into Top Hat in the appropriate place. And don't make any more changes to this insight once you have submitted it (use a 'cloned' version if you want to keep making changes)!   
+2f. You are a fisheries manager in charge of managing this Peruvian anchovy stock. Do you recommend allowing harvest to occur at the maximum sustainable rate you determined in part 2a? Why or why not? More generally, is it really *sustainable* to harvest a population at the maximum 'sustainable' rate?)? Consider that population vital rates (birth and death rates) in real systems exhibit *stochasticity* (random fluctuations) and that we never know population parameters (e.g., the intrinsic rate of growth, birth and death rates, density dependence parameters) with complete certainty.  
+
+2g. Using equation 6 as a starting point, try to analytically solve for **Maximum Sustainable Yield** (maximum number of individuals that can be harvested sustainably each time step)? Upload an image file to WebCampus showing your calculations (you can use a drawing app, a "web whiteboard" application, or upload a photo of your work).
+
+HINT: $r_{max}$ is the difference between the maximum birth rate and the minimum death rate! 
+
+HINT: the population should have its highest growth potential (potentially sustainable yield) at exactly one-half of K [e.g., K/2]). 
+
+HINT: at MSY, the net number of new individuals produced by the population per time step is equal to the number harvested. That is, $\Delta N$ at MSY is equal to the harvest rate at MSY! (at any equilibrium point, the inputs flows are equal to the output flows)
+
+NOTE: Your analytical solution for MSY (maximum sustainable harvest rate) should closely match the answer you found by trial-and-error in 2a. 
+
 
 ## Exercise 3: basic logistic growth model
 
-For this exercise we will set up a simpler density-dependent growth model in InsightMaker- this time, we will replicate **Eq. 6** (above) in InsightMaker. We will sometimes refer to this as the "r formulation" for basic exponential growth to distinguish this model from basic logistic growth with explicit birth and death rates (like the Anchovy model, above). 
+For this exercise we will set up a simpler density-dependent growth model in InsightMaker- this time, we will replicate **Eq. 6** (above) in InsightMaker. Unlike the anchovy model, which modeled the population vital rates $b$ and $d$ explicitly, this  "r formulation" will treat $r$ (difference between $b$ and $d$) as a single population vital rate.  
 
 1. Starting from a blank canvas in InsightMaker, add a [Stock] called *Population*. This population should be initialized at 10 individuals, and the *Allow Negatives* field in the properties window should be set to "No" (doesn't make sense to have negative numbers of individuals in the population). Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 1000 (with a slider step of 1). 
 
-2. Make a new [Flow] coming out of *Population*, called *Delta N*. In the properties window, set *Only Positive Rates* to "No". You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in *Population* each time step (delta N!), which can either be positive or negative! [NOTE: the _tiny white triangle in one of the two arrow heads should be facing **out**_ -- this means that a positive value for the flow will mean an addition to the population and a negative flow will be a subtraction from the population]
+2. Make a new [Flow In] to the *Population*, called *Delta N*. In the properties window, set *Only Positive Rates* to "No". You should now see that the flow has an arrow on both ends. That is, this flow can either represent a [Flow In] or a [Flow Out]. It represents the change in *Population* each time step (delta N!), which can either be positive or negative! [NOTE: the _tiny white triangle in one of the two arrow heads should be facing **out** from the population_ -- this means that a positive value for the flow will mean an addition to the population and a negative value will be a subtraction from the population]
 
 3. Make a new [Variable] called *Max growth rate* (also known as $r_{max}$), and set it at 0.15. Make a link from *Max growth rate* to *Delta N*. Set *Show Value Slider* to "Yes", and set the *Slider Min* to 0 and *Slider Max* to 5. 
 
 4. Make a new [Variable] called *Carrying capacity* (also known as $K$), and set it at 650. Make a link from *Carrying Capacity* to *Delta N*.
 
-5. Finally, open the equation editor for *Delta N* and type in the logistic growth equation (**Eq. 6**). 
+5. Finally, open the equation editor for *Delta N* and enter the logistic growth equation (**Eq. 6**). 
 
 6. Run the simulation for 100 years (1-year time step) and make sure it behaves as expected- that is, it should exhibit logistic (S-shaped) growth and should level off at the carrying capacity (K) you specified. 
 
 
 ### QUESTIONS, Exercise 3:
 
-3a. Is carrying capacity a **stable equilibrium**? Explain your reasoning. [NOTE: you already addressed this in the 'population regulation' lecture page on Top Hat!] [HINT: remember, when testing if an equilibrium is stable or not, first initialize the population at the equilibrium point and verify that the population neither grows or declines. Next, 'perturb' the system by changing the initial abundance and run the model again to see if it returns to the equilibrium state!]. 
+3a. Is carrying capacity a **stable equilibrium**? Explain your reasoning. 
 
-3b. Return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes in your 'abundance over time' plots as the growth rate increases from 1 to 5? You should be able to identify _at least_ four unique patterns of population dynamics! Describe the patterns and the approximate thresholds at which change-overs occur from one pattern to the next. One of these patterns is known as **Chaos** (yes, that is the technical name)!! Can you figure out which pattern is known as chaos?? Provide *four plots* -- one that illustrates each of the four unique patterns you identified. 
+HINT: remember, when testing if an equilibrium is stable or not, first initialize the population at the equilibrium point and verify that the population neither grows or declines. Next, 'perturb' the system by changing the initial abundance above and below the equilibrium, each time running the model to test whether or not it returns to the equilibrium state! 
 
-3c. Please share the URL for your Insight: save your model as a 'Public Insight' and insert the URL into Top Hat in the appropriate place. And don't make any more changes to this insight once you have submitted it (use a 'cloned' version if you want to keep making changes)! 
+Next, return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes in your 'abundance over time' plots as the growth rate increases from 1 to 5? You should be able to identify _at least_ three unique patterns of population dynamics! 
+
+3b. Upload an image representing the first of the three unique patterns you identified.
+
+3c. Upload an image representing the second of the three unique patterns you identified.
+
+3d. Upload an image representing the third (last) of the three unique patterns you identified.
+
+3e. Pick one of the three patterns you identified. Describe this pattern in words, and then provide the approximate values of maximum growth rate over which this pattern occurs (lower and upper bound for $r_{max}$ for which you observe this pattern). 
 
 
 ## Checklist for Lab 2 completion
 
-Your lab answers and pertinent figures, tables and InsightMaker links (make sure they are public!) should be submitted in the Lab 2 quiz in Top Hat.
+Your lab answers and pertinent figures should be submitted in the Lab 2 quiz in WebCampus.
 
-***Due Feb. 11 at midnight***
-
-*  Top Hat short answers
+***Due Feb. 17 at midnight***
     +  **Exercise 1**
         -  *Short answer (1a.)*   
-        -  *Two plots (1b.)*   
+        -  *Image upload (1b.)*
+        -  *Image upload (1c.)*   
         -  *Short answer (1c.)*
     +  **Exercise 2**
         -  *Short answer (2a.)*
-        -  *Short answer (2b.)*
+        -  *Image upload (2b.)*
         -  *Short answer (2c.)*
-        -  *Short answer and plot(s) (2d.)* 
+        -  *Short answer (2d.)* 
         -  *Short answer (2e.)*
-        -  *Short answer/equation-solving (2f.)*
-        -  *InsightMaker link (2g.)*
+        -  *Short answer (2f.)*
+        -  *Image upload (2g.)*
  
     +  **Exercise 3**
         -  *Short answer (3a.)*
-        -  *Short answer and four plots (3b.)*
-        -  *InsightMaker link (3c.)*
+        -  *Image upload (3b.)*
+        -  *Image upload (3c.)*
+        -  *Image upload (3d.)*
+        -  *Short answer (3e.)*
         
-
-
-
-
 
 ## OPTIONAL: Exercise 4: delayed density-dependence! [optional- not part of the 'official' lab]
 
