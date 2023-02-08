@@ -27,7 +27,7 @@ First of all, we have already established that positive feedbacks are not sustai
 
 Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate (*compensatory growth*). 
 
-You can't have a regulated population without some kind of negative feedback. 
+You can't have a regulated system without some kind of negative feedback. 
 
 **thought Q**: Is density-dependent population regulation a "law of nature"?
 
@@ -159,6 +159,8 @@ How can we do this in InsightMaker?
 Your model should look something like this!
 
 ![](IM5.jpg)
+
+For the purpose of answering the questions below, [here is a functioning model you can use as a starting point](https://insightmaker.com/insight/2ewOk7vSFlpEGxdu4Hvx9G/logistic-bd):
 
 
 7. Run this model. Does the model behave as you would expect?   
