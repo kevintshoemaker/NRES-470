@@ -150,7 +150,7 @@ rmarkdown::render('index.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('schedule.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('INTRO.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('FINAL_PROJECTS.Rmd',rmarkdown::pdf_document())
-rmarkdown::render('EXTRA_CREDIT.Rmd',rmarkdown::pdf_document())
+#rmarkdown::render('EXTRA_CREDIT.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LECTURE1.Rmd',rmarkdown::pdf_document())
 rmarkdown::render('LECTURE2.Rmd',rmarkdown::pdf_document())  # latex_engine="xelatex"
 rmarkdown::render('LECTURE3.Rmd',rmarkdown::pdf_document())
