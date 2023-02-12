@@ -1,7 +1,7 @@
 ---
 title: "Age-structured populations"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -13,11 +13,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
+When we began modeling wildlife populations, we treated $b$ and $d$ (per-capita birth rate and fractional death rate) as constants. This resulted in exponential growth.
 
-## When population vital rates (b and d) depend on more than just density...
+Then we allowed $b$ and $d$ to become less favorable as population density increased- this resulted in logistic (S-shaped) population dynamics. 
 
+Here we ask: what if population vital rates ($b$ and $d$) change as individuals get older (i.e., what if they are 'age-structured')? How can we model age-structured population vital rates? How might this affect population dynamics? 
 
-![](elephant1.jpg)
+![](elephant1.jpg){width=40%}
 
 Take this Indian elephant for example. How does the per-capita birth rate (b) depend on age for this species?
 
@@ -30,11 +32,11 @@ Birth_rate <- c(rep(0,times=7),seq(0,0.3,length=4),rep(0.3,times=15),seq(0.3,0,l
 
 names(Birth_rate) <- Elephant_age
 
-barplot(Birth_rate,xlab="Age",ylab="b, per-capita birth rate",col="blue",ylim=c(0,0.5))
+barplot(Birth_rate,xlab="Age (years)",ylab="b, per-capita birth rate",col="blue",ylim=c(0,0.5))
 
 ```
 
-![](tortoise1.jpg)
+![](tortoise1.jpg){width=40%}
 
 What about per-capita death rates for a tortoise? We might imagine something that looks like this...
 
@@ -45,23 +47,23 @@ Death_rate <- c(seq(0.7,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.5,len
 
 names(Death_rate) <- Tortoise_age
 
-barplot(Death_rate,xlab="Age",ylab="d, per-capita death rate",col="blue")
+barplot(Death_rate,xlab="Age (years)",ylab="d, per-capita death rate",col="blue")
 
 ```
 
 So, for many species per-capita birth rate and death rate are fundamentally dependent on age!
 
-![](spadefoot1.jpg)
+![](spadefoot1.jpg){width=40%}
 
-**Q:** Imagine you were trying to re-establish a population of spadefoot toads, which tend to reproduce for the first time in their third year of life. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm (to maximize survival rate). What would population growth look like over the next few years, assuming the reintroduction strategy was successful? [tophat]
+**Q:** Imagine you were trying to re-establish a population of spadefoot toads, which tend to reproduce for the first time in their third year of life. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm (to maximize survival rate). What would population growth look like over the next 4 years, assuming the reintroduction strategy was successful? [PointSolutions]
 
 ## Aside: sex-structured vital rates
 
-**Q:** Can you think of some real-world examples where vital rates might differ between males and females? [tophat]
+**Q:** Can you think of some real-world examples where vital rates might differ between males and females?
 
 **Q:** Is sex structure important to consider when modeling populations? Why or why not?
 
-![](tamarin1.jpg)
+![](tamarin1.jpg){width=40%}
 
 **Q:** Imagine a population of 100 golden-headed lion tamarins (*Leontopithecus chrysomelas*) that consists of all adult males and post-reproductive females. What is the conservation status of this population?  
 
@@ -86,7 +88,7 @@ The fecundity component of the life table is called the "fecundity schedule"! Th
 
 Fecundity is only half the story! The survival component of the life table is called the "survivorship schedule"! 
 
-The term **cohort** represents a bunch of individuals that were all born at the same time. In the life table, the term S(x) refers to the number of individuals from a particular cohort that are _still alive at age x_. From this raw data, we compute two terms, called **survivorship** and **survival rate**
+The term **cohort** represents a bunch of individuals in a population that were all born at the same time. In a life table, the term S(x) refers to the number of individuals from a particular cohort that are _still alive at age x_. From this raw data, we compute two terms, called **survivorship** and **survival rate**
 
 The term $l(x)$ represents the _proportion of the cohort surviving from age 0 to age x_. This is called **survivorship**
 
@@ -98,32 +100,28 @@ There are three main types of survivorship curves (also called survivorship sche
 
 *Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.
 
-**Q**: can survivorship increase with age? 
-
-**Q**: why do we use the logarithm of survivorship in order to characterize survivorship curves?
-
+**Q**: can survivorship increase with age? [HINT: really think about the definition of survivorship!]
 
 #### Type I
-![](human2.png)
+![](human2.png){width=30%}
 
 #### Type II
-![](songbird1.jpg)
+![](songbird1.jpg){width=30%}
 
 #### Type III
-![](frog1.jpg)
+![](frog1.jpg){width=30%}
 
-![](Survivorship_Curves.jpg)
+![](Survivorship_Curves.jpg){width=60%}
 
 (Note the logarithmic scale on the Y axis!)
 
-**Q:** Which survivorship curve is the most common in nature?? [tophat]
-
+**Q:** Which survivorship curve is the most common in nature?? [PointSolutions]
 
 ## In-class exercise: age-structured population growth
 
 In this exercise we will explore some facets of **age-structured populations**. 
 
-1. Load up the life table from earlier in this lecture, by clicking [here](life_table.csv). Use this table to compute the **net reproductive rate, $R_0$**. This represents the expected number of female offspring produced per female over her entire lifetime. This is also known as *lifetime reproductive potential*! This can be computed as:
+1. Load up the life table from earlier in this lecture, by clicking [here](life_table.csv). Use this table to compute the **net reproductive rate, $R_0$**. This represents the expected number of female offspring produced per female over her lifetime. This is also known as *lifetime reproductive potential*! This can be computed as:
 
 $R_0 = \sum_{x=0}^k l(x)\cdot b(x)$
 
@@ -131,11 +129,11 @@ Where $k$ is the maximum age.
 
 **Q:** Can you implement this formula in Excel? What's the answer?
 
-2. If the net reproductive rate, $R_0$ is above one, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$. 
+2. If the net reproductive rate, $R_0$ is above one, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$ (the multiplier needed to increment abundance from one time step to the next). 
 
 BUT, what is the time frame of $R_0$? What is the timeframe of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
 
-What is a **generation**? The most common definition (for generation time) is the _Average age of the parents of all the offspring produced by a single cohort_. This can be computed from the life table as:
+What is a **generation**? The most common definition (for generation time) is the _Average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is the average age of their parents when they were born?). This can be computed from the life table as:
 
 $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
 
@@ -147,29 +145,22 @@ See if you can implement this in Excel (or whatever spreadsheet software you use
 
 To a first-order approximation, you can use this equation:
 
-$r = \frac{ln(R_0)}{G}$ [tophat]
+$r = \frac{ln(R_0)}{G}$ [PointSolutions]
 
 Just looking at this equation, you see that organisms with longer generation times ($G$) have slower intrinsic rates of growth, all else being equal. 
 
-And you can estimate the lambda for this population (annual multiplier) like this:
+And you can estimate the finite rate of growth ($\lambda$) for this population like this:
 
 $\lambda = e^{r}$
-
-**Q:** Implement this equation in Excel. Is this an exponentially growing population?
-
 
 4. Load up an age-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/70809/Age-structured-population). 
 
 
-    4a. Initialize the population like the spadefoot toad example from above- with only the first (juvenile) age class. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
+    4a. Initialize the population like the spadefoot toad example from above- with only juveniles in the population at time 0. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
     
     4b. Can you modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three age classes (and the population as a whole)? This is called **Stable Age Distribution (S.A.D.)**
     
-    4c. Now change the vital rates (*Juv mort rate*, *Sub mort rate*, *Transition rate to Subadult*, etc.). Is population growth still smooth? If not, can you find the NEW *Stable Age Distribution*??
-    
-    4d. Return to the initial model ([this one,  here](https://insightmaker.com/insight/70809/Age-structured-population)). Now change the **Adult mort rate** to 0.65. What happens? Is this a growing population? 
-    
-**Q**: (using the model from step 4d, with adult mortality set at 0.65) How many subadults would need to be added to the population each year (population supplementation) to maintain a stable or growing population of >20 adults?  [tophat]
+    4d. Now change the **Adult mort rate** to 0.65. What happens? Is this a growing population? How many subadults would need to be added to the population each year (population supplementation) to maintain a stable or growing population of >20 adults?  [PointSolutions]
 
 **Q**: Is supplementation the best strategy for conserving this population?    
 
