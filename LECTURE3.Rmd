@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 [Thomas Robert Malthus (1766 – 1834)](https://en.wikipedia.org/wiki/Thomas_Robert_Malthus) was an English cleric who penned one of the most important and influential essays ever written: ***An Essay on the Principle of Population***
 
-![](malthus1.jpg)
+![](malthus1.jpg){width=30%}
 
 The main point of this essay can be summed up by the following (a direct quote): 
 
@@ -37,7 +37,7 @@ Finally, his argument can be summed up as follows:
 **Discussion Question:** Was Malthus right? For humans? For wildlife? Can you think of any examples for or against? 
 
 
-![](darwin1.jpg)
+![](darwin1.jpg){width=30%}
 
 
 Interestingly, in 1838 (four years after Malthus’ death), Charles Darwin, just back from his trip on HMS Beagle (1831–1836), was searching for possible mechanisms to explain the origin of species. On reading Malthus’ *Essay on the principle of population*, he realized one of the possible implications of the checks that controlled population growth (i.e., that the power of exponential growth, confronted with hard resource limitations, implies a 'population surplus' destined to die early) and wrote: 
@@ -80,7 +80,7 @@ End If
 
 5. In preparation for implementing the "famine" condition (death rate increases to 99% if *Humans* exceeds *Limit* -- otherwise remains at 1%), create new **Links** from *Humans* to *Death rate* and from *Limit* to *Death rate*. Your canvas should look something like the image below:  
 
-![](IM4.jpg)
+![](IM4.jpg){width=60%}
 
 6. Now we can implement the "famine condition"! Open the equation editor window for *Death rate* (click on the equals sign) and type the following: 
 

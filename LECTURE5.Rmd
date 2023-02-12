@@ -1,7 +1,7 @@
 ---
 title: "Passenger Pigeon/Allee effect"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -15,11 +15,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Allee Effect
 
-![](prairie_dogs3.jpg)
+![](prairie_dogs3.jpg){width=40%}
 
-In the last lecture, we talked about how density-dependent feedbacks can help to regulate population densities over time. This is a negative feedback, and often termed 'negative density dependence'. 
+In the last lecture, we talked about how density-dependent feedbacks can regulate population densities over time. In the logistic growth model, we saw that a negative feedback (a decline in population growth rate as density increased) could result in the population stabilizing at its carrying capacity. In population ecology, this type of negative feedback is called 'negative density dependence'. 
 
-What happens if density dependence goes the other way? What if an increase in density produces an *increase* in the population growth rate *r* (a positive feedback)? 
+What happens if density dependence goes the other way? What if an increase in population density were to induce an *increase* in population growth rate *r*? This would be a positive feedback: increased population density results in faster growth, which produces a bigger population, which results in faster population growth, etc.
 
 Imagine a very social species, like the prairie dogs pictured above. If the density of prairie dogs is high, they can warn each other about predators. If the density is low, the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, you should simulate it for yourself! But remember, positive feedbacks generally result in unstable or non-regulated systems (audio feedback, avalanches, etc)!
 
