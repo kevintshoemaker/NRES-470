@@ -466,36 +466,24 @@ class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span> (per-capita birth rate and fractional
 death rate) as constants. This resulted in exponential growth.</p>
 <p>Then we allowed <span class="math inline">\(b\)</span> and <span
-class="math inline">\(d\)</span> to become less favorable as population
-density increased- this resulted in logistic (S-shaped) population
-dynamics.</p>
+class="math inline">\(d\)</span> to change (becoming less favorable to
+growth) as population density increased- this resulted in logistic
+(S-shaped) population dynamics.</p>
 <p>Here we ask: what if population vital rates (<span
 class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span>) change as individuals get older (i.e.,
-what if they are ‘age-structured’)? How can we model age-structured
-population vital rates? How might this affect population dynamics?</p>
+what if <span class="math inline">\(b\)</span> and <span
+class="math inline">\(d\)</span> are ‘age-structured’)?</p>
+<p>How can we model age-structured population vital rates? How might
+this affect population dynamics?</p>
 <p><img src="elephant1.jpg" style="width:40.0%" /></p>
 <p>Take this Indian elephant for example. How does the per-capita birth
 rate (b) depend on age for this species?</p>
 <p>We might imagine it looks something like this!</p>
-<pre class="r"><code>Elephant_age &lt;- seq(0,60,by=2)
-
-Birth_rate &lt;- c(rep(0,times=7),seq(0,0.3,length=4),rep(0.3,times=15),seq(0.3,0,length=5))
-
-names(Birth_rate) &lt;- Elephant_age
-
-barplot(Birth_rate,xlab=&quot;Age (years)&quot;,ylab=&quot;b, per-capita birth rate&quot;,col=&quot;blue&quot;,ylim=c(0,0.5))</code></pre>
 <p><img src="LECTURE6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p><img src="tortoise1.jpg" style="width:40.0%" /></p>
 <p>What about per-capita death rates for a tortoise? We might imagine
 something that looks like this…</p>
-<pre class="r"><code>Tortoise_age &lt;- seq(0,120,by=5)
-
-Death_rate &lt;- c(seq(0.7,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.5,length=4))
-
-names(Death_rate) &lt;- Tortoise_age
-
-barplot(Death_rate,xlab=&quot;Age (years)&quot;,ylab=&quot;d, per-capita death rate&quot;,col=&quot;blue&quot;)</code></pre>
 <p><img src="LECTURE6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>So, for many species per-capita birth rate and death rate are
 fundamentally dependent on age!</p>
@@ -600,8 +588,8 @@ called <strong>survivorship</strong></p>
 <div id="types-of-survivorship-curves" class="section level3">
 <h3>Types of survivorship curves…</h3>
 <p>There are three main types of survivorship curves (also called
-survivorship schedules), classified as <strong>Type I</strong>,
-<strong>Type II</strong>, and <strong>Type III</strong>.</p>
+survivorship schedules), and these curves are classified as <strong>Type
+I</strong>, <strong>Type II</strong>, and <strong>Type III</strong>.</p>
 <p><em>Survivorship curves</em> describe how the logarithm of
 survivorship (<span class="math inline">\(log(l(x))\)</span>) drops off
 with age. These three types of <strong>life history</strong> pattern can
@@ -623,7 +611,8 @@ think about the definition of survivorship!]</p>
 <p><img src="Survivorship_Curves.jpg" style="width:60.0%" /></p>
 <p>(Note the logarithmic scale on the Y axis!)</p>
 <p><strong>Q:</strong> Which survivorship curve is the most common in
-nature?? [PointSolutions]</p>
+nature?? [PointSolutions] (remember, you’re not graded on correctness-
+just take a guess if you’re not sure!)</p>
 </div>
 </div>
 </div>
@@ -657,15 +646,15 @@ class="math inline">\(\lambda\)</span> (the multiplier needed to
 increment abundance from one time step to the next).</li>
 </ol>
 <p>BUT, what is the time frame of <span
-class="math inline">\(R_0\)</span>? What is the timeframe of <span
+class="math inline">\(R_0\)</span>? What is the time frame of <span
 class="math inline">\(\lambda\)</span>? They are different right? The
 difference is that <span class="math inline">\(R_0\)</span> describes
 growth per <strong>generation</strong>!.</p>
 <p>What is a <strong>generation</strong>? The most common definition
 (for generation time) is the <em>Average age at which individuals in a
 cohort produce offspring</em> (consider all the offspring produced by
-the cohort- what is the average age of their parents when they were
-born?). This can be computed from the life table as:</p>
+the cohort- what is their average age when they first become parents?).
+This can be computed from the life table as:</p>
 <p><span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot
 b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}\)</span></p>
 <p>See if you can implement this in Excel (or whatever spreadsheet

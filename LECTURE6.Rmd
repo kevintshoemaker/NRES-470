@@ -15,9 +15,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 When we began modeling wildlife populations, we treated $b$ and $d$ (per-capita birth rate and fractional death rate) as constants. This resulted in exponential growth.
 
-Then we allowed $b$ and $d$ to become less favorable as population density increased- this resulted in logistic (S-shaped) population dynamics. 
+Then we allowed $b$ and $d$ to change (becoming less favorable to growth) as population density increased- this resulted in logistic (S-shaped) population dynamics. 
 
-Here we ask: what if population vital rates ($b$ and $d$) change as individuals get older (i.e., what if they are 'age-structured')? How can we model age-structured population vital rates? How might this affect population dynamics? 
+Here we ask: what if population vital rates ($b$ and $d$) change as individuals get older (i.e., what if $b$ and $d$ are 'age-structured')? 
+
+How can we model age-structured population vital rates? How might this affect population dynamics? 
 
 ![](elephant1.jpg){width=40%}
 
@@ -25,7 +27,7 @@ Take this Indian elephant for example. How does the per-capita birth rate (b) de
 
 We might imagine it looks something like this!
 
-```{r}
+```{r echo=F}
 Elephant_age <- seq(0,60,by=2)
 
 Birth_rate <- c(rep(0,times=7),seq(0,0.3,length=4),rep(0.3,times=15),seq(0.3,0,length=5))
@@ -40,7 +42,7 @@ barplot(Birth_rate,xlab="Age (years)",ylab="b, per-capita birth rate",col="blue"
 
 What about per-capita death rates for a tortoise? We might imagine something that looks like this...
 
-```{r}
+```{r echo=F}
 Tortoise_age <- seq(0,120,by=5)
 
 Death_rate <- c(seq(0.7,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.5,length=4))
@@ -96,7 +98,7 @@ The term $g(x)$ represents the _proportion surviving from age x to age x+1_. Thi
 
 ### Types of survivorship curves...
 
-There are three main types of survivorship curves (also called survivorship schedules), classified as **Type I**, **Type II**, and **Type III**. 
+There are three main types of survivorship curves (also called survivorship schedules), and these curves are classified as **Type I**, **Type II**, and **Type III**. 
 
 *Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.
 
@@ -115,7 +117,7 @@ There are three main types of survivorship curves (also called survivorship sche
 
 (Note the logarithmic scale on the Y axis!)
 
-**Q:** Which survivorship curve is the most common in nature?? [PointSolutions]
+**Q:** Which survivorship curve is the most common in nature?? [PointSolutions] (remember, you're not graded on correctness- just take a guess if you're not sure!)
 
 ## In-class exercise: age-structured population growth
 
@@ -131,9 +133,9 @@ Where $k$ is the maximum age.
 
 2. If the net reproductive rate, $R_0$ is above one, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$ (the multiplier needed to increment abundance from one time step to the next). 
 
-BUT, what is the time frame of $R_0$? What is the timeframe of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
+BUT, what is the time frame of $R_0$? What is the time frame of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
 
-What is a **generation**? The most common definition (for generation time) is the _Average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is the average age of their parents when they were born?). This can be computed from the life table as:
+What is a **generation**? The most common definition (for generation time) is the _Average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is their average age when they first become parents?). This can be computed from the life table as:
 
 $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
 
