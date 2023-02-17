@@ -51,7 +51,9 @@ NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate 
 
 One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected future reproductive output of an individual of age x, *adjusted for the intrinsic rate of growth*: $V(x) = \frac{e^{rx}}{l_x} \cdot \sum_{y=x+1}^{k}e^{-ry}l_yb_y   \qquad \text{(Eq. 7)}$.  Different individuals in a population tend to have different "value" in terms of contributing to future generations. Caswell (2001) said "The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class". Knowing something about the relative "value" of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, reproductive value is critical for applied population ecology! Reproductive Value also factors heavily in evolutionary studies and life history theory.  
 
-**Q:** Why is the reproductive value 'discounted' by the population growth rate??    
+**Q:** Why is the reproductive value adjusted by the population growth rate??  
+
+Here is a sample life table for practice!!   [click here to download](life_table.xlsx) 
 
 ## Exercise 1: life table analysis
 
