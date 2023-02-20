@@ -1,21 +1,12 @@
 
-############################################################
-####                                                    ####  
-####  NRES 470, Lecture 7                               ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Matrix population models                          ####
-############################################################
+#  NRES 470, Lecture 7  --------------------          
+#   Kevin Shoemaker                                   
+#   University of Nevada, Reno                        
+#   Matrix population models                   
 
 
 
-#########
+# Teasel example -------------------------------
 # Teasel example from Gotelli: summarizing a complex life history!
 
 teasel <- read.csv("teaselmatrix1.csv", header=T)      # read in the teasel transition matrix from Gotelli
@@ -26,7 +17,6 @@ rownames(teasel_matrix) <- names(teasel)
 teasel_matrix                                          # print the matrix
 
 
-#############
 # Summarize initial age-structured abundance as a matrix with one column
 
 Initial_teasel <- matrix(c(1000,1500,200,300,600,25),ncol=1)         # initial population size (population vector; matrix with 1 column!)
@@ -35,14 +25,12 @@ colnames(Initial_teasel) <- "Abundance"
 Initial_teasel
 
 
-#########
 # Project the population at time 1
 
 Year1 <- teasel_matrix %*% Initial_teasel   # note: the '%*%' denotes 'matrix multiplication' in R. We'll go through this more later.     
 Year1
   
 
-#########
 # Project the population at time 2
 
 thisYear <- Year1
@@ -50,8 +38,7 @@ nextYear <- teasel_matrix %*% thisYear
 nextYear  # now we get the (age structured) population size at time 2!     
 
 
-########
-# Use a for loop to project the population dynamics for the next 10 years!
+# Use a FOR loop to project the population dynamics for the next 10 years!
 
 nYears <- 10
 tenYears <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
@@ -59,8 +46,6 @@ rownames(tenYears) <- rownames(Initial_teasel)      # assign row and column name
 colnames(tenYears) <- seq(0,10)
 tenYears[,1] <- Initial_teasel                      # initialize the simulated abundances
 
-
-##########
 # run the for loop!
 
 for(t in 2:(nYears+1)){    # here we use 't' as our looping variable, but we could choose any name we want
@@ -71,7 +56,8 @@ tenYears
 
 
 
-###########
+# Matrix "tricks" for population ecology ---------------------------
+
 # Use the transition matrix to compute Lambda, or the finite rate of population growth!
 
 library(popbio)      # load the 'popbio' package in R!
@@ -81,7 +67,6 @@ Lambda
 #   as.numeric(round(eigen(teasel_matrix)$values[1],2))  # this is an alternative method- if you don't want to use the 'popbio' package
 
 
-##########
 # Compute stable age distribution from the transition matrix!
 
 library(popbio)    # ... and it's even easier if we use the 'popbio' package...
@@ -93,11 +78,9 @@ SAD      # stable age distribution as a percentage of the total population
 # SAD/sum(SAD)
 
 
-###################
+# Demo -------------------------
 # In class demo: convert an insightmaker model to a matrix projection model
 
-
-###########
 # First, we specify a blank transition matrix
 
 TMat <- matrix(0,nrow=3,ncol=3)                    # create a blank matrix with 3 rows and 3 columns
@@ -107,21 +90,18 @@ colnames(TMat) <- stagenames
 TMat                                               # now we have an all-zero transition matrix.
 
 
-#####
 # fill in the top left element of the matrix
 
 TMat[1,1] <- 0
 TMat
 
 
-#####
 # update the second row, first column
 
 TMat[2,1] <- 0.3
 TMat
 
 
-#####
 # and keep filling it in...
 
 TMat[,1] <- c(0,0.3,0)          # fill in the entire first column of the transition matrix
@@ -130,7 +110,6 @@ TMat[,3] <- c(4,0,0.85)         # fill in the entire third column of the transit
 TMat
 
 
-######
 # specify initial abundance vector
 
 InitAbund <- c(40,0,0)
@@ -138,7 +117,6 @@ names(InitAbund) <- colnames(TMat)
 InitAbund
 
 
-#######
 # Run the model for 40 years (using for loop)
 
 nYears <- 40
@@ -154,7 +132,6 @@ for(t in 2:(nYears+1)){
 allYears
 
 
-#####
 # and plot out the results!
 
 plot(1,1,pch="",ylim=c(0,50),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")

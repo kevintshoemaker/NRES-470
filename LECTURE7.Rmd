@@ -16,23 +16,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 470, Lecture 7                               ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Matrix population models                          ####
-############################################################
+#  NRES 470, Lecture 7  --------------------          
+#   Kevin Shoemaker                                   
+#   University of Nevada, Reno                        
+#   Matrix population models                   
 
 
 ```
-
 
 
 # Matrix population models
@@ -75,7 +65,7 @@ Isn't that *elegant*!!
 
 #### Aside: stage-structure vs age-structure
 
-In the previous lecture, we talked about 'age-structured populations'. What we meant by that is that the population vital rates (e.g., b and d) varied by age. 
+In the previous lecture, we talked about 'age-structured populations'. What we meant by that is that the population vital rates (e.g., $b$ and $d$) varied by age. 
 
 Sometimes, it is convenient to classify individuals within a certain age range as belonging to a particular life-history stage. For example, we might classify the life history of a grizzly bear like this:
 
@@ -84,7 +74,11 @@ Age 1-2: yearling
 Age 2-5: subadult     
 Age 6+: adult     
 
-This can simplify our models considerably. For example, consider a species like a sea turtle, with up to 75 or 100 years of life. You could build a model in which you have 100 stocks, one for each year of life. OR, you could have 5 or so stocks representing age ranges in which sea turtles tend to have consistent(ish) vital rates. For example, we might divide the sea turtle life history into the following stages:
+This can simplify our models considerably. For example, consider a species like a sea turtle, with up to 75 or 100 years of life. You could build a model in which you have 100 [Stocks], one for each year of life. 
+
+--OR--
+
+You could have 5 [Stocks] representing age ranges in which sea turtles tend to have consistent(ish) vital rates. For example, we might divide the sea turtle life history into the following stages:
 
 Age 0-1: hatchling      
 Age 1-5: young juvenile     
@@ -92,7 +86,7 @@ Age 5-10: older juvenile
 Age 10-17: subadult      
 Age 18+: adult      
 
-By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still accurately representing how vital rates change with age (the model is still biologically realistic). 
+By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still accurately representing how vital rates change with age (i.e., the model is still *biologically realistic*). 
 
 Matrix population models can represent age-structured and stage-structured models with equal simplicity and elegance. 
 
@@ -454,15 +448,18 @@ NOTE: this is also a question in Lab 4!
 
 ![](redtail1.jpg)
 
-> We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). We assumed that adults experienced an average of 20% mortality each year. Juvenile mortality was set at 25% per year. Approximately 10% of juveniles remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 22% chance of surviving and transitioning to become juveniles. We initialized the population with 1000 hatchlings, 150 juveniles, and 5 adults. Adults are the primary reproductive stage, and produce an average of 3 new hatchlings each year. Juveniles that fail to transition to the Adult stage tend to produce only 1 new hatchling each year on average. 
+> We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). We assumed that adult females experienced an average of 15% mortality each year. Juvenile female mortality was set at 30% per year. Approximately 10% of juvenile females remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 21% chance of surviving and transitioning to become juveniles. Adults are the primary reproductive stage, and produce an average of 6 new hatchlings each year, half of which are female. Juveniles that fail to transition to the Adult stage tend to produce only 1.8 new hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, and 50 adults.   
 
-**Q:** What does the transition matrix look like? [tophat]
+```{r eval=FALSE, echo=FALSE}
 
-**Q:** What does the initial abundance vector look like?
+mymat = matrix(c(0,    0.1*0.5*1.8+0.7*6*0.5,        6*0.5*0.85, 
+                 0.21,  0.1,                 0,
+                 0,    0.7,                 0.85),   nrow=3,byrow = T)
+popbio::lambda(mymat)
+mymat
 
-**Q:** Is this population at stable stage-distribution? How can you tell?
+```
 
-**Q:** What is the growth rate of this population? 
 
 For more on matrix population models, the bible of this subject is [this book by Hal Caswell](https://www.amazon.com/gp/huc/view.html?ie=UTF8&newItems=C1DH1414B1C6AK%2C1).
 

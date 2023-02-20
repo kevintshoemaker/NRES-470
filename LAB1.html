@@ -345,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -973,7 +973,7 @@ N                         # Now print the contents of the object &quot;N&quot;.<
 ##  984.9733 1083.4706 1191.8177 1310.9994 1442.0994 1586.3093 1744.9402</code></pre>
 <p>If we just wanted to know the abundance at year 30, we could skip the
 FOR loop, and simply apply equation 17:</p>
-<pre class="r"><code>N30 = N0*lambda^nyears
+<pre class="r"><code>N30 &lt;- N0*lambda^nyears
 N30</code></pre>
 <pre><code>## [1] 1744.94</code></pre>
 </div>
@@ -1017,9 +1017,9 @@ class="math inline">\(r\)</span> you identified by trial and
 error?</p></li>
 <li><p><strong><em>Image upload (2f.)</em></strong> After you solve this
 problem by trial and error (2e), try to solve this problem analytically
-using Eq. 10. Use scratch paper (or virtual scratch pad) to make your
-calculations, take a photo (or screenshot) and upload the image in
-WebCampus.</p></li>
+(solve for <span class="math inline">\(r\)</span>) using Eq. 10. Use
+scratch paper (or virtual scratch pad) to make your calculations, take a
+photo (or screenshot) and upload the image in WebCampus.</p></li>
 <li><p><strong><em>Short answer (2g.)</em></strong> Change the value of
 <span class="math inline">\(r\)</span> to -0.08. How long until the
 population goes extinct? NOTE: we will define extinction in this
