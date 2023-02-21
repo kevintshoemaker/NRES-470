@@ -485,7 +485,7 @@ rate (b) depend on age for this species?</p>
 <p>What about per-capita death rates for a tortoise? We might imagine
 something that looks like this…</p>
 <p><img src="LECTURE6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>So, for many species per-capita birth rate and death rate are
+<p>So, for many species per-capita birth rates and death rates are
 fundamentally dependent on age!</p>
 <p><img src="spadefoot1.jpg" style="width:40.0%" /></p>
 <p><strong>Q:</strong> Imagine you were trying to re-establish a
@@ -512,8 +512,9 @@ status of this population?</p>
 <p>Age-structured populations are often represented by a table called a
 <strong>life table</strong>. A life table typically represents a single
 <strong>cohort</strong> (group of organisms of the same species that are
-born during the same year) that is tracked across time. Here’s an
-example:</p>
+born during the same year) and whose survival and birth rates are
+tracked across time.</p>
+<p>Here’s an example:</p>
 <table>
 <thead>
 <tr class="header">
@@ -573,30 +574,30 @@ the per-capita birth rate for females of age x.</p>
 <p>Fecundity is only half the story! The survival component of the life
 table is called the “survivorship schedule”!</p>
 <p>The term <strong>cohort</strong> represents a bunch of individuals in
-a population that were all born at the same time. In a life table, the
-term S(x) refers to the number of individuals from a particular cohort
-that are <em>still alive at age x</em>. From this raw data, we compute
-two terms, called <strong>survivorship</strong> and <strong>survival
-rate</strong></p>
+a population that were all born at the same time.</p>
+<p>In a life table, the term S(x) refers to the number of individuals
+from a particular cohort that are <em>still alive x years after the
+cohort was born</em>.</p>
+<p>From this raw data, we compute two terms, called
+<strong>survivorship</strong> and <strong>survival rate</strong></p>
 <p>The term <span class="math inline">\(l(x)\)</span> represents the
 <em>proportion of the cohort surviving from age 0 to age x</em>. This is
-called <strong>survivorship</strong></p>
+known as <strong>survivorship</strong>.</p>
 <p>The term <span class="math inline">\(g(x)\)</span> represents the
-<em>proportion surviving from age x to age x+1</em>. This is called
-<strong>survival rate</strong></p>
+<em>proportion surviving from age x to age x+1</em>. This is called the
+<strong>survival rate</strong> (contrast this with survivorship!).</p>
 </div>
 <div id="types-of-survivorship-curves" class="section level3">
 <h3>Types of survivorship curves…</h3>
+<p><em>Survivorship curves</em> describe how the logarithm of
+survivorship (<span class="math inline">\(log(l(x))\)</span>) drops off
+with age.</p>
 <p>There are three main types of survivorship curves (also called
 survivorship schedules), and these curves are classified as <strong>Type
 I</strong>, <strong>Type II</strong>, and <strong>Type III</strong>.</p>
-<p><em>Survivorship curves</em> describe how the logarithm of
-survivorship (<span class="math inline">\(log(l(x))\)</span>) drops off
-with age. These three types of <strong>life history</strong> pattern can
-be illustrated with three real-world examples: humans, songbirds, and
+<p>These three types of <strong>life history</strong> pattern can be
+illustrated with three real-world examples: humans, songbirds, and
 frogs.</p>
-<p><strong>Q</strong>: can survivorship increase with age? [HINT: really
-think about the definition of survivorship!]</p>
 <div id="type-i" class="section level4">
 <h4>Type I</h4>
 <p><img src="human2.png" style="width:30.0%" /></p>
@@ -633,8 +634,7 @@ potential</em>! This can be computed as:</li>
 <p><span class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot
 b(x)\)</span></p>
 <p>Where <span class="math inline">\(k\)</span> is the maximum age.</p>
-<p><strong>Q:</strong> Can you implement this formula in Excel? What’s
-the answer?</p>
+<p>Try to implement this formula in Excel. What’s the answer?</p>
 <ol start="2" style="list-style-type: decimal">
 <li>If the net reproductive rate, <span
 class="math inline">\(R_0\)</span> is above one, then the population is
@@ -657,8 +657,7 @@ the cohort- what is their average age when they first become parents?).
 This can be computed from the life table as:</p>
 <p><span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot
 b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}\)</span></p>
-<p>See if you can implement this in Excel (or whatever spreadsheet
-software you use!).</p>
+<p>Try to implement this in Excel (or another spreadsheet software).</p>
 <p><strong>Q:</strong> What is the <em>generation time</em> of the
 population in the table?</p>
 <ol start="3" style="list-style-type: decimal">
@@ -677,8 +676,9 @@ class="math inline">\(\lambda\)</span>) for this population like
 this:</p>
 <p><span class="math inline">\(\lambda = e^{r}\)</span></p>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Load up an age-structured model in InsightMaker. You can clone <a
-href="https://insightmaker.com/insight/70809/Age-structured-population">this
+<li><p>Load up an stage-structured model in InsightMaker. You can clone
+<a
+href="https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population">this
 one, here</a>.</p>
 <p>4a. Initialize the population like the spadefoot toad example from
 above- with only juveniles in the population at time 0. What population
@@ -686,8 +686,8 @@ dynamics occur at the beginning of the simulation? What about the end of
 the simulation?</p>
 <p>4b. Can you modify the initial abundance of juveniles, subadults and
 adults so that the population exhibits smooth exponential growth for all
-three age classes (and the population as a whole)? This is called
-<strong>Stable Age Distribution (S.A.D.)</strong></p>
+three stage classes (and the population as a whole)? This is called
+<strong>Stable Stage Distribution (SSD)</strong></p>
 <p>4d. Now change the <strong>Adult mort rate</strong> to 0.65. What
 happens? Is this a growing population? How many subadults would need to
 be added to the population each year (population supplementation) to

@@ -53,7 +53,7 @@ barplot(Death_rate,xlab="Age (years)",ylab="d, per-capita death rate",col="blue"
 
 ```
 
-So, for many species per-capita birth rate and death rate are fundamentally dependent on age!
+So, for many species per-capita birth rates and death rates are fundamentally dependent on age!
 
 ![](spadefoot1.jpg){width=40%}
 
@@ -71,7 +71,9 @@ So, for many species per-capita birth rate and death rate are fundamentally depe
 
 ## Life table!
 
-Age-structured populations are often represented by a table called a **life table**. A life table typically represents a single **cohort** (group of organisms of the same species that are born during the same year) that is tracked across time. Here's an example:
+Age-structured populations are often represented by a table called a **life table**. A life table typically represents a single **cohort** (group of organisms of the same species that are born during the same year) and whose survival and birth rates are tracked across time. 
+
+Here's an example:
 
 ```{r include=FALSE}
 lifetable <- read.csv("life_table.csv")
@@ -90,19 +92,23 @@ The fecundity component of the life table is called the "fecundity schedule"! Th
 
 Fecundity is only half the story! The survival component of the life table is called the "survivorship schedule"! 
 
-The term **cohort** represents a bunch of individuals in a population that were all born at the same time. In a life table, the term S(x) refers to the number of individuals from a particular cohort that are _still alive at age x_. From this raw data, we compute two terms, called **survivorship** and **survival rate**
+The term **cohort** represents a bunch of individuals in a population that were all born at the same time. 
 
-The term $l(x)$ represents the _proportion of the cohort surviving from age 0 to age x_. This is called **survivorship**
+In a life table, the term S(x) refers to the number of individuals from a particular cohort that are _still alive x years after the cohort was born_. 
 
-The term $g(x)$ represents the _proportion surviving from age x to age x+1_. This is called **survival rate** 
+From this raw data, we compute two terms, called **survivorship** and **survival rate**
+
+The term $l(x)$ represents the _proportion of the cohort surviving from age 0 to age x_. This is known as **survivorship**.
+
+The term $g(x)$ represents the _proportion surviving from age x to age x+1_. This is called the **survival rate** (contrast this with survivorship!).
 
 ### Types of survivorship curves...
 
-There are three main types of survivorship curves (also called survivorship schedules), and these curves are classified as **Type I**, **Type II**, and **Type III**. 
+*Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. 
 
-*Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.
+There are three main types of survivorship curves (also called survivorship schedules), and these curves are classified as **Type I**, **Type II**, and **Type III**.
 
-**Q**: can survivorship increase with age? [HINT: really think about the definition of survivorship!]
+These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.
 
 #### Type I
 ![](human2.png){width=30%}
@@ -129,7 +135,7 @@ $R_0 = \sum_{x=0}^k l(x)\cdot b(x)$
 
 Where $k$ is the maximum age. 
 
-**Q:** Can you implement this formula in Excel? What's the answer?
+Try to implement this formula in Excel. What's the answer?
 
 2. If the net reproductive rate, $R_0$ is above one, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$ (the multiplier needed to increment abundance from one time step to the next). 
 
@@ -139,7 +145,7 @@ What is a **generation**? The most common definition (for generation time) is th
 
 $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
 
-See if you can implement this in Excel (or whatever spreadsheet software you use!).
+Try to implement this in Excel (or another spreadsheet software).
 
 **Q:** What is the *generation time* of the population in the table?
 
@@ -155,12 +161,12 @@ And you can estimate the finite rate of growth ($\lambda$) for this population l
 
 $\lambda = e^{r}$
 
-4. Load up an age-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/70809/Age-structured-population). 
+4. Load up an stage-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population). 
 
 
     4a. Initialize the population like the spadefoot toad example from above- with only juveniles in the population at time 0. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
     
-    4b. Can you modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three age classes (and the population as a whole)? This is called **Stable Age Distribution (S.A.D.)**
+    4b. Can you modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three stage classes (and the population as a whole)? This is called **Stable Stage Distribution (SSD)**
     
     4d. Now change the **Adult mort rate** to 0.65. What happens? Is this a growing population? How many subadults would need to be added to the population each year (population supplementation) to maintain a stable or growing population of >20 adults?  [PointSolutions]
 
