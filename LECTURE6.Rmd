@@ -86,7 +86,7 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 
 ### Fecundity schedule
 
-The fecundity component of the life table is called the "fecundity schedule"! The term $b(x)$ represents the per-capita birth rate for females of age x.  
+The fecundity component of the life table is called the "fecundity schedule"! The term $b(x)$ represents the per-capita birth rate for females of age x. The fecundity schedule describes how birth rate changes with age.   
 
 ### Survivorship schedule
 
@@ -102,11 +102,13 @@ The term $l(x)$ represents the _proportion of the cohort surviving from age 0 to
 
 The term $g(x)$ represents the _proportion surviving from age x to age x+1_. This is called the **survival rate** (contrast this with survivorship!).
 
+The survivorship schedule describes how survivorship drops off with age. The survivorship schedule is typically visualized as a **survivorship curve**.
+
 ### Types of survivorship curves...
 
 *Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. 
 
-There are three main types of survivorship curves (also called survivorship schedules), and these curves are classified as **Type I**, **Type II**, and **Type III**.
+There are three main types of survivorship curve (survivorship schedule), and these curves are classified as **Type I**, **Type II**, and **Type III**.
 
 These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.
 

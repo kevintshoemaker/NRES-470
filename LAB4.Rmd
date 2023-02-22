@@ -388,7 +388,7 @@ stmat
 
 ```
 
-Build an InsightMaker model that represents the same population as the stage-based matrix above. Remember that the top row represents fecundity terms, while the bottom rows represent transition terms. Also remember how to convert between survival rates and mortality rates (mortality equals one minus survival). Initialize the model with 100 individuals at stable stage distribution (SSD).
+Build an InsightMaker model that represents the same population as the stage-based matrix above. Remember that the top row represents fecundity terms, while the remaining rows represent transition terms. Also remember how to convert between survival rates and mortality rates (mortality equals one minus survival). Initialize the model with 100 individuals at stable stage distribution (SSD).
 
 3a (short answer). Provide the URL to your InsightMaker model (and remember to clone your Insight to ensure that you don't alter the model once you submit it).
 
