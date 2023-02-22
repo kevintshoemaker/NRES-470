@@ -36,11 +36,11 @@ First of all, this lecture is full of R code (R makes it easy to run matrix popu
 
 You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5? Or from stage 5 back to stage 3? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be hard to uncover! 
 
-![](teasel1.jpg)
+![](teasel1.jpg){width=30%}
 
-Consider the teasel example from our textbook. It's possible to implement this model in InsightMaker, but it would be tedious and potentially prone to error. And this is far from the most complicated populations out there (although notice that plants can do some things that animals can't do- for instance go backwards in developmental stage. With matrix models, there is an easier way!
+Consider the teasel example from our textbook. It's possible to implement this model in InsightMaker, but it would be tedious and prone to error. And this is far from the most complicated populations out there (although notice that plants can do some things that vertebrate animals can't do- for instance go backwards in developmental stage. With matrix models, there is an easier way!
 
-![](gotelli3_6.jpg)
+![](gotelli3_6.jpg){width=50%}
 
 The population vital rates for pretty much any age-structured or stage-structured population can be represented as a **transition matrix** (or, projection matrix), which summarizes all the information about survival, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)
 
@@ -60,7 +60,7 @@ teasel_matrix                                          # print the matrix
 
 ```
 
-#### Aside: stage-structure vs age-structure
+#### Stage-structure vs age-structure
 
 In the previous lecture, we talked about 'age-structured populations'. What we meant by that is that the population vital rates (e.g., $b$ and $d$) varied by age. 
 
@@ -89,7 +89,7 @@ Matrix population models can represent age-structured and stage-structured model
 
 The term 'Leslie Matrix' refers to an age-structured matrix population model. When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" Matrix. 
 
-### Reason 2: projection!
+### Reason 2: modeling age-structured population dynamics!
 
 In one of the questions in Lab 3, your were asked to use a life table to predict the number of births in a population one time step in the future. As you probably realized, this is not as straightforward as it sounds!
 
@@ -184,7 +184,7 @@ legend("topleft",col=cols,lwd=rep(2,6),legend=rownames(tenYears))      # add leg
 
 So projection is easy with matrices! What more reason do we need to convince ourselves of why matrix population models are worth knowing? Well, how about this...
 
-### Reason 3: Matrix algebra tricks!
+### Reason 3: Matrix algebra 'tricks'!
 
 There is a clear similarity between the finite population growth equation:
 

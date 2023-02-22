@@ -479,15 +479,15 @@ Imagine if there were five age classes, or 10? What if you could jump
 from (e.g.) stage 3 to stage 5? Or from stage 5 back to stage 3? How
 many lines would you have to draw, how many equations would you have to
 put in all the different flows? It would be tedious, and you could
-easily run into errors that would be very hard to uncover!</p>
-<p><img src="teasel1.jpg" /></p>
+easily run into errors that would be hard to uncover!</p>
+<p><img src="teasel1.jpg" style="width:30.0%" /></p>
 <p>Consider the teasel example from our textbook. It’s possible to
-implement this model in InsightMaker, but it would be tedious and
-potentially prone to error. And this is far from the most complicated
-populations out there (although notice that plants can do some things
-that animals can’t do- for instance go backwards in developmental stage.
-With matrix models, there is an easier way!</p>
-<p><img src="gotelli3_6.jpg" /></p>
+implement this model in InsightMaker, but it would be tedious and prone
+to error. And this is far from the most complicated populations out
+there (although notice that plants can do some things that vertebrate
+animals can’t do- for instance go backwards in developmental stage. With
+matrix models, there is an easier way!</p>
+<p><img src="gotelli3_6.jpg" style="width:50.0%" /></p>
 <p>The population vital rates for pretty much any age-structured or
 stage-structured population can be represented as a <strong>transition
 matrix</strong> (or, projection matrix), which summarizes all the
@@ -512,8 +512,8 @@ teasel_matrix                                          # print the matrix</code>
 ## ros2      0.007  0.00 0.125 0.238 0.000    30.170
 ## ros3      0.008  0.00 0.000 0.245 0.167     0.862
 ## flowering 0.000  0.00 0.000 0.023 0.750     0.000</code></pre>
-<div id="aside-stage-structure-vs-age-structure" class="section level4">
-<h4>Aside: stage-structure vs age-structure</h4>
+<div id="stage-structure-vs-age-structure" class="section level4">
+<h4>Stage-structure vs age-structure</h4>
 <p>In the previous lecture, we talked about ‘age-structured
 populations’. What we meant by that is that the population vital rates
 (e.g., <span class="math inline">\(b\)</span> and <span
@@ -549,8 +549,9 @@ population model. When a matrix is used to represent a stage-structured
 population, it is often called a ’Lefkovitch” Matrix.</p>
 </div>
 </div>
-<div id="reason-2-projection" class="section level3">
-<h3>Reason 2: projection!</h3>
+<div id="reason-2-modeling-age-structured-population-dynamics"
+class="section level3">
+<h3>Reason 2: modeling age-structured population dynamics!</h3>
 <p>In one of the questions in Lab 3, your were asked to use a life table
 to predict the number of births in a population one time step in the
 future. As you probably realized, this is not as straightforward as it
@@ -652,7 +653,7 @@ convince ourselves of why matrix population models are worth knowing?
 Well, how about this…</p>
 </div>
 <div id="reason-3-matrix-algebra-tricks" class="section level3">
-<h3>Reason 3: Matrix algebra tricks!</h3>
+<h3>Reason 3: Matrix algebra ‘tricks’!</h3>
 <p>There is a clear similarity between the finite population growth
 equation:</p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t\)</span>,</p>
