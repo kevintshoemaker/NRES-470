@@ -5,7 +5,6 @@
 #   Matrix population models                   
 
 
-
 # Teasel example -------------------------------
 # Teasel example from Gotelli: summarizing a complex life history!
 
@@ -53,7 +52,6 @@ for(t in 2:(nYears+1)){    # here we use 't' as our looping variable, but we cou
 }
 
 tenYears
-
 
 
 # Matrix "tricks" for population ecology ---------------------------
@@ -105,8 +103,8 @@ TMat
 # and keep filling it in...
 
 TMat[,1] <- c(0,0.3,0)          # fill in the entire first column of the transition matrix
-TMat[,2] <- c(0,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] <- c(4,0,0.85)         # fill in the entire third column of the transition matrix
+TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
+TMat[,3] <- c(0.85*4,0,0.85)         # fill in the entire third column of the transition matrix
 TMat
 
 
@@ -117,9 +115,9 @@ names(InitAbund) <- colnames(TMat)
 InitAbund
 
 
-# Run the model for 40 years (using for loop)
+# Run the model for 50 years (using for loop)
 
-nYears <- 40
+nYears <- 50
 allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
 rownames(allYears) <- rownames(TMat)
 colnames(allYears) <- seq(0,nYears)
@@ -140,5 +138,5 @@ for(s in 1:3){
   points(allYears[s,],col=cols[s],type="l",lwd=2)
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
-legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(allYears))
+legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(allYears),bty="n")
 
