@@ -14,7 +14,7 @@
 
 <title>Final projects!</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -400,7 +404,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -452,100 +456,176 @@ div.tocify {
 
 <h1 class="title toc-ignore">Final projects!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
 <div id="final-projects-for-nres-470" class="section level2">
 <h2>Final projects for NRES 470</h2>
-<p>Students will work in groups of ~3-4 people (maximum of 5) to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations.</p>
+<p>Students will work in groups of ~3-4 people to perform a population
+viability analysis (PVA) to rank conservation or management actions for
+a species of conservation concern (species of your choice!). Grading
+will be based on finished products (written and oral presentations) as
+well as participation and peer evaluations.</p>
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <ul>
 <li>Select a species and management question of interest.</li>
-<li>Perform a thorough literature review on your species of interest- collect all the information you can about life history (e.g., age at maturity), key vital rates (e.g., b, d), carrying capacity, etc.</li>
-<li>Construct a population viability analysis (PVA) model, parameterized using the best information you can find in the literature (using InsightMaker, R, or Vortex as a modeling platform).</li>
-<li>Use your PVA model to run <strong>scenario tests</strong> that address a conservation or management question (to test your research question)</li>
-<li>Use the model results to rank conservation or management actions for your species or population of interest</li>
-<li><em>Write up the results</em> and present your results to the class!</li>
+<li>Perform a thorough literature review on your species of interest-
+collect all the information you can about life history (e.g., age at
+maturity), key vital rates (e.g., b, d), carrying capacity, etc.</li>
+<li>Construct a population viability analysis (PVA) model, parameterized
+using the best information you can find in the literature (using
+InsightMaker, R, or Vortex as a modeling platform).</li>
+<li>Use your PVA model to run <strong>scenario tests</strong> that
+address a conservation or management question (to test your research
+question)</li>
+<li>Use the model results to rank conservation or management actions for
+your species or population of interest</li>
+<li><em>Write up the results</em> and present your results to the
+class!</li>
 </ul>
 </div>
 <div id="timeline-updated" class="section level2">
 <h2>Timeline (updated)</h2>
 <ul>
-<li><strong>PROPOSAL:</strong> Due Fri March 4!</li>
-<li><strong>INITIAL PVA</strong> Due Wed April 6: description of how your PVA model works and where the parameter estimates come from – and a link to a working PVA model!<br />
+<li><strong>PROPOSAL:</strong> Due Fri March 10!</li>
+<li><strong>INITIAL PVA</strong> Due Wed April 12: description of how
+your PVA model works and where the parameter estimates come from – and a
+link to a working PVA model!<br />
 </li>
-<li><strong>DRAFT FINAL PAPER:</strong> Due Mon April 18.</li>
-<li><strong>PEER REVIEWS:</strong> Fri Apr 22 in lab.</li>
-<li><strong>FINAL PRESENTATIONS:</strong> Wed Apr 27 and Fri April 29!</li>
-<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 11</li>
+<li><strong>DRAFT FINAL PAPER:</strong> Due Mon April 24.</li>
+<li><strong>PEER REVIEWS:</strong> Fri Apr 28 in lab.</li>
+<li><strong>FINAL PRESENTATIONS:</strong> Wed May 3 and Fri May 5!</li>
+<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 17</li>
 </ul>
-<p>Remember that the semester will get crazy at the end (including for your instructors). Plan ahead!</p>
+<p>Remember that the semester will get crazy at the end (including for
+your instructors). Plan ahead!</p>
 </div>
-<div id="first-project-related-assignment-the-proposal" class="section level2">
+<div id="first-project-related-assignment-the-proposal"
+class="section level2">
 <h2>First project-related assignment: the proposal!</h2>
 <p>Your project proposal (approx 1 pg) will consist of:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Title</strong>: should indicate what species you are modeling, and hint at what question(s) will be addressed<br />
+<li><strong>Title</strong>: should indicate what species you are
+modeling, and hint at what question(s) will be addressed<br />
 </li>
-<li><strong>Project participants</strong>: provide names of all participants (3-5).<br />
+<li><strong>Project participants</strong>: provide names of all
+participants (3-4).<br />
 </li>
-<li><strong>Research question(s)</strong>: Provide one or more testable and management-relevant questions that you plan to address using your population model.</li>
-<li><strong>Project rationale</strong>: Describe the rationale for choosing this species and management/conservation question. Be as specific as possible! Convince your instructor/TA that your project is <strong>interesting</strong>!<br />
+<li><strong>Research question(s)</strong>: Provide one or more testable
+and management-relevant questions that you plan to address using your
+population model.</li>
+<li><strong>Project rationale</strong>: Describe the rationale for
+choosing this species and management/conservation question. Be as
+specific as possible! Convince your instructor/TA that your project is
+<strong>interesting</strong>!<br />
 </li>
-<li><strong>Data sources</strong>: Describe one or more information sources you plan to use to guide PVA construction and parameterization (we want to make sure your project is <strong>possible</strong>!)</li>
+<li><strong>Data sources</strong>: Describe one or more information
+sources you plan to use to guide PVA construction and parameterization
+(we want to make sure your project is <strong>possible</strong>!)</li>
 </ol>
-<p>Some key parameters you will likely need for your PVA model (and will be searching the literature for!) are:</p>
+<p>Some key parameters you will likely need for your PVA model (and will
+be searching the literature for!) are:</p>
 <ul>
 <li><em>survival rates</em> (usually age-structured)<br />
 </li>
-<li><em>fecundity rates</em> (often age-structured as well) and <em>age at maturity</em><br />
+<li><em>birth rates</em> (often age-structured as well) and <em>age at
+maturity</em><br />
 </li>
-<li><em>stochasticity</em> (amount of year-to-year variability in the above vital rates)<br />
+<li><em>stochasticity</em> (amount of year-to-year variability in the
+above vital rates)<br />
 </li>
 <li><em>initial abundance</em><br />
 </li>
-<li><em>mode of population regulation</em> (which vital rates have negative density dependence? Linear or threshold?)</li>
-<li><em>carrying capacity (K)</em> (potentially for multiple subpopulations in a metapopulation!)</li>
+<li><em>mode of population regulation</em> (which vital rates have
+negative density dependence? Linear or threshold?)</li>
+<li><em>carrying capacity (K)</em> (potentially for multiple
+subpopulations in a metapopulation!)</li>
 <li><em>dispersal rates</em> (for metapopulation models)</li>
 <li><em>habitat quality</em> (for metapopulation models)</li>
-<li>linkages between management activities and vital rates (to run scenario tests!)</li>
+<li>linkages between management activities and vital rates (to run
+scenario tests!)</li>
 </ul>
-<p>We have gone over many of these concepts in class already- PVA is just a way of putting all the concepts from this class together in a single model! You can get the above information directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven’t yet gone over in class- and which you are not expected to do!!). If all else fails, you can use published records for similar species as a proxy (assuming that the vital rates are approximately the same)!</p>
+<p>We have gone over many of these concepts in class already- PVA is
+just a way of putting all the concepts from this class together in a
+single model! You can get the above information directly from the
+published literature (or unpublished reports), or you estimate these
+parameters yourself using raw data (which we haven’t yet gone over in
+class- and which you are not expected to do!!). If all else fails, you
+can use published records for similar species as a proxy (assuming that
+the vital rates are approximately the same)!</p>
 </div>
-<div id="second-project-related-assignment-the-initial-pva" class="section level2">
+<div id="second-project-related-assignment-the-initial-pva"
+class="section level2">
 <h2>Second project-related assignment: the initial PVA!</h2>
 <p>Your initial parameterized PVA model will consist of:</p>
 <ol style="list-style-type: decimal">
-<li><p>A ready-to-run PVA model, in whatever software framework you are using (InsightMaker, R, Vortex). This model does not need to be the “final” model, but it should work (e.g., produce results) and the parameter estimates should be backed by some evidence or rationale (see below).</p></li>
-<li><p>A written rationale/evidence for each of your parameter estimates and other key modeling decisions.</p>
+<li><p>A ready-to-run PVA model, in whatever software framework you are
+using (InsightMaker, R, Vortex). This model does not need to be the
+“final” model, but it should work (e.g., produce results) and the
+parameter estimates should be backed by some evidence or rationale (see
+below).</p></li>
+<li><p>A written rationale/evidence for each of your parameter estimates
+and other key modeling decisions.</p>
 <ol style="list-style-type: lower-alpha">
-<li>For each major decision you made in constructing the model, describe the information you used to back up your decision (and the source(s) of this information). Decisions include: how many populations, initial abundance(s), how many stages, how density-dependence operates for your species (e.g., which vital rates are density-dependent), Allee effects (if present), survival and fecundity rates, environmental stochasticity on one or more vital rates, catastrophes, etc. Where appropriate, feel free to embed figures, maps, etc. from your information sources.</li>
-<li>What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions? NOTE: you don’t need to run your scenario tests- just state what scenario tests you propose to run!</li>
-<li>Literature cited (format not important, as long as it includes all key information)</li>
+<li>For each major decision you made in constructing the model, describe
+the information you used to back up your decision (and the source(s) of
+this information). Decisions include: how many populations, initial
+abundance(s), how many stages, how density-dependence operates for your
+species (e.g., which vital rates are density-dependent), Allee effects
+(if present), survival and fecundity rates, environmental stochasticity
+on one or more vital rates, catastrophes, etc. Where appropriate, feel
+free to embed figures, maps, etc. from your information sources.</li>
+<li>What scenarios do you plan to test (e.g., management scenarios,
+climate change, harvest, etc), and how will these scenarios help you to
+address your research questions? NOTE: you don’t need to run your
+scenario tests- just state what scenario tests you propose to run!</li>
+<li>Literature cited (format not important, as long as it includes all
+key information)</li>
 </ol></li>
 </ol>
 </div>
-<div id="third-project-related-assignment-the-written-project-rough-draft" class="section level2">
-<h2>Third project-related assignment: the written project (rough draft)!</h2>
-<p>Your final written paper is expected to be in the style of a <strong>scientific manuscript</strong>. That is, it should have a <em>title</em>, <em>introduction</em>, <em>methods</em>, <em>results</em>, <em>discussion</em>, <em>acknowledgements</em> and <em>literature cited</em> sections. Please also include your working PVA model (e.g., InsightMaker link or R code).</p>
-<p><strong>There are no formatting guidelines or page limits</strong>. Please be as concise as possible while still covering all the key elements in the grading rubric. You can use any standard format for your references (e.g., APA), all we ask is that you be consistent!</p>
+<div
+id="third-project-related-assignment-the-written-project-rough-draft"
+class="section level2">
+<h2>Third project-related assignment: the written project (rough
+draft)!</h2>
+<p>Your final written paper is expected to be in the style of a
+<strong>scientific manuscript</strong>. That is, it should have a
+<em>title</em>, <em>introduction</em>, <em>methods</em>,
+<em>results</em>, <em>discussion</em>, <em>acknowledgements</em> and
+<em>literature cited</em> sections. Please also include your working PVA
+model (e.g., InsightMaker link or R code).</p>
+<p><strong>There are no formatting guidelines or page limits</strong>.
+Please be as concise as possible while still covering all the key
+elements in the grading rubric. You can use any standard format for your
+references (e.g., APA), all we ask is that you be consistent!</p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<p>This is where you introduce the topic and describe why it’s important. You should also include your research questions here, along with any hypotheses that you are testing (this is usually the last paragraph of your introduction). You can recycle and flesh out the material from your proposal! This should be at least 3 paragraphs long.</p>
+<p>This is where you introduce the topic and describe why it’s
+important. You should also include your research questions here, along
+with any hypotheses that you are testing (this is usually the last
+paragraph of your introduction). You can recycle and flesh out the
+material from your proposal! This should be at least 3 paragraphs
+long.</p>
 <p>Remember to cite literature here (and use a consistent format)!</p>
 </div>
 <div id="methods" class="section level3">
 <h3>Methods</h3>
-<p>This is where you describe your PVA in enough detail that it <em>could be replicated</em> by another wildlife researcher! You can recycle much of your “initial PVA” assignment here.</p>
-<p>Remember to justify all your decisions in terms of parameterization.</p>
-<p>Also, you should describe how you addressed the research questions you introduced in the introduction section (above)</p>
+<p>This is where you describe your PVA in enough detail that it
+<em>could be replicated</em> by another wildlife researcher! You can
+recycle much of your “initial PVA” assignment here.</p>
+<p>Remember to justify all your decisions in terms of
+parameterization.</p>
+<p>Also, you should describe how you addressed the research questions
+you introduced in the introduction section (above)</p>
 <ul>
 <li><p>What different scenarios did you run?</p></li>
-<li><p>How did you use the simulation results to address your questions?</p>
+<li><p>How did you use the simulation results to address your
+questions?</p>
 <ul>
 <li>How did you visualize the results?<br />
 </li>
@@ -555,52 +635,108 @@ div.tocify {
 </div>
 <div id="results" class="section level3">
 <h3>Results</h3>
-<p>This is where you describe and present the relevant outputs from your model. Provide figures and tables to summarize your <em>relevant</em> results. You should include at least 2-3 figures as part of your results section. Each figure should have an informative caption placed directly below the figure.</p>
-<p>With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it <em>relevant</em> to your main questions?</p>
+<p>This is where you describe and present the relevant outputs from your
+model. Provide figures and tables to summarize your <em>relevant</em>
+results. You should include at least 2-3 figures as part of your results
+section. Each figure should have an informative caption placed directly
+below the figure.</p>
+<p>With PVA it can be difficult to decide what to present and what not
+to present. Always ask yourself: is it <em>relevant</em> to your main
+questions?</p>
 </div>
 <div id="discussion" class="section level3">
 <h3>Discussion</h3>
-<p>This is where you describe what your results really tell us with respect to your main questions.</p>
+<p>This is where you describe what your results really tell us with
+respect to your main questions.</p>
 <p>Also, in your discussion you should:</p>
 <ul>
-<li>Describe any new questions that came up in the process of building and running your PVA</li>
-<li>Describe any potential flaws with your PVA and how you might improve this in the future</li>
-<li>Describe any future research that could be helpful in addressing your main questions</li>
+<li>Describe any new questions that came up in the process of building
+and running your PVA</li>
+<li>Describe any potential flaws with your PVA and how you might improve
+this in the future</li>
+<li>Describe any future research that could be helpful in addressing
+your main questions</li>
 </ul>
-<p>A rubric for the final written presentation can be found <a href="WrittenProject_rubric.docx">here</a>.</p>
+<p>A rubric for the final written presentation can be found <a
+href="WrittenProject_rubric.docx">here</a>.</p>
 </div>
 </div>
-<div id="fourth-project-related-assignment-the-oral-presentation" class="section level2">
+<div id="fourth-project-related-assignment-the-oral-presentation"
+class="section level2">
 <h2>Fourth project-related assignment: the oral presentation!</h2>
-<p>Your group presentation should be in the style of an oral presentation at a conference. See below for guidance on giving a good oral presentation!</p>
+<p>Your group presentation should be in the style of an oral
+presentation at a conference. See below for guidance on giving a good
+oral presentation!</p>
 <p>Presentations will take place during our final two lab periods.</p>
-<p>You will have 12 minutes to give your presentations, with 3 additional minutes for questions.</p>
-<p>A rubric for the presentations can be found <a href="presentationProject_rubric.docx">here</a></p>
+<p>You will have 12 minutes to give your presentations, with 3
+additional minutes for questions.</p>
+<p>A rubric for the presentations can be found <a
+href="presentationProject_rubric.docx">here</a></p>
 </div>
-<div id="final-paper-peer-reviewfeedback-session" class="section level2">
+<div id="final-paper-peer-reviewfeedback-session"
+class="section level2">
 <h2>Final paper peer review/feedback session</h2>
-<p>In lab on Fri Apr 22 we will have a “peer review” session where we will have a chance to give each other feedback on draft manuscripts.</p>
+<p>In lab on Fri Apr 28 we will have a “peer review” session where we
+will have a chance to give each other feedback on draft manuscripts.</p>
 <p>The way it will work is as follows:</p>
 <ol style="list-style-type: decimal">
-<li><p>In the week before the peer review you will receive another group’s draft manuscript via WebCampus.</p></li>
-<li><p>Before lab, please thoroughly read the manuscript you have been assigned, and make comments, paying particular attention to the <a href="WrittenProject_rubric.docx">grading rubric</a>.</p></li>
-<li><p>During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 30-35 minutes to compare notes and prepare a written peer-review of the manuscript that highlights both the strengths and the weaknesses that you found. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! <em>Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA</em> (submit/share via WebCampus)</p></li>
-<li><p>After that, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give feedback in person.</p></li>
-<li><p>For any remaining time in lab, you will have a chance to work on your write-ups and presentations!</p></li>
+<li><p>In the week before the peer review you will receive another
+group’s draft manuscript via WebCampus.</p></li>
+<li><p>Before lab, please thoroughly read the manuscript you have been
+assigned, and make comments, paying particular attention to the <a
+href="WrittenProject_rubric.docx">grading rubric</a>.</p></li>
+<li><p>During the lab period, you will first get together with the other
+students that were also assigned to review the same manuscript. You will
+have 30-35 minutes to compare notes and prepare a written peer-review of
+the manuscript that highlights both the strengths and the weaknesses
+that you found. Please make your comments as specific and constructive
+as possible. The goal is to give your classmates feedback that will be
+useful to them as they prepare their final drafts! <em>Please hand in
+your peer-review to the group that wrote the draft AND your
+instuctor/TA</em> (submit/share via WebCampus)</p></li>
+<li><p>After that, we will break up into new groups. One representative
+from each peer-review group will meet with the project group that wrote
+the draft manuscript, to give feedback in person.</p></li>
+<li><p>For any remaining time in lab, you will have a chance to work on
+your write-ups and presentations!</p></li>
 </ol>
-<p>Bring your laptops to lab as usual so you can write, save and share your peer-review electronically with your classmates/instructors.</p>
+<p>Bring your laptops to lab as usual so you can write, save and share
+your peer-review electronically with your classmates/instructors.</p>
 <div id="tips-for-a-great-presentation" class="section level3">
 <h3>Tips for a great presentation!</h3>
-<p>Here are some general notes about how to prepare and deliver a great presentation:<br />
-- For all slides: <em>Less words, more pictures</em>! Wordy slides often cause people to stop paying attention! All of you are working with charismatic species, so you shouldn’t have trouble finding nice pictures that capture people’s attention. As for words, 3-5 bullet points maximum! Complete sentences are NOT needed in a presentation. Use a large, sans-serif font to improve readability.</p>
-<p>Note: make sure you give proper credit for all pictures (e.g., what website did it come from?)</p>
+<p>Here are some general notes about how to prepare and deliver a great
+presentation:<br />
+- For all slides: <em>Less words, more pictures</em>! Wordy slides often
+cause people to stop paying attention! All of you are working with
+charismatic species, so you shouldn’t have trouble finding nice pictures
+that capture people’s attention. As for words, 3-5 bullet points
+maximum! Complete sentences are NOT needed in a presentation. Use a
+large, sans-serif font to improve readability.</p>
+<p>Note: make sure you give proper credit for all pictures (e.g., what
+website did it come from?)</p>
 <ul>
-<li><p>Excitement is infectious- make sure you convey your excitement about the project. You all worked very hard, and you should be proud of what you were able to do. Now you can share this excitement with your colleagues! Many inexperienced presenters make the mistake of highlighting only what they were <em>not</em> able to accomplish. Try to avoid this pitfall- shortcomings should be limited to a single slide in the discussion section of the presentation.</p></li>
-<li><p>A good presentation should <em>tell a story</em>. It has a beginning, middle and an end. Every slide flows logically from what came before.</p></li>
-<li><p>Keep it simple- don’t use excess jargon, acronyms etc. Good communication skills means getting your points across in the simplest and clearest way possible.</p></li>
-<li><p>Every presentation is a performance. Performance requires practice!! The real work comes before the performance- putting together the slides and practicing the delivery. When the time comes to actually give the performance, relax and have fun- the hard work is over!</p></li>
+<li><p>Excitement is infectious- make sure you convey your excitement
+about the project. You all worked very hard, and you should be proud of
+what you were able to do. Now you can share this excitement with your
+colleagues! Many inexperienced presenters make the mistake of
+highlighting only what they were <em>not</em> able to accomplish. Try to
+avoid this pitfall- shortcomings should be limited to a single slide in
+the discussion section of the presentation.</p></li>
+<li><p>A good presentation should <em>tell a story</em>. It has a
+beginning, middle and an end. Every slide flows logically from what came
+before.</p></li>
+<li><p>Keep it simple- don’t use excess jargon, acronyms etc. Good
+communication skills means getting your points across in the simplest
+and clearest way possible.</p></li>
+<li><p>Every presentation is a performance. Performance requires
+practice!! The real work comes before the performance- putting together
+the slides and practicing the delivery. When the time comes to actually
+give the performance, relax and have fun- the hard work is
+over!</p></li>
 </ul>
-<p>Note: please don’t use fancy backgrounds- keep your slides as clean as possible. Animations can be useful, but excessive animation is distracting!</p>
+<p>Note: please don’t use fancy backgrounds- keep your slides as clean
+as possible. Animations can be useful, but excessive animation is
+distracting!</p>
 <div id="title-slide" class="section level4">
 <h4>Title slide</h4>
 <ul>
@@ -611,33 +747,60 @@ div.tocify {
 <div id="introduction-1" class="section level4">
 <h4>Introduction</h4>
 <ul>
-<li><p>Tell your audience why they should care!! All of you are working with interesting species, and all of you are asking interesting questions. All of your audience is interested in wildlife conservation and management. There is absolutely no reason why you shouldn’t be able to convince your audience to care about what you have to say!!</p></li>
-<li><p>Cite previous research as you set up your research question. Convince us that your research fills a key knowledge gap. What is the overall context of your research?</p></li>
-<li><p>After you have framed the problem, <em>clearly state your research questions</em>!</p></li>
+<li><p>Tell your audience why they should care!! All of you are working
+with interesting species, and all of you are asking interesting
+questions. All of your audience is interested in wildlife conservation
+and management. There is absolutely no reason why you shouldn’t be able
+to convince your audience to care about what you have to say!!</p></li>
+<li><p>Cite previous research as you set up your research question.
+Convince us that your research fills a key knowledge gap. What is the
+overall context of your research?</p></li>
+<li><p>After you have framed the problem, <em>clearly state your
+research questions</em>!</p></li>
 </ul>
 </div>
 <div id="methods-1" class="section level4">
 <h4>Methods</h4>
 <ul>
-<li><p>Provide a <em>very abbreviated</em> summary of your PVA model. You don’t have time to provide all the details that are in your written Methods section! So try to distill the key elements of your methods. Be careful you don’t spend too much time on this section! The details you provide here must be clearly relevant to your research questions. All you need to do is convince your peers that your methods were appropriate for addressing your questions.</p></li>
-<li><p>You can include supplemental slides that provide more details on your methods (after the last “real” slide). It can be helpful to refer to supplemental slides if someone asks a question about your methods!</p></li>
+<li><p>Provide a <em>very abbreviated</em> summary of your PVA model.
+You don’t have time to provide all the details that are in your written
+Methods section! So try to distill the key elements of your methods. Be
+careful you don’t spend too much time on this section! The details you
+provide here must be clearly relevant to your research questions. All
+you need to do is convince your peers that your methods were appropriate
+for addressing your questions.</p></li>
+<li><p>You can include supplemental slides that provide more details on
+your methods (after the last “real” slide). It can be helpful to refer
+to supplemental slides if someone asks a question about your
+methods!</p></li>
 </ul>
 </div>
 <div id="results-and-discussion" class="section level4">
 <h4>Results and Discussion</h4>
 <ul>
-<li><p>Include key figures that relate to the main questions. Only include those figures that are the most relevant to your main research questions- too many figures can be distracting.</p></li>
-<li><p>For all plots, make sure you explain what the axes and symbols represent! Also, make sure the axis labels are large enough to be readable from the back of the room!</p></li>
-<li><p>Summarize key findings- what did you learn? Make sure these findings relate to the research questions stated in the introductory slides</p></li>
-<li><p>Management implications- how could wildlife managers act upon your findings??</p></li>
-<li><p><em>Just one slide</em> discussing shortcomings of your project and how you would improve your model and design if you had additional time.</p></li>
-<li><p>Describe what you or other researchers could do to expand upon your findings- what are the next steps?</p></li>
+<li><p>Include key figures that relate to the main questions. Only
+include those figures that are the most relevant to your main research
+questions- too many figures can be distracting.</p></li>
+<li><p>For all plots, make sure you explain what the axes and symbols
+represent! Also, make sure the axis labels are large enough to be
+readable from the back of the room!</p></li>
+<li><p>Summarize key findings- what did you learn? Make sure these
+findings relate to the research questions stated in the introductory
+slides</p></li>
+<li><p>Management implications- how could wildlife managers act upon
+your findings??</p></li>
+<li><p><em>Just one slide</em> discussing shortcomings of your project
+and how you would improve your model and design if you had additional
+time.</p></li>
+<li><p>Describe what you or other researchers could do to expand upon
+your findings- what are the next steps?</p></li>
 </ul>
 </div>
 <div id="acknoweldgements" class="section level4">
 <h4>Acknoweldgements</h4>
 <ul>
-<li>Your final slide should acknowledge people who helped you with your project but who are not listed as a co-author.</li>
+<li>Your final slide should acknowledge people who helped you with your
+project but who are not listed as a co-author.</li>
 </ul>
 </div>
 </div>
@@ -646,52 +809,141 @@ div.tocify {
 <h2>Potentially useful links!</h2>
 <p>Publicly available datasets, potentially for final project…<br />
 (many links courtesy Tom Langen)</p>
-<div id="biodiversity-data-clearinghouses-archives" class="section level3">
+<div id="biodiversity-data-clearinghouses-archives"
+class="section level3">
 <h3>BIODIVERSITY DATA CLEARINGHOUSES /ARCHIVES</h3>
-<p><a href="http://www.iucnredlist.org/">International Union for the Conservation of Nature (IUCN) Redlist</a> (Searchable list of the world’s threatened and endangered plants and animal species on the IUCN Redlist.)</p>
-<p><a href="http://www.biodiversityhotspots.org/Pages/default.aspx">Conservation International Global Biodiversity Hotspots</a> (Detailed data on the attributes and threats to the world’s global biodiversity hotspots.)</p>
-<p><a href="http://www.nbii.gov/">National Biological Information Infrastructure</a> (Data archive and clearinghouse for biological data from the US. Also provides standards for metadata.)</p>
-<p><a href="http://www.ice.ucdavis.edu/bioinventory/bioinventory.html">Biological Inventories of the World’s Protected Areas</a> (Searchable species occurrence records and species lists for over 1,400 protected areas around the globe.)</p>
-<p><a href="http://data.gbif.org/welcome.htm">Global Biodiversity Information Facility</a> (An enormous clearinghouse of biodiversity data)</p>
-<p><a href="https://migbirdapps.fws.gov/mbdc/databases/db_selection.html">USGS avian data portal</a></p>
-<p><a href="http://www3.imperial.ac.uk/cpb/research/patternsandprocesses/gpdd">Global Population Dynamics Data Base(GPDD)</a> (5000 population size time series for 1400 species, most of which have at least ten years of data. There are data on the natural history of the organism and the location &amp; method of sampling.)</p>
-<p><a href="https://www.imperial.ac.uk/cpb/gpdd2/secure/login.aspx">GPDD, alternative link</a></p>
-<p><a href="http://www.pwrc.usgs.gov/BBS/">USGS Breeding Bird Survey</a> (Breeding bird survey data back to 1966)</p>
-<p><a href="http://www.pwrc.usgs.gov/point/">Bird Point Count Database</a> (Depository of bird point-count data from across the US.)</p>
-<p><a href="http://www.bsc-eoc.org/birdmon/default/main.jsp">Bird Studies Canada Nature Counts</a> (Bird survey data archive for Canada, includes point counts and many other types of surveys.)</p>
-<p><a href="http://www.avianknowledge.net/content/datasets">Avian Knowledge Network</a> (Archive of aggregated bird surveys from many organizations and studies across throughout the western hemisphere, including Latin America.)</p>
-<p><a href="http://www.natureserve.org/getData/index.jsp">NatureServe</a> (Data on species of plants and animals in the Western Hemisphere, including detailed range maps)</p>
+<p><a href="http://www.iucnredlist.org/">International Union for the
+Conservation of Nature (IUCN) Redlist</a> (Searchable list of the
+world’s threatened and endangered plants and animal species on the IUCN
+Redlist.)</p>
+<p><a
+href="http://www.biodiversityhotspots.org/Pages/default.aspx">Conservation
+International Global Biodiversity Hotspots</a> (Detailed data on the
+attributes and threats to the world’s global biodiversity hotspots.)</p>
+<p><a href="http://www.nbii.gov/">National Biological Information
+Infrastructure</a> (Data archive and clearinghouse for biological data
+from the US. Also provides standards for metadata.)</p>
+<p><a
+href="http://www.ice.ucdavis.edu/bioinventory/bioinventory.html">Biological
+Inventories of the World’s Protected Areas</a> (Searchable species
+occurrence records and species lists for over 1,400 protected areas
+around the globe.)</p>
+<p><a href="http://data.gbif.org/welcome.htm">Global Biodiversity
+Information Facility</a> (An enormous clearinghouse of biodiversity
+data)</p>
+<p><a
+href="https://migbirdapps.fws.gov/mbdc/databases/db_selection.html">USGS
+avian data portal</a></p>
+<p><a
+href="http://www3.imperial.ac.uk/cpb/research/patternsandprocesses/gpdd">Global
+Population Dynamics Data Base(GPDD)</a> (5000 population size time
+series for 1400 species, most of which have at least ten years of data.
+There are data on the natural history of the organism and the location
+&amp; method of sampling.)</p>
+<p><a
+href="https://www.imperial.ac.uk/cpb/gpdd2/secure/login.aspx">GPDD,
+alternative link</a></p>
+<p><a href="http://www.pwrc.usgs.gov/BBS/">USGS Breeding Bird Survey</a>
+(Breeding bird survey data back to 1966)</p>
+<p><a href="http://www.pwrc.usgs.gov/point/">Bird Point Count
+Database</a> (Depository of bird point-count data from across the
+US.)</p>
+<p><a href="http://www.bsc-eoc.org/birdmon/default/main.jsp">Bird
+Studies Canada Nature Counts</a> (Bird survey data archive for Canada,
+includes point counts and many other types of surveys.)</p>
+<p><a href="http://www.avianknowledge.net/content/datasets">Avian
+Knowledge Network</a> (Archive of aggregated bird surveys from many
+organizations and studies across throughout the western hemisphere,
+including Latin America.)</p>
+<p><a
+href="http://www.natureserve.org/getData/index.jsp">NatureServe</a>
+(Data on species of plants and animals in the Western Hemisphere,
+including detailed range maps)</p>
 <p><a href="https://my.usgs.gov/bpd/">USGS bat data portal</a></p>
-<p><a href="https://compadredb.wordpress.com/2015/10/05/introducing-the-comadre-animal-matrix-database/">Comadre and Compadre matrix demography database</a></p>
+<p><a
+href="https://compadredb.wordpress.com/2015/10/05/introducing-the-comadre-animal-matrix-database/">Comadre
+and Compadre matrix demography database</a></p>
 </div>
 <div id="government-agency-data-portals" class="section level3">
 <h3>GOVERNMENT AGENCY DATA PORTALS</h3>
-<p><a href="http://www.nationalatlas.gov/">National Atlas</a> (Geospatial data on the environment, economy, and people of the US).</p>
-<p><a href="http://www.agcensus.usda.gov/">US Department of Agriculture Census of Agricultural Data</a> (Authoritative data on all aspects of agriculture in the US.)</p>
-<p><a href="http://www.cdc.gov/datastatistics/">Centers for Disease Control &amp; Prevention Data &amp; Statistics</a> (Comprehensive data on all aspects of disease epidemiology.)</p>
-<p><a href="http://waterdata.usgs.gov/nwis">USGS Water Data for the Nation</a> (Hydrological and water-quality data from across the US.)</p>
-<p><a href="http://diseasemaps.usgs.gov/index.html">USGS Survey Disease Maps</a> (US County-scale maps of incidence patterns of various mosquito-vectored diseases)</p>
-<p><a href="http://www.mrlc.gov/">The Multi-resolution Land Characteristics Consortium (MRLC) National Land Cover Database</a> (Land cover or land use, canopy cover, and impermeable surface area of the entire US, at a resolution of 30 m x 30 m, based on remote sensing data from satellite imagery.)</p>
-<p><a href="http://www.fws.gov/wetlands/">US Fish &amp; Wildlife Service National Wetlands Inventory</a> (Wetlands greater than 1 acre are mapped and classified throughout the US, Puerto Rico and US territories. Data can be examined using the <a href="http://www.fws.gov/wetlands/Data/Mapper.html">Wetland Mapper</a> and then downloaded for use by a GIS application, or can by inspected directly using <a href="http://www.fws.gov/wetlands/Data/GoogleEarth.html">Google Earth</a>)</p>
-<p><a href="http://fia.fs.fed.us/">USDA Forest Inventory and Analysis National Program</a> <a href="http://fia.fs.fed.us/tools-data/default.asp">Forest Inventory Data Online (FIDO)</a> (Highly-detailed periodic surveys of forest composition at sites throughout the US.)</p>
-<p><a href="http://www.usgs.gov/">US Geological Survey</a> (Reports, data analysis, maps, and raw data on a diversity of topics related to environmental science, including biodiversity and emerging diseases.)</p>
-<p><a href="http://www.ncdc.noaa.gov/oa/ncdc.html">NOAA National Climate Data Center</a> (Extensive data archives of climate data, including paleoclimate.)</p>
+<p><a href="http://www.nationalatlas.gov/">National Atlas</a>
+(Geospatial data on the environment, economy, and people of the US).</p>
+<p><a href="http://www.agcensus.usda.gov/">US Department of Agriculture
+Census of Agricultural Data</a> (Authoritative data on all aspects of
+agriculture in the US.)</p>
+<p><a href="http://www.cdc.gov/datastatistics/">Centers for Disease
+Control &amp; Prevention Data &amp; Statistics</a> (Comprehensive data
+on all aspects of disease epidemiology.)</p>
+<p><a href="http://waterdata.usgs.gov/nwis">USGS Water Data for the
+Nation</a> (Hydrological and water-quality data from across the US.)</p>
+<p><a href="http://diseasemaps.usgs.gov/index.html">USGS Survey Disease
+Maps</a> (US County-scale maps of incidence patterns of various
+mosquito-vectored diseases)</p>
+<p><a href="http://www.mrlc.gov/">The Multi-resolution Land
+Characteristics Consortium (MRLC) National Land Cover Database</a> (Land
+cover or land use, canopy cover, and impermeable surface area of the
+entire US, at a resolution of 30 m x 30 m, based on remote sensing data
+from satellite imagery.)</p>
+<p><a href="http://www.fws.gov/wetlands/">US Fish &amp; Wildlife Service
+National Wetlands Inventory</a> (Wetlands greater than 1 acre are mapped
+and classified throughout the US, Puerto Rico and US territories. Data
+can be examined using the <a
+href="http://www.fws.gov/wetlands/Data/Mapper.html">Wetland Mapper</a>
+and then downloaded for use by a GIS application, or can by inspected
+directly using <a
+href="http://www.fws.gov/wetlands/Data/GoogleEarth.html">Google
+Earth</a>)</p>
+<p><a href="http://fia.fs.fed.us/">USDA Forest Inventory and Analysis
+National Program</a> <a
+href="http://fia.fs.fed.us/tools-data/default.asp">Forest Inventory Data
+Online (FIDO)</a> (Highly-detailed periodic surveys of forest
+composition at sites throughout the US.)</p>
+<p><a href="http://www.usgs.gov/">US Geological Survey</a> (Reports,
+data analysis, maps, and raw data on a diversity of topics related to
+environmental science, including biodiversity and emerging
+diseases.)</p>
+<p><a href="http://www.ncdc.noaa.gov/oa/ncdc.html">NOAA National Climate
+Data Center</a> (Extensive data archives of climate data, including
+paleoclimate.)</p>
 </div>
 <div id="environmental-data-clearinghouses" class="section level3">
 <h3>ENVIRONMENTAL DATA CLEARINGHOUSES</h3>
-<p><a href="http://www.ecotrends.info/EcoTrends/">Ecotrends</a> (Data archive and data visualization tools for ecological data at sites distributed around the US.)</p>
-<p><a href="http://gcmd.nasa.gov/index.html">NASA Global Change Master Directory</a> (Data on all aspects of global change, includes data on climate, land use, biodiversity and human dimensions.)</p>
-<p><a href="http://daac.ornl.gov/index.shtml">Oak Ridge National Laboratory Distributed Active Archive Center for Biogeochemical Dynamics(ORNL DAAC)</a> (A NASA-sponsored source for biogeochemical and ecological data and models useful in environmental research.)</p>
-<p><a href="http://www.p2erls.net/">Pole to Pole Ecological Research Lattice of Sites (P2ERLS)</a> (Portal to research stations and research networks, including their data archives.)</p>
-<p><a href="http://weatherspark.com/">Weatherspark</a> (Visualized time-series data on local climate at sites around the globe.)</p>
-<p><a href="http://www.lternet.edu/">Long Term Ecological Research (LTER) Network</a> (Network of research stations that have standardized monitoring programs as well as site-specific research. Sites are mandated to make data publicly available on the web.)</p>
+<p><a href="http://www.ecotrends.info/EcoTrends/">Ecotrends</a> (Data
+archive and data visualization tools for ecological data at sites
+distributed around the US.)</p>
+<p><a href="http://gcmd.nasa.gov/index.html">NASA Global Change Master
+Directory</a> (Data on all aspects of global change, includes data on
+climate, land use, biodiversity and human dimensions.)</p>
+<p><a href="http://daac.ornl.gov/index.shtml">Oak Ridge National
+Laboratory Distributed Active Archive Center for Biogeochemical
+Dynamics(ORNL DAAC)</a> (A NASA-sponsored source for biogeochemical and
+ecological data and models useful in environmental research.)</p>
+<p><a href="http://www.p2erls.net/">Pole to Pole Ecological Research
+Lattice of Sites (P2ERLS)</a> (Portal to research stations and research
+networks, including their data archives.)</p>
+<p><a href="http://weatherspark.com/">Weatherspark</a> (Visualized
+time-series data on local climate at sites around the globe.)</p>
+<p><a href="http://www.lternet.edu/">Long Term Ecological Research
+(LTER) Network</a> (Network of research stations that have standardized
+monitoring programs as well as site-specific research. Sites are
+mandated to make data publicly available on the web.)</p>
 </div>
 <div id="research-project-data-archives" class="section level3">
 <h3>RESEARCH PROJECT DATA ARCHIVES</h3>
-<p><a href="http://datadryad.org/">Dryad</a> (Data archives for bioscience data from peer-reviewed journal articles from a large consortium of journals)</p>
-<p><a href="http://esapubs.org/archive/archive_D.htm">Ecological Society of America (ESA) Data Registry</a> Archive of ecological and environmental data from ESA publications)</p>
-<p><a href="http://knb.ecoinformatics.org/knb/style/skins/nceas/index.jsp">National Center for Ecological Assessment &amp; Synthesis (NCEAS) Data Repository</a> (Data archive of contributed data sets of all types of ecological data.)</p>
-<p><a href="http://www.nceas.ucsb.edu/scicomp/">NCEAS Scientific Computing Database</a> (Clearinghouse of climatological, geospatial, and other data. Also has shareware software for analysis.)</p>
+<p><a href="http://datadryad.org/">Dryad</a> (Data archives for
+bioscience data from peer-reviewed journal articles from a large
+consortium of journals)</p>
+<p><a href="http://esapubs.org/archive/archive_D.htm">Ecological Society
+of America (ESA) Data Registry</a> Archive of ecological and
+environmental data from ESA publications)</p>
+<p><a
+href="http://knb.ecoinformatics.org/knb/style/skins/nceas/index.jsp">National
+Center for Ecological Assessment &amp; Synthesis (NCEAS) Data
+Repository</a> (Data archive of contributed data sets of all types of
+ecological data.)</p>
+<p><a href="http://www.nceas.ucsb.edu/scicomp/">NCEAS Scientific
+Computing Database</a> (Clearinghouse of climatological, geospatial, and
+other data. Also has shareware software for analysis.)</p>
 </div>
 </div>
 
