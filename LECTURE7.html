@@ -514,9 +514,9 @@ teasel_matrix                                          # print the matrix</code>
 ## flowering 0.000  0.00 0.000 0.023 0.750     0.000</code></pre>
 <div id="stage-structure-vs-age-structure" class="section level4">
 <h4>Stage-structure vs age-structure</h4>
-<p>In the previous lecture, we talked about ‘age-structured
-populations’. What we meant by that is that the population vital rates
-(e.g., <span class="math inline">\(b\)</span> and <span
+<p>In the previous module, we talked about ‘age-structured populations’.
+What we meant by that is that the population vital rates (e.g., <span
+class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span>) varied by age.</p>
 <p>Sometimes, it’s convenient to classify individuals within a certain
 age range as belonging to a particular life-history stage. For example,
@@ -545,20 +545,22 @@ with age (i.e., the model is still <em>biologically realistic</em>).</p>
 <p>Matrix population models can represent age-structured and
 stage-structured models with equal simplicity and elegance.</p>
 <p>The term ‘Leslie Matrix’ refers to an age-structured matrix
-population model. When a matrix is used to represent a stage-structured
-population, it is often called a ’Lefkovitch” Matrix.</p>
+population model.</p>
+<p>When a matrix is used to represent a stage-structured population, it
+is often called a ’Lefkovitch” Matrix.</p>
 </div>
 </div>
 <div id="reason-2-modeling-age-structured-population-dynamics"
 class="section level3">
 <h3>Reason 2: modeling age-structured population dynamics!</h3>
-<p>In one of the questions in Lab 3, your were asked to use a life table
-to predict the number of births in a population one time step in the
+<p>In one of the questions in Lab 3, you were asked to use a life table
+to predict the number of births in a population one time step into the
 future. As you probably realized, this is not as straightforward as it
 sounds!</p>
 <p>Life tables are great for summarizing survivorship schedules and
 other aspects of age-structured populations. But life tables are not
-designed to model age-structured abundance dynamics!</p>
+designed to model the abundance dynamics of age- or stage- structured
+populations!</p>
 <p>You know what <em>is</em> great for projecting age-structured
 abundance into the future?</p>
 <p>MATRICES of course!</p>
@@ -584,9 +586,8 @@ Initial_teasel</code></pre>
 matrix</strong> from above! Each time we do this multiplication step, we
 advance one year! It’s that easy!</p>
 <p>NOTE: matrix multiplication (percent-asterisk-percent in R) is not
-the same as standard multiplication (asterisk in R). We will go over
-this in the intro to lab 4 a bit later.<br />
-Here’s how we can do this in R!</p>
+the same as standard multiplication (asterisk in R).</p>
+<p>Here’s how we can do this in R!</p>
 <pre class="r"><code># Project the population at time 1
 
 Year1 &lt;- teasel_matrix %*% Initial_teasel   # note: the &#39;%*%&#39; denotes &#39;matrix multiplication&#39; in R. We&#39;ll go through this more later.     
@@ -598,7 +599,7 @@ Year1</code></pre>
 ## ros2         857.65
 ## ros3         203.25
 ## flowering    456.90</code></pre>
-<p>How easy is that?!</p>
+<p>Pretty simple!</p>
 <p>To compute teasel abundance in year 2 of our simulation, we can
 simply repeat:</p>
 <pre class="r"><code># Project the population at time 2
@@ -654,6 +655,16 @@ Well, how about this…</p>
 </div>
 <div id="reason-3-matrix-algebra-tricks" class="section level3">
 <h3>Reason 3: Matrix algebra ‘tricks’!</h3>
+<p>Fortunately, we can compute two key population properties from the
+transition matrix using some mathematical tricks:</p>
+<ol style="list-style-type: decimal">
+<li>We can compute <strong>Lambda</strong> from the transition matrix in
+one step</li>
+<li>We can compute **Stable Stage Distribution (SSD) from the transition
+matrix in one step</li>
+</ol>
+<div id="lambda" class="section level4">
+<h4>Lambda</h4>
 <p>There is a clear similarity between the finite population growth
 equation:</p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t\)</span>,</p>
@@ -670,37 +681,30 @@ t+1\)</span></p>
 <strong>vector</strong> of abundances (abundance for all stages), and
 <span class="math inline">\(\mathbf{A}\)</span> is the
 <strong>transition matrix</strong>, which we have seen before.</p>
-<p><strong>Q:</strong> Can you see the similarity between these two
-equations?</p>
-<p>Both equations describe simple exponential growth or decline!</p>
-<p><strong>Q:</strong> Can you see the difference between these two
-equations?</p>
+<p>Both equations describe discrete exponential growth or decline!</p>
 <p>Note that <span class="math inline">\(N\)</span> in the first
 equation is a <strong>scalar</strong> – that is, it is just a ‘naked’
 number.</p>
-<p>WHEREAS,</p>
+<p>In contrast:</p>
 <p><span class="math inline">\(\mathbf{N}\)</span> in the second
-equation represents an age-structured <strong>vector</strong>: a set of
-abundances structured by age or stage class.</p>
+equation represents an age-structured <strong>vector (a bundle of
+numbers organized in a single line)</strong>: a set of abundances
+structured by age or stage class.</p>
 <p>Similarly, the finite population growth rate, <span
 class="math inline">\(\lambda\)</span> is a scalar,</p>
-<p>WHEREAS,</p>
-<p><span class="math inline">\(\mathbf{A}\)</span> is a
-<strong>matrix</strong> (the transition matrix)</p>
-<div id="what-about-those-tricks" class="section level4">
-<h4>What about those tricks??</h4>
-<p>Okay one of the tricks is this:</p>
+<p>In fact, the concept of <strong>Lambda</strong>, or the multiplier
+used to model discrete population growth, applies to matrix population
+models as well!</p>
+<p>Recall that when a population is at <em>stable stage distribution
+(SSD)</em>, it grows in a discrete exponential growth pattern- this rate
+of exponential growth can be described by a single parameter –
+<strong>Lambda</strong>!</p>
+<p><span class="math inline">\(\mathbf{A}\)</span> is a <strong>matrix
+(a bundle of numbers organized in rows and columns)</strong> known as
+the transition matrix in Population Ecology.</p>
 <p>In one step, you can compute <span
 class="math inline">\(\lambda\)</span> from <span
 class="math inline">\(\mathbf{A}\)</span>!!</p>
-<p>All you need to do is obtain the <em>dominant
-<strong>eigenvalue</strong> of <span
-class="math inline">\(\mathbf{A}\)</span></em>! This number is the
-finite rate of growth, <span class="math inline">\(\lambda\)</span>, for
-an age or stage-structured population.</p>
-<p>Recall that when a population is at stable age distribution, it grows
-in a discrete exponential growth pattern- this rate of exponential
-growth can be described by a single parameter – Lambda!</p>
 <p>Let’s do this in R!</p>
 <p>What is the growth rate <span class="math inline">\(\lambda\)</span>
 for the teasel population. If you recall, it looked like it was growing,
@@ -717,14 +721,13 @@ Lambda</code></pre>
 <p>You don’t have to understand the math here- but I do want you to
 understand how simple that was- just one line of code and we computed
 the annual rate of growth from the teasel transition matrix!</p>
+</div>
+<div id="stable-stage-distribution-ssd" class="section level4">
+<h4>Stable Stage Distribution (SSD)</h4>
 <p>Here’s another trick:</p>
-<p>In one step, you can compute <strong>stable age distribution
-(S.A.D)</strong> from <span
-class="math inline">\(\mathbf{A}\)</span>!!<br />
-All you need to do is obtain the <em>right-hand eigenvector of <span
-class="math inline">\(\mathbf{A}\)</span></em>! This vector represents
-the <em>relative abundances in each age class at the stable age
-distribution</em>.</p>
+<p>In one step, you can compute <strong>stable stage distribution
+(SSD)</strong> from <span
+class="math inline">\(\mathbf{A}\)</span>!!</p>
 <p>Let’s do this in R!</p>
 <p>What is the stable age distribution for the teasel population. If you
 recall, the first seed stage looked like it dominated in the figure
@@ -738,6 +741,8 @@ SAD      # stable age distribution as a percentage of the total population</code
 ## 0.636901968 0.264978062 0.012174560 0.069281759 0.012076487 0.004587164</code></pre>
 <pre class="r"><code># #abs(as.numeric(round(eigen(teasel_matrix)$vectors[,1],3)))  # alternative- doesn&#39;t use &#39;popbio&#39;
 # SAD/sum(SAD)</code></pre>
+<p>This vector represents the <em>relative abundances in each age class
+at the stable age distribution</em>!</p>
 <p><strong>Q:</strong> Does a stage-structured population grow at the
 rate of <span class="math inline">\(\lambda\)</span> per time step if it
 is NOT at stable age distribution? [PointSolutions]</p>
@@ -756,11 +761,12 @@ href="https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-p
 one</a> - we used this model for running the ‘supplementation’ example
 in the ‘age structured populations’ lecture. In InsightMaker it looks
 something like this:</p>
-<p><img src="IM9.jpg" /> Let’s convert the vital rates to a three-stage
-<strong>projection matrix</strong>. Projection matrices are
-<strong>square matrices</strong> where the number of rows and columns
-are equal to the number of life stages. In this case, that means three!
-Let’s make a blank matrix for now:</p>
+<p><img src="IM9.jpg" /></p>
+<p>Let’s convert the vital rates to a three-stage <strong>projection
+matrix</strong>. Projection matrices are <strong>square
+matrices</strong> where the number of rows and columns are equal to the
+number of life stages. In this case, that means three! Let’s make a
+blank matrix for now:</p>
 <pre class="r"><code># Demo -------------------------
 # In class demo: convert an insightmaker model to a matrix projection model
 
@@ -783,9 +789,11 @@ to <em>(row name)</em> next year is <em>(value of element)</em>”</p>
 <strong>fecundities (f)</strong>. These elements are best interpreted as
 follows:</p>
 <p>“The per-capita production of newborns next year by <em>(col
-name)</em> this year is <em>(value of element)</em>”. These matrix
-elements account for both survival (surviving to the next year) and
-birth rate (birth rate one year from now). In life table terms:</p>
+name)</em> in the population this year is <em>(value of
+element)</em>”.</p>
+<p>These matrix elements account for both survival (surviving to the
+next year) and birth rate (birth rate one year from now). In life table
+terms:</p>
 <p><span class="math inline">\(f_t = g(t) * b(t+1)\)</span></p>
 <p>Now we can start filling in this matrix. Let’s begin with the top
 left <strong>element</strong> of the matrix (a
@@ -908,12 +916,12 @@ the data available?</p>
 <p>How do you incorporate density-dependence into a matrix population
 model?</p>
 <p>How do you incorporate predator-prey dynamics into a matrix
-population model? [cue brain explosion]<br />
-ANSWER: use computer programming (e.g., InsightMaker!)</p>
+population model?</p>
+<p>ANSWER: use computer programming (e.g., R or InsightMaker!)</p>
 </div>
 <div id="overview-of-matrix-multiplication" class="section level3">
 <h3>Overview of matrix multiplication</h3>
-<p>(we will do this on the whiteboard during lab!)</p>
+<p>(we will do this on the whiteboard!)</p>
 </div>
 <div id="in-class-exercise-loggerhead-conservation"
 class="section level3">
@@ -955,7 +963,7 @@ survival)</li>
 <img src="TED1.jpg" alt="" />
 <p class="caption">turtle excluder device</p>
 </div>
-<p><strong>Poinsolutions</strong>: Which of the four management
+<p><strong>PointSolutions</strong>: Which of the four management
 recommendations would have the greatest positive effect on this
 population?</p>
 </div>
