@@ -467,7 +467,7 @@ div.tocify {
 viability analysis (PVA) to rank conservation or management actions for
 a species of conservation concern (species of your choice!). Grading
 will be based on finished products (written and oral presentations) as
-well as participation and peer evaluations.</p>
+well as project proposals and written peer reviews.</p>
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
@@ -475,7 +475,8 @@ well as participation and peer evaluations.</p>
 <li>Select a species and management question of interest.</li>
 <li>Perform a thorough literature review on your species of interest-
 collect all the information you can about life history (e.g., age at
-maturity), key vital rates (e.g., b, d), carrying capacity, etc.</li>
+maturity), key vital rates (e.g., stage-structured birth and survival
+rates), carrying capacity, etc.</li>
 <li>Construct a population viability analysis (PVA) model, parameterized
 using the best information you can find in the literature (using
 InsightMaker, R, or Vortex as a modeling platform).</li>
@@ -517,37 +518,45 @@ participants (3-4).<br />
 </li>
 <li><strong>Research question(s)</strong>: Provide one or more testable
 and management-relevant questions that you plan to address using your
-population model.</li>
-<li><strong>Project rationale</strong>: Describe the rationale for
-choosing this species and management/conservation question. Be as
-specific as possible! Convince your instructor/TA that your project is
+population model. Putting “too many” questions is okay for now- we will
+talk them over in our project meetings right before spring break.<br />
+</li>
+<li><strong>Project rationale</strong>: Describe your rationale for
+choosing this species, and explain why your management/conservation
+question(s) are important to address. Be as specific as possible!
+Convince your instructor/TA that your project is
 <strong>interesting</strong>!<br />
 </li>
 <li><strong>Data sources</strong>: Describe one or more information
 sources you plan to use to guide PVA construction and parameterization
-(we want to make sure your project is <strong>possible</strong>!)</li>
+(convince your instructor/TA that your project is
+<strong>doable</strong>!)</li>
 </ol>
 <p>Some key parameters you will likely need for your PVA model (and will
 be searching the literature for!) are:</p>
 <ul>
-<li><em>survival rates</em> (usually age-structured)<br />
+<li><em>survival rates</em> (usually age- or stage-structured)<br />
 </li>
-<li><em>birth rates</em> (often age-structured as well) and <em>age at
-maturity</em><br />
-</li>
-<li><em>stochasticity</em> (amount of year-to-year variability in the
-above vital rates)<br />
+<li><em>birth rates</em> (usually age- or stage structured) and <em>age
+at maturity</em><br />
 </li>
 <li><em>initial abundance</em><br />
 </li>
-<li><em>mode of population regulation</em> (which vital rates have
-negative density dependence? Linear or threshold?)</li>
-<li><em>carrying capacity (K)</em> (potentially for multiple
-subpopulations in a metapopulation!)</li>
-<li><em>dispersal rates</em> (for metapopulation models)</li>
-<li><em>habitat quality</em> (for metapopulation models)</li>
-<li>linkages between management activities and vital rates (to run
-scenario tests!)</li>
+<li><em>carrying capacity (K)</em> (potentially for several
+subpopulations in a metapopulation model)<br />
+</li>
+<li><em>density dependence</em> (how do vital rates change as density
+increases?)<br />
+</li>
+<li><em>stochasticity</em> (annual variability in survival and birth
+rates)<br />
+</li>
+<li><em>dispersal rates</em> (for metapopulation models)<br />
+</li>
+<li><em>habitat quality</em> (for metapopulation models)<br />
+</li>
+<li>*response to management** (linkages between management activities
+and vital rates - for running scenario tests!)</li>
 </ul>
 <p>We have gone over many of these concepts in class already- PVA is
 just a way of putting all the concepts from this class together in a
@@ -561,28 +570,36 @@ the vital rates are approximately the same)!</p>
 <div id="second-project-related-assignment-the-initial-pva"
 class="section level2">
 <h2>Second project-related assignment: the initial PVA!</h2>
-<p>Your initial parameterized PVA model will consist of:</p>
+<p>Your <strong>initial parameterized PVA model</strong> will consist
+of:</p>
 <ol style="list-style-type: decimal">
 <li><p>A ready-to-run PVA model, in whatever software framework you are
-using (InsightMaker, R, Vortex). This model does not need to be the
-“final” model, but it should work (e.g., produce results) and the
-parameter estimates should be backed by some evidence or rationale (see
-below).</p></li>
-<li><p>A written rationale/evidence for each of your parameter estimates
-and other key modeling decisions.</p>
+using (InsightMaker, R). This model does not need to be your “final”
+model, but it should work (e.g., produce results), the parameter
+estimates should be backed by some evidence or rationale (see below),
+and it should be capable of running your proposed scenario
+tests.</p></li>
+<li><p>A written rationale/evidence for all of your parameter estimates
+and key modeling decisions.</p>
 <ol style="list-style-type: lower-alpha">
 <li>For each major decision you made in constructing the model, describe
-the information you used to back up your decision (and the source(s) of
-this information). Decisions include: how many populations, initial
-abundance(s), how many stages, how density-dependence operates for your
-species (e.g., which vital rates are density-dependent), Allee effects
-(if present), survival and fecundity rates, environmental stochasticity
-on one or more vital rates, catastrophes, etc. Where appropriate, feel
-free to embed figures, maps, etc. from your information sources.</li>
+the information you used to back up your decision (and the sources of
+this information). Decisions include: how many populations, what is your
+initial abundance(s), how many stage or age classes in your model, how
+does density-dependence (including Allee effects, if applicable) operate
+for your species (e.g., which vital rates are density-dependent, what is
+the shape of the density-dependence relationship), what are your
+survival and fecundity rates, how much annual variablility in birth and
+death rates (environmental stochasticity), what is the impact and timing
+of catastrophes (if applicable), etc. etc. Where appropriate, you can
+paste figures, tables, maps, etc. drawn from your information sources-
+just make sure you say where you got these images/tables etc.</li>
 <li>What scenarios do you plan to test (e.g., management scenarios,
 climate change, harvest, etc), and how will these scenarios help you to
 address your research questions? NOTE: you don’t need to run your
-scenario tests- just state what scenario tests you propose to run!</li>
+scenario tests- just state what scenario tests you propose to run!
+<em>It must be clear that the working model you submitted is capable of
+running all of your proposed scenario tests</em>.</li>
 <li>Literature cited (format not important, as long as it includes all
 key information)</li>
 </ol></li>
