@@ -78,28 +78,59 @@ Your final written paper is expected to be in the style of a **scientific manusc
 
 **There are no formatting guidelines or page limits**. Please be as concise as possible while still covering all the key elements in the grading rubric. You can use any standard format for your references (e.g., APA), all we ask is that you be consistent!
 
+### Title
+A good title should be informative, should have the species name and should at least hint at what the research question is and its relevance to conservation/management.
+
 ### Introduction
 This is where you introduce the topic and describe why it's important. You should also include your research questions here, along with any hypotheses that you are testing (this is usually the last paragraph of your introduction). You can recycle and flesh out the material from your proposal! This should be at least 3 paragraphs long.
 
 Remember to cite literature here (and use a consistent format)!
 
+The first paragraph(s) of the introduction should provide a clear motivation for your research questions. Once we read your research questions it should make total sense why you are asking these questions!
+
+The last sentences of your introduction should state your testable research question(s).
+
+Please try to cite at least 3-5 references in your introduction. For intro and all sections: every time you cite a paper/website/report, use the in-text citation format where you include the last name of the first author and the year of the publication. 
+
+
 ### Methods
 This is where you describe your PVA in enough detail that it *could be replicated* by another wildlife researcher! You can recycle much of your "initial PVA" assignment here.
 
-Remember to justify all your decisions in terms of parameterization. 
+Remember to justify all your decisions. Every parameter value you use (survival rates, abundance, birth rate, carrying capacity, etc.) and every factual statement you make needs to have a citation. It needs to be clear where every single number in your model came from. You also need to justify the time frame for your model- you should not just use a 20-year simulation time frame just because it is the default for InsightMaker (and if you do use a 20-year time frame you need to be very specific about why- otherwise I’ll assume you simply did not change the default!).
 
-Also, you should describe how you addressed the research questions you introduced in the introduction section (above)
+Unlike the "initial PVA" assigment, this time you need to use complete sentences- no bulleted lists please! Also, try to avoid using InsightMaker jargon (RandPoisson, stocks, flows, links, ghost primitive, etc.). Instead, try to describe your model using "plain English".    
+
+The methods section should detail more than just how you put your model together- it should also detail how you used the model to test your research questions.   
 
 - What different scenarios did you run?    
 
 - How did you use the simulation results to address your questions?  
     - How did you visualize the results?     
-    - Did you perform any statistical analyses?      
+    - Did you perform any statistical analyses?  
+    
+In general, try to avoid including figures and tables reproduced from other studies. Just describe the key results in words and refer to the original source. Including these figures in your paper implies you created the figure!
+
+You need to define what you mean by ‘viability’, since there is no standard definition. If you are assessing minimum viable population size (MVP), you need to define your viability criterion- for example, ‘we considered populations with extinction risk less than 5% over 50 years to be viable'.
+
+Try to avoid using acronyms like PVA and MVP without first defining what stand for.
+
+Most of you will use female-only models- and if so you should state this explicitly.
+
+For both the methods and results, use the past tense- you are describing what you did, not what you will do.
+
+Please include a link to your InsightMaker model in your Methods section. If you used R, please provide your R code as an appendix.
 
 ### Results
+
 This is where you describe and present the relevant outputs from your model. Provide figures and tables to summarize your *relevant* results. You should include at least 2-3 figures as part of your results section. Each figure should have an informative caption placed directly below the figure. 
 
 With PVA it can be difficult to decide what to present and what not to present. Always ask yourself: is it *relevant* to your main questions?
+
+All figures need figure numbers and captions. Figure captions can be several sentences long and should have enough detail so that a reader can understand the figure without referring to the main text. All figure captions should include the name of the species being studied, should describe what axes represent and describe any symbols that are used. Figure captions should also describe where the data come from (in most cases, a population simulation model!).
+
+If you want to include a table from insightmaker, please import your insightmaker table results to excel so you can format nicely (rather than presenting a screenshot of an insightmaker table). Also try to avoid fractional individuals in your tables
+Don’t be constrained to insightmaker’s figures!
+
 
 ### Discussion
 This is where you describe what your results really tell us with respect to your main questions.
@@ -109,6 +140,11 @@ Also, in your discussion you should:
 - Describe any new questions that came up in the process of building and running your PVA
 - Describe any potential flaws with your PVA and how you might improve this in the future
 - Describe any future research that could be helpful in addressing your main questions 
+
+Limit your discussion of 'flaws' in your study to a single paragraph. And don’t start your discussion section with the ‘flaws’ paragraph. Start it instead with a summary of the important results and why/how those results are important for conservation and management.
+ 
+Let me know if you have any questions or would like to go over anything before your final submission.
+
 
 A rubric for the final written presentation can be found [here](WrittenProject_rubric.docx). 
 
@@ -133,7 +169,7 @@ The way it will work is as follows:
 
 2. Before lab, please thoroughly read the manuscript you have been assigned, and make comments, paying particular attention to the [grading rubric](WrittenProject_rubric.docx). 
 
-3. During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 30-35 minutes to compare notes and prepare a written peer-review of the manuscript that highlights both the strengths and the weaknesses that you found. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! *Please hand in your peer-review to the group that wrote the draft AND your instuctor/TA* (submit/share via WebCampus)
+3. During the lab period, you will first get together with the other students that were also assigned to review the same manuscript. You will have 30-35 minutes to compare notes and prepare a written peer-review of the manuscript that highlights both the strengths and the weaknesses that you found. Please make your comments as specific and constructive as possible. The goal is to give your classmates feedback that will be useful to them as they prepare their final drafts! *Please hand in your peer-review to the group that wrote the draft AND your instructor/TA* (submit/share via WebCampus)
 
 4. After that, we will break up into new groups. One representative from each peer-review group will meet with the project group that wrote the draft manuscript, to give feedback in person.
 
@@ -207,6 +243,8 @@ Note: please don't use fancy backgrounds- keep your slides as clean as possible.
 
 Publicly available datasets, potentially for final project...  
 (many links courtesy Tom Langen) 
+
+[Google Scholar](https://scholar.google.com/) and Web of Science (access through UNR library services) will likely be your primary tools for finding papers!
 
 ### BIODIVERSITY DATA CLEARINGHOUSES /ARCHIVES
 [International Union for the Conservation of Nature (IUCN) Redlist](http://www.iucnredlist.org/) (Searchable list of the world’s threatened and endangered plants and animal species on the IUCN Redlist.)  
