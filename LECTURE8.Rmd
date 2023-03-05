@@ -1,7 +1,7 @@
 ---
 title: "Stochasticity and Uncertainty"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -15,20 +15,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 470, Lecture 8                               ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Stochasticity and Uncertainty                     ####
-############################################################
-
+#  NRES 470, Lecture 8       ---------------------------------                         
+#   University of Nevada, Reno                        
+#  Stochasticity and Uncertainty              
 
 ```
 
@@ -36,7 +25,7 @@ To download the R script for this lecture, click [here](LECTURE8.R)
 
 ### Upcoming midterm exam
 
-**when and where** The first midterm exam (out of two) is coming up Wednesday **March 9**. You will have the whole 50 minute class period to take the exam. The exam will be on paper/scantron this year. 
+**when and where** The first midterm exam (out of two) is coming up Wednesday **March 15**. You will have the whole 50 minute class period to take the exam. The exam will be on paper this year. 
 
 **what** The exam will cover:
 
@@ -49,7 +38,7 @@ To download the R script for this lecture, click [here](LECTURE8.R)
     * [Allee effect](LECTURE5.html)
     * [Age-structured populations](LECTURE6.html)
     * [Matrix population models](LECTURE7.html)
-    * NOTE: all lectures have been recorded and are available via the "Zoom" link on WebCampus in case you missed any or in case you'd like to use these recordings as review/study materials   
+    * NOTE: all lectures have been recorded and are available via the "Zoom" link on WebCampus in case you missed any or in case you'd like to use these recordings as review/study materials      
 - All material covered in labs 1-4, including:
     * [Lab 1: exponential growth](LAB1.html)
     * [Lab 2: logistic growth](LAB2.html)
@@ -62,9 +51,9 @@ To download the R script for this lecture, click [here](LECTURE8.R)
 
 *The exam will consist of a mixture of multiple-choice and short-answer questions*      
 
-*Please bring a calculator- a regular scientific calculator is fine*
+*Please bring a calculator- a regular scientific calculator will work fine*
 
-We will have a review session during our regular class meeting on the Monday prior to the exam (next Monday, March 7). Please make note of any questions that come up as you study- we can talk these over during the review session!
+We will hold a review session for the exam during our regular class meeting on the Monday prior to the exam (next Monday, March 13). Please make note of any questions that come up as you study- we can talk these over during the review session!
 
 ![](uncertainty2.jpg){width=25%}
 
