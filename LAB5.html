@@ -14,7 +14,7 @@
 
 <title>Lab 5: Intro to stochastic models</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -400,7 +404,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -452,132 +456,409 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 5: Intro to stochastic models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<p>As ecologists, we work with ‘messy’ systems- we must therefore <em>embrace uncertainty</em>!!</p>
-<p>In this lab we will continue to add complexity (and realism) to our population models in InsightMaker. Among the concepts we will explore are <em>parameter uncertainty</em>, <em>demographic stochasticity</em> and <em>environmental stochasticity</em>.</p>
+<p>As ecologists, we work with ‘messy’ systems- we must therefore
+<em>embrace uncertainty</em>!!</p>
+<p>In this lab we will continue to add complexity (and realism) to our
+population models in InsightMaker. Among the concepts we will explore
+are <em>parameter uncertainty</em>, <em>demographic stochasticity</em>
+and <em>environmental stochasticity</em>.</p>
 <p>Here are the concepts we need for this lab (review!):</p>
-<ol style="list-style-type: decimal">
-<li>What if we don’t have enough data to specify our model (always the case!)? Another way of saying this is that we <em>lack sufficient knowledge</em> about key parameters or vital rates in our model. We can characterize this type of uncertainty by using <strong>upper and lower bounds</strong> (confidence intervals) that represent a range of plausible values for a particular vital rate. Some ways this uncertainty could be represented include:</li>
-</ol>
+<div id="insufficient-knowledge-exact-parameter-value-is-unknown"
+class="section level2">
+<h2>Insufficient knowledge (exact parameter value is unknown)</h2>
+<p>What if we don’t have enough data to specify our model? That is, what
+if we <em>lack sufficient knowledge</em> about key parameters in our
+model, like birth rate, or carrying capacity?</p>
+<p>We can characterize this type of uncertainty (lack of knowledge) by
+using <strong>upper and lower bounds</strong> (e.g., confidence
+intervals) that represent a range of plausible values to stand in for
+the uncertain parameter value.</p>
+<p>Some ways this uncertainty could be represented include:</p>
 <p><span class="math inline">\(b = [1.1,1.9]\)</span> –or–</p>
 <p><span class="math inline">\(b = 1.5 \pm 0.4\)</span></p>
-<p>The tool we use to deal with this type of uncertainty is called <strong>uncertainty analysis</strong>. In its simplest form, we run the model for the lower and upper extreme possible values (lower and upper bounds) and see what happens to our study system (e.g., does the population go extinct? decline?).</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Second, we usually can’t predict whether an individual will live or die, breed or not breed, have females or males, have twins or triplets. In other words, we can’t predict whether an <em>individual</em> will be “lucky” or “unlucky”! We might know (with absolute certainty!) the per-capita <em>probability</em> of breeding, or the <em>probability</em> of dying, or the per-capita <em>rate</em> of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly who lives and dies, who gives birth and who doesn’t, how many females are born, we <em>just can’t know for sure</em>. In population ecology this type of uncertainty is called <strong>demographic stochasticity</strong>. In this case, the way we deal with this is we make the total number of births and deaths (the flows into and out of our stock[s]) <strong>stochastic</strong> – that is, we use a random-number generator!</li>
-</ol>
-<p>For the total annual number of births in a population (the Births flow in InsightMaker), we usually use a <strong>Poisson distribution</strong>. The Poisson random number generator only produces whole numbers (we don’t like fractional individuals anyway) and doesn’t produce negative numbers. This makes it a good way to model births!</p>
-<p><span class="math inline">\(Births \sim Poisson(b*N_t) \qquad \text{(Eq. 1)}\)</span></p>
-<p>For example, let’s imagine population size is 100 and the per-capita birth rate is exactly 0.8. Here is the <em>distribution</em> of Births (total annual number of births in the population):</p>
-<pre class="r"><code>###############
-# Review random number generators:
+<p>To “embrace” this type of uncertainty, we use <strong>uncertainty
+analysis</strong>. In its simplest form, we run the model for the lower
+and upper possible values (lower and upper bounds) and see what happens
+to our study system in each case.</p>
+<p>For example, the population might decline by 50% under the worst case
+scenario and double under the best case scenario. The truth is uncertain
+of course, but it is likely to fall somewhere between these two
+extremes!</p>
+<p>NOTE: if you collect more data about your study system (gain more
+knowledge), you can reduce the uncertainty about key parameter values,
+and thereby improve the accuracy of your predictions!</p>
+</div>
+<div id="inherent-unpredictability-of-population-outcomes"
+class="section level2">
+<h2>Inherent unpredictability of population outcomes</h2>
+<p>Even if we collect all the data we possibly can about our study
+system, there will still be substantial uncertainty about the future!
+This uncertainty is derived from two sources: (1)
+<strong>individual-level randomness</strong>: the inherent randomness in
+knowing whether each <em>individual</em> will live or give birth to
+female offspring each year, and (2) <strong>population-level
+randomness</strong>: the inherent randomness of <em>environmental
+conditions</em> each year (will environmental conditions be favorable or
+unfavorable to population growth?).</p>
+<div id="individual-level-randomness-demographic-stochasticity"
+class="section level3">
+<h3>Individual-level randomness (demographic stochasticity)</h3>
+<p>We can’t predict whether an individual will live or die, breed or not
+breed, have females or males, have twins or triplets. In other words, we
+can’t predict whether an <em>individual</em> will be “lucky” or
+“unlucky” each year!</p>
+<p>We might know (with absolute certainty!) the per-capita
+<em>probability</em> of breeding, or the <em>probability</em> of dying,
+or the per-capita <em>rate</em> of offspring production, or the
+probability of a given offspring being female. But when it comes to
+projecting exactly who lives and dies, who gives birth and who doesn’t,
+how many females are born, we <em>just can’t know for sure</em>.</p>
+<p>In population ecology this type of uncertainty is called
+<strong>demographic stochasticity</strong>.</p>
+<p>We “embrace” this form of uncertainty by making the total number of
+births and deaths (the flows into and out of our stock[s])
+<strong>stochastic</strong>.</p>
+<p>That is, we use a <em>random-number generator</em> in place of a
+fixed number to represent the total births [Flow In] and total deaths
+[Flow Out].</p>
+<div id="demographic-stochasticity-in-births" class="section level4">
+<h4>Demographic stochasticity in births</h4>
+<p>For the total annual number of births in a population (the Births
+flow in InsightMaker), we usually use a <strong>Poisson
+distribution</strong>. The Poisson random number generator only produces
+whole numbers (we don’t like fractional individuals anyway) and doesn’t
+produce negative numbers. This makes it a good way to model births!</p>
+<p><span class="math inline">\(Births \sim Poisson(b*N_t) \qquad
+\text{(Eq. 1)}\)</span></p>
+<p>For example, let’s imagine population size is 100 and the per-capita
+birth rate is exactly 0.8. Here is the <em>distribution</em> of Births
+(total annual number of births in the population):</p>
+<pre class="r"><code># Review random number generators in R ----------------------
 
-# Poisson distribution
+# Poisson distribution (often used for modeling total annual births in a population)
 
 hist(rpois(10000,(100*0.8)),main=&quot;&quot;,freq = F,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities (Total Births)&quot;)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>The total number of deaths in a population each year (the Deaths flow in InsightMaker) is usually modeled using a <strong>Binomial distribution</strong>. The Binomial random number generator only produces whole numbers (which we like- again, no fractional individuals!) and can only produce numbers that are greater than or equal to 0 and less than or equal to the total population size. These properties make it good for estimating total number of annual mortality or survival events!</p>
-<p><span class="math inline">\(Deaths \sim Binomial(size=N_t,prob=d) \qquad \text{(Eq. 2)}\)</span></p>
-<p>Let’s imagine population size is 100 and per-capita death rate is exactly 0.2. Here is the <em>distribution</em> of possible values for the total deaths in this population:</p>
-<pre class="r"><code># Binomial distribution
+</div>
+<div id="demographic-stochasticity-in-deaths" class="section level4">
+<h4>Demographic stochasticity in deaths</h4>
+<p>The total number of deaths in a population each year (the Deaths
+flow(s) in InsightMaker) is usually modeled using a <strong>Binomial
+distribution</strong>. The Binomial random number generator only
+produces whole numbers (which we like- again, no fractional
+individuals!) and can only produce numbers that are greater than or
+equal to 0 and less than or equal to the total population size. These
+properties make it good for estimating total number of annual mortality
+or survival events!</p>
+<p><span class="math inline">\(Deaths \sim Binomial(size=N_t,prob=d)
+\qquad \text{(Eq. 2)}\)</span></p>
+<p>Let’s imagine population size is 100 and per-capita death rate is
+exactly 0.2. Here is the <em>distribution</em> of possible values for
+the total deaths in this population:</p>
+<pre class="r"><code># Binomial distribution (often used to represent total survivors or deaths in a population model )
 
 hist(rbinom(10000,100,0.2),main=&quot;&quot;,xlab=&quot;Possibilities (Total Deaths)&quot;,freq = F,ylab=&quot;Probability&quot;)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Third, we usually can’t predict whether next year or the year after will be a good one or a bad one- that is, whether the <strong>vital rates</strong> will be more or less optimal year-to-year (whether a <em>population</em> will “get lucky”, so to speak). In population ecology this is called <strong>environmental stochasticity</strong>. The term <strong>catastrophe</strong> is reserved for stochastic environmental events that cause major population crashes or extinction. The term <strong>bonanza</strong> is sometimes used to describe very favorable stochastic environmental events that cause rapid population growth!</li>
-</ol>
-<p>To model environmental stochasticity, <em>we make the per-capita vital rates (e.g., the “b” or “d” terms or the elements of a projection matrix) <strong>stochastic</strong></em> (i.e., using a random number generator).</p>
-<p>For this type of variability, we often use a <strong>Normal distribution</strong> or another continuous distribution like a <strong>Lognormal distribution</strong>, <strong>Beta distribution</strong>, or a <strong>uniform distribution</strong>. These random number generators are not (and should not be) constrained to be whole integers.</p>
-<p>For example, let’s imagine that annual per-capita birth rates (<span class="math inline">\(b\)</span>) are generally around 1.25 but can vary between 0.8 and 1.7 depending on how favorable the weather is each year. Here is a distribution of birth rates from a Normal random number generator that approximately matches this description:</p>
-<pre class="r"><code># Normal distribution
+</div>
+</div>
+<div id="population-level-randomness-environmental-stochasticity"
+class="section level3">
+<h3>Population-level randomness (environmental stochasticity)</h3>
+<p>Finally, we usually can’t predict whether next year or the year after
+will be a good one or a bad one- that is, whether the intrinsic rate of
+growth <em>r</em> or the <strong>population vital rates like b and
+d</strong> will be favorable or unfavorable (or average!) from one year
+to the next (whether a <em>population</em> will “get lucky”, so to
+speak).</p>
+<p>In population ecology this is called <strong>environmental
+stochasticity</strong>.</p>
+<p>The term <strong>catastrophe</strong> is reserved for stochastic
+environmental events that cause major population crashes or extinction.
+The term <strong>bonanza</strong> is sometimes used to describe rare,
+very favorable environmental events that cause rapid population
+growth!</p>
+<p>To “embrace” environmental stochasticity, <em>we make the per-capita
+vital rates (e.g., the “r” or “b” or “d” terms– or the per-capita
+transition rates in a transition matrix)
+<strong>stochastic</strong></em>.</p>
+<p>That is, we use a <em>random-number generator</em> in place of a
+fixed number to represent the per-capita vital rates, often represented
+as [Variables] in our InsightMaker models.</p>
+<p>For this type of variability, we often use a <strong>Normal
+distribution</strong> or a <strong>uniform distribution</strong>. These
+random number generators are not (and should not be) constrained to be
+whole integers.</p>
+<p>For example, let’s imagine that annual per-capita birth rates (<span
+class="math inline">\(b\)</span>) are generally around 1.25 but can vary
+between 0.8 and 1.7 depending on how favorable the weather is each year.
+Here is a distribution of birth rates from a Normal random number
+generator that approximately matches this description:</p>
+<pre class="r"><code># Normal distribution (often used to model environmental stochasticity)
 
-hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibilities (annual birth rates)&quot;,ylab=&quot;Probability&quot;)</code></pre>
+hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibilities (annual birth rates)&quot;,ylab=&quot;Probability&quot;)
+curve(dnorm(x,1.25,0.15),0,3,lwd=3,add=T)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Or what if our mean per-capita birth rate is 1.1, with a standard deviation of 0.4:</p>
-<pre class="r"><code>hist(rnorm(10000,mean=1.1,sd=0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual birth rates)&quot;,freq = F,ylab=&quot;Probability&quot;)</code></pre>
+<p>Or what if our mean per-capita birth rate is 1.1, with a standard
+deviation of 0.4:</p>
+<pre class="r"><code># hist(rnorm(10000,mean=1.1,sd=0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual birth rates)&quot;,freq = F,ylab=&quot;Probability&quot;)
+
+curve(dnorm(x,1.1,0.4),0,3,xlab=&quot;Possibilities (annual birth rates)&quot;,ylab=&quot;Probability&quot;,lwd=3)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Okay now let’s get to the actual lab activity!</p>
-<div id="exercise-1-uncertainty" class="section level2">
-<h2>Exercise 1: Uncertainty!</h2>
-<p>Start with a basic exponentially growing population that looks something like this:</p>
+</div>
+</div>
+<div id="exercise-1-lack-of-knowledge" class="section level2">
+<h2>Exercise 1: Lack of knowledge</h2>
+<p>Start with a basic exponentially growing population that looks
+something like this:</p>
 <p><img src="IM10.jpg" /></p>
-<p>Set <em>Birth rate</em> equal to 0.3 and <em>Death rate</em> equal to 0.2. <em>Set initial abundance to 20</em>. Under the “Settings” menu set the model to run for 15 years. Make sure your <em>Population</em> stock can NOT go negative (this is a setting in the configurations panel). Hit “Simulate”- you should see <em>exponential growth</em>!</p>
-<p>What if we have imperfect knowledge about birth rate? The data we have are consistent with a birth rate <span class="math inline">\(b\)</span> as low as 0.15 and as high as 0.35. Run the model with the lowest and the highest possible birth rates. Now use the “Compare Results” tool (under the “Tools” menu in the upper right corner…) to visualize the range of possible population growth trajectories that would be possible given our <em>uncertainty</em> about the per-capita birth rate (i.e., plot the “worst-case scenario” and the “best-case scenario” in the same plot).</p>
-<p>1a. Given the uncertainty we have about the true value for birth rate <span class="math inline">\(b\)</span>, what is the lower and upper bound (worst case and best-case scenarios) for final abundances after 15 years? Considering this uncertainty, would it be reasonable to conclude that the population growth rate is positive in this population? Please justify your response. As part of your response, please upload the figure you generated using the ‘compare results’ tool.</p>
-<p>Another way to do <em>uncertainty analysis</em> is to use a random number generator to represent uncertainty about a population vital rate. Specifically, we can use a <em>uniform distribution</em> to represent the range of uncertainty about a parameter value. In this case, we can define Birth rate as a <strong>uniformly distributed</strong> random variable with minimum of 0.15 and maximum of 0.35 (so that the random number generator produces values within this range). We can do this in InsightMaker in one of two ways: one way is to define birth rate <span class="math inline">\(b\)</span> like this (within the ‘birth rate’ variable):</p>
-<pre><code>Rand(0.15, 0.35)</code></pre>
-<p>and the other is to define the birth rate <span class="math inline">\(b\)</span> like this:</p>
-<pre><code>Fix(Rand(0.15, 0.35))</code></pre>
-<p>Use the “Sensitivity Testing” tool (in the “Tools” menu in InsightMaker, upper right-hand corner) to run each of these models 50 times using each of the two methods described above. Choose [Population] as the “Monitored Primitive” (otherwise use the default settings), and set the “Number of Runs” to 50. Run the Sensitivity Testing tool using the “Run Analysis” button and save a screenshot of the two resulting plots (one plot for each of the two methods).</p>
-<p>The next three questions relate to comparing these two methods:</p>
-<p>1b. Please upload the two plots you produced using the Sensitivity Testing tool (see above instructions)</p>
-<p>1c. Examine the range (maximum abundance minus minimum abundance) of final abundances at year 15 in the two plots. Which method yielded the greatest uncertainty (largest range of possible values) about the final abundance? Try to explain why this method produced greater uncertainty about the final abundance than the other method? (this last part is challenging, but give it a try! It’s not cheating if you try to read about what the “Fix” function does in InsightMaker!).</p>
-<p>Let’s think through the problem one more time- we are uncertain about the <em>true</em> value of the per-capita birth rate, <span class="math inline">\(b\)</span>, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.35 - we really can’t say! Given this uncertainty, we want to know <em>what the abundance will be after 15 years</em>.</p>
-<p>1d. If you were tasked with evaluating with predicting the abundance of this population 15 years into the future, which of the two plots you generated in (1b) would be most appropriate for answering this question (i.e., which of the two plots is a better representation of our uncertainty about the future population size)? Explain your reasoning. [Hint: try to compare each of the two plots with the results from question 1a: that is, when you ran the model with the lowest possible value of b (worst case scenario) and the highest possible value of b (best case scenario) and used the “Compare Results” tool to plot these two results together]</p>
+<p>Set <em>Birth rate</em> equal to 0.2 and <em>Death rate</em> equal to
+0.18. Set <em>initial abundance</em> to 10. Under the “Settings” menu
+set the model to run for 30 years. Make sure your <em>Population</em>
+stock can NOT go negative (this is a setting in the configurations
+panel). Hit “Simulate”- you should see positive <em>exponential
+growth</em>!</p>
+<p>What if we have imperfect knowledge about birth rate? The data we
+have are consistent with a birth rate <span
+class="math inline">\(b\)</span> as low as 0.15 and as high as 0.25. Run
+the model with the lowest and the highest possible birth rates. Now use
+the “Compare Results” tool (under the “Tools” menu in the upper right
+corner…) to visualize the range of possible population growth
+trajectories that would be possible given our <em>uncertainty</em> about
+the per-capita birth rate (i.e., plot the “worst-case scenario” and the
+“best-case scenario” in the same plot).</p>
+<p>1a. Upload the plot you just generated above (illustrating both worst
+case and best-case scenarios).</p>
+<p>1b. Given the uncertainty we have about the birth rate parameter
+<span class="math inline">\(b\)</span>, what is the lower and upper
+bound (worst case and best-case scenarios) for the final abundance at
+year 30? Would it be reasonable to conclude that the population growth
+rate is positive in this population? Please justify your response.</p>
+<p>Now, what if we tried to use a random number generator to represent
+uncertainty about the birth rate parameter instead of using the
+“best-case, worst-case” approach (like we did in 1a, 1b).</p>
+<p>Let’s try it! Here we will use a <em>uniform probability
+distribution</em> to represent our uncertainty about the birth rate
+parameter.</p>
+<p>In InsightMaker, change the “Birth rate” parameter <span
+class="math inline">\(b\)</span> (previously set at 0.2) to instead draw
+from a <strong>uniformly distribution</strong> with minimum of 0.15 and
+maximum of 0.25 (so that the random number generator always produces
+values within this range).</p>
+<p>We can do this in InsightMaker in one of two distinct ways: one way
+(Method #1) is to define birth rate <span
+class="math inline">\(b\)</span> like this:</p>
+<pre><code>Rand(0.15, 0.25)</code></pre>
+<p>and the other (Method #2) is to define the birth rate <span
+class="math inline">\(b\)</span> like this:</p>
+<pre><code>Fix(Rand(0.15, 0.25))</code></pre>
+<p>Try implementing both methods (methods #1 and #2, above). For each of
+these two methods, use the “Sensitivity Testing” tool (in the “Tools”
+menu in InsightMaker, upper right-hand corner) to run the model 50 times
+(each time for 30 years). Choose [Population] as the “Monitored
+Primitive” (otherwise use the default settings), and set the “Number of
+Runs” to 50. Run the Sensitivity Testing tool using the “Run Analysis”
+button and save a screenshot of resulting plot. Ultimately you will have
+two sensitivity testing plots: one plot for Method #1, and another for
+Method #2.</p>
+<p>The following questions relate to these two plots:</p>
+<p>1c. Upload your “sensitivity testing” plot for Method #1 (see above
+instructions)</p>
+<p>1d. Upload your “sensitivity testing” plot for Method #2 (see above
+instructions)</p>
+<p>1e. Examine the range of final abundances in the two plots (i.e., the
+difference between the maximum possible abundance and the minimum
+possible abundance after 30 years). Which method (Method #1 or #2)
+yielded the greatest uncertainty about the final abundance (i.e., the
+largest range of possible values)?</p>
+<p>1f. Methods #1 and #2 differ in only one way: the use of the “Fix”
+function in InsightMaker (the “Fix” function is used in Method #2 but
+not Method #1). What does the “Fix” function do in InsightMaker? (NOTE:
+it’s not cheating if you look up what InsightMaker’s “Fix” function does
+on the internet!).</p>
+<p>Let’s think through the problem one more time- we are uncertain about
+the <em>true</em> value of the per-capita birth rate, <span
+class="math inline">\(b\)</span>, for a rare species. The actual birth
+rate for this population could be anything from 0.15 to 0.25 - we really
+can’t say! Given this uncertainty, we want to know <em>what the
+abundance will be after 30 years</em>.</p>
+<p>1g. If you were a wildlife manager tasked with predicting the
+abundance of this population 30 years into the future, which of the two
+methods (method #1 or #2) would be most appropriate for answering this
+question. That is, which of the two plots you produced (question 1c for
+method #1 or 1d for method #2) is a better representation of our
+uncertainty about the final population size at year 30? Explain your
+reasoning. [Hint: try to compare each of the plots from 1c and 1d with
+the results from question 1b]</p>
 </div>
-<div id="exercise-2-demographic-and-environmental-stochasticity" class="section level2">
-<h2>Exercise 2: Demographic and Environmental Stochasticity</h2>
-<div id="demographic-stochasticity" class="section level4">
-<h4><em>Demographic Stochasticity</em></h4>
-<p>Set <em>Birth rate</em> in your model back to 0.3. <em>Change the initial abundance to 10 individuals</em>. Hit “Simulate”- make sure you still see exponential growth!</p>
-<p>We will use a <em>Binomial distribution</em> to represent the total number of mortalities in the population. That is, we ‘flip a coin’ the same number of times as there are individuals in the population and if the coin comes up heads, then the individual dies. In this case we are using a biased coin- it only comes up heads 20% of the time! The <em>Binomial distribution</em> essentially represents the number of times heads came up. To do this in InsightMaker, use the following formula for the <em>Deaths</em> flow:</p>
+<div
+id="exercise-2-demographic-and-environmental-stochasticity-inherent-unpredictability"
+class="section level2">
+<h2>Exercise 2: Demographic and Environmental Stochasticity (inherent
+unpredictability)</h2>
+<p>First, make sure to set <em>Birth rate</em> in your model back to
+0.2. Change the initial abundance back to 10 individuals. Hit
+“Simulate”- make sure you still see exponential growth!</p>
+<div id="demographic-stochasticity" class="section level3">
+<h3><em>Demographic Stochasticity</em></h3>
+<p>We will use a <em>Binomial distribution</em> to represent the total
+number of deaths in the population each year. In essence, we are
+‘flipping a coin’ for each individual in the population to see if it
+lives or dies. In this case the coin comes up “death” 20% of the
+time!</p>
+<p>A random draw from the <em>Binomial distribution</em> essentially
+represents the number of times “death” came up after we completed all
+the coin flips.</p>
+<p>To do this in InsightMaker, use the following formula for the
+<em>Deaths</em> flow (assuming your population is called “Population”
+and <span class="math inline">\(d\)</span> is called “Death rate”):</p>
 <pre><code>RandBinomial([Population], [Death rate])</code></pre>
-<p>That is, the number of deaths is equal to the number of “coin flips” that come out heads if the probability of getting heads is equal to [Death rate] and the number of coin flips is equal to [Population].</p>
-<p>For the total number of births, we will use the <em>Poisson</em> distribution. The Poisson distribution is often used to represent the total number of births ([Births] flow), because there could plausibly be more births than there are individuals currently in the population (e.g., if all individuals have two offspring!). However, the maximum number we could draw from a binomial distribution is the total number of individuals. To do this in InsightMaker, use the following formula to represent the total number of births in the population:</p>
+<p>NOTE: you can use the “random number generators” menu in the equation
+editor to have InsightMaker give you the proper syntax. Try to avoid
+relying on typing commands directly in InsightMaker.</p>
+<p>For the total number of births, we will use the <em>Poisson</em>
+random number generator. The Poisson distribution is often used to
+represent the total number of births each year ([Births] flow). To do
+this in InsightMaker, use the following formula to represent the total
+number of births in the population (assuming your population is called
+“Population” and <span class="math inline">\(b\)</span> is called “Birth
+rate”):</p>
 <pre><code>RandPoisson([Population]*[Birth rate])</code></pre>
-<p>That is, the number of births is a Poisson-distributed random number with mean equal to [Population]*[Birth rate].</p>
-<p>2a. Provide the link to your InsightMaker model with demographic stochasticity, with settings changed so that the model will <em>run for 30 years</em>. Make sure you don’t change this IM model after you submit it – if you need to change it later, then clone it and modify the cloned version!</p>
-<p>Next, use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times for 30 years with a starting abundance of 10 individuals. Choose [Population] as the “Monitored Primitive”. Save a screenshot of the resulting plot. Next, change the initial abundance to 500 and re-run the “Sensitivity Testing” tool. Save a screenshot of the resulting plot.</p>
-<p>2b. Upload the two plots you just generated using the ‘sensitivity testing’ tool (you must upload both plots to fully answer the question!)</p>
-<p>2c. Use the two plots from (2b) to evaluate the following question: For which of the following is <em>demographic stochasticity</em> a more important driver of population dynamics and extinction risk: higher initial abundance or lower initial abundance? Explain your reasoning, referencing the plots you produced for 2b.</p>
+<p>That is, the total number of births is a random draw from a Poisson
+distribution with expected value equal to <span
+class="math inline">\(N\times b\)</span>.</p>
+<div id="exercise-2a-to-2d-demographic-stochasticity"
+class="section level4">
+<h4>Exercise 2a to 2d (demographic stochasticity)</h4>
+<p>2a. Provide the link (URL) for your InsightMaker model with
+demographic stochasticity (still with 30 year time frame), using a
+random Binomial generator for the deaths flow and a random Poisson
+generator for the births flow. Remember to clone your submitted model
+before making any changes!</p>
+<p>Next, use the “Sensitivity Testing” tool (in the “Tools” menu, upper
+right corner) to run the model 50 times for 30 years with a starting
+abundance of 10 individuals. Choose [Population] as the “Monitored
+Primitive”. Download the resulting plot as an image (or save a
+screenshot of the plot).</p>
+<p>2b Upload the plot of your demographic stochasticity model (2a),
+created using the “sensitivity testing” tool, with the model initialized
+with 10 individuals.</p>
+<p>Next, change the initial abundance from 10 to 500 and re-run the
+“Sensitivity Testing” tool (run the model 50 times for 30 years).
+Download the resulting plot as an image (or save a screenshot of the
+plot).</p>
+<p>2c Upload the plot of your demographic stochasticity model (2a),
+created using the “sensitivity testing” tool, with the model initialized
+with 500 individuals.</p>
+<p>2d. Use the two plots (2b and 2c) to evaluate the following question:
+does <em>demographic stochasticity</em> have a greater influence on
+population dynamics and extinction risk for large populations (high
+abundance) or small populations (low abundance)? Explain your reasoning,
+referencing the plots you produced in 2b and 2c.</p>
 </div>
-<div id="environmental-stochasticity" class="section level4">
-<h4><em>Environmental Stochasticity</em></h4>
-<p>Set the <em>Births</em> flow back to the way it was specified before we added a random number generator ([Population]<em>[Birth rate]), and do the same for </em>Deaths*. Set initial abundance back to 10.</p>
-<p>We will use a <em>Normal distribution</em> to represent how the birth rate changes each year. This could represent climatic variablity – “good years” and “bad years”. The <em>Normal distribution</em> is commonly used for this type of variability- it is characterized by an average value (<strong>mean</strong>) and a measure of variability or spread (<strong>standard deviation</strong>). To do this in InsightMaker, you can use the following formula for the <em>Birth Rate</em> variable:</p>
-<pre><code>RandNormal(0.3, 0.25)</code></pre>
-<p>That is, the annual birth rate in this population has a mean of 0.3 but varies annually with a standard deviation of 0.25.</p>
-<p>Similarly, you can use the following formula for the <em>Death Rate</em> variable:</p>
-<pre><code>RandNormal(0.2, 0.25)</code></pre>
-<p>Note that InsightMaker automatically insures that the birth rate is not negative (in-flows cannot draw out of the stock) and that the mortality process is not adding to the population (out-flows cannot add to the stock). As always, make sure your [Population] stock is set so that it cannot go negative!</p>
-<p>2d. Copy and paste the link to your InsightMaker model into TopHat (and clone the model if you think you might make changes later!).</p>
-<p>Next, use the “Sensitivity Testing” tool (in the “Tools” menu, upper right corner) to run the model 50 times for 30 years with a starting abundance of 10 individuals. Choose [Population] as the “Monitored Primitive”. Save a screenshot of the resulting plot. Next, change the initial abundance to 500 and re-run the “Sensitivity Testing” tool. Save a screenshot of the resulting plot.</p>
-<p>2e. Upload the two plots you just generated using the ‘sensitivity testing’ tool (you must upload both plots to fully answer the question!)</p>
-<p>2f. Use the plots from (2e) above to evaluate the following question: For which of the following is <em>environmental stochasticity</em> a more important driver of population dynamics and extinction risk: higher initial abundance or lower initial abundance? Explain your answer.</p>
+</div>
+<div id="environmental-stochasticity" class="section level3">
+<h3><em>Environmental Stochasticity</em></h3>
+<p>Set the <em>Births</em> flow back to the way it was specified
+originally (<span class="math inline">\(N \times b\)</span>), and reset
+the <em>Deaths</em> flow to it’s original setting (<span
+class="math inline">\(N \times d\)</span>). Set your initial abundance
+back to 10.</p>
+<p>We will use a <em>Normal distribution</em> to represent how the birth
+rate changes each year (environmental stochasticity). This could
+represent climatic variablity – “good years” and “bad years”.</p>
+<p>The <em>Normal distribution</em> is commonly used for this type of
+variability- it is characterized by an average value
+(<strong>mean</strong>) and a measure of variability or spread
+(<strong>standard deviation</strong>).</p>
+<p>For this exercise, we will assume that the annual birth rate <span
+class="math inline">\(b\)</span> in this population has a mean of 0.2
+but varies year to year with a standard deviation of 0.15.</p>
+<p>To do this in InsightMaker, you can use the following formula for the
+<em>Birth Rate</em> variable:</p>
+<pre><code>RandNormal(0.2, 0.15)</code></pre>
+<p>For the death rate <span class="math inline">\(d\)</span>, we will
+assume that the annual birth rate in this population has a mean of 0.18
+but varies year to year with a standard deviation of 0.1.</p>
+<p>You can use the following formula for the <em>Death Rate</em>
+variable:</p>
+<pre><code>RandNormal(0.18, 0.1)</code></pre>
+<p>NOTE: InsightMaker automatically insures that the births flow is not
+negative (the births flow cannot draw individuals out of the stock) and
+that the mortality process can’t add new individuals to the
+population.</p>
+<p>As always, make sure your [Population] stock is set so that it cannot
+go negative!</p>
+<div id="questions-2e-to-2h-environmental-stochasticity"
+class="section level4">
+<h4>Questions 2e to 2h (environmental stochasticity)</h4>
+<p>2e. Copy and paste the link to your InsightMaker model into WebCampus
+(and clone the model if you think you might make changes later!).</p>
+<p>Next, use the “Sensitivity Testing” tool (in the “Tools” menu, upper
+right corner) to run the model 50 times for 30 years with a starting
+abundance of 10 individuals. Choose [Population] as the “Monitored
+Primitive”. Download or save a screenshot of the resulting plot.</p>
+<p>2f. Upload the plot you just generated using the ‘sensitivity
+testing’ tool, with initial abundance set at 10 individuals.</p>
+<p>Next, change the initial abundance to 500 individuals and re-run the
+“Sensitivity Testing” tool (run the model 50 times for 30 years).
+Download or save a screenshot of the resulting plot.</p>
+<p>2g. Upload the plot you just generated using the ‘sensitivity
+testing’ tool, with initial abundance set at 500 individuals.</p>
+<p>2h. Use the two plots (2f and 2g) to evaluate the following question:
+does <em>environmental stochasticity</em> have a greater influence on
+population dynamics and extinction risk for large populations (high
+abundance) or small populations (low abundance)? Explain your reasoning,
+referencing the plots you produced in 2f and 2g.</p>
+</div>
 </div>
 </div>
 <div id="exercise-3-minimum-viable-population" class="section level2">
 <h2>Exercise 3: Minimum Viable Population</h2>
-<p>The aruba island rattlesnake, or Cascabel (<em>Crotalus durissus unicolor</em>), is the top predator on the island of Aruba, and primarily consumes rodents.</p>
+<p>The aruba island rattlesnake, or Cascabel (<em>Crotalus durissus
+unicolor</em>), is the top predator on the island of Aruba, and
+primarily consumes rodents.</p>
 <p><img src="aruba_rattlesnake1.jpg" /></p>
-<p>The Aruba island rattlenake, as you might expect, occurs only on the island of Aruba.</p>
+<p>The Aruba island rattlenake, as you might expect, occurs only on the
+island of Aruba.</p>
 <p><img src="aruba1.png" /></p>
-<p>The Aruba rattlesnake is listed as <em>Critically Endangered</em> by IUCN, and has several attributes that make it particularly susceptible to falling into the <strong>extinction vortex</strong>:</p>
+<p>The Aruba rattlesnake is highly endangered, and has several
+attributes that make it particularly susceptible to falling into the
+<strong>extinction vortex</strong>:</p>
 <ul>
 <li>Range is limited to the small island of Aruba<br />
 </li>
 <li>Total abundance is estimated as 250 individuals<br />
 </li>
-<li>Population has been declining due to:
+<li>Population abundance has been declining due to:
 <ul>
-<li>loss and degradation of habitat (overgrazing, human encroachment, forest clearing)<br />
+<li>loss and degradation of habitat (overgrazing, human encroachment,
+forest clearing)<br />
 </li>
 <li>human persecution</li>
 </ul></li>
 </ul>
-<p>Consider the following scenario: you are tasked with determining the minimum viable population size (MVP) for the Aruba Island rattlesnake. We define the <em>minimum viable population</em> (MVP) as:</p>
+<p>Consider the following scenario: you are tasked with determining the
+minimum viable population size (MVP) for the Aruba Island rattlesnake.
+We define the <em>minimum viable population</em> (MVP) as:</p>
 <blockquote>
-<p>MVP: The abundance threshold below which the risk of extinction exceeds 5% over the next 50 years.</p>
+<p>MVP: The abundance threshold below which the risk of extinction
+exceeds 5% over the next 50 years.</p>
 </blockquote>
-<p>Here are the key model parameters! (note that much of this is simplified and/or made up entirely!)</p>
+<p>Here are the model parameters! (note that much of this is simplified
+and/or made up entirely!)</p>
 <ul>
 <li>The starting abundance is 250 individuals.</li>
 <li>No age/stage structure!</li>
-<li>Mean per-capita birth rate <span class="math inline">\(b\)</span> is 0.70 (per-capita birth rate)</li>
-<li>Mean per-capita death rate <span class="math inline">\(d\)</span> is 0.69 (per-capita death rate)</li>
+<li>Mean per-capita birth rate <span class="math inline">\(b\)</span> is
+0.70 (per-capita birth rate)</li>
+<li>Mean per-capita death rate <span class="math inline">\(d\)</span> is
+0.69 (per-capita death rate)</li>
 <li>Density dependence:
 <ul>
 <li>Carrying capacity is 500 individuals.</li>
@@ -585,8 +866,10 @@ hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibil
 </ul></li>
 <li>Environmental stochasticity:
 <ul>
-<li>birth rate is approximately normally distributed with standard deviation of 0.15</li>
-<li>death rate does not change year to year (it stays constant at 0.69 per year).</li>
+<li>birth rate is normally distributed with standard deviation of
+0.15</li>
+<li>death rate does not change year to year (it stays constant at 0.69
+per year).</li>
 </ul></li>
 <li>Demographic stochasticity:
 <ul>
@@ -594,44 +877,82 @@ hist(rnorm(10000,mean=1.25,sd=0.15),main=&quot;&quot;,freq=F,xlab=&quot;Possibil
 <li>total deaths are Binomially distributed</li>
 </ul></li>
 </ul>
-<p>3a. Set up an InsightMaker model to represent the above scenario. Copy the link to your InsightMaker model in your write-up. As always, clone your Insight to ensure that this model doesn’t change after you submit it!</p>
-<p>3b. Is the current population <strong>viable</strong>, under the criteria listed above? That is, is there a less than 5% risk of extinction over a 50-year time frame? <strong>Hint</strong>: use the <em>Sensitivity Testing</em> tool to run at least 200 replicates. Visualize the 90% quantile. For a viable population under our definition, the lower bound of the 90% confidence region (the region below which only 5% of simulation results fall- note that an additional 5% of simulations fall above the upper bound of the 90% confidence region, which is why it’s called a 90% confidence region!) should be greater than zero at year 50 of the simulation.</p>
-<p>3c. Find the <strong>minimum viable population (MVP)</strong>. (Note: you can refer to the “small population paradigm” <a href="LECTURE9.html">lecture</a> for more detail on the concept of Minimum Viable Population). Explain your reasoning, and provide one or two plot(s) to back up your answer.</p>
+<p>Set up an InsightMaker model to represent the above scenario. Use the
+<em>Sensitivity Testing</em> tool to run 100 replicates (“Monitored
+primitive” is abundance) for 50 years each. Visualize only the 90%
+confidence region (region encompassing 90% of simulation runs, with 5%
+of simulations falling below the lower bound and 5% of simulations
+falling above the upper bound). Download or save a screenshot of the
+resulting image.</p>
+<p>3a. Upload the “sensitivity analysis” plot (running your rattlesnake
+model 100 times for 50 years) illustrating the 90% confidence
+region.</p>
+<p>For a <em>viable population</em> under our stated definition, the
+lower bound of the 90% confidence region (the region below which only 5%
+of simulation results fall) should be greater than zero at year 50 of
+the simulation.</p>
+<p>3b. Is the current population <strong>viable</strong>, under the
+criteria listed above? That is, is there a less than 5% risk of
+extinction over a 50-year time frame? <strong>Hint</strong>: refer to
+the sensitivity testing figure you generated in 3a.</p>
+<p>Next, use trial and error to find the <strong>minimum viable
+population (MVP)</strong> for the Aruba Island Rattlesnake (try
+different values for initial abundance and find the smallest initial
+abundance that results in a viable population).</p>
+<p>3c. What is the minimum viable population (MVP) for the Aruba Island
+Rattlesnake population? Explain your reasoning.</p>
+<p>3d. Upload a “sensitivity testing” plot of the Aruba Island
+Rattlesnake (100 replicates for 50 years each, showing only the 90%
+confidence region), with initial abundance set at the minimum viable
+population (MVP) you identified in 3c.</p>
+<p>NOTE: you can refer to the “small population paradigm” <a
+href="LECTURE9.html">lecture</a> for more detail on the concept of
+Minimum Viable Population, or MVP).</p>
 <p><em>By the way, you have now run your first PVA model!!</em></p>
-<p>3d. (thought question) The Aruba island rattlesnake is limited to the small island of Aruba. This fact alone is one of the main reasons this species is listed as <em>Critically Endangered</em> under the IUCN Red List (the major global ranking of conservation status). Explain why small range size might generally be associated with high extinction risk.</p>
+<p>3e. (thought question) The Aruba island rattlesnake is limited to the
+small island of Aruba. This fact alone is one of the main reasons this
+species is thought tpo be critically endangered*. Why is small range
+size so strongly associated with high extinction risk?</p>
 </div>
 <div id="checklist-for-lab-5-completion" class="section level2">
 <h2>Checklist for Lab 5 completion</h2>
 <ul>
-<li>Please submit your respoinses <em>on top hat</em>!</li>
+<li>Please submit your responses <em>on WebCampus</em>!</li>
 </ul>
-<p><strong><em>Due Mar. 25 at midnight (11:59pm)</em></strong></p>
+<p><strong><em>Due Mar. 31 at midnight (11:59pm)</em></strong></p>
 <ul>
-<li>Short answers, InsightMaker model URLs, and plots (where appropriate)
+<li>Short answers, InsightMaker model URLs, and plots (where
+appropriate)
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
-<li><em>Short answer (1a.)</em><br />
+<li><em>Image upload (1a.)</em><br />
 </li>
-<li><em>plots (1b.)</em></li>
-<li><em>Short answer (1c.)</em></li>
-<li><em>Short answer (1d.)</em></li>
+<li><em>Short answer (1b.)</em></li>
+<li><em>Image upload (1c.)</em></li>
+<li><em>Image upload (1d.)</em></li>
+<li><em>Short answer (1e.)</em></li>
+<li><em>Short answer (1f.)</em></li>
+<li><em>Short answer (1g.)</em></li>
 </ul></li>
 <li><strong>Exercise 2</strong>
 <ul>
 <li><em>InsightMaker URL (2a.)</em></li>
-<li><em>plots (2b.)</em></li>
-<li><em>Short answer (2c.)</em></li>
-<li><em>InsightMaker URL (2d.)</em></li>
-<li><em>plots (2e.)</em></li>
-<li><em>Short answer (2f.)</em></li>
+<li><em>Image upload (2b.)</em></li>
+<li><em>Image upload (2c.)</em></li>
+<li><em>Short answer (2d.)</em></li>
+<li><em>InsightMaker URL (2e.)</em></li>
+<li><em>Image upload (2f.)</em></li>
+<li><em>Image upload (2g.)</em></li>
+<li><em>Short answer (2h.)</em></li>
 </ul></li>
 <li><strong>Exercise 3</strong>
 <ul>
-<li><em>InsightMaker URL (3a.)</em></li>
+<li><em>Image upload (3a.)</em></li>
 <li><em>Short answer (3b.)</em></li>
-<li><em>Short answer and plot (3c.)</em></li>
-<li><em>Short answer (3d.)</em></li>
+<li><em>Short answer (3c.)</em></li>
+<li><em>Image upload (3d.)</em></li>
+<li><em>Short answer (3e.)</em></li>
 </ul></li>
 </ul></li>
 </ul>

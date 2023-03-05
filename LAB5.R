@@ -1,37 +1,29 @@
 
-############################################################
-####                                                    ####  
-####  NRES 470, Lab 5                                   ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Stochasticity and Uncertainty                     ####
-############################################################
+#  NRES 470, Lab 5    ------------------------------------                          
+#  University of Nevada, Reno                        
+#  Stochasticity and Uncertainty        
 
 
 
-###############
-# Review random number generators:
+# Review random number generators in R ----------------------
 
-# Poisson distribution
+# Poisson distribution (often used for modeling total annual births in a population)
 
 hist(rpois(10000,(100*0.8)),main="",freq = F,ylab="Probability",xlab="Possibilities (Total Births)")
 
 
-# Binomial distribution
+# Binomial distribution (often used to represent total survivors or deaths in a population model )
 
 hist(rbinom(10000,100,0.2),main="",xlab="Possibilities (Total Deaths)",freq = F,ylab="Probability")
 
 
-# Normal distribution
+# Normal distribution (often used to model environmental stochasticity)
 
 hist(rnorm(10000,mean=1.25,sd=0.15),main="",freq=F,xlab="Possibilities (annual birth rates)",ylab="Probability")
+curve(dnorm(x,1.25,0.15),0,3,lwd=3,add=T)
 
 
-hist(rnorm(10000,mean=1.1,sd=0.4),main="",xlab="Possibilities (annual birth rates)",freq = F,ylab="Probability")
+# hist(rnorm(10000,mean=1.1,sd=0.4),main="",xlab="Possibilities (annual birth rates)",freq = F,ylab="Probability")
+
+curve(dnorm(x,1.1,0.4),0,3,xlab="Possibilities (annual birth rates)",ylab="Probability",lwd=3)
 
