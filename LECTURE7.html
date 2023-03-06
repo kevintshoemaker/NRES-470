@@ -547,7 +547,7 @@ stage-structured models with equal simplicity and elegance.</p>
 <p>The term ‘Leslie Matrix’ refers to an age-structured matrix
 population model.</p>
 <p>When a matrix is used to represent a stage-structured population, it
-is often called a ’Lefkovitch” Matrix.</p>
+is often called a “Lefkovitch” Matrix.</p>
 </div>
 </div>
 <div id="reason-2-modeling-age-structured-population-dynamics"
@@ -759,7 +759,7 @@ one</a>.</p>
 specifically <a
 href="https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population">this
 one</a> - we used this model for running the ‘supplementation’ example
-in the ‘age structured populations’ lecture. In InsightMaker it looks
+in the ‘age structured populations’ lecture. In InsightMaker, it looks
 something like this:</p>
 <p><img src="IM9.jpg" /></p>
 <p>Let’s convert the vital rates to a three-stage <strong>projection
@@ -814,22 +814,43 @@ per-capita transition from Juveniles (col) this year to Subadults (row)
 next year. That is, the transition rate from juvenile to subadult. The
 value from our model is 0.3.</p>
 <p>Let’s update our transition matrix:</p>
-<pre class="r"><code># update the second row, first column
+<pre class="r"><code># update the second row, first column (juvenile survival, or transition from juv to sub)
 
 TMat[2,1] &lt;- 0.3
-TMat</code></pre>
-<pre><code>##           Juveniles Subadults Adults
-## Juveniles       0.0         0      0
-## Subadults       0.3         0      0
-## Adults          0.0         0      0</code></pre>
+
+
+# and the survival of adults (transition from adult to adult)
+
+TMat[3,3] &lt;- 1-0.15    # 85% survival
+
+
+# transition from juv to juv 
+
+TMat[2,2] &lt;- 0.5-0.1    # 40% of juveniles survive and stay juvenile
+
+
+# transition from juv to adult
+
+TMat[3,2]  &lt;- 0.1   # 10% of juveniles survive and transition to adult. </code></pre>
+<p>And the hardest part is usually the top row: the fecundity row. In
+this case, this year’s juveniles don’t produce offspring next year, so
+they have fecundity of zero.</p>
+<p>Subadalts can’t reproduce- BUT, some of this year’s subadults become
+adults next year, and these subadults will contribute offspring to the
+population next year!</p>
+<p>Adults can reproduce, but this years adults must survive if they are
+to produce offspring next year!</p>
+<pre class="r"><code>TMat[1,2] &lt;- 0.1*4      # subadult fecundity term
+
+TMat[1,3] &lt;- 0.85*4     # adult fecundity term</code></pre>
 <p>If we keep going, we get the following matrix. See if you can
 understand what this matrix is saying about the transitions from and two
 the three life stages.</p>
 <pre class="r"><code># and keep filling it in...
 
-TMat[,1] &lt;- c(0,0.3,0)          # fill in the entire first column of the transition matrix
+TMat[,1] &lt;- c(0,0.3,0)              # fill in the entire first column of the transition matrix
 TMat[,2] &lt;- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] &lt;- c(0.85*4,0,0.85)         # fill in the entire third column of the transition matrix
+TMat[,3] &lt;- c(0.85*4,0,0.85)        # fill in the entire third column of the transition matrix
 TMat</code></pre>
 <pre><code>##           Juveniles Subadults Adults
 ## Juveniles       0.0       0.4   3.40
@@ -855,7 +876,7 @@ colnames(allYears) &lt;- seq(0,nYears)
 allYears[,1] &lt;- InitAbund 
 
 for(t in 2:(nYears+1)){
-  allYears[,t] &lt;-  TMat %*% allYears[,t-1]
+  allYears[,t] &lt;-  TMat %*% allYears[,t-1]    # matrix multiplication!
 }
 
 allYears</code></pre>
@@ -897,8 +918,9 @@ for(s in 1:3){
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
 legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears),bty=&quot;n&quot;)</code></pre>
-<p><img src="LECTURE7_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>Does this look the same as the InsightMaker results?</p>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Does this look the same as the InsightMaker results? Check it to make
+sure!</p>
 </div>
 <div id="limitations-of-matrix-population-models"
 class="section level2">
@@ -931,32 +953,33 @@ href="PVA3_421.html">here</a>.</p>
 <p>Next, download the Excel document for this example <a
 href="Loggerhead2022.xlsx">here</a>. We will work through the Excel
 example in class.</p>
+<p>NOTE: a worked version of the spreadsheet can be found
+[Loggerhead2022_worked.xlsx]</p>
 <p>Using your Excel spreadsheet, investigate four management scenarios
 for the loggerhead turtle population:</p>
 <ol style="list-style-type: decimal">
-<li>Improve fecundity (labeled “Sub Fecundity” and “Adult Fecundity” in
-the IM model) via <em>nest-site protection</em>!
+<li>Improve fecundity (both subadults and adults) via <em>nest-site
+protection</em>!
 <ul>
-<li>Double fecundity (improve to 2X the current value)<br />
+<li>Increase fecundity terms by 50% (improve to 1.5 times the current
+value)<br />
 </li>
 </ul></li>
-<li>Improve hatchling survival (labeled “hatchling growth” in the IM
-model) via <em>nest monitoring</em>
+<li>Improve hatchling survival via <em>nest monitoring</em>
 <ul>
 <li>Improve <em>to</em> 100%<br />
 </li>
 </ul></li>
-<li>Improve large juvenile survival (labeled “Lg Juv Surv” in the IM
-model) using <em>Turtle Excluder Devices (TEDs)</em>
+<li>Improve large juvenile survival using <em>Turtle Excluder Devices
+(TEDs)</em>
 <ul>
-<li>Add 0.25 to the existing large juvenile survival<br />
+<li>Add 0.25 to the existing large juvenile survival (prob of transition
+from LJ to LJ)<br />
 </li>
 </ul></li>
-<li>Improve adult/subadult survival (labeled “Sub Surv” and “Adult Surv”
-in IM) by <em>restricting longline fisheries</em>.
+<li>Improve adult survival by <em>restricting longline fisheries</em>.
 <ul>
-<li>Increase by 10% (add 0.1 to the existing subadult and adult
-survival)</li>
+<li>Increase by 10% (add 0.1 to adult survival)</li>
 </ul></li>
 </ol>
 <div class="figure">

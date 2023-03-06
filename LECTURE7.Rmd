@@ -89,7 +89,7 @@ Matrix population models can represent age-structured and stage-structured model
 
 The term 'Leslie Matrix' refers to an age-structured matrix population model. 
 
-When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" Matrix. 
+When a matrix is used to represent a stage-structured population, it is often called a "Lefkovitch" Matrix. 
 
 ### Reason 2: modeling age-structured population dynamics!
 
@@ -278,7 +278,7 @@ To answer this question, you may find it helps to load an stage-structured model
 
 ## Mechanics of matrix population models
 
-Let's take a look at a basic stage-structured population -- specifically [this one](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population) - we used this model for running the 'supplementation' example in the 'age structured populations' lecture. In InsightMaker it looks something like this:
+Let's take a look at a basic stage-structured population -- specifically [this one](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population) - we used this model for running the 'supplementation' example in the 'age structured populations' lecture. In InsightMaker, it looks something like this:
 
 ![](IM9.jpg)
 
@@ -330,12 +330,42 @@ Let's update our transition matrix:
 
 ```{r}
 
-# update the second row, first column
+# update the second row, first column (juvenile survival, or transition from juv to sub)
 
 TMat[2,1] <- 0.3
-TMat
+
+
+# and the survival of adults (transition from adult to adult)
+
+TMat[3,3] <- 1-0.15    # 85% survival
+
+
+# transition from juv to juv 
+
+TMat[2,2] <- 0.5-0.1    # 40% of juveniles survive and stay juvenile
+
+
+# transition from juv to adult
+
+TMat[3,2]  <- 0.1   # 10% of juveniles survive and transition to adult. 
 
 ```
+
+
+And the hardest part is usually the top row: the fecundity row. In this case, this year's juveniles don't produce offspring next year, so they have fecundity of zero.
+
+Subadalts can't reproduce- BUT, some of this year's subadults become adults next year, and these subadults will contribute offspring to the population next year!
+
+Adults can reproduce, but this years adults must survive if they are to produce offspring next year!
+
+```{r}
+
+TMat[1,2] <- 0.1*4      # subadult fecundity term
+
+TMat[1,3] <- 0.85*4     # adult fecundity term
+
+```
+
 
 If we keep going, we get the following matrix. See if you can understand what this matrix is saying about the transitions from and two the three life stages. 
 
@@ -343,9 +373,9 @@ If we keep going, we get the following matrix. See if you can understand what th
 
 # and keep filling it in...
 
-TMat[,1] <- c(0,0.3,0)          # fill in the entire first column of the transition matrix
+TMat[,1] <- c(0,0.3,0)              # fill in the entire first column of the transition matrix
 TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] <- c(0.85*4,0,0.85)         # fill in the entire third column of the transition matrix
+TMat[,3] <- c(0.85*4,0,0.85)        # fill in the entire third column of the transition matrix
 TMat
 
 ```
@@ -377,7 +407,7 @@ colnames(allYears) <- seq(0,nYears)
 allYears[,1] <- InitAbund 
 
 for(t in 2:(nYears+1)){
-  allYears[,t] <-  TMat %*% allYears[,t-1]
+  allYears[,t] <-  TMat %*% allYears[,t-1]    # matrix multiplication!
 }
 
 allYears
@@ -401,7 +431,7 @@ legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(allYears),bty="n")
 
 ```
 
-Does this look the same as the InsightMaker results?
+Does this look the same as the InsightMaker results? Check it to make sure!
 
 ## Limitations of matrix population models
 
@@ -427,18 +457,20 @@ ANSWER: use computer programming (e.g., R or InsightMaker!)
 
 First, please review the introduction to loggerhead sea turtles [here](PVA3_421.html). 
 
-Next, download the Excel document for this example [here](Loggerhead2022.xlsx). We will work through the Excel example in class. 
+Next, download the Excel document for this example [here](Loggerhead2022.xlsx). We will work through the Excel example in class.
+
+NOTE: a worked version of the spreadsheet can be found [Loggerhead2022_worked.xlsx]
 
 Using your Excel spreadsheet, investigate four management scenarios for the loggerhead turtle population:
 
-1. Improve fecundity (labeled "Sub Fecundity" and "Adult Fecundity" in the IM model) via *nest-site protection*!
-    - Double fecundity (improve to 2X the current value)      
-2. Improve hatchling survival (labeled "hatchling growth" in the IM model) via *nest monitoring*
+1. Improve fecundity (both subadults and adults) via *nest-site protection*!
+    - Increase fecundity terms by 50% (improve to 1.5 times the current value)      
+2. Improve hatchling survival via *nest monitoring*
     - Improve _to_ 100%    
-3. Improve large juvenile survival (labeled "Lg Juv Surv" in the IM model) using *Turtle Excluder Devices (TEDs)*     
-    - Add 0.25 to the existing large juvenile survival      
-4. Improve adult/subadult survival (labeled "Sub Surv" and "Adult Surv" in IM) by *restricting longline fisheries*.     
-    - Increase by 10% (add 0.1 to the existing subadult and adult survival)          
+3. Improve large juvenile survival using *Turtle Excluder Devices (TEDs)*     
+    - Add 0.25 to the existing large juvenile survival (prob of transition from LJ to LJ)      
+4. Improve adult survival by *restricting longline fisheries*.     
+    - Increase by 10% (add 0.1 to adult survival)          
     
     
 ![turtle excluder device](ted1.jpg)    
