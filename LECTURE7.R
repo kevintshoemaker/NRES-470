@@ -94,17 +94,36 @@ TMat[1,1] <- 0
 TMat
 
 
-# update the second row, first column
+# update the second row, first column (juvenile survival, or transition from juv to sub)
 
 TMat[2,1] <- 0.3
-TMat
+
+
+# and the survival of adults (transition from adult to adult)
+
+TMat[3,3] <- 1-0.15    # 85% survival
+
+
+# transition from juv to juv 
+
+TMat[2,2] <- 0.5-0.1    # 40% of juveniles survive and stay juvenile
+
+
+# transition from juv to adult
+
+TMat[3,2]  <- 0.1   # 10% of juveniles survive and transition to adult. 
+
+
+TMat[1,2] <- 0.1*4      # subadult fecundity term
+
+TMat[1,3] <- 0.85*4     # adult fecundity term
 
 
 # and keep filling it in...
 
-TMat[,1] <- c(0,0.3,0)          # fill in the entire first column of the transition matrix
+TMat[,1] <- c(0,0.3,0)              # fill in the entire first column of the transition matrix
 TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] <- c(0.85*4,0,0.85)         # fill in the entire third column of the transition matrix
+TMat[,3] <- c(0.85*4,0,0.85)        # fill in the entire third column of the transition matrix
 TMat
 
 
@@ -124,7 +143,7 @@ colnames(allYears) <- seq(0,nYears)
 allYears[,1] <- InitAbund 
 
 for(t in 2:(nYears+1)){
-  allYears[,t] <-  TMat %*% allYears[,t-1]
+  allYears[,t] <-  TMat %*% allYears[,t-1]    # matrix multiplication!
 }
 
 allYears
