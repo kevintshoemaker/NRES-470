@@ -119,7 +119,7 @@ TMat[1,2] <- 0.1*4      # subadult fecundity term
 TMat[1,3] <- 0.85*4     # adult fecundity term
 
 
-# and keep filling it in...
+# alternatively, you can fill in the matrix like this:
 
 TMat[,1] <- c(0,0.3,0)              # fill in the entire first column of the transition matrix
 TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix

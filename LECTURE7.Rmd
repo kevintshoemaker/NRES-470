@@ -371,7 +371,7 @@ If we keep going, we get the following matrix. See if you can understand what th
 
 ```{r}
 
-# and keep filling it in...
+# alternatively, you can fill in the matrix like this:
 
 TMat[,1] <- c(0,0.3,0)              # fill in the entire first column of the transition matrix
 TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
@@ -459,7 +459,7 @@ First, please review the introduction to loggerhead sea turtles [here](PVA3_421.
 
 Next, download the Excel document for this example [here](Loggerhead2022.xlsx). We will work through the Excel example in class.
 
-NOTE: a worked version of the spreadsheet can be found [Loggerhead2022_worked.xlsx]
+NOTE: a worked version of the spreadsheet can be found here[](Loggerhead2022_worked.xlsx)
 
 Using your Excel spreadsheet, investigate four management scenarios for the loggerhead turtle population:
 
@@ -489,6 +489,7 @@ Translate the following paragraph into a matrix population model. Remember a mat
 ![](redtail1.jpg)
 
 > We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). We assumed that adult females experienced an average of 15% mortality each year. Juvenile female mortality was set at 30% per year. Approximately 10% of juvenile females remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 21% chance of surviving and transitioning to become juveniles. Adults are the primary reproductive stage, and produce an average of 6 new hatchlings each year, half of which are female. Juveniles that fail to transition to the Adult stage tend to produce only 1.8 new hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, and 50 adults.   
+
 
 ```{r eval=FALSE, echo=FALSE}
 
