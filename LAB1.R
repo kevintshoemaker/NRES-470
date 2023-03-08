@@ -9,7 +9,7 @@ for(i in 2:length(x)){
     y[i] <- y[i-1]
   }
 }
-y
+#y
 plot(x,y,type="l",ylab="Abundance N",xlab="Time (years)",lwd=2,col="brown")
 
 
@@ -40,6 +40,6 @@ for (i in 2:(nyears+1)){  # This for-loop will run through the line of code betw
 
 N                         # Now print the contents of the object "N".
 
-N30 = N0*lambda^nyears
+N30 <- N0*lambda^nyears
 N30
 plot(N~year)   #This plot() function tells R to plot the y variable by the x variable. "N" is the y variable (dependent variable), and "year" is the x variable (independent variable). The tilda "~" stands for "as a function of". There are many ways to customize the appearance of a plot in R - for now, just use the defaults.
