@@ -30,7 +30,7 @@ To download the R script for this lecture, click [here](LECTURE8.R)
 **what** The exam will cover:
 
 - All material in Chapters 1-3 of the Gotelli book *including matrix population modeling concepts*.   
-- All material covered in lectures, including the following web pages and corresponding lectures and top hat pages:    
+- All material covered in lectures, including the following web pages:           
     * [Systems thinking and modeling](LECTURE1.html)
     * [Exponential growth](LECTURE2.html)
     * [Malthus and limits to growth](LECTURE3.html)
@@ -55,7 +55,7 @@ To download the R script for this lecture, click [here](LECTURE8.R)
 
 We will hold a review session for the exam during our regular class meeting on the Monday prior to the exam (next Monday, March 13). Please make note of any questions that come up as you study- we can talk these over during the review session!
 
-![](uncertainty2.jpg){width=25%}
+![](uncertainty2.jpg){width=20%}
 
 ## Uncertainty!
 
@@ -76,7 +76,7 @@ As applied population ecologists, we must **embrace uncertainty**. we have two m
 
 ### Uncertainty analysis
 
-What if we simply don't have enough data to build a perfect model? This is an example of *lacking sufficient knowledge*. In this case, the tool we use is called **uncertainty analysis**. Basically, we try a range of possible values for a parameter (usually a per-capita vital rate- often modeled as [Variables] in InsightMaker) we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?). 
+What if we simply don't have enough data to build a perfect model? This is an example of *lacking sufficient knowledge*. In this case, the tool we use is called **uncertainty analysis**. Basically, we try the "worst case" and "best case" values for a parameter (usually a per-capita vital rate- often modeled as [Variables] in InsightMaker) we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?). 
 
 ### Stochastic models (demographic and environmental stochasticity)
 
@@ -84,12 +84,12 @@ What if we simply don't have enough data to build a perfect model? This is an ex
 
 2. Third, we usually can't predict whether next year or the year after will be favorable or unfavorable for population growth- that is, whether the per-capita vital rates (e.g., $b$, or $d$ or $r$) will be more or less optimal at a future point in time (whether a _population_ will "get lucky", so to speak). This is another example of a system being *inherently unpredictable*. In population ecology this is called **environmental stochasticity**. In this case, we **randomly vary per-capita vital rates** (represented as [Variables] in InsightMaker) to represent the inherent unpredictability of environmental conditions. 
 
-![](dice1.png)
+![](dice1.png){width=15%}
 
 ## Random number generation
 To incorporate uncertainty and randomness into our models, we often include *stochastic* components so that each model run (replicate) -- or each year of each model run -- is different from one another (the results are variable). That is, we need to include at least one **random number generator** in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.
 
-![](lottery1.png)
+![](lottery1.png){width=20%}
 
 
 Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis. 
@@ -100,11 +100,8 @@ For example, the box might have 10 "ones", 5 "twos", and 2 "threes". In this cas
 
 ```{r}
 
-#############
-# Random number generation!
+# Random number generation! ----------------
 
-
-#####
 # define an arbitrary distribution
 
 box <- c(rep(1,10),rep(2,5),rep(3,2))                                           # define what's in the lottery ball machine (10 "1" balls, 5 "2" balls and 2 "3" balls)
@@ -122,13 +119,9 @@ In *discrete distributions*, each unique outcome has a specific probability (lik
 
 ```{r}
 
-################
-# Discrete distributions
-################
+# Discrete distributions ----------------------------
 
-
-#######
-# Example: binomial distribution (coin flipping distribution)
+# binomial distribution ('coin flipping' distribution)
 
              # plot a discrete distribution!
 xvals <- seq(0,10,1)
@@ -147,7 +140,6 @@ Another discrete distribution we will use in this class is the *Poisson distribu
 
 ```{r}
 
-#########
 # Poisson distribution
 
 xvals <- seq(0,10,1)
@@ -167,11 +159,8 @@ Let's consider the *uniform distribution*:
 
 ```{r}
 
-################
-# CONTINUOUS DISTRIBUTIONS
-#################
+# CONTINUOUS DISTRIBUTIONS -----------------------------
 
-##########
 # Uniform distribution
 
 lower = 0
@@ -187,7 +176,6 @@ Another continuous distribution you should know is called the *Normal distributi
 
 ```{r}
 
-#########
 # Normal distribution
 
 mean = 7.1
@@ -226,8 +214,7 @@ The arguments after that represent the *parameters* of the random distribution y
 
 ```{r eval=F}
 
-################
-# Random number generation!
+# Random number generation!   ------------------------
 
 
 ### Binomial random number generator
@@ -244,13 +231,11 @@ rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by "mean" and "sd" (st
 
 ```
 
-**tophat** In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3
+**PointSolutions** In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3
 
-**tophat** In R, generate one random number from a Poisson distribution with mean of 2.1
+**PointSolutions** In R, generate one random number from a Poisson distribution with mean of 2.1
 
-**tophat** In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
-
-Can you modify one of the above functions to produce more than 1 random number?
+**PointSolutions** In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
 
 Try to modify one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the "hist()" function to produce a histogram of the random distribution you just generated!    
 
@@ -262,7 +247,7 @@ hist(rgamma(20,4.1,2))
 
 ```
 
-![](canvasback1.jpg)
+![](canvasback1.jpg){width=30%}
 
 Let's imagine we have studied a large population of canvasback ducks over a 20 year period and we have estimated the average number of eggs successfully hatched per female (per-capita birth rate) for each of 20 consecutive years. 
 
@@ -270,13 +255,9 @@ We first enter these numbers into R and visualize the distribution:
 
 ```{r}
 
-#############
-# Demonstration: use data to determine a distribution!
-#############
+# Demonstration: use data to determine a distribution! --------------------
 
-
-#############
-# Made-up canvasback data- average number of eggs hatched per female for 20 years
+# Canvasback data- average number of eggs hatched per female for 20 years
 
 hatch_perfem <- c(3.05, 1.45, 0.99, 3.24, 1.49, 1.70, 1.66, 2.32, 0.83, 2.41,
 2.33, 1.68, 1.43, 2.74, 2.05, 3.13, 1.90, 3.69, 1.55, 2.79)
@@ -285,7 +266,7 @@ hist(hatch_perfem)
 
 ```
 
-**Q**: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [tophat]
+**Q**: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [PointSolutions]
 
 Now let's try to fit a distribution to these data! Let's use a normal distribution. (NOTE: technically speaking we might want to use a distribution that can't produce negative numbers- like the log-normal distribution, but we will usually use the normal distribution in this class for simplicity)
 
@@ -295,7 +276,6 @@ Note that the normal distribution has two parameters: the first ('mean') helps t
 
 ```{r}
 
-############
 # Try to identify a normal distribution to represent the canvasback data
 
 ## first, plot a histogram of the data from the 20-year study
@@ -325,21 +305,18 @@ fitdistr(hatch_perfem,"normal")
 
 1) Use trial-and-error to find appropriate "mean" and "sd" parameters for the normal distribution.
 
-**Q**: what is the best-fit value for "mean"?  [tophat]
-**Q**: what is the best-fit value for "sd"?  [tophat]
+**Q**: what is the best-fit value for "mean"?  [PointSolutions]               
+**Q**: what is the best-fit value for "sd"?  [PointSolutions]                        
 
 2) Use your fitted distribution to predict the per-capita production of hatchlings for the next 5 years. To do this, use the "rnorm()" function in R.
 
 
-
 ### In-Class Exercise 2: Stochasticity and Uncertainty in InsightMaker
-
-These concepts (like everything in this class) are best understood by building models.
 
 Let's start with a basic exponentially growing population that looks something like this:
 
 
-![](IM10.jpg)
+![](IM10.jpg){width=50%}
 
 You can clone this one if you'd like: [https://insightmaker.com/insight/2WNEa6ZT3Z23CfLbuQqfJR/base-exp-growth-b-and-d](https://insightmaker.com/insight/2WNEa6ZT3Z23CfLbuQqfJR/base-exp-growth-b-and-d)
 
