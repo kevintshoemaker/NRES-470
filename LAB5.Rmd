@@ -19,7 +19,6 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 #  University of Nevada, Reno                        
 #  Stochasticity and Uncertainty        
 
-
 ```
 
 
@@ -41,15 +40,21 @@ $b = [1.1,1.9]$   --or--
 
 $b = 1.5 \pm 0.4$
 
-To "embrace" this type of uncertainty, we use **uncertainty analysis**. In its simplest form, we run the model for the lower and upper possible values (lower and upper bounds) and see what happens to our study system in each case. 
+To "embrace" this type of uncertainty, we use **uncertainty analysis**. In its simplest form, we run the model for the lower and upper possible values (lower and upper bounds, representing "worst-case" and "best-case" scenarios) and see what happens to our study system in each case. 
 
-For example, the population might decline by 50% under the worst case scenario and double under the best case scenario. The truth is uncertain of course, but it is likely to fall somewhere between these two extremes! 
+For example, the population might decline by 50% under the worst-case scenario and double under the best-case scenario. The truth is uncertain of course, but it is likely to fall somewhere between these two extremes! 
 
-NOTE: if you collect more data about your study system (gain more knowledge), you can reduce the uncertainty about key parameter values, and thereby improve the accuracy of your predictions!   
+If you collect more data about your study system (gain more knowledge), you can reduce the uncertainty about key parameter values, and thereby improve the accuracy of your predictions!   
+
+NOTE: in this lab we will use the "worst-case and best-case" method for modeling insufficient knowledge. We will also explore another relatively commonly used method that uses a random number generator! 
 
 ## Inherent unpredictability of population outcomes
 
-Even if we collect all the data we possibly can about our study system, there will still be substantial uncertainty about the future! This uncertainty is derived from two sources: (1) **individual-level randomness**: the inherent randomness in knowing whether each *individual* will live or give birth to female offspring each year, and (2) **population-level randomness**: the inherent randomness of *environmental conditions* each year (will environmental conditions be favorable or unfavorable to population growth?).  
+Even if we collect all the data we possibly can about our study system, there will still be substantial uncertainty about the future! This uncertainty is derived from two sources: (1) **individual-level randomness**: the inherent randomness in knowing whether each *individual* will live or give birth to female offspring each year, and (2) **population-level randomness**: the inherent randomness of *environmental conditions* each year (will environmental conditions be favorable or unfavorable to population growth?). 
+
+In both cases, we can use **random number generators** to model the inherent unpredictability in our study systems. 
+
+NOTE: the word **stochasticity** is just a fancy word for "randomness"!
 
 ### Individual-level randomness (demographic stochasticity)
 
@@ -57,11 +62,9 @@ We can't predict whether an individual will live or die, breed or not breed, hav
 
 We might know (with absolute certainty!) the per-capita *probability* of breeding, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly who lives and dies, who gives birth and who doesn't, how many females are born, we _just can't know for sure_. 
 
-In population ecology this type of uncertainty is called **demographic stochasticity**. 
+In population ecology this type of uncertainty is called **demographic stochasticity**, referring to the inherent randomness (stochasticity) of demographic processes like births and deaths.  
 
-We "embrace" this form of uncertainty by making the total number of births and deaths (the flows into and out of our stock[s]) **stochastic**.
-
-That is, we use a *random-number generator* in place of a fixed number to represent the total births [Flow In] and total deaths [Flow Out].  
+We "embrace" this form of uncertainty by making the total number of births and deaths (the flows into and out of our stock[s]) **stochastic** (random). That is, we use a *random-number generator* in place of a fixed number to represent the total births [Flow In] and total deaths [Flow Out].  
 
 #### Demographic stochasticity in births
 
@@ -81,9 +84,11 @@ hist(rpois(10000,(100*0.8)),main="",freq = F,ylab="Probability",xlab="Possibilit
 
 ```
 
-#### Demographic stochasticity in deaths
+#### Demographic stochasticity in total mortalities or survivors
 
-The total number of deaths in a population each year (the Deaths flow(s) in InsightMaker) is usually modeled using a **Binomial distribution**. The Binomial random number generator only produces whole numbers (which we like- again, no fractional individuals!) and can only produce numbers that are greater than or equal to 0 and less than or equal to the total population size. These properties make it good for estimating total number of annual mortality or survival events!
+The total number of deaths or survivors in a population each year (the Deaths flows and Transition flows in InsightMaker) are best modeled using a **Binomial distribution**. 
+
+The Binomial random number generator only produces whole numbers (which we like- no fractional individuals!) and can only produce numbers that are greater than or equal to 0 and less than or equal to the total population size. These properties make it useful for estimating the total mortality or survival events each year!
 
 $Deaths \sim Binomial(size=N_t,prob=d)     \qquad \text{(Eq. 2)}$
 
@@ -100,17 +105,15 @@ hist(rbinom(10000,100,0.2),main="",xlab="Possibilities (Total Deaths)",freq = F,
 
 ### Population-level randomness (environmental stochasticity)
 
-Finally, we usually can't predict whether next year or the year after will be a good one or a bad one- that is, whether the intrinsic rate of growth *r* or the **population vital rates like b and d** will be favorable or unfavorable (or average!) from one year to the next (whether a _population_ will "get lucky", so to speak). 
+Finally, we usually can't predict whether next year or the year after will be a good one or a bad one- that is, whether the intrinsic rate of growth *r* or the **population vital rates like b and d** (or any element within a transition matrix!) will be favorable or unfavorable to growth from one year to the next (whether a _population_ will "get lucky", so to speak). 
 
 In population ecology this is called **environmental stochasticity**. 
 
 The term **catastrophe** is reserved for stochastic environmental events that cause major population crashes or extinction. The term **bonanza** is sometimes used to describe rare, very favorable environmental events that cause rapid population growth!  
 
-To "embrace" environmental stochasticity, _we make the per-capita vital rates (e.g., the "r" or "b" or "d" terms-- or the per-capita transition rates in a transition matrix) **stochastic**_.
+To "embrace" environmental stochasticity, _we make the per-capita vital rates (e.g., the "r" or "b" or "d" terms-- or the per-capita transition rates in a transition matrix) **stochastic**_. That is, we use a *random-number generator* in place of a fixed number to represent the per-capita vital rates, often represented as [Variables] in our InsightMaker models.  
 
-That is, we use a *random-number generator* in place of a fixed number to represent the per-capita vital rates, often represented as [Variables] in our InsightMaker models.  
-
-For this type of variability, we often use a **Normal distribution** or a **uniform distribution**. These random number generators are not (and should not be) constrained to be whole integers. 
+For this type of variability, we often use a **Normal distribution** (or sometimes a **uniform distribution**). Per-capita population vital rates are not (and should not be) constrained to be whole integers. 
 
 For example, let's imagine that annual per-capita birth rates ($b$) are generally around 1.25 but can vary between 0.8 and 1.7 depending on how favorable the weather is each year. Here is a distribution of birth rates from a Normal random number generator that approximately matches this description:
 
@@ -129,9 +132,8 @@ Or what if our mean per-capita birth rate is 1.1, with a standard deviation of 0
 
 ```{r}
 
-# hist(rnorm(10000,mean=1.1,sd=0.4),main="",xlab="Possibilities (annual birth rates)",freq = F,ylab="Probability")
-
-curve(dnorm(x,1.1,0.4),0,3,xlab="Possibilities (annual birth rates)",ylab="Probability",lwd=3)
+hist(rnorm(10000,mean=1.1,sd=0.4),main="",freq=F,xlab="Possibilities (annual birth rates)",ylab="Probability",xlim=c(0,3))
+curve(dnorm(x,1.1,0.4),0,3,add=T,lwd=2)
 
 ```
 
@@ -169,6 +171,8 @@ and the other (Method #2) is to define the birth rate $b$ like this:
 Fix(Rand(0.15, 0.25))
 ```
 
+NOTE: you can use the "random number generators" menu in the equation editor to have InsightMaker give you the proper syntax. In general, try to avoid relying on typing commands directly in InsightMaker. Also, the "Fix" function can be found in the "Historical Functions" menu. 
+
 Try implementing both methods (methods #1 and #2, above). For each of these two methods, use the "Sensitivity Testing" tool (in the "Tools" menu in InsightMaker, upper right-hand corner) to run the model 50 times (each time for 30 years). Choose [Population] as the "Monitored Primitive" (otherwise use the default settings), and set the "Number of Runs" to 50. Run the Sensitivity Testing tool using the "Run Analysis" button and save a screenshot of resulting plot. Ultimately you will have two sensitivity testing plots: one plot for Method #1, and another for Method #2. 
 
 The following questions relate to these two plots: 
@@ -179,7 +183,7 @@ The following questions relate to these two plots:
 
 1e. Examine the range of final abundances in the two plots (i.e., the difference between the maximum possible abundance and the minimum possible abundance after 30 years). Which method (Method #1 or #2) yielded the greatest uncertainty about the final abundance (i.e., the largest range of possible values)? 
 
-1f. Methods #1 and #2 differ in only one way: the use of the "Fix" function in InsightMaker (the "Fix" function is used in Method #2 but not Method #1). What does the "Fix" function do in InsightMaker? (NOTE: it's not cheating if you look up what InsightMaker's "Fix" function does on the internet!).  
+1f. Methods #1 and #2 differ in only one way: the use of the "Fix" function in InsightMaker (the "Fix" function is used in Method #2 but not Method #1). What does the "Fix" function do in InsightMaker? (NOTE: it's not cheating if you look up what InsightMaker's "Fix" function does, either using the equation editor in InsightMaker or on the internet!).  
 
 Let's think through the problem one more time- we are uncertain about the *true* value of the per-capita birth rate, $b$, for a rare species. The actual birth rate for this population could be anything from 0.15 to 0.25 - we really can't say! Given this uncertainty, we want to know _what the abundance will be after 30 years_. 
 
