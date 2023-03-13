@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Lab 5: Intro to stochastic models</title>
+<title>Lab 5: Stochasiticity and Uncertainty</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -454,7 +454,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 5: Intro to stochastic models</h1>
+<h1 class="title toc-ignore">Lab 5: Stochasiticity and Uncertainty</h1>
 <h4 class="author">NRES 470/670</h4>
 <h4 class="date">Spring 2023</h4>
 
@@ -483,15 +483,19 @@ the uncertain parameter value.</p>
 <p><span class="math inline">\(b = 1.5 \pm 0.4\)</span></p>
 <p>To “embrace” this type of uncertainty, we use <strong>uncertainty
 analysis</strong>. In its simplest form, we run the model for the lower
-and upper possible values (lower and upper bounds) and see what happens
-to our study system in each case.</p>
-<p>For example, the population might decline by 50% under the worst case
-scenario and double under the best case scenario. The truth is uncertain
+and upper possible values (lower and upper bounds, representing
+“worst-case” and “best-case” scenarios) and see what happens to our
+study system in each case.</p>
+<p>For example, the population might decline by 50% under the worst-case
+scenario and double under the best-case scenario. The truth is uncertain
 of course, but it is likely to fall somewhere between these two
 extremes!</p>
-<p>NOTE: if you collect more data about your study system (gain more
+<p>If you collect more data about your study system (gain more
 knowledge), you can reduce the uncertainty about key parameter values,
 and thereby improve the accuracy of your predictions!</p>
+<p>NOTE: in this lab we will use the “worst-case and best-case” method
+for modeling insufficient knowledge. We will also explore another
+relatively commonly used method that uses a random number generator!</p>
 </div>
 <div id="inherent-unpredictability-of-population-outcomes"
 class="section level2">
@@ -505,6 +509,10 @@ female offspring each year, and (2) <strong>population-level
 randomness</strong>: the inherent randomness of <em>environmental
 conditions</em> each year (will environmental conditions be favorable or
 unfavorable to population growth?).</p>
+<p>In both cases, we can use <strong>random number generators</strong>
+to model the inherent unpredictability in our study systems.</p>
+<p>NOTE: the word <strong>stochasticity</strong> is just a fancy word
+for “randomness”!</p>
 <div id="individual-level-randomness-demographic-stochasticity"
 class="section level3">
 <h3>Individual-level randomness (demographic stochasticity)</h3>
@@ -519,13 +527,14 @@ probability of a given offspring being female. But when it comes to
 projecting exactly who lives and dies, who gives birth and who doesn’t,
 how many females are born, we <em>just can’t know for sure</em>.</p>
 <p>In population ecology this type of uncertainty is called
-<strong>demographic stochasticity</strong>.</p>
+<strong>demographic stochasticity</strong>, referring to the inherent
+randomness (stochasticity) of demographic processes like births and
+deaths.</p>
 <p>We “embrace” this form of uncertainty by making the total number of
 births and deaths (the flows into and out of our stock[s])
-<strong>stochastic</strong>.</p>
-<p>That is, we use a <em>random-number generator</em> in place of a
-fixed number to represent the total births [Flow In] and total deaths
-[Flow Out].</p>
+<strong>stochastic</strong> (random). That is, we use a
+<em>random-number generator</em> in place of a fixed number to represent
+the total births [Flow In] and total deaths [Flow Out].</p>
 <div id="demographic-stochasticity-in-births" class="section level4">
 <h4>Demographic stochasticity in births</h4>
 <p>For the total annual number of births in a population (the Births
@@ -545,16 +554,17 @@ birth rate is exactly 0.8. Here is the <em>distribution</em> of Births
 hist(rpois(10000,(100*0.8)),main=&quot;&quot;,freq = F,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities (Total Births)&quot;)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
-<div id="demographic-stochasticity-in-deaths" class="section level4">
-<h4>Demographic stochasticity in deaths</h4>
-<p>The total number of deaths in a population each year (the Deaths
-flow(s) in InsightMaker) is usually modeled using a <strong>Binomial
-distribution</strong>. The Binomial random number generator only
-produces whole numbers (which we like- again, no fractional
-individuals!) and can only produce numbers that are greater than or
-equal to 0 and less than or equal to the total population size. These
-properties make it good for estimating total number of annual mortality
-or survival events!</p>
+<div id="demographic-stochasticity-in-total-mortalities-or-survivors"
+class="section level4">
+<h4>Demographic stochasticity in total mortalities or survivors</h4>
+<p>The total number of deaths or survivors in a population each year
+(the Deaths flows and Transition flows in InsightMaker) are best modeled
+using a <strong>Binomial distribution</strong>.</p>
+<p>The Binomial random number generator only produces whole numbers
+(which we like- no fractional individuals!) and can only produce numbers
+that are greater than or equal to 0 and less than or equal to the total
+population size. These properties make it useful for estimating the
+total mortality or survival events each year!</p>
 <p><span class="math inline">\(Deaths \sim Binomial(size=N_t,prob=d)
 \qquad \text{(Eq. 2)}\)</span></p>
 <p>Let’s imagine population size is 100 and per-capita death rate is
@@ -572,9 +582,9 @@ class="section level3">
 <p>Finally, we usually can’t predict whether next year or the year after
 will be a good one or a bad one- that is, whether the intrinsic rate of
 growth <em>r</em> or the <strong>population vital rates like b and
-d</strong> will be favorable or unfavorable (or average!) from one year
-to the next (whether a <em>population</em> will “get lucky”, so to
-speak).</p>
+d</strong> (or any element within a transition matrix!) will be
+favorable or unfavorable to growth from one year to the next (whether a
+<em>population</em> will “get lucky”, so to speak).</p>
 <p>In population ecology this is called <strong>environmental
 stochasticity</strong>.</p>
 <p>The term <strong>catastrophe</strong> is reserved for stochastic
@@ -585,14 +595,14 @@ growth!</p>
 <p>To “embrace” environmental stochasticity, <em>we make the per-capita
 vital rates (e.g., the “r” or “b” or “d” terms– or the per-capita
 transition rates in a transition matrix)
-<strong>stochastic</strong></em>.</p>
-<p>That is, we use a <em>random-number generator</em> in place of a
-fixed number to represent the per-capita vital rates, often represented
-as [Variables] in our InsightMaker models.</p>
+<strong>stochastic</strong></em>. That is, we use a <em>random-number
+generator</em> in place of a fixed number to represent the per-capita
+vital rates, often represented as [Variables] in our InsightMaker
+models.</p>
 <p>For this type of variability, we often use a <strong>Normal
-distribution</strong> or a <strong>uniform distribution</strong>. These
-random number generators are not (and should not be) constrained to be
-whole integers.</p>
+distribution</strong> (or sometimes a <strong>uniform
+distribution</strong>). Per-capita population vital rates are not (and
+should not be) constrained to be whole integers.</p>
 <p>For example, let’s imagine that annual per-capita birth rates (<span
 class="math inline">\(b\)</span>) are generally around 1.25 but can vary
 between 0.8 and 1.7 depending on how favorable the weather is each year.
@@ -605,9 +615,8 @@ curve(dnorm(x,1.25,0.15),0,3,lwd=3,add=T)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Or what if our mean per-capita birth rate is 1.1, with a standard
 deviation of 0.4:</p>
-<pre class="r"><code># hist(rnorm(10000,mean=1.1,sd=0.4),main=&quot;&quot;,xlab=&quot;Possibilities (annual birth rates)&quot;,freq = F,ylab=&quot;Probability&quot;)
-
-curve(dnorm(x,1.1,0.4),0,3,xlab=&quot;Possibilities (annual birth rates)&quot;,ylab=&quot;Probability&quot;,lwd=3)</code></pre>
+<pre class="r"><code>hist(rnorm(10000,mean=1.1,sd=0.4),main=&quot;&quot;,freq=F,xlab=&quot;Possibilities (annual birth rates)&quot;,ylab=&quot;Probability&quot;,xlim=c(0,3))
+curve(dnorm(x,1.1,0.4),0,3,add=T,lwd=2)</code></pre>
 <p><img src="LAB5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Okay now let’s get to the actual lab activity!</p>
 </div>
@@ -647,7 +656,7 @@ distribution</em> to represent our uncertainty about the birth rate
 parameter.</p>
 <p>In InsightMaker, change the “Birth rate” parameter <span
 class="math inline">\(b\)</span> (previously set at 0.2) to instead draw
-from a <strong>uniformly distribution</strong> with minimum of 0.15 and
+from a <strong>uniform distribution</strong> with minimum of 0.15 and
 maximum of 0.25 (so that the random number generator always produces
 values within this range).</p>
 <p>We can do this in InsightMaker in one of two distinct ways: one way
@@ -657,6 +666,10 @@ class="math inline">\(b\)</span> like this:</p>
 <p>and the other (Method #2) is to define the birth rate <span
 class="math inline">\(b\)</span> like this:</p>
 <pre><code>Fix(Rand(0.15, 0.25))</code></pre>
+<p>NOTE: you can use the “random number generators” menu in the equation
+editor to have InsightMaker give you the proper syntax. In general, try
+to avoid relying on typing commands directly in InsightMaker. Also, the
+“Fix” function can be found in the “Historical Functions” menu.</p>
 <p>Try implementing both methods (methods #1 and #2, above). For each of
 these two methods, use the “Sensitivity Testing” tool (in the “Tools”
 menu in InsightMaker, upper right-hand corner) to run the model 50 times
@@ -679,8 +692,9 @@ largest range of possible values)?</p>
 <p>1f. Methods #1 and #2 differ in only one way: the use of the “Fix”
 function in InsightMaker (the “Fix” function is used in Method #2 but
 not Method #1). What does the “Fix” function do in InsightMaker? (NOTE:
-it’s not cheating if you look up what InsightMaker’s “Fix” function does
-on the internet!).</p>
+it’s not cheating if you look up what InsightMaker’s “Fix” function
+does, either using the equation editor in InsightMaker or on the
+internet!).</p>
 <p>Let’s think through the problem one more time- we are uncertain about
 the <em>true</em> value of the per-capita birth rate, <span
 class="math inline">\(b\)</span>, for a rare species. The actual birth
@@ -690,7 +704,7 @@ abundance will be after 30 years</em>.</p>
 <p>1g. If you were a wildlife manager tasked with predicting the
 abundance of this population 30 years into the future, which of the two
 methods (method #1 or #2) would be most appropriate for answering this
-question. That is, which of the two plots you produced (question 1c for
+question? That is, which of the two plots you produced (question 1c for
 method #1 or 1d for method #2) is a better representation of our
 uncertainty about the final population size at year 30? Explain your
 reasoning. [Hint: try to compare each of the plots from 1c and 1d with
