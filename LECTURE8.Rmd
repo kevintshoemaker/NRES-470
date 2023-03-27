@@ -213,7 +213,6 @@ The arguments after that represent the *parameters* of the random distribution y
 
 # Random number generation!   ------------------------
 
-
 ### Binomial random number generator
 rbinom(1,size=10,prob=0.5)    # note: "size" is the number of coin flips, and "prob" is the probability of coming up 'heads'
 
@@ -230,9 +229,9 @@ rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by "mean" and "sd" (st
 
 **PointSolutions** In R, generate one random number from a Binomial distribution with 10 trials and probability of success equal to 0.3
 
-**PointSolutions** In R, generate one random number from a Poisson distribution with mean of 2.1
+In R, generate random numbers from a Poisson distribution with mean of 2.1
 
-**PointSolutions** In R, generate one random number from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
+In R, generate random numbers from a Normal distribution with mean of 1.75 and standard deviation of 0.9 
 
 Try to modify one of the other parameters and generate 100 random numbers? To visualize the distribution you can use the "hist()" function to produce a histogram of the random distribution you just generated!    
 
