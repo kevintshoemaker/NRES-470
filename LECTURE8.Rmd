@@ -130,8 +130,6 @@ names(probs) <- xvals
                
 barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distribution (discrete)")
 
-
-
 ```
 
 **Q** What population parameter might the binomial distribution be useful for modeling?
@@ -268,7 +266,7 @@ hist(hatch_perfem)
 
 **Q**: What type of uncertainty does this set of values most likely represent? What random number generator might you use to represent this uncertainty? [PointSolutions]
 
-Now let's try to fit a distribution to these data! Let's use a normal distribution. (NOTE: technically speaking we might want to use a distribution that can't produce negative numbers- like the log-normal distribution, but we will usually use the normal distribution in this class for simplicity)
+Now let's try to fit a distribution to these data! Let's use a Normal distribution. (NOTE: technically speaking we might want to use a distribution that can't produce negative numbers- like the log-normal distribution, but we will usually use the normal distribution in this class for simplicity)
 
 We could use statistics to fit the distribution, but for now we are just going to use trial and error! Here is some code to help you get started.
 
