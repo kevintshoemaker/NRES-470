@@ -87,12 +87,11 @@ What if we simply don't have enough data to build a perfect model? This is an ex
 ![](dice1.png){width=15%}
 
 ## Random number generation
-To incorporate uncertainty and randomness into our models, we often include *stochastic* components so that each model run (replicate) -- or each year of each model run -- is different from one another (the results are variable). That is, we need to include at least one **random number generator** in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.
+To incorporate inherent unpredictability (randomness) into our models, we often include *stochastic* components so that each model run (replicate) -- or each year of each model run -- is different from one another (the results are variable). That is, we need to include at least one **random number generator** in our models! A random number generator is like a lottery ball machine! Each time we want a new number we reach in and pull another number out, record the number, put it back in and shake it up again.
 
 ![](lottery1.png){width=20%}
 
-
-Every random-number generator has a **distribution**. This is a way of defining what exactly is in the box. This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis. 
+Every random-number generator has a **distribution**. This is a way of defining what exactly is 'in the box'. This can be visualized as a boxplot or histogram, with the unique possible values represented on the X axis and the probabilities associated with each unique value represented on the Y axis. 
 
 If you want to follow along with this lecture in R, you can find the R script [here](LECTURE8.R). I recommend right-clicking on the link, saving the script to a designated folder (ideally, your project directory), and loading up the script in RStudio.
 

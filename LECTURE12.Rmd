@@ -1,7 +1,7 @@
 ---
 title: "Population Viability Analysis"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -14,21 +14,10 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 ```{r echo=FALSE}
-
-############################################################
-####                                                    ####  
-####  NRES 470, Lecture 12                               ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Population Viability Analysis                     ####
-############################################################
-
+  
+#  NRES 470/670, Lecture 12 -----------------------           
+#   University of Nevada, Reno         
+#   Population Viability Analysis 
 
 ```
 
@@ -83,18 +72,18 @@ The first step is to conceptualize the life history for your species of interest
 - Does your species benefit from social aggregation? If so, are there any Allee effects?
 - Which vital rates are subject to environmental stochasticity?
 - Which vital rates could be altered by management activities?
-- Are there any important catastrophes that can affect the system?
+- Are there any important *catastrophes* that can affect the system?
 
 **Q**: is there ever a case where you *WON'T* include demographic stochasticity in your model? 
 
 #### Step 2: Parameterize the demographic model! 
 
-Lecture 3: exponential growth    
-Lecture 4: density dependence    
-Lecture 5: allee effect (if applicable)    
-Lecture 7: matrix population models    
-Lecture 8: stochasticity and uncertainty    
-(Labs 1,2,3,4,5)    
+Lecture 3: [exponential growth](LECTURE3.html)    
+Lecture 4: [density dependence](LECTURE4.html)    
+Lecture 5: [Allee effect](LECTURE5.html) (if applicable)    
+Lecture 6+7: [age structure](LECTURE6.html) and [matrix population models](LECTURE7.html)    
+Lecture 8: [stochasticity and uncertainty](LECTURE8.html)    
+(and Labs 1,2,3,4,5)    
 
 This is where you attach real numbers to the stocks and flows in your conceptual life history diagram. Remember that these parameters are more than just survival and fecundity. It's also:
 
@@ -113,7 +102,6 @@ This is where you attach real numbers to the stocks and flows in your conceptual
 Lecture 13: metapopulation models    
 Lecture 14: source-sink dynamics    
 Lab 6: metapopulation models    
-
 
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
@@ -167,39 +155,29 @@ Here is the basic model parameterization:
 
 ```{r}
 
-##############
-# Demonstration PVA
-##############
+# Demonstration PVA ---------------------------------
 
 # STEP 1: conceptualize life history (we are modeling this population as a simple, single-stage stochastic model with density dependence)
 
-# STEP 2: parameterize the model
+# STEP 2: parameterize the model ---------------------------------
 
-####
 # Basic life history parameters
-####
 
 R_max <- 1.15       # Maximum rate of growth
 Init_N <- 51        # Initial abundance
 K <- 175            # Carrying capacity
 
-####
-# Environmental stochasticity
-####
+# Environmental stochasticity ------------------------------------
 
 SD_anngrowth <- 0.11  # standard deviation of annual growth rate
 
-####
-# Density-dependence (Ricker model)
-####
+# Density-dependence (Ricker model) ----------------------------------
 
 Ricker <- function(prev_abund){       # this is a function for computing next-year abundance -- includes env stochasticity
   prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
-####
-# Catastrophe
-####
+# Catastrophe 
 
 Flood_prob <- 0.05      # 5% chance of major flood
 Flood_lambda <- 0.25    # 25% of population can survive a flood 
@@ -219,11 +197,9 @@ Now we can use these parameters to build and run a simple PVA model:
 
 # STEP 3: add spatial structure (not applicable here)
 
-# STEP 4: simulate!
+# STEP 4: simulate!  -------------------------------
 
-####
 # Basic simulation parameters
-####
 
 nyears <- 100     # number of years
 nreps <- 500      # number of replicates
@@ -254,7 +230,7 @@ PVAdemo <- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
   return(PopArray2)
 }
 
-### Run the PVA!
+### Run the PVA! -------------------
 
 Default <- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)
 
@@ -274,9 +250,8 @@ The first is to look at the "cloud" of abundance trajectories. This is the same 
 
 ```{r}
 
-# STEP 5: results 
+# STEP 5: results  ------------------------- 
 
-############
 # Graphical visualization
 
 PlotCloud <- function(simdata){
@@ -367,6 +342,7 @@ for(scenario in 1:length(flood_lambdas)){
 
 plot(flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (lambda in flood year)",ylab="extinction risk")
 abline(h=0.05,col="red",lwd=2)
+
 
 
 ```

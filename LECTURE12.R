@@ -1,53 +1,32 @@
-
-############################################################
-####                                                    ####  
-####  NRES 470, Lecture 12                               ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
+  
+#  NRES 470/670, Lecture 12 -----------------------           
+#   University of Nevada, Reno         
+#   Population Viability Analysis 
 
 
-############################################################
-####  Population Viability Analysis                     ####
-############################################################
-
-
-
-##############
-# Demonstration PVA
-##############
+# Demonstration PVA ---------------------------------
 
 # STEP 1: conceptualize life history (we are modeling this population as a simple, single-stage stochastic model with density dependence)
 
-# STEP 2: parameterize the model
+# STEP 2: parameterize the model ---------------------------------
 
-####
 # Basic life history parameters
-####
 
 R_max <- 1.15       # Maximum rate of growth
 Init_N <- 51        # Initial abundance
 K <- 175            # Carrying capacity
 
-####
-# Environmental stochasticity
-####
+# Environmental stochasticity ------------------------------------
 
 SD_anngrowth <- 0.11  # standard deviation of annual growth rate
 
-####
-# Density-dependence (Ricker model)
-####
+# Density-dependence (Ricker model) ----------------------------------
 
 Ricker <- function(prev_abund){       # this is a function for computing next-year abundance -- includes env stochasticity
   prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
-####
-# Catastrophe
-####
+# Catastrophe 
 
 Flood_prob <- 0.05      # 5% chance of major flood
 Flood_lambda <- 0.25    # 25% of population can survive a flood 
@@ -55,11 +34,9 @@ Flood_lambda <- 0.25    # 25% of population can survive a flood
 
 # STEP 3: add spatial structure (not applicable here)
 
-# STEP 4: simulate!
+# STEP 4: simulate!  -------------------------------
 
-####
 # Basic simulation parameters
-####
 
 nyears <- 100     # number of years
 nreps <- 500      # number of replicates
@@ -90,14 +67,13 @@ PVAdemo <- function(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda){
   return(PopArray2)
 }
 
-### Run the PVA!
+### Run the PVA! -------------------
 
 Default <- PVAdemo(nreps,nyears,Init_N,R_max,K,Flood_prob,Flood_lambda)
 
 
-# STEP 5: results 
+# STEP 5: results  ------------------------- 
 
-############
 # Graphical visualization
 
 PlotCloud <- function(simdata){
@@ -159,5 +135,6 @@ for(scenario in 1:length(flood_lambdas)){
 
 plot(flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (lambda in flood year)",ylab="extinction risk")
 abline(h=0.05,col="red",lwd=2)
+
 
 
