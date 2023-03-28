@@ -14,7 +14,7 @@
 
 <title>Intro to individual-based models (IBM)</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -400,7 +404,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -452,81 +456,171 @@ div.tocify {
 
 <h1 class="title toc-ignore">Intro to individual-based models (IBM)</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<p>NOTE: Many thanks to Dr. Elizabeth Hunter (USGS and Virginia Tech) for helping to develop the demonstration at the end of this lecture!</p>
+<p>NOTE: Many thanks to Dr. Elizabeth Hunter (USGS and Virginia Tech)
+for helping to develop the demonstration at the end of this lecture!</p>
 <p><img src="birds1.jpg" /></p>
-<p>So far in this class we have considered the <strong>population</strong> as the fundamental unit that we are interested in modeling. The population is a [Stock] and all processes that can change the size of the population are [Flows]. All individuals within any [Stock] are assumed to be interchangeable (identical in every way), and are not modeled explicitly.</p>
-<p>The fact that we model populations as our fundamental unit of interest makes sense for a population ecology class! BUT we are also aware (of course) that populations consist of <strong>individuals</strong> that are semi-autonomous. Sometimes the questions we want to ask in ecology and conservation biology require us to zoom in on the processes that are occurring at the <em>individual level</em>.</p>
-<p>In some ways a population is hard to define- it can be a bit of an artificial or abstract concept. Where exactly does a population begin and end?</p>
-<p>However, the individual is (usually!) a straightforward, biologically meaningful concept.</p>
+<p>So far in this class we have considered the
+<strong>population</strong> as the fundamental unit that we are
+interested in modeling. The population is a [Stock] and all processes
+that can change the size of the population are [Flows]. All individuals
+within any [Stock] are assumed to be interchangeable (identical in every
+way), and are not modeled explicitly.</p>
+<p>The fact that we model populations as our fundamental unit of
+interest makes sense for a population ecology class! BUT we are also
+aware (of course) that populations consist of
+<strong>individuals</strong> that are semi-autonomous. Sometimes the
+questions we want to ask in ecology and conservation biology require us
+to zoom in on the processes that are occurring at the <em>individual
+level</em>.</p>
+<p>In some ways a population is hard to define- it can be a bit of an
+artificial or abstract concept. Where exactly does a population begin
+and end?</p>
+<p>However, the individual is (usually!) a straightforward, biologically
+meaningful concept.</p>
 <div id="the-general-modeling-workflow" class="section level2">
 <h2>The General Modeling Workflow</h2>
-<p>Before we define how individual-based models differ from the population-level stock-flow models we have already been using, let’s first point out the similarities.</p>
-<p>First of all, the basic modeling workflow is ALWAYS the same, no matter what kind of model we want to use!</p>
+<p>Before we define how individual-based models differ from the
+population-level stock-flow models we have already been using, let’s
+first point out the similarities.</p>
+<p>First of all, the basic modeling workflow is ALWAYS the same, no
+matter what kind of model we want to use!</p>
 <p><img src="model_wkflow1.jpg" /></p>
-<p>All models are a way to <strong>formalize our understanding about our study system</strong>.</p>
-<p><strong>Population-based models</strong> (PBM; i.e., models of <span class="math inline">\(N\)</span>) are the main type of model we consider in this class: with all individuals in a [Stock] considered to be interchangeable, <span class="math inline">\(N\)</span> (possibly age-structured) is our main variable of interest. <span class="math inline">\(N\)</span> is in turn controlled by endogenous factors (forces coming from inside the population – e.g., density-dependence, demographic stochasticity) and exogenous factors (forces coming from outside the population – e.g., environmental stochasticity, harvest).</p>
-<p><strong>Age/stage structured PBMs</strong> and <strong>sex structured PBMs</strong> (i.e., models of <span class="math inline">\(\mathbf{N}\)</span>, i.e., matrix population models) are types of PBM in which individuals are grouped together according to important traits like sex and age, with distinct population vital rates assigned to each group.</p>
-<p><strong>Individual-based models</strong> (IBM; also known as “agent-based” models) is a way of modeling populations such that all individuals are considered explicitly! We no longer need to group individuals into [Stocks]- each individual can potentially have a different survival probability, or chance of breeding, or movement propensity! These differences can be a result of (e.g.) spatial context or among-individual genetic variation.</p>
-<p>In this case, we don’t model <span class="math inline">\(N\)</span> directly at all – in fact, <span class="math inline">\(N\)</span> (in an IBM framework) is an <strong>emergent property</strong> of individual organisms interacting with each other, living or dying in the context of interactions with predators, competitors, and their abiotic environment.</p>
-<div id="which-model-structure-should-i-use-ibm-or-pbm" class="section level3">
+<p>All models are a way to <strong>formalize our understanding about our
+study system</strong>.</p>
+<p><strong>Population-based models</strong> (PBM; i.e., models of <span
+class="math inline">\(N\)</span>) are the main type of model we consider
+in this class: with all individuals in a [Stock] considered to be
+interchangeable, <span class="math inline">\(N\)</span> (possibly
+age-structured) is our main variable of interest. <span
+class="math inline">\(N\)</span> is in turn controlled by endogenous
+factors (forces coming from inside the population – e.g.,
+density-dependence, demographic stochasticity) and exogenous factors
+(forces coming from outside the population – e.g., environmental
+stochasticity, harvest).</p>
+<p><strong>Age/stage structured PBMs</strong> and <strong>sex structured
+PBMs</strong> (i.e., models of <span
+class="math inline">\(\mathbf{N}\)</span>, i.e., matrix population
+models) are types of PBM in which individuals are grouped together
+according to important traits like sex and age, with distinct population
+vital rates assigned to each group.</p>
+<p><strong>Individual-based models</strong> (IBM; also known as
+“agent-based” models) is a way of modeling populations such that all
+individuals are considered explicitly! We no longer need to group
+individuals into [Stocks]- each individual can potentially have a
+different survival probability, or chance of breeding, or movement
+propensity! These differences can be a result of (e.g.) spatial context
+or among-individual genetic variation.</p>
+<p>In this case, we don’t model <span class="math inline">\(N\)</span>
+directly at all – in fact, <span class="math inline">\(N\)</span> (in an
+IBM framework) is an <strong>emergent property</strong> of individual
+organisms interacting with each other, living or dying in the context of
+interactions with predators, competitors, and their abiotic
+environment.</p>
+<div id="which-model-structure-should-i-use-ibm-or-pbm"
+class="section level3">
 <h3>Which model structure should I use? IBM or PBM??</h3>
-<p>In general, models are tools- you should use the model structure that best fits with the questions you are asking and your understanding of the study system!</p>
-<p>And also, if two different model structures are equally appropriate, you should usually use the <strong>simplest approach</strong>! This idea is often called the <em>Principle of Parsimony</em> (or, <em>Occam’s Razor</em>).</p>
+<p>In general, models are tools- you should use the model structure that
+best fits with the questions you are asking and your understanding of
+the study system!</p>
+<p>And also, if two different model structures are equally appropriate,
+you should usually use the <strong>simplest approach</strong>! This idea
+is often called the <em>Principle of Parsimony</em> (or, <em>Occam’s
+Razor</em>).</p>
 <p><img src="occam1.jpg" /></p>
-<p>Both IBM and PBM can be used to address questions at the population or metapopulation level.</p>
+<p>Both IBM and PBM can be used to address questions at the population
+or metapopulation level.</p>
 <div id="rules-of-thumb" class="section level4">
 <h4>Rules of thumb</h4>
-<p><strong>Q</strong>: All populations are composed of individuals. Why then don’t we always model populations using individual-based models?</p>
+<p><strong>Q</strong>: All populations are composed of individuals. Why
+then don’t we always model populations using individual-based
+models?</p>
 <ul>
-<li><p>In general, you should use IBM if your <em>primary information sources (data) are at the individual level</em> (e.g., telemetry data)– allowing you to build informed models of how individuals interact with members of their own species, other interacting species, and with their local environment – in which case the principle of parsimony dictates that you should build models at the individual level! That is, you make fewer assumptions if you model this system as an IBM.</p></li>
-<li><p>You should use PBM if your <em>primary information is at the population level</em> (e.g., <em>the results of most mark-recapture analyses</em>) – in which case the principle of parsimony dictates that you should build models at the population level!</p></li>
+<li><p>In general, you should use IBM if your <em>primary information
+sources (data) are at the individual level</em> (e.g., telemetry data)–
+allowing you to build informed models of how individuals interact with
+members of their own species, other interacting species, and with their
+local environment – in which case the principle of parsimony dictates
+that you should build models at the individual level! That is, you make
+fewer assumptions if you model this system as an IBM.</p></li>
+<li><p>You should use PBM if your <em>primary information is at the
+population level</em> (e.g., <em>the results of most mark-recapture
+analyses</em>) – in which case the principle of parsimony dictates that
+you should build models at the population level!</p></li>
 </ul>
-<p><strong>Q</strong>: What are some population ecology questions that might be best addressed using <strong>individual-based models (IBM)</strong>?</p>
-<p><strong>Q</strong>: What are some population ecology questions that might be best addressed using <strong>population-based models (PBM)</strong>?</p>
-<p><em>Individual-based models are powerful- but with power comes great responsibility!</em></p>
+<p><strong>Q</strong>: What are some population ecology questions that
+might be best addressed using <strong>individual-based models
+(IBM)</strong>?</p>
+<p><strong>Q</strong>: What are some population ecology questions that
+might be best addressed using <strong>population-based models
+(PBM)</strong>?</p>
+<p><em>Individual-based models are powerful- but with power comes great
+responsibility!</em></p>
 </div>
 </div>
 </div>
 <div id="demo-individual-based-models" class="section level2">
 <h2>Demo: Individual-based models!</h2>
-<p>The goal of this activity is to build a mechanistic, individual-based model (IBM) of a (entirely real, not made-up by my a postdoc in my lab I swear!) ecological system.</p>
+<p>The goal of this activity is to build a mechanistic, individual-based
+model (IBM) of a (entirely real, not made-up by my a postdoc in my lab I
+swear!) ecological system.</p>
 <div id="the-scenario" class="section level3">
 <h3>The scenario</h3>
-<p>The <em>Laphlag island</em> archipelago is famous for its dramatic slopes, lush green grass, and its native sheep, the laphlag island bighorn. About 50 years ago, the native island wolf population was hunted to extinction by ranchers to prevent livestock predation.</p>
-<p>However, without wolves, populations of the sheep population skyrocketed, and the famous laphlagian lush green grass is quickly being lost to overgrazing by the native sheep.</p>
-<p>The locals now realize: to restore ecological balance to the islands <em>They must reintroduce wolves</em>!</p>
-<p>The Laphlag natural resources management agency is about to start an experimental wolf reintroduction in a very small island in the archipelago (as a test), but they want to know how to proceed.</p>
-<p>You have been hired as a research ecologist to help address the following questions:</p>
+<p>The <em>Laphlag island</em> archipelago is famous for its dramatic
+slopes, lush green grass, and its native sheep, the laphlag island
+bighorn. About 50 years ago, the native island wolf population was
+hunted to extinction by ranchers to prevent livestock predation.</p>
+<p>However, without wolves, populations of the sheep population
+skyrocketed, and the famous laphlagian lush green grass is quickly being
+lost to overgrazing by the native sheep.</p>
+<p>The locals now realize: to restore ecological balance to the islands
+<em>They must reintroduce wolves</em>!</p>
+<p>The Laphlag natural resources management agency is about to start an
+experimental wolf reintroduction in a very small island in the
+archipelago (as a test), but they want to know how to proceed.</p>
+<p>You have been hired as a research ecologist to help address the
+following questions:</p>
 <ul>
-<li><p>How are reintroduced wolves likely to affect grass biomass and distribution?</p></li>
-<li><p>How many wolves should be introduced to produce the desired ecological effect (lush carpets of green grass)? How long will it take to achieve this desired effect?</p></li>
+<li><p>How are reintroduced wolves likely to affect grass biomass and
+distribution?</p></li>
+<li><p>How many wolves should be introduced to produce the desired
+ecological effect (lush carpets of green grass)? How long will it take
+to achieve this desired effect?</p></li>
 </ul>
-<p>The agency biologists give you some information to get a first guess and they promise that you’ll be able to come study this natural system once the reintroductions are underway.</p>
+<p>The agency biologists give you some information to get a first guess
+and they promise that you’ll be able to come study this natural system
+once the reintroductions are underway.</p>
 <p><img src="sheep1.png" /></p>
 </div>
 <div id="the-details" class="section level3">
 <h3>The details!</h3>
-<p>The reintroduction is initiated right after the breeding season and the experiment is run for 365 days.</p>
+<p>The reintroduction is initiated right after the breeding season and
+the experiment is run for 365 days.</p>
 <div id="sheep" class="section level4">
 <h4>Sheep</h4>
 <ul>
 <li>There are a total of 50 sheep at the release location.</li>
-<li>Each sheep eats 0.5 “units” of grass per day (see section on grass, below)</li>
-<li>Each sheep gives birth to ca. 1-2 lambs approximately every 50-100 days of the experiment (very high fecundity!).</li>
-<li>Sheep tend to stay in place unless either they run out of food to eat or there is a wolf in the vicinity</li>
+<li>Each sheep eats 0.5 “units” of grass per day (see section on grass,
+below)</li>
+<li>Each sheep gives birth to ca. 1-2 lambs approximately every 50-100
+days of the experiment (very high fecundity!).</li>
+<li>Sheep tend to stay in place unless either they run out of food to
+eat or there is a wolf in the vicinity</li>
 </ul>
 </div>
 <div id="wolves" class="section level4">
 <h4>Wolves</h4>
 <ul>
-<li>There are a total of 5 wolves released at the beginning of the “experiment”.</li>
-<li>Wolves are solitary hunters, at least on this (non-imaginary!) island!</li>
-<li>Wolves have a 50% probability of finding and killing any sheep within 500 m of its location in any given day.</li>
+<li>There are a total of 5 wolves released at the beginning of the
+“experiment”.</li>
+<li>Wolves are solitary hunters, at least on this (non-imaginary!)
+island!</li>
+<li>Wolves have a 50% probability of finding and killing any sheep
+within 500 m of its location in any given day.</li>
 <li>Each wolf can kill a maximum of one sheep per day.</li>
 <li>Wolves tend to move approximately 500 m per day on average.</li>
 <li>Wolves give birth with a probability of 2% per day.</li>
@@ -535,7 +629,11 @@ div.tocify {
 <div id="grass" class="section level4">
 <h4>Grass</h4>
 <ul>
-<li>The release site is essentially one large grassy pasture. For the purposes of this exercise, we will model this pastoral release site as a grid of 100 functionally equivalent plots. Each plot starts off with 10 “units”" of grass (each “unit” of grass can support exactly 1 sheep).</li>
+<li>The release site is essentially one large grassy pasture. For the
+purposes of this exercise, we will model this pastoral release site as a
+grid of 100 functionally equivalent plots. Each plot starts off with 10
+“units”” of grass (each “unit” of grass can support exactly 1
+sheep).</li>
 <li>Each grass plot can have a maximum of 50 units of grass.</li>
 <li>Each plot can grow approximately 0.7 units of grass per day.</li>
 </ul>
@@ -543,22 +641,38 @@ div.tocify {
 </div>
 <div id="in-class-exercise" class="section level3">
 <h3>In-class exercise:</h3>
-<p>First, go to InsightMaker and clone the demo individual-based model! <a href="https://insightmaker.com/insight/162354/Sheep-model-Individual-based-demo">Here is the link!</a>.</p>
+<p>First, go to InsightMaker and clone the demo individual-based model!
+<a
+href="https://insightmaker.com/insight/162354/Sheep-model-Individual-based-demo">Here
+is the link!</a>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Make sure you can run the model and interpret the resulting figures.</p></li>
-<li><p>Does the model behave realistically? Test it! What happens if you start with lots of sheep and no wolves? What happens if you start with no sheep, and a bunch of wolves?</p></li>
-<li><p>Is it possible for the experimental plot to support sheep, wolves, and grass indefinitely?</p></li>
-<li><p>Try to adjust the number of sheep and wolves to meet your management goals: [tophat]</p>
+<li><p>Make sure you can run the model and interpret the resulting
+figures.</p></li>
+<li><p>Does the model behave realistically? Test it! What happens if you
+start with lots of sheep and no wolves? What happens if you start with
+no sheep, and a bunch of wolves?</p></li>
+<li><p>Is it possible for the experimental plot to support sheep,
+wolves, and grass indefinitely?</p></li>
+<li><p>Try to adjust the number of sheep and wolves to meet your
+management goals: [tophat]</p>
 <ul>
 <li>Maintain viable populations of both sheep and wolves<br />
 </li>
 <li>Maintain lush grass!</li>
 </ul></li>
-<li><p>What if wolves were more efficient at killing sheep? Try doubling the “Prob of kill” variable and see if/how your answer changes.</p></li>
-<li><p>What if grass were more productive? Try doubling the “Grass Growth Rate” and see if more sheep can be supported sustainably.</p></li>
-<li><p>What if the wolves don’t actually kill the sheep, but just scare them (make them move continuously)?? Could the presence of wolves affect grass growth in this case? Can you think of a way to test this using this IBM?</p></li>
+<li><p>What if wolves were more efficient at killing sheep? Try doubling
+the “Prob of kill” variable and see if/how your answer changes.</p></li>
+<li><p>What if grass were more productive? Try doubling the “Grass
+Growth Rate” and see if more sheep can be supported
+sustainably.</p></li>
+<li><p>What if the wolves don’t actually kill the sheep, but just scare
+them (make them move continuously)?? Could the presence of wolves affect
+grass growth in this case? Can you think of a way to test this using
+this IBM?</p></li>
 </ol>
-<p><strong>Q</strong>: Is there any stochasticity in this model? If so, what kind of stochasticity is there? Take an educated guess! [tophat]</p>
+<p><strong>Q</strong>: Is there any stochasticity in this model? If so,
+what kind of stochasticity is there? Take an educated guess!
+[tophat]</p>
 <p><a href="LECTURE11.html">–go to next lecture–</a></p>
 </div>
 </div>
