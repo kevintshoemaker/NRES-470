@@ -1,7 +1,7 @@
 ---
 title: "PVA Short Course, lecture #1"
 author: "NRES 421/621"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -15,20 +15,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 421, PVA                                     ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  PVA basics                                        ####
-############################################################
-
+#  NRES 421, PVA 
+#   University of Nevada, Reno
+#   PVA basics  ------------------------------
 
 ```
 
@@ -38,21 +27,13 @@ In this short course, we will explore the use of **population models** to addres
 
 PVA is a set of practical approaches to problem-solving in conservation and wildlife management via creative application of *population ecology theory*, *simulation models* and *statistics*. 
 
-As much as possible we will use hands-on activities to explore the fundamentals of PVA. We will use [InsightMaker- a free web-based systems modeling tool](https://insightmaker.com/) for running simulation models. 
+We will use [InsightMaker- a free web-based systems modeling tool](https://insightmaker.com/) for running hands-on simulation models. 
 
 First we will run through the basics of population modeling for wildlife conservation...
 
-Second, we will build a PVA for the grizzly bears of Yellowstone National Park!
-
-![](grizzly1.jpg)
-
-We will end this short-course by building a PVA for the loggerhead sea turtle, *Caretta caretta*, which is based on a paper by [Crowder et al 1994](Crowder1994.pdf).
-
-![](caretta1.jpg)
-
+Second, we will run through a case study of the use of population models to support the conservation and management of the Rufa Red Knot (*Calidris canutus rufa*) and the Horseshoe Crab (*Limulus polyphemus*), whose eggs provide a key source of food for migrating Red Knots. 
 
 Let's review some basic population ecology theory and mathematics which are the foundation of PVA!
-
 
 ## What is a population?
 
@@ -60,7 +41,7 @@ From Charles Krebs (1972):
 
 > “A group of organisms of the same species occupying a particular space at a particular time, with the potential to breed with each other"
 
-*Defining a population is not always straightforward...*. Spatial boundaries defining populations sometimes are easily defined, but more typically are vague and difficult to determine. Where does one population begin and another one end?
+*Defining a population is not always straightforward...*. Spatial boundaries defining populations sometimes are easily defined, but other times are vague and difficult to determine. Where does one population begin and another one end?
 
 ## How do populations change over time?
 
@@ -70,30 +51,32 @@ Populations of living things have the ability to grow *exponentially*. This is t
 
 
 ```{r echo=FALSE}
+
 options(scipen=10)
 expf <- function(x){10*exp(0.15*x)}
 curve(expf,0,100,xlab="years",ylab="Abundance (N)",lwd=3,col=gray(0.4))
 
 text(20,30000000, "initial abundance = 10")
-text(25,20000000, "annual rate of growth = 0.15%")
+text(25,20000000, "intrinsic rate of growth = 0.15")
 
 ```
 
 
-![](Human_population_growth_from_1800_to_2000.png)
+![](Human_population_growth_from_1800_to_2000.png){width=30%}
 
-![](positivefeedback1.png)
+![](positivefeedback1.png){width=30%}
 
-The takeaway? With sufficient resources, populations grow in a **positive feedback** process. More individuals in the population means greater potential for population growth (e.g., making more babies!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
-
+The takeaway? With sufficient resources (e.g., plenty of food, shelter, nest sites, etc.), populations grow in a **positive feedback** loop. More individuals in the population means greater potential for population growth (e.g., making more babies!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
 
 ## Modeling!!
 
-### Computer programming and systems thinking
+### Systems thinking
 
 Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern ecosystem studies and conservation biology, which deal with understanding complex systems. 
 
-Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this short-course, we will use computer simulations for understanding and performing 'experiments' with natural populations**. We'll start simple, and quickly build up to more complex simulation models.  
+Armed with basic facility with computer programming, ecologists and natural resource professionals can *formalize their understanding* of the natural systems in which they work, building models that account for complex ecological realities. 
+
+In addition, we can run experiments, or **scenario tests** using these models, asking questions that wouldn't otherwise be addressable through science. **In this short-course, we will use computer simulations for understanding and performing scenario tests with natural populations**.   
 
 ### *InsightMaker*: a simulation modeling framework for dynamic systems!
 
@@ -117,22 +100,23 @@ If the [Flow] out is larger than the [Flow] in, then the [Stock] decreases over 
 
 If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time. In this case, the system is in **equilibrium**.
 
-## In-class activity: a basic simulation model
+## A basic simulation model
 
-It is often stated that "all models are wrong, some are useful" (attributed to statistician George Box). However, this demonstration model is wrong, and not super useful! But it's a start!
+It is often stated that "all models are wrong, some are useful" (attributed to statistician George Box). 
+
+This demonstration model is wrong, and not super useful! But it's a start!
 
 ### Simple stock and flow model! 
 
 1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
 
-2. Click on [this link](https://insightmaker.com/insight/162300/NRES-421-In-Class-Demo-1) to load up the first population modeling demonstration.
+2. Click on [this link](https://insightmaker.com/insight/162300/NRES-421-In-Class-Demo-1) to load up the first population modeling demo.
 
 3. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the white space anywhere in the workspace and then clicking the "Edit Info" button on the left-hand context menu.  
 
 4. Now click **Run Simulation**. You have run your first population simulation!
 
-5. Can you figure out how to change the settings to run the model for 50 years? Try this and click **Run Simulation**.
-
+**Q**: What is the first thing you would like to change to make the model more realistic?
 
 ## A more realistic model: exponential growth!
 
@@ -146,7 +130,7 @@ Your model should look something like this:
 
 ![](IM14.jpg)
 
-3. Hover your cursor over the two [Flows] (Births and Deaths) and click on the equals sign to open up the equation editor. Do these equations make sense? 
+3. Click on the two [Flows] (Births and Deaths) and note the equation displayed on the right-hand menu. Do these equations make sense? 
 
 4. Make sure the initial number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
 
@@ -195,13 +179,13 @@ We can't be certain whether next year or the year after that will be a good year
 
 The key is to **embrace uncertainty**. As population ecologists, we have some tricks to help us manage and account for unpredictable variation in our study systems:
 
-![](dice1.png)
+![](dice1.png){width=20%}
 
 ### How to model uncertainty
 
-Typically, we embrace uncertainty in our models by incorporating **random-number generators** in our models. These are called **stochastic models**.
+Typically, we 'embrace uncertainty' in our models by incorporating **random-number generators**. These types of simulation models are called **stochastic models**.
 
-When we incorporate **random processes** into models, the result will be different each time we run the model!
+When we incorporate random processes into models, the result will be different each time we run the model!
 
 When we use stochastic models, we often want to run lots of **replicates**. Each replicate represents a possible future. 
 
@@ -211,19 +195,12 @@ We can then interpret the _cloud of possible futures_ rather than just the resul
  
 Here we see that the population went extinct three times out of a total of 50 replicates. 
 
-**Please pause and take a minute to write down your response to the following question:** 
-
-**Short Answer Question**: What is the extinction risk for this population? Is this extinction risk *acceptable*? If not, what is an acceptable risk of extinction?
-
-[Pause and answer the discussion question on WebCampus!]
-
-
 ## Random number generation
 To ensure that each model run (replicate) -- or each year of each model run -- is different from one another, we need to include at least one **random number generator** in our models! 
 
 A random number generator is like a box of (potentially infinite) possible numbers -- a lottery ball machine for example! Each time we want a new number we reach in and pull one out randomly, record the number, put it back in and shake it up again.
 
-![](lottery1.png)
+![](lottery1.png){width=20%}
 
 
 
@@ -243,21 +220,24 @@ The term **stochasticity** just means randomness. A **stochastic population mode
 
 Now, please change the initial abundance to 500 and re-run the "Sensitivity Testing" tool. 
 
-**Please pause and take a minute to write down your responses to the following questions:**       
 
-**Short Answer Question** Is the effect of randomness more important/pronounced at low or high abundances? Is there any risk of extinction when the initial abundance is 10? What about when the initial abundance is 500?
-
-[pause and record your answers on WebCampus]
+**Q**: what key differences do you notice when you initialize the population with 10 individuals vs 500 individuals??
 
 
 
-
-[--go to grizzly PVA!--](PVA2_421.html)
+## Case study: Red Knots and Horseshoe Crabs
 
 
 
 
-## And finally, some extras!
+
+
+
+
+
+
+
+## And finally, some optional extra materials!
 
 
 ### Add _Environmental Stochasticity_  
@@ -900,6 +880,39 @@ For example -- after running your model (step 4) you might realize that your res
 
 
 Okay, now let's build a PVA model together!
+
+
+
+
+```{r eval=FALSE, echo=FALSE}
+
+
+# ![](grizzly1.jpg)
+# 
+# We will end this short-course by building a PVA for the loggerhead sea turtle, *Caretta caretta*, which is based on a paper by [Crowder et al 1994](Crowder1994.pdf).
+# 
+# ![](caretta1.jpg)
+
+# 
+# **Please pause and take a minute to write down your response to the following question:** 
+# 
+# **Short Answer Question**: What is the extinction risk for this population? Is this extinction risk *acceptable*? If not, what is an acceptable risk of extinction?
+# 
+# [Pause and answer the discussion question on WebCampus!]
+
+# **Please pause and take a minute to write down your responses to the following questions:**       
+# 
+# **Short Answer Question** Is the effect of randomness more important/pronounced at low or high abundances? Is there any risk of extinction when the initial abundance is 10? What about when the initial abundance is 500?
+# 
+# [pause and record your answers on WebCampus]
+
+
+# [--go to grizzly PVA!--](PVA2_421.html)
+
+```
+
+
+
 
 
 
