@@ -54,7 +54,6 @@ curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities"
 
 # Random number generation!   ------------------------
 
-
 ### Binomial random number generator
 rbinom(1,size=10,prob=0.5)    # note: "size" is the number of coin flips, and "prob" is the probability of coming up 'heads'
 

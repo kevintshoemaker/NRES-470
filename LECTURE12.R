@@ -13,7 +13,7 @@
 # Basic life history parameters
 
 R_max <- 1.15       # Maximum rate of growth
-Init_N <- 51        # Initial abundance
+Init_N <- 51        # Initial abundance (not stage structured)
 K <- 175            # Carrying capacity
 
 # Environmental stochasticity ------------------------------------
@@ -26,7 +26,7 @@ Ricker <- function(prev_abund){       # this is a function for computing next-ye
   prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
-# Catastrophe 
+# Catastrophe -------------------------
 
 Flood_prob <- 0.05      # 5% chance of major flood
 Flood_lambda <- 0.25    # 25% of population can survive a flood 
@@ -133,7 +133,7 @@ for(scenario in 1:length(flood_lambdas)){
   all_scenarios[scenario] <- Exctinction_risk(PVA)
 }
 
-plot(flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (lambda in flood year)",ylab="extinction risk")
+plot(1-flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (mortality in flood year)",ylab="extinction risk")
 abline(h=0.05,col="red",lwd=2)
 
 
