@@ -42,7 +42,7 @@ Remember that the semester will get crazy at the end (including for your instruc
 Your project proposal (approx 1 pg) will consist of:  
 
 1. **Title**: should indicate what species you are modeling, and hint at what question(s) will be addressed   
-2. **Project participants**: provide names of all participants (3-4).   
+2. **Project participants**: provide names of all project participants (3-4).   
 3. **Research question(s)**: Provide one or more testable and management-relevant questions that you plan to address using your population model. Putting "too many" questions is okay for now- we will talk them over in our project meetings right before spring break.  
 4. **Project rationale**: Describe your rationale for choosing this species, and explain why your management/conservation question(s) are important to address. Be as specific as possible! Convince your instructor/TA that your project is **interesting**!    
 5. **Data sources**: Describe one or more information sources you plan to use to guide PVA construction and parameterization (convince your instructor/TA that your project is **doable**!)  
@@ -65,12 +65,14 @@ We have gone over many of these concepts in class already- PVA is just a way of 
 
 Your **initial parameterized PVA model** will consist of:  
 
-1. A ready-to-run PVA model, in whatever software framework you are using (InsightMaker, R). This model does not need to be your "final" model, but it should work (e.g., produce results), the parameter estimates should be backed by some evidence or rationale (see below), and it should be capable of running your proposed scenario tests.
+1. **A ready-to-run PVA model**, in whatever software framework you are using (InsightMaker or R). This model does not need to be your "final" model, but it should work (e.g., produce results), the parameter estimates should be backed by some evidence or rationale (see below), and it should be capable of running your proposed scenario tests.
 
-2. A written rationale/evidence for all of your parameter estimates and key modeling decisions.       
-    a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the sources of this information). Decisions include: how many populations, what is your initial abundance(s), how many stage or age classes in your model, how does density-dependence (including Allee effects, if applicable) operate for your species (e.g., which vital rates are density-dependent, what is the shape of the density-dependence relationship), what are your survival and fecundity rates, how much annual variablility in birth and death rates (environmental stochasticity), what is the impact and timing of catastrophes (if applicable), etc. etc. Where appropriate, you can paste figures, tables, maps, etc. drawn from your information sources- just make sure you say where you got these images/tables etc.
-    b. What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions? NOTE: you don't need to run your scenario tests- just state what scenario tests you propose to run! *It must be clear that the working model you submitted is capable of running all of your proposed scenario tests*. 
-    c. Literature cited (format not important, as long as it includes all key information)        
+2. **Written rationale/evidence for all of your parameter estimates** and key modeling decisions.   
+    a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the sources of this information). Decisions include: how many stage or age classes in your model, what are your survival and fecundity rates (transition rates), what is your initial abundance(s), how does population density affect vital rates in your model (density-dependence -- including Allee effects if applicable), how much do birth and death rates vary from year to year (environmental stochasticity), what is the impact and timing of catastrophes (if applicable), etc. etc. Where appropriate, you can paste figures, tables, maps, etc. drawn from your information sources- just make sure you say where you got these images/tables etc.
+    b. What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions? NOTE: you don't need to have run your scenario tests- just state what scenario tests you propose to run! *It must be clear that the working model you submitted is capable of running all of your proposed scenario tests*. 
+    c. Literature cited (format not important, as long as it includes all key information)  
+
+3. Any questions for your instructor/TA about your model that you'd like to go over during our next project meeting (remember to sign up for a meeting on our shared Google Sheet!).
     
 ## Third project-related assignment: the written project (rough draft)!
 
