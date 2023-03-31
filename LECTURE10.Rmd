@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 NOTE: Many thanks to Dr. Elizabeth Hunter (USGS and Virginia Tech) for helping to develop the demonstration at the end of this lecture!
 
-![](birds1.jpg)
+![](birds1.jpg){width=30%}
 
 So far in this class we have considered the **population** as the fundamental unit that we are interested in modeling. The population is a [Stock] and all processes that can change the size of the population are [Flows]. All individuals within any [Stock] are assumed to be interchangeable (identical in every way), and are not modeled explicitly.  
 

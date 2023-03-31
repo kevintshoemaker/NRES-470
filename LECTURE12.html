@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 470/670" />
 
 
-<title>Population Viability Analysis</title>
+<title>Overview of population Viability Analysis</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -345,7 +345,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +366,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +426,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -454,19 +454,19 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Population Viability Analysis</h1>
+<h1 class="title toc-ignore">Overview of population Viability
+Analysis</h1>
 <h4 class="author">NRES 470/670</h4>
 <h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<div id="final-projects" class="section level3">
-<h3>Final projects:</h3>
+<p>R code for this lecture can be found <a href="LECTURE12.R">here</a>
+### Final projects:</p>
 <p>Just a heads up about <a href="FINAL_PROJECTS.html">final
 projects</a>. Your working PVA and a document justifying your modeling
-decisions is <em>due Wed, April 6</em>!</p>
-</div>
+decisions is <em>due Wed, April 12</em>!</p>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
 <p>Population Viability Analysis (PVA) integrates everything we have
@@ -475,10 +475,9 @@ studied so far and more.</p>
 running a formal predictive population model for the purpose of gaining
 insight about present and future conservation status, or ranking
 alternative management options</em>.</p>
-<p><strong>Q:</strong> Does PVA align with the small-population
-paradigm?</p>
-<p><strong>Q:</strong> Does PVA align with the declining-population
-paradigm?</p>
+<p>PVA is used for assessing how stochasticity and inbreeding can lead
+to extinction (small-population paradigm) and for assessing how to
+reverse population declines (declining population paradigm).</p>
 <p><strong>Q:</strong> Are PVA models always stochastic?</p>
 <p><strong>Q:</strong> Are PVA models always density-dependent?</p>
 <p><strong>Q:</strong> Are PVA models always age-structured?</p>
@@ -486,37 +485,37 @@ paradigm?</p>
 <div id="the-pva-process-recipe-for-pva" class="section level3">
 <h3>The PVA process (recipe for PVA!)</h3>
 <p><img src="PVAschematic1.png" /></p>
-<p>NOTE: The process of building a PVA model is
-<strong>iterative</strong> and <strong>non-linear</strong>.</p>
+<p>The process of building a PVA model is
+<strong>iterative</strong>.</p>
 <p>For example – after running your model (step 4) and looking at your
 results (step 5) you might realize that the model is totally
 unrealistic. This might prompt you to go back and change your conceptual
 model of the life history (step 1), and re-parameterize your model (step
 2).</p>
-<div id="step-1-life-history" class="section level4">
-<h4>Step 1: Life history</h4>
-<p>Lecture 1: systems thinking<br />
-Lecture 2: feedbacks<br />
-Lecture 3: exponential growth<br />
-Lecture 4: density dependence<br />
-Lecture 5: allee effects<br />
-Lecture 6: age structured populations<br />
-Lecture 7: matrix population models<br />
-Lecture 8: stochasticity<br />
-Labs 1,2,3,4,5</p>
+<div id="step-1-conceptualize-life-history-processes"
+class="section level4">
+<h4>Step 1: Conceptualize life history processes</h4>
+<p><a href="LECTURE3.html">Lecture 3</a>: exponential growth<br />
+<a href="LECTURE4.html">Lecture 4</a>: density dependence<br />
+<a href="LECTURE5.html">Lecture 5</a>: Allee effects<br />
+<a href="LECTURE6.html">Lecture 6</a>: age structured populations<br />
+<a href="LECTURE7.html">Lecture 7</a>: matrix population models<br />
+<a href="LECTURE8.html">Lecture 8</a>: stochasticity<br />
+(and labs 1,2,3,4,5)</p>
 <p>The first step is to conceptualize the life history for your species
 of interest. This is where you might put together a life history
 diagram, and think about the following questions:</p>
 <ul>
 <li>How many life stages should I include?</li>
 <li>Which life stages are reproductive?</li>
-<li>Which vital rates are density-dependent?</li>
+<li>Which vital rate(s) are density-dependent?</li>
 <li>Does your species benefit from social aggregation? If so, are there
-any Allee effects?</li>
-<li>Which vital rates are subject to environmental stochasticity?</li>
-<li>Which vital rates could be altered by management activities?</li>
-<li>Are there any important <em>catastrophes</em> that can affect the
-system?</li>
+potential Allee effects?</li>
+<li>Which vital rates vary from year to year (environmental
+stochasticity)?</li>
+<li>How might your proposed scenarios (e.g., management activities)
+change key vital rates?</li>
+<li>Are there any <em>catastrophes</em> that can affect the system?</li>
 </ul>
 <p><strong>Q</strong>: is there ever a case where you <em>WON’T</em>
 include demographic stochasticity in your model?</p>
@@ -556,9 +555,11 @@ stochasticity)<br />
 </div>
 <div id="step-3-spatial-structure" class="section level4">
 <h4>Step 3: Spatial structure!</h4>
-<p>Lecture 13: metapopulation models<br />
-Lecture 14: source-sink dynamics<br />
-Lab 6: metapopulation models</p>
+<p>Most of your projects will probably not include spatial structure.
+This is the topic for lectures in the next couple weeks (and lab 6)!</p>
+<p><a href="LECTURE13.html">Lecture 13</a>: metapopulation models<br />
+<a href="LECTURE14.html">Lecture 14</a>: source-sink dynamics<br />
+<a href="LAB6.html">Lab 6</a>: metapopulation models</p>
 <p>If you want to ask spatial questions, your model needs to be
 spatially explicit, or at least consider spatial structure in some way.
 The kinds of questions you might think about include:</p>
@@ -579,51 +580,52 @@ bad year in every subpopulation?)</li>
 </div>
 <div id="step-4-simulate" class="section level4">
 <h4>Step 4: Simulate!</h4>
-<p>(In class exercises, all labs)</p>
-<p>You know how to simulate populations now- you can choose whether it
-makes sense to use R, InsightMaker, Vortex, or some other software or
-programming platform for your simulations!</p>
-<p>Either way, you can be creative- set up the simulations so that they
-can help you answer your key research questions! You are in control- you
-can set up the simulations so that they give you the kinds of data you
-need!!</p>
+<p><a href="LECTURE1.html">Lecture 1</a>: systems thinking<br />
+<a href="LECTURE2.html">Lecture 2</a>: feedbacks</p>
+<p>(In-class InsightMaker exercises, all labs)</p>
+<p>You all know how to simulate populations now!</p>
+<p>Be creative and use common sense- set up the simulations so that they
+can help you answer your key research questions!</p>
 <ul>
 <li>What scenarios do you want to test?</li>
 <li>How many replicates are sufficient?</li>
-<li>What data do you need to store for your plots and analyses?</li>
+<li>What simulation results do you need to record for making plots and
+running analyses?</li>
 </ul>
 </div>
 <div id="step-5-results" class="section level4">
 <h4>Step 5: Results</h4>
-<p>I recommend using R to analyze and plot out your simulation results.
-BUT you can use Excel and InsightMaker to make perfectly good plots as
-well!</p>
-<p>Finally, you need to make sense of all the simulations you just
-ran.</p>
+<p>I recommend using R or Excel to analyze your results and make plots
+to illustrate the results of your scenario tests.</p>
+<p>InsightMaker plots (abundance over time) are great (and can be
+included in presentations and reports). However, this is often not the
+best way to visualize and summarize key differences among your
+simulation scenarios!</p>
+<p>Overall, you need to make sense of all the simulations you just ran
+and present your results in ways that make sense to your readers!</p>
 <p>There are two types of data analysis tools that you will need to be
 able to use the simulation results to answer your questions:
 <strong>graphical visualization</strong> and <strong>statistical
 analysis</strong>.</p>
 <p>These tools- visualization and statistical analysis - are diverse,
 and there is no one-size-fits-all way that you should visualize and
-analyze your simulation results. It really depends on your
-question!!</p>
-<p>I will give you some ideas here about graphical representations in
-the demo PVA - but just remember you are not limited to these ideas- be
-creative! Since this class is not a statistics class, I don’t
-necessarily expect you to do sophisticated stats as part of your
-project- but your TAs and I can work with your groups individually to
-figure out some simple stats that make sense for your project.</p>
+analyze your simulation results. It really depends on your question!! I
+will give you some ideas here about graphical representations in the
+demo PVA below - but just remember you are not limited to these ideas-
+be creative!</p>
+<p>Since this class is not a statistics class, I don’t necessarily
+expect you to do sophisticated stats as part of your project- but your
+TAs and I can work with your groups individually to figure out some
+simple statistical analyses that make sense for your project. Learning
+to use statistics will definitely come in handy in the future!</p>
 </div>
 </div>
 </div>
 <div id="a-simple-demonstration-pva" class="section level2">
 <h2>A Simple Demonstration PVA</h2>
-<p>To illustrate some of these concepts, let’s build a very simple PVA
-model in R. If you want to follow along, click <a
+<p>To illustrate some of these concepts, let’s build and run a simple
+PVA in R. If you want to follow along, click <a
 href="LECTURE12.R">here</a></p>
-<p>We are using R because of its flexible and powerful visualization
-tools.</p>
 <div id="step-1-conceptualize-the-life-history" class="section level3">
 <h3>Step 1: conceptualize the life history</h3>
 <p>For simplicity, let’s ignore age structure for now - this is just a
@@ -642,7 +644,7 @@ simple stochastic, one-stage (scalar) population model!</p>
 # Basic life history parameters
 
 R_max &lt;- 1.15       # Maximum rate of growth
-Init_N &lt;- 51        # Initial abundance
+Init_N &lt;- 51        # Initial abundance (not stage structured)
 K &lt;- 175            # Carrying capacity
 
 # Environmental stochasticity ------------------------------------
@@ -655,7 +657,7 @@ Ricker &lt;- function(prev_abund){       # this is a function for computing next
   prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
-# Catastrophe 
+# Catastrophe -------------------------
 
 Flood_prob &lt;- 0.05      # 5% chance of major flood
 Flood_lambda &lt;- 0.25    # 25% of population can survive a flood </code></pre>
@@ -733,7 +735,7 @@ PlotCloud &lt;- function(simdata){
 
 PlotCloud(Default)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Okay, what do we learn from this? Really, it’s a mess!!!</p>
+<p>Okay, what do we learn from this?</p>
 <p>If our question is about extinction risk, maybe we want to plot
 extinction risk by time…</p>
 <pre class="r"><code># Visualize extinction rates over time
@@ -790,10 +792,9 @@ for(scenario in 1:length(flood_lambdas)){
   all_scenarios[scenario] &lt;- Exctinction_risk(PVA)
 }
 
-plot(flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impact (lambda in flood year)&quot;,ylab=&quot;extinction risk&quot;)
+plot(1-flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impact (mortality in flood year)&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p><a href="LECTURE13.html">–go to next lecture–</a></p>
 </div>
 </div>
 </div>

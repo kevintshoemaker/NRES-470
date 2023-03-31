@@ -1,5 +1,5 @@
 ---
-title: "Population Viability Analysis"
+title: "Overview of population Viability Analysis"
 author: "NRES 470/670"
 date: "Spring 2023"
 output: 
@@ -21,9 +21,11 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```
 
+
+R code for this lecture can be found [here](LECTURE12.R)
 ### Final projects:
 
-Just a heads up about [final projects](FINAL_PROJECTS.html). Your working PVA and a document justifying your modeling decisions is *due Wed, April 6*!
+Just a heads up about [final projects](FINAL_PROJECTS.html). Your working PVA and a document justifying your modeling decisions is *due Wed, April 12*!
 
 
 ## Population Viability Analysis (PVA)
@@ -32,9 +34,7 @@ Population Viability Analysis (PVA) integrates everything we have studied so far
 
 At its most basic level, PVA is the _process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options_.
 
-**Q:** Does PVA align with the small-population paradigm?
-
-**Q:** Does PVA align with the declining-population paradigm?
+PVA is used for assessing how stochasticity and inbreeding can lead to extinction (small-population paradigm) and for assessing how to reverse population declines (declining population paradigm).
 
 **Q:** Are PVA models always stochastic?
 
@@ -48,31 +48,29 @@ At its most basic level, PVA is the _process of building and running a formal pr
 
 ![](PVAschematic1.png) 
 
-NOTE: The process of building a PVA model is **iterative** and **non-linear**. 
+The process of building a PVA model is **iterative**. 
 
 For example -- after running your model (step 4) and looking at your results (step 5) you might realize that the model is totally unrealistic. This might prompt you to go back and change your conceptual model of the life history (step 1), and re-parameterize your model (step 2).   
 
-#### Step 1: Life history
+#### Step 1: Conceptualize life history processes
 
-Lecture 1: systems thinking     
-Lecture 2: feedbacks    
-Lecture 3: exponential growth    
-Lecture 4: density dependence    
-Lecture 5: allee effects    
-Lecture 6: age structured populations    
-Lecture 7: matrix population models    
-Lecture 8: stochasticity    
-Labs 1,2,3,4,5    
+[Lecture 3](LECTURE3.html): exponential growth    
+[Lecture 4](LECTURE4.html): density dependence    
+[Lecture 5](LECTURE5.html): Allee effects    
+[Lecture 6](LECTURE6.html): age structured populations    
+[Lecture 7](LECTURE7.html): matrix population models    
+[Lecture 8](LECTURE8.html): stochasticity    
+(and labs 1,2,3,4,5)   
 
 The first step is to conceptualize the life history for your species of interest. This is where you might put together a life history diagram, and think about the following questions:
 
 - How many life stages should I include?
 - Which life stages are reproductive?
-- Which vital rates are density-dependent?
-- Does your species benefit from social aggregation? If so, are there any Allee effects?
-- Which vital rates are subject to environmental stochasticity?
-- Which vital rates could be altered by management activities?
-- Are there any important *catastrophes* that can affect the system?
+- Which vital rate(s) are density-dependent?
+- Does your species benefit from social aggregation? If so, are there potential Allee effects?
+- Which vital rates vary from year to year (environmental stochasticity)?
+- How might your proposed scenarios (e.g., management activities) change key vital rates?
+- Are there any *catastrophes* that can affect the system?
 
 **Q**: is there ever a case where you *WON'T* include demographic stochasticity in your model? 
 
@@ -99,9 +97,11 @@ This is where you attach real numbers to the stocks and flows in your conceptual
 
 #### Step 3: Spatial structure!
 
-Lecture 13: metapopulation models    
-Lecture 14: source-sink dynamics    
-Lab 6: metapopulation models    
+Most of your projects will probably not include spatial structure. This is the topic for lectures in the next couple weeks (and lab 6)!
+
+[Lecture 13](LECTURE13.html): metapopulation models    
+[Lecture 14](LECTURE14.html): source-sink dynamics    
+[Lab 6](LAB6.html): metapopulation models    
 
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
@@ -114,34 +114,37 @@ If you want to ask spatial questions, your model needs to be spatially explicit,
 
 #### Step 4: Simulate!
 
-(In class exercises, all labs)
+[Lecture 1](LECTURE1.html): systems thinking     
+[Lecture 2](LECTURE2.html): feedbacks    
 
-You know how to simulate populations now- you can choose whether it makes sense to use R, InsightMaker, Vortex, or some other software or programming platform for your simulations!
+(In-class InsightMaker exercises, all labs)
 
-Either way, you can be creative- set up the simulations so that they can help you answer your key research questions! You are in control- you can set up the simulations so that they give you the kinds of data you need!!
+You all know how to simulate populations now!
+
+Be creative and use common sense- set up the simulations so that they can help you answer your key research questions!
 
 - What scenarios do you want to test?
 - How many replicates are sufficient?
-- What data do you need to store for your plots and analyses?
+- What simulation results do you need to record for making plots and running analyses?
 
 #### Step 5: Results
 
-I recommend using R to analyze and plot out your simulation results. BUT you can use Excel and InsightMaker to make perfectly good plots as well!
+I recommend using R or Excel to analyze your results and make plots to illustrate the results of your scenario tests. 
 
-Finally, you need to make sense of all the simulations you just ran. 
+InsightMaker plots (abundance over time) are great (and can be included in presentations and reports). However, this is often not the best way to visualize and summarize key differences among your simulation scenarios! 
+
+Overall, you need to make sense of all the simulations you just ran and present your results in ways that make sense to your readers! 
 
 There are two types of data analysis tools that you will need to be able to use the simulation results to answer your questions: **graphical visualization** and **statistical analysis**.
 
 These tools- visualization and statistical analysis - are diverse, and there is no one-size-fits-all way that you should visualize and analyze your simulation results. It really depends on your question!! 
+I will give you some ideas here about graphical representations in the demo PVA below - but just remember you are not limited to these ideas- be creative! 
 
-I will give you some ideas here about graphical representations in the demo PVA - but just remember you are not limited to these ideas- be creative! 
-Since this class is not a statistics class, I don't necessarily expect you to do sophisticated stats as part of your project- but your TAs and I can work with your groups individually to figure out some simple stats that make sense for your project. 
+Since this class is not a statistics class, I don't necessarily expect you to do sophisticated stats as part of your project- but your TAs and I can work with your groups individually to figure out some simple statistical analyses that make sense for your project. Learning to use statistics will definitely come in handy in the future!
 
 ## A Simple Demonstration PVA
 
-To illustrate some of these concepts, let's build a very simple PVA model in R. If you want to follow along, click [here](LECTURE12.R)
-
-We are using R because of its flexible and powerful visualization tools. 
+To illustrate some of these concepts, let's build and run a simple PVA in R. If you want to follow along, click [here](LECTURE12.R)
 
 ### Step 1: conceptualize the life history
 
@@ -164,7 +167,7 @@ Here is the basic model parameterization:
 # Basic life history parameters
 
 R_max <- 1.15       # Maximum rate of growth
-Init_N <- 51        # Initial abundance
+Init_N <- 51        # Initial abundance (not stage structured)
 K <- 175            # Carrying capacity
 
 # Environmental stochasticity ------------------------------------
@@ -177,7 +180,7 @@ Ricker <- function(prev_abund){       # this is a function for computing next-ye
   prev_abund * exp(log(rnorm(1,R_max,SD_anngrowth))*(1-(prev_abund/K)))
 }
 
-# Catastrophe 
+# Catastrophe -------------------------
 
 Flood_prob <- 0.05      # 5% chance of major flood
 Flood_lambda <- 0.25    # 25% of population can survive a flood 
@@ -266,7 +269,7 @@ PlotCloud(Default)
 
 ```
 
-Okay, what do we learn from this? Really, it's a mess!!! 
+Okay, what do we learn from this? 
 
 If our question is about extinction risk, maybe we want to plot extinction risk by time... 
 
@@ -340,7 +343,7 @@ for(scenario in 1:length(flood_lambdas)){
   all_scenarios[scenario] <- Exctinction_risk(PVA)
 }
 
-plot(flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (lambda in flood year)",ylab="extinction risk")
+plot(1-flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (mortality in flood year)",ylab="extinction risk")
 abline(h=0.05,col="red",lwd=2)
 
 
@@ -348,7 +351,8 @@ abline(h=0.05,col="red",lwd=2)
 ```
 
 
-[--go to next lecture--](LECTURE13.html)
+
+
 
 
 
