@@ -1,18 +1,30 @@
 
-############################################################
-####                                                    ####  
-####  NRES 421, PVA                                     ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
+#  NRES 421, PVA 
+#   University of Nevada, Reno
+#   PVA basics  ------------------------------
 
 
-############################################################
-####  PVA basics                                        ####
-############################################################
+             # plot a discrete distribution!
+xvals <- seq(0,10,1)
+probs <- dbinom(xvals,10,prob=0.3)
+names(probs) <- xvals
+               
+barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distribution (discrete)")
 
+
+
+             # plot a discrete distribution!
+xvals <- seq(0,10,1)
+probs <- dpois(xvals,lambda=2.2)
+names(probs) <- xvals
+               
+barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution (discrete)")
+
+
+mean = 7.1
+stdev = 1.9
+
+curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities",main="Normal distribution (continuous)")   # probability density
 
 
 ####
@@ -130,27 +142,4 @@ for(scenario in 1:length(flood_lambdas)){
 
 plot(flood_lambdas,all_scenarios,type="p",cex=2,xlab="flood impact (lambda in flood year)",ylab="extinction risk")
 abline(h=0.05,col="red",lwd=2)
-
-
-             # plot a discrete distribution!
-xvals <- seq(0,10,1)
-probs <- dbinom(xvals,10,prob=0.3)
-names(probs) <- xvals
-               
-barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distribution (discrete)")
-
-
-
-             # plot a discrete distribution!
-xvals <- seq(0,10,1)
-probs <- dpois(xvals,lambda=2.2)
-names(probs) <- xvals
-               
-barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution (discrete)")
-
-
-mean = 7.1
-stdev = 1.9
-
-curve(dnorm(x,mean,stdev),0,15,ylab="Probability (density)",xlab="Possibilities",main="Normal distribution (continuous)")   # probability density
 
