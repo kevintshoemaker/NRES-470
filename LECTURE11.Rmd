@@ -2,62 +2,67 @@
 title: "Declining-population paradigm"
 author: "NRES 470/670"
 date: "Spring 2023"
-output:
-  pdf_document:
-    toc: yes
-  html_document:
+output: 
+  html_document: 
     theme: spacelab
     toc: yes
     toc_float: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
 ```
 
 
-**Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why???
+**Q**: Is the intrinsic rate of growth $r_{max}$ positive or negative for most species on earth? Why?
 
-**Q**: Given that all species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations declining despite their natural ability to grow and thrive under favorable conditions?
+**Q**: Given that all species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations threatened with extinction despite their natural ability to grow and thrive under favorable conditions?
 
 ## Threats to populations
 
-The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Simply put, conditions are not always favorable to growth. If mortalities exceed births *under present conditions* the population will decline until these unfavorable conditions are reversed. 
+The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Simply put, conditions are not always favorable to growth. 
+
+If mortalities exceed births *under present conditions* the population will decline until these unfavorable conditions are reversed. 
 
 In the "small-population paradigm" lecture, we discussed several **stochastic threats** to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, and catastrophic environmental events. These threats only really affect small populations. *Large populations are mostly resilient to these stochastic threats.*
 
 Large populations can be threatened too though! Factors that threaten large populations are generally **deterministic** (not random/stochastic)! 
 
-The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those processes that can cause population decline in both large and small populations (that tip the balance and cause deaths to exceed births), and how these processes may be reversed through effective conservation management*. 
+The **declining population paradigm** focuses on the factors that make large populations small -- that is, it is the *study of those processes that can cause the decline of both large and small populations (processes that tip the balance between deaths and births), and how these processes may be reversed*. 
 
 What are some factors that can *tip the balance* so to speak- so that growing or stable populations become declining populations? 
 
 ### Over-harvest
 
-![](overharvest1.jpg)
+![](overharvest1.jpg){width=30%}
 
 ### Habitat loss and degradation
 
-![](habitatloss1.jpg)
+![](habitatloss1.jpg){width=30%}
 
 ### Pathogens and parasites
 
-![](whitenose1.jpg)
+![](whitenose1.jpg){width=30%}
 
 ### Climate change
 
-![](climatechange1.jpg)
+![](climatechange1.jpg){width=30%}
 
 This map shows the difference (anomaly) between current temperatures and mean (normal) temperatures recorded since 1880.
 
 ### Exotic invasive species
 
-![](bullfrog1.jpg)
+![](bullfrog1.jpg){width=30%}
 
 
 ### Environmental contamination
 
-![](pollution1.png)
+![](pollution1.png){width=30%}
 
 
 ## The debate in Conservation Biology!
@@ -66,7 +71,7 @@ So, which one is more important for conservation? The declining-population parad
 
 This "controversy" was ignited by a [very influential paper by Graeme Caughley](caughley1.pdf) in *Journal of Animal Ecology* in 1994.
 
-![](caughley1.jpg)
+![](caughley1.jpg){width=50%}
 
 In this paper, Caughley coined the terms 'small population paradigm' and 'declining population paradigm', and expressed a strong bias towards one paradigm and against the other...
 
@@ -74,7 +79,7 @@ In this paper, Caughley coined the terms 'small population paradigm' and 'declin
 
 **Q**: Can you detect Caughley's opinion in the above quote? 
 
-**Q**: What do you think? Do you agree with Caughley? Take a moment to look over the paper and please comment on TopHat!
+**Q**: What do you think? Do you agree with Caughley? Take a moment to look over the paper and please comment on PointSolutions!
 
 
 ### In-Class Exercise: Deterministic threats
@@ -85,11 +90,9 @@ Let's start with a souped-up scalar, density-dependent population -- should look
 
 You can clone this model by clicking [here](https://insightmaker.com/insight/74417/declining-population-paradigm)
 
-![](IM5.PNG)
-
 You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the base model and make sure you understand how it works.
 
-For this exercise, let's change the initial population to 200 (half of K).
+For this exercise, let's change the initial population size to 200 (half of K).
 
 Also, make sure that the time step is 1 year, and the model should run for 50 years.
 
@@ -97,13 +100,13 @@ Also, make sure that the time step is 1 year, and the model should run for 50 ye
 
 - Assume that approximately 10% of the population is harvested each year (a fractional harvest). However, the true harvest rate is stochastic and *normally distributed*- occasionally harvest goes as high as 15%, and occasionally as low as 5%. Make sure you specify the 'fractional harvest' parameters (mean and stdev) in the model so that you achieve this range.   
 
-**Q**: what value did you use for standard deviation of the normal distribution?
+**Q**: What value did you use for standard deviation of the normal distribution?
 
-**Q**: is this variation in harvest rate best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?     
+**Q**: Is this variation in harvest rate best considered a type of *demographic stochasticity*, or a type of *environmental stochasticity*?     
 
-**Q**: why doesn't the population decline to extinction? What has the harvest process done in this case?   
+Why doesn't the population decline to extinction? What has the harvest process done in this case?   
 
-**Q**: What if you change the harvest rate- make it even more extreme? Starting at an abundance of 200, what is the expected final abundance (after 50 years) if the harvest rate is 40% and the variation (standard deviation) in harvest rate is 20%?   [tophat]
+**Q**: What if you change the harvest rate- make it even more extreme? Starting at an abundance of 200, what is the expected final abundance (after 50 years) if the harvest rate is 40% and the variation (standard deviation) in harvest rate is 20%?   [PointSolutions]
 
 **Let's add a habitat loss process!**
 
@@ -125,14 +128,15 @@ Note that we are modeling habitat loss as a decline in carrying capacity. To do 
 
 - Try changing the habitat loss process to be 5 *individuals* per year (absolute habitat loss). What happens?
 
-- Try changing the habitat loss process to be 5 *individuals* per year (absolute habitat loss) AND the harvest process to be 35 *individuals* per year (absolute harvest rate). What happens?   [tophat]
+- Try changing the habitat loss process to be 5 *individuals* per year (absolute habitat loss) AND the harvest process to be 35 *individuals* per year (absolute harvest rate). What happens?   [PointSolutions]
 
 
 **Q**: Try different combinations of deterministic threats (competing threats!). Can you identify some combinations that are *synergistic*- that is, that affect population decline or extinction risk more than simply adding the effects of each threat in isolation??  
 
 **Q**: Does stochasticity in harvest rates matter more than stochasticity in habitat loss? Or vice versa?
 
-[--go to next lecture--](LECTURE12.html)
+
+[--go to next lecture--](LECTURE13.html)
 
 
 

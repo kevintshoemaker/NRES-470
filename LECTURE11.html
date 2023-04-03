@@ -14,12 +14,22 @@
 
 <title>Declining-population paradigm</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -27,12 +37,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -45,32 +59,8 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 
 
@@ -80,10 +70,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -100,40 +86,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 52px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
-.section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -161,7 +123,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -173,7 +135,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -184,10 +146,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -199,7 +174,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -325,7 +299,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -339,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -355,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -371,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -392,19 +366,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -430,7 +395,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -461,7 +426,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -476,100 +450,175 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Declining-population paradigm</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2020</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<p><strong>Q</strong>: Is the intrinsic rate of growth <span class="math inline">\(r_{max}\)</span> positive or negative for most species on earth? Why???</p>
-<p><strong>Q</strong>: Given that most species are capable of sustained growth and attaining large population size under favorable conditions, how do populations get small in the first place? Why are many populations declining despite their intrinsic ability to grow? Is it all random, or is it more systematic?</p>
+<p><strong>Q</strong>: Is the intrinsic rate of growth <span
+class="math inline">\(r_{max}\)</span> positive or negative for most
+species on earth? Why?</p>
+<p><strong>Q</strong>: Given that all species are capable of sustained
+growth and attaining large population size under favorable conditions,
+how do populations get small in the first place? Why are many
+populations threatened with extinction despite their natural ability to
+grow and thrive under favorable conditions?</p>
 <div id="threats-to-populations" class="section level2">
 <h2>Threats to populations</h2>
-<p>The answer of course is that the intrinsic ability to grow under ideal conditions is not the whole story. Populations are stocks with inflows and outflows- and if mortalities exceed births <em>under present conditions</em> the population will decline until these unfavorable conditions are reversed.</p>
-<p>In the “small-population paradigm” lecture, we discussed several <strong>stochastic threats</strong> to populations, including loss of genetic diversity (genetic drift), demographic stochasticity, catastrophic environmental events. These threats only really affect small populations. Large populations are mostly resilient to stochastic threats.</p>
-<p>Large populations can be threatened too though! Factors that threaten large populations are generally called <strong>deterministic threats</strong>!</p>
-<p>The <strong>declining population paradigm</strong> focuses on the factors that make large populations small – that is, it is the <em>study of those deterministic processes that cause population decline (that tip the balance and cause deaths to exceed births), and how these processes may be reversed through effective conservation management</em>.</p>
-<p>What are some factors that can <em>tip the balance</em> so to speak- so that growing or stable populations become declining populations?</p>
+<p>The answer of course is that the intrinsic ability to grow under
+ideal conditions is not the whole story. Simply put, conditions are not
+always favorable to growth.</p>
+<p>If mortalities exceed births <em>under present conditions</em> the
+population will decline until these unfavorable conditions are
+reversed.</p>
+<p>In the “small-population paradigm” lecture, we discussed several
+<strong>stochastic threats</strong> to populations, including loss of
+genetic diversity (genetic drift), demographic stochasticity, and
+catastrophic environmental events. These threats only really affect
+small populations. <em>Large populations are mostly resilient to these
+stochastic threats.</em></p>
+<p>Large populations can be threatened too though! Factors that threaten
+large populations are generally <strong>deterministic</strong> (not
+random/stochastic)!</p>
+<p>The <strong>declining population paradigm</strong> focuses on the
+factors that make large populations small – that is, it is the <em>study
+of those processes that can cause the decline of both large and small
+populations (processes that tip the balance between deaths and births),
+and how these processes may be reversed</em>.</p>
+<p>What are some factors that can <em>tip the balance</em> so to speak-
+so that growing or stable populations become declining populations?</p>
 <div id="over-harvest" class="section level3">
 <h3>Over-harvest</h3>
-<p><img src="overharvest1.jpg" /></p>
+<p><img src="overharvest1.jpg" style="width:30.0%" /></p>
 </div>
 <div id="habitat-loss-and-degradation" class="section level3">
 <h3>Habitat loss and degradation</h3>
-<p><img src="habitatloss1.jpg" /></p>
+<p><img src="habitatloss1.jpg" style="width:30.0%" /></p>
 </div>
 <div id="pathogens-and-parasites" class="section level3">
 <h3>Pathogens and parasites</h3>
-<p><img src="whitenose1.jpg" /></p>
+<p><img src="whitenose1.jpg" style="width:30.0%" /></p>
 </div>
 <div id="climate-change" class="section level3">
 <h3>Climate change</h3>
-<p><img src="climatechange1.jpg" /></p>
-<p>This map shows the difference (anomaly) between current temperatures and mean (normal) temperatures recorded since 1880.</p>
+<p><img src="climatechange1.jpg" style="width:30.0%" /></p>
+<p>This map shows the difference (anomaly) between current temperatures
+and mean (normal) temperatures recorded since 1880.</p>
 </div>
 <div id="exotic-invasive-species" class="section level3">
 <h3>Exotic invasive species</h3>
-<p><img src="bullfrog1.jpg" /></p>
+<p><img src="bullfrog1.jpg" style="width:30.0%" /></p>
 </div>
-<div id="pollution" class="section level3">
-<h3>Pollution</h3>
-<p><img src="pollution1.png" /></p>
+<div id="environmental-contamination" class="section level3">
+<h3>Environmental contamination</h3>
+<p><img src="pollution1.png" style="width:30.0%" /></p>
 </div>
 </div>
 <div id="the-debate-in-conservation-biology" class="section level2">
 <h2>The debate in Conservation Biology!</h2>
-<p>So, which one is more important for conservation? The declining-population paradigm or the small-population paradigm??</p>
-<p>This “controversy” was ignited by a <a href="caughley1.pdf">very influential paper by Graeme Caughley</a> in <em>Journal of Animal Ecology</em> in 1994.</p>
-<p><img src="caughley1.jpg" /></p>
-<p>In this paper, Caughley coined the terms ‘small population paradigm’ and ‘declining population paradigm’, and expressed a strong bias towards one paradigm and against the other…</p>
+<p>So, which one is more important for conservation? The
+declining-population paradigm or the small-population paradigm??</p>
+<p>This “controversy” was ignited by a <a href="caughley1.pdf">very
+influential paper by Graeme Caughley</a> in <em>Journal of Animal
+Ecology</em> in 1994.</p>
+<p><img src="caughley1.jpg" style="width:50.0%" /></p>
+<p>In this paper, Caughley coined the terms ‘small population paradigm’
+and ‘declining population paradigm’, and expressed a strong bias towards
+one paradigm and against the other…</p>
 <blockquote>
-<p>Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.</p>
+<p>Conservation biology has two threads: the small-population paradigm
+which deals with the effect of smallness on the persistence of a
+population, and the declining- population paradigm which deals with the
+cause of smallness and its cure.</p>
 </blockquote>
-<p><strong>Q</strong>: Can you detect Caughley’s bias in the above quote?</p>
-<p><strong>Q</strong>: What do you think? Do you agree with Caughley? Take a moment to look over the paper and please comment on TopHat!</p>
-<div id="in-class-exercise-deterministic-threats" class="section level3">
+<p><strong>Q</strong>: Can you detect Caughley’s opinion in the above
+quote?</p>
+<p><strong>Q</strong>: What do you think? Do you agree with Caughley?
+Take a moment to look over the paper and please comment on
+PointSolutions!</p>
+<div id="in-class-exercise-deterministic-threats"
+class="section level3">
 <h3>In-Class Exercise: Deterministic threats</h3>
 <p>Let’s try a worked example to illustrate the above points.</p>
-<p>Let’s start with a souped up scalar, density-dependent population – should look something like this:</p>
-<p>You can clone this model by clicking <a href="https://insightmaker.com/insight/74417/declining-population-paradigm">here</a></p>
-<p><img src="IM5.PNG" /></p>
-<p>You should see logistic growth (with demographic stochasticity) if you hit the simulate button. Take a minute to run the base model and make sure you understand how it works.</p>
-<p>For this exercise, let’s change the initial population to 200 (half of K).</p>
-<p>Also, make sure that the time step is 1 year, and the model should run for 50 years.</p>
+<p>Let’s start with a souped-up scalar, density-dependent population –
+should look something like this:</p>
+<p>You can clone this model by clicking <a
+href="https://insightmaker.com/insight/74417/declining-population-paradigm">here</a></p>
+<p>You should see logistic growth (with demographic stochasticity) if
+you hit the simulate button. Take a minute to run the base model and
+make sure you understand how it works.</p>
+<p>For this exercise, let’s change the initial population size to 200
+(half of K).</p>
+<p>Also, make sure that the time step is 1 year, and the model should
+run for 50 years.</p>
 <p><strong>Let’s add a harvest process!</strong></p>
 <ul>
-<li>Assume that approximately 10% of the population is harvested each year (a fractional harvest). However, the true harvest rate is stochastic- occasionally harvest goes as high as 15%, and occasionally as low as 5%. Make sure you specify the ‘fractional harvest’ parameters (mean and stdev) in the model so that you achieve this range.</li>
+<li>Assume that approximately 10% of the population is harvested each
+year (a fractional harvest). However, the true harvest rate is
+stochastic and <em>normally distributed</em>- occasionally harvest goes
+as high as 15%, and occasionally as low as 5%. Make sure you specify the
+‘fractional harvest’ parameters (mean and stdev) in the model so that
+you achieve this range.</li>
 </ul>
-<p><strong>Q</strong>: what value did you use for standard deviation?</p>
-<p><strong>Q</strong>: is the variation in harvest rates best considered a type of <em>demographic stochasticity</em>, or a type of <em>environmental stochasticity</em>?</p>
-<p><strong>Q</strong>: why doesn’t the population decline to extinction? What has the harvest process done in this case?</p>
-<p><strong>Q</strong>: What if you change the harvest rate- make it even more extreme? Starting at an abundance of 200, what is the expected final abundance (after 50 years) if the harvest rate is 40% and the variation (standard deviation) in harvest rate is 20%? [tophat]</p>
+<p><strong>Q</strong>: What value did you use for standard deviation of
+the normal distribution?</p>
+<p><strong>Q</strong>: Is this variation in harvest rate best considered
+a type of <em>demographic stochasticity</em>, or a type of
+<em>environmental stochasticity</em>?</p>
+<p>Why doesn’t the population decline to extinction? What has the
+harvest process done in this case?</p>
+<p><strong>Q</strong>: What if you change the harvest rate- make it even
+more extreme? Starting at an abundance of 200, what is the expected
+final abundance (after 50 years) if the harvest rate is 40% and the
+variation (standard deviation) in harvest rate is 20%?
+[PointSolutions]</p>
 <p><strong>Let’s add a habitat loss process!</strong></p>
-<p>Note that we are modeling habitat loss as a decline in carrying capacity. To do this, we impose larger density-dependence terms on survival and fecundity: because there is less habitat, the effects of crowding are more pronounced.</p>
+<p>Note that we are modeling habitat loss as a decline in carrying
+capacity. To do this, we impose larger density-dependence terms on
+survival and fecundity: because there is less habitat, the effects of
+crowding are more pronounced.</p>
 <ul>
-<li><p>Remove any fractional harvest process for now (set frac harvested terms to 0)</p></li>
-<li><p>Let’s first model the case where 10% of K is lost each year (fractional habitat loss).</p></li>
-<li><p>Run the simulation to visually track K along with population dynamics!</p></li>
+<li><p>Remove any fractional harvest process for now (set frac harvested
+terms to 0)</p></li>
+<li><p>Let’s first model the case where 5% of K is lost each year
+(fractional habitat loss).</p></li>
+<li><p>Run the simulation to visually track K along with population
+dynamics!</p></li>
 </ul>
-<p><strong>Q</strong>: Does the reduction in K over time look realistic? Can you imagine other plausible shapes for this curve?</p>
+<p><strong>Q</strong>: Does the reduction in K over time look realistic?
+Can you imagine other plausible shapes for this curve?</p>
 <ul>
-<li>Try running the model with 10% habitat loss (fractional habitat loss) AND 10% harvest (fractional harvest and fractional habitat loss).</li>
+<li>Try running the model with 5% habitat loss (fractional habitat loss)
+AND 10% harvest (fractional harvest and fractional habitat loss).</li>
 </ul>
-<p><strong>Q</strong>: Are the results different from what you expected?</p>
+<p><strong>Q</strong>: Are the results different from what you
+expected?</p>
 <ul>
-<li><p>Try changing the harvest process to be 35 <em>individuals</em> per year (absolute harvest rate). What happens? Return the absolute harvest to zero.</p></li>
-<li><p>Try changing the habitat loss process to be 5 <em>individuals</em> per year (absolute habitat loss). What happens?</p></li>
-<li><p>Try changing the habitat loss process to be 5 <em>individuals</em> per year (absolute habitat loss) AND the harvest process to be 35 <em>individuals</em> per year (absolute harvest rate). What happens? [tophat]</p></li>
+<li><p>Try changing the harvest process to be 35 <em>individuals</em>
+per year (absolute harvest rate). What happens? Return the absolute
+harvest to zero.</p></li>
+<li><p>Try changing the habitat loss process to be 5
+<em>individuals</em> per year (absolute habitat loss). What
+happens?</p></li>
+<li><p>Try changing the habitat loss process to be 5
+<em>individuals</em> per year (absolute habitat loss) AND the harvest
+process to be 35 <em>individuals</em> per year (absolute harvest rate).
+What happens? [PointSolutions]</p></li>
 </ul>
-<p><strong>Q</strong>: Try different combinations of deterministic threats (competing threats!). Can you identify some combinations that are <em>synergistic</em>- that is, that affect population decline or extinction risk more than simply adding the effects of each threat in isolation??</p>
-<p><strong>Q</strong>: Does stochasticity in harvest rates matter more than stochasticity in habitat loss? Or vice versa?</p>
-<p><a href="LECTURE12.html">–go to next lecture–</a></p>
+<p><strong>Q</strong>: Try different combinations of deterministic
+threats (competing threats!). Can you identify some combinations that
+are <em>synergistic</em>- that is, that affect population decline or
+extinction risk more than simply adding the effects of each threat in
+isolation??</p>
+<p><strong>Q</strong>: Does stochasticity in harvest rates matter more
+than stochasticity in habitat loss? Or vice versa?</p>
+<p><a href="LECTURE13.html">–go to next lecture–</a></p>
 </div>
 </div>
 
@@ -584,7 +633,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -602,7 +651,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -611,6 +660,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
@@ -623,7 +675,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
