@@ -75,7 +75,7 @@ This "controversy" was ignited by a [very influential paper by Graeme Caughley](
 
 In this paper, Caughley coined the terms 'small population paradigm' and 'declining population paradigm', and expressed a strong bias towards one paradigm and against the other...
 
-> Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining- population paradigm which deals with the cause of smallness and its cure.
+> Conservation biology has two threads: the small-population paradigm which deals with the effect of smallness on the persistence of a population, and the declining-population paradigm, which deals with the cause of smallness and its cure.
 
 **Q**: Can you detect Caughley's opinion in the above quote? 
 
@@ -94,7 +94,7 @@ You should see logistic growth (with demographic stochasticity) if you hit the s
 
 For this exercise, let's change the initial population size to 200 (half of K).
 
-Also, make sure that the time step is 1 year, and the model should run for 50 years.
+Make sure the model is set to run for 50 years.
 
 **Let's add a harvest process!**
 
