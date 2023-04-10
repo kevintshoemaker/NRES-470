@@ -464,20 +464,21 @@ div.tocify {
 <div id="some-definitions" class="section level2">
 <h2>Some definitions</h2>
 <p>In this lab we will step back from single-population models to
-consider multiple populations! A collection of populations that are
-connected via dispersal is called a <strong>metapopulation</strong>. The
-simplest types of spatially structured population model are the
-<strong>classical metapopulation models</strong> (covered in Gotelli Ch
-4).</p>
-<p>In this model, we have a <strong>landscape</strong> with a certain
-number of habitable <strong>patches</strong>. Patches are either
-<strong>occupied</strong> (coded as 1) or not (coded as 0).</p>
-<p>In the classical metapopulation framework, we are not keeping track
-of abundance (<span class="math inline">\(N\)</span>) any more- we are
-just keeping track of whether each patch is occupied or not, and how
-many total occupied patches we have in our metapopulation. A patch is
-composed of individuals, whereas a metapopulation is composed of
-patches!</p>
+consider multiple populations!</p>
+<p>A collection of populations that are connected via dispersal is
+called a <strong>metapopulation</strong>. The simplest types of
+spatially structured population models are the <strong>classical
+metapopulation models</strong> (covered in Gotelli Ch 4).</p>
+<p>In classical metapopulation models, we have a
+<strong>landscape</strong> with a certain number of habitable
+<strong>patches</strong>. Patches are either <strong>occupied</strong>
+(coded as 1) or not (coded as 0).</p>
+<p>In this framework, we are not keeping track of abundance (<span
+class="math inline">\(N\)</span>) - we are instead keeping track of
+whether each patch is occupied or not, and how many total occupied
+patches we have in our metapopulation.</p>
+<p>A patch is composed of individuals, whereas a metapopulation is
+composed of patches!</p>
 <p><strong>colonization</strong> is when an unoccupied patch becomes
 occupied! (via <strong>immigration</strong>).</p>
 <p><strong>extinction</strong> (or extirpation) is when an extant
@@ -490,28 +491,33 @@ real life)</p>
 <p><span class="math inline">\(f_t\)</span> is the fraction of patches
 that are occupied at time <span class="math inline">\(t\)</span>. This
 is the primary [Stock] in our classical metapopulation models.</p>
-<p><span class="math inline">\(I\)</span> is the total fraction of the
-metapopulation that is colonized by immigrants in a given time period
+<p><span class="math inline">\(I\)</span> is the fraction of patches in
+the metapopulation that are colonized in a given time period
 (colonization rate, or “immigration” rate)</p>
-<p><span class="math inline">\(E\)</span> is the total fraction of the
-metapopulation that goes extinct per time period (extirpation rate)</p>
+<p><span class="math inline">\(E\)</span> is the total fraction of
+patches in the metapopulation that go extinct (become extirpated) per
+time period (extirpation rate)</p>
 <p>Therefore, the absolute change in metapopulation occupancy can be
 expressed as:</p>
 <p><span class="math inline">\(\Delta f = I - E \qquad \text{(Eq.
 1)}\)</span></p>
+<p>The rates I and E can be expressed as per-patch rates (just like B
+and D can be expressed in terms of per-capita vital rates, b and d)</p>
 <p><span class="math inline">\(p_i\)</span> is the probability of
 colonization <em>for any unoccupied patch</em>.</p>
 <p><span class="math inline">\(p_e\)</span> is the probability of
 extinction <em>for any occupied patch</em>.</p>
 <p>If most patches in the landscape are unoccupied, then the majority of
-the metapopulation is available to be colonized.</p>
+the metapopulation is available for colonization.</p>
 <p>If most patches in the landscape are already occupied, then most of
 the metapopulation is unavailable for colonization.</p>
+<p>The emptier the metapopulation, the higher the colonization rate (all
+else equal).</p>
 <p>We can express this mathematically:</p>
 <p><span class="math inline">\(I = p_i\cdot (1-f) \qquad \text{(Eq.
 2)}\)</span></p>
-<p>If most patches in the landscape are occupied, then the majority of
-the metapopulation can potentially go extinct.</p>
+<p>Similarly, if most patches in the landscape are occupied, then the
+majority of the metapopulation can potentially go extinct.</p>
 <p>If most patches in the landscape are unoccupied, then most of the
 metapopulation is unavailable for extinction. We can express this
 mathematically:</p>
@@ -520,7 +526,7 @@ mathematically:</p>
 <p>Finally, all classical metapopulation models assume the
 following:</p>
 <ul>
-<li>Homogeneous patches (all patches equal and interchangeable)</li>
+<li>Homogeneous patches (patches are equal and interchangeable)</li>
 <li>Spatial context does not affect extinction and colonization
 parameters</li>
 <li>No time lags</li>
@@ -532,15 +538,15 @@ class="section level2">
 <h2>Classical metapopulation model variants:</h2>
 <div id="variant-1-island-mainland-model" class="section level3">
 <h3>Variant #1: island-mainland model</h3>
-<p>Colonization occurs via immigration from a constant external source
-(<strong>propagule rain</strong>). This is our simplest classical
-metapopulation model.</p>
+<p>In this model, colonization occurs via immigration from a constant
+external source (<strong>propagule rain</strong>). This is our simplest
+classical metapopulation model.</p>
 <p>This model (and only this model) assumes that per-patch extinction
 and colonization rates (<span class="math inline">\(p_i\)</span> and
-<span class="math inline">\(p_e\)</span>) are not dependent on the
+<span class="math inline">\(p_e\)</span>) are independent of the
 fraction of patches occupied (<span class="math inline">\(f\)</span>).
 That is, <span class="math inline">\(p_i\)</span> and <span
-class="math inline">\(p_e\)</span> are constant (unchanging over time
+class="math inline">\(p_e\)</span> are constants (unchanging over time
 regardless of the status of the metapopulation).</p>
 <p>Combining equations 1, 2, and 3, we get the island-mainland
 metapopulation model:</p>
@@ -555,7 +561,8 @@ colonization of “empty” patches is low because of a lack of potential
 colonizers.</p>
 <p><span class="math inline">\(p_i = i \cdot f \qquad \text{(Eq.
 5)}\)</span></p>
-<p>In this model, the colonization rate approaches <span
+<p>In this model, the per-patch colonization rate <span
+class="math inline">\(p_i\)</span> approaches <span
 class="math inline">\(i\)</span> as nearly all patches become occupied,
 and approaches zero as the metapopulation approaches global
 extinction</p>
@@ -564,17 +571,19 @@ model.</p>
 </div>
 <div id="variant-3-rescue-effect." class="section level3">
 <h3>Variant #3: rescue effect.</h3>
-<p>Under the rescue effect model, the extinction rate can be reduced by
-immigration from other patches in the metapopulation!</p>
+<p>Under the rescue effect model, the per-patch extinction rate <span
+class="math inline">\(p_e\)</span> can be reduced by immigration from
+other patches in the metapopulation!</p>
 <p><span class="math inline">\(p_e = e(1-f) \qquad \text{(Eq.
 6)}\)</span></p>
 <p>In this model, the extinction rate approaches 0 as the metapopulation
 approaches full occupancy [note, this may not be realistic, as it
 implies a perfectly successful rescue effect!].</p>
 <p>On the other hand, the extinction rate approaches <span
-class="math inline">\(e\)</span> as the metapopulation approaches global
-extirpation (when there are little to no immigrants from other occupied
-patches that could ‘rescue’ an occupied patch from extinction).</p>
+class="math inline">\(e\)</span> as the metapopulation approaches
+maximum “emptiness”, or global extirpation (since there are little to no
+immigrants from other occupied patches that could ‘rescue’ an occupied
+patch from extinction).</p>
 <p>All other elements remain unchanged from the island-mainland
 model.</p>
 </div>
@@ -582,14 +591,15 @@ model.</p>
 class="section level3">
 <h3>Variant #4: both internal colonization AND rescue effect!</h3>
 <p>This one is pretty self-explanatory. But it has some interesting
-emergent properties!</p>
+properties!</p>
 </div>
 </div>
 <div id="what-is-a-metapopulation" class="section level2">
 <h2>What is a metapopulation?</h2>
 <p>Finally, the term <em>metapopulation</em> is often used to refer to
-models where we don’t care about abundance, we only care about
-occupancy- as in the ‘classical’ models described above.</p>
+models where we don’t care about abundance (we only care about patch
+occupancy)- as in the ‘classical’ models described above. Exercises 1-4
+in this lab involve building classical metapopulation models.</p>
 <p>However, a metapopulation more generally is simply a <em>collection
 of interconnected habitat patches</em>. We can keep track of patch
 abundance in a metapopulation model if we want. In fact, each patch can
@@ -599,18 +609,20 @@ control as modelers!</p>
 <p>Just as we can use metapopulation models to study the probability of
 <strong>global extinction</strong>, we can also study <strong>global
 abundance</strong> and global abundance trends across the entire
-metapopulation.</p>
+metapopulation. Exercise 5 of this lab involves working with a
+metapopulation model that explicitly considers both abundance dynamics
+and occupancy dynamics.</p>
 </div>
 <div id="exercise-1-classical-metapopulation-models-in-insightmaker"
 class="section level2">
 <h2>Exercise 1: ‘classical’ metapopulation models in InsightMaker</h2>
 <p>NOTE: <em>you will need the Gotelli book (Chapter 4) to answer
 several questions</em></p>
-<p>First, build an InsightMaker model to represent the basic
-island-mainland metapopulation model described above.</p>
+<p>Your first task is to build an InsightMaker model to represent the
+basic island-mainland metapopulation model described above.</p>
 <p>The total fraction of occupied patches <span
 class="math inline">\(f\)</span> should be represented as a [Stock].
-Make sure this stock can not go negative.</p>
+Make sure this stock can <em>not</em> go negative.</p>
 <p>There should be two [Flows]: one for <em>colonization</em> (I) and
 one for <em>extinction</em> (E). Initialize <span
 class="math inline">\(f\)</span> at 0.25 (set the initial value of the
@@ -618,12 +630,12 @@ stock at year 0 to 25% of patches occupied).</p>
 <p>The extinction and colonization probabilities (<span
 class="math inline">\(p_e\)</span> and <span
 class="math inline">\(p_i\)</span>) should be represented as
-[Variables]. In the island-mainland model, these are constants. Set
-<span class="math inline">\(p_e\)</span> to 0.15 and <span
-class="math inline">\(p_i\)</span> to 0.45. Use the description of the
-island-mainland model above (and in Gotelli Ch. 4) to complete your
-model (drawing the appropriate links, and setting appropriate equations
-for I and E (the Flows).</p>
+[Variables]. In the island-mainland model, these are constants.</p>
+<p>Set <span class="math inline">\(p_e\)</span> to 0.15 and <span
+class="math inline">\(p_i\)</span> to 0.45.</p>
+<p>Use the description of the island-mainland model above (and in
+Gotelli Ch. 4) to complete your model (drawing the appropriate links,
+and setting appropriate equations for I and E (the Flows).</p>
 <p>Simulate the metapopulation for 100 years and make sure that <span
 class="math inline">\(f\)</span> reaches an equilibrium value between 0
 and 1.</p>
@@ -696,7 +708,7 @@ assignment).</p>
 <div id="exercise-5-a-spatial-metapopulation-model"
 class="section level2">
 <h2>Exercise 5: a spatial metapopulation model!</h2>
-<p>Agent-based models (individual-based models) are well-suited for
+<p>Agent-based models (agent-based models) are well-suited for
 considering spatial context. In addition to being a flexible system for
 stock-flow modeling, Insightmaker also has the capability of running
 agent-based simulation models. If you want to learn more about
@@ -705,10 +717,10 @@ href="LECTURE10.html">this overview</a></p>
 <p>I have already prepared an agent-based metapopulation model for you.
 You can access and clone this model <a
 href="https://insightmaker.com/insight/74948/Agent-based-metapopulation-model">here</a>.</p>
-<p>Each population/patch in the metapopulation is represented by an
-“individual”, or “agent”. These individuals cannot move (they are
-patches of land, after all), but they can influence each other via
-immigration and emigration!</p>
+<p>Each population/patch in the metapopulation is represented as an
+“agent” in this model. These agents cannot move (they are patches of
+land, after all), but they can influence each other via immigration and
+emigration!</p>
 <p>The landscape is 200 km by 200 km. Each time a simulation is
 initiated, patches are placed randomly in the landscape. The
 <strong>metapopulation size</strong> (total number of patches) is
@@ -748,16 +760,9 @@ ask your instructor or TA! Make sure you have the following starting
 parameters:</p>
 <p>Metapopulation size: 10 patches<br />
 r_max: 0.11<br />
-maxdist (maximum dispersal distance): 50 kilometers<br />
 dispersal rate: 0.25<br />
-Mean K per population: 10</p>
-<p>NOTE: there is one parameter (max dispersal distance, or ‘maxdist’)
-you will need to pay attention to, but it is not represented by a value
-slider (I couldn’t get it to work that way, unfortunately). To alter the
-maximum dispersal distance, you need to open the equation editor for the
-[Immigrants] variable, and change the value in the top line, which
-should look something like this:</p>
-<pre><code>maxdist &lt;- 50</code></pre>
+Mean K per population: 10<br />
+Max dispersal distance: 50 kilometers</p>
 <p>5a. Use InsightMaker’s <em>sensitivity testing tool</em> to run the
 model 100 times (or 50 times, if your browser crashes!), monitoring the
 total metapopulation occupancy. What is the approximate risk of regional
@@ -777,8 +782,7 @@ could:</p>
 <ol style="list-style-type: lower-roman">
 <li>Improve the intervening, or “matrix”, habitat, effectively doubling
 the maximum dispersal distance (individuals are able to disperse more
-effectively over longer distances). [see note above about how to change
-the maximum dispersal distance]<br />
+effectively over longer distances).<br />
 </li>
 <li>Improve existing habitats, doubling the mean per-patch carrying
 capacity (labeled “Mean K per population”).<br />
