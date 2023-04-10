@@ -57,7 +57,6 @@ We will do a review session in class on Monday April 17. Please make note of any
 
 ## Metapopulations
 
-
 ### What is a metapopulation?
 
 Broadly speaking, a **metapopulation** is a group of populations (often called **subpopulations**) that occupy spatially distinct habitat **patches** that are close enough to support movement of individuals among patches. 
@@ -181,7 +180,7 @@ In the classical metapopulation models, we assumed there were a very large numbe
 
 Let's consider a system in which a species occupies a single patch, and there is a probability of extinction $p_e$ of 0.15 per patch per year. 
 
-**Q**: What is the probability of regional extinction in the next 10 years? 
+**Q**: What is the probability of regional extinction over the next 10 years? 
 
 The probability of persistence for 1 year is $1-p_e$, so the probability of persistence for 10 years is $(1-p_e)^{10}$ and the probability of regional extinction is $1-((1-p_e)^{10})$
 
@@ -189,7 +188,7 @@ which works out to be about 80%. There is a substantial probability of regional 
 
 What if there were two patches instead of just one? 
 
-Let's assume that the extinction risk for the two patches are **independent** -- that is, the extinction of one patch doesn't influence whether or not the other patch goes extinct!
+Let's assume that the extinction risk for the two patches are **independent** -- that is, the extinction of one patch doesn't influence whether or not the other patch goes extinct! This is a critical assumption.
 
 If the probability of extinction of one patch over the next 10 years is 0.8, then the probability of both patches going extinct sometime over the next 10 years is 0.8*0.8 = 0.64 
 
@@ -211,6 +210,10 @@ _This works out to be around 4% -- we have effectively spread out the risk, so t
 
 **Q**: if we included dispersal among patches, would dispersal serve to further reduce the risk of global extinction? Why or why not? 
 
+By the rescue effect, the risk of extinction may be reduced in this scenario.
+
+However, if the patches are close enough geographically to allow for substantial dispersal, the risk of extinction may be correlated among these two patches!
+
 **Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. [PointSolutions] 
 
 bonus question: what is the risk of global extinction assuming the risk of extinction in each of the two patches is not correlated (completely independent of one another)?
@@ -225,15 +228,15 @@ In the real world, patches vary in size and quality. That is, the assumption of 
 
 Just like with an age-structured population, where vital rates and equilibrium abundance can vary by age or size-class, _vital rates and abundances can vary over space_. Some areas might have better habitat, with higher overall population growth rates! On the other hand, some areas might have poor habitat- and these areas may be associated with lower vital rates...
 
-In fact, some patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., $r$ below zero, or $\lambda$ less than 1). Other patches may represent perfect conditions for population growth (at least if the habitat isn't too crowded)!
+In fact, some habitat patches may be so resource-poor or afford such bad protection from predators that population growth is negative (i.e., $r$ below zero, or $\lambda$ less than 1). 
 
-A **source population** is defined as a patch that maintains a positive growth rate (r>0) and contributes more **immigrants** to nearby patches (i.e., sink populations or pseudo-sink populations) than it receives back from these neighboring patches. A source population should persist indefinitely, even in isolation. 
+Other patches may represent perfect conditions for population growth (at least if the habitat isn't too crowded)!
 
-A **sink population** is defined as a patch that *would go extinct* if it were not for the constant input of immigrants from nearby **source populations** (r<0). A sink population can only persist if paired with a source population.
+A **source population** is defined as a patch with a positive intrinsic growth rate (r>0) that contributes more **immigrants** to nearby patches than it receives back from these neighboring patches. A source population should persist indefinitely, even in isolation. 
 
-**Q**: how is the concept of a sink population related to the *rescue effect*?
+A **sink population** is defined as a patch with a negative intrinsic growth rate (r<0). A sink population *would go extinct* if it were not for the constant input of immigrants from nearby **source populations**. Sink populations can not persist in isolation. 
 
-A **pseudo-sink population** is defined as a patch that is *artifically augmented* by immigrants from nearby source populations. In isolation (in the absence of a nearby source population) a psuedo-sink would not go extinct (a true sink would go extinct!), but would settle down at a much lower equilibrium abundance (carrying capacity). That is, a pseudo-sink *maintains an equlibrium abundance above its carrying capacity due to the influx of immigrants from one or more nearby source populations*.
+A **pseudo-sink population** is defined as a patch with intrinsic rate of growth above zero (r>0) whose abundance is *artifically augmented* above its own carrying capacity by immigrants from nearby source populations. In isolation (in the absence of a nearby source population) a pseudo-sink would not go extinct (a true sink would go extinct!), but would settle down at a lower equilibrium abundance (i.e., its own carrying capacity). That is, a pseudo-sink *maintains an equilibrium abundance above its carrying capacity due to the influx of immigrants from one or more nearby source populations*.
 
 ## In-class exercise: sources and sinks!
 
@@ -255,8 +258,8 @@ K for nearby sink: 50
 K for mid-range sink: 25     
 K for distant sink: 15    
 Maximum dispersal rate: 10% per year (0.1)       
+Lambda for source population [lambda good]: 2.1 
 Lambda (discrete growth rate) for sink populations [lambda bad]: 0.8       
-Lambda for source population [lambda good]: 2.1       
 
 NOTE: maximum dispersal rate (in this model) is the rate of dispersal between neighboring patches. Patches that are located farther apart have dispersal rates that are computed as a fraction of the maximum rate. 
 
@@ -264,9 +267,11 @@ NOTE: maximum dispersal rate (in this model) is the rate of dispersal between ne
 
 4. Change the dispersal rate to zero and run the model. What happens? Does this make sense?     
 
-5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is consistently (continuously) occupied (make sure the lower bound of the 95% region for abundance in this patch is above 2 for all years)? [tophat]
+5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is continuously occupied (make sure the lower bound of the 95% region for abundance in this patch is above 2 for all years)? [PointSolutions]
 
-6. Now reduce the population growth rate in the source population ("lambda good") to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population? 
+6. Now reduce the population growth rate in the source population ("lambda good") to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? 
+
+What happens if you set the maximum growth rate in the source patch to 1? Could such a population ever serve as an effective source population? 
 
 #### A pseudo-sink!
 
@@ -274,11 +279,11 @@ NOTE: maximum dispersal rate (in this model) is the rate of dispersal between ne
 
 #### An ecological trap!
 
-8. Change all params back to their default values. Now consider the following scenario:
+8. Change all params back to their default values (base scenario). Now consider the following:
 
 NOTE: you may want to clone your model now to enable you to easily go back and forth between the "ecological trap" model and the "source-sink" model.
 
-> The nearby sink patch is now extremely attractive to our focal species- since it contains abundant food resources and what seems like good shelter! However, in this habitat there is also a novel, introduced predator that the species is unable to detect. Therefore, dispersal rates to the sink habitat are very high, but mortality rates are also very high.    
+> The nearby sink patch is now extremely attractive to our focal species- since it contains abundant food resources and what seems like good shelter! However, in this habitat there is also a novel, introduced plant that looks like food but is in fact extremely poisonous. Therefore, dispersal rates to the sink habitat are very high, but mortality rates are also very high.    
 
 To force a disproportionate number of individuals into the nearby sink, open the equation editor for the flow from the source to the nearby sink. Change the equation to:
 
@@ -300,7 +305,7 @@ random code
 
 This will force 50% of the source population to try to move to the sink habitat each year! Nearly all individuals that are in the sink habitat will attempt to stay there. 
 
-Also, change the lambda for the nearby sink to 0.25, (meaning 75% decline each year due to predation). To do this, replace the [lambda bad] term in the births/deaths equation for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
+Also, change the lambda for the nearby sink to 0.25, (meaning 75% decline each year due to poisoning). To do this, replace the [lambda bad] term in the births/deaths equation for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
 
 ```
 growth <- [nearby sink]*Ln(0.25)
@@ -314,11 +319,13 @@ newexp-[nearby sink]
 
 ```
 
+You can clone the ecological trap model [here](https://insightmaker.com/insight/4WctojC6L70BOJbe2oVQj3/Ecological-Trap)
+
 9. Run the model with the nearby sink as an ecological trap, and try to address the following questions:
 
 **Q**: in what way is the nearby sink now an *ecological trap*? Are all sink populations really *ecological traps*?
 
-**Q**: are metapopulations better off without sink populations? Could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? How does this relate to the concept of *density-dependence?
+**Q**: are metapopulations better off without sink populations? Could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? 
 
 
 #### Benefits of sink populations!
