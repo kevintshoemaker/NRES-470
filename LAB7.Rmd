@@ -1,7 +1,7 @@
 ---
 title: "Lab 7: Parameter estimation: mark-recapture analysis!"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -15,20 +15,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 470/670, lab 7                               ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Parameter estimation                              ####
-############################################################
-
+#  NRES 470/670, lab 7                               
+#  University of Nevada, Reno                        
+#  Parameter estimation                             
 
 ```
 
@@ -80,8 +69,6 @@ $\hat N=\frac{C\cdot M}{R}  \qquad \text{(Eq. 1)}$
 Imagine we were to capture 10 individuals during our first visit ($M=10$) and 8 individuals during our second visit ($C=10$). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, $p=\frac{R}{C}=0.5$. Another way of saying this is that for every individual we observed during the first site visit, we were likely to have missed one individual. 
 
 To estimate abundance, we add up the total number of individuals we saw during our first visit and the total number of individuals we missed during our first visit- this should represent the entire population! 
-
-**Q:** How many individuals did we miss in this case?
 
 **Q:** What is the total abundance?
 

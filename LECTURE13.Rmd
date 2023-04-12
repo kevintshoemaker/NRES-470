@@ -275,7 +275,7 @@ What happens if you set the maximum growth rate in the source patch to 1? Could 
 
 #### A pseudo-sink!
 
-7. Change the source lambda back to 2.1. Now change the sink lambda to 1.1 and the max dispersal rate to 25%. What is the approximate equilibrium abundance of the distant sink? How does this relate to its carrying capacity? Generate a figure (using InsightMaker) that illustrates the abundance of the distant sink vs. carrying capacity (over time). How does this figure illustrate the concept of a **pseudo-sink**. 
+7. Change the source lambda back to 2.1. Now change the sink lambda to 1.1 and the max dispersal rate to 25%. What is the approximate equilibrium abundance of the distant sink? How does this relate to its carrying capacity? Generate a figure (using InsightMaker) that illustrates the abundance of the mid-range sink vs. carrying capacity (over time). How does this figure illustrate the concept of a **pseudo-sink**. 
 
 #### An ecological trap!
 
@@ -305,7 +305,7 @@ random code
 
 This will force 50% of the source population to try to move to the sink habitat each year! Nearly all individuals that are in the sink habitat will attempt to stay there. 
 
-Also, change the lambda for the nearby sink to 0.25, (meaning 75% decline each year due to poisoning). To do this, replace the [lambda bad] term in the births/deaths equation for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
+Also, change the lambda for the nearby sink to 0.25 (meaning 75% decline each year due to poisoning). To do this, replace the [lambda bad] term in the births/deaths equation for the nearby sink with the number "0.25". Open the equation editor for this flow- after you change, it should look something like this:
 
 ```
 growth <- [nearby sink]*Ln(0.25)
@@ -323,9 +323,11 @@ You can clone the ecological trap model [here](https://insightmaker.com/insight/
 
 9. Run the model with the nearby sink as an ecological trap, and try to address the following questions:
 
-**Q**: in what way is the nearby sink now an *ecological trap*? Are all sink populations really *ecological traps*?
+**Q**: In what way is the nearby sink now an *ecological trap*? Are all sink populations really *ecological traps*?
 
-**Q**: are metapopulations better off without sink populations? Could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? 
+**Q**: Are metapopulations better off without sink populations? 
+
+**Q**: Could it ever be *desirable* to remove a sink population to improve the conservation status of a metapopulation? Under what circumstances? 
 
 
 #### Benefits of sink populations!

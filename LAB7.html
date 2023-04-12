@@ -14,7 +14,7 @@
 
 <title>Lab 7: Parameter estimation: mark-recapture analysis!</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -362,19 +366,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -400,7 +395,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -431,7 +426,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -450,100 +454,224 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 7: Parameter estimation: mark-recapture analysis!</h1>
+<h1 class="title toc-ignore">Lab 7: Parameter estimation: mark-recapture
+analysis!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<p>First, <a href="LAB7.R">please download this R script and load it in Rstudio</a> for later.</p>
-<p>Next, let’s go over the basics from the lecture first- <a href="LECTURE15.html#capture-mark-recapture_(cmr)_analysis">click here</a></p>
+<p>First, <a href="LAB7.R">please download this R script and load it in
+Rstudio</a> for later.</p>
+<p>Next, let’s go over the basics from the lecture first- <a
+href="LECTURE15.html#capture-mark-recapture_(cmr)_analysis">click
+here</a></p>
 <div id="open-versus-closed-populations" class="section level2">
 <h2>Open versus closed populations</h2>
-<p><strong>Closed population</strong> – a population in which there is no recruitment (birth or immigration) or losses (death or emigration) during the period of study. Geographic and demographic closure.</p>
-<p><strong>Open population</strong> – a population that changes in size and composition due to births, deaths, and permanent movements (immigration and emigration).</p>
+<p><strong>Closed population</strong> – a population in which there is
+no recruitment (birth or immigration) or losses (death or emigration)
+during the period of study. Geographic and demographic closure.</p>
+<p><strong>Open population</strong> – a population that changes in size
+and composition due to births, deaths, and permanent movements
+(immigration and emigration).</p>
 </div>
 <div id="overview-of-capture-recapture-models" class="section level2">
 <h2>Overview of capture-recapture models:</h2>
-<p>It is important to note that for both closed- and open-population models, a primary task is to estimate the <em>probability of detection, p</em>. This is because most surveys of wild populations are <strong>imperfect</strong>- with few exceptions, we just can’t observe all individuals in a wild population every time we visit our study population in the wild.</p>
-<p>This is easiest to see for estimating abundance: we know how many animals we SAW but in order to estimate abundance we need to know how many animals we DIDN’T SEE!! How do we know how many animals we didn’t see? We need to know the probability of detection- that is, the probability that any individual in the population is in our sample. If we know the probability of being in our sample, we automatically know the probability of NOT being in our sample (the number of individuals we didn’t capture)!</p>
-<p>If we didn’t account for imperfect detection, our estimates of key population parameters like survival and fecundity/recruitment would be highly <em>biased</em> in most cases.</p>
-<p>Capture-mark-recapture models correct for that bias by estimating the probability of detection (<em>p</em>) in addition to fundamental parameters like abundance, recruitment and survival. If we can estimate the probability of detection, we can correct for the bias it introduces into our data.</p>
+<p>It is important to note that for both closed- and open-population
+models, a primary task is to estimate the <em>probability of detection,
+p</em>. This is because most surveys of wild populations are
+<strong>imperfect</strong>- with few exceptions, we just can’t observe
+all individuals in a wild population every time we visit our study
+population in the wild.</p>
+<p>This is easiest to see for estimating abundance: we know how many
+animals we SAW but in order to estimate abundance we need to know how
+many animals we DIDN’T SEE!! How do we know how many animals we didn’t
+see? We need to know the probability of detection- that is, the
+probability that any individual in the population is in our sample. If
+we know the probability of being in our sample, we automatically know
+the probability of NOT being in our sample (the number of individuals we
+didn’t capture)!</p>
+<p>If we didn’t account for imperfect detection, our estimates of key
+population parameters like survival and fecundity/recruitment would be
+highly <em>biased</em> in most cases.</p>
+<p>Capture-mark-recapture models correct for that bias by estimating the
+probability of detection (<em>p</em>) in addition to fundamental
+parameters like abundance, recruitment and survival. If we can estimate
+the probability of detection, we can correct for the bias it introduces
+into our data.</p>
 <p>Let’s see how this works!</p>
 <div id="closed-population-models" class="section level3">
 <h3>Closed-population models</h3>
 <ul>
 <li><p><em>two visits</em> – Lincoln-Petersen model</p></li>
-<li><p><em>several visits</em> (k&gt;2) – Schnabel model – and other models that can be run via program CAPTURE (which can be run through Program MARK).</p></li>
+<li><p><em>several visits</em> (k&gt;2) – Schnabel model – and other
+models that can be run via program CAPTURE (which can be run through
+Program MARK).</p></li>
 </ul>
-<div id="lincoln-petersen-model-l-p-estimating-abundance-on-the-basis-of-two-site-visits" class="section level4">
-<h4>LINCOLN-PETERSEN MODEL (L-P) (estimating abundance on the basis of two site visits!)</h4>
+<div
+id="lincoln-petersen-model-l-p-estimating-abundance-on-the-basis-of-two-site-visits"
+class="section level4">
+<h4>LINCOLN-PETERSEN MODEL (L-P) (estimating abundance on the basis of
+two site visits!)</h4>
 <p>Basic underlying concept:</p>
-<p>On the first visit, a sample of <span class="math inline">\(M\)</span> animals is caught, <em>marked</em>, and released. Later, on a second visit to the study site, a sample of <span class="math inline">\(C\)</span> animals is <em>captured</em>, of which <span class="math inline">\(R\)</span> animals are <em>recaptures</em> that were previously marked. No new animals are marked during the second visit.</p>
-<p>NOTE: animals do not need to be uniquely marked to estimate abundance using the L-P method.</p>
-<p>If the key assumptions of this analysis are met (see below), then the proportion of marked animals recaptured in the second visit (<span class="math inline">\(\frac{R}{C}\)</span>) should be equivalent to the proportion of marked animals (from the first visit) in the total population (<span class="math inline">\(\frac{M}{N}\)</span>) such that:</p>
+<p>On the first visit, a sample of <span
+class="math inline">\(M\)</span> animals is caught, <em>marked</em>, and
+released. Later, on a second visit to the study site, a sample of <span
+class="math inline">\(C\)</span> animals is <em>captured</em>, of which
+<span class="math inline">\(R\)</span> animals are <em>recaptures</em>
+that were previously marked. No new animals are marked during the second
+visit.</p>
+<p>NOTE: animals do not need to be uniquely marked to estimate abundance
+using the L-P method.</p>
+<p>If the key assumptions of this analysis are met (see below), then the
+proportion of marked animals recaptured in the second visit (<span
+class="math inline">\(\frac{R}{C}\)</span>) should be equivalent to the
+proportion of marked animals (from the first visit) in the total
+population (<span class="math inline">\(\frac{M}{N}\)</span>) such
+that:</p>
 <p><span class="math inline">\(\frac{R}{C} = \frac{M}{N}\)</span></p>
-<p>where <span class="math inline">\(N\)</span> is the total population size. Solving for <span class="math inline">\(N\)</span> yields the estimator:</p>
-<p><span class="math inline">\(\hat N=\frac{C\cdot M}{R} \qquad \text{(Eq. 1)}\)</span></p>
-<p>Imagine we were to capture 10 individuals during our first visit (<span class="math inline">\(M=10\)</span>) and 8 individuals during our second visit (<span class="math inline">\(C=10\)</span>). Of the 8 individuals captured in our second visit, 4 had been marked in the first visit. Therefore, <span class="math inline">\(p=\frac{R}{C}=0.5\)</span>. Another way of saying this is that for every individual we observed during the first site visit, we were likely to have missed one individual.</p>
-<p>To estimate abundance, we add up the total number of individuals we saw during our first visit and the total number of individuals we missed during our first visit- this should represent the entire population!</p>
-<p><strong>Q:</strong> How many individuals did we miss in this case?</p>
+<p>where <span class="math inline">\(N\)</span> is the total population
+size. Solving for <span class="math inline">\(N\)</span> yields the
+estimator:</p>
+<p><span class="math inline">\(\hat N=\frac{C\cdot M}{R} \qquad
+\text{(Eq. 1)}\)</span></p>
+<p>Imagine we were to capture 10 individuals during our first visit
+(<span class="math inline">\(M=10\)</span>) and 8 individuals during our
+second visit (<span class="math inline">\(C=10\)</span>). Of the 8
+individuals captured in our second visit, 4 had been marked in the first
+visit. Therefore, <span
+class="math inline">\(p=\frac{R}{C}=0.5\)</span>. Another way of saying
+this is that for every individual we observed during the first site
+visit, we were likely to have missed one individual.</p>
+<p>To estimate abundance, we add up the total number of individuals we
+saw during our first visit and the total number of individuals we missed
+during our first visit- this should represent the entire population!</p>
 <p><strong>Q:</strong> What is the total abundance?</p>
-<p>The lower the fraction of the total population marked in the first visit (estimated as <span class="math inline">\(\frac{R}{C}\)</span>), the more individuals we probably missed (failed to observe) in the first visit.</p>
-<p><strong>Q:</strong> What if we had only observed 2 (out of 8) marked individuals during the second visit?</p>
-<p>NOTE: If sample size is small, the basic L-P estimator can be biased. For example, what happens if the number of recaptures in the second sample is zero?</p>
-<p>A modified version with less bias was originally developed by Chapman (1951) and is commonly called the <em>modified Petersen estimate</em> or the <em>Chapman estimator</em>:</p>
-<p><span class="math inline">\(\hat N=\frac{(M+1)(C+1)}{R+1}-1 \qquad \text{(Eq. 2)}\)</span></p>
-<p>This formula is a <strong>statistic</strong> estimating total population size on the basis of a <strong>sample</strong> (see <a href="LECTURE15.html">lecture on parameter estimation</a> for more).</p>
-<p>We still need to make inference about the <strong>parameter</strong>, <span class="math inline">\(N\)</span>, on the basis of the statistic, <span class="math inline">\(\hat N\)</span>.</p>
-<p>To do this, we need to understand the <strong>sampling uncertainty</strong> for this statistic (we need to ask: “what do we <em>really</em> know about the population, and what don’t we know?”). That is, if we collected a different sample from the <em>same population</em>, we might get a very different answer for <span class="math inline">\(N\)</span>. If we took 100 or 1000 different samples, we might get 100 or 1000 different estimates for <span class="math inline">\(N\)</span>!! The variation among these estimates is the sampling uncertainty.</p>
-<p>For the Lincoln-Peterson estimator, our uncertainty about this estimate (sampling variance) can be computed as:</p>
-<p><span class="math inline">\(Var(\hat N)=\frac{(M+1)(C+1)(M-R)(C-R)}{(R+1)^2(R+2)} \qquad \text{(Eq. 3)}\)</span></p>
-<p>This formula technically represents <em>Sampling Variance</em>, which is a common way to represent parameter uncertainty in statistics.</p>
-<p>The standard deviation of the sampling variance (usually called “standard error” of the statistic) is just the square root of the sampling variance:</p>
-<p><span class="math inline">\(StDev(\hat N) = \sqrt[]{Var(\hat N)} \qquad \text{(Eq. 4)}\)</span></p>
-<p>Finally, the 95% confidence interval for <span class="math inline">\(\hat N\)</span> is approximately 2 “standard error” units from the value of <span class="math inline">\(\hat N\)</span>.</p>
-<p><span class="math inline">\(\hat N \pm 1.965 * StDev(\hat N) \qquad \text{(Eq. 5)}\)</span></p>
+<p>The lower the fraction of the total population marked in the first
+visit (estimated as <span class="math inline">\(\frac{R}{C}\)</span>),
+the more individuals we probably missed (failed to observe) in the first
+visit.</p>
+<p><strong>Q:</strong> What if we had only observed 2 (out of 8) marked
+individuals during the second visit?</p>
+<p>NOTE: If sample size is small, the basic L-P estimator can be biased.
+For example, what happens if the number of recaptures in the second
+sample is zero?</p>
+<p>A modified version with less bias was originally developed by Chapman
+(1951) and is commonly called the <em>modified Petersen estimate</em> or
+the <em>Chapman estimator</em>:</p>
+<p><span class="math inline">\(\hat N=\frac{(M+1)(C+1)}{R+1}-1 \qquad
+\text{(Eq. 2)}\)</span></p>
+<p>This formula is a <strong>statistic</strong> estimating total
+population size on the basis of a <strong>sample</strong> (see <a
+href="LECTURE15.html">lecture on parameter estimation</a> for more).</p>
+<p>We still need to make inference about the <strong>parameter</strong>,
+<span class="math inline">\(N\)</span>, on the basis of the statistic,
+<span class="math inline">\(\hat N\)</span>.</p>
+<p>To do this, we need to understand the <strong>sampling
+uncertainty</strong> for this statistic (we need to ask: “what do we
+<em>really</em> know about the population, and what don’t we know?”).
+That is, if we collected a different sample from the <em>same
+population</em>, we might get a very different answer for <span
+class="math inline">\(N\)</span>. If we took 100 or 1000 different
+samples, we might get 100 or 1000 different estimates for <span
+class="math inline">\(N\)</span>!! The variation among these estimates
+is the sampling uncertainty.</p>
+<p>For the Lincoln-Peterson estimator, our uncertainty about this
+estimate (sampling variance) can be computed as:</p>
+<p><span class="math inline">\(Var(\hat
+N)=\frac{(M+1)(C+1)(M-R)(C-R)}{(R+1)^2(R+2)} \qquad \text{(Eq.
+3)}\)</span></p>
+<p>This formula technically represents <em>Sampling Variance</em>, which
+is a common way to represent parameter uncertainty in statistics.</p>
+<p>The standard deviation of the sampling variance (usually called
+“standard error” of the statistic) is just the square root of the
+sampling variance:</p>
+<p><span class="math inline">\(StDev(\hat N) = \sqrt[]{Var(\hat N)}
+\qquad \text{(Eq. 4)}\)</span></p>
+<p>Finally, the 95% confidence interval for <span
+class="math inline">\(\hat N\)</span> is approximately 2 “standard
+error” units from the value of <span class="math inline">\(\hat
+N\)</span>.</p>
+<p><span class="math inline">\(\hat N \pm 1.965 * StDev(\hat N) \qquad
+\text{(Eq. 5)}\)</span></p>
 </div>
-<div id="fundamental-assumptions-of-lincoln-petersen-estimator" class="section level4">
+<div id="fundamental-assumptions-of-lincoln-petersen-estimator"
+class="section level4">
 <h4>Fundamental Assumptions of Lincoln-Petersen estimator:</h4>
 <ul>
 <li>The population is closed (geographically AND demographically).</li>
-<li>The marked individuals from the first sampling occasion are completely mixed into the population as a whole.</li>
-<li>All animals are equally likely to be detected on both visits (although <em>p</em> can differ between visits).</li>
-<li>Capture and marking do not affect the detection probability <em>p</em>.</li>
+<li>The marked individuals from the first sampling occasion are
+completely mixed into the population as a whole.</li>
+<li>All animals are equally likely to be detected on both visits
+(although <em>p</em> can differ between visits).</li>
+<li>Capture and marking do not affect the detection probability
+<em>p</em>.</li>
 <li>Marks are not lost between sampling occasions.</li>
 </ul>
 </div>
-<div id="schnabel-estimator-if-there-are-more-than-two-site-visits" class="section level4">
+<div id="schnabel-estimator-if-there-are-more-than-two-site-visits"
+class="section level4">
 <h4>SCHNABEL ESTIMATOR (if there are more than two site visits!)</h4>
-<p>This method extends the Lincoln-Peterson method to a series of samples in which there are 2, 3, 4,…, k site visits. Individuals caught during each visit are first examined for marks, then all unmarked individuals are given a mark, and finally the individual is released back into the population.</p>
-<p>Only a single type of mark needs to be used because we just need to distinguish 2 types of individuals: marked (caught in one or more prior samples); and unmarked (never caught before). For each visit <em>t</em>, the following is determined:</p>
-<p><span class="math inline">\(C_t\)</span> = Total number of individuals captured during visit <span class="math inline">\(t\)</span></p>
-<p><span class="math inline">\(R_t\)</span> = Number of previously-marked individuals (Recaptures) captured in visit <span class="math inline">\(t\)</span> (the remainder of individuals captured in visit <em>t</em> must be given a new mark)</p>
-<p><span class="math inline">\(M_t\)</span> = Total number of marked animals in the population just before the <span class="math inline">\(t\)</span>th site visit.</p>
-<p>Schnabel treated the multiple visits as a series of Lincoln-Peterson (L-P) samples and obtained a population estimate as a weighted average of the L-P estimates:</p>
-<p><span class="math inline">\(\hat N = \frac{\sum{M_tC_t}}{\sum{R_t}} \qquad \text{(Eq. 6)}\)</span></p>
+<p>This method extends the Lincoln-Peterson method to a series of
+samples in which there are 2, 3, 4,…, k site visits. Individuals caught
+during each visit are first examined for marks, then all unmarked
+individuals are given a mark, and finally the individual is released
+back into the population.</p>
+<p>Only a single type of mark needs to be used because we just need to
+distinguish 2 types of individuals: marked (caught in one or more prior
+samples); and unmarked (never caught before). For each visit <em>t</em>,
+the following is determined:</p>
+<p><span class="math inline">\(C_t\)</span> = Total number of
+individuals captured during visit <span
+class="math inline">\(t\)</span></p>
+<p><span class="math inline">\(R_t\)</span> = Number of
+previously-marked individuals (Recaptures) captured in visit <span
+class="math inline">\(t\)</span> (the remainder of individuals captured
+in visit <em>t</em> must be given a new mark)</p>
+<p><span class="math inline">\(M_t\)</span> = Total number of marked
+animals in the population just before the <span
+class="math inline">\(t\)</span>th site visit.</p>
+<p>Schnabel treated the multiple visits as a series of Lincoln-Peterson
+(L-P) samples and obtained a population estimate as a weighted average
+of the L-P estimates:</p>
+<p><span class="math inline">\(\hat N = \frac{\sum{M_tC_t}}{\sum{R_t}}
+\qquad \text{(Eq. 6)}\)</span></p>
 <p>What about the sampling variance? It can be computed as:</p>
-<p><span class="math inline">\(Var(\frac{1}{\hat N})=\frac{\sum{R_t}}{(\sum{(C_tM_t))^2}} \qquad \text{(Eq. 7)}\)</span></p>
-<p>Note that this formula gives you the sampling uncertainty (variance) for the <em>inverse</em> of N (<span class="math inline">\(\frac{1}{N}\)</span>)!</p>
-<p>How do we compute a confidence interval around <span class="math inline">\(\hat N\)</span>??</p>
-<p>One simple way to is to first compute a confidence interval on the <em>inverse of N</em> using the same method described above (take square root of the variance):</p>
-<p><span class="math inline">\(\frac{1}{\hat N} \pm 1.965 * \sqrt[](Var(\frac{1}{\hat N})) \qquad \text{(Eq. 8)}\)</span></p>
-<p>To compute the confidence interval for N, take the inverse of the lower and upper bounds (limits) of the confidence interval computed above!</p>
+<p><span class="math inline">\(Var(\frac{1}{\hat
+N})=\frac{\sum{R_t}}{(\sum{(C_tM_t))^2}} \qquad \text{(Eq.
+7)}\)</span></p>
+<p>Note that this formula gives you the sampling uncertainty (variance)
+for the <em>inverse</em> of N (<span
+class="math inline">\(\frac{1}{N}\)</span>)!</p>
+<p>How do we compute a confidence interval around <span
+class="math inline">\(\hat N\)</span>??</p>
+<p>One simple way to is to first compute a confidence interval on the
+<em>inverse of N</em> using the same method described above (take square
+root of the variance):</p>
+<p><span class="math inline">\(\frac{1}{\hat N} \pm 1.965 *
+\sqrt[](Var(\frac{1}{\hat N})) \qquad \text{(Eq. 8)}\)</span></p>
+<p>To compute the confidence interval for N, take the inverse of the
+lower and upper bounds (limits) of the confidence interval computed
+above!</p>
 </div>
 <div id="assumptions-of-the-schnabel-method" class="section level4">
 <h4>Assumptions of the Schnabel method</h4>
 <p>Same assumptions as Lincoln-Petersen estimator essentially!</p>
-<p>Note that capture probabilities can vary among visits (sampling periods) but not among individuals within a visit!</p>
+<p>Note that capture probabilities can vary among visits (sampling
+periods) but not among individuals within a visit!</p>
 </div>
 </div>
 </div>
-<div id="exercise-1-working-with-closed-populations" class="section level2">
+<div id="exercise-1-working-with-closed-populations"
+class="section level2">
 <h2>Exercise 1: Working with closed populations!</h2>
-<p>Let’s use the following example from the <a href="http://www.phidot.org/software/mark/docs/book/pdf/chap14.pdf">“gentle introduction to program mark”</a>. This example represents a closed population that has been surveyed 6 times.</p>
-<p>Load up the Excel file <a href="simple_closed_base.xlsx">here</a>. The first few lines should look something like this:</p>
+<p>Let’s use the following example from the <a
+href="http://www.phidot.org/software/mark/docs/book/pdf/chap14.pdf">“gentle
+introduction to program mark”</a>. This example represents a closed
+population that has been surveyed 6 times.</p>
+<p>Load up the Excel file <a href="simple_closed_base.xlsx">here</a>.
+The first few lines should look something like this:</p>
 <pre class="r"><code>##########
 # CLOSED POPULATION MODELS
 ##########
@@ -563,19 +691,32 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 ## 4       0       0       0       1       1       1
 ## 5       0       0       0       1       1       1
 ## 6       0       0       0       1       1       1</code></pre>
-<p>1a. First, let’s imagine that we only have samples 1 and 2 (the first 2 columns of data)! Using these data, compute the L-P estimate of abundance using Eq. 2. Also compute the confidence interval for your abundance estimate. Show your work! I recommend using EXCEL for this!</p>
-<p>1b. Now, use the Schnabel method to estimate abundance (and confidence interval around abundance) for this population. Show your work! Again, I recommend using EXCEL for this!</p>
-<p>1c. Do the two estimates differ? Either way, which estimate do you trust more- the L-P estimate or the Schnabel estimate? Why?</p>
+<p>1a. First, let’s imagine that we only have samples 1 and 2 (the first
+2 columns of data)! Using these data, compute the L-P estimate of
+abundance using Eq. 2. Also compute the confidence interval for your
+abundance estimate. Show your work! I recommend using EXCEL for
+this!</p>
+<p>1b. Now, use the Schnabel method to estimate abundance (and
+confidence interval around abundance) for this population. Show your
+work! Again, I recommend using EXCEL for this!</p>
+<p>1c. Do the two estimates differ? Either way, which estimate do you
+trust more- the L-P estimate or the Schnabel estimate? Why?</p>
 <div id="open-population-models" class="section level3">
 <h3>Open-population models</h3>
-<p>(note: geographic closure is still a critical assumption- that is, no immigration or emigration!)</p>
-<p><em>Cormack-Jolly-Seber</em> model is the most basic model in Program MARK, and it only estimates survival parameters (not fecundity).</p>
-<p>See the <a href="LECTURE15.html">parameter estimation lecture</a> for more information about open-population mark-recapture analysis!</p>
+<p>(note: geographic closure is still a critical assumption- that is, no
+immigration or emigration!)</p>
+<p><em>Cormack-Jolly-Seber</em> model is the most basic model in Program
+MARK, and it only estimates survival parameters (not fecundity).</p>
+<p>See the <a href="LECTURE15.html">parameter estimation lecture</a> for
+more information about open-population mark-recapture analysis!</p>
 <div id="tutorial-working-with-open-populations" class="section level4">
 <h4>TUTORIAL: working with open populations!</h4>
 <p>For this exercise, we will use the classic European Dipper data!</p>
-<p>The ‘marked’ package in R runs many of the same open-population models, and is much easier to use than Program MARK. Please install this package if haven’t already done so.</p>
-<p>These data should look like this! Here it is in R (just the first 15 lines)!</p>
+<p>The ‘marked’ package in R runs many of the same open-population
+models, and is much easier to use than Program MARK. Please install this
+package if haven’t already done so.</p>
+<p>These data should look like this! Here it is in R (just the first 15
+lines)!</p>
 <pre><code>##    h1 h2 h3 h4 h5 h6 h7
 ## 1   1  1  1  1  1  1  0
 ## 2   1  1  1  1  1  0  0
@@ -594,8 +735,11 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 ## 15  1  0  0  0  0  0  0</code></pre>
 <div id="program-mark-follow-along-if-you-can" class="section level5">
 <h5>Program MARK (follow along if you can!)</h5>
-<p>Program MARK wants a particular type of input file (.INP; just a text file with special formatting). For the dipper data, it should look something like <a href="ed_males.txt">this</a></p>
-<p>Save this <a href="ed_males.txt">text file</a> and re-name it with the extension “.inp” rather than the extension “.txt”</p>
+<p>Program MARK wants a particular type of input file (.INP; just a text
+file with special formatting). For the dipper data, it should look
+something like <a href="ed_males.txt">this</a></p>
+<p>Save this <a href="ed_males.txt">text file</a> and re-name it with
+the extension “.inp” rather than the extension “.txt”</p>
 <p>Your INP file should look something like this:</p>
 <pre><code>##         ch group
 ## 1  1111110    1;
@@ -613,24 +757,120 @@ head(read.csv(&quot;simple_closed.csv&quot;))</code></pre>
 ## 13  111100    1;
 ## 14  111000    1;
 ## 15  110000    1;</code></pre>
-<p>NOTE: if this doesn’t work, you can load this and other example files from the <a href="http://www.phidot.org/software/mark/docs/book/">“gentle introduction” link</a>! Scroll down to “Example data files” in the “book chapters $ data files” menu.</p>
+<p>NOTE: if this doesn’t work, you can load this and other example files
+from the <a
+href="http://www.phidot.org/software/mark/docs/book/">“gentle
+introduction” link</a>! Scroll down to “Example data files” in the “book
+chapters $ data files” menu.</p>
 <ol style="list-style-type: decimal">
-<li><p>Open Program MARK! You can download the software <a href="http://www.phidot.org/software/mark/downloads/index.html">here</a></p></li>
-<li><p>Double-click the MARK icon to open Program MARK. Click the spreadsheet icon in the upper left corner to open a menu for Specifications for Mark Analysis. This menu allows you to specify the kind of analysis you will conduct (Select Data Type). Today we will start with a data set that includes live recaptures only so be sure this Data Type is selected (Cormack-Jolly-Seber model).</p></li>
-<li><p>Look to the right and you will see a button: Click to Select File. Click this button and browse to find the “ed_males.inp” fil you just downloaded. Double click this file to open this file in Program Mark. Now click the ‘view this file’ button, which will allow you to see the data file. You will see encounter histories (e.g., 1110101, representing observations over 7 visits) followed by a space, followed by one or more additional columns, followed by a semicolon at the end. The encounter history indicates the occasions when each individual was encountered (actually observed), indicated by a 1, or not encountered, indicated by a 0. The length of the capture history is equal to the number of site visits. The column to the right of the capture histories indicate how many individuals in the population exhibit this particular capture history. The semicolon at the end indicates the end of the record. Note that in this encounter history each individual has its own record (the value in the final colummn is always 1). However, it is possible to specify only the unique observed encounter histories and indicate the number of individuals with each history.</p></li>
-<li><p>We now have to provide MARK some information about the data. You should provide a title for the data to keep your results organized. Below the data file selection area you will find some buttons and counters to provide additional information. Encounter occasions needs information about the number of possible times an individual could be encountered (number of site visits). Count the number of columns in the dipper encounter history (there are 7) and enter this number for encounter occasions. Once you have completed these tasks click OK; MARK has the basic information it needs to perform an analysis.</p></li>
-<li><p>A window will open entitled “apparent survival parameter (phi) males of live recaptures”. Before we discuss this window we need to open an additional window. Click on the PIM button on the top toolbar, then click on “open parameter index matrix”. Click select all then OK. Click on the Window button on the top toolbar then click on Tile. You should see 2 similar appearing windows all with the upper triangular of a matrix. Look more closely and you’ll see that the window for male survival has numbers ranging from 1 to 6 as columns go from left to right. The encounter probability matrices have numbers 7 to 12. These numbers specify the model structure by defining the number of survival and capture probabilities we wish to estimate! The model you have specified by default allows survival and encounter probabilities to vary annually.</p></li>
-<li><p>Another useful way to visualize the parameters you wish to estimate is the “Parameter Index Chart”. Click on the PIM button on the top toolbar, then click on “open parameter index chart”. Here you see all parameters in one window- six different survival parameters and six different encounter probability parameters.</p></li>
+<li><p>Open Program MARK! You can download the software <a
+href="http://www.phidot.org/software/mark/downloads/index.html">here</a></p></li>
+<li><p>Double-click the MARK icon to open Program MARK. Click the
+spreadsheet icon in the upper left corner to open a menu for
+Specifications for Mark Analysis. This menu allows you to specify the
+kind of analysis you will conduct (Select Data Type). Today we will
+start with a data set that includes live recaptures only so be sure this
+Data Type is selected (Cormack-Jolly-Seber model).</p></li>
+<li><p>Look to the right and you will see a button: Click to Select
+File. Click this button and browse to find the “ed_males.inp” fil you
+just downloaded. Double click this file to open this file in Program
+Mark. Now click the ‘view this file’ button, which will allow you to see
+the data file. You will see encounter histories (e.g., 1110101,
+representing observations over 7 visits) followed by a space, followed
+by one or more additional columns, followed by a semicolon at the end.
+The encounter history indicates the occasions when each individual was
+encountered (actually observed), indicated by a 1, or not encountered,
+indicated by a 0. The length of the capture history is equal to the
+number of site visits. The column to the right of the capture histories
+indicate how many individuals in the population exhibit this particular
+capture history. The semicolon at the end indicates the end of the
+record. Note that in this encounter history each individual has its own
+record (the value in the final colummn is always 1). However, it is
+possible to specify only the unique observed encounter histories and
+indicate the number of individuals with each history.</p></li>
+<li><p>We now have to provide MARK some information about the data. You
+should provide a title for the data to keep your results organized.
+Below the data file selection area you will find some buttons and
+counters to provide additional information. Encounter occasions needs
+information about the number of possible times an individual could be
+encountered (number of site visits). Count the number of columns in the
+dipper encounter history (there are 7) and enter this number for
+encounter occasions. Once you have completed these tasks click OK; MARK
+has the basic information it needs to perform an analysis.</p></li>
+<li><p>A window will open entitled “apparent survival parameter (phi)
+males of live recaptures”. Before we discuss this window we need to open
+an additional window. Click on the PIM button on the top toolbar, then
+click on “open parameter index matrix”. Click select all then OK. Click
+on the Window button on the top toolbar then click on Tile. You should
+see 2 similar appearing windows all with the upper triangular of a
+matrix. Look more closely and you’ll see that the window for male
+survival has numbers ranging from 1 to 6 as columns go from left to
+right. The encounter probability matrices have numbers 7 to 12. These
+numbers specify the model structure by defining the number of survival
+and capture probabilities we wish to estimate! The model you have
+specified by default allows survival and encounter probabilities to vary
+annually.</p></li>
+<li><p>Another useful way to visualize the parameters you wish to
+estimate is the “Parameter Index Chart”. Click on the PIM button on the
+top toolbar, then click on “open parameter index chart”. Here you see
+all parameters in one window- six different survival parameters and six
+different encounter probability parameters.</p></li>
 </ol>
-<p><strong>Q</strong>: Why are there only 6 survival parameters, when there are seven surveys??</p>
+<p><strong>Q</strong>: Why are there only 6 survival parameters, when
+there are seven surveys??</p>
 <ol start="8" style="list-style-type: decimal">
-<li><p>To run this model click on the small button with the green arrow (third from left). A new window will open asking for the title for the analysis and the model name. Use ‘dippertest’ or another descriptive name for the analysis. Identify the model as: “{phi(t) p(t)}”, which indicates that survival and encounter probabilities can each vary across time, independently. This model is among the most general we can run for this data set (sometimes this is called the “full model” to distinguish from “reduced models” that are less-complex versions of this model).</p></li>
-<li><p>Click OK, and a new window will ask you if you want to use the identity matrix because no design matrix was specified. Click yes (or OK) (you will learn more about the design matrix later, in NRES 488/688!). A new black window with scrolling text will open indicating that MARK is doing calculations (the numerical methods to maximize the likelihood for the data and specified model).</p></li>
-<li><p>When Mark is finished a new window will open asking you if you want to append the model to the database. Click yes and a new table (The Results Browser) will open. The model is identified on the left based on the notation you provided, AIC, AIC weight, number of parameters and deviances are all reported. For now you can consider AIC as a ranking of the quality of the models from best (low AIC) to worst (high AIC). “Deviance” is a measure of how well the model fits the data.</p></li>
-<li><p>Re-open the PIMs for survival and capture probability. Use the minus button to reduce the numbers in survival windows to 1 for both males and females and 2 for the both the windows for encounter probabilities (for the latter reduce all matrix entries to 1 then use the plus button to increase them to 2). Use the green arrow to run this model and follow the same procedure as for the earlier model to run this model. Identify the model as {phi(.),p(.)}, which indicates that both parameters are constant across both groups and time. This is the simplest model we can run for these data. Again, use the identity matrix and append the results to the Results Browser. The “dot” model performs better (lower AIC) and has fewer parameters so it is the best of the two models run so far!</p></li>
-<li><p><strong>Examine Parameter Estimates</strong>: To examine parameter estimates click on the model, then move the cursor to the top tool bar and click on ‘Retrieve’. Then click on current model. To see the parameter estimates for the retrieved model return the curser to the Results Browser and click the fourth icon from the left (the third minipage from the left). A text file will open with a list of parameters and their estimates (“view estimates of real parameters in notepad window”). For the ‘dot’ model you will only see one survival estimate and one encounter probability because you specified that both parameters would be constant across time.</p></li>
+<li><p>To run this model click on the small button with the green arrow
+(third from left). A new window will open asking for the title for the
+analysis and the model name. Use ‘dippertest’ or another descriptive
+name for the analysis. Identify the model as: “{phi(t) p(t)}”, which
+indicates that survival and encounter probabilities can each vary across
+time, independently. This model is among the most general we can run for
+this data set (sometimes this is called the “full model” to distinguish
+from “reduced models” that are less-complex versions of this
+model).</p></li>
+<li><p>Click OK, and a new window will ask you if you want to use the
+identity matrix because no design matrix was specified. Click yes (or
+OK) (you will learn more about the design matrix later, in NRES
+488/688!). A new black window with scrolling text will open indicating
+that MARK is doing calculations (the numerical methods to maximize the
+likelihood for the data and specified model).</p></li>
+<li><p>When Mark is finished a new window will open asking you if you
+want to append the model to the database. Click yes and a new table (The
+Results Browser) will open. The model is identified on the left based on
+the notation you provided, AIC, AIC weight, number of parameters and
+deviances are all reported. For now you can consider AIC as a ranking of
+the quality of the models from best (low AIC) to worst (high AIC).
+“Deviance” is a measure of how well the model fits the data.</p></li>
+<li><p>Re-open the PIMs for survival and capture probability. Use the
+minus button to reduce the numbers in survival windows to 1 for both
+males and females and 2 for the both the windows for encounter
+probabilities (for the latter reduce all matrix entries to 1 then use
+the plus button to increase them to 2). Use the green arrow to run this
+model and follow the same procedure as for the earlier model to run this
+model. Identify the model as {phi(.),p(.)}, which indicates that both
+parameters are constant across both groups and time. This is the
+simplest model we can run for these data. Again, use the identity matrix
+and append the results to the Results Browser. The “dot” model performs
+better (lower AIC) and has fewer parameters so it is the best of the two
+models run so far!</p></li>
+<li><p><strong>Examine Parameter Estimates</strong>: To examine
+parameter estimates click on the model, then move the cursor to the top
+tool bar and click on ‘Retrieve’. Then click on current model. To see
+the parameter estimates for the retrieved model return the curser to the
+Results Browser and click the fourth icon from the left (the third
+minipage from the left). A text file will open with a list of parameters
+and their estimates (“view estimates of real parameters in notepad
+window”). For the ‘dot’ model you will only see one survival estimate
+and one encounter probability because you specified that both parameters
+would be constant across time.</p></li>
 </ol>
-<p>Now retrieve the {phi(t) p(t)} model and examine parameter estimates for this model. You will see 6 survival estimates and 6 estimates for detection probability. These are indexed using the numbers you provided in the PIMs. Notice that the 6th estimates for both phi and p have standard error that are either very large or zero. <em>These are the estimates for the last survival and encounter probability for each group, which cannot be estimated</em>.</p>
+<p>Now retrieve the {phi(t) p(t)} model and examine parameter estimates
+for this model. You will see 6 survival estimates and 6 estimates for
+detection probability. These are indexed using the numbers you provided
+in the PIMs. Notice that the 6th estimates for both phi and p have
+standard error that are either very large or zero. <em>These are the
+estimates for the last survival and encounter probability for each
+group, which cannot be estimated</em>.</p>
 </div>
 <div id="cjs-model-in-r" class="section level5">
 <h5>CJS model in R</h5>
@@ -959,15 +1199,34 @@ errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,
 <div id="exercise-2--open-population-cjs-models" class="section level2">
 <h2>Exercise 2- Open population (CJS) models</h2>
 <p>Use R or MARK to answer the following questions:</p>
-<p>2a. [building off the demonstration in R and Program MARK]. Run the following model: capture probability varies by year, but survival is constant across time. Is this model better than the current top model (lower AIC value means a better model)? What are the parameter estimates for this model? What are the <em>confidence intervals</em> for these parameters?</p>
-<p>2b. Run the following model: capture probability is constant across time, but survival exhibits temporal variability. Is this model better than the current top model? What are the parameter estimates for this model? What are the <em>confidence intervals</em> for these parameters?</p>
-<p>2c. Use the results from the time-dependent model [phi(t)p(t)] to estimate the mean per-capita survival rate and the <em>environmental stochasticity</em> (annual variation) in survival for European dippers. In other words, what is the mean and standard deviation for the Normal random number generator you would you use to represent annual variation in survival for this population? Explain how you obtained your answer!</p>
+<p>2a. [building off the demonstration in R and Program MARK]. Run the
+following model: capture probability varies by year, but survival is
+constant across time. Is this model better than the current top model
+(lower AIC value means a better model)? What are the parameter estimates
+for this model? What are the <em>confidence intervals</em> for these
+parameters?</p>
+<p>2b. Run the following model: capture probability is constant across
+time, but survival exhibits temporal variability. Is this model better
+than the current top model? What are the parameter estimates for this
+model? What are the <em>confidence intervals</em> for these
+parameters?</p>
+<p>2c. Use the results from the time-dependent model [phi(t)p(t)] to
+estimate the mean per-capita survival rate and the <em>environmental
+stochasticity</em> (annual variation) in survival for European dippers.
+In other words, what is the mean and standard deviation for the Normal
+random number generator you would you use to represent annual variation
+in survival for this population? Explain how you obtained your
+answer!</p>
 <p>##Checklist for Lab 7 completion</p>
 <ul>
-<li><p>Please enter all written responses in Top Hat and submit!</p></li>
-<li><p>Where appropriate, Excel files and R scripts can be included as part of your lab submission (can be submitted separately in top hat.</p></li>
+<li><p>Please enter all written responses in Top Hat and
+submit!</p></li>
+<li><p>Where appropriate, Excel files and R scripts can be included as
+part of your lab submission (can be submitted separately in top
+hat.</p></li>
 </ul>
-<p><strong><em>This lab is optional. For extra credit please submit by Friday Apr 29</em></strong></p>
+<p><strong><em>This lab is optional. For extra credit please submit by
+Friday Apr 29</em></strong></p>
 <ul>
 <li>Short answers, and Excel document
 <ul>
@@ -989,7 +1248,9 @@ errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,
 </ul>
 <div id="extras-you-can-ignore" class="section level3">
 <h3>Extras (you can ignore!)</h3>
-<p>Now, before running the next model, you need to <a href="indcov1.csv">download this dataset</a> to your R working directory.</p>
+<p>Now, before running the next model, you need to <a
+href="indcov1.csv">download this dataset</a> to your R working
+directory.</p>
 </div>
 </div>
 
