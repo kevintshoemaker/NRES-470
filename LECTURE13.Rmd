@@ -267,7 +267,7 @@ NOTE: maximum dispersal rate (in this model) is the rate of dispersal between ne
 
 4. Change the dispersal rate to zero and run the model. What happens? Does this make sense?     
 
-5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is continuously occupied (make sure the lower bound of the 95% region for abundance in this patch is above 2 for all years)? [PointSolutions]
+5. Change the dispersal rate to 0.01 (1%). What happens now? Does the distant sink still function as a sink population? That is, is it occupied continuously? If not, what is the minimum dispersal rate that generally ensures that the distant sink is continuously occupied (make sure the lower bound of the 95% confidence region for abundance in this patch is above 2 for all years)? [PointSolutions]
 
 6. Now reduce the population growth rate in the source population ("lambda good") to 1.1. What happens now? Does the source population still operate as an effective source (that is, does it support consistent occupation of all the sinks)? 
 

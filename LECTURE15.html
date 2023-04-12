@@ -14,7 +14,7 @@
 
 <title>Parameter estimation</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -362,19 +366,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -400,7 +395,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -431,7 +426,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -452,34 +456,45 @@ div.tocify {
 
 <h1 class="title toc-ignore">Parameter estimation</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
 
-<p>NOTE: Mia Goldman MS defense Thursday Apr 21 at 2pm in FA 301.</p>
-<div id="parameter-estimation-for-wildlife-population-models" class="section level1">
+<div id="parameter-estimation-for-wildlife-population-models"
+class="section level1">
 <h1>Parameter estimation for wildlife population models!</h1>
-<p>We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!</p>
-<p>This is the focus of the current lecture!</p>
+<p>We have now gone through the basic mechanics of population modeling.
+But we have barely discussed where the parameter estimates come
+from!</p>
+<p>This is the focus of the current lecture- and much of NRES 488!</p>
 <div id="data-requirements" class="section level2">
 <h2>Data requirements</h2>
 <div id="scalar-models-no-age-structure" class="section level3">
 <h3>Scalar models (no age structure)</h3>
 <ul>
 <li>Initial abundance (<span class="math inline">\(N_0\)</span>)</li>
-<li>Mean population growth rate (<span class="math inline">\(r\)</span> or <span class="math inline">\(r_{max}\)</span>)</li>
-<li>Variation in population growth rate (standard deviation for a normal distribution representing environmental stochasticity)</li>
-<li>Carrying capacity of the population (<span class="math inline">\(K\)</span>; equilibrium abundance of logistic model)</li>
+<li>Mean population growth rate (<span class="math inline">\(r\)</span>
+or <span class="math inline">\(r_{max}\)</span>)</li>
+<li>Variation in population growth rate (standard deviation for a normal
+distribution representing environmental stochasticity)</li>
+<li>Carrying capacity of the population (<span
+class="math inline">\(K\)</span>; equilibrium abundance of logistic
+model)</li>
 </ul>
 </div>
 <div id="stage-structured-life-history-models" class="section level3">
 <h3>Stage-structured (life history) models</h3>
 <ul>
-<li>Initial abundance (<span class="math inline">\(\mathbf{N_0}\)</span>) (vector of initial abundances for all stages)</li>
-<li>Stage-specific vital rates (fecundity, survival; fill in a transition matrix)</li>
-<li>Temporal variation in stage-specific vital rates (environmental stochasticity)</li>
-<li>Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)
+<li>Initial abundance (<span
+class="math inline">\(\mathbf{N_0}\)</span>) (vector of initial
+abundances for all stages)</li>
+<li>Stage-specific vital rates (fecundity, survival; fill in a
+transition matrix)</li>
+<li>Temporal variation in specific vital rates (environmental
+stochasticity)</li>
+<li>Density-dependence of vital rates (e.g., how fecundity decreases as
+population gets more crowded)
 <ul>
 <li>Which vital rates are density-dependent?</li>
 </ul></li>
@@ -488,12 +503,15 @@ div.tocify {
 <div id="metapopulation-spatial-models" class="section level3">
 <h3>Metapopulation (spatial) models</h3>
 <ul>
-<li>Spatial distributions of suitable habitat patches (define patches)</li>
-<li>Spatial variation in vital rates (e.g., variation in habitat quality among different patches)</li>
+<li>Spatial distributions of suitable habitat patches (define
+patches)</li>
+<li>Spatial variation in vital rates (e.g., variation in habitat quality
+among different patches)</li>
 <li>Correlation in environmental stochasticity among patches</li>
 <li>Dispersal rates among habitat patches</li>
 <li>Habitat requirements of different life stages</li>
-<li>For “classical” metapopulation models: rates of colonization and extinction in habitat patches</li>
+<li>For “classical” metapopulation models: rates of colonization and
+extinction in habitat patches</li>
 </ul>
 </div>
 </div>
@@ -501,27 +519,49 @@ div.tocify {
 <h2>Data sources!</h2>
 <div id="census-data" class="section level3">
 <h3>Census data!</h3>
-<p>Census data is ultimately what we all <strong>wish</strong> we had! It means we follow a population over time, and we know exactly how many individuals of each stage are in the population each year. We have <em>perfect detection!!!!</em></p>
-<p>In this case, computing survival and fecundity (and variation in these parameters, and density-dependence) is relatively straightforward!</p>
-<p><img src="census1.png" /></p>
-<p><img src="census2.png" /></p>
-<p><img src="census3.png" /></p>
-<p><strong>PROS</strong> - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!</p>
-<p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores <strong>imperfect detection</strong> (assumes no observation errors), which is almost always not realistic.</p>
+<p>Census data is ultimately what we all <strong>wish</strong> we had!
+It means we follow a population over time, and we know exactly how many
+individuals of each stage are in the population each year. We have
+<em>perfect detection!!!!</em></p>
+<p>In this case, computing survival and fecundity (and variation in
+these parameters, and density-dependence) is relatively
+straightforward!</p>
+<p><img src="census1.png" style="width:40.0%" /></p>
+<p><img src="census2.png" style="width:80.0%" /></p>
+<p><img src="census3.png" style="width:80.0%" /></p>
+<p><strong>PROS</strong> - Can estimate survival and fecundity, env.
+stochasticity, density dependence- pretty much everything we want for a
+population model!</p>
+<p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores
+<strong>imperfect detection</strong> (assumes no observation errors),
+which is almost always not realistic.</p>
 </div>
 <div id="capture-mark-recapture-cmr" class="section level3">
 <h3>Capture-mark-recapture (CMR)</h3>
-<p><strong>PROS</strong> - Can estimate survival, variation in survival, lambda, recruitment, dispersal rates. - Probably the most widely used source of data for population models!</p>
-<p><strong>CONS</strong> - Few downsides, although the analytical techniques can be difficult to master - Mounting a proper CMR study can be very costly, and require many years of data. - Estimating landscape-scale movements can require an even more costly and time-consuming study. - Emigration and survival can be difficult to tease apart in many cases.</p>
-<p>We will return to CMR data shortly (and in the optional Lab 7), but first…</p>
+<p><strong>PROS</strong> - Can estimate survival, variation in survival,
+lambda, recruitment, dispersal rates. - Probably the most widely used
+source of data for population models!</p>
+<p><strong>CONS</strong> - Few downsides, although the analytical
+techniques can be difficult to master - Mounting a proper CMR study can
+be very costly, and require many years of data. - Estimating
+landscape-scale movements can require an even more costly and
+time-consuming study. - Emigration and survival can be difficult to
+tease apart in many cases.</p>
+<p>We will return to CMR data shortly (and in the optional Lab 7), but
+first…</p>
 </div>
 <div id="what-if-theres-no-data" class="section level3">
 <h3>What if there’s “no data”?</h3>
-<p>Remember the <a href="https://en.wikipedia.org/wiki/Stone_Soup">“Stone Soup” analogy!</a> - even when you think there’s no data, there probably is more than there initially appears!</p>
+<p>Remember the <a
+href="https://en.wikipedia.org/wiki/Stone_Soup">“Stone Soup”
+analogy!</a> - even when you think there’s no data, there probably is
+more than there initially appears!</p>
 <ul>
-<li>Use algebra to construct a full age-structured transition matrix from available information
+<li>Use algebra to construct a full age-structured transition matrix
+from available information
 <ul>
-<li>E.g., we are missing information on hatchling survival. We only know:
+<li>E.g., we are missing information on hatchling survival. We only
+know:
 <ul>
 <li>Juvenile and adult survival rates<br />
 </li>
@@ -531,7 +571,8 @@ div.tocify {
 </li>
 <li>Now we can solve for hatchling survival!<br />
 </li>
-<li>For an example of this, see <a href="congdon%20et%20al%201993.pdf">Congdon et al 1993</a><br />
+<li>For an example of this, see <a
+href="congdon%20et%20al%201993.pdf">Congdon et al 1993</a><br />
 </li>
 </ul></li>
 </ul></li>
@@ -541,14 +582,17 @@ div.tocify {
 </li>
 <li>Ignore density-dependence?<br />
 </li>
-<li>Ignore trophic interactions (we usually make this simplification anyway!)<br />
+<li>Ignore trophic interactions (we usually make this simplification
+anyway!)<br />
 </li>
-<li>Ignore abundance entirely (e.g., use classical metapopulation model)<br />
+<li>Ignore abundance entirely (e.g., use classical metapopulation
+model)<br />
 </li>
 </ul></li>
 <li>Conservative strategies (use <em>worst case scenario</em>)!
 <ul>
-<li>Density-independent model is conservative, so if you don’t have data on D-D, then maybe just ignore it!<br />
+<li>Density-independent model is conservative, so if you don’t have data
+on D-D, then maybe just ignore it!<br />
 </li>
 <li>With parameter uncertainty, use the worst case scenario<br />
 </li>
@@ -557,7 +601,8 @@ div.tocify {
 </ul></li>
 <li>Use data from similar species!
 <ul>
-<li>E.g., tamarin species have similar life histories, so use data on golden lion tamarins to model golden-headed lion tamarins.</li>
+<li>E.g., tamarin species have similar life histories, so use data on
+golden lion tamarins to model golden-headed lion tamarins.</li>
 </ul></li>
 <li>Expert Opinion
 <ul>
@@ -565,38 +610,45 @@ div.tocify {
 </ul></li>
 <li>National Databases
 <ul>
-<li>See <a href="FINAL_PROJECTS.html">links</a> on Final projects page</li>
+<li>See <a href="FINAL_PROJECTS.html">links</a> on Final projects
+page</li>
 </ul></li>
-<li><a href="https://www.astronomyclub.xyz/maternal-effect/does-ecology-have-laws.html">Allometries</a>
+<li><a
+href="https://www.astronomyclub.xyz/maternal-effect/does-ecology-have-laws.html">Allometries</a>
 <ul>
 <li>e.g., Fenchel’s allometry</li>
-<li>This type of thinking (looking for broad patterns across species) is often called “Macroecology”</li>
+<li>This type of thinking (looking for broad patterns across species) is
+often called “Macroecology”</li>
 </ul></li>
 </ul>
-<p><img src="allometry2.jpg" /></p>
-<p><img src="allometry1.jpg" /></p>
+<p><img src="allometry2.jpg" style="width:50.0%" /></p>
+<p><img src="allometry1.jpg" style="width:50.0%" /></p>
 </div>
 </div>
 <div id="aside--is-expert-opinion-okay-to-use" class="section level2">
 <h2>Aside- is expert opinion okay to use???</h2>
 <ul>
-<li>Not ideal, because it is hard or impossible to validate, and hard to document, but …</li>
+<li>Not ideal, because it is hard or impossible to validate, and hard to
+document, but …</li>
 <li>That is often the default in practice<br />
 </li>
 <li>And it is better to use it than to do nothing</li>
-<li>And it is better to document that expert opinion was used than to proceed with conservation planning in the absence of stating sources and assumptions</li>
+<li>And it is better to document that expert opinion was used than to
+proceed with conservation planning in the absence of stating sources and
+assumptions</li>
 <li>It is a starting point (and sometimes a reasonable one)</li>
 </ul>
 </div>
 <div id="capture-mark-recapture-cmr-analysis" class="section level2">
 <h2>Capture-mark-recapture (CMR) analysis</h2>
-<p><img src="statistics1.png" /></p>
+<p><img src="statistics1.png" style="width:70.0%" /></p>
 <div id="pva-parameters-estimable-from-cmr-data" class="section level3">
 <h3>PVA Parameters estimable from CMR data</h3>
 <ul>
 <li>Survival rate (possibly age or size structured)</li>
 <li>Fecundity (entry of new individuals in the population)</li>
-<li>Recruitment (entry of new individuals into the adult population)<br />
+<li>Recruitment (entry of new individuals into the adult
+population)<br />
 </li>
 <li>Abundance</li>
 <li>Lambda (finite rate of growth)</li>
@@ -605,20 +657,27 @@ div.tocify {
 <li>Dispersal rates</li>
 </ul>
 </div>
-<div id="the-data-needed-for-cmr-analysis-capture-histories" class="section level3">
+<div id="the-data-needed-for-cmr-analysis-capture-histories"
+class="section level3">
 <h3>The data needed for CMR analysis: capture histories</h3>
-<p>Consider a project designed to monitor a population of alligators. These alligators were monitored for four years, from 1976 to 1979.</p>
-<p>Each row in the following table represents a unique possible history of captures:</p>
-<p>A “1” indicates that an animal was successfully captured in a given year, and subsequently released.</p>
-<p>A “0” indicates that an animal was not successfully captured in a given year.</p>
-<p>A “2” indicates that an animal was successfully captured in a given year but was not released back into the population (probably died due to handling or capture).</p>
-<p><img src="caphist1.png" /></p>
+<p>Consider a project designed to monitor a population of alligators.
+These alligators were monitored for four years, from 1976 to 1979.</p>
+<p>Each row in the following table represents a unique possible history
+of captures:</p>
+<p>A “1” indicates that an animal was successfully captured in a given
+year, and subsequently released.</p>
+<p>A “0” indicates that an animal was not captured in a given year.</p>
+<p>A “2” indicates that an animal was successfully captured in a given
+year but was not released back into the population (probably died due to
+handling or capture).</p>
+<p><img src="caphist1.png" style="width:50.0%" /></p>
 </div>
 <div id="two-main-types-of-cmr-analyses" class="section level3">
 <h3>Two main types of CMR analyses</h3>
 <div id="closed-population-models" class="section level4">
 <h4>Closed population models</h4>
-<p>We assume that the population is closed (no BIDE processes!). That is, abundance does not change! We attempt to estimate abundance!</p>
+<p>We assume that the population is closed (no BIDE processes!). That
+is, abundance does not change! We attempt to estimate abundance!</p>
 <ul>
 <li>No mortality</li>
 <li>No births</li>
@@ -626,7 +685,7 @@ div.tocify {
 <li>No emigration</li>
 <li>All individuals are observable (but not necessarily observed…)</li>
 </ul>
-<p><img src="peterson1.png" /></p>
+<p><img src="peterson1.png" style="width:75.0%" /></p>
 <p>Parameters estimated:</p>
 <ul>
 <li>Abundance</li>
@@ -634,22 +693,29 @@ div.tocify {
 <p>M = the number of individuals marked in the first sample<br />
 C = total number of individuals captured in 2nd sample<br />
 R = number of individuals in 2nd sample that are marked</p>
-<p>We can use the following formula to estimate abundance (the <strong>lincoln-peterson estimator</strong>):</p>
+<p>We can use the following formula to estimate abundance (the
+<strong>lincoln-peterson estimator</strong>):</p>
 <p><span class="math inline">\(N = \frac{M \times C}{R}\)</span></p>
 </div>
 <div id="open-population-models" class="section level4">
 <h4>Open population models</h4>
-<p>We assume that the population is open to one or more of the BIDE processes. That is, abundance CAN change! We attempt to estimate the processes driving abundance change (often, survival rates)</p>
+<p>We assume that the population is open to one or more of the BIDE
+processes. That is, abundance CAN change! We attempt to estimate the
+processes driving abundance change (often, survival rates)</p>
 <ul>
-<li>Populations open to birth, death, and possibly even migration (abundance can change during the study).</li>
-<li>Enables estimation of the drivers of population dynamics over extended time periods</li>
+<li>Populations open to birth, death, and possibly even migration
+(abundance can change during the study).</li>
+<li>Enables estimation of the drivers of population dynamics over
+extended time periods</li>
 <li>Often of great interest to ecologists and managers.</li>
 </ul>
 </div>
 <div id="key-assumptions-of-the-cjs-model" class="section level4">
 <h4>Key assumptions of the CJS model</h4>
 <ul>
-<li>All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)<br />
+<li>All individuals in population are equally detectible at each
+sampling occasion (each capture session represents a totally random
+sample from the population)<br />
 </li>
 <li>Marks are not lost or missed by surveyors<br />
 </li>
@@ -659,18 +725,22 @@ R = number of individuals in 2nd sample that are marked</p>
 </div>
 <div id="program-mark" class="section level3">
 <h3>Program MARK</h3>
-<p>MARK is a numerical maximum-likelihood engine designed for mark-recapture analysis. You input a capture history dataset and MARK will output results such as survival rate and capture probability!!</p>
+<p>MARK is a numerical maximum-likelihood engine designed for
+mark-recapture analysis. You input a capture history dataset and MARK
+will output results such as survival rate and capture probability!!</p>
 </div>
 </div>
-<div id="example-of-an-open-population-mark-recapture-analysis" class="section level2">
+<div id="example-of-an-open-population-mark-recapture-analysis"
+class="section level2">
 <h2>Example of an open-population mark-recapture analysis!</h2>
-<p>Let’s run through a CJS analysis in R! To follow along, please <a href="LECTURE15.R">save this script and load it up in Rstudio</a>.</p>
-<p>NOTE: this analysis includes both males and females (unlike the example in Lab 7), so the results will look somewhat different!</p>
-<p><img src="dipper1.png" /></p>
-<p>The European dipper data is THE classic example of a CMR dataset. Let’s look at it!</p>
-<pre class="r"><code>###########
-# Cormack-Jolly-Seber (CJS) model in R
-###########
+<p>Let’s run through a CJS analysis in R! To follow along, please <a
+href="LECTURE15.R">save this script and load it up in Rstudio</a>.</p>
+<p>NOTE: this analysis includes both males and females (unlike the
+example in Lab 7), so the results will look somewhat different!</p>
+<p><img src="dipper1.png" style="width:50.0%" /></p>
+<p>The European dipper data is THE classic example of a CMR dataset.
+Let’s look at it!</p>
+<pre class="r"><code># Cormack-Jolly-Seber (CJS) model in R  --------------------------
 
 library(marked)      # install the &#39;marked&#39; package if you haven&#39;t already done this!
 data(&quot;dipper&quot;)
@@ -686,20 +756,18 @@ head(dipper,10)</code></pre>
 ## 8  0000001 Female
 ## 9  0000001 Female
 ## 10 0000001 Female</code></pre>
-<p>Here we use the “marked” package in R (instead of MARK) to do the ML parameter estimation!</p>
-<pre class="r"><code>##########
-# load data!
+<p>Here we use the “marked” package in R (instead of MARK) to do the ML
+parameter estimation!</p>
+<pre class="r"><code># load data!  ----------------------------
 
 data(dipper)
 
-#############
-# Process data
+# Process data  -------------------------------
 
 dipper.proc=process.data(dipper,model=&quot;cjs&quot;,begin.time=1)  # Helper function- process the data for CJS model</code></pre>
 <pre><code>## 255 capture histories collapsed into 53</code></pre>
 <pre class="r"><code>dipper.ddl=make.design.data(dipper.proc)    # another helper function- process data!
 
-##########
 # Fit models
 
 # fit time-varying cjs model
@@ -733,8 +801,7 @@ mod.Phit.pt   # print out model</code></pre>
 ## p.time7          0.07823848 1.7821210 -3.4147187 3.5711956</code></pre>
 <pre class="r"><code>mod.Phit.pt$results$AIC       # extract AIC</code></pre>
 <pre><code>## [1] 681.0644</code></pre>
-<pre class="r"><code>########
-# fit time-invariant cjs model
+<pre class="r"><code># fit time-invariant cjs model
 
 capture.output(suppressMessages(
   mod.Phidot.pdot &lt;- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~1),p=list(formula=~1)),method=&quot;Nelder-Mead&quot;,hessian = TRUE)
@@ -754,8 +821,7 @@ mod.Phidot.pdot</code></pre>
 ## p.(Intercept)   2.2261889 0.3251153 1.58896300 2.8634148</code></pre>
 <pre class="r"><code>mod.Phidot.pdot$results$AIC</code></pre>
 <pre><code>## [1] 670.8377</code></pre>
-<pre class="r"><code>########
-# fit sex-dependent cjs model
+<pre class="r"><code># fit sex-dependent cjs model
 
 capture.output(suppressMessages(
   mod.Phisex.psex &lt;- crm(dipper.proc,dipper.ddl,model.parameters = list(Phi=list(formula=~sex),p=list(formula=~sex)),method=&quot;Nelder-Mead&quot;,hessian = TRUE)
@@ -777,11 +843,9 @@ mod.Phisex.psex</code></pre>
 ## p.sexMale       0.47587463 0.6630165 -0.82363774 1.7753870</code></pre>
 <pre class="r"><code>mod.Phisex.psex$results$AIC</code></pre>
 <pre><code>## [1] 674.1518</code></pre>
-<pre class="r"><code>###########
-# compare all models with AIC
-###########
+<pre class="r"><code># compare all models with AIC   ----------------------------
 
-######
+
 # Set up models to run (must have either &quot;Phi.&quot; or &quot;p.&quot; in the name)
 Phi.dot &lt;- list(formula=~1)       
 Phi.time &lt;- list(formula=~time)
@@ -794,15 +858,15 @@ p.timesex &lt;- list(formula=~sex+time)
 
 cml=create.model.list(c(&quot;Phi&quot;,&quot;p&quot;))    # create list of all models to run
 
-######
-# Run all models
+
+# Run all models   ----------------------------
 
 capture.output(suppressMessages(suppressWarnings(
   allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method=&quot;Nelder-Mead&quot;,hessian=TRUE)
 )),file=&quot;temp.txt&quot;)
 
-######
-# AIC model selection
+
+# AIC model selection  ----------------------------
 
 allmodels</code></pre>
 <pre><code>##                             model npar      AIC  DeltaAIC       weight  neg2lnl
@@ -839,8 +903,7 @@ allmodels</code></pre>
 ## 8            0
 ## 15           0
 ## 16           1</code></pre>
-<pre class="r"><code>#######
-# get parameter estimates and confidence intervals for best model
+<pre class="r"><code># get parameter estimates and confidence intervals for best model
 
 allmodels[[1]]</code></pre>
 <pre><code>## 
@@ -876,8 +939,7 @@ allmodels[[1]]</code></pre>
 ## p.time5          1.12053506 0.9914942 -0.8227937 3.0638638
 ## p.time6          1.57229762 1.0715540 -0.5279483 3.6725435
 ## p.time7          0.07823848 1.7821210 -3.4147187 3.5711956</code></pre>
-<pre class="r"><code>#######
-# make predictions and plot them. 
+<pre class="r"><code># make predictions and plot them. 
 
 predict(allmodels[[1]])$Phi</code></pre>
 <pre><code>##   occ estimate         se       lcl       ucl
@@ -889,60 +951,73 @@ plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab=&quot;Year&quot;,ylab=&quot;S
 errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)</code></pre>
 <p><img src="LECTURE15_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>What is our estimate for mean survival?</p>
-<pre class="r"><code>#######
-# Compute the mean survival rate for the population
+<pre class="r"><code># Compute the mean survival rate for the population  -----------------------
 
 mean(Phi_by_year$estimate)</code></pre>
 <pre><code>## [1] 0.5880352</code></pre>
 <p>What is the environmental stochasticity?</p>
-<pre class="r"><code>#######
-# Compute the environmental variablility in annual survival rates. 
+<pre class="r"><code># Compute the environmental variablility in annual survival rates ----------------
 
 sd(Phi_by_year$estimate)</code></pre>
 <pre><code>## [1] 0.1066587</code></pre>
-<div id="program-mark-1" class="section level3">
-<h3>Program MARK!</h3>
-<p>MARK is free software, and can be downloaded from <a href="http://warnercnr.colostate.edu/~gwhite/mark/mark.htm">here</a></p>
-<p>The demo from Lab 7 can be found <a href="LAB7.html#open-population_models">here</a></p>
 <p><a href="LECTURE16.html">–go to next lecture–</a></p>
-</div>
 </div>
 <div id="extras" class="section level2">
 <h2>Extras</h2>
-<div id="maximum-likelihood-a-framework-for-statistical-inference" class="section level3">
+<div id="maximum-likelihood-a-framework-for-statistical-inference"
+class="section level3">
 <h3>Maximum likelihood: a framework for statistical inference!</h3>
-<p><strong>FOR CMR ANALYSIS</strong>: - What value of survival maximizes the probability of generating the observed capture histories?</p>
+<p><strong>FOR CMR ANALYSIS</strong>: - What value of survival maximizes
+the probability of generating the observed capture histories?</p>
 <p>EXAMPLE:</p>
 <p>Consider the following capture history for a single individual:</p>
 <pre><code>1 0 1 1</code></pre>
-<p>This individual was marked and released upon initial capture. It was not captured in the next survey, but then was captured in each of the next two subsequent surveys.</p>
+<p>This individual was marked and released upon initial capture. It was
+not captured in the next survey, but then was captured in each of the
+next two subsequent surveys.</p>
 <p>What is the probability of observing this capture history?</p>
 <blockquote>
-<p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X [(Probability of surviving from time 3 to 4) X (Probability of being seen at time 4)]</p>
+<p>[(Probability of surviving from time 1 to 2) X (Probability of not
+being seen at time 2)] X [(Probability of surviving from time 2 to 3) X
+(Probability of being seen at time 3)] X [(Probability of surviving from
+time 3 to 4) X (Probability of being seen at time 4)]</p>
 </blockquote>
 <p>This can be written:</p>
-<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \phi_3p_4\)</span></p>
+<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot
+\phi_3p_4\)</span></p>
 <p>How about the following capture history for a single individual:</p>
 <pre><code>1 0 1 0</code></pre>
 <p>What is the probability of observing this capture history?</p>
 <blockquote>
-<p>[(Probability of surviving from time 1 to 2) X (Probability of not being seen at time 2)] X [(Probability of surviving from time 2 to 3) X (Probability of being seen at time 3)] X</p>
+<p>[(Probability of surviving from time 1 to 2) X (Probability of not
+being seen at time 2)] X [(Probability of surviving from time 2 to 3) X
+(Probability of being seen at time 3)] X</p>
 </blockquote>
 <p>– either –</p>
 <blockquote>
-<p>[(Probability of surviving from time 3 to 4) X (Probability of not being seen at time 4)]</p>
+<p>[(Probability of surviving from time 3 to 4) X (Probability of not
+being seen at time 4)]</p>
 </blockquote>
 <p>– or –</p>
 <blockquote>
 <p>[(Probability of NOT surviving from time 3 to 4)</p>
 </blockquote>
 <p>This can be written:</p>
-<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot \left \{(1-\phi_3)+\phi_3(1-p_4) \right \}\)</span></p>
-<p><strong>Q</strong>: if survival were 100% and capture probability were 100%, what is the probability of observing the above capture histories?</p>
-<p><strong>Q</strong>: what about if survival was 100% and capture probability was 75%?</p>
-<p>Maximum likelihood estimation is the process of finding those values of the parameters <span class="math inline">\(\phi\)</span> and <span class="math inline">\(p\)</span> that would be most <em>likely</em> to generate the observed capture histories!</p>
-<p>This model is known as the <em>Cormack-Jolly-Seber</em> model (CJS), and is the most common analysis performed by Program MARK.</p>
-<p><strong>Q</strong>: Why is <span class="math inline">\(\phi\)</span> also known as “apparent” survival? Why is it not “true” survival???</p>
+<p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot
+\left \{(1-\phi_3)+\phi_3(1-p_4) \right \}\)</span></p>
+<p><strong>Q</strong>: if survival were 100% and capture probability
+were 100%, what is the probability of observing the above capture
+histories?</p>
+<p><strong>Q</strong>: what about if survival was 100% and capture
+probability was 75%?</p>
+<p>Maximum likelihood estimation is the process of finding those values
+of the parameters <span class="math inline">\(\phi\)</span> and <span
+class="math inline">\(p\)</span> that would be most <em>likely</em> to
+generate the observed capture histories!</p>
+<p>This model is known as the <em>Cormack-Jolly-Seber</em> model (CJS),
+and is the most common analysis performed by Program MARK.</p>
+<p><strong>Q</strong>: Why is <span class="math inline">\(\phi\)</span>
+also known as “apparent” survival? Why is it not “true” survival???</p>
 </div>
 </div>
 </div>

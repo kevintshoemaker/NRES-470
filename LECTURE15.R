@@ -1,41 +1,25 @@
 
-############################################################
-####                                                    ####  
-####  NRES 470/670, Lecture 15                          ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
+#  NRES 470/670, Lecture 15      
+#   University of Nevada, Reno                        
+#   Parameter estimation                              
 
 
-############################################################
-####  Parameter estimation                              ####
-############################################################
-
-
-
-###########
-# Cormack-Jolly-Seber (CJS) model in R
-###########
+# Cormack-Jolly-Seber (CJS) model in R  --------------------------
 
 library(marked)      # install the 'marked' package if you haven't already done this!
 data("dipper")
 head(dipper,10)
 
 
-##########
-# load data!
+# load data!  ----------------------------
 
 data(dipper)
 
-#############
-# Process data
+# Process data  -------------------------------
 
 dipper.proc=process.data(dipper,model="cjs",begin.time=1)  # Helper function- process the data for CJS model
 dipper.ddl=make.design.data(dipper.proc)    # another helper function- process data!
 
-##########
 # Fit models
 
 # fit time-varying cjs model
@@ -48,7 +32,6 @@ capture.output(suppressMessages(   # note: this is just to suppress messages to 
 mod.Phit.pt   # print out model
 mod.Phit.pt$results$AIC       # extract AIC
 
-########
 # fit time-invariant cjs model
 
 capture.output(suppressMessages(
@@ -58,7 +41,6 @@ capture.output(suppressMessages(
 mod.Phidot.pdot
 mod.Phidot.pdot$results$AIC
 
-########
 # fit sex-dependent cjs model
 
 capture.output(suppressMessages(
@@ -68,11 +50,9 @@ capture.output(suppressMessages(
 mod.Phisex.psex
 mod.Phisex.psex$results$AIC
 
-###########
-# compare all models with AIC
-###########
+# compare all models with AIC   ----------------------------
 
-######
+
 # Set up models to run (must have either "Phi." or "p." in the name)
 Phi.dot <- list(formula=~1)       
 Phi.time <- list(formula=~time)
@@ -85,26 +65,25 @@ p.timesex <- list(formula=~sex+time)
 
 cml=create.model.list(c("Phi","p"))    # create list of all models to run
 
-######
-# Run all models
+
+# Run all models   ----------------------------
 
 capture.output(suppressMessages(suppressWarnings(
   allmodels <- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method="Nelder-Mead",hessian=TRUE)
 )),file="temp.txt")
 
-######
-# AIC model selection
+
+# AIC model selection  ----------------------------
 
 allmodels
 
-#######
 # get parameter estimates and confidence intervals for best model
 
 allmodels[[1]]
 
 allmodels[[11]]
 
-#######
+
 # make predictions and plot them. 
 
 predict(allmodels[[1]])$Phi
@@ -116,14 +95,12 @@ plot(1:nrow(Phi_by_year),Phi_by_year$estimate,xlab="Year",ylab="Survival",ylim=c
 errbar(1:nrow(Phi_by_year),Phi_by_year$estimate,Phi_by_year$ucl,Phi_by_year$lcl,add=T)
 
 
-#######
-# Compute the mean survival rate for the population
+# Compute the mean survival rate for the population  -----------------------
 
 mean(Phi_by_year$estimate)
 
 
-#######
-# Compute the environmental variablility in annual survival rates. 
+# Compute the environmental variablility in annual survival rates ----------------
 
 sd(Phi_by_year$estimate)
 

@@ -1,7 +1,7 @@
 ---
 title: "Parameter estimation"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -15,31 +15,18 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 470/670, Lecture 15                          ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Parameter estimation                              ####
-############################################################
-
+#  NRES 470/670, Lecture 15      
+#   University of Nevada, Reno                        
+#   Parameter estimation                              
 
 ```
 
-
-NOTE: Mia Goldman MS defense Thursday Apr 21 at 2pm in FA 301.
 
 # Parameter estimation for wildlife population models!
 
 We have now gone through the basic mechanics of population modeling. But we have barely discussed where the parameter estimates come from!
 
-This is the focus of the current lecture!
+This is the focus of the current lecture- and much of NRES 488!
 
 ## Data requirements
 
@@ -52,8 +39,8 @@ This is the focus of the current lecture!
 ### Stage-structured (life history) models
 - Initial abundance ($\mathbf{N_0}$) (vector of initial abundances for all stages)
 - Stage-specific vital rates (fecundity, survival; fill in a transition matrix) 
-- Temporal variation in stage-specific vital rates (environmental stochasticity) 
-- Dependence of vital rates on density (e.g., how fecundity decreases as population gets more crowded)    
+- Temporal variation in specific vital rates (environmental stochasticity) 
+- Density-dependence of vital rates (e.g., how fecundity decreases as population gets more crowded)    
     - Which vital rates are density-dependent?    
   
 ### Metapopulation (spatial) models
@@ -72,11 +59,11 @@ Census data is ultimately what we all **wish** we had! It means we follow a popu
 
 In this case, computing survival and fecundity (and variation in these parameters, and density-dependence) is relatively straightforward!
 
-![](census1.png)
+![](census1.png){width=40%}
 
-![](census2.png)
+![](census2.png){width=80%}
 
-![](census3.png)
+![](census3.png){width=80%}
 
 **PROS**
 - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!
@@ -98,7 +85,6 @@ In this case, computing survival and fecundity (and variation in these parameter
 - Emigration and survival can be difficult to tease apart in many cases. 
 
 We will return to CMR data shortly (and in the optional Lab 7), but first...
-
 
 ### What if there's "no data"?
 
@@ -131,9 +117,9 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) -
     - This type of thinking (looking for broad patterns across species) is often called "Macroecology"
     
     
-![](allometry2.jpg)
+![](allometry2.jpg){width=50%}
 
-![](allometry1.jpg)
+![](allometry1.jpg){width=50%}
 
 ## Aside- is expert opinion okay to use???
 
@@ -146,7 +132,7 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) -
 
 ## Capture-mark-recapture (CMR) analysis
 
-![](statistics1.png)
+![](statistics1.png){width=70%}
 
 ### PVA Parameters estimable from CMR data
 
@@ -167,11 +153,11 @@ Each row in the following table represents a unique possible history of captures
 
 A "1" indicates that an animal was successfully captured in a given year, and subsequently released. 
 
-A "0" indicates that an animal was not successfully captured in a given year.
+A "0" indicates that an animal was not captured in a given year.
 
 A "2" indicates that an animal was successfully captured in a given year but was not released back into the population (probably died due to handling or capture).
 
-![](caphist1.png)
+![](caphist1.png){width=50%}
 
 ### Two main types of CMR analyses
 
@@ -185,7 +171,7 @@ We attempt to estimate abundance!
 - No emigration
 - All individuals are observable (but not necessarily observed...)
 
-![](peterson1.png)
+![](peterson1.png){width=75%}
 
 Parameters estimated:
 
@@ -227,16 +213,14 @@ Let's run through a CJS analysis in R! To follow along, please [save this script
 
 NOTE: this analysis includes both males and females (unlike the example in Lab 7), so the results will look somewhat different!
 
-![](dipper1.png)
+![](dipper1.png){width=50%}
 
 The European dipper data is THE classic example of a CMR dataset. Let's look at it!
 
 
 ```{r}
 
-###########
-# Cormack-Jolly-Seber (CJS) model in R
-###########
+# Cormack-Jolly-Seber (CJS) model in R  --------------------------
 
 library(marked)      # install the 'marked' package if you haven't already done this!
 data("dipper")
@@ -249,18 +233,15 @@ Here we use the "marked" package in R (instead of MARK) to do the ML parameter e
 
 ```{r}
 
-##########
-# load data!
+# load data!  ----------------------------
 
 data(dipper)
 
-#############
-# Process data
+# Process data  -------------------------------
 
 dipper.proc=process.data(dipper,model="cjs",begin.time=1)  # Helper function- process the data for CJS model
 dipper.ddl=make.design.data(dipper.proc)    # another helper function- process data!
 
-##########
 # Fit models
 
 # fit time-varying cjs model
@@ -273,7 +254,6 @@ capture.output(suppressMessages(   # note: this is just to suppress messages to 
 mod.Phit.pt   # print out model
 mod.Phit.pt$results$AIC       # extract AIC
 
-########
 # fit time-invariant cjs model
 
 capture.output(suppressMessages(
@@ -283,7 +263,6 @@ capture.output(suppressMessages(
 mod.Phidot.pdot
 mod.Phidot.pdot$results$AIC
 
-########
 # fit sex-dependent cjs model
 
 capture.output(suppressMessages(
@@ -293,11 +272,9 @@ capture.output(suppressMessages(
 mod.Phisex.psex
 mod.Phisex.psex$results$AIC
 
-###########
-# compare all models with AIC
-###########
+# compare all models with AIC   ----------------------------
 
-######
+
 # Set up models to run (must have either "Phi." or "p." in the name)
 Phi.dot <- list(formula=~1)       
 Phi.time <- list(formula=~time)
@@ -310,26 +287,25 @@ p.timesex <- list(formula=~sex+time)
 
 cml=create.model.list(c("Phi","p"))    # create list of all models to run
 
-######
-# Run all models
+
+# Run all models   ----------------------------
 
 capture.output(suppressMessages(suppressWarnings(
   allmodels <- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,accumulate=FALSE,method="Nelder-Mead",hessian=TRUE)
 )),file="temp.txt")
 
-######
-# AIC model selection
+
+# AIC model selection  ----------------------------
 
 allmodels
 
-#######
 # get parameter estimates and confidence intervals for best model
 
 allmodels[[1]]
 
 allmodels[[11]]
 
-#######
+
 # make predictions and plot them. 
 
 predict(allmodels[[1]])$Phi
@@ -346,8 +322,7 @@ What is our estimate for mean survival?
 
 ```{r}
 
-#######
-# Compute the mean survival rate for the population
+# Compute the mean survival rate for the population  -----------------------
 
 mean(Phi_by_year$estimate)
 
@@ -357,18 +332,13 @@ What is the environmental stochasticity?
 
 ```{r}
 
-#######
-# Compute the environmental variablility in annual survival rates. 
+# Compute the environmental variablility in annual survival rates ----------------
 
 sd(Phi_by_year$estimate)
 
 ```
 
-### Program MARK!
 
-MARK is free software, and can be downloaded from [here](http://warnercnr.colostate.edu/~gwhite/mark/mark.htm)
-
-The demo from Lab 7 can be found [here](LAB7.html#open-population_models)
 
 [--go to next lecture--](LECTURE16.html)
 
