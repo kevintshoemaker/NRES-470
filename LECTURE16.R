@@ -1,21 +1,11 @@
 
-############################################################
-####                                                    ####  
-####  NRES 470/670, Lecture 16                          ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Competition                                       ####
-############################################################
+#  NRES 470/670, Lecture 16  
+#     University of Nevada, Reno                
+#     Competition                    
 
 
 
-##### LOTKA VOLTERRA COMPETITION EXAMPLE
+## LOTKA VOLTERRA COMPETITION EXAMPLE  -----------------------
 
 ## Params
 
@@ -44,8 +34,6 @@ for(i in 1:(Nyears+1)){
 
 
 
-
-####
 # visualize the initial abundances on the phase plane
 
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
@@ -53,6 +41,7 @@ points(System[1,],col="green",pch=20,cex=2)
 
 
 # and the first 5 years...
+
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(System[1:6,],col="green",pch=20,cex=2)
 
@@ -62,7 +51,7 @@ plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species
 points(System,col="green",pch=20,cex=2)
 
 
-##### LOTKA VOLTERRA COMPETITION EXAMPLE #2
+## LOTKA VOLTERRA COMPETITION EXAMPLE #2 ----------------------------
 
 ## Params
 
@@ -99,7 +88,7 @@ points(jitter(System[,1],500),jitter(System[,2],500),col="brown",pch=20,cex=0.3)
 abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 
 
-##### LOTKA VOLTERRA COMPETITION EXAMPLE #3: multiple starting points
+## LOTKA VOLTERRA COMPETITION EXAMPLE #3: multiple starting points   --------------------
 
 ## Params
 
@@ -141,11 +130,9 @@ points(jitter(System3[,1],500),jitter(System3[,2],500),col="blue",pch=20,cex=0.3
 
 abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 
-##########
-# Visualize phase plane with arrows!
-##########
 
-#######################################################################################
+# Visualize phase plane with arrows!  --------------------
+
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
@@ -185,7 +172,7 @@ phasearrows.draw(new)
 #######################################################################################
 
 
-#### example with phase-plane arrows
+### example with phase-plane arrows
 
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="N1",ylab="N2")
 phasearrows.draw(new)
@@ -193,9 +180,7 @@ abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 1
 
 
-##########
 # Another example
-##########
 
 Rmax1 <- 0.2
 Alpha <- 1.1
@@ -217,9 +202,8 @@ phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
-#########
+
 # And another example!
-#########
 
 Rmax1 <- 0.5
 Alpha <- 1.05
@@ -242,9 +226,7 @@ abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
 
-########
 # And another!
-#########
 
 Alpha <- 0.3
 Beta <- 0.2
@@ -271,9 +253,7 @@ abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=2)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=2)   # species 2
 
 
-########
 # And finally...
-########
 
 Rmax1 <- 0.2
 Alpha <- 1.5
