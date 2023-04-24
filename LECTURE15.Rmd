@@ -55,7 +55,7 @@ This is the focus of the current lecture- and much of NRES 488!
 
 ### Census data!
 
-Census data is ultimately what we all **wish** we had! It means we follow a population over time, and we know exactly how many individuals of each stage are in the population each year. We have *perfect detection!!!!*
+Census data is ultimately what we all **wish** we had! It means we follow a population over time, and we know exactly how many individuals of each stage are in the population each year. We have *perfect detection!*
 
 In this case, computing survival and fecundity (and variation in these parameters, and density-dependence) is relatively straightforward!
 
@@ -195,11 +195,9 @@ We attempt to estimate the processes driving abundance change (often, survival r
 - Often of great interest to ecologists and managers.
 
 
-
-
 #### Key assumptions of the CJS model
 
-- All individuals in population are equally detectible at each sampling occasion (each capture session represents a totally random sample from the population)    
+- All individuals in population are equally detectable at each sampling occasion (each capture session represents a totally random sample from the population)    
 - Marks are not lost or missed by surveyors    
 - All emigration is permanent (equivalent to a mortality)    
 

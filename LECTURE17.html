@@ -14,7 +14,7 @@
 
 <title>Species interactions: prey-predator!</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +329,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +345,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -362,19 +366,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -400,7 +395,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -431,7 +426,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -452,7 +456,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Species interactions: prey-predator!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2023</h4>
 
 </div>
 
@@ -461,39 +465,85 @@ div.tocify {
 <h2>Predation</h2>
 <p><img src="predation1.jpg" /></p>
 <p><img src="predation2.jpg" /></p>
-<p>In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two actors benefits greatly from the interaction – and the other actor loses out!</p>
-<p>Nearly all prey-predator models, even the most state-of-the-art, complex ones, share this common framework:</p>
-<p><span class="math inline">\(\Delta V = rV^* - f(V) \cdot P\)</span></p>
+<p>In the case of competition, we saw that each species negatively
+influenced the other. In the case of prey-predator interactions, one of
+the two actors benefits greatly from the interaction – and the other
+actor loses out!</p>
+<p>Nearly all prey-predator models, even the most state-of-the-art,
+complex ones, share this common framework:</p>
+<p><span class="math inline">\(\Delta V = rV^* - f(V) \cdot
+P\)</span></p>
 <p>AND</p>
-<p><span class="math inline">\(\Delta P = f(V)*conversion\space factor \cdot P - qP^*\)</span></p>
+<p><span class="math inline">\(\Delta P = f(V)*conversion\space factor
+\cdot P - qP^*\)</span></p>
 <p>Where</p>
-<p><span class="math inline">\(V\)</span> is the total prey abundance (V for victims!), and</p>
-<p><span class="math inline">\(P\)</span> is the total predator abundance, and</p>
-<p><span class="math inline">\(rV^*\)</span> represents the growth of the prey population <em>in the absence of predators</em> – usually, this is some form of the standard single-species population growth models we have considered throughout most of this course (possibly density-dependent),</p>
-<p><span class="math inline">\(-qP^*\)</span> represents the growth of the predator population <em>in the absence of prey</em> – usually this is simply exponential decline!,</p>
+<p><span class="math inline">\(V\)</span> is the total prey abundance (V
+for victims!), and</p>
+<p><span class="math inline">\(P\)</span> is the total predator
+abundance, and</p>
+<p><span class="math inline">\(rV^*\)</span> represents the growth of
+the prey population <em>in the absence of predators</em> – usually, this
+is some form of the standard single-species population growth models we
+have considered throughout most of this course (possibly
+density-dependent),</p>
+<p><span class="math inline">\(-qP^*\)</span> represents the growth of
+the predator population <em>in the absence of prey</em> – usually this
+is simply exponential decline!,</p>
 <p>AND</p>
-<p><span class="math inline">\(f(V)\)</span> is known as the <strong>functional response</strong> – that is, the per-capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities (<span class="math inline">\(f(V,P)\)</span>).</p>
+<p><span class="math inline">\(f(V)\)</span> is known as the
+<strong>functional response</strong> – that is, the per-capita rate of
+prey consumption, usually a function of just the density (availability)
+of prey, but sometimes a function of both predator and prey densities
+(<span class="math inline">\(f(V,P)\)</span>).</p>
 <p>AND</p>
-<p><span class="math inline">\(f(V)\cdot conversion\space factor\)</span> (alternatively represented as <span class="math inline">\(g(V)\)</span>) is known as the <strong>numerical response</strong> – that is, the increase in per-capita predator population growth due to prey consumption.</p>
-<p>There are many different types of possible functional and numerical response curves. Let’s start simple!</p>
+<p><span class="math inline">\(f(V)\cdot conversion\space
+factor\)</span> (alternatively represented as <span
+class="math inline">\(g(V)\)</span>) is known as the <strong>numerical
+response</strong> – that is, the increase in per-capita predator
+population growth due to prey consumption.</p>
+<p>There are many different types of possible functional and numerical
+response curves. Let’s start simple!</p>
 <div id="the-classical-prey-predator-model" class="section level3">
 <h3>The classical prey-predator model</h3>
-<p>Let’s look at predation mathematically, starting with the simplest possible model…</p>
+<p>Let’s look at predation mathematically, starting with the simplest
+possible model…</p>
 <div id="the-victims" class="section level4">
 <h4>The victims…</h4>
 <p>We will consider the prey, or “victims” first:</p>
-<p>In the absence of predators, let’s assume that the victim population grows according to the basic exponential growth equation:</p>
+<p>In the absence of predators, let’s assume that the victim population
+grows according to the basic exponential growth equation:</p>
 <p><span class="math inline">\(\Delta V = rV\)</span></p>
-<p>We will assume that the intrinsic rate of growth, <span class="math inline">\(r\)</span>, is positive! In the absence of predators, the population grows exponentially.</p>
-<p>If predators are present, the population growth of the victims will slow down…</p>
-<p>What expression could define the rate at which prey are consumed by predators?</p>
-<p>First of all, let’s assume that predators and prey walk randomly through their common environment, bumping into each other randomly. Every time the predator bumps into a prey item, the predator has some chance of consuming that prey item.</p>
-<p>This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way.</p>
-<p>Under such circumstances, the predators do NOT interfere with one another and never get full. Each predator consumes a fixed number of prey in a given time period, depending only on prey availability.</p>
-<p>Consider the case where there are <span class="math inline">\(V\)</span> prey and only a single predator in a hypothetical prey-predator system.</p>
-<p><strong>Q</strong>: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example (<span class="math inline">\(\alpha\)</span>)?</p>
-<p>In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30,000 prey per day. (realistic?)</p>
-<p><strong>Q</strong> what is the shape of the functional response in this case?</p>
+<p>We will assume that the intrinsic rate of growth, <span
+class="math inline">\(r\)</span>, is positive! In the absence of
+predators, the population grows exponentially.</p>
+<p>If predators are present, the population growth of the victims will
+slow down…</p>
+<p>What expression could define the rate at which prey are consumed by
+predators?</p>
+<p>First of all, let’s assume that predators and prey walk randomly
+through their common environment, bumping into each other randomly.
+Every time the predator bumps into a prey item, the predator has some
+chance of consuming that prey item.</p>
+<p>This is analogous to molecules moving randomly in a solution,
+occasionally causing reactions whenever they bump into other molecule(s)
+in the right way.</p>
+<p>Under such circumstances, the predators do NOT interfere with one
+another and never get full. Each predator consumes a fixed number of
+prey in a given time period, depending only on prey availability.</p>
+<p>Consider the case where there are <span
+class="math inline">\(V\)</span> prey and only a single predator in a
+hypothetical prey-predator system.</p>
+<p><strong>Q</strong>: Imagine there are 100 prey and only one predator.
+A total of 3 prey are consumed in a single day. What is the daily rate
+of prey consumption per predator in this example (<span
+class="math inline">\(\alpha\)</span>)?</p>
+<p>In this case, 3% (0.03) of prey are successfully encountered and
+consumed by the predator each day. If there were 1000 prey on the
+landscape, the predator would catch and consume 30 prey. And if there
+were 1 million prey, the predator would catch and consume 30,000 prey
+per day. (realistic?)</p>
+<p><strong>Q</strong> what is the shape of the functional response in
+this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
 <pre class="r"><code>#######
 # simple functional response
@@ -504,34 +554,70 @@ LVfuncresp &lt;- function(V,alpha){
 
 curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>…Of course, this <em>alpha</em> term has a different meaning from the <em>alpha</em> in the L-V competition models! Sorry but you can thank Alfred Lotka for that!</p>
-<p>Now consider the case where there is more than one predator – that is, there are <span class="math inline">\(P\)</span> predators and there are <span class="math inline">\(V\)</span> prey. Recall that each predator has <em>no influence</em> on the consumption rates of other predators. The predators are just like molecules randomly bumping into prey molecules.</p>
+<p>…Of course, this <em>alpha</em> term has a different meaning from the
+<em>alpha</em> in the L-V competition models! Sorry but you can thank
+Alfred Lotka for that!</p>
+<p>Now consider the case where there is more than one predator – that
+is, there are <span class="math inline">\(P\)</span> predators and there
+are <span class="math inline">\(V\)</span> prey. Recall that each
+predator has <em>no influence</em> on the consumption rates of other
+predators. The predators are just like molecules randomly bumping into
+prey molecules.</p>
 <p>The <em>total rate of predation</em> now is:</p>
 <p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
 <p>Does this make sense?</p>
-<p>The term <span class="math inline">\(\alpha\)</span> is sometimes referred to as <strong>capture efficiency</strong>. Does this make sense? Consider a case where every predator “bumps into” all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more <em>efficient</em> at capturing prey?</p>
-<p>Now, the (instantaneous) prey growth rate can be defined by the following equation:</p>
+<p>The term <span class="math inline">\(\alpha\)</span> is sometimes
+referred to as <strong>capture efficiency</strong>. Does this make
+sense? Consider a case where every predator “bumps into” all prey in the
+landscape each time step, but only consumes 3% of those prey. Now
+consider a predator that consumes 50% of those prey per time step? Which
+predator is more <em>efficient</em> at capturing prey?</p>
+<p>Now, the (instantaneous) prey growth rate can be defined by the
+following equation:</p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
-<p>In the absence of predators, the prey population grows exponentially. However, with enough predators on the landscape, the population will decline.</p>
-<p>This model is one half of what is known as the <strong>Lotka-Volterra</strong> prey-predator model.</p>
-<p>The other half is the predator population growth model, of course!!</p>
+<p>In the absence of predators, the prey population grows exponentially.
+However, with enough predators on the landscape, the population will
+decline.</p>
+<p>This model is one half of what is known as the
+<strong>Lotka-Volterra</strong> prey-predator model.</p>
+<p>The other half is the predator population growth model, of
+course!!</p>
 </div>
 <div id="the-predators" class="section level4">
 <h4>The predators…</h4>
-<p>In the absence of prey, let’s assume that the predator population grows just how we might imagine it grows- BADLY!</p>
-<p>In the absence of prey, the predator population declines exponentially.</p>
+<p>In the absence of prey, let’s assume that the predator population
+grows just how we might imagine it grows- BADLY!</p>
+<p>In the absence of prey, the predator population declines
+exponentially.</p>
 <p><span class="math inline">\(\Delta P = -qP\)</span></p>
-<p>If enough prey are present, the population growth rate of the predators will go up…</p>
-<p>Recall that (in this simple model) predators and prey walk randomly through their common environment, bumping into each other randomly. Each predator consumes a fixed percentage of the prey population. That is, the functional response is:</p>
+<p>If enough prey are present, the population growth rate of the
+predators will go up…</p>
+<p>Recall that (in this simple model) predators and prey walk randomly
+through their common environment, bumping into each other randomly. Each
+predator consumes a fixed percentage of the prey population. That is,
+the functional response is:</p>
 <p><span class="math inline">\(f(V) = \alpha V\)</span></p>
-<p>The <em>numerical response</em> is the increase in the fractional growth rate of <em>predators</em> per unit prey consumed. The numerical response is related to the functional response. While the functional response describes the prey consumption rate per predator, the numerical response describes how that prey consumption translates into the growth of the predator population.</p>
+<p>The <em>numerical response</em> is the increase in the fractional
+growth rate of <em>predators</em> per unit prey consumed. The numerical
+response is related to the functional response. While the functional
+response describes the prey consumption rate per predator, the numerical
+response describes how that prey consumption translates into the growth
+of the predator population.</p>
 <p><span class="math inline">\(g(V) = some.function(f(V))\)</span></p>
-<p>The simplest numerical response is that predator population growth increases as a linear function of per-capita prey consumption:</p>
-<p><span class="math inline">\(g(V) = \gamma (\alpha \cdot V)\)</span></p>
-<p>Where <span class="math inline">\(\gamma\)</span> is sometimes referred to as ‘conversion efficiency’ and <span class="math inline">\(\alpha\)</span> is the capture efficiency and <span class="math inline">\(\alpha \cdot V\)</span> is the total prey consumed per predator.</p>
-<p>Or, since two constants multiplied together results in another constant:</p>
+<p>The simplest numerical response is that predator population growth
+increases as a linear function of per-capita prey consumption:</p>
+<p><span class="math inline">\(g(V) = \gamma (\alpha \cdot
+V)\)</span></p>
+<p>Where <span class="math inline">\(\gamma\)</span> is sometimes
+referred to as ‘conversion efficiency’ and <span
+class="math inline">\(\alpha\)</span> is the capture efficiency and
+<span class="math inline">\(\alpha \cdot V\)</span> is the total prey
+consumed per predator.</p>
+<p>Or, since two constants multiplied together results in another
+constant:</p>
 <p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
-<p><strong>Q</strong> what is the shape of the <strong>numerical response</strong> in this case?</p>
+<p><strong>Q</strong> what is the shape of the <strong>numerical
+response</strong> in this case?</p>
 <pre class="r"><code>######
 # Numerical response
 
@@ -541,12 +627,16 @@ LVnumresp &lt;- function(V,beta){
 
 curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>The <em>increase in total predators due to prey consumption</em> now is:</p>
-<p><span class="math inline">\(g(V) \cdot P = \beta \cdot V \cdot P\)</span></p>
+<p>The <em>increase in total predators due to prey consumption</em> now
+is:</p>
+<p><span class="math inline">\(g(V) \cdot P = \beta \cdot V \cdot
+P\)</span></p>
 <p>Does this make sense?</p>
-<p>Now, the (instantaneous) PREDATOR growth rate can be defined by the following equation:</p>
+<p>Now, the (instantaneous) PREDATOR growth rate can be defined by the
+following equation:</p>
 <p><span class="math inline">\(\Delta P = \beta VP - qP\)</span></p>
-<p>This model is the other half of what is known as the <strong>Lotka-Volterra</strong> prey-predator model.</p>
+<p>This model is the other half of what is known as the
+<strong>Lotka-Volterra</strong> prey-predator model.</p>
 <p>Taken together, the model can be described as follows:</p>
 <p><span class="math inline">\(\Delta P = \beta VP - qP\)</span></p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
@@ -554,24 +644,46 @@ curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Incr
 </div>
 <div id="l-v-predation-model-in-insightmaker" class="section level3">
 <h3>L-V predation model in InsightMaker</h3>
-<p>Before we go deeper into predation modeling, let’s simulate prey and predator population growth under the L-V predation model.</p>
-<p><strong>Step 1</strong>: First, clone <a href="https://insightmaker.com/insight/5rui2efFmW8cBmVDyxPw5h/Base-prey-predator-model">this Insight</a>, which provides the skeleton for a basic prey-predator model</p>
-<p><strong>Step 2</strong>: Correctly set up the equations for the variables “functional response”" and “numerical response”.</p>
-<p><strong>Step 3</strong>: Correctly set up the flow equations for “total prey consumed” and “predator growth”, which refer to the the prey lost and the predators gained per time step, respectively.</p>
-<p><strong>Step 4</strong>: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to “Accurate (RK4)” (this makes InsightMaker behave more like a continuous growth model).</p>
-<p><strong>Step 5</strong>: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.</p>
-<p><strong>Q</strong> What happens if you change the initial abundances?</p>
-<p><strong>Q</strong> What happens if you change initial abundance of both species to 100? Is this an <strong>equilibrium</strong>? If so, is it <strong>stable</strong>?</p>
-<p><strong>Step 6</strong>: Try some other parameter values for alpha, beta, r, and q…</p>
+<p>Before we go deeper into predation modeling, let’s simulate prey and
+predator population growth under the L-V predation model.</p>
+<p><strong>Step 1</strong>: First, clone <a
+href="https://insightmaker.com/insight/5rui2efFmW8cBmVDyxPw5h/Base-prey-predator-model">this
+Insight</a>, which provides the skeleton for a basic prey-predator
+model</p>
+<p><strong>Step 2</strong>: Correctly set up the equations for the
+variables “functional response”” and “numerical response”.</p>
+<p><strong>Step 3</strong>: Correctly set up the flow equations for
+“total prey consumed” and “predator growth”, which refer to the the prey
+lost and the predators gained per time step, respectively.</p>
+<p><strong>Step 4</strong>: In the settings menu, change the simulation
+length to 200 and make sure that your analysis algorithm is set to
+“Accurate (RK4)” (this makes InsightMaker behave more like a continuous
+growth model).</p>
+<p><strong>Step 5</strong>: Set the Initial abundance of prey and
+predators to 100 and 50, respectively. Set the alpha and beta terms to
+0.001, and set the r_prey and q_pred terms to 0.1. Run the model and
+visualize the time series for prey and predators.</p>
+<p><strong>Q</strong> What happens if you change the initial
+abundances?</p>
+<p><strong>Q</strong> What happens if you change initial abundance of
+both species to 100? Is this an <strong>equilibrium</strong>? If so, is
+it <strong>stable</strong>?</p>
+<p><strong>Step 6</strong>: Try some other parameter values for alpha,
+beta, r, and q…</p>
 <p><strong>Q</strong> Does the prey or predator ever go extinct?</p>
-<p><strong>Q</strong> Can you find some settings that make very slow oscillations?</p>
-<p><strong>Q</strong> Can you find some settings that make very fast oscillations?</p>
-<p><strong>Q</strong> Can you find some settings that make very shallow oscillations?</p>
+<p><strong>Q</strong> Can you find some settings that make very slow
+oscillations?</p>
+<p><strong>Q</strong> Can you find some settings that make very fast
+oscillations?</p>
+<p><strong>Q</strong> Can you find some settings that make very shallow
+oscillations?</p>
 </div>
 </div>
-<div id="prey-predator-models-on-the-phase-plane" class="section level2">
+<div id="prey-predator-models-on-the-phase-plane"
+class="section level2">
 <h2>Prey-Predator models on the phase plane!</h2>
-<p>If you want to follow along in R, click <a href="LECTURE17.R">here</a> for the R script!</p>
+<p>If you want to follow along in R, click <a
+href="LECTURE17.R">here</a> for the R script!</p>
 <pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
 
 ## Params
@@ -597,12 +709,14 @@ doYear &lt;- function(prevyear){
 for(i in 1:(Nyears*10+1)){
   System[1+i,] &lt;- doYear(System[i,])
 }</code></pre>
-<p>Now let’s visualize this basic L-V system in <em>phase space</em>:</p>
+<p>Now let’s visualize this basic L-V system in <em>phase
+space</em>:</p>
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;prey&quot;,ylab=&quot;predators&quot;)
 points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,cex=0.85)
 points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Okay, so as prey get more abundant, predators start increasing, but as predators increase, prey abundance goes down. And repeat!</p>
+<p>Okay, so as prey get more abundant, predators start increasing, but
+as predators increase, prey abundance goes down. And repeat!</p>
 <p>Here is another example…</p>
 <pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
 
@@ -635,13 +749,16 @@ plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;prey&quot;,ylab
 points(System[seq(1,1000,10),],col=&quot;green&quot;,type=&quot;p&quot;,pch=20,cex=0.85)
 points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>With some jittering, we can visualize the amount of time the system spends in various parts of phase space…</p>
+<p>With some jittering, we can visualize the amount of time the system
+spends in various parts of phase space…</p>
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,200),xlim=c(0,200),xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
 points(jitter(System[,1],200),jitter(System[,2],200),col=&quot;brown&quot;,pch=20,cex=0.3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
-<p>You can see that this system spends much more time near the origin, where abundances are low for both prey and predator!</p>
-<p>Finally, let’s consider multiple starting points and see how the system behaves!</p>
+<p>You can see that this system spends much more time near the origin,
+where abundances are low for both prey and predator!</p>
+<p>Finally, let’s consider multiple starting points and see how the
+system behaves!</p>
 <pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
@@ -671,7 +788,8 @@ System3 &lt;- data.frame(n1 = rep(InitN1,(Nyears*10+1)),n2 = InitN2)
 for(i in 1:(Nyears*10+1)){
   System3[1+i,] &lt;- doYear(System3[i,])
 }</code></pre>
-<p>Now, phase space looks like this (with jittering to indicate concentration of points:</p>
+<p>Now, phase space looks like this (with jittering to indicate
+concentration of points:</p>
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,ylim=c(0,400),xlim=c(0,400),xlab=&quot;species 1&quot;,ylab=&quot;species 2&quot;)
 points(jitter(System[,1],500),jitter(System[,2],500),col=&quot;brown&quot;,pch=20,cex=0.3)
 points(jitter(System1[,1],500),jitter(System1[,2],500),col=&quot;green&quot;,pch=20,cex=0.3)
@@ -679,16 +797,22 @@ points(jitter(System2[,1],500),jitter(System2[,2],500),col=&quot;red&quot;,pch=2
 points(jitter(System3[,1],500),jitter(System3[,2],500),col=&quot;blue&quot;,pch=20,cex=0.3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code>#abline(h=K2,v=K1,col=&quot;gray&quot;,lwd=2,lty=2)</code></pre>
-<p><strong>Q</strong>: Does this predator-prey system have a stable equilibrium?</p>
-<p><strong>Q</strong>: Does this predator-prey system have an equilibrium at all?</p>
-<p><strong>Q</strong>: How do these dynamics look like when visualized as time series?</p>
+<p><strong>Q</strong>: Does this predator-prey system have a stable
+equilibrium?</p>
+<p><strong>Q</strong>: Does this predator-prey system have an
+equilibrium at all?</p>
+<p><strong>Q</strong>: How do these dynamics look like when visualized
+as time series?</p>
 <pre class="r"><code>plot(seq(1,100,length=nrow(System)), System[,1], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;orange&quot;,lwd=2,ylim=c(0,160),xlim=c(0,95))
 points(seq(1,100,length=nrow(System)), System[,2], xlab=&quot;Time&quot;, ylab=&quot;Abundance&quot;,type=&quot;l&quot;,col=&quot;green&quot;,lwd=2,lty=2)
 legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;green&quot;),legend=c(&quot;prey&quot;,&quot;predator&quot;),bty=&quot;n&quot;)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<div id="more-with-the-l-v-predator-prey-phase-space" class="section level3">
+<div id="more-with-the-l-v-predator-prey-phase-space"
+class="section level3">
 <h3>More with the L-V predator-prey phase space!</h3>
-<p>Just like before, let’s draw arrows throughout phase space, representing where the system would be expected to go from each point in phase space.</p>
+<p>Just like before, let’s draw arrows throughout phase space,
+representing where the system would be expected to go from each point in
+phase space.</p>
 <pre class="r"><code>#######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
@@ -730,13 +854,22 @@ phasearrows.draw(new)</code></pre>
 </div>
 <div id="isoclines" class="section level3">
 <h3>Isoclines!</h3>
-<p>Again, it can be helpful to plot out the isoclines in phase space – that is, the conditions under which the predator and prey populations do NOT grow!</p>
-<p>If we set the L-V prey growth equation to zero, we find that the victim population is stable under the following conditions in phase space:</p>
+<p>Again, it can be helpful to plot out the isoclines in phase space –
+that is, the conditions under which the predator and prey populations do
+NOT grow!</p>
+<p>If we set the L-V prey growth equation to zero, we find that the
+victim population is stable under the following conditions in phase
+space:</p>
 <p><span class="math inline">\(\hat{P} =\frac{r}{\alpha}\)</span></p>
-<p>If we set the L-V predator equation to zero, we find that the predator population is stable under the following conditions in phase space:</p>
+<p>If we set the L-V predator equation to zero, we find that the
+predator population is stable under the following conditions in phase
+space:</p>
 <p><span class="math inline">\(\hat{V} =\frac{q}{\beta}\)</span></p>
-<p>That is, the prey population is stable only if there are just enough predators to bump into (and subsequently eat up) any excess individuals produced each year</p>
-<p>And the predator population is stable only if there are just enough prey to offset natural mortality.</p>
+<p>That is, the prey population is stable only if there are just enough
+predators to bump into (and subsequently eat up) any excess individuals
+produced each year</p>
+<p>And the predator population is stable only if there are just enough
+prey to offset natural mortality.</p>
 <p>Let’s visualize this in phase space.</p>
 <pre class="r"><code>plot(1,1,pch=&quot;&quot;,xlim=xlim,ylim=ylim,xlab=&quot;Prey&quot;,ylab=&quot;Predators&quot;)
 phasearrows.draw(new)
@@ -745,12 +878,14 @@ abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 </div>
-<div id="assumptions-of-the-l-v-prey-predator-model" class="section level2">
+<div id="assumptions-of-the-l-v-prey-predator-model"
+class="section level2">
 <h2>Assumptions of the L-V prey-predator model</h2>
 <ul>
 <li>Victim population is regulated only by predation</li>
 <li>Predator feeds only on one species of prey</li>
-<li>Individual predators can consume infinity prey items per time step theoretically</li>
+<li>Individual predators can consume infinity prey items per time step
+theoretically</li>
 <li>No interference among predators</li>
 <li>Victims have no refuge from predators</li>
 </ul>
@@ -764,7 +899,9 @@ abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
 <li>add a refuge for prey!</li>
 <li>add a predator carrying capacity!</li>
 </ul>
-<p>We can play around with these scenarios in InsightMaker. But it can be instructive to visualize in phase space first. For example, let’s incorporate a victim carrying capacity.</p>
+<p>We can play around with these scenarios in InsightMaker. But it can
+be instructive to visualize in phase space first. For example, let’s
+incorporate a victim carrying capacity.</p>
 <div id="victim-k-in-phase-space" class="section level3">
 <h3>victim K in phase space</h3>
 <pre class="r"><code>#######################################################################################
@@ -814,7 +951,8 @@ phasearrows.draw(new)</code></pre>
 <pre class="r"><code>abline((r/Alpha),-(c/Alpha),col=&quot;red&quot;,lwd=3)   # prey
 abline(v=q/Beta,col=&quot;blue&quot;,lwd=3)   # pred</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>Follow the arrows. What do you think the system dynamics will look like?</p>
+<p>Follow the arrows. What do you think the system dynamics will look
+like?</p>
 <pre class="r"><code>## Params
 
 Alpha &lt;- 0.001
@@ -890,9 +1028,14 @@ legend(&quot;top&quot;,lwd=c(2,2),lty=c(1,2),col=c(&quot;orange&quot;,&quot;gree
 </div>
 <div id="alternative-functional-responses" class="section level3">
 <h3>Alternative functional responses</h3>
-<p>The L-V prey-predator model assumes that prey consumption per predator increases linearly with an increase in prey abundance. Following C.S. “Buzz” Holling, this is known as a <strong>“Type I” functional response</strong>.</p>
-<p>The Type I functional response makes several unrealistic assumptions – for example, that predators never get full and stop eating!</p>
-<p>As we have seen before, the type I functional response looks something like this!</p>
+<p>The L-V prey-predator model assumes that prey consumption per
+predator increases linearly with an increase in prey abundance.
+Following C.S. “Buzz” Holling, this is known as a <strong>“Type I”
+functional response</strong>.</p>
+<p>The Type I functional response makes several unrealistic assumptions
+– for example, that predators never get full and stop eating!</p>
+<p>As we have seen before, the type I functional response looks
+something like this!</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
 <pre class="r"><code>TypeIfuncresp &lt;- function(V,alpha){
   alpha*V
@@ -902,13 +1045,21 @@ curve(TypeIfuncresp(x,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&quot;To
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <div id="type-ii-functional-response" class="section level4">
 <h4>Type II functional response</h4>
-<p>The <strong>Type II functional response</strong> takes prey saturation into account- the predators will consume more prey with increasing prey densities, but only up to a point!</p>
+<p>The <strong>Type II functional response</strong> takes prey
+saturation into account- the predators will consume more prey with
+increasing prey densities, but only up to a point!</p>
 <p>The type II functional response is described mathematically as:</p>
-<p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha hV}\)</span>,</p>
-<p>where <em>f(V,P)</em> is the functional response (prey consumed per predator).</p>
-<p>Similar to the Type I functional response, <span class="math inline">\(\alpha\)</span> is the “attack rate” (rate at which predator-prey encounters increase as prey densities increase)</p>
-<p>The new term, <em>h</em>, describes the handling time (average time a predator spends processing a single prey item).</p>
-<p>The term <em>h</em> is probably best understood as the <em>inverse of the maximum prey consumption rate</em>!</p>
+<p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha
+hV}\)</span>,</p>
+<p>where <em>f(V,P)</em> is the functional response (prey consumed per
+predator).</p>
+<p>Similar to the Type I functional response, <span
+class="math inline">\(\alpha\)</span> is the “attack rate” (rate at
+which predator-prey encounters increase as prey densities increase)</p>
+<p>The new term, <em>h</em>, describes the handling time (average time a
+predator spends processing a single prey item).</p>
+<p>The term <em>h</em> is probably best understood as the <em>inverse of
+the maximum prey consumption rate</em>!</p>
 <p>Let’s visualize it!</p>
 <pre class="r"><code>TypeIIfuncresp &lt;- function(V,alpha,h){
   (alpha*V)/(1+alpha*h*V)
@@ -919,14 +1070,28 @@ curve(TypeIIfuncresp(x,0.1,0.1),0,500,xlab=&quot;Victim abundance&quot;,ylab=&qu
 </div>
 <div id="type-iii-functional-response" class="section level4">
 <h4>Type III functional response</h4>
-<p>The <strong>Type III functional response</strong> takes predator learning into account- as prey become more abundant (relative to other potential prey) the predators will develop a <em>search image</em> and the capture efficiency will increase with increasing prey abundance up to a certain point.</p>
-<p>Conversely, as prey densities get really low, predators will stop even bothering to look for the prey, so capture efficiency will be depressed.</p>
-<p>The type III functional response can be described mathematically as:</p>
-<p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha hV}\)</span>,</p>
-<p>where <em>f(V,P)</em> is the functional response (prey consumed per predator).</p>
-<p>Similar to the Type I functional response, <span class="math inline">\(\alpha\)</span> is the “attack rate” (rate at which a predator-prey encounters increase as prey densities increase)</p>
-<p>The new term, <em>h</em>, describes the handling time (average time a predator spends processing a single prey item).</p>
-<p>The term <em>h</em> is probably best understood as the <em>inverse of the maximum prey consumption rate</em>!</p>
+<p>The <strong>Type III functional response</strong> takes predator
+learning into account- as prey become more abundant (relative to other
+potential prey) the predators will develop a <em>search image</em> and
+the capture efficiency will increase with increasing prey abundance up
+to a certain point.</p>
+<p>Conversely, as prey densities get really low, predators will stop
+even bothering to look for the prey, so capture efficiency will be
+depressed.</p>
+<p>The type III functional response can be described mathematically
+as:</p>
+<p><span class="math inline">\(f(V,P) = \frac{\alpha V}{1+\alpha
+hV}\)</span>,</p>
+<p>where <em>f(V,P)</em> is the functional response (prey consumed per
+predator).</p>
+<p>Similar to the Type I functional response, <span
+class="math inline">\(\alpha\)</span> is the “attack rate” (rate at
+which a predator-prey encounters increase as prey densities
+increase)</p>
+<p>The new term, <em>h</em>, describes the handling time (average time a
+predator spends processing a single prey item).</p>
+<p>The term <em>h</em> is probably best understood as the <em>inverse of
+the maximum prey consumption rate</em>!</p>
 <p>Let’s visualize it!</p>
 <pre class="r"><code>TypeIIIfuncresp &lt;- function(V,alpha,h,k){
   (alpha*V^k)/(1+alpha*h*V^k)
@@ -937,15 +1102,30 @@ curve(TypeIIIfuncresp(x,0.0005,0.1,1.6),0,1000,xlab=&quot;Victim abundance&quot;
 </div>
 </div>
 </div>
-<div id="final-insightmaker-activity-on-your-own" class="section level2">
+<div id="final-insightmaker-activity-on-your-own"
+class="section level2">
 <h2>Final InsightMaker activity (on your own)!!</h2>
-<p><strong>Step 1</strong> Add prey density-dependence to your basic predator-prey model, using your knowledge of modeling density-dependence (or just use the equations in chapter 6 of the Gotelli book). Visualize the dynamics as time series and in phase space. Do you ever see oscillations with prey density dependence? Is this model more stable than the base L-V model?</p>
-<p><strong>Step 2</strong> Change the functional response to a type-II functional response. Visualize the dynamics as time series and in phase space. Do you ever see oscillations with this model? Is this model more stable than the base L-V model?</p>
-<p><strong>Step 3</strong> Change the model to account for prey refuges. That is, there is a segment of the prey population that is not accessible to predators. How does this change the system dynamics?</p>
-<p><strong>Step 4</strong> Change the model to include a type II functional response AND prey density-dependence. How does this change the system dynamics? Is this system stable? Under what conditions?</p>
-<p><strong>Step 5</strong> Evaluate the following statement (from the Gotelli Book):</p>
+<p><strong>Step 1</strong> Add prey density-dependence to your basic
+predator-prey model, using your knowledge of modeling density-dependence
+(or just use the equations in chapter 6 of the Gotelli book). Visualize
+the dynamics as time series and in phase space. Do you ever see
+oscillations with prey density dependence? Is this model more stable
+than the base L-V model?</p>
+<p><strong>Step 2</strong> Change the functional response to a type-II
+functional response. Visualize the dynamics as time series and in phase
+space. Do you ever see oscillations with this model? Is this model more
+stable than the base L-V model?</p>
+<p><strong>Step 3</strong> Change the model to account for prey refuges.
+That is, there is a segment of the prey population that is not
+accessible to predators. How does this change the system dynamics?</p>
+<p><strong>Step 4</strong> Change the model to include a type II
+functional response AND prey density-dependence. How does this change
+the system dynamics? Is this system stable? Under what conditions?</p>
+<p><strong>Step 5</strong> Evaluate the following statement (from the
+Gotelli Book):</p>
 <blockquote>
-<p>“the more independent the predator and the prey are of one another, the more stable the interaction”</p>
+<p>“the more independent the predator and the prey are of one another,
+the more stable the interaction”</p>
 </blockquote>
 <p><a href="LECTURE18.html">–go to next lecture–</a></p>
 </div>

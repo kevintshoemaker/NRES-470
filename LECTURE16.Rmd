@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: competition!"
 author: "NRES 470/670"
-date: "Spring 2022"
+date: "Spring 2023"
 output: 
   html_document: 
     theme: spacelab
@@ -15,19 +15,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 470/670, Lecture 16                          ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Competition                                       ####
-############################################################
+#  NRES 470/670, Lecture 16  
+#     University of Nevada, Reno                
+#     Competition                    
 
 
 ```
@@ -43,7 +33,7 @@ From a modeling standpoint, this is where things really get interesting -- with 
 
 Species interactions can be classified according to the effect of the interaction on each species: (+,+), (+,-), (+,0), (-,-), (-,0), (0,0)
 
-**Q**: Can you name each of the above interaction classes? [tophat]
+**Q**: Can you name each of the above interaction classes? Which represents competition? What about predation? Mutualism? Commensalism? Amensalism? 
 
 ## Competition
 
@@ -53,17 +43,17 @@ Competition is defined a type of inter-species interaction by which the *populat
 
 There is not much essential difference between within-species competition (one of the primary mechanisms for density-dependent population regulation) and among-species competition for resources!
 
-#### Exploitation
-This is the kind of competition we probably think about first- all individuals are competing for resources and all have similar competitive abilities. It's a free-for-all: everyone gets some piece of a limited pie! But competition is indirect- that is, individuals of different species are interacting directly with a common resource pool, not with each other.   
+#### Exploitation competition
+This is the kind of competition we probably think about first- individuals from both species are competing for resources and all have similar competitive abilities. It's a free-for-all: everyone gets some piece of a limited pie! But competition is indirect- that is, individuals of different species are interacting directly with a common resource pool, not with each other.   
 
 Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed this class. Within a single species, this is often called "*scramble competition*".  
 
-#### Interference
+#### Interference competition
 Sometimes the negative effect of one actor (individual of the same or another species) on another actor is due to direct behavioral exclusion. This is the case with birds that maintain territories and keep other birds off their territory. 
 
-Some plants engage in interference competition in a process called "allelopathy".
+Some plants engage in interference competition in a process called *allelopathy*.
 
-![](allelopathy.jpg)
+![](allelopathy.jpg){width=50%}
 
 ### Modeling competition: extending the logistic growth equations to more than one species!
 
@@ -75,9 +65,9 @@ $\Delta N = r\cdot N_t \cdot (1-\frac{N}{K})$
 
 2. Now consider the case where we have two species whose dynamics can be described by logistic growth equations:
 
-Species 1: $\Delta N1 = r\cdot N1_t \cdot (1-\frac{N1}{K1})$      
+Species 1: $\Delta N_1 = r\cdot N_{1_t} \cdot (1-\frac{N_1}{K_1})$      
 
-Species 2: $\Delta N2 = r\cdot N2_t \cdot (1-\frac{N2}{K2})$
+Species 2: $\Delta N_2 = r\cdot N_{2_t} \cdot (1-\frac{N_2}{K_2})$
 
 3. Now imagine that population growth for each species is further depressed by the presence of the other! We can envision a scenario where (e.g.,) the presence of one species helps to *fill up* the carrying capacity for the other species, and vice versa!
 
@@ -101,24 +91,23 @@ The constants $\alpha$ and $\beta$ are measures of the effect of one species on 
 
 **Step 2**: Now add the "alpha" and "beta" terms to represent the degree to which species 1 competes with species 2, and vice versa.  *What should "alpha" and "beta" link to??*
 
-**Step 3**: Change the parameter values around and see how the model behaves. 
+**Step 3**: Once you have properly linked *alpha* and *beta* to the population growth flows for both species, change the parameter values around and see how the model behaves. 
 
 This model is known as *Lotka-Volterra competition*! The model is named after mathematicians Alfred Lotka and Vito Volterra 
 
-**Q**: what happens if one species is a superior competitor? What does it mean to be a superior competitor? Can one species go extinct?
+Here's a [link to a working competition model](https://insightmaker.com/insight/4UGv0F5ZfZIVxg9LtBZ6Dc/Clone-of-Base-2-species-model)
 
-**Q**: what conditions are necessary for coexistence in this model? [tophat]
+**Q**: What happens if one species is a superior competitor? What does it mean to be a superior competitor? Can one species go extinct?
 
-**Q**: imagine that species 1 is an exotic species- a possible invader of an ecosystem dominated by species 2 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species? 
+**Q**: what conditions are necessary for coexistence in this model? [PointSolutions]
 
-**Q**: can you identify any equilibrium conditions (either stable or unstable)?
-
+**Q**: imagine that species 2 is an exotic species- a possible invader of an ecosystem dominated by species 1 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species? 
 
 ## Phase plane!
 
 In the study of dynamic systems (such as the Lotka-Volterra competition model) it can be very useful to visualize the system on the **phase plane**.
 
-To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species as the y axis and the other species as the x axis. This 2-D surface is called the phase plane. 
+To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species' abundance as the y axis and the other species' abundance as the x axis. This 2-D surface is called the phase plane. 
 
 Then, for each time step in the model, we plot out where we are in the phase plane (plot the abundances of species 1 and species 2 as a point on the 2-D cartesian surface). 
 
@@ -130,7 +119,7 @@ If you want to follow along, you can download the script [here](LECTURE16.R)
 
 ```{r}
 
-##### LOTKA VOLTERRA COMPETITION EXAMPLE
+## LOTKA VOLTERRA COMPETITION EXAMPLE  -----------------------
 
 ## Params
 
@@ -158,7 +147,6 @@ for(i in 1:(Nyears+1)){
 }
 
 
-
 ```
 
 
@@ -166,7 +154,6 @@ Now let's visualize year zero in *phase space*:
 
 ```{r}
 
-####
 # visualize the initial abundances on the phase plane
 
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
@@ -180,12 +167,13 @@ How about the first 5 years...
 ```{r}
 
 # and the first 5 years...
+
 plot(1,1,pch="",ylim=c(0,K2*1.5),xlim=c(0,K1*1.5),xlab="species 1",ylab="species 2")
 points(System[1:6,],col="green",pch=20,cex=2)
 
 ```
 
-Note that every point on the phase plane has both a location and a *direction* - think of the phase plane like a magnetic field- at each point in the phase plane, the system is attracted or repelled from going certain directions. 
+Note that every point on the phase plane has both a location and a *direction* - think of the phase plane like a magnetic field- at each point in the phase plane, the system is destined to go in a pre-defined direction (defined by the model). 
 
 And the entire simulation?
 
@@ -205,7 +193,7 @@ Here is another example...
 
 ```{r}
 
-##### LOTKA VOLTERRA COMPETITION EXAMPLE #2
+## LOTKA VOLTERRA COMPETITION EXAMPLE #2 ----------------------------
 
 ## Params
 
@@ -255,7 +243,7 @@ Finally, let's consider multiple starting points and see how the system behaves!
 
 ```{r}
 
-##### LOTKA VOLTERRA COMPETITION EXAMPLE #3: multiple starting points
+## LOTKA VOLTERRA COMPETITION EXAMPLE #3: multiple starting points   --------------------
 
 ## Params
 
@@ -317,7 +305,6 @@ abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 #library(shiny)
 library(deSolve) 
 
-#######################################################################################
 ## Functions for pplane actions.
 
 # Modified from the original script pplane.r written by Daniel Kaplan,
@@ -654,7 +641,7 @@ jacobianAtXY <- compiler::cmpfun(function(fun,x=NULL, y=NULL,inc=1e-7){
 
 There is a lot you can learn about an interacting two-species system by working with the phase plane. 
 
-First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system is expected to go from that point in phase space (every point has a direction associated with it). 
+First of all, it is useful to imagine that each point in phase space is associated with an arrow, indicating where the system will go from that point in phase space (every point has a direction associated with it). 
 
 So, imagine we start at the initial abundance in the above figures. Where does the arrow point in phase space? 
 
@@ -666,11 +653,9 @@ Note: this example uses R code from [Paul Hurtado](http://www.pauljhurtado.com/)
 
 ```{r}
 
-##########
-# Visualize phase plane with arrows!
-##########
 
-#######################################################################################
+# Visualize phase plane with arrows!  --------------------
+
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
@@ -715,13 +700,12 @@ Take any arbitrary starting point. Now we can trace the trajectory that the syst
 
 Try it!!
 
-
 You will see that there are some key thresholds in phase space that we should consider. For example, arrows can reverse direction!
 
 
 ### Isoclines!
 
-Isoclines help to delineate those key features in phase space - kind of like ridgetops on mountains. The place beyond which up arrows turn to down arrows!
+Isoclines help to delineate key features in the phase space - kind of like ridge tops on mountains. The "watersheds" beyond which up arrows turn to down arrows and vice versa!
 
 Here is one example:
 
@@ -729,7 +713,7 @@ Here is one example:
 
 ```{r}
 
-#### example with phase-plane arrows
+### example with phase-plane arrows
 
 plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="N1",ylab="N2")
 phasearrows.draw(new)
@@ -754,16 +738,14 @@ Below the blue line, species 2 will tend to increase.
 
 Above the blue line, species 2 will tend to decrease.
 
-**Q**: consider the point where the two isoclines cross. What does this point represent? [tophat]
+**Q**: consider the point where the two isoclines cross. What does this point represent?
 
 Let's consider the following case...
 
 
 ```{r}
 
-##########
 # Another example
-##########
 
 Rmax1 <- 0.2
 Alpha <- 1.1
@@ -784,6 +766,7 @@ plot(1,1,pch="",xlim=xlim,ylim=ylim,xlab="N1",ylab="N2")
 phasearrows.draw(new)
 abline(K1/Alpha,-(K1/Alpha)/K1,col="red",lwd=3)   # species 1
 abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
+
 ```
 
 Follow the trajectories from any point in this phase space. What is the outcome here?
@@ -801,9 +784,7 @@ How about this example?
 
 ```{r}
 
-#########
 # And another example!
-#########
 
 Rmax1 <- 0.5
 Alpha <- 1.05
@@ -835,9 +816,7 @@ What about this case(going back to the earlier example...):
 
 ```{r}
 
-########
 # And another!
-#########
 
 Alpha <- 0.3
 Beta <- 0.2
@@ -872,9 +851,7 @@ Finally consider this example:
 
 ```{r}
 
-########
 # And finally...
-########
 
 Rmax1 <- 0.2
 Alpha <- 1.5
@@ -914,8 +891,7 @@ You can visualize populations moving through the phase plane in InsightMaker! To
 
 If you don't already have a working L-V competition model you can load up the basic L-V competition model [here](https://insightmaker.com/insight/77730/Competition-1#)
 
-
-**Step 1**: Set the key parameters (alpha, beta, K1, K2) to arbitrary values
+**Step 1**: Set the key parameters (*alpha*, *beta*, *K1*, *K2*) to arbitrary values
 
 **Step 2**: Draw out the phase plane with isoclines for both competing species.. Also draw out the expected direction of growth in each quadrant/region of the phase plane.
 
@@ -926,7 +902,6 @@ If you don't already have a working L-V competition model you can load up the ba
 **Step 5**: Evaluate the following statement (from the Gotelli Book):
 
 > "the more similar species are in their use of shared resources, the more precarious their coexistence"
-
 
 
 **Q**: Does $r_{max}$ have any role to play in determining system stability for the lotka-volterra competition model?
