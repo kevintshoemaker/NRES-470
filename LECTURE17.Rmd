@@ -94,7 +94,6 @@ $f(V)=\alpha \cdot V$
 
 ```{r}
 
-#######
 # simple functional response
 
 LVfuncresp <- function(V,alpha){
@@ -115,7 +114,7 @@ $f(V) \cdot P = \alpha VP$
 
 Does this make sense?
 
-The term $\alpha$ is sometimes referred to as **capture efficiency**. Does this make sense? Consider a case where every predator "bumps into" all prey in the landscape each time step, but only consumes 3% of those prey. Now consider a predator that consumes 50% of those prey per time step? Which predator is more *efficient* at capturing prey? 
+The term $\alpha$ is sometimes referred to as **capture efficiency**. Does this make sense?  
 
 Now, the (instantaneous) prey growth rate can be defined by the following equation:
 
@@ -159,7 +158,6 @@ $g(V)=\beta \cdot V$
 
 ```{r}
 
-######
 # Numerical response
 
 LVnumresp <- function(V,beta){
@@ -225,7 +223,7 @@ If you want to follow along in R, click [here](LECTURE17.R) for the R script!
 
 ```{r}
 
-##### LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
+# LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
 
 ## Params
 
@@ -274,7 +272,7 @@ Here is another example...
 
 ```{r}
 
-##### LOTKA VOLTERRA PREDATION EXAMPLE
+# LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
 
@@ -324,7 +322,7 @@ Finally, let's consider multiple starting points and see how the system behaves!
 
 ```{r}
 
-##### LOTKA VOLTERRA PREDATION EXAMPLE
+## LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
 
@@ -396,7 +394,6 @@ legend("top",lwd=c(2,2),lty=c(1,2),col=c("orange","green"),legend=c("prey","pred
 #library(shiny)
 library(deSolve) 
 
-#######################################################################################
 ## Functions for pplane actions.
 
 # Modified from the original script pplane.r written by Daniel Kaplan,
@@ -735,7 +732,7 @@ Just like before, let's draw arrows throughout phase space, representing where t
 
 ```{r}
 
-#######################################################################################
+
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
@@ -828,7 +825,6 @@ We can play around with these scenarios in InsightMaker. But it can be instructi
 
 ```{r}
 
-#######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 

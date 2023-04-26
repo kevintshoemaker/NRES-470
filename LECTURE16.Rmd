@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 PVA, as you may recall, tends to be very single-species focused. 
 
-BUT population ecology doesn't have to be single-species focused. There are many cases where we would do well to think about species interactions specifically.
+BUT population ecology doesn't have to be single-species focused. There are many cases where we would do well to consider species interactions.
 
 From a modeling standpoint, this is where things really get interesting -- with species interactions, we start to see some really unpredictable emergent properties!
 
@@ -692,7 +692,6 @@ phasearrows.draw(new)
 
 #
 ## END MODEL SPECIFICATION AND INITIALIZATION
-#######################################################################################
 
 ```
 
@@ -722,17 +721,13 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 1
 
 ```
 
-The red line represents the conditions under which the growth rate of species 1 is zero.
-
-**Q**: under what conditions is carrying capacity "used up" for species 1??
+The red line represents the conditions under which the growth rate of species 1 is zero- that is, the conditions under which carrying capacity is "used up" for species 1.
 
 Below the red line, species 1 will tend to increase. 
 
 Above the red line, species 1 will tend to decrease.
 
 The blue line (isocline) represents the conditions under which carrying capacity is used up for species 2!
-
-**Q**: under what conditions is carrying capacity "used up" for species 2??
 
 Below the blue line, species 2 will tend to increase. 
 
@@ -879,11 +874,10 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
 **Q**: is the point where the two isoclines cross a *stable equilibrium*?
 
-**Q**: what would happen if species 1 was at K and species 2 tried to invade?  And vice versa?
+**Q**: what would happen if species 1 was at K and species 2 tried to invade? And vice versa?
 
 **Q**: what would happen if both species tried to invade a vacant habitat at the same time? 
 
-**Q**" "
 
 ### Phase space in InsightMaker
 

@@ -1,21 +1,9 @@
 
-############################################################
-####                                                    ####  
-####  NRES 470/670, Lecture 17                          ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
+#  NRES 470/670, Lecture 17  ------------------------
+#    University of Nevada, Reno           
+#    Predator-prey    
 
 
-############################################################
-####  Predator-prey                                     ####
-############################################################
-
-
-
-#######
 # simple functional response
 
 LVfuncresp <- function(V,alpha){
@@ -25,7 +13,6 @@ LVfuncresp <- function(V,alpha){
 curve(LVfuncresp(x,0.03),0,200,xlab="Victim abundance",ylab="Total prey eaten per predator",col="red",lwd=3)
 
 
-######
 # Numerical response
 
 LVnumresp <- function(V,beta){
@@ -35,7 +22,7 @@ LVnumresp <- function(V,beta){
 curve(LVnumresp(x,0.001),0,200,xlab="Victim abundance",ylab="Increase in r for predator population",col="blue",lwd=3)
 
 
-##### LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
+# LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
 
 ## Params
 
@@ -69,7 +56,7 @@ points(System[seq(1,1000,10),],col="green",type="p",pch=20,cex=0.85)
 points(System[1,],col="blue",pch=20,cex=3)
 
 
-##### LOTKA VOLTERRA PREDATION EXAMPLE
+# LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
 
@@ -106,7 +93,7 @@ points(jitter(System[,1],200),jitter(System[,2],200),col="brown",pch=20,cex=0.3)
 #abline(h=K2,v=K1,col="gray",lwd=2,lty=2)
 
 
-##### LOTKA VOLTERRA PREDATION EXAMPLE
+## LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
 
@@ -151,7 +138,7 @@ points(seq(1,100,length=nrow(System)), System[,2], xlab="Time", ylab="Abundance"
 legend("top",lwd=c(2,2),lty=c(1,2),col=c("orange","green"),legend=c("prey","predator"),bty="n")
 
 
-#######################################################################################
+
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
@@ -195,7 +182,6 @@ abline(h=r/Alpha,col="red",lwd=3)   # prey
 abline(v=q/Beta,col="blue",lwd=3)   # pred
 
 
-#######################################################################################
 ## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 

@@ -545,8 +545,7 @@ per day. (realistic?)</p>
 <p><strong>Q</strong> what is the shape of the functional response in
 this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
-<pre class="r"><code>#######
-# simple functional response
+<pre class="r"><code># simple functional response
 
 LVfuncresp &lt;- function(V,alpha){
   alpha*V
@@ -568,10 +567,7 @@ prey molecules.</p>
 <p>Does this make sense?</p>
 <p>The term <span class="math inline">\(\alpha\)</span> is sometimes
 referred to as <strong>capture efficiency</strong>. Does this make
-sense? Consider a case where every predator “bumps into” all prey in the
-landscape each time step, but only consumes 3% of those prey. Now
-consider a predator that consumes 50% of those prey per time step? Which
-predator is more <em>efficient</em> at capturing prey?</p>
+sense?</p>
 <p>Now, the (instantaneous) prey growth rate can be defined by the
 following equation:</p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
@@ -618,8 +614,7 @@ constant:</p>
 <p><span class="math inline">\(g(V)=\beta \cdot V\)</span></p>
 <p><strong>Q</strong> what is the shape of the <strong>numerical
 response</strong> in this case?</p>
-<pre class="r"><code>######
-# Numerical response
+<pre class="r"><code># Numerical response
 
 LVnumresp &lt;- function(V,beta){
   beta*V
@@ -684,7 +679,7 @@ class="section level2">
 <h2>Prey-Predator models on the phase plane!</h2>
 <p>If you want to follow along in R, click <a
 href="LECTURE17.R">here</a> for the R script!</p>
-<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
+<pre class="r"><code># LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)
 
 ## Params
 
@@ -718,7 +713,7 @@ points(System[1,],col=&quot;blue&quot;,pch=20,cex=3)</code></pre>
 <p>Okay, so as prey get more abundant, predators start increasing, but
 as predators increase, prey abundance goes down. And repeat!</p>
 <p>Here is another example…</p>
-<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
+<pre class="r"><code># LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
 
@@ -759,7 +754,7 @@ points(jitter(System[,1],200),jitter(System[,2],200),col=&quot;brown&quot;,pch=2
 where abundances are low for both prey and predator!</p>
 <p>Finally, let’s consider multiple starting points and see how the
 system behaves!</p>
-<pre class="r"><code>##### LOTKA VOLTERRA PREDATION EXAMPLE
+<pre class="r"><code>## LOTKA VOLTERRA PREDATION EXAMPLE
 
 ## Params
 
@@ -813,8 +808,7 @@ class="section level3">
 <p>Just like before, let’s draw arrows throughout phase space,
 representing where the system would be expected to go from each point in
 phase space.</p>
-<pre class="r"><code>#######################################################################################
-## SPECIFY MODEL AND INITIALIZE
+<pre class="r"><code>## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
 
@@ -904,8 +898,7 @@ be instructive to visualize in phase space first. For example, let’s
 incorporate a victim carrying capacity.</p>
 <div id="victim-k-in-phase-space" class="section level3">
 <h3>victim K in phase space</h3>
-<pre class="r"><code>#######################################################################################
-## SPECIFY MODEL AND INITIALIZE
+<pre class="r"><code>## SPECIFY MODEL AND INITIALIZE
 #
 ## toggle switch function for phase arrow and nullcline plotting 
 
