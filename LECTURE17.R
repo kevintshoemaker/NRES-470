@@ -10,7 +10,7 @@ LVfuncresp <- function(V,alpha){
   alpha*V
 }
 
-curve(LVfuncresp(x,0.03),0,200,xlab="Victim abundance",ylab="Total prey eaten per predator",col="red",lwd=3)
+curve(LVfuncresp(x,0.03),0,1000,xlab="Victim abundance",ylab="Total prey eaten per predator per day",col="red",lwd=3)
 
 
 # Numerical response
@@ -19,7 +19,7 @@ LVnumresp <- function(V,beta){
   beta*V
 }
 
-curve(LVnumresp(x,0.001),0,200,xlab="Victim abundance",ylab="Increase in r for predator population",col="blue",lwd=3)
+curve(LVnumresp(x,0.001),0,1000,xlab="Victim abundance",ylab="Increase in r for predator population",col="blue",lwd=3)
 
 
 # LOTKA VOLTERRA PREDATION EXAMPLE (on phase plane)

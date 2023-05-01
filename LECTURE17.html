@@ -463,8 +463,8 @@ div.tocify {
 
 <div id="predation" class="section level2">
 <h2>Predation</h2>
-<p><img src="predation1.jpg" /></p>
-<p><img src="predation2.jpg" /></p>
+<p><img src="predation1.jpg" style="width:40.0%" /></p>
+<p><img src="predation2.jpg" style="width:40.0%" /></p>
 <p>In the case of competition, we saw that each species negatively
 influenced the other. In the case of prey-predator interactions, one of
 the two actors benefits greatly from the interaction – and the other
@@ -491,10 +491,10 @@ the predator population <em>in the absence of prey</em> – usually this
 is simply exponential decline!,</p>
 <p>AND</p>
 <p><span class="math inline">\(f(V)\)</span> is known as the
-<strong>functional response</strong> – that is, the per-capita rate of
-prey consumption, usually a function of just the density (availability)
-of prey, but sometimes a function of both predator and prey densities
-(<span class="math inline">\(f(V,P)\)</span>).</p>
+<strong>functional response</strong> – that is, the predicted per-capita
+rate of prey consumption as a function of prey density [sometimes also a
+function of both predator and prey densities (<span
+class="math inline">\(f(V,P)\)</span>)].</p>
 <p>AND</p>
 <p><span class="math inline">\(f(V)\cdot conversion\space
 factor\)</span> (alternatively represented as <span
@@ -510,7 +510,7 @@ possible model…</p>
 <div id="the-victims" class="section level4">
 <h4>The victims…</h4>
 <p>We will consider the prey, or “victims” first:</p>
-<p>In the absence of predators, let’s assume that the victim population
+<p>In the absence of predators, let’s assume that the prey population
 grows according to the basic exponential growth equation:</p>
 <p><span class="math inline">\(\Delta V = rV\)</span></p>
 <p>We will assume that the intrinsic rate of growth, <span
@@ -528,20 +528,18 @@ chance of consuming that prey item.</p>
 occasionally causing reactions whenever they bump into other molecule(s)
 in the right way.</p>
 <p>Under such circumstances, the predators do NOT interfere with one
-another and never get full. Each predator consumes a fixed number of
-prey in a given time period, depending only on prey availability.</p>
-<p>Consider the case where there are <span
-class="math inline">\(V\)</span> prey and only a single predator in a
-hypothetical prey-predator system.</p>
-<p><strong>Q</strong>: Imagine there are 100 prey and only one predator.
-A total of 3 prey are consumed in a single day. What is the daily rate
-of prey consumption per predator in this example (<span
+another and predators never get full. Each predator consumes a fixed
+number of prey in a given time period, depending only on prey
+availability.</p>
+<p>Imagine there are 100 prey and only one predator. A total of 3 prey
+are consumed in a single day. What is the daily rate of prey consumption
+per predator in this example (<span
 class="math inline">\(\alpha\)</span>)?</p>
 <p>In this case, 3% (0.03) of prey are successfully encountered and
 consumed by the predator each day. If there were 1000 prey on the
-landscape, the predator would catch and consume 30 prey. And if there
-were 1 million prey, the predator would catch and consume 30,000 prey
-per day. (realistic?)</p>
+landscape, this single predator would catch and consume 30 prey. And if
+there were 1 million prey, the predator would catch and consume 30,000
+prey per day. (realistic?)</p>
 <p><strong>Q</strong> what is the shape of the functional response in
 this case?</p>
 <p><span class="math inline">\(f(V)=\alpha \cdot V\)</span></p>
@@ -551,7 +549,7 @@ LVfuncresp &lt;- function(V,alpha){
   alpha*V
 }
 
-curve(LVfuncresp(x,0.03),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
+curve(LVfuncresp(x,0.03),0,1000,xlab=&quot;Victim abundance&quot;,ylab=&quot;Total prey eaten per predator per day&quot;,col=&quot;red&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>…Of course, this <em>alpha</em> term has a different meaning from the
 <em>alpha</em> in the L-V competition models! Sorry but you can thank
@@ -566,8 +564,7 @@ prey molecules.</p>
 <p><span class="math inline">\(f(V) \cdot P = \alpha VP\)</span></p>
 <p>Does this make sense?</p>
 <p>The term <span class="math inline">\(\alpha\)</span> is sometimes
-referred to as <strong>capture efficiency</strong>. Does this make
-sense?</p>
+referred to as <strong>capture efficiency</strong>.</p>
 <p>Now, the (instantaneous) prey growth rate can be defined by the
 following equation:</p>
 <p><span class="math inline">\(\Delta V = rV - \alpha VP\)</span></p>
@@ -620,7 +617,7 @@ LVnumresp &lt;- function(V,beta){
   beta*V
 }
 
-curve(LVnumresp(x,0.001),0,200,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
+curve(LVnumresp(x,0.001),0,1000,xlab=&quot;Victim abundance&quot;,ylab=&quot;Increase in r for predator population&quot;,col=&quot;blue&quot;,lwd=3)</code></pre>
 <p><img src="LECTURE17_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>The <em>increase in total predators due to prey consumption</em> now
 is:</p>
@@ -651,9 +648,9 @@ variables “functional response”” and “numerical response”.</p>
 “total prey consumed” and “predator growth”, which refer to the the prey
 lost and the predators gained per time step, respectively.</p>
 <p><strong>Step 4</strong>: In the settings menu, change the simulation
-length to 200 and make sure that your analysis algorithm is set to
-“Accurate (RK4)” (this makes InsightMaker behave more like a continuous
-growth model).</p>
+length to 200 and make sure that your analysis algorithm is set to “4th
+order runge-kutta” (this makes InsightMaker behave more like a
+continuous growth model).</p>
 <p><strong>Step 5</strong>: Set the Initial abundance of prey and
 predators to 100 and 50, respectively. Set the alpha and beta terms to
 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and
@@ -672,6 +669,8 @@ oscillations?</p>
 oscillations?</p>
 <p><strong>Q</strong> Can you find some settings that make very shallow
 oscillations?</p>
+<p>You can find a fully worked InsightMaker model <a
+href="https://insightmaker.com/insight/2GFgm0holBRAfw47eJ9Xup/Worked-prey-predator-model">here</a></p>
 </div>
 </div>
 <div id="prey-predator-models-on-the-phase-plane"

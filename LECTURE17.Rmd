@@ -24,9 +24,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ## Predation
 
-![](predation1.jpg)
+![](predation1.jpg){width=40%}
 
-![](predation2.jpg)
+![](predation2.jpg){width=40%}
 
 In the case of competition, we saw that each species negatively influenced the other. In the case of prey-predator interactions, one of the two actors benefits greatly from the interaction -- and the other actor loses out!
 
@@ -50,7 +50,7 @@ $-qP^*$ represents the growth of the predator population *in the absence of prey
 
 AND
 
-$f(V)$ is known as the **functional response** -- that is, the per-capita rate of prey consumption, usually a function of just the density (availability) of prey, but sometimes a function of both predator and prey densities ($f(V,P)$).
+$f(V)$ is known as the **functional response** -- that is, the predicted per-capita rate of prey consumption as a function of prey density [sometimes also a function of both predator and prey densities ($f(V,P)$)].
 
 AND
 
@@ -66,7 +66,7 @@ Let's look at predation mathematically, starting with the simplest possible mode
 
 We will consider the prey, or "victims" first:
 
-In the absence of predators, let's assume that the victim population grows according to the basic exponential growth equation:
+In the absence of predators, let's assume that the prey population grows according to the basic exponential growth equation:
 
 $\Delta V = rV$
 
@@ -80,13 +80,11 @@ First of all, let's assume that predators and prey walk randomly through their c
 
 This is analogous to molecules moving randomly in a solution, occasionally causing reactions whenever they bump into other molecule(s) in the right way. 
 
-Under such circumstances, the predators do NOT interfere with one another and never get full. Each predator consumes a fixed number of prey in a given time period, depending only on prey availability. 
+Under such circumstances, the predators do NOT interfere with one another and predators never get full. Each predator consumes a fixed number of prey in a given time period, depending only on prey availability. 
 
-Consider the case where there are $V$ prey and only a single predator in a hypothetical prey-predator system.  
+Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example ($\alpha$)? 
 
-**Q**: Imagine there are 100 prey and only one predator. A total of 3 prey are consumed in a single day. What is the daily rate of prey consumption per predator in this example ($\alpha$)? 
-
-In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, the predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30,000 prey per day. (realistic?) 
+In this case, 3% (0.03) of prey are successfully encountered and consumed by the predator each day. If there were 1000 prey on the landscape, this single predator would catch and consume 30 prey. And if there were 1 million prey, the predator would catch and consume 30,000 prey per day. (realistic?) 
 
 **Q** what is the shape of the functional response in this case?
 
@@ -100,7 +98,7 @@ LVfuncresp <- function(V,alpha){
   alpha*V
 }
 
-curve(LVfuncresp(x,0.03),0,200,xlab="Victim abundance",ylab="Total prey eaten per predator",col="red",lwd=3)
+curve(LVfuncresp(x,0.03),0,1000,xlab="Victim abundance",ylab="Total prey eaten per predator per day",col="red",lwd=3)
 
 ```
 
@@ -114,7 +112,7 @@ $f(V) \cdot P = \alpha VP$
 
 Does this make sense?
 
-The term $\alpha$ is sometimes referred to as **capture efficiency**. Does this make sense?  
+The term $\alpha$ is sometimes referred to as **capture efficiency**.  
 
 Now, the (instantaneous) prey growth rate can be defined by the following equation:
 
@@ -164,7 +162,7 @@ LVnumresp <- function(V,beta){
   beta*V
 }
 
-curve(LVnumresp(x,0.001),0,200,xlab="Victim abundance",ylab="Increase in r for predator population",col="blue",lwd=3)
+curve(LVnumresp(x,0.001),0,1000,xlab="Victim abundance",ylab="Increase in r for predator population",col="blue",lwd=3)
 
 ```
 
@@ -197,7 +195,7 @@ Before we go deeper into predation modeling, let's simulate prey and predator po
 
 **Step 3**: Correctly set up the flow equations for "total prey consumed" and "predator growth", which refer to the the prey lost and the predators gained per time step, respectively.
 
-**Step 4**: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to "Accurate (RK4)" (this makes InsightMaker behave more like a continuous growth model).
+**Step 4**: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to "4th order runge-kutta" (this makes InsightMaker behave more like a continuous growth model).
 
 **Step 5**: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.
 
@@ -214,6 +212,8 @@ Before we go deeper into predation modeling, let's simulate prey and predator po
 **Q** Can you find some settings that make very fast oscillations?
 
 **Q** Can you find some settings that make very shallow oscillations?
+
+You can find a fully worked InsightMaker model [here](https://insightmaker.com/insight/2GFgm0holBRAfw47eJ9Xup/Worked-prey-predator-model)
 
 
 ## Prey-Predator models on the phase plane!
