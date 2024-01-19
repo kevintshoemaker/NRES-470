@@ -1,6 +1,6 @@
 ---
 title: "Welcome to NRES 470/670"
-author: "Applied Population Ecology, Spring 2023"
+author: "Applied Population Ecology, Spring 2024"
 output:
   html_document: 
     theme: spacelab
@@ -17,33 +17,34 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 **Office:** Fleischmann Agriculture, room 220e  
 **Phone:** 775-682-7449     
 **Email**: kevinshoemaker_at_unr_dot_edu        
-**Office hours**: Mondays from 4 to 5pm in FA 220e         
+**Office hours**: Mondays from 3 to 4pm in FA 220e         
 **Course Website**: [https://kevintshoemaker.github.io/NRES-470/](https://kevintshoemaker.github.io/NRES-470/) 	    
  
-**Teaching Assistant** Sage Ellis (sageellis_at_nevada_dot_unr_dot_edu)        
-**TA Office hours**: Fridays from 11am to noon in FA 301       
+**Teaching Assistant** Colton Irons (cirons_at_nevada_dot_unr_dot_edu)        
+**TA Office hours**: Fridays at 11am in FA 301 (tentative!)       
 
 ### Course Meeting Times
 
-**Lecture & Discussion**: M, W at 10am (50 mins) in WRB 3046         
+**Lecture & Discussion**: M, W at 10am (50 mins) in OB (Orvis Building) 203         
 **Lab**: F at 1pm (2 hrs 45 mins) in FA 301      
     
 ### Course description  
-This class will explore how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We will emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management using simulation models and inferential statistics. Topics will include Population Viability Analysis (PVA), habitat suitability, metapopulations, species interactions (competition and predation), threats to wild populations, wildlife management and more. Laboratory exercises will provide students with hands-on experience with wildlife population models and their practical applications in wildlife ecology and management.
+This class explores how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management using simulation models and inferential statistics. Topics include Population Viability Analysis (PVA), limits to population growth, metapopulation ecology, species interactions (competition and predation), threats to wild populations, wildlife management and more. Laboratory exercises provide students with hands-on experience with wildlife population models and their practical applications in wildlife ecology and management.
 
 ### Prerequisites    
 - BIOL 314 or NRES 217 (Ecology)  
 - NRES 310 (Wildlife Ecology and Management)  
+NOTE: this course is a prerequisite for NRES 488 (Dynamics and Management of Wildlife Populations) and is designed to complement NRES 421 (Conservation Biology).
 
 ### Texts  
 - [Gotelli, N. J. A primer of ecology](https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182)      
 - Additional readings will be assigned for discussion periodically.    
 
 ### Software   
-- [InsightMaker- web-based systems modeling tool](https://insightmaker.com/)(free, no installation needed)        
-- [R- software for statistical computing and graphics](https://cran.r-project.org/) (free, open-source)      
+- [InsightMaker- web-based systems modeling tool](https://insightmaker.com/)(free, web-based, need account)        
+- [R- software for statistical computing and graphics](https://cran.r-project.org/) (free installation)      
 - Spreadsheet software (MS Excel, Google Sheets or equivalent)
-- PointSolutions (interactive classroom software- sign up via WebCampus)
+- Top Hat (interactive classroom software- invitations should have been emailed to you)
 
 ### Student Learning outcomes
 SLO 1.	Explain how and why simulation models are used by ecologists and wildlife professionals.    
@@ -56,21 +57,20 @@ SLO 6.	Communicate original research in applied population and community ecology
 ### Grading: 
 The course grade will be based on the following components:
 
-Lab exercises (7 total)	         20%  (80 points)     
-Lectures/participation           10%  (40 points)     
-Group project                    30%  (120 points)      
-Midterm exam # 1 (date TBD)	     10%  (40 points)    
-Midterm exam # 2 (date TBD)   	 10%  (40 points)    
-Final exam              	       20%  (80 points)    
+Lab exercises (7 total)	         20%     
+Lectures/participation           10%     
+Group project                    30%      
+Midterm exam # 1 (date TBD)	     10%    
+Midterm exam # 2 (date TBD)   	 10%     
+Final exam              	       20%     
 
-NOTE: Graduate students enrolled in NRES 670 will have an additional 50 pts used to calculate their grade (see below) of a total of 370 points.     
 Grading scale: A (100 to 93), A- (92 to 90), B+ (89 to 87), B (86 to 83), B- (82 to 80), C+ (79 to 77), C (76 to 73), C- (72 to 70), D+ (69 to 67), D (66 to 63), D- (62 to 60), F (below 60). 
 
 ### Exams:
 There will be two midterm exams and a final exam, all of which will be cumulative, covering all course material covered up to the week prior to the exam. These will consist of multiple-choice, short-answer questions, and essay questions requiring synthesis of key concepts.
 
 ### Lectures
-Lecture grades will be based primarily on participation and short quizzes. Participation is essential to the learning process (and to our mutual enjoyment of this class). Learning is not a passive process; students are expected to engage with the material in class rather than simply listen and take notes. You should be prepared in class to ask questions, to answer questions, and to engage in problem-solving activities.   
+Lecture grades will be based primarily on participation and short in-class quizzes (via TopHat). Participation is essential to the learning process (and to our mutual enjoyment of this class). Learning is not a passive process; students are expected to engage with the material in class rather than simply listen and take notes. You should be prepared in class to ask questions, to answer questions, and to engage in problem-solving activities.   
 
 ### Labs  
 Lab exercises will focus on applying concepts and methods introduced in lectures, and will involve real-world problems in wildlife conservation and management wherever possible. Graded lab assignments will involve figures, tables, InsightMaker models and R code (when applicable) and responses to questions in short-answer format.  
@@ -79,21 +79,21 @@ Lab exercises will focus on applying concepts and methods introduced in lectures
 Students will work in groups of 3-4 to perform a population viability analysis (PVA) to rank conservation or management actions for a species of conservation concern (species of your choice!). Grading will be based on finished products (written and oral presentations) as well as participation and peer evaluations. 
 
 ### Graduate credit (for students enrolled in NRES 670) 
-Graduate students will be subject to additional expectations in order to receive graduate credit for this course. In particular, graduate students will be expected to develop an original lecture and lead an original lab activity related to their lecture. Graduate students will also be expected to achieve a deeper understanding of the course material, and therefore will be assigned additional readings from the scientific literature and will be expected to participate as leaders in discussions and lab activities.
+Graduate students will be subject to additional expectations in order to receive graduate credit for this course. In particular, graduate students will be expected to develop an original lecture and lead an original lab activity related to a topic relevant to wildlife population ecology. Graduate students will also be expected to achieve a deeper understanding of the course material, and therefore will be expected to participate as leaders in discussions and lab activities.
 
 ### Make-up policy and late work:
 Missed exams and labs cannot be made up, except in the case of emergencies. If you miss a class meeting, it is your responsibility to talk to one of your classmates about what you missed. If you miss a lab meeting, you are still responsible for completing the lab activities and write-up. Let me or your TA know in advance if you are going to miss class or lab.
 
-### PointSolutions
-We will be using the PointSolutions interactive learning platform in class. You will be able to submit answers to in-class questions using Apple or Android smartphones and tablets, laptops, or through text message.  
+### Top Hat
+We will be using the [Top Hat](https://tophat.com/) interactive learning platform in class. You will be able to submit answers to in-class questions using Apple or Android smartphones and tablets, laptops, or through text message.   
 
-You can sign up using the link on WebCampus. The cost is $15 per year for UNR students. For more information please see [https://www.unr.edu/digital-learning/tools-and-technologies/student-response-systems/pointsolutions-students](https://www.unr.edu/digital-learning/tools-and-technologies/student-response-systems/pointsolutions-students) 
-
-### Statment on Disabilities Services
-Any student with a disability needing academic adjustments or accommodations is requested to speak with me or the [Disability Resource Center](http://www.unr.edu/drc) (Pennington Achievement Center Suite 230) as soon as possible to arrange for appropriate accommodations.
+Top Hat is free of charge for UNR students this year! You should all have received an invitation via email. You can also enroll using the join code 632462. 
 
 ### Statement on Academic Dishonesty
 The University Academic Standards Policy defines academic dishonesty, and mandates specific sanctions for violations. See the University Academic Standards policy: [UAM 6,502](https://www.unr.edu/administrative-manual/6000-6999-curricula-teaching-research/instruction-research-procedures/6502-academic-standards).
+
+### Statment on Disabilities Services
+Any student with a disability needing academic adjustments or accommodations is requested to speak with me or the [Disability Resource Center](http://www.unr.edu/drc) (Pennington Achievement Center Suite 230) as soon as possible to arrange for appropriate accommodations.
 
 ### Statement on Student Compliance with University Policies
 In accordance with section 6,502 of the University Administrative Manual, a student may receive academic and disciplinary sanctions for failure to comply with policy, including this syllabus, for failure to comply with the directions of a University Official, for disruptive behavior in the classroom, or any other prohibited action. “Disruptive behavior" is defined in part as behavior, including but not limited to failure to follow course, laboratory or safety rules, or endangering the health of others. A student may be dropped from class at any time for misconduct or disruptive behavior in the classroom upon recommendation of the instructor and with approval of the college dean. A student may also receive disciplinary sanctions through the Office of Student Conduct for misconduct or disruptive behavior, including endangering the health of others, in the classroom. The student shall not receive a refund for course fees or tuition.
@@ -104,7 +104,6 @@ Surreptitious or covert video-taping of class or unauthorized audio recording of
 
 #### Instructor-created Recordings
 Class sessions may be audio-visually recorded for students in the class to review and for enrolled students who are unable to attend live to view. Students who participate with their camera on or who use a profile image are consenting to have their video or image recorded.  If you do not consent to have your profile or video image recorded, keep your camera off and do not use a profile image. Students who un-mute during class and participate orally are consenting to have their voices recorded.  If you do not consent to have your voice recorded during class, keep your mute button activated and only communicate by using the "chat" feature, which allows you to type questions and comments live.
-
 
 ### Statement for Academic Success Services
 Your student fees cover usage of the University Math Center [(775) 784-4433], University Tutoring Center [(775) 784-6801], and [University Writing Center (775) 784-6030]. These centers support your classroom learning; it is your responsibility to take advantage of their services.
