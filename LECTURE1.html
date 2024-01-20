@@ -14,7 +14,7 @@
 
 <title>A whole-systems approach to population ecology</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -457,7 +454,7 @@ div.tocify {
 <h1 class="title toc-ignore">A whole-systems approach to population
 ecology</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -475,17 +472,22 @@ fascinating.</p>
 systems. And wildlife conservation and management is the task of
 manipulating these linkages to meet societal objectives for natural
 systems.</p>
-<p>This is not a systems ecology class!</p>
-<p>BUT, systems thinking provides a great framework for understanding
-natural populations, and understanding how linkages (abiotic and biotic
-environments) might affect them, and how to manage natural populations
-effectively.</p>
+<p>Although this is not a systems ecology class, systems thinking
+provides an excellent framework for understanding natural populations,
+and understanding how linkages (abiotic and biotic environments) might
+affect them, and how to manage natural populations effectively.</p>
 </div>
 <div id="emergent-properties" class="section level2">
 <h2>Emergent properties</h2>
-<p>This is one of the most powerful ideas in whole-systems thinking –
-when you put many interacting, linked parts together, systems often
-behave in interesting and unexpected ways!</p>
+<p>This is one of the most powerful ideas in systems thinking – when you
+put many interacting, linked parts together, systems often behave in
+interesting and unexpected ways!</p>
+<p>Specifically, emergent properties are properties of a system that are
+not themselves properties of its component parts. For example, chemical
+compounds A, B, and C have no known benefits to humans, but when
+combined together, they have important medicinal properties; in this
+case, medicinal properties emerge from a system of chemicals that lack
+this property in isolation.</p>
 <p>Take a classic predator-prey system…</p>
 <p><a href="https://insightmaker.com/insight/68437/">Insightmaker
 Lynx-Hare example</a></p>
@@ -498,17 +500,18 @@ and complex emergent properties.</p>
 href="https://insightmaker.com/insight/1829/Lorenz-Attractor">Lorenz
 attractor</a></p>
 </div>
-<div id="insightmaker-a-modeling-framework-for-systems-thinking"
+<div id="insightmaker-a-platform-for-exploring-complex-systems-dynamics"
 class="section level2">
-<h2><em>InsightMaker</em>: a modeling framework for systems
-thinking!</h2>
+<h2><em>InsightMaker</em>: a platform for exploring complex systems
+dynamics!</h2>
 <p><a href="insightmaker.com">InsightMaker</a> is a flexible web-based
 software for defining interacting systems and for modeling the behavior
 of inter-connected systems.</p>
-<p>Both of the above examples were constructed in InsightMaker.</p>
+<p>Both of the above examples were constructed using InsightMaker.</p>
 <p>We will make extensive use of InsightMaker, both during class and in
 lab- this will give you a chance to play around with complex and dynamic
-systems without needing a background in computer programming!</p>
+systems (and their emergent properties) without needing a background in
+computer programming!</p>
 </div>
 <div id="computer-programming-and-systems-thinking"
 class="section level2">
@@ -516,16 +519,16 @@ class="section level2">
 <p>Modern computers have reduced or eliminated many of the barriers to
 understanding how complex systems behave, and as a result
 <strong>specialized software and computer programming</strong> are a
-critical component to modern whole-systems analysis, including
-<strong>ecosystems</strong> analyses. Armed with basic facility with
-computer programming, ecologists and natural resource professionals can
+critical component to modern population ecology and
+<strong>ecosystems</strong> science. Armed with basic facility with
+computer programming, ecologists and natural resource scientists can
 formalize their understanding of the natural systems in which they work,
 accounting for complex biological realities that may have been ignored
 if these tools were not available. <strong>In this course, we will learn
 to harness the power of computer simulations for understanding and
 managing natural populations</strong>.</p>
 <p>By the end of this course, students will have the ability to program
-their own <em>whole-systems models</em> in InsightMaker, and use
+their own <em>dynamic systems models</em> in InsightMaker, and use
 specialized software for parameterizing these models (e.g.,
 <strong>R</strong>)</p>
 <p>A famous statistician (<a
@@ -544,9 +547,9 @@ that does not mean that ecological models can’t be <em>useful</em>!</p>
 systems</em>. And above all, <strong>don’t be afraid to be
 wrong</strong> - that attitude is the enemy of successful computer
 programming, and of learning in general! When we build our own
-algorithms, we can be entering uncharted territory. And this can be
-difficult and dangerous, but ultimately rewarding! Keep trying, and stay
-positive! And don’t forget that all models are wrong!</p>
+population models, we can be entering uncharted territory. And this can
+be difficult, but ultimately should be fun and rewarding! Keep trying,
+stay positive, and have fun with it!</p>
 <p>Of course, this means not just reading and listening to lectures, it
 means <em>learning by doing</em>! Instructor-led lectures will be kept
 short, and we will spend significant class time (and pretty much all of
@@ -617,8 +620,8 @@ menu)</p></li>
 </ol>
 <p><strong>Q</strong>: Is this Moose model realistic? What are the first
 things you would like to change to make the model more realistic?</p>
-<p><em>PointSolutions: take a few minutes to list the things you would
-like to change to make this model more realistic!</em></p>
+<p><em>Top Hat: take a few minutes to list the things you would like to
+change to make this model more realistic!</em></p>
 <ol start="9" style="list-style-type: decimal">
 <li>Finally, take a few minutes to check out “Insights” made by others
 using the “explore insights” link at the top of the webpage. You can
@@ -626,10 +629,6 @@ search the database of Insights. Pick one or two of these insights and
 run them. How does the system behave? Does this make sense to you? We
 can (and will) add to this database as part of this class!</li>
 </ol>
-<p>Just for fun, here is a cool video of the Lorenz Attractor, which we
-saw earlier!</p>
-<p><a href="https://www.youtube.com/watch?v=iu4RdmBVdps">Lorenz
-attractor video!</a></p>
 <p><a href="LECTURE2.html">–go to next lecture–</a></p>
 </div>
 

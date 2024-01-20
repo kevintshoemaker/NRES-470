@@ -20,10 +20,14 @@ Ecology is messy. When we work in natural environments, we are dealing with *inh
 
 We can think of humans as just another element in these complex systems. And wildlife conservation and management is the task of manipulating these linkages to meet societal objectives for natural systems.  
 
-Although this is not a systems ecology class, systems thinking provides a great framework for understanding natural populations, and understanding how linkages (abiotic and biotic environments) might affect them, and how to manage natural populations effectively. 
+Although this is not a systems ecology class, systems thinking provides an excellent framework for understanding natural populations, and understanding how linkages (abiotic and biotic environments) might affect them, and how to manage natural populations effectively. 
 
 ## Emergent properties
-This is one of the most powerful ideas in whole-systems thinking -- when you put many interacting, linked parts together, systems often behave in interesting and unexpected ways! 
+This is one of the most powerful ideas in systems thinking -- when you put many interacting, linked parts together, systems often behave in interesting and unexpected ways! 
+
+Specifically, emergent properties are properties of a system that are not themselves properties of its component parts. For example, chemical compounds A, B, and C have no known benefits to humans, but when combined together, they have important medicinal properties; in this case, medicinal properties emerge from a system of chemicals that lack this property in isolation. 
+
+[Top Hat]: emergent properties question
 
 Take a classic predator-prey system...
 
@@ -35,27 +39,25 @@ And here's a more abstract example that illustrates some really cool and complex
 
 [Lorenz attractor](https://insightmaker.com/insight/1829/Lorenz-Attractor)
 
-[Top Hat]: emergent properties question
-
-## *InsightMaker*: a modeling framework for systems thinking!
+## *InsightMaker*: a platform for exploring complex systems dynamics!
 
 [InsightMaker](insightmaker.com) is a flexible web-based software for defining interacting systems and for modeling the behavior of inter-connected systems. 
 
-Both of the above examples were constructed in InsightMaker.
+Both of the above examples were constructed using InsightMaker.
 
-We will make extensive use of InsightMaker, both during class and in lab- this will give you a chance to play around with complex and dynamic systems without needing a background in computer programming!
+We will make extensive use of InsightMaker, both during class and in lab- this will give you a chance to play around with complex and dynamic systems (and their emergent properties) without needing a background in computer programming!
 
 ## Computer programming and systems thinking
 
-Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern whole-systems analysis, including **ecosystems** analyses. Armed with basic facility with computer programming, ecologists and natural resource professionals can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations**.  
+Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern population ecology and **ecosystems** science. Armed with basic facility with computer programming, ecologists and natural resource scientists can formalize their understanding of the natural systems in which they work, accounting for complex biological realities that may have been ignored if these tools were not available. **In this course, we will learn to harness the power of computer simulations for understanding and managing natural populations**.  
 
-By the end of this course, students will have the ability to program their own *whole-systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., **R**)
+By the end of this course, students will have the ability to program their own *dynamic systems models* in InsightMaker, and use specialized software for parameterizing these models (e.g., **R**)
 
 A famous statistician ([George Box](https://en.wikipedia.org/wiki/George_E._P._Box)) once said ["All models are wrong but some are useful"](https://en.wikipedia.org/wiki/All_models_are_wrong). What he meant was that no model can perfectly describe any real-world system (e.g., population dynamics). However, some models can help us to understand how the real-world works and how to manage natural systems.
 
 **This is especially true in ecology**: ecological systems are complex and messy, and it is clear that no mathematical model can perfectly describe and predict any ecological phenomena. But that does not mean that ecological models can't be *useful*!    
 
-In this class (and beyond), _don't be afraid to model messy systems_. And above all, **don't be afraid to be wrong** - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own algorithms, we can be entering uncharted territory. And this can be difficult and dangerous, but ultimately rewarding! Keep trying, and stay positive! And don't forget that all models are wrong!
+In this class (and beyond), _don't be afraid to model messy systems_. And above all, **don't be afraid to be wrong** - that attitude is the enemy of successful computer programming, and of learning in general! When we build our own population models, we can be entering uncharted territory. And this can be difficult, but ultimately should be fun and rewarding! Keep trying, stay positive, and have fun with it! 
 
 Of course, this means not just reading and listening to lectures, it means *learning by doing*! Instructor-led lectures will be kept short, and we will spend significant class time (and pretty much all of lab time) on our computers, working through problems.
 
@@ -94,13 +96,9 @@ Finally, a [Variable] is an object that stores an important piece of information
 
 **Q**: Is this Moose model realistic? What are the first things you would like to change to make the model more realistic?
 
-*PointSolutions: take a few minutes to list the things you would like to change to make this model more realistic!*
+*Top Hat: take a few minutes to list the things you would like to change to make this model more realistic!*
 
 9. Finally, take a few minutes to check out "Insights" made by others using the "explore insights" link at the top of the webpage. You can search the database of Insights. Pick one or two of these insights and run them. How does the system behave? Does this make sense to you? We can (and will) add to this database as part of this class! 
-
-Just for fun, here is a cool video of the Lorenz Attractor, which we saw earlier!
-
-[Lorenz attractor video!](https://www.youtube.com/watch?v=iu4RdmBVdps)
 
 
 [--go to next lecture--](LECTURE2.html)
