@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Summary
 
-In this class we will explore key concepts of *population ecology* and how these concepts can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Wildlife Ecology and Management (NRES 310). NRES 470/670 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), in which you will learn to fit wildlife population models to data in R. This class is also closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers -- population simulation models!    
+In this class we will explore key concepts of *population ecology* and how these concepts can be applied to real-world systems to support and improve wildlife conservation and management. To take this course you should already have a basic grounding in the field of ecology (e.g., BIOL 314, NRES 217) and you should already have taken Wildlife Ecology and Management (NRES 310). NRES 470/670 is meant to be a bridge between NRES 310 and NRES 488 (Dynamics and Management of Wildlife Populations), in which you will learn to fit wildlife population models to data in R. This class is also closely allied with NRES 421 (Conservation Biology), in that we learn and apply one of the most important tools used by conservation biologists and wildlife managers -- population viability analysis (PVA)!    
 
 ## Syllabus:
 First let's take a quick walk through the online syllabus:
@@ -29,22 +29,23 @@ First let's take a quick walk through the online syllabus:
 NOTE: you can download a printable PDF version of the syllabus [here](Syllabus.pdf)     
 
 ## Textbook
-I have provided PDF copies of all chapters of the course textbook (A Primer of Ecology, by Nick Gotelli) on WebCampus. However, I encourage you to pick up a copy of the textbook- you can purchase the textbook new or used on [Amazon](https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&ie=UTF8&qid=1484867155&sr=1-1&keywords=a+primer+of+ecology). Previous editions (especially 3rd edition) are acceptable as well. All other readings will be posted on [WebCampus](https://unr.instructure.com/).
+The course textbook is "A Primer of Ecology" by Nick Gotelli. You can purchase the textbook new or used on [Amazon](https://www.amazon.com/Primer-Ecology-Fourth-Nicholas-Gotelli/dp/0878933182/ref=sr_1_1?s=books&ie=UTF8&qid=1484867155&sr=1-1&keywords=a+primer+of+ecology). Previous editions (especially 3rd edition) are acceptable as well. All other readings will be posted on [WebCampus](https://unr.instructure.com/).
 
 ## Software
-Skills with specialized software and computer programming are critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with computer programming and model building in [InsightMaker](https://insightmaker.com/), [R](https://cran.r-project.org/), and spreadsheet software (e.g., Excel, GSheets). I hope by the end of this class you will understand how powerful and useful these tools can be -- and not just for population ecology!
+Skills with specialized software and computer programming are critical in modern-day conservation biology and wildlife management. In this class, you will gain familiarity with computer programming and model building in [InsightMaker](https://insightmaker.com/), [R](https://cran.r-project.org/), and spreadsheet software (e.g., Excel, Google Sheets). I hope by the end of this class you will understand how powerful and useful these tools can be -- and not just for population ecology!
 
 See the [links page](Links.html) for some useful references (I will post more links shortly, including some R tutorials!).
 
 ## In-class activities
-This semester I will provide lecture materials, videos and readings prior to our class meetings. Most class periods will be devoted to discussion and hands-on modeling exercises (mini-labs) to give everyone a chance to apply the population ecology concepts from lectures and readings. Many class periods will also include short PointSolutions questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. _NOTE: you will not be penalized for incorrect responses in PointSolutions_!   
+This semester I will provide lecture materials, videos and readings prior to our class meetings. Most class periods will be devoted to discussion and hands-on modeling exercises (mini-labs) to give everyone a chance to apply the population ecology concepts from lectures and readings. Many class periods will also include short Top Hat questions (discussion questions, multiple choice, etc), mostly to give me feedback about what concepts might need more reinforcing. Your responses to these questions will also help inform your participation score. _NOTE: you will not be penalized for incorrect responses in Top Hat_!   
 
 ## Out-of-class activities
 To make the most of this course, you will need to devote significant time outside of class on:    
 
 1. Studying assigned readings (see [the schedule](schedule.html)) and online lecture materials (this website)       
-2. Finishing any problems/exercises you didn't complete during class or lab        
-3. Working on your final group projects.      
+2. Finishing any problems/exercises you didn't complete during class
+3. Completing lab activities
+4. Working on your final group projects.      
 
 ## Final projects
 It is never too early to start thinking about final project ideas and datasets. For the final projects, you will work in small groups to perform a population viability analysis (PVA) to assess conservation or management actions for a species of conservation concern (species of your choice!). Start thinking about what species you might be interested in modeling, and what conservation and management strategies you might want to test!      
