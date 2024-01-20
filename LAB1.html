@@ -14,7 +14,7 @@
 
 <title>Lab 1: exponential growth</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 1: exponential growth</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -489,40 +486,45 @@ class="math inline">\(D\)</span>. The important thing to recognize is
 that the total number of births and deaths should get larger as the
 population size gets larger. That is, <span
 class="math inline">\(B\)</span> and <span
-class="math inline">\(D\)</span> are not <em>constant</em> over time-
-they change as the population size <span
-class="math inline">\(N\)</span> gets bigger or smaller.</p>
-<p>How can we re-express this statement in terms of <em>constant</em>
+class="math inline">\(D\)</span> are not <em>constant</em> - they change
+as the population size <span class="math inline">\(N\)</span> gets
+bigger or smaller.</p>
+<p>How can we re-express this statement in terms of more fundamental
 properties of the population?</p>
 <p>What about the <em>percent of the population that dies each year
 (percent mortality)</em>? Or… the <em>number of births per female
 (per-capita birth rate)</em>?</p>
 <p>We will often call these quantities <strong>population vital
-rates</strong>. These quantities do not necessarily change as the
-population size <span class="math inline">\(N\)</span> gets bigger or
-smaller.</p>
+rates</strong> (or per-capita demographic rates). These quantities do
+not necessarily change as the population size <span
+class="math inline">\(N\)</span> gets bigger or smaller (at least in a
+simple exponential growth model).</p>
 <p>Examples of population vital rates:</p>
 <ul>
 <li>“<em>for every female in the population</em>, we expect 1.1
-offspring will be born this year”</li>
+offspring will be born (birth, or fertility, rate)”</li>
 <li>“<em>for every individual in the population today</em>, we expect
-0.8 new one-year-olds to enter the population next year”</li>
-<li>“we expect 3% of the current population to be harvested this
-year”</li>
-<li>“we expect 10% of the current population to die in the coming
-year”</li>
+0.8 new one-year-olds to enter the population next year” (fecundity
+rate)</li>
+<li>“we expect 3% of the current population to be harvested this year”
+(harvest rate)</li>
+<li>“we expect 10% of the current population to die in the coming year”
+(mortality rate)</li>
+<li>“we expect 90% of the current population to survive in the coming
+year” (survival rate)</li>
 </ul>
 <p>The population vital rates (per-capita demographic rates) are often
 expressed as lower case letters. So <span
 class="math inline">\(b\)</span> represents per-capita birth rate, and
-<span class="math inline">\(d\)</span> represents fractional death rate
-(fraction of the population dying each year).</p>
-<p>To compute the per-capita <strong>population vital rate</strong>
-<span class="math inline">\(b\)</span>, for example, you can just divide
-the total number of births (B) by the population size N:</p>
+<span class="math inline">\(d\)</span> represents fractional or
+(per-capita) death rate (fraction of the population dying each
+year).</p>
+<p>To compute the per-capita birth rate <span
+class="math inline">\(b\)</span>, for example, we can divide the total
+number of births (B) by the population size N:</p>
 <p><span class="math inline">\(b = \frac {B_t}{N_t} \qquad \text{(Eq.
 2)}\)</span></p>
-<p>–or, re-factored in terms of B–</p>
+<p>–or, re-factored in terms of B (total births)–</p>
 <p><span class="math inline">\(B_t = b \cdot N_t \qquad \text{(Eq.
 3)}\)</span></p>
 <p>The letter <span class="math inline">\(t\)</span> represents time
@@ -546,17 +548,21 @@ N_t\qquad \text{(Eq. 6)}\)</span></p>
 8)}\)</span></p>
 <p>Where <span class="math inline">\(r\)</span> represents the
 difference between the per-capita birth and death and death rates.</p>
-<p>If <span class="math inline">\(r\)</span> is positive, then births
-are greater than deaths and the population grows. If <span
-class="math inline">\(r\)</span> is negative then deaths exceed births
-and the population declines.</p>
 <p>This is probably the most fundamental equation of population
 ecology.</p>
+<p>If <span class="math inline">\(r\)</span> is positive, then births
+are greater than deaths and the population grows.</p>
+<p><span class="math inline">\(r&gt;0 \implies growing \space
+population\)</span></p>
+<p>If <span class="math inline">\(r\)</span> is negative then deaths
+exceed births and the population declines.</p>
+<p><span class="math inline">\(r&lt;0 \implies declining \space
+population\)</span></p>
 <div id="continuous-population-growth" class="section level3">
 <h3>Continuous population growth</h3>
 <p>A continuously growing population is always growing over time- no
 matter how small the time step, there is always some population growth
-over that time.</p>
+during that time period.</p>
 <p>We can use <em>calculus notation</em> to consider the change in
 population size for a continuously growing population:</p>
 <p><span class="math inline">\(\frac{\partial N}{\partial t} = r \cdot N
@@ -579,11 +585,12 @@ population size over time for any population that is growing
 <h4>Doubling time</h4>
 <p>One of the most intuitive ways to think about continuous exponential
 growth is in terms of the <em>doubling time</em>- the time (usually in
-years) it takes for a population to double in size. Let’s compute the
-doubling time for a population with 7% annual growth:</p>
+years) it takes for a population to double in size.</p>
+<p>Let’s compute the <em>doubling time</em> for a population with 7%
+annual growth:</p>
 <p>If you replace <span class="math inline">\(N_t\)</span> in the above
 equation (eq. 10) with <span class="math inline">\(2*N_0\)</span>
-(representing a doubling of population size), replace <span
+(representing a doubling of the initial population size), replace <span
 class="math inline">\(r\)</span> with 0.07 (representing 7% annual
 growth), then you can solve for t. The result is that you get the
 equation: <span class="math inline">\(t = \frac{ln(2)}{0.07}\)</span>.
@@ -603,14 +610,14 @@ double approximately every 10 years!</p>
 <div id="discrete-population-growth" class="section level3">
 <h3>Discrete population growth</h3>
 <p>In a population with discrete growth, the population grows in spurts-
-periods of relative lack of growth are interspersed with periods of
-rapid population growth. Effectively, this results in a “stair-step”
-model, looking something like this:</p>
+periods of no growth are interspersed with periods of rapid population
+growth. Effectively, this results in a “stair-step” model, looking
+something like this:</p>
 <p><img src="LAB1_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>You’ve probably seen the term “Lambda” (greek symbol <span
 class="math inline">\(\lambda\)</span>) before to represent population
 growth rate. Lambda is the “multiplicative growth rate”, also known as
-the <em>finite rate of growth</em>.</p>
+the <em>finite rate of growth</em> of a population.</p>
 <p>Lambda is what you multiply current abundance by to compute abundance
 in the next time step. It itself can be computed using the formula <span
 class="math inline">\(\frac {N_{t+1}}{N_t}\)</span></p>
@@ -634,6 +641,13 @@ birth and death rates now represent <strong>discrete growth</strong>
 \text{(Eq. 15)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad
 \text{(Eq. 16)}\)</span></p>
+<p>A Lambda above 1 implies that births exceed deaths each year, and the
+population is growing:</p>
+<p><span class="math inline">\(\lambda&gt;1 \implies growing \space
+population\)</span></p>
+<p>And…</p>
+<p><span class="math inline">\(\lambda&lt;1 \implies growing \space
+population\)</span></p>
 <p>Finally, if you want to compute the population size after <span
 class="math inline">\(t\)</span> time-steps of discrete population
 growth (analogous to eq. 10) you can use the following equation:</p>
@@ -643,8 +657,8 @@ growth (analogous to eq. 10) you can use the following equation:</p>
 <div id="difference-between-discrete-and-continuous-growth"
 class="section level3">
 <h3>Difference between discrete and continuous growth</h3>
-<p>It can be difficult to differentiate between discrete and continuous
-growth.</p>
+<p>It can be difficult to conceptualize the difference between discrete
+and continuous growth.</p>
 <p>Here are some expressions to illustrate the difference between
 discrete and continuous population vital rates:</p>
 <p><span class="math inline">\(b=0.9\)</span>: “New individuals enter
@@ -658,28 +672,35 @@ population dies each year, but the deaths occur evenly throughout the
 year”<br />
 <span class="math inline">\(d_d=0.23\)</span>: “Approximately 23% of the
 population dies each year, but nearly all the deaths are assumed to
-occur near the end of winter hibernation”<br />
+occur during winter hibernation”<br />
 <span class="math inline">\(r=0.15\)</span>: “The population is growing
 constantly (continuously) at a rate of exactly 15% per year” NOTE: you
 will not have exactly 15% more individuals in the population one year
 later, but in fact you will have 16.2% more individuals due to the
 process of <em>compounding</em> (because the population keeps growing
-even within each time step- the population doesn’t just remain at it’s
-initial size)! This should be more clear by the end of this lab.<br />
+even within each year- the population doesn’t just remain at it’s
+initial size all year long)! This should be more clear by the end of
+this lab.<br />
 <span class="math inline">\(r_d=0.15\)</span>: “The population size one
 year from now will be exactly 15% higher than it is today”</p>
-<p>Just so you know, you can convert between the discrete-time rate of
-growth Lambda (<span class="math inline">\(\lambda\)</span>) and the
-continuous rate of growth (<em>r</em>) easily: all you need to do is use
-the natural logarithm:</p>
+<p>For a continuously growing population, you can convert seamlessly
+between the population growth multiplier Lambda (<span
+class="math inline">\(\lambda\)</span>) and the continuous rate of
+growth (<em>r</em>) easily: all you need to do is use the natural
+logarithm:</p>
 <p><span class="math inline">\(e^r = \lambda\)</span><br />
 <span class="math inline">\(r = ln(\lambda)\)</span></p>
+<p>For a discrete-growth population, the conversion is slightly
+different:</p>
+<p><span class="math inline">\(1+r_d= \lambda\)</span> <span
+class="math inline">\(r_d = \lambda-1\)</span></p>
 <p><strong>Q</strong> What is lambda for a population that growing at a
 <em>discrete</em> rate of 7% per year?</p>
 <p><strong>Q</strong> What is lambda for a population that growing
-<em>continuously</em> at a rate of 7% per year? [this is harder!]</p>
+<em>continuously</em> at a rate of 7% per year?</p>
 <p>Okay let’s start the lab! The first software we will use is our old
-friend, MS <strong>Excel</strong>!</p>
+friend, Microsoft <strong>Excel</strong>! (or Google Sheets, or your
+preferred spreadsheet software!)</p>
 </div>
 </div>
 <div id="exponential-growth-in-excel" class="section level2">
@@ -709,14 +730,14 @@ cell (e.g., cell D5), typing ‘=’ in the cell (indicating that you are
 about to enter a <strong>formula</strong>), clicking on cell D3
 (indicating that you will use this cell’s value in the formula) and
 adding 1. As you do this, you should see the equation you are creating
-appear in the equation editor. The formula should look like “=D3+1”.
-Next, you can apply equation 16 directly by clicking in the empty <span
-class="math inline">\(N_{1}\)</span> cell (position B3), typing ‘=’ in
-the cell (indicating that you are about to enter a
-<strong>formula</strong>), clicking on the <span
+appear in the equation editor. The formula should look like
+<code>=D3+1</code>. Next, you can apply equation 16 directly by clicking
+in the empty <span class="math inline">\(N_{1}\)</span> cell (position
+B3), typing <code>=</code> in the cell (indicating that you are about to
+enter a <strong>formula</strong>), clicking on the <span
 class="math inline">\(N_{0}\)</span> cell (position B2– indicating that
 you will use this cell’s value in the formula), and completing the
-equation (e.g., “=B2*D5”, where cell D5 stores <span
+equation (e.g., <code>=B2*D5</code>, where cell D5 stores <span
 class="math inline">\(\lambda\)</span>). Hit enter.</p></li>
 <li><p>You can fill the remainder of the cells using the same equation
 for the other time steps by clicking and dragging (or double clicking)
@@ -725,26 +746,27 @@ cell is selected.</p></li>
 <li><p>What happened? We are not seeing a growing population here-
 actually it seems quite flat! this is surely not what we want! Click on
 the N(3) cell to see what equation is being used to calculate the cell
-value. The equation is =B3*D6. The B3 part is correct - we want to
-calculate the N(3) population size using the <span
+value. The equation is <code>=B3*D6</code>. The B3 part is correct - we
+want to calculate the N(3) population size using the <span
 class="math inline">\(N\)</span> from the previous timestep - but the D6
 part is incorrect. We always want to use the same <span
 class="math inline">\(\lambda\)</span> - which is always in the same
 cell (cell D5). You can see that when you drag down an equation as we
 have done, Excel adds 1 for each row so that the equation references the
-same relative positions in the spreadsheet for each new cell you want to
-calculate. We like that Excel did that for <span
+same <em>relative</em> positions in the spreadsheet for each new cell
+you want to calculate. We like that Excel did that for <span
 class="math inline">\(N\)</span>, but not for <span
 class="math inline">\(r\)</span> or <span
 class="math inline">\(\lambda\)</span>, so we can tell Excel to keep
 this value in the same row (row 3) for <span
 class="math inline">\(r\)</span> (or <span
 class="math inline">\(\lambda\)</span>) by inserting a dollar sign in
-our equation (in Excel terminology, this is a ‘fixed
+our equation (in Excel terminology, this is called a ‘fixed
 reference’).</p></li>
 <li><p>In the N(2) cell, edit the equation in the equation editor (or
 ‘function bar’) above the spreadsheet so that there is a dollar sign in
-D3 (i.e., ‘D$3’ instead of ‘D3’) (or just use the F4 shortcut).</p></li>
+D3 (i.e., <code>D$3</code> instead of <code>D3</code>) (or just use the
+F4 shortcut).</p></li>
 <li><p>Now drag the equation down again, and you should have a
 population size in row 32 of 1745 (representing the population size at
 year 30!).</p></li>
@@ -766,85 +788,96 @@ automatically adjust.</li>
 (you will be asked to <strong>provide your Excel
 spreadsheet</strong>).</p>
 <ul>
-<li><p><strong><em>Short answer (1a.)</em></strong> Change the
-per-capita growth rate to 0.09 in cell D3. Based on what we did together
-in the demo, this should change the value of abundance in year 30 (cell
-B32) automatically. <em>What is the new final abundance at year
-30?</em></p></li>
-<li><p><strong><em>Short answer (1b.)</em></strong> Assuming that the
-per-capita rate of growth represents <em>continuous</em> and not
-<em>discrete</em> growth, apply equation 10 (continuous-growth model-
-see above) to compute the expected population size in year 30. <em>What
-is the new final abundance at year 30, assuming continuous growth?</em>.
-Is this value different from your answer in question 1a? If so, in what
-way are the two values different (i.e., which one is larger/smaller than
-the other)?</p></li>
+<li><p><strong><em>Short answer (1a.)</em></strong> [numeric response]
+Change the per-capita growth rate to 0.07 in cell D3. Based on what we
+did together in the demo, this should change the value of abundance in
+year 30 (cell B32) automatically. <em>What is the new final abundance at
+year 30?</em> assuming discrete annual population growth?</p></li>
+<li><p><strong><em>Short answer (1b.)</em></strong> [numeric AND short
+text response] Assuming that the per-capita rate of growth <span
+class="math inline">\(r\)</span> in this model represents
+<em>continuous</em> and not <em>discrete</em> growth, apply equation 10
+(continuous-growth model- see above) to compute the expected population
+size in year 30. <em>What is the new final abundance at year 30,
+assuming continuous growth?</em>. Is this new value different from your
+answer in question 1a (discrete growth model)? If so, did the continuous
+model produce a larger or smaller population estimate (for year 30) than
+the discrete growth model?</p></li>
 </ul>
-<p>HINT: computing abundance at time t in the continuous-time model is a
-<em>single calculation</em>- don’t over-think this one. You may use a
-scientific calculator instead of Excel if you want!</p>
+<p>HINT: computing abundance at year 30 in the continuous-time model can
+be performed as a <em>single calculation</em> (using eq. 10, above)-
+don’t over-think this one. You may use a scientific calculator instead
+of Excel if you’d like.</p>
 <p>HINT: use the EXP function in Excel to raise <em>e</em> (the base of
 the natural logarithm) to any power: for example, to compute <span
-class="math inline">\(e^{1.7}\)</span> you type “=EXP(1.7)” in
+class="math inline">\(e^{0.07}\)</span> you type “=EXP(0.07)” in
 Excel.</p>
 <p>In general, if you don’t know the syntax for a function in Excel,
 click on the button labeled “fx” and you can search for functions using
 search terms!</p>
 <ul>
-<li><strong><em>Short answer (1c.)</em></strong> What are the
-<em>units</em> of the per-capita population growth rate (also known as
-“intrinsic rate of growth”), <span
-class="math inline">\(r\)</span>?</li>
+<li><strong><em>Short answer (1c.)</em></strong> [short text response]
+What are the <em>units</em> of the per-capita population growth rate
+<span class="math inline">\(r\)</span> (also known as “intrinsic rate of
+growth”)?</li>
 </ul>
 <p>HINT: The answer is in the Gotelli book. Note that abundance N is in
 units of <em>individuals</em>. Time is generally represented in units of
 <em>years</em> in wildlife population models.</p>
+<p>NOTE: The answer is the same for discrete and continuous-growth
+models.</p>
 <p>For the following problem (1d.) we will again assume discrete
 population growth (i.e., the “stair-step” model where the population
-grows in spurts), but this time we will assume the growth occurs in
+grows in bursts), but this time we will assume the growth occurs in
 half-years instead of whole years (semi-annual growth). To do this, you
 will first need to divide the annual per-capita growth rate in half: so,
-if the annual growth rate is 0.9, the semi-annual growth rate would be
-0.045 (4.5% percent growth each 6 months). Also, you need to change your
-number of time steps to 60 (60 half-years is equal to 30 whole-years).
-Try it in Excel!</p>
+if the annual growth rate is 0.07 (7% growth), the semi-annual growth
+rate would be 0.035 (3.5% percent growth each 6 months). Also, you need
+to change your number of time steps to 60 (60 half-years is equal to 30
+whole-years). Try it in Excel!</p>
 <ul>
-<li><p><strong><em>Short answer (1d.)</em></strong> What is the final
-abundance after 30 years (60 half-years) assuming a semi-annual growth
-rate of 4.5% (see more detailed instructions above)? Is this value
-different from your answer in question 1a? If so, in what way are the
-two values different (i.e., which one is larger/smaller than the
-other)?</p></li>
-<li><p><strong><em>Short answer (1e.)</em></strong> Assuming that the
-semi-annual rate of growth (0.045) represents <em>continuous</em> and
-not <em>discrete</em> growth, apply equation 10 (continuous-growth
-model- see above) to compute the expected population size at time step
-60 (60 half-years). <em>What is the new final abundance at time step 60,
-assuming continuous growth?</em>. Is this value different from your
-answer in question 1a? If so, in what way are the two values different
-(i.e., which one is larger/smaller than the other)? Of the two
-discrete-growth models (annual vs semiannual), which one yields a final
-abundance estimate that is closest to the continuous growth estimate
-(your answer to 1b.)?</p></li>
-<li><p><strong><em>Short answer (1f.)</em></strong> Imagine you modeled
-this population using a discrete growth model in which the population
-grows once per month instead of once every 6 months. Based on your above
-results (q1a-e), do you think the resulting estimate of population size
-after 30 years (360 months, using a growth rate of 0.09/12) would be
-closer to your continuous-time estimate (answer to 1b) than your answer
-from 1d (semi-annual discrete growth)? [you could test this using Excel,
-but it is not necessary for answering this question]?</p></li>
-<li><p><strong><em>Short answer (1g.)</em></strong> Can you think of at
-least one real-world example where continuous growth (eq. 10) would be a
-more biologically realistic model than discrete growth (eq. 16)? Justify
-your answer.</p></li>
-<li><p><strong><em>Short answer (1h.)</em></strong> Can you think of at
-least one real-world example where discrete-time population growth would
-be a more biologically realistic model than continuous growth? Justify
-your answer.</p></li>
-<li><p><strong><em>Excel submission (1i.)</em></strong> Please submit
-your final Excel workbook. If you used Google Sheets, please export as
-“.xslx” file.</p></li>
+<li><p><strong><em>Short answer (1d.)</em></strong> [numeric and short
+text responses] What is the final abundance after 30 years (60
+half-years) assuming semi-annual discrete growth of 3.5% per half-year
+(which implies 7% annual growth, just like your previous calculations
+assumed) (see more detailed instructions above)? Is this value different
+from your answer in question 1a (annual discrete growth of 7% per year)?
+If so, is your new estimate (semi-annual discrete growth) larger or
+smaller than your answer for question 1a (annual discrete
+growth)?</p></li>
+<li><p><strong><em>Short answer (1e.)</em></strong> [numeric and short
+text responses] Assuming a <em>continuously growing population</em> with
+a 3.5% semi-annual rate of growth (equivalent to a 7% continuous annual
+rate of growth, like question 1b), apply equation 10 (continuous-growth
+model) to compute the expected population size at time step 60 (60
+half-years = 30 full years, equivalent to question 1b). <em>What is the
+new final abundance estimate at year 30 (60 half-years), assuming
+continuous 3.5% semi-annual growth?</em>. Is this value different from
+your answer in question 1b (continuous annual growth)? If so, is your
+new estimate larger or smaller than your answer from q1b?</p></li>
+<li><p><strong><em>Short answer (1f.)</em></strong> [short text
+response] Imagine you modeled this population using a <em>discrete
+monthly</em> growth model instead of a discrete annual model (like q1a).
+Based on your above results (q1a-e), do you think the resulting estimate
+of population size after 30 years (360 months, using a monthly growth
+rate of 7/12 = 0.583% monthly growth rate, which is equivalent to a 7%
+annual growth rate) would be closer to the continuous-time estimate
+(answer to 1b) than your answer from 1a (discrete annual growth) and 1d
+(discrete semi-annual growth)? Feel free to test this using Excel (and
+explain how you did this), or use your intuition and explain your
+rationale?</p></li>
+<li><p><strong><em>Short answer (1g.)</em></strong> [short text
+response] Can you think of at least one real-world example where
+continuous growth (eq. 10) would be a more biologically realistic model
+than discrete growth (eq. 16)? Justify your answer.</p></li>
+<li><p><strong><em>Short answer (1h.)</em></strong> [short text
+response] Can you think of at least one real-world example where
+discrete population growth (eq. 16) would be a more biologically
+realistic model than continuous growth (eq. 10)? Justify your
+answer.</p></li>
+<li><p><strong><em>Excel submission (1i.)</em></strong> [upload your
+Excel workbook] Please submit your final Excel workbook. If you used
+Google Sheets, please export as “.xslx” file.</p></li>
 </ul>
 </div>
 </div>
@@ -852,10 +885,10 @@ your final Excel workbook. If you used Google Sheets, please export as
 <h2>Exponential growth in R</h2>
 <p>R is the most common software used by ecologists and conservation
 biologists for data analysis and simulation. R is incredibly powerful
-and useful, but there is a little bit of a learning curve with R! I will
-try to integrate R into this class as much as I can. We will do more
-with R when we get into data analysis! And you will do a LOT more with R
-in NRES 488!</p>
+and useful, but there is a learning curve with R! I will try to
+integrate R into this class as much as I can. We will do more with R
+when we get into data analysis! And you will do a LOT more with R in
+NRES 488!</p>
 <div id="set-up" class="section level3">
 <h3>SET UP</h3>
 <p>Open the R software from the program menu or desktop.</p>
@@ -872,6 +905,8 @@ access R packages, find help, access the user community, etc.</p>
 <p>Install <a
 href="https://rstudio.com/products/rstudio/download/">Rstudio</a>. This
 is a program that makes R easier to use!</p>
+<p>Make sure you have the most recent versions of R and RStudio
+installed!!</p>
 </div>
 <div id="step-ii.-take-some-time-to-get-familiar-with-r"
 class="section level3">
@@ -892,7 +927,7 @@ href="https://kevintshoemaker.github.io/R-Bootcamp/">https://kevintshoemaker.git
 </div>
 <div id="set-up-the-workspaceenvironment" class="section level3">
 <h3>Set up the workspace/environment</h3>
-<p>The first thing we usually do when we start an R session is we:</p>
+<p>The first thing we usually do when we start an R session is:</p>
 <ol style="list-style-type: decimal">
 <li>Open an new or existing RStudio Project</li>
 <li>Open a new or existing <strong>script</strong></li>
@@ -918,12 +953,12 @@ code. You should always include comments in any code that you write- we
 humans tend to read and understand written language better than computer
 code!</p>
 <p>Let’s assign our per-capita population growth rate, <span
-class="math inline">\(r\)</span> (but this could be called anything),
-and our initial population size to an object called <strong>N0</strong>
-(that is, population size at time 0), and the number of years to
-simulate.</p>
-<pre class="r"><code>r &lt;- 0.1     #Assign the value of 0.1 to the object &quot;r&quot;, or per-capita growth rate (discrete)
-lambda &lt;- 1 + r           # (1 + r) is equal to lambda, the finite rate of growth.  This stores the result of the calculation (1 + 0.1 = 1.1) in the object &quot;lambda&quot;.
+class="math inline">\(r_d\)</span> (discrete annual rate of growth-
+let’s call it <code>r_d</code> in R), and our initial population size to
+an object called <strong>N0</strong> (that is, population size at time
+0), and the number of years to simulate.</p>
+<pre class="r"><code>r_d &lt;- 0.1     #Assign the value of 0.1 to the object &quot;r_d&quot;, or discrete per-capita growth rate (discrete)
+lambda &lt;- 1 + r_d           # (1 + r) is equal to lambda, the finite rate of growth.  This stores the result of the calculation (1 + 0.1 = 1.1) in the object &quot;lambda&quot;.
 N0 &lt;- 100    #Assign the value of 100 to the object &quot;N0&quot;, or initial population size
 nyears &lt;- 30 #Assign the value of 30 to the object &quot;nyears&quot;, or the number of time steps to simulate</code></pre>
 <p>If we want to know what the population size is at the next time step,
@@ -933,14 +968,15 @@ we can simply multiply N0 by lambda.</p>
 <p>How can we find the population size for the next 30 years? Let’s
 first make an object that is a vector of years using the
 <strong>seq()</strong> or “sequence” function.</p>
-<pre class="r"><code>year &lt;- seq(from=0, to=nyears, by=1)   #Creates a sequence of numbers from 0 to the value stored in the object &quot;nyears&quot; (in this case, 50). Because you&#39;ve told this sequence to increment by 1, you&#39;ve created a string of numbers from 0 - 50 that contains 51 elements. A single series of elements (e.g., a single column of numbers) is called a vector. You then assign this vector to the object &quot;years&quot;.
+<pre class="r"><code>year &lt;- seq(from=0, to=nyears, by=1)   #Creates a sequence of numbers from 0 to the value stored in the object &quot;nyears&quot; (in this case, 30). Because you&#39;ve told this sequence to increment by 1, you&#39;ve created a string of numbers from 0 - 50 that contains 31 elements. A single series of elements (e.g., a single column of numbers) is called a vector. You then assign this vector to the object &quot;years&quot;.
 
-year                                   #Print the value of the object &quot;years&quot; that you just created.</code></pre>
+year                                   #Print the value of the object &quot;year&quot; that you just created.</code></pre>
 <pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
 ## [26] 25 26 27 28 29 30</code></pre>
 <p>Now, let’s build a storage structure to store simulated population
 size over this time period</p>
-<pre class="r"><code>N &lt;- numeric(nyears+1)    #Make an empty storage vector. The numeric() function takes the contents within the parentheses and converts those contents to the &quot;numeric&quot; class. Don&#39;t worry if this doesn&#39;t make sense -- what you need to know is that the value within the parentheses (in this case, 50+1=51) is used to tell this function how many zeros to create. So, this line of code creates a vector of 51 zeros, and assigns that vector to the object &quot;N&quot;.
+<pre class="r"><code>vec_size &lt;- nyears+1  # number of values to store is one more than nyears (includes year 0 all the way to year 50)
+N &lt;- numeric(vec_size)    #Make an empty storage vector. The numeric() function takes the contents within the parentheses and converts those contents to the &quot;numeric&quot; class. Don&#39;t worry if this doesn&#39;t make sense -- what you need to know is that the value within the parentheses (in this case 31) is used to tell this function how many zeros to create. So, this line of code creates a vector of 31 zeros, and assigns that vector to the object &quot;N&quot;.
 
 names(N) &lt;- year
 
@@ -953,29 +989,25 @@ N                         #Prints the contents of the object &quot;N&quot;.</cod
 <div id="run-the-simulation" class="section level3">
 <h3>Run the simulation!</h3>
 <p>Then we can use a <strong>for loop</strong> (a very powerful computer
-programming trick) to automatically generate the population size for
+programming technique) to automatically generate the population size for
 each of those years (note the similarity in the equation inside the for
 loop to Expression 1.15 in Gotelli).</p>
-<pre class="r"><code>N[1] &lt;- N0                # The brackets [] are used to indicate the position of an element within a vector. This line of code assigns the value of the object &quot;N0&quot; (100) to the first element in the &quot;N&quot; object. Remember, the &quot;N&quot; object is a vector of 51 zeros. Now, the first zero is changed to 100.
+<pre class="r"><code>N[1] &lt;- N0                # The brackets [] are used to indicate the position of an element within a vector. This line of code assigns the value of the object &quot;N0&quot; (100) to the first element in the &quot;N&quot; object. Remember, the &quot;N&quot; object is a vector of 31 zeros representing year 0 to year 30. Now, the first zero is changed to 100.
 
 for (i in 2:(nyears+1)){  # This for-loop will run through the line of code between the curly brackets {}. &quot;i&quot; is simply the name of a variable (you can use &quot;j&quot;, or &quot;k&quot;, instead -- any variable name will do). &quot;i&quot; changes each time the loop iterates; basically, it will increase by 1 each time the loop is run, starting at &quot;2&quot; up until the specified maximum number of loops &quot;nyears+1&quot;. 
   N[i] &lt;- N[i-1] * lambda  # This takes the [i - 1] element of &quot;N&quot;, multiplies that element by the value of lambda, then assigns that calculated result to the [i] element of &quot;N&quot;.
 }                         # This ends the for-loop.
 
-N                         # Now print the contents of the object &quot;N&quot;.</code></pre>
-<pre><code>##         0         1         2         3         4         5         6         7 
-##  100.0000  110.0000  121.0000  133.1000  146.4100  161.0510  177.1561  194.8717 
-##         8         9        10        11        12        13        14        15 
-##  214.3589  235.7948  259.3742  285.3117  313.8428  345.2271  379.7498  417.7248 
-##        16        17        18        19        20        21        22        23 
-##  459.4973  505.4470  555.9917  611.5909  672.7500  740.0250  814.0275  895.4302 
-##        24        25        26        27        28        29        30 
-##  984.9733 1083.4706 1191.8177 1310.9994 1442.0994 1586.3093 1744.9402</code></pre>
+round(N)                         # Now print the contents of the object &quot;N&quot; (rounded).</code></pre>
+<pre><code>##    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
+##  100  110  121  133  146  161  177  195  214  236  259  285  314  345  380  418 
+##   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30 
+##  459  505  556  612  673  740  814  895  985 1083 1192 1311 1442 1586 1745</code></pre>
 <p>If we just wanted to know the abundance at year 30, we could skip the
 FOR loop, and simply apply equation 17:</p>
 <pre class="r"><code>N30 &lt;- N0*lambda^nyears
-N30</code></pre>
-<pre><code>## [1] 1744.94</code></pre>
+round(N30)</code></pre>
+<pre><code>## [1] 1745</code></pre>
 </div>
 <div id="plotting" class="section level3">
 <h3>Plotting</h3>
@@ -988,50 +1020,60 @@ N30</code></pre>
 <p>Please provide short answers to the following questions. You will
 also be asked to <strong>provide your R code via WebCampus to back up
 your answers</strong>.</p>
-<p>Modify the above code to change r to 0.09 instead of 0.1, and run
-this model for 85 years instead of 30 years. Use this model to answer
-questions 2a and 2b:</p>
+<p>Modify the above code to change <span
+class="math inline">\(r_d\)</span> to 0.07 (7% discrete annual growth)
+instead of 0.1, and run this model for 85 years instead of 30 years. Use
+this model to answer questions 2a and 2b:</p>
 <ul>
-<li><p><strong><em>Short answer (2a.)</em></strong> What is the final
-population size at year 85 (with starting abundance of 100 and
-r=0.09)?</p></li>
-<li><p><strong><em>Plot Upload (2b.)</em></strong> Upload your plot
-(produced using R) of abundance vs time, illustrating population growth
-across the entire 85 year time span.</p></li>
+<li><p><strong><em>Short answer (2a.)</em></strong> [numeric response]
+What is the final population size at year 85 (with starting abundance of
+100 and r=0.07)?</p></li>
+<li><p><strong><em>Plot Upload (2b.)</em></strong> [image upload] Upload
+your plot (produced using R) of abundance vs time, illustrating
+population growth across the entire 85 year time span with 7% discrete
+annual growth.</p></li>
 </ul>
-<p>Modify the code again, this time change r to 0.3 instead of 0.09, and
-run this model again for 85 years. Use this model to answer questions 2c
-and 2d:</p>
+<p>Modify the code again, this time change <span
+class="math inline">\(r_d\)</span> to 0.25 (25% annual discrete growth
+rate) instead of 0.07, and run this model again for 85 years. Use this
+model to answer questions 2c and 2d:</p>
 <ul>
-<li><p><strong><em>Short answer (2c.)</em></strong> What is the final
-population size at year 85 (with starting abundance of 100 and
-r=0.3)?</p></li>
-<li><p><strong><em>Plot Upload (2d.)</em></strong> Upload your plot
-(produced using R) of abundance vs time, illustrating population growth
-across the entire 85 year time span.</p></li>
-<li><p><strong><em>Short answer (2e.)</em></strong> Use trial and error
-to modify the value of <span class="math inline">\(r\)</span> such that
-the final population size after 85 years is as close as possible to 1000
-(initial population is still 100). What is the value of <span
-class="math inline">\(r\)</span> you identified by trial and
+<li><p><strong><em>Short answer (2c.)</em></strong> [numeric response]
+What is the final population size at year 85 (with starting abundance of
+100 and 25% discrete annual growth)?</p></li>
+<li><p><strong><em>Plot Upload (2d.)</em></strong> [image upload] Upload
+your plot (produced using R) of abundance vs time, illustrating
+population growth across the entire 85 year time span at 25% discrete
+annual growth.</p></li>
+<li><p><strong><em>Short answer (2e.)</em></strong> [numeric response]
+Use trial and error to modify the value of <span
+class="math inline">\(r_d\)</span> (discrete annual rate of growth) such
+that the final population size after 85 years is as close as possible to
+2000 (initial population is still 100). What is the value of <span
+class="math inline">\(r_d\)</span> you identified by trial and
 error?</p></li>
-<li><p><strong><em>Image upload (2f.)</em></strong> After you solve this
-problem by trial and error (2e), try to solve this problem analytically
-(solve for <span class="math inline">\(r\)</span>) using Eq. 10. Use
-scratch paper (or virtual scratch pad) to make your calculations, take a
-photo (or screenshot) and upload the image in WebCampus.</p></li>
-<li><p><strong><em>Short answer (2g.)</em></strong> Change the value of
-<span class="math inline">\(r\)</span> to -0.08. How long until the
+<li><p><strong><em>Image upload (2f.)</em></strong> [image upload] After
+you solve this problem by trial and error (2e), try to solve this
+problem analytically (solve for <span
+class="math inline">\(r_d\)</span>) using Eq. 16. Use scratch paper (or
+virtual scratch pad) to make your calculations (showing all your work as
+clearly as possible), take a photo (or screenshot) and upload the image
+in WebCampus.</p></li>
+<li><p><strong><em>Short answer (2g.)</em></strong> [numeric response]
+Change the value of <span class="math inline">\(r_d\)</span> to -0.07
+(7% discrete annual population <em>decline</em>). How long until the
 population goes extinct? NOTE: we will define extinction in this
 exercise as &lt;1 individual in the population- a fraction of an
 individual is not much of a population!</p></li>
-<li><p><strong><em>Short answer (2h.)</em></strong> In 2g above, we
-defined extinction as &lt;1 individual in the population. Propose one
-alternative definition of extinction and justify why your definition
-might make more sense than the definition used in 2g (feel free to use a
-real-world example).</p></li>
-<li><p><strong><em>Text entry (2i.)</em></strong> Please copy and paste
-the R script you used to answer the above questions.</p></li>
+<li><p><strong><em>Short answer (2h.)</em></strong> [short text
+response] In 2g above, we defined extinction as &lt;1 individual in the
+population. Propose one alternative definition of extinction and justify
+why your definition might make more sense than the definition used in 2g
+(feel free to use a real-world example).</p></li>
+<li><p><strong><em>Text entry (2i.)</em></strong> [upload R script]
+Please copy and paste the R script you used to answer the above
+questions. Make sure your R script is <em>well-commented</em> and easy
+to follow!!</p></li>
 </ul>
 </div>
 </div>
@@ -1039,7 +1081,8 @@ the R script you used to answer the above questions.</p></li>
 <h2>Exponential growth in InsightMaker</h2>
 <p>You should already have created a free account in <a
 href="https://insightmaker.com/">insightmaker</a>, and you should
-already know the basics about how to set up and run a model.</p>
+already know the basics about how to set up and run a model from
+previous class meetings.</p>
 <ol style="list-style-type: decimal">
 <li><p>Click “Create New Insight” to start a new model (click “Clear
 this Demo” to clear the canvas and have an open workspace). Save the
@@ -1063,18 +1106,18 @@ button to change the flow direction). Name the flow
 <em>Births</em>.</p></li>
 <li><p>Create a new [Flow] going from <em>Population</em> to empty
 space. Name the flow <em>Deaths</em>.</p></li>
-<li><p>The model diagram should now look something like this:</p></li>
+<li><p>The model diagram should now look something like this (oriented
+vertically or horizontally, doesn’t matter):</p></li>
 </ol>
 <p><img src="IM2.png" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li><p>Change the <strong>Flow Rate</strong> property of <em>Births</em>
-to 0.13 <span class="math inline">\(*\)</span> [Population]. This
-represents the total number of individuals entering the [Stock]
-(population) in each time step.</p></li>
+to <code>0.13 * [Population]</code>. This represents the total number of
+individuals entering the [Stock] (population) in each time
+step.</p></li>
 <li><p>Change the <strong>Flow Rate</strong> property of <em>Deaths</em>
-to 0.10 <span class="math inline">\(*\)</span> [Population]. This
-represents the total number of individuals leaving the [Stock]
-(population) in each time step.</p></li>
+to <code>0.10 * [Population]</code>. This represents the total number of
+individuals leaving the [Stock] (population) in each time step.</p></li>
 </ol>
 <p>Can you already tell whether this is a growing or declining
 population? (just a quick thought question, not part of the written
@@ -1090,12 +1133,11 @@ window.</li>
 <div id="exercise-3-insightmaker-problems" class="section level3">
 <h3>Exercise 3 (InsightMaker problems)</h3>
 <p>Please provide short answers to the following questions, and (when
-prompted) <strong>provide your “Insights” to back up your
+prompted) <strong>provide InsightMaker links to back up your
 answers</strong>.</p>
 <p>First, modify the above model so that per-capita (discrete) birth
-rate (<span class="math inline">\(b_d\)</span>) and death rate (<span
-class="math inline">\(d_d\)</span>) are separate elements of the model
-(using the “Variable” primitive). Your Insight should look something
+rate and death rate are separate elements of the model (create 2 new
+“Variables” in InsightMaker). Your Insight should now look something
 like this:</p>
 <p><img src="IM3.png" /></p>
 <p>To enable easy manipulation of these variables, change the
@@ -1105,7 +1147,7 @@ like this:</p>
 value</strong> to 1, the <strong>Slider Min value</strong> to 0, and the
 <strong>Slider Step value</strong> to 0.01. For <em>Population</em>, set
 the <strong>Show Value Slider</strong> option to ‘Yes’; for this slider
-(which represents initial abundance <span
+(this value represents initial abundance <span
 class="math inline">\(N_0\)</span>), set the maximum slider value to
 1000 and set the slider step size to 1 so we don’t have fractional
 individuals!</p>
@@ -1114,23 +1156,24 @@ Birth Rate, Population and Death Rate sliders on the info tab. Change
 the slider values of the rates a few times, re-running the simulation
 each time. When you are confident that your model is working right,
 share it with your instructor and TA (save as a “public insight” and
-insert URL in the appropriate place in WebCampus).</p>
+insert the URL in the appropriate place in WebCampus).</p>
 <p><strong>Clone</strong> your previous Insight before you move on to
 the next problem (otherwise any changes you make will carry over to your
 answer to the previous problem!). The “Clone Insight” link is located in
-the upper right corner. In general, always clone your Insights after you
+the upper right corner. <em>Always clone your Insights</em> after you
 have copied a link to an insight into your lab write-up. That way, you
 won’t inadvertently change a model before your instructors have a chance
 to verify you did everything right!</p>
 <ul>
-<li><p><strong><em>Short answer (3a.)</em></strong> Submit the link for
-your InsightMaker model here.</p></li>
-<li><p><strong><em>Short answer (3b.)</em></strong> Starting with a
-growing population, can you come up with two different scenarios in
-which <em>Population</em> is neither growing nor declining, by only
-changing one of the sliders from the starting conditions (ie, starting
-with the version you just submitted in 3a)? Explain your
-answer.</p></li>
+<li><p><strong><em>Short answer (3a.)</em></strong> [Text input:
+InsightMaker URL] Submit the link for your InsightMaker model
+here.</p></li>
+<li><p><strong><em>Short answer (3b.)</em></strong> [Short text input]
+Starting with a growing population (where birth rate exceeds death
+rate), can you come up with two different scenarios in which
+<em>Population</em> is neither growing nor declining, by only changing
+one of the sliders from the starting conditions (ie, starting with the
+version you just submitted in 3a)? Explain your answer.</p></li>
 </ul>
 </div>
 </div>
@@ -1142,7 +1185,7 @@ script as text pasted into WebCampus) and responses via WebCampus. The
 InsightMaker models should be shared by saving your Insights as “public”
 and sharing the URL link with your instructors in Top Hat.</li>
 </ul>
-<p><strong><em>Due Feb. 10</em></strong></p>
+<p><strong><em>Due Feb. 9</em></strong></p>
 <ul>
 <li>WebCampus short answers and file submissions
 <ul>
@@ -1178,13 +1221,13 @@ you were able to:
 <li>adapt the given code to run for 85 years, and can display a plot of
 the results;<br />
 </li>
-<li>change <span class="math inline">\(r\)</span> to 0.35 and run for 85
+<li>change <span class="math inline">\(r\)</span> to 0.25 and run for 85
 years and plot the results;<br />
 </li>
 <li>identify a value of <span class="math inline">\(r\)</span> that
-gives a population size of 1000 after 85 years; and<br />
+gives a population size of 2000 after 85 years; and<br />
 </li>
-<li>change <span class="math inline">\(r\)</span> to -0.08 and run until
+<li>change <span class="math inline">\(r\)</span> to -0.07 and run until
 the population goes extinct- and plot the results.</li>
 </ol></li>
 </ul></li>
