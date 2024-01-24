@@ -30,10 +30,10 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ### Conservation and Management
   - Is a focal species or population at risk of extinction?
-  - How do modern human land use practices affect populations?
+  - How do modern land use practices affect populations?
   - What is the *Maximum Sustainable Yield* for an important game species?
   - How can insect pests be effectively controlled?
-  - What land should be protected to preserve at-risk populations?
+  - What land (and how much) should be protected to conserve target species?
   - How can we reduce extinction risk for a focal population while minimizing costs? 
 
 ## What is a population?
@@ -44,15 +44,6 @@ From Krebs (1972):
 Spatial boundaries defining populations sometimes are easily defined, but can also be vague and difficult to determine.
 
 Population size, or abundance, is often represented as $N$, and is the most basic measurement of a wild population. 
-
-## Exponential growth: the fundamental principle of population ecology
-
-![](puffball1.png){width=50%}
-
-Giant puffballs produce 7 trillion offspring (12 zeroes!) in one reproductive event
-... If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!
-
-The reason? Populations can exhibit **exponential, or multiplicative, growth**, in which each each addition to the population expands the rate of population growth (more individuals mean more reproductive output), leading to a **positive feedback loop**.    
 
 ## Mathematics and Population Ecology
 
@@ -65,11 +56,18 @@ The reason? Populations can exhibit **exponential, or multiplicative, growth**, 
 ![](1976_Elton.jpg){width=30%}
 
 'The importance of the method is this: if we know certain variables, we can predict certain results which would not normally be predictable or even expected by ecologists. The stage of verification of these mathematical predictions has hardly begun; but their importance cannot be under-estimated.'        
-  - Charles Elton    
-  
-## Exponential growth
+  - Charles Elton  
 
-Exponential growth is the result of a **positive (reinforcing) feedback loop**. 
+## Exponential growth: the fundamental principle of population ecology
+
+![](puffball1.png){width=50%}
+
+Giant puffballs produce 7 trillion offspring (12 zeroes!) in one reproductive event
+... If all of those individuals reached adulthood, the descendants from just two parent puffballs would weigh more than the entire planet in two generations!
+
+The reason? Populations can exhibit **exponential, or multiplicative, growth**, in which each each addition to the population expands the rate of population growth (more individuals mean more reproductive output), leading to a **positive feedback loop**.    
+
+Exponential growth is the result of a **positive feedback loop**. 
 
 ![](positivefeedback1.png)
 
@@ -91,7 +89,7 @@ Let's build a model to help us better understand this process.
 
 This model includes a **feedback** in which the [Flow] rate depends on the amount currently in the [Stock]. 
 
-1. Open InsightMaker. Create a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and just name them *Stock* and *Flow* for now.  
+1. Open InsightMaker. Create a [Stock] and a [Flow] as you did in the previous model (flow should be an flow in, not a flow out) and just name them *Stock* and *Flow* for now.  
 
 2. If you mouse over *Stock* or *Flow* a small [$=$ Sign] will appear. If you click this it will open the **Equation** window where you can set values or equations. Open this window for the [Stock], enter a value of 1, then close the window.
 
@@ -101,13 +99,11 @@ This model includes a **feedback** in which the [Flow] rate depends on the amoun
 
 5. Now click [Run Simulation] and you have just finished your first exponential growth simulation model! Does it do what you would expect?
 
+6. Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick a couple of these and try it out!
+
 **Q:** If [Stock] is a population -- say, rabbits -- then what is the interpretation of [Flow]? What is the interpretation of *Rate*? Clone your model, and then *Rename your variables accordingly* and change the parameters to make the model more biologically realistic for the biological processes they represent. Run the simulation again. 
 
 **Q** Recall the basic equation of exponential growth: $\Delta N = r \cdot N_t$. How does it relate to the InsightMaker model you have just created? Which component of the equation refers to which component of the model in InsightMaker? [Top Hat]
-
-7. Think about the first question above while doing this (snowball, people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How would you change the values to represent each of these quantities? Pick a couple of these and try it out!
-
-You should notice that the population tends to grow slowly at first and then very rapidly. This is referred to as *exponential growth*. If you've read the first chapter of the Gotelli book, you will recognize this as the _foundational concept of population ecology_!
 
 **Q** Can you model the puffball example from earlier in the lecture? How many giant puffballs are in the population after two generations?? [Top Hat]
 
