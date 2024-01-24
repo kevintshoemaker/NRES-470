@@ -20,9 +20,8 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ### Ecological
   - Why are some species more abundant than others?   
   - What causes population densities to vary in space and time?   
-  - What causes populations to go extinct? Get recolonized?  
+  - What causes populations to go extinct?   
   - What processes *regulate* population growth?   
-    - Extrinsic vs intrinsic factors (Nicholson vs Andrewartha debate)
   - How can predators and prey coexist sustainably?   
   - What factors allow strong competitors to coexist?
   - What levels of connectivity are needed to maintain sustainable metapopulations?
@@ -74,7 +73,7 @@ Exponential growth is the result of a **positive (reinforcing) feedback loop**.
 
 ![](positivefeedback1.png)
 
-**Feedbacks** in systems occur when the input and output rates (e.g., births and deaths per year) depend upon the value of the stock (e.g., a wild population!). 
+**Feedbacks** in systems occur when the input and output rates (e.g., births and deaths) vary depending upon the amount in the stock (e.g., a wild population!). 
 
 Feedbacks are what leads to complex ('interesting') system behaviors and unexpected emergent properties.   
 
@@ -93,6 +92,7 @@ Let's build a model to help us better understand this process.
 This model includes a **feedback** in which the [Flow] rate depends on the amount currently in the [Stock]. 
 
 1. Open InsightMaker. Create a [Stock] and a [Flow] as you did in the previous model (flow should be an input, not an output) and just name them *Stock* and *Flow* for now.  
+
 2. If you mouse over *Stock* or *Flow* a small [$=$ Sign] will appear. If you click this it will open the **Equation** window where you can set values or equations. Open this window for the [Stock], enter a value of 1, then close the window.
 
 3. Usually there is some type of factor governing the **rate** the [Stock] influences the [Flow]. Let's introduce a [Variable] named *Rate*. To create a [Variable], right-click on the canvas and select **Variable** from the drop-down. Now draw a [Link] from *Rate* to the [Flow] (this allows you to use the *Rate* parameter in the equation for the [Flow]. Open the **Equation** window for *Rate* and set it to 0.5. 
