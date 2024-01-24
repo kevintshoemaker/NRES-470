@@ -486,11 +486,12 @@ metapopulations?</li>
 <h3>Conservation and Management</h3>
 <ul>
 <li>Is a focal species or population at risk of extinction?</li>
-<li>How do modern human land use practices affect populations?</li>
+<li>How do modern land use practices affect populations?</li>
 <li>What is the <em>Maximum Sustainable Yield</em> for an important game
 species?</li>
 <li>How can insect pests be effectively controlled?</li>
-<li>What land should be protected to preserve at-risk populations?</li>
+<li>What land (and how much) should be protected to conserve target
+species?</li>
 <li>How can we reduce extinction risk for a focal population while
 minimizing costs?</li>
 </ul>
@@ -506,22 +507,6 @@ but can also be vague and difficult to determine.</p>
 <p>Population size, or abundance, is often represented as <span
 class="math inline">\(N\)</span>, and is the most basic measurement of a
 wild population.</p>
-</div>
-<div
-id="exponential-growth-the-fundamental-principle-of-population-ecology"
-class="section level2">
-<h2>Exponential growth: the fundamental principle of population
-ecology</h2>
-<p><img src="puffball1.png" style="width:50.0%" /></p>
-<p>Giant puffballs produce 7 trillion offspring (12 zeroes!) in one
-reproductive event … If all of those individuals reached adulthood, the
-descendants from just two parent puffballs would weigh more than the
-entire planet in two generations!</p>
-<p>The reason? Populations can exhibit <strong>exponential, or
-multiplicative, growth</strong>, in which each each addition to the
-population expands the rate of population growth (more individuals mean
-more reproductive output), leading to a <strong>positive feedback
-loop</strong>.</p>
 </div>
 <div id="mathematics-and-population-ecology" class="section level2">
 <h2>Mathematics and Population Ecology</h2>
@@ -539,13 +524,26 @@ mathematical predictions has hardly begun; but their importance cannot
 be under-estimated.’<br />
 - Charles Elton</p>
 </div>
-<div id="exponential-growth" class="section level2">
-<h2>Exponential growth</h2>
-<p>Exponential growth is the result of a <strong>positive (reinforcing)
-feedback loop</strong>.</p>
+<div
+id="exponential-growth-the-fundamental-principle-of-population-ecology"
+class="section level2">
+<h2>Exponential growth: the fundamental principle of population
+ecology</h2>
+<p><img src="puffball1.png" style="width:50.0%" /></p>
+<p>Giant puffballs produce 7 trillion offspring (12 zeroes!) in one
+reproductive event … If all of those individuals reached adulthood, the
+descendants from just two parent puffballs would weigh more than the
+entire planet in two generations!</p>
+<p>The reason? Populations can exhibit <strong>exponential, or
+multiplicative, growth</strong>, in which each each addition to the
+population expands the rate of population growth (more individuals mean
+more reproductive output), leading to a <strong>positive feedback
+loop</strong>.</p>
+<p>Exponential growth is the result of a <strong>positive feedback
+loop</strong>.</p>
 <p><img src="positivefeedback1.png" /></p>
 <p><strong>Feedbacks</strong> in systems occur when the input and output
-rates (e.g., births and deaths per year) depend upon the value of the
+rates (e.g., births and deaths) vary depending upon the amount in the
 stock (e.g., a wild population!).</p>
 <p>Feedbacks are what leads to complex (‘interesting’) system behaviors
 and unexpected emergent properties.</p>
@@ -569,9 +567,8 @@ people, rabbits, fire, bacteria, fleas, savings accounts, cancer?</p>
 rate depends on the amount currently in the [Stock].</p>
 <ol style="list-style-type: decimal">
 <li><p>Open InsightMaker. Create a [Stock] and a [Flow] as you did in
-the previous model (flow should be an input, not an output) and just
-name them <em>Stock</em> and <em>Flow</em> for now.<br />
-</p></li>
+the previous model (flow should be an flow in, not a flow out) and just
+name them <em>Stock</em> and <em>Flow</em> for now.</p></li>
 <li><p>If you mouse over <em>Stock</em> or <em>Flow</em> a small [<span
 class="math inline">\(=\)</span> Sign] will appear. If you click this it
 will open the <strong>Equation</strong> window where you can set values
@@ -592,6 +589,10 @@ is equal to the value of the [Stock] multiplied by the value of
 <li><p>Now click [Run Simulation] and you have just finished your first
 exponential growth simulation model! Does it do what you would
 expect?</p></li>
+<li><p>Think about the first question above while doing this (snowball,
+people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How
+would you change the values to represent each of these quantities? Pick
+a couple of these and try it out!</p></li>
 </ol>
 <p><strong>Q:</strong> If [Stock] is a population – say, rabbits – then
 what is the interpretation of [Flow]? What is the interpretation of
@@ -604,17 +605,6 @@ the simulation again.</p>
 relate to the InsightMaker model you have just created? Which component
 of the equation refers to which component of the model in InsightMaker?
 [Top Hat]</p>
-<ol start="7" style="list-style-type: decimal">
-<li>Think about the first question above while doing this (snowball,
-people, rabbits, fire, bacteria, fleas, savings accounts, cancer). How
-would you change the values to represent each of these quantities? Pick
-a couple of these and try it out!</li>
-</ol>
-<p>You should notice that the population tends to grow slowly at first
-and then very rapidly. This is referred to as <em>exponential
-growth</em>. If you’ve read the first chapter of the Gotelli book, you
-will recognize this as the <em>foundational concept of population
-ecology</em>!</p>
 <p><strong>Q</strong> Can you model the puffball example from earlier in
 the lecture? How many giant puffballs are in the population after two
 generations?? [Top Hat]</p>
