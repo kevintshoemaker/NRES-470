@@ -14,7 +14,7 @@
 
 <title>Malthus and the beginning of Pop Ecol</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Malthus and the beginning of Pop Ecol</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -496,7 +493,7 @@ limits have to do with food availability,</li>
 <li>When there is more food available, humans will tend to apply that
 toward increased reproduction,</li>
 <li>Which will only temporarily forestall a crisis when we inevitably
-reach the limits to growth, leading to.:</li>
+reach the limits to growth, leading to:</li>
 <li>Widespread famine, disease etc. - especially among poor and
 disadvantaged populations.</li>
 </ol>
@@ -505,7 +502,8 @@ disadvantaged populations.</li>
 surplus population” - Ebenezer Scrooge</p>
 </blockquote>
 <p><strong>Discussion Question:</strong> Was Malthus right? For humans?
-For wildlife? Can you think of any examples for or against?</p>
+For wildlife? Can you think of any examples for or against? [Top
+Hat]</p>
 <p><img src="darwin1.jpg" style="width:30.0%" /></p>
 <p>Interestingly, in 1838 (four years after Malthus’ death), Charles
 Darwin, just back from his trip on HMS Beagle (1831–1836), was searching
@@ -514,16 +512,16 @@ Malthus’ <em>Essay on the principle of population</em>, he realized one
 of the possible implications of the checks that controlled population
 growth (i.e., that the power of exponential growth, confronted with hard
 resource limitations, implies a ‘population surplus’ destined to die
-early) and wrote:</p>
+before they are able to reproduce) and wrote:</p>
 <blockquote>
 <p>‘…favourable variations would tend to be preserved, and unfavourable
 ones to be destroyed … The result of this would be the formation of a
 new species. Here, then, I had at last got a theory by which to work.’ -
 Charles Darwin</p>
 </blockquote>
-<p>Twenty one years later Darwin published his book <em>On the origin of
-species by means of natural selection</em>. Like Malthus’ work, it too
-raised a storm of controversy and protest.</p>
+<p>Twenty one years later, Darwin published his book <em>On the origin
+of species by means of natural selection</em>. Like Malthus’ work, it
+too raised a storm of controversy and protest.</p>
 <p>So, what do you think? Mathus’ <em>Essay</em> was extremely
 influential, right!!</p>
 <div id="in-class-exercise-limits-to-growth" class="section level2">
@@ -538,15 +536,13 @@ certain limit, then a famine occurs and 99% of the population dies.</p>
 exponentially growing population! The new feature we will learn today is
 a very important programming construct: the <strong>conditional
 statement</strong>.</p>
-<p>Conditional statements are also known as IF-THEN statements. In plain
-English: <em>IF some condition is true, THEN do something. ELSE if some
-other condition is true, THEN do something else. ELSE if none of the
-previous conditions are true, THEN do something else.</em></p>
+<p>Conditional statements are also known as IF-THEN-ELSE statements. In
+plain English: <em>IF [some condition is true], THEN [do one thing] ELSE
+[do another thing].</em></p>
 <p>In today’s in-class exercise, we will implement the following
 conditional statement (the “famine condition”): <em>IF human population
 is below the population limit, THEN the annual death rate is 0.01. ELSE
-if the population exceeds the population limit, a famine arises and the
-mortality rate jumps to 0.99</em></p>
+a famine arises and the mortality rate jumps to 0.99</em></p>
 <p>To implement this in InsightMaker, we need to use the following
 <strong>syntax</strong>:</p>
 <pre><code>If [Humans]&lt;[Limit] Then
@@ -563,11 +559,13 @@ growth model with birth and death rate). This [Stock] should have two
 defined as the product of <em>Humans</em> and per-capita rate constants,
 respectively called <em>Birth rate</em> and <em>Death rate</em> (each
 defined on the canvas as [Variables]). This model is identical to one of
-the models you will (or have already made) in lab 1.</p></li>
+the models you will make (or have already made) in lab 1.</p></li>
 <li><p>Initialize the population of <em>Humans</em> to 1000. Set the
 <em>Birth rate</em> to 0.1 (humans produced per human per year). Set the
 <em>Death rate</em> to 0.01 (humans lost per human per year). Change the
-settings so that the simulation runs for 100 years.</p></li>
+settings so that the simulation runs for 100 years. (by the way, what is
+the intrinsic rate of growth, <span class="math inline">\(r\)</span>,
+for this population?)</p></li>
 <li><p>Run this model, make sure it behaves like you would expect it to
 (yielding exponential growth!). How many humans are there after 100
 years?</p></li>
@@ -575,8 +573,8 @@ years?</p></li>
 population limit for <em>Humans</em>. This could, for instance,
 represent the <em>maximum number of humans that could be supported
 indefinitely if all arable land were cultivated with the most
-energy-rich crop possible</em>. Initialize the “Limit” to half a
-million.</p></li>
+energy-rich crop possible</em>. Initialize the “Limit” to half a million
+(Limit = 500,000).</p></li>
 <li><p>In preparation for implementing the “famine” condition (death
 rate increases to 99% if <em>Humans</em> exceeds <em>Limit</em> –
 otherwise remains at 1%), create new <strong>Links</strong> from
@@ -616,7 +614,7 @@ so that the population limit increases linearly- say, by 1000 per year?
 What happens then? HINT: you can add a [Flow] to represent increase in
 agricultural production!</p>
 <p><strong>Q</strong> Is this population (‘famine condition’ model)
-regulated? Is it sustainable? Why or why not? [PointSolutions]</p>
+regulated? Is it sustainable? Why or why not? [Top Hat]</p>
 <p>Just for fun, here is a <a
 href="https://www.youtube.com/watch?v=QAkW_i0bDpQ">Video</a> made by <a
 href="https://en.wikipedia.org/wiki/John_Green_(author)">John Green</a>
