@@ -14,7 +14,7 @@
 
 <title>Population regulation</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Population regulation</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -497,8 +494,8 @@ decrease in abundance will cause an increase in the population growth
 rate (<em>compensatory growth</em>).</p>
 <p>You can’t have a regulated system without some kind of negative
 feedback.</p>
-<p><strong>thought Q</strong>: Is density-dependent population
-regulation a “law of nature”?</p>
+<p><strong>Q</strong>: Is density-dependent population regulation a “law
+of nature”?</p>
 </div>
 <div id="logistic-growth" class="section level2">
 <h2>Logistic growth</h2>
@@ -506,7 +503,7 @@ regulation a “law of nature”?</p>
 equation:</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 -
 \frac{N}{K} \right )\)</span></p>
-<p>This is probably the <em>second most important equation of population
+<p>This is the <em>second most important equation of population
 ecology</em> (after basic exponential growth!).</p>
 <p>We will go into more detail in lab, but let’s break this equation
 down a bit.</p>
@@ -519,14 +516,15 @@ down a bit.</p>
 as the <em>used portion of carrying capacity</em></p>
 <p>By the same token, you can think about <span
 class="math inline">\(\left ( 1 - \frac{N}{K} \right )\)</span> as the
-<em>unused portion of carrying capacity</em>.</p>
+<em>unused portion of carrying capacity</em> (or the relative
+‘un-crowded-ness’ of the habitat).</p>
 <p>When carrying capacity is mostly unused, <em>population growth
-resembles basic exponential growth</em>!</p>
+resembles exponential growth</em>!</p>
 <p>When carrying capacity is mostly used up, <em>population growth
 resembles</em>, well…, <em>no growth at all</em>!</p>
-<p><strong>Thought Q:</strong> Given the two above statements, can you
-figure out what population dynamics should look like under logistic
-growth, starting with a very small population?</p>
+<p><strong>Q:</strong> Given the two above statements, can you figure
+out what population dynamics should look like under logistic growth,
+starting with a very small population?</p>
 </div>
 <div id="carrying-capacity-is-an-equilibrium-point"
 class="section level2">
@@ -534,10 +532,10 @@ class="section level2">
 <p>A stock-flow system is at an <strong>equilibrium</strong> point when
 [Flows In] are equal to [Flows Out]. That is, if opposing forces cancel
 each other out.</p>
-<p>As Gotelli shows, and we will go over in detail, you can derive the
-logistic growth equation by making <em>b</em> and <em>d</em> (from the
-standard population growth equation) both linearly dependent on
-density:</p>
+<p>As Gotelli shows, and we will go over in detail in lab 2, you can
+derive the logistic growth equation by making <em>b</em> and <em>d</em>
+(from the standard population growth equation) both linear functions of
+population size <span class="math inline">\(N\)</span>:</p>
 <p><span class="math inline">\(b=b_{max}-a*[Density]\)</span></p>
 <p>where <span class="math inline">\(b_{max}\)</span> is the maximum, or
 ideal, per-capita birth rate and <span class="math inline">\(a\)</span>
@@ -640,11 +638,11 @@ is a functioning model you can use as a starting point</a>:</p>
 </ol>
 <p><strong>Q:</strong> What is carrying capacity in this model?
 <strong>Q:</strong> What happens if population size starts out
-<em>at</em> carrying capacity? [PointSolutions]<br />
+<em>at</em> carrying capacity? [Top Hat]<br />
 <strong>Q:</strong> What happens if population size starts out
-<em>above</em> carrying capacity? [PointSolutions]<br />
+<em>above</em> carrying capacity? [Top Hat]<br />
 <strong>Q:</strong> Is carrying capacity (K) a stable equilibrium in
-this model? [PointSolutions]</p>
+this model? [Top Hat]</p>
 <p><strong>Q:</strong> In real-world systems, is carrying capacity
 stable? Is it an equilibrium point?</p>
 <ol start="8" style="list-style-type: decimal">
