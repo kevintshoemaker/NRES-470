@@ -1,7 +1,7 @@
 ---
 title: "Population regulation"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -29,7 +29,7 @@ Same with populations. In a regulated population, an increase in abundance will 
 
 You can't have a regulated system without some kind of negative feedback. 
 
-**thought Q**: Is density-dependent population regulation a "law of nature"?
+**Q**: Is density-dependent population regulation a "law of nature"?
 
 ## Logistic growth
 
@@ -37,7 +37,7 @@ Logistic growth can be described mathematically by the following equation:
 
 $\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
 
-This is probably the *second most important equation of population ecology* (after basic exponential growth!). 
+This is the *second most important equation of population ecology* (after basic exponential growth!). 
 
 We will go into more detail in lab, but let's break this equation down a bit. 
 
@@ -51,19 +51,19 @@ $\left ( 1 - \frac{N}{K}  \right )$
 
 You can think about $\frac{N}{K}$ as the *used portion of carrying capacity*
 
-By the same token, you can think about $\left ( 1 - \frac{N}{K}  \right )$ as the *unused portion of carrying capacity*. 
+By the same token, you can think about $\left ( 1 - \frac{N}{K}  \right )$ as the *unused portion of carrying capacity* (or the relative 'un-crowded-ness' of the habitat). 
 
-When carrying capacity is mostly unused, _population growth resembles basic exponential growth_! 
+When carrying capacity is mostly unused, _population growth resembles exponential growth_! 
 
 When carrying capacity is mostly used up, _population growth resembles_, well..., _no growth at all_!
 
-**Thought Q:** Given the two above statements, can you figure out what population dynamics should look like under logistic growth, starting with a very small population?
+**Q:** Given the two above statements, can you figure out what population dynamics should look like under logistic growth, starting with a very small population?
 
 ## Carrying capacity is an equilibrium point!
 
 A stock-flow system is at an **equilibrium** point when [Flows In] are equal to [Flows Out]. That is, if opposing forces cancel each other out.   
 
-As Gotelli shows, and we will go over in detail, you can derive the logistic growth equation by making *b* and *d* (from the standard population growth equation) both linearly dependent on density:
+As Gotelli shows, and we will go over in detail in lab 2, you can derive the logistic growth equation by making *b* and *d* (from the standard population growth equation) both linear functions of population size $N$:
 
 $b=b_{max}-a*[Density]$
 
