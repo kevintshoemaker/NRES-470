@@ -430,6 +430,9 @@ First, modify the above model so that per-capita (discrete) birth rate and death
 
 ![](IM3.png)
 
+Make sure your Births and Deaths flows are now specified as functions of the per-capita rate parameters (birth rate and death rate, now specified as variables in the model) For example, change the births flow from `0.13 * [Population]` to `[Birth Rate] * [Population]`.
+
+
 To enable easy manipulation of these variables, change the **Show Value Slider** options for *Birth Rate* and *Death Rate* (in the properties windows for these variables) to 'Yes'. For both of these two variables, change the **Slider Max value** to 1, the **Slider Min value** to 0, and the **Slider Step value** to 0.01. For *Population*, set the **Show Value Slider** option to 'Yes'; for this slider (this value represents initial abundance $N_0$), set the maximum slider value to 1000 and set the slider step size to 1 so we don't have fractional individuals!  
 
 Now click on the white space of your model; you should now see the Birth Rate, Population and Death Rate sliders on the info tab. Change the slider values of the rates a few times, re-running the simulation each time. When you are confident that your model is working right, share it with your instructor and TA (save as a "public insight" and insert the URL in the appropriate place in WebCampus). 

@@ -1140,6 +1140,11 @@ rate and death rate are separate elements of the model (create 2 new
 “Variables” in InsightMaker). Your Insight should now look something
 like this:</p>
 <p><img src="IM3.png" /></p>
+<p>Make sure your Births and Deaths flows are now specified as functions
+of the per-capita rate parameters (birth rate and death rate, now
+specified as variables in the model) For example, change the births flow
+from <code>0.13 * [Population]</code> to
+<code>[Birth Rate] * [Population]</code>.</p>
 <p>To enable easy manipulation of these variables, change the
 <strong>Show Value Slider</strong> options for <em>Birth Rate</em> and
 <em>Death Rate</em> (in the properties windows for these variables) to
