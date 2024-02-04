@@ -14,7 +14,7 @@
 
 <title>Passenger Pigeon/Allee effect</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Passenger Pigeon/Allee effect</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -480,8 +477,7 @@ the density of prairie dogs is high, they can warn each other about
 predators. If the density is low, there may not be enough neighbors
 around to warn each other of approaching danger, and the predation rate
 might go up, resulting in higher <em>d</em>. This is a positive
-feedback, and can result in, well, you should simulate it for
-yourself!</p>
+feedback, and can result in, well, let’s simulate it and find out!</p>
 <p>This effect – whereby population growth rate may
 <strong>decrease</strong> when population size decreases – is called an
 <strong>Allee effect</strong>, named after ecologist <a
@@ -523,9 +519,9 @@ methods.</p>
 from hardwood trees) were cleared on a massive scale, reducing available
 habitat.</p>
 <p>But what do passenger pigeons have to do with the Allee effect?</p>
-<p>Passenger pigeons were an extremely gregarious species. Once their
-numbers dwindled (due to hunting and clear-cutting) one hypothesis is
-that their social systems broke down, and they could no longer
+<p>Passenger pigeons were an extremely gregarious (social) species. Once
+their numbers dwindled (due to hunting and clear-cutting) one hypothesis
+is that their social systems broke down, and they could no longer
 effectively reproduce or protect themselves from predators.</p>
 </div>
 </div>
@@ -583,21 +579,24 @@ syntax (or equivalent):</p>
 Else
   [Min mortality]+[Density dependence on survival]*([Pigeons]-[Allee threshold])
 End If</code></pre>
+<p>NOTE: you could accomplish the same task using the absolute value.
+For example, you could define the per-capita birth rate this way:</p>
+<pre><code>[Max fecundity]-[Density dependence on fecundity]*Abs([Pigeons]-[Allee threshold])</code></pre>
+<p>Think about it- does it make sense that this is the same model?</p>
 <ol start="5" style="list-style-type: decimal">
-<li>If we are running out of time in class (which we probably will be!),
-load the model (and clone it!) using <a
+<li>If we are running out of time in class, load the model (and clone
+it!) using <a
 href="https://insightmaker.com/insight/3iPYWl5vT2niZ1WGtC7C7Y/Allee-effect-lecture-5">this
 link</a>!</li>
 </ol>
 <p>Now you can try to answer the following questions:</p>
 <p><strong>Q</strong>: Carrying capacity (K) represents one equilibrium
 point in this model. Try to find another equilibrium point- that is, a
-point where the population neither grows nor declines.
-[PointSolutions]</p>
+point where the population neither grows nor declines. [Top Hat]</p>
 <p><strong>Q</strong>: is this equilibrium a <em>stable equilibrium</em>
-or an <em>unstable equilibrium</em>? [PointSolutions]</p>
-<p>Hopefully it is clear from this example why Allee effects often spell
-bad news for wildlife conservation!</p>
+or an <em>unstable equilibrium</em>? [Top Hat]</p>
+<p>Hopefully it is clear why Allee effects can spell bad news for rare
+species that were once abundant!</p>
 <p>And just for fun, here is some information about <a
 href="https://reviverestore.org/about-the-passenger-pigeon/">the
 passenger pigeon and its possible “de-extinction”</a></p>

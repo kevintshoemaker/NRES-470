@@ -1,7 +1,7 @@
 ---
 title: "Passenger Pigeon/Allee effect"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -21,12 +21,11 @@ In the last lecture, we talked about how density-dependent feedbacks can regulat
 
 What happens if density dependence goes the other way? What if an increase in population density were to induce an *increase* in population growth rate *r*? This would be a positive feedback: increased population density results in faster growth, which produces a bigger population, which results in faster population growth, etc.
 
-Imagine a social species, like the prairie dogs pictured above. If the density of prairie dogs is high, they can warn each other about predators. If the density is low, there may not be enough neighbors around to warn each other of approaching danger, and the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, you should simulate it for yourself! 
+Imagine a social species, like the prairie dogs pictured above. If the density of prairie dogs is high, they can warn each other about predators. If the density is low, there may not be enough neighbors around to warn each other of approaching danger, and the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, let's simulate it and find out! 
 
 This effect -- whereby population growth rate may **decrease** when population size decreases -- is called an **Allee effect**, named after ecologist [Warder Clyde Allee](https://en.wikipedia.org/wiki/Warder_Clyde_Allee) (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.
 
 Interestingly, Dr. Allee's interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was a devout Quaker, an anti-war activist and an advocate of human social cooperation! From the Wikipedia article: "Allee saw ecologists as 'social healers' who were able to provide a naturalistic foundation for ethics through their research"
-
 
 ![](Allee1.jpg){width=30%}
 
@@ -53,7 +52,7 @@ Secondly, hardwood forests (primary food source for pigeons was mast from hardwo
 
 But what do passenger pigeons have to do with the Allee effect? 
 
-Passenger pigeons were an extremely gregarious species. Once their numbers dwindled (due to hunting and clear-cutting) one hypothesis is that their social systems broke down, and they could no longer effectively reproduce or protect themselves from predators.   
+Passenger pigeons were an extremely gregarious (social) species. Once their numbers dwindled (due to hunting and clear-cutting) one hypothesis is that their social systems broke down, and they could no longer effectively reproduce or protect themselves from predators.   
 
 ## In-class exercise: Allee effect
 
@@ -97,15 +96,23 @@ Else
 End If
 ```
 
-5. If we are running out of time in class (which we probably will be!), load the model (and clone it!) using [this link](https://insightmaker.com/insight/3iPYWl5vT2niZ1WGtC7C7Y/Allee-effect-lecture-5)!    
+NOTE: you could accomplish the same task using the absolute value. For example, you could define the per-capita birth rate this way:
+
+```
+[Max fecundity]-[Density dependence on fecundity]*Abs([Pigeons]-[Allee threshold])
+```
+
+Think about it- does it make sense that this is the same model?
+
+5. If we are running out of time in class, load the model (and clone it!) using [this link](https://insightmaker.com/insight/3iPYWl5vT2niZ1WGtC7C7Y/Allee-effect-lecture-5)!    
 
 Now you can try to answer the following questions:
 
-**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.  [PointSolutions] 
+**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.  [Top Hat] 
 
-**Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? [PointSolutions]
+**Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? [Top Hat]
 
-Hopefully it is clear from this example why Allee effects often spell bad news for wildlife conservation!  
+Hopefully it is clear why Allee effects can spell bad news for rare species that were once abundant!  
 
 And just for fun, here is some information about [the passenger pigeon and its possible "de-extinction"](https://reviverestore.org/about-the-passenger-pigeon/)
 

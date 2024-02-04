@@ -106,13 +106,16 @@ What is the equilibrium point in this system? That is, what is the (non-zero) ab
 
 This equilibrium is known as **K**, or **carrying capacity**?
 
-![](gstab.png)
+Equilibria can be stable or unstable (see below). This distinction is critical for wildlife managers and conservation biologists to understand.
+
 
 ## Stable and non-stable equilibria
 
 A **stable equilibrium**, when perturbed, returns to the equilibrium point
 
 A **non-stable equilibrium**, when perturbed, does NOT return to the equilibrium point 
+
+![](gstab.png)
 
 Is the image on the left a stable or a non-stable equilibrium??
 
@@ -144,7 +147,7 @@ EQUATIONS
 
 How can we do this in InsightMaker? 
 
-1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar!! 
+1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar by now!! 
 
 2. Initialize the population of *Turtles* to 5 (way below carrying capacity).   
 
@@ -178,7 +181,6 @@ $\Delta N = r_{max} \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
 
 **Q:** What happens if $r_{max}$ is zero? What happens to carrying capacity?      
 **Q:** Which population is more likely to be found at or near K in nature? A population with very large $r_{max}$ or very small $r_{max}$?     
-**Q:** How does this discussion relate to the concept of "r-selected" and "K-selected" species?
  
 
 
