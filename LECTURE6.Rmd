@@ -1,7 +1,7 @@
 ---
 title: "Age-structured populations"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -19,7 +19,7 @@ Then we allowed $b$ and $d$ to change (becoming less favorable to growth) as pop
 
 Here we ask: what if population vital rates ($b$ and $d$) change as individuals get older (i.e., what if $b$ and $d$ are 'age-structured')? 
 
-How can we model age-structured population vital rates? How might this affect population dynamics? 
+How can we model *age-structured* population vital rates? How might this affect population dynamics? 
 
 ![](elephant1.jpg){width=40%}
 
@@ -45,7 +45,7 @@ What about per-capita death rates for a tortoise? We might imagine something tha
 ```{r echo=F}
 Tortoise_age <- seq(0,120,by=5)
 
-Death_rate <- c(seq(0.7,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.5,length=4))
+Death_rate <- c(seq(0.5,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.2,length=4))
 
 names(Death_rate) <- Tortoise_age
 
@@ -57,7 +57,7 @@ So, for many species per-capita birth rates and death rates are fundamentally de
 
 ![](spadefoot1.jpg){width=40%}
 
-**Q:** Imagine you were trying to re-establish a population of spadefoot toads, which tend to reproduce for the first time in their third year of life. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm (to maximize survival rate). What would population growth look like over the next 4 years, assuming the reintroduction strategy was successful? [PointSolutions]
+**Q:** Imagine you were trying to re-establish a population of spadefoot toads, which tend to reproduce for the first time in their third year of life. You take 1000 tadpoles from a captive population and place them in a temporary wetland right after a rainstorm (to maximize survival rate). What would population growth look like over the next 4 years, assuming the reintroduction strategy was successful? [Top Hat]
 
 ## Aside: sex-structured vital rates
 
@@ -84,9 +84,9 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 
 ```
 
-### Fecundity schedule
+### Reproductive schedule
 
-The fecundity component of the life table is called the "fecundity schedule"! The term $b(x)$ represents the per-capita birth rate for females of age x. The fecundity schedule describes how birth rate changes with age.   
+The reproduction component of the life table is called the reproductive schedule (or sometimes, the "fecundity schedule")! The term $b(x)$ represents the per-capita birth rate for females of age x. The reproductive schedule describes how birth rate changes with age.   
 
 ### Survivorship schedule
 
@@ -108,7 +108,7 @@ The survivorship schedule describes how survivorship drops off with age. The sur
 
 *Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. 
 
-There are three main types of survivorship curve (survivorship schedule), and these curves are classified as **Type I**, **Type II**, and **Type III**.
+There are three main types of survivorship curve, and these curves are classified as **Type I**, **Type II**, and **Type III**.
 
 These three types of **life history** pattern can be illustrated with three real-world examples: humans, songbirds, and frogs.
 
@@ -123,9 +123,9 @@ These three types of **life history** pattern can be illustrated with three real
 
 ![](Survivorship_Curves.jpg){width=60%}
 
-(Note the logarithmic scale on the Y axis!)
+(Note the logarithmic scale on the Y axis. This is important!)
 
-**Q:** Which survivorship curve is the most common in nature?? [PointSolutions] (remember, you're not graded on correctness- just take a guess if you're not sure!)
+**Q:** Which survivorship curve is the most common in nature?? [Top Hat] (remember, you're not graded on correctness- just take a guess if you're not sure!)
 
 ## In-class exercise: age-structured population growth
 
@@ -143,7 +143,7 @@ Try to implement this formula in Excel. What's the answer?
 
 BUT, what is the time frame of $R_0$? What is the time frame of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
 
-What is a **generation**? The most common definition (for generation time) is the _Average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is their average age when they first become parents?). This can be computed from the life table as:
+What is a **generation**? The most common definition (for generation time) is the _Average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is the average age of their parents?). This can be computed from the life table as:
 
 $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
 
@@ -155,7 +155,7 @@ Try to implement this in Excel (or another spreadsheet software).
 
 To a first-order approximation, you can use this equation:
 
-$r = \frac{ln(R_0)}{G}$ [PointSolutions]
+$r = \frac{ln(R_0)}{G}$ [Top Hat]
 
 Just looking at this equation, you see that organisms with longer generation times ($G$) have slower intrinsic rates of growth, all else being equal. 
 
@@ -163,14 +163,14 @@ And you can estimate the finite rate of growth ($\lambda$) for this population l
 
 $\lambda = e^{r}$
 
-4. Load up an stage-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population). 
+4. Load up a stage-structured model in InsightMaker. You can clone [this one,  here](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population). 
 
 
     4a. Initialize the population like the spadefoot toad example from above- with only juveniles in the population at time 0. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
     
     4b. Can you modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three stage classes (and the population as a whole)? This is called **Stable Stage Distribution (SSD)**
     
-    4d. Now change the **Adult mort rate** to 0.65. What happens? Is this a growing population? How many subadults would need to be added to the population each year (population supplementation) to maintain a stable or growing population of >20 adults?  [PointSolutions]
+    4d. Now change the **Adult mort rate** to 0.65. What happens? Is this a growing population? How many subadults would need to be added to the population each year (population supplementation) to maintain a stable or growing population of >20 adults?  [Top Hat]
 
 **Q**: Is supplementation the best strategy for conserving this population?    
 

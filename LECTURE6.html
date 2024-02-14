@@ -14,7 +14,7 @@
 
 <title>Age-structured populations</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Age-structured populations</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -474,8 +471,8 @@ class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span>) change as individuals get older (i.e.,
 what if <span class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span> are ‘age-structured’)?</p>
-<p>How can we model age-structured population vital rates? How might
-this affect population dynamics?</p>
+<p>How can we model <em>age-structured</em> population vital rates? How
+might this affect population dynamics?</p>
 <p><img src="elephant1.jpg" style="width:40.0%" /></p>
 <p>Take this Indian elephant for example. How does the per-capita birth
 rate (b) depend on age for this species?</p>
@@ -494,7 +491,7 @@ time in their third year of life. You take 1000 tadpoles from a captive
 population and place them in a temporary wetland right after a rainstorm
 (to maximize survival rate). What would population growth look like over
 the next 4 years, assuming the reintroduction strategy was successful?
-[PointSolutions]</p>
+[Top Hat]</p>
 <div id="aside-sex-structured-vital-rates" class="section level2">
 <h2>Aside: sex-structured vital rates</h2>
 <p><strong>Q:</strong> Can you think of some real-world examples where
@@ -563,12 +560,13 @@ tracked across time.</p>
 </tr>
 </tbody>
 </table>
-<div id="fecundity-schedule" class="section level3">
-<h3>Fecundity schedule</h3>
-<p>The fecundity component of the life table is called the “fecundity
-schedule”! The term <span class="math inline">\(b(x)\)</span> represents
-the per-capita birth rate for females of age x. The fecundity schedule
-describes how birth rate changes with age.</p>
+<div id="reproductive-schedule" class="section level3">
+<h3>Reproductive schedule</h3>
+<p>The reproduction component of the life table is called the
+reproductive schedule (or sometimes, the “fecundity schedule”)! The term
+<span class="math inline">\(b(x)\)</span> represents the per-capita
+birth rate for females of age x. The reproductive schedule describes how
+birth rate changes with age.</p>
 </div>
 <div id="survivorship-schedule" class="section level3">
 <h3>Survivorship schedule</h3>
@@ -596,9 +594,9 @@ age. The survivorship schedule is typically visualized as a
 <p><em>Survivorship curves</em> describe how the logarithm of
 survivorship (<span class="math inline">\(log(l(x))\)</span>) drops off
 with age.</p>
-<p>There are three main types of survivorship curve (survivorship
-schedule), and these curves are classified as <strong>Type I</strong>,
-<strong>Type II</strong>, and <strong>Type III</strong>.</p>
+<p>There are three main types of survivorship curve, and these curves
+are classified as <strong>Type I</strong>, <strong>Type II</strong>, and
+<strong>Type III</strong>.</p>
 <p>These three types of <strong>life history</strong> pattern can be
 illustrated with three real-world examples: humans, songbirds, and
 frogs.</p>
@@ -614,10 +612,10 @@ frogs.</p>
 <h4>Type III</h4>
 <p><img src="frog1.jpg" style="width:30.0%" /></p>
 <p><img src="Survivorship_Curves.jpg" style="width:60.0%" /></p>
-<p>(Note the logarithmic scale on the Y axis!)</p>
+<p>(Note the logarithmic scale on the Y axis. This is important!)</p>
 <p><strong>Q:</strong> Which survivorship curve is the most common in
-nature?? [PointSolutions] (remember, you’re not graded on correctness-
-just take a guess if you’re not sure!)</p>
+nature?? [Top Hat] (remember, you’re not graded on correctness- just
+take a guess if you’re not sure!)</p>
 </div>
 </div>
 </div>
@@ -657,8 +655,8 @@ growth per <strong>generation</strong>!.</p>
 <p>What is a <strong>generation</strong>? The most common definition
 (for generation time) is the <em>Average age at which individuals in a
 cohort produce offspring</em> (consider all the offspring produced by
-the cohort- what is their average age when they first become parents?).
-This can be computed from the life table as:</p>
+the cohort- what is the average age of their parents?). This can be
+computed from the life table as:</p>
 <p><span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot
 b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}\)</span></p>
 <p>Try to implement this in Excel (or another spreadsheet software).</p>
@@ -670,8 +668,8 @@ class="math inline">\(r\)</span>) for this age-structured
 population?</li>
 </ol>
 <p>To a first-order approximation, you can use this equation:</p>
-<p><span class="math inline">\(r = \frac{ln(R_0)}{G}\)</span>
-[PointSolutions]</p>
+<p><span class="math inline">\(r = \frac{ln(R_0)}{G}\)</span> [Top
+Hat]</p>
 <p>Just looking at this equation, you see that organisms with longer
 generation times (<span class="math inline">\(G\)</span>) have slower
 intrinsic rates of growth, all else being equal.</p>
@@ -680,7 +678,7 @@ class="math inline">\(\lambda\)</span>) for this population like
 this:</p>
 <p><span class="math inline">\(\lambda = e^{r}\)</span></p>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Load up an stage-structured model in InsightMaker. You can clone
+<li><p>Load up a stage-structured model in InsightMaker. You can clone
 <a
 href="https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population">this
 one, here</a>.</p>
@@ -695,8 +693,8 @@ three stage classes (and the population as a whole)? This is called
 <p>4d. Now change the <strong>Adult mort rate</strong> to 0.65. What
 happens? Is this a growing population? How many subadults would need to
 be added to the population each year (population supplementation) to
-maintain a stable or growing population of &gt;20 adults?
-[PointSolutions]</p></li>
+maintain a stable or growing population of &gt;20 adults? [Top
+Hat]</p></li>
 </ol>
 <p><strong>Q</strong>: Is supplementation the best strategy for
 conserving this population?</p>
