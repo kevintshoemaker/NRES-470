@@ -64,13 +64,13 @@ It should be structured something like this:
 
 ![](IM5.jpg){width=70%}
 
-2. Now add a new [Variable] in InsightMaker called *Allee threshold*. Set this variable equal to 200 (it is a 'constant' and will remain at this value through the simulation).
+2. Now add a new [Variable] in InsightMaker called *Optimal abundance* or *Nopt*. This is the level of abundance where the population sees all the benefits of social aggregation, yet little of the negative effects of crowding or resource limitation. Set this variable equal to 200 (it is a 'constant' and will remain at this value through the simulation).
 
 3. As for the other parameters, set them as follows:    
 
-- Initial abundance: 201 (just above the Allee threshold) 
-- Density dependence on birth rate: 0.0004    
-- Density dependence on mortality: 0.0001   
+- Initial abundance: 201 (just above the optimum) 
+- Density dependence on birth rate: 0.004    
+- Density dependence on mortality: 0.001   
 - Max birth rate: 0.8   
 - Min mortality: 0.3   
 
