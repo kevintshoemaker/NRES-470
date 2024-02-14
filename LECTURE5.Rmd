@@ -74,7 +74,7 @@ It should be structured something like this:
 - Max birth rate: 0.8   
 - Min mortality: 0.3   
 
-4. Now let's use a *Conditional (IF-THEN-ELSE) statement* to specify an Allee effect. The population experiences maximum growth rate at the Allee threshold. If the population is above the Allee threshold, the population exhibits (stabilizing) negative density dependence. If the population is below the Allee threshold, then the population experiences positive density dependence- whereby individuals in smaller populations have *lower* overall fitness. 
+4. Now let's use a *Conditional (IF-THEN-ELSE) statement* to specify an Allee effect. The population experiences maximum growth rate at the Allee threshold. If the population is above the optimum, the population exhibits (stabilizing) negative density dependence. If the population is below the Allee threshold, then the population experiences positive density dependence- whereby individuals in smaller populations have *lower* overall fitness. Positive density dependence can be a destabilizing force if it forces population growth to become negative at low abundances. 
 
 To do this, define your *Births per Capita* using the following syntax (or equivalent):
 
@@ -104,11 +104,13 @@ NOTE: you could accomplish the same task using the absolute value. For example, 
 
 Think about it- does it make sense that this is the same model?
 
-5. If we are running out of time in class, load the model (and clone it!) using [this link](https://insightmaker.com/insight/3iPYWl5vT2niZ1WGtC7C7Y/Allee-effect-lecture-5)!    
+5. If we are running out of time in class, load the model (and clone it!) using [this link](https://insightmaker.com/insight/5mshbXRri1fBJEYNNHS2ZY/Allee-effect-model)!    
 
 Now you can try to answer the following questions:
 
-**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines.  [Top Hat] 
+**Q**: What is carrying capacity (K) for this model?
+
+**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines [Top Hat] 
 
 **Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? [Top Hat]
 
