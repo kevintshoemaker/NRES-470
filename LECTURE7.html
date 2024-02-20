@@ -14,7 +14,7 @@
 
 <title>Matrix population models</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Matrix population models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -497,6 +494,7 @@ transition matrix illustrates the generality of this concept!)</p>
 <p>For example, the teasel vital rates can be summarized in <a
 href="teaselmatrix1.csv">this matrix</a>:</p>
 <pre class="r"><code># Teasel example -------------------------------
+
 # Teasel example from Gotelli: summarizing a complex life history!
 
 teasel &lt;- read.csv(&quot;teaselmatrix1.csv&quot;, header=T)      # read in the teasel transition matrix from Gotelli
@@ -530,9 +528,9 @@ species like a sea turtle, with up to 75 or 100 years of life. You could
 build a model in which you have 100 [Stocks], one for each year of
 life.</p>
 <p>–OR–</p>
-<p>You could have 5 [Stocks] representing age ranges in which sea
-turtles tend to have consistent(ish) vital rates. For example, we might
-divide the sea turtle life history into the following stages:</p>
+<p>You could have 5 [Stocks] representing age ranges over which sea
+turtles tend to have similar vital rates. For example, we might divide
+the sea turtle life history into the following stages:</p>
 <p>Age 0-1: hatchling<br />
 Age 1-5: young juvenile<br />
 Age 5-10: older juvenile<br />
@@ -547,7 +545,7 @@ stage-structured models with equal simplicity and elegance.</p>
 <p>The term ‘Leslie Matrix’ refers to an age-structured matrix
 population model.</p>
 <p>When a matrix is used to represent a stage-structured population, it
-is often called a “Lefkovitch” Matrix.</p>
+is often called a “Lefkovitch” (or stage-based) Matrix.</p>
 </div>
 </div>
 <div id="reason-2-modeling-age-structured-population-dynamics"
@@ -683,7 +681,7 @@ t+1\)</span></p>
 <strong>transition matrix</strong>, which we have seen before.</p>
 <p>Both equations describe discrete exponential growth or decline!</p>
 <p>Note that <span class="math inline">\(N\)</span> in the first
-equation is a <strong>scalar</strong> – that is, it is just a ‘naked’
+equation is a <strong>scalar</strong> – that is, it is just a single
 number.</p>
 <p>In contrast:</p>
 <p><span class="math inline">\(\mathbf{N}\)</span> in the second
@@ -695,10 +693,14 @@ class="math inline">\(\lambda\)</span> is a scalar,</p>
 <p>In fact, the concept of <strong>Lambda</strong>, or the multiplier
 used to model discrete population growth, applies to matrix population
 models as well!</p>
-<p>Recall that when a population is at <em>stable stage distribution
-(SSD)</em>, it grows in a discrete exponential growth pattern- this rate
-of exponential growth can be described by a single parameter –
-<strong>Lambda</strong>!</p>
+<p>As you may have noticed from our age-structured InsightMaker model
+from class (or from Lab 3), age-structured models sometimes exhibit
+“messy” dynamics at first, when the population is jumping up and down a
+lot. However, after some time, the population growth becomes smooth-
+this is when the population has achieved <em>stable stage distribution
+(SSD)</em>. At SSD, the population grows in a discrete exponential
+growth pattern- this rate of exponential growth can be described by a
+single parameter – <strong>Lambda</strong>!</p>
 <p><span class="math inline">\(\mathbf{A}\)</span> is a <strong>matrix
 (a bundle of numbers organized in rows and columns)</strong> known as
 the transition matrix in Population Ecology.</p>
@@ -745,7 +747,7 @@ SAD      # stable age distribution as a percentage of the total population</code
 at the stable age distribution</em>!</p>
 <p><strong>Q:</strong> Does a stage-structured population grow at the
 rate of <span class="math inline">\(\lambda\)</span> per time step if it
-is NOT at stable age distribution? [PointSolutions]</p>
+is NOT at stable stage distribution (SSD)? [Top Hat]</p>
 <p>To answer this question, you may find it helps to load an
 stage-structured model in InsightMaker like <a
 href="https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population">this
@@ -773,12 +775,12 @@ blank matrix for now:</p>
 # First, we specify a blank transition matrix
 
 TMat &lt;- matrix(0,nrow=3,ncol=3)                    # create a blank matrix with 3 rows and 3 columns
-stagenames &lt;- c(&quot;Juveniles&quot;,&quot;Subadults&quot;,&quot;Adults&quot;)  # name the rows and columns
+stagenames &lt;- c(&quot;Yearlings&quot;,&quot;Subadults&quot;,&quot;Adults&quot;)  # name the rows and columns
 rownames(TMat) &lt;- stagenames
 colnames(TMat) &lt;- stagenames
 TMat                                               # now we have an all-zero transition matrix.</code></pre>
-<pre><code>##           Juveniles Subadults Adults
-## Juveniles         0         0      0
+<pre><code>##           Yearlings Subadults Adults
+## Yearlings         0         0      0
 ## Subadults         0         0      0
 ## Adults            0         0      0</code></pre>
 <p>You can read the <strong>elements</strong> of a transition matrix as
@@ -788,75 +790,107 @@ to <em>(row name)</em> next year is <em>(value of element)</em>”</p>
 <p>NOTE: the top row in the transition matrix represents
 <strong>fecundities (f)</strong>. These elements are best interpreted as
 follows:</p>
-<p>“The per-capita production of newborns next year by <em>(col
-name)</em> in the population this year is <em>(value of
+<p>“The per-capita production of one-year-olds (yearlings) next year by
+<em>(col name)</em> in the population this year is <em>(value of
 element)</em>”.</p>
-<p>These matrix elements account for both survival (surviving to the
-next year) and birth rate (birth rate one year from now). In life table
-terms:</p>
-<p><span class="math inline">\(f_t = g(t) * b(t+1)\)</span></p>
+<p>These matrix elements account for both the birth rate (per-capita
+birth rate this year) and the survival from birth to age 1. That is, in
+order for a female to add a new individual to the population next year,
+she has to give birth and then the offspring need to survive until their
+first birthday!</p>
+<p>In life table terms:</p>
+<p><span class="math inline">\(f_t = b(t) * g(0)\)</span></p>
 <p>Now we can start filling in this matrix. Let’s begin with the top
 left <strong>element</strong> of the matrix (a
 <strong>fecundity</strong> term, since it’s part of the top row). This
-represents the per-capita production of Juveniles (col) next year by
-Juveniles (row) this year. What is the value of this element?</p>
+represents the per-capita production of yearlings (col) next year by
+yearlings (row) this year. What is the value of this element?</p>
 <p>Let’s update our transition matrix:</p>
 <pre class="r"><code># fill in the top left element of the matrix
 
-TMat[1,1] &lt;- 0
+TMat[1,1] &lt;- 0    # yearlings have birth rate of zero, so also a fecundity of zero!
 TMat</code></pre>
-<pre><code>##           Juveniles Subadults Adults
-## Juveniles         0         0      0
+<pre><code>##           Yearlings Subadults Adults
+## Yearlings         0         0      0
 ## Subadults         0         0      0
 ## Adults            0         0      0</code></pre>
 <p>How about the second row, first column. This represents the
-per-capita transition from Juveniles (col) this year to Subadults (row)
-next year. That is, the transition rate from juvenile to subadult. The
-value from our model is 0.3.</p>
+per-capita transition from yearling (col) this year to subadult (row)
+next year. That is, the transition rate from yearling to subadult. In
+this model, this is the same as the yearling survival- because all
+survivors must transition to the subadult stage (you either transition
+or die- you can’t stay a yearling for more than one year!) The value
+from our model is 0.3.</p>
 <p>Let’s update our transition matrix:</p>
-<pre class="r"><code># update the second row, first column (juvenile survival, or transition from juv to sub)
+<pre class="r"><code># update the second row, first column (yearling survival, or transition from ylng to sub)
 
 TMat[2,1] &lt;- 0.3
 
 
 # and the survival of adults (transition from adult to adult)
 
-TMat[3,3] &lt;- 1-0.15    # 85% survival
+TMat[3,3] &lt;- 0.85    # 85% survival
 
 
-# transition from juv to juv 
+# transition from sub to sub (survive and stay subadult) 
 
-TMat[2,2] &lt;- 0.5-0.1    # 40% of juveniles survive and stay juvenile
+TMat[2,2] &lt;- 0.6-0.1    # 50% of subadults survive and stay juvenile
 
 
-# transition from juv to adult
+# transition from subadult to adult
 
 TMat[3,2]  &lt;- 0.1   # 10% of juveniles survive and transition to adult. </code></pre>
-<p>And the hardest part is usually the top row: the fecundity row. In
-this case, this year’s juveniles don’t produce offspring next year, so
-they have fecundity of zero.</p>
-<p>Subadalts can’t reproduce- BUT, some of this year’s subadults become
-adults next year, and these subadults will contribute offspring to the
-population next year!</p>
-<p>Adults can reproduce, but this years adults must survive if they are
-to produce offspring next year!</p>
-<pre class="r"><code>TMat[1,2] &lt;- 0.1*4      # subadult fecundity term
+<p>What about the transition from the yearling to the adult stage? Well,
+we can set that to zero because you can’t skip right to adult from
+yearling- you must pass through the subadult stage!!</p>
+<pre class="r"><code># fill in the bottom left element of the matrix
 
-TMat[1,3] &lt;- 0.85*4     # adult fecundity term</code></pre>
-<p>If we keep going, we get the following matrix. See if you can
-understand what this matrix is saying about the transitions from and two
-the three life stages.</p>
+TMat[3,1] &lt;- 0    # yearlings (col 1) can&#39;t become adults (row 3) next year!
+TMat</code></pre>
+<pre><code>##           Yearlings Subadults Adults
+## Yearlings       0.0       0.0   0.00
+## Subadults       0.3       0.5   0.00
+## Adults          0.0       0.1   0.85</code></pre>
+<p>What about the transition from the adult to the subadult stage? We
+can set that to zero as well- because you can’t revert to the subadult
+stage if you’re already an adult!!</p>
+<pre class="r"><code># fill in the bottom left element of the matrix
+
+TMat[2,3] &lt;- 0    # adults (col 3) can&#39;t become subadults (row 2) next year!
+TMat</code></pre>
+<pre><code>##           Yearlings Subadults Adults
+## Yearlings       0.0       0.0   0.00
+## Subadults       0.3       0.5   0.00
+## Adults          0.0       0.1   0.85</code></pre>
+<p>And the hardest part is usually the top row: the fecundity row. In
+this case, this year’s yearlings don’t produce offspring, so they have
+fecundity of zero.</p>
+<p>Subadalts have a birth rate of 3 females per female, and adults have
+a birth rate of 7 female offspring per female.</p>
+<p>But remember, in order for these offspring to enter the population as
+yearlings next year, they must survive that first year of life!!</p>
+<pre class="r"><code>TMat[1,2] &lt;- 3 * 0.3      # subadult fecundity term: birth rate multiplied by first-year survival
+
+TMat[1,3] &lt;- 7 * 0.3   # subadult fecundity term: birth rate multiplied by first-year survival</code></pre>
+<p>In the end we get the following matrix:</p>
+<pre class="r"><code>TMat</code></pre>
+<pre><code>##           Yearlings Subadults Adults
+## Yearlings       0.0       0.9   2.10
+## Subadults       0.3       0.5   0.00
+## Adults          0.0       0.1   0.85</code></pre>
+<p>See if you can understand what this matrix is saying about the
+transitions from and two the three life stages.</p>
 <pre class="r"><code># alternatively, you can fill in the matrix like this:
 
 TMat[,1] &lt;- c(0,0.3,0)              # fill in the entire first column of the transition matrix
-TMat[,2] &lt;- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] &lt;- c(0.85*4,0,0.85)        # fill in the entire third column of the transition matrix
+TMat[,2] &lt;- c(3*0.3,0.5,0.1)        # fill in the entire second column of the transition matrix
+TMat[,3] &lt;- c(7*0.3,0,0.85)         # fill in the entire third column of the transition matrix
 TMat</code></pre>
-<pre><code>##           Juveniles Subadults Adults
-## Juveniles       0.0       0.4   3.40
-## Subadults       0.3       0.4   0.00
+<pre><code>##           Yearlings Subadults Adults
+## Yearlings       0.0       0.9   2.10
+## Subadults       0.3       0.5   0.00
 ## Adults          0.0       0.1   0.85</code></pre>
-<p>Now we can run a 40-year projection and compare it with the
+<p>Now we can run a 50-year projection and compare it with the
 InsightMaker model. It should look the same!!</p>
 <p>First we must specify the initial abundances in each stage:</p>
 <pre class="r"><code># specify initial abundance vector
@@ -864,7 +898,7 @@ InsightMaker model. It should look the same!!</p>
 InitAbund &lt;- c(40,0,0)
 names(InitAbund) &lt;- colnames(TMat)
 InitAbund</code></pre>
-<pre><code>## Juveniles Subadults    Adults 
+<pre><code>## Yearlings Subadults    Adults 
 ##        40         0         0</code></pre>
 <p>So we are starting with only Juveniles…</p>
 <pre class="r"><code># Run the model for 50 years (using for loop)
@@ -880,45 +914,45 @@ for(t in 2:(nYears+1)){
 }
 
 allYears</code></pre>
-<pre><code>##            0  1   2    3     4       5        6        7        8        9
-## Juveniles 40  0 4.8 6.00 6.444 6.73500 7.001070 7.269637 7.546811 7.834194
-## Subadults  0 12 4.8 3.36 3.144 3.19080 3.296820 3.419049 3.548511 3.683448
-## Adults     0  0 1.2 1.50 1.611 1.68375 1.750267 1.817409 1.886703 1.958549
-##                 10       11       12       13       14       15        16
-## Juveniles 8.132444 8.442032 8.763403 9.097006 9.443309 9.802795 10.175966
-## Subadults 3.823637 3.969188 4.120285 4.277135 4.439956 4.608975  4.784429
-## Adults    2.033111 2.110508 2.190851 2.274252 2.360827 2.450699  2.543992
-##                  17        18        19        20        21        22        23
-## Juveniles 10.563343 10.965466 11.382897 11.816219 12.266036 12.732977 13.217693
-## Subadults  4.966561  5.155627  5.351891  5.555625  5.767116  5.986657  6.214556
-## Adults     2.640836  2.741366  2.845724  2.954055  3.066509  3.183244  3.304423
+<pre><code>##            0  1    2    3     4       5        6         7         8         9
+## Yearlings 40  0 10.8 7.92 9.018 9.14850 9.634005 10.086392 10.600134 11.142728
+## Subadults  0 12  6.0 6.24 5.496 5.45340 5.471250  5.625827  5.838831  6.099456
+## Adults     0  0  1.2 1.62 2.001 2.25045 2.458223  2.636614  2.803705  2.967032
+##                  10        11        12        13        14        15        16
+## Yearlings 11.720277 12.330329 12.974037 13.652323 14.366661 15.118705 15.910307
+## Subadults  6.392546  6.712356  7.055277  7.419850  7.805622  8.212809  8.642016
+## Adults     3.131923  3.301389  3.477416  3.661332  3.854117  4.056561  4.269358
+##                  17        18        19       20        21        22       23
+## Yearlings 16.743466 17.620318 18.543126 19.51428 20.536315 21.611881 22.74378
+## Subadults  9.094100  9.570090 10.071140 10.59851 11.153539 11.737664 12.35240
+## Adults     4.493156  4.728593  4.976313  5.23698  5.511284  5.799945  6.10372
 ##                  24        25        26        27        28        29        30
-## Juveniles 13.720861 14.243184 14.785391 15.348238 15.932512 16.539027 17.168631
-## Subadults  6.451130  6.696711  6.951640  7.216273  7.490981  7.776146  8.072166
-## Adults     3.430215  3.560796  3.696348  3.837060  3.983128  4.134757  4.292158
-##                  31        32        33        34        35        36        37
-## Juveniles 17.822203 18.500655 19.204934 19.936024 20.694944 21.482755 22.300556
-## Subadults  8.379456  8.698443  9.029574  9.373310  9.730131 10.100536 10.485041
-## Adults     4.455551  4.625164  4.801234  4.984006  5.173736  5.370689  5.575139
-##                  38        39        40        41        42        43       44
-## Juveniles 23.149489 24.030739 24.945536 25.895157 26.880929 27.904226 28.96648
-## Subadults 10.884183 11.298520 11.728630 12.175113 12.638592 13.119715 13.61915
-## Adults     5.787372  6.007685  6.236384  6.473789  6.720232  6.976057  7.24162
-##                  45        46        47        48        49        50
-## Juveniles 30.069168 31.213835 32.402077 33.635552 34.915984 36.245158
-## Subadults 14.137605 14.675793 15.234468 15.814410 16.416430 17.041367
-## Adults     7.517292  7.803459  8.100519  8.408888  8.728996  9.061289</code></pre>
+## Yearlings 23.934968 25.188542 26.507772 27.896096 29.357133 30.894691 32.512777
+## Subadults 12.999333 13.680157 14.396641 15.150652 15.944155 16.779217 17.658016
+## Adults     6.423401  6.759824  7.113866  7.486451  7.878548  8.291181  8.725426
+##                  31        32       33       34       35       36       37
+## Yearlings 34.215609 36.007625 37.89350 39.87814 41.96673 44.16470 46.47780
+## Subadults 18.582841 19.556103 20.58034 21.65822 22.79255 23.98629 25.24256
+## Adults     9.182414  9.663336 10.16945 10.70206 11.26258 11.85244 12.47321
+##                 38       39       40       41       42       43       44
+## Yearlings 48.91204 51.47377 54.16967 57.00676 59.99245 63.13451 66.44113
+## Subadults 26.56462 27.95592 29.42009 30.96095 32.58250 34.28899 36.08485
+## Adults    13.12648 13.81397 14.53747 15.29886 16.10012 16.94335 17.83075
+##                 45       46       47       48       49       50
+## Yearlings 69.92094 73.58299 77.43685 81.49254 85.76065 90.25230
+## Subadults 37.97476 39.96366 42.05673 44.25942 46.57747 49.01693
+## Adults    18.76462 19.74741 20.78166 21.87008 23.01551 24.22093</code></pre>
 <p>Now let’s plot it out!</p>
 <pre class="r"><code># and plot out the results!
 
-plot(1,1,pch=&quot;&quot;,ylim=c(0,50),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)
+plot(1,1,pch=&quot;&quot;,ylim=c(0,100),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)
 cols &lt;- rainbow(3)
 for(s in 1:3){
   points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
 legend(&quot;topleft&quot;,col=cols,lwd=rep(2,3),legend=rownames(allYears),bty=&quot;n&quot;)</code></pre>
-<p><img src="LECTURE7_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="LECTURE7_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Does this look the same as the InsightMaker results? Check it to make
 sure!</p>
 </div>
@@ -982,11 +1016,11 @@ from LJ to LJ)<br />
 <li>Increase by 10% (add 0.1 to adult survival)</li>
 </ul></li>
 </ol>
-<div class="figure">
-<img src="TED1.jpg" alt="" />
-<p class="caption">turtle excluder device</p>
+<div class="float">
+<img src="ted1.jpg" alt="turtle excluder device" />
+<div class="figcaption">turtle excluder device</div>
 </div>
-<p><strong>PointSolutions</strong>: Which of the four management
+<p><strong>Top Hat</strong>: Which of the four management
 recommendations would have the greatest positive effect on this
 population?</p>
 <p>Click this link to download a CSV file of the loggerhead transition
@@ -1004,21 +1038,26 @@ Remember a matrix population model has two components- an
 matrix</strong>.</p>
 <p><img src="redtail1.jpg" /></p>
 <blockquote>
-<p>We assumed that the red-tailed hawk life history could be described
-in terms of three major life stages: hatchling (first year of life),
-juvenile (largely individuals in their second year of life), and adult
-(generally the third year of life and beyond). We assumed that adult
-females experienced an average of 15% mortality each year. Juvenile
-female mortality was set at 30% per year. Approximately 10% of juvenile
-females remain in the juvenile phase each year, and all other survivors
-transition to the adult stage. Finally, hatchlings had a 21% chance of
-surviving and transitioning to become juveniles. Adults are the primary
-reproductive stage, and produce an average of 6 new hatchlings each
-year, half of which are female. Juveniles that fail to transition to the
-Adult stage tend to produce only 1.8 new hatchlings each year on
+<p>We assumed that the tawny rat-hawk life history could be described in
+terms of four major life stages: juvenile (one-year-olds), subadults
+(2-year-olds), non-territorial adults, and territorial adults (all
+individuals 3 years old and beyond are considered adults). We assumed
+that territorial adult females experienced an average of 10% mortality
+each year, and non-territorial adults experienced 18% mortality
+annually. Juvenile female mortality was 25% per year, and subadult
+mortality was 20%. Hatchlings (newborns) had a 30% chance of surviving
+their first year of life. We assumed that 90% of surviving subadults
+would become non-territorial adults, while the remaining 10% would
+become territorial adults. We assumed that 45% of surviving
+non-territorial females would successfully transition to the
+“territorial adult” stage, while 10% of surviving territorial adults
+would lose their territories, becoming non-territorial adults.
+Territorial adults are the primary reproductive stage, and produce an
+average of 2.5 fledged hatchlings each year, half of which are female.
+Non-territorial adults produce 1.1 new fledged hatchlings each year on
 average, half of which are female. We ran a female-only matrix
 population model, and we initialized the population with 800 hatchlings,
-150 juveniles, and 50 adults.</p>
+150 juveniles, 75 non-territorial adults and 50 territorial adults.</p>
 </blockquote>
 <p>For more on matrix population models, the bible of this subject is <a
 href="https://www.amazon.com/gp/huc/view.html?ie=UTF8&amp;newItems=C1DH1414B1C6AK%2C1">this

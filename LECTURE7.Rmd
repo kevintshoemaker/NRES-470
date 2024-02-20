@@ -49,6 +49,7 @@ For example, the teasel vital rates can be summarized in [this matrix](teaselmat
 ```{r}
 
 # Teasel example -------------------------------
+
 # Teasel example from Gotelli: summarizing a complex life history!
 
 teasel <- read.csv("teaselmatrix1.csv", header=T)      # read in the teasel transition matrix from Gotelli
@@ -292,7 +293,7 @@ Let's convert the vital rates to a three-stage **projection matrix**. Projection
 # First, we specify a blank transition matrix
 
 TMat <- matrix(0,nrow=3,ncol=3)                    # create a blank matrix with 3 rows and 3 columns
-stagenames <- c("Juveniles","Subadults","Adults")  # name the rows and columns
+stagenames <- c("Yearlings","Subadults","Adults")  # name the rows and columns
 rownames(TMat) <- stagenames
 colnames(TMat) <- stagenames
 TMat                                               # now we have an all-zero transition matrix.
@@ -305,13 +306,15 @@ You can read the **elements** of a transition matrix as follows:
 
 NOTE: the top row in the transition matrix represents **fecundities (f)**. These elements are best interpreted as follows:
 
-"The per-capita production of newborns next year by _(col name)_ in the population this year is _(value of element)_".
+"The per-capita production of one-year-olds (yearlings) next year by _(col name)_ in the population this year is _(value of element)_".
 
-These matrix elements account for both survival (surviving to the next year) and birth rate (birth rate one year from now). In life table terms:
+These matrix elements account for both the birth rate (per-capita birth rate this year) and the survival from birth to age 1. That is, in order for a female to add a new individual to the population next year, she has to give birth and then the offspring need to survive until their first birthday!
 
-$f_t = g(t) * b(t+1)$
+In life table terms:
 
-Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix (a **fecundity** term, since it's part of the top row). This represents the per-capita production of Juveniles (col) next year by Juveniles (row) this year. What is the value of this element? 
+$f_t = b(t) * g(0)$
+
+Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix (a **fecundity** term, since it's part of the top row). This represents the per-capita production of yearlings (col) next year by yearlings (row) this year. What is the value of this element? 
 
 Let's update our transition matrix:
 
@@ -319,68 +322,99 @@ Let's update our transition matrix:
 
 # fill in the top left element of the matrix
 
-TMat[1,1] <- 0
+TMat[1,1] <- 0    # yearlings have birth rate of zero, so also a fecundity of zero!
 TMat
 
 ```
 
-How about the second row, first column. This represents the per-capita transition from Juveniles (col) this year to Subadults (row) next year. That is, the transition rate from juvenile to subadult. The value from our model is 0.3. 
+How about the second row, first column. This represents the per-capita transition from yearling (col) this year to subadult (row) next year. That is, the transition rate from yearling to subadult. In this model, this is the same as the yearling survival- because all survivors must transition to the subadult stage (you either transition or die- you can't stay a yearling for more than one year!) The value from our model is 0.3. 
 
 Let's update our transition matrix:
 
 ```{r}
 
-# update the second row, first column (juvenile survival, or transition from juv to sub)
+# update the second row, first column (yearling survival, or transition from ylng to sub)
 
 TMat[2,1] <- 0.3
 
 
 # and the survival of adults (transition from adult to adult)
 
-TMat[3,3] <- 1-0.15    # 85% survival
+TMat[3,3] <- 0.85    # 85% survival
 
 
-# transition from juv to juv 
+# transition from sub to sub (survive and stay subadult) 
 
-TMat[2,2] <- 0.5-0.1    # 40% of juveniles survive and stay juvenile
+TMat[2,2] <- 0.6-0.1    # 50% of subadults survive and stay juvenile
 
 
-# transition from juv to adult
+# transition from subadult to adult
 
 TMat[3,2]  <- 0.1   # 10% of juveniles survive and transition to adult. 
 
 ```
 
 
-And the hardest part is usually the top row: the fecundity row. In this case, this year's juveniles don't produce offspring next year, so they have fecundity of zero.
-
-Subadalts can't reproduce- BUT, some of this year's subadults become adults next year, and these subadults will contribute offspring to the population next year!
-
-Adults can reproduce, but this years adults must survive if they are to produce offspring next year!
+What about the transition from the yearling to the adult stage? Well, we can set that to zero because you can't skip right to adult from yearling- you must pass through the subadult stage!!
 
 ```{r}
 
-TMat[1,2] <- 0.1*4      # subadult fecundity term
+# fill in the bottom left element of the matrix
 
-TMat[1,3] <- 0.85*4     # adult fecundity term
+TMat[3,1] <- 0    # yearlings (col 1) can't become adults (row 3) next year!
+TMat
+
+```
+
+What about the transition from the adult to the subadult stage? We can set that to zero as well- because you can't revert to the subadult stage if you're already an adult!!
+
+```{r}
+
+# fill in the bottom left element of the matrix
+
+TMat[2,3] <- 0    # adults (col 3) can't become subadults (row 2) next year!
+TMat
 
 ```
 
 
-If we keep going, we get the following matrix. See if you can understand what this matrix is saying about the transitions from and two the three life stages. 
+And the hardest part is usually the top row: the fecundity row. In this case, this year's yearlings don't produce offspring, so they have fecundity of zero.
+
+Subadalts have a birth rate of 3 females per female, and adults have a birth rate of 7 female offspring per female.
+
+But remember, in order for these offspring to enter the population as yearlings next year, they must survive that first year of life!!
+
+
+```{r}
+
+TMat[1,2] <- 3 * 0.3      # subadult fecundity term: birth rate multiplied by first-year survival
+
+TMat[1,3] <- 7 * 0.3   # subadult fecundity term: birth rate multiplied by first-year survival
+
+```
+
+
+In the end we get the following matrix:
+
+```{r}
+TMat
+```
+
+
+See if you can understand what this matrix is saying about the transitions from and two the three life stages. 
 
 ```{r}
 
 # alternatively, you can fill in the matrix like this:
 
 TMat[,1] <- c(0,0.3,0)              # fill in the entire first column of the transition matrix
-TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] <- c(0.85*4,0,0.85)        # fill in the entire third column of the transition matrix
+TMat[,2] <- c(3*0.3,0.5,0.1)        # fill in the entire second column of the transition matrix
+TMat[,3] <- c(7*0.3,0,0.85)         # fill in the entire third column of the transition matrix
 TMat
 
 ```
 
-Now we can run a 40-year projection and compare it with the InsightMaker model. It should look the same!!
+Now we can run a 50-year projection and compare it with the InsightMaker model. It should look the same!!
 
 First we must specify the initial abundances in each stage:
 
@@ -421,7 +455,7 @@ Now let's plot it out!
 
 # and plot out the results!
 
-plot(1,1,pch="",ylim=c(0,50),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
+plot(1,1,pch="",ylim=c(0,100),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
 cols <- rainbow(3)
 for(s in 1:3){
   points(allYears[s,],col=cols[s],type="l",lwd=2)
@@ -475,7 +509,7 @@ Using your Excel spreadsheet, investigate four management scenarios for the logg
     
 ![turtle excluder device](ted1.jpg)    
 
-**PointSolutions**: Which of the four management recommendations would have the greatest positive effect on this population?
+**Top Hat**: Which of the four management recommendations would have the greatest positive effect on this population?
 
 Click this link to download a CSV file of the loggerhead transition matrix (for reading into R): [CSV link](LoggerheadMatrix.csv)
 
@@ -488,14 +522,17 @@ Translate the following paragraph into a matrix population model. Remember a mat
 
 ![](redtail1.jpg)
 
-> We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). We assumed that adult females experienced an average of 15% mortality each year. Juvenile female mortality was set at 30% per year. Approximately 10% of juvenile females remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 21% chance of surviving and transitioning to become juveniles. Adults are the primary reproductive stage, and produce an average of 6 new hatchlings each year, half of which are female. Juveniles that fail to transition to the Adult stage tend to produce only 1.8 new hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, and 50 adults.   
+> We assumed that the tawny rat-hawk life history could be described in terms of four major life stages: juvenile (one-year-olds), subadults (2-year-olds), non-territorial adults, and territorial adults (all individuals 3 years old and beyond are considered adults). We assumed that territorial adult females experienced an average of 10% mortality each year, and non-territorial adults experienced 18% mortality annually. Juvenile female mortality was 25% per year, and subadult mortality was 20%. Hatchlings (newborns) had a 30% chance of surviving their first year of life. We assumed that 90% of surviving subadults would become non-territorial adults, while the remaining 10% would become territorial adults. We assumed that 45% of surviving non-territorial females would successfully transition to the "territorial adult" stage, while 10% of surviving territorial adults would lose their territories, becoming non-territorial adults. Territorial adults are the primary reproductive stage, and produce an average of 2.5 fledged hatchlings each year, half of which are female. Non-territorial adults produce 1.1 new fledged hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, 75 non-territorial adults and 50 territorial adults.   
 
 
 ```{r eval=FALSE, echo=FALSE}
-
-mymat = matrix(c(0,    0.1*0.5*1.8+0.7*6*0.5,        6*0.5*0.85, 
-                 0.21,  0.1,                 0,
-                 0,    0.7,                 0.85),   nrow=3,byrow = T)
+names <- c("juvenile","subadult","nt_adult","t_adult")
+mymat = matrix(c(0,     0,      1.1*0.5*0.3,      2.5*0.5*0.3, 
+                 0.75,  0,      0,                0,
+                 0,     0.8*0.9,      0.82*(1-0.45),                0.9*(1-0.9),
+                 0,     0.8*(1-0.9),      0.82*0.45,                0.9*0.9
+                 ),   nrow=4,byrow = T)
+rownames(mymat) <- names; colnames(mymat) <- names
 popbio::lambda(mymat)
 mymat
 

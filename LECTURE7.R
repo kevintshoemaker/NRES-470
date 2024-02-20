@@ -6,6 +6,7 @@
 
 
 # Teasel example -------------------------------
+
 # Teasel example from Gotelli: summarizing a complex life history!
 
 teasel <- read.csv("teaselmatrix1.csv", header=T)      # read in the teasel transition matrix from Gotelli
@@ -82,7 +83,7 @@ SAD      # stable age distribution as a percentage of the total population
 # First, we specify a blank transition matrix
 
 TMat <- matrix(0,nrow=3,ncol=3)                    # create a blank matrix with 3 rows and 3 columns
-stagenames <- c("Juveniles","Subadults","Adults")  # name the rows and columns
+stagenames <- c("Yearlings","Subadults","Adults")  # name the rows and columns
 rownames(TMat) <- stagenames
 colnames(TMat) <- stagenames
 TMat                                               # now we have an all-zero transition matrix.
@@ -90,40 +91,53 @@ TMat                                               # now we have an all-zero tra
 
 # fill in the top left element of the matrix
 
-TMat[1,1] <- 0
+TMat[1,1] <- 0    # yearlings have birth rate of zero, so also a fecundity of zero!
 TMat
 
 
-# update the second row, first column (juvenile survival, or transition from juv to sub)
+# update the second row, first column (yearling survival, or transition from ylng to sub)
 
 TMat[2,1] <- 0.3
 
 
 # and the survival of adults (transition from adult to adult)
 
-TMat[3,3] <- 1-0.15    # 85% survival
+TMat[3,3] <- 0.85    # 85% survival
 
 
-# transition from juv to juv 
+# transition from sub to sub (survive and stay subadult) 
 
-TMat[2,2] <- 0.5-0.1    # 40% of juveniles survive and stay juvenile
+TMat[2,2] <- 0.6-0.1    # 50% of subadults survive and stay juvenile
 
 
-# transition from juv to adult
+# transition from subadult to adult
 
 TMat[3,2]  <- 0.1   # 10% of juveniles survive and transition to adult. 
 
 
-TMat[1,2] <- 0.1*4      # subadult fecundity term
+# fill in the bottom left element of the matrix
 
-TMat[1,3] <- 0.85*4     # adult fecundity term
+TMat[3,1] <- 0    # yearlings (col 1) can't become adults (row 3) next year!
+TMat
 
+
+# fill in the bottom left element of the matrix
+
+TMat[2,3] <- 0    # adults (col 3) can't become subadults (row 2) next year!
+TMat
+
+
+TMat[1,2] <- 3 * 0.3      # subadult fecundity term: birth rate multiplied by first-year survival
+
+TMat[1,3] <- 7 * 0.3   # subadult fecundity term: birth rate multiplied by first-year survival
+
+TMat
 
 # alternatively, you can fill in the matrix like this:
 
 TMat[,1] <- c(0,0.3,0)              # fill in the entire first column of the transition matrix
-TMat[,2] <- c(0.1*4,0.4,0.1)        # fill in the entire second column of the transition matrix
-TMat[,3] <- c(0.85*4,0,0.85)        # fill in the entire third column of the transition matrix
+TMat[,2] <- c(3*0.3,0.5,0.1)        # fill in the entire second column of the transition matrix
+TMat[,3] <- c(7*0.3,0,0.85)         # fill in the entire third column of the transition matrix
 TMat
 
 
@@ -151,7 +165,7 @@ allYears
 
 # and plot out the results!
 
-plot(1,1,pch="",ylim=c(0,50),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
+plot(1,1,pch="",ylim=c(0,100),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
 cols <- rainbow(3)
 for(s in 1:3){
   points(allYears[s,],col=cols[s],type="l",lwd=2)
