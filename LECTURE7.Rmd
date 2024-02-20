@@ -1,7 +1,7 @@
 ---
 title: "Matrix population models"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -75,7 +75,7 @@ This can simplify our models considerably. For example, consider a species like 
 
 --OR--
 
-You could have 5 [Stocks] representing age ranges in which sea turtles tend to have consistent(ish) vital rates. For example, we might divide the sea turtle life history into the following stages:
+You could have 5 [Stocks] representing age ranges over which sea turtles tend to have similar vital rates. For example, we might divide the sea turtle life history into the following stages:
 
 Age 0-1: hatchling      
 Age 1-5: young juvenile     
@@ -89,7 +89,7 @@ Matrix population models can represent age-structured and stage-structured model
 
 The term 'Leslie Matrix' refers to an age-structured matrix population model. 
 
-When a matrix is used to represent a stage-structured population, it is often called a "Lefkovitch" Matrix. 
+When a matrix is used to represent a stage-structured population, it is often called a "Lefkovitch" (or stage-based) Matrix. 
 
 ### Reason 2: modeling age-structured population dynamics!
 
@@ -210,7 +210,7 @@ where $\mathbf{N}$ is a **vector** of abundances (abundance for all stages), and
 
 Both equations describe discrete exponential growth or decline!
 
-Note that $N$ in the first equation is a **scalar** -- that is, it is just a 'naked' number. 
+Note that $N$ in the first equation is a **scalar** -- that is, it is just a single number. 
 
 In contrast:
 
@@ -220,7 +220,7 @@ Similarly, the finite population growth rate, $\lambda$ is a scalar,
 
 In fact, the concept of **Lambda**, or the multiplier used to model discrete population growth, applies to matrix population models as well!
 
-Recall that when a population is at *stable stage distribution (SSD)*, it grows in a discrete exponential growth pattern- this rate of exponential growth can be described by a single parameter -- **Lambda**!  
+As you may have noticed from our age-structured InsightMaker model from class (or from Lab 3), age-structured models sometimes exhibit "messy" dynamics at first, when the population is jumping up and down a lot. However, after some time, the population growth becomes smooth- this is when the population has achieved *stable stage distribution (SSD)*. At SSD, the population grows in a discrete exponential growth pattern- this rate of exponential growth can be described by a single parameter -- **Lambda**!  
 
 $\mathbf{A}$ is a **matrix (a bundle of numbers organized in rows and columns)** known as the transition matrix in Population Ecology.   
 
@@ -272,7 +272,7 @@ SAD      # stable age distribution as a percentage of the total population
 
 This vector represents the _relative abundances in each age class at the stable age distribution_!
 
-**Q:** Does a stage-structured population grow at the rate of $\lambda$ per time step if it is NOT at stable age distribution? [PointSolutions]   
+**Q:** Does a stage-structured population grow at the rate of $\lambda$ per time step if it is NOT at stable stage distribution (SSD)? [Top Hat]   
 
 To answer this question, you may find it helps to load an stage-structured model in InsightMaker like [this one](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population). 
 
