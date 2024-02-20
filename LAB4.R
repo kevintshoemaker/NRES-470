@@ -16,7 +16,7 @@
 
 TMat <- matrix(     # 
   c(
-    0.4,     1.9,   0,
+    0.25,     1.5,   1.5,
     0.4,   0,     0,
     0,     0.75,   0
   )
@@ -55,7 +55,7 @@ Year2
 nYears <- 20                                            # set the number of years to project
 TMat <- matrix(     # 
   c(
-    0.4,     1.9,   0,
+    0.25,     1.5,   1.5,
     0.4,   0,     0,
     0,     0.75,   0
   )
@@ -101,22 +101,21 @@ library(popbio)   # load the 'popbio' package in R
 lambda(TMat)
 
 
-# Use the 'popbio' package to compute the stable age distribution!
+# Use the 'popbio' package to compute the stable stage distribution!
 
 stable.stage(TMat)
 
 
-# Construct a five-age matrix:
+# Construct a four-age matrix:
 
 TMat <- matrix(     # 
   c(
-    0.4,     1.9,   1.1,    0.4,   0,  
-    0.4,     0,     0,      0,     0,  
-    0,       0.75,  0,      0,     0, 
-    0,       0,     0.65,   0,     0, 
-    0,       0,     0,      0.22,  0 
+    0,     1.9,   1.1,    0.4,   
+    0.4,     0,     0,      0,    
+    0,       0.75,  0,      0,   
+    0,       0,     0.65,   0  
   )
-  ,nrow=5,ncol=5,byrow=T
+  ,nrow=4,ncol=4,byrow=T
 )
 TMat
 

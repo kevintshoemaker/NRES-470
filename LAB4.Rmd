@@ -56,7 +56,7 @@ The transition matrix must be a *square matrix* -- meaning that the number of ro
 
 The term '**Leslie Matrix**' refers to a specific type of matrix population model where each stage represents one year of life (this is an **age-structured** model.
 
-In this class, we will assume that the first age class represents newborns, or age-0 individuals.
+In this class, we will assume that the first age class represents one-year-olds, and that the first row of a transition matrix (i.e., the "fecundity row") represents the entry of new one-year-olds into the population.
 
 In a Leslie matrix, no individuals can ever stay the same age for more than one year (obviously). So, terms like $P_{2 \rightarrow 2}$, or $P_{3 \rightarrow 3}$ must be set to zero by definition.
 
@@ -64,28 +64,27 @@ Each age class is associated with only one survival rate, and this rate involves
 
 For a Leslie matrix, the final year of life must have a survival rate of zero. Why? Because no individual can survive past the final year of life!
 
-In this class, we will *always* assume that reproduction occurs at the very end of each time step.
+In this class, we will *always* assume that reproduction occurs at the very beginning of each time step. This type of matrix model is known as a "pre-breeding census" because we assume that breeding takes place right after we monitor our population. In this way, the youngest age we ever observe are individuals that were born right after last year's survey- meaning, one-year-olds! 
 
-This means that all **fecundity** terms in our transition matrices must be computed as the product of survival and birth rate (i.e., you must survive to the next year before you can reproduce!)
+This means that all **fecundity** terms in our transition matrices must be computed as the product of birth rate and survival through the first year of life (i.e., all newborns from this year must survive for a full year before they can "enter" the study as one-year-olds in the following year)
 
-In a Leslie Matrix, the term $F_0$ must be computed as the probability of surviving, $P_{0 \rightarrow 1}$ and the per-capita birth rate associated with one-year-olds, $b(1)$:
+In a Leslie Matrix (pre-breeding census version), the term $F_1$ must be computed as the per-capita birth rate associated with one-year-olds, $b(1)$, multiplied by the probability of their offspring surviving through the first year of life, $P_{0 \rightarrow 1}$:
 
-$F_0=P_{0 \rightarrow 1}\cdot b(1)$
+$F_1=b(1) \cdot P_{0 \rightarrow 1}$
 
 Similarly,
 
-$F_1=P_{1 \rightarrow 2}\cdot b(2)$                
-$F_2=P_{2 \rightarrow 3}\cdot b(3)$               
-$F_3=P_{3 \rightarrow 4}\cdot b(4)$                  
+$F_2=b(2) \cdot P_{0 \rightarrow 1}$               
+$F_3=b(3) \cdot P_{0 \rightarrow 1}$                  
 
 Here's an example of an age-structured (Leslie) matrix:
 
-$\begin{bmatrix}N_0\\ N_1\\N_2\\ N3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_0 & F_1 & F_2 & 0\\ P_{1 \rightarrow 2} & 0 & 0&0\\ 0 & P_{2 \rightarrow 3} & 0 &0\\ 0 & 0 & P_{2 \rightarrow 3} &0\end{bmatrix} \cdot \begin{bmatrix}N_0\\ N_1\\N_2\\N3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
+$\begin{bmatrix}N_1\\N_2\\ N3 \end{bmatrix}_{t+1}=\begin{bmatrix}F_1 & F_2 & F_3\\ P_{1 \rightarrow 2} & 0 & 0\\ 0 & P_{2 \rightarrow 3} & 0\end{bmatrix} \cdot \begin{bmatrix}N_1\\N_2\\N3 \end{bmatrix}_{t}    \qquad \text{(Eq. 3)}$
 
 
 #### Stage structured model (Lefkovitch matrix)
 
-When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" Matrix. 
+When a matrix is used to represent a stage-structured population, it is often called a 'Lefkovitch" (or stage-based) matrix. 
 
 NOTE: _survival *P* in a stage-structured transition matrix is NOT necessarily the same thing as survival rate_ (e.g., g(x) from a life table). What's the difference? The answer is that survivors from one age class may end up in more than one class. For example, some fraction of Stage 2 individuals may survive but remain in Stage 2 next year ($P_{2 \rightarrow 2}$). Another subset of survivors may end up in Stage 3 ($P_{2 \rightarrow 3}$). Together, these two rates (added together) represent the total survival of Stage 2 individuals! 
 
@@ -109,7 +108,7 @@ There is a lot we can do with matrix population models. The most obvious one is 
 
 #### Projection:
 
-This lab demo contains a bunch of R code (R makes it pretty easy to run matrix population models!). 
+This lab demo contains a bunch of R code (R makes it pretty easy - and fast- to run matrix population models!). 
 
 If you want to follow along in R, you can find the R script [here](LAB4.R). 
 
@@ -135,7 +134,7 @@ First, build a projection matrix:
 
 TMat <- matrix(     # 
   c(
-    0.4,     1.9,   0,
+    0.25,     1.5,   1.5,
     0.4,   0,     0,
     0,     0.75,   0
   )
@@ -144,6 +143,7 @@ TMat <- matrix(     #
 TMat    # print to the console to check!
 
 ```
+
 **Q**: is this an age-structured (Leslie) or stage-structured (Lefkovitch) matrix?
 
 Next, let's build an initial abundance vector:
@@ -170,7 +170,7 @@ Year1
 
 ```
 
-Now we have 300 individuals in stage 2!
+Now we have 400 individuals in stage 2!
 
 Let's project one more year:
 
@@ -197,7 +197,7 @@ Finally, here is some code to project many years into the future! You may want t
 nYears <- 20                                            # set the number of years to project
 TMat <- matrix(     # 
   c(
-    0.4,     1.9,   0,
+    0.25,     1.5,   1.5,
     0.4,   0,     0,
     0,     0.75,   0
   )
@@ -258,11 +258,11 @@ Pretty easy!
 
 #### Compute stable stage distribution (S.S.D.)
 
-Clearly the population doesn't reach a stable age distribution until a few years into our simulation. What exactly is the stable age distribution here?  We can do this in R:
+Clearly the population doesn't reach a stable stage distribution until a few years into our simulation. What exactly is the stable stage distribution here?  We can do this in R:
 
 ```{r}
 
-# Use the 'popbio' package to compute the stable age distribution!
+# Use the 'popbio' package to compute the stable stage distribution!
 
 stable.stage(TMat)
 
@@ -287,20 +287,21 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
 ```
 
 
-Translate the above *life table* into an age-structured (Leslie) transition matrix with five ages: age 0 (newborns), age 1 (yearlings), age 2, age 3, and age 4. You don't need to include age 5 because no individuals ever make it there! 
+Translate the above *life table* into an age-structured (Leslie) transition matrix with four ages: age 1 (yearlings), age 2, age 3, and age 4. You don't need to include age 5 because no individuals ever make it past age 4. 
 
 Keep the following points in mind: 
 
-- Individuals are in the "age 0" stage if they are between the ages of 0 and 1. They transition to the "age 1" stage ($P_{0 \rightarrow 1}$) if they survive to age 1 (thereby entering their second year of life).        
-- For individuals of the "age 0" class to contribute new offspring to the population in the next time step ($F_0$), they have to survive their first year of life ($P_{0 \rightarrow 1}$) AND produce offspring when they are exactly 1 year of age (which they do at the rate of $b(1)$ -- the birth rate at age 1).    
-- Use five age classes for your transition matrix (age class 0 through 4). Individuals in the final age class (age class 4) have zero survival (you can't survive to age 5) and zero fecundity (if no 4-year-olds survive the whole year, how can they reproduce at the end of that year?)      
-- No individual ever stays the same age - they either transition to the next age or they die (this is a **Leslie Matrix** model).   
+- There is no "age 0" (newborn) stage (since this is a "pre-breeding census" model). Individuals only "enter" the model if they are born and survive to age 1. 
+- Individuals are in the "age 1" stage if they are between the ages of 1 and 2 (that is, they are one-year-olds!). They transition to the "age 2" stage ($P_{1 \rightarrow 2}$) if they survive to age 2.        
+- For individuals of the "age 1" class to contribute new offspring to the population in the next time step ($F_0$), they have to produce offspring when they are exactly 1 year of age (which they do at the rate of $b(1)$ -- the birth rate at age 1), and their offspring must survive their first year of life ($P_{0 \rightarrow 1}$).    
+- Use four age classes for your transition matrix (age 1 through 4). Individuals in the final age class (age 4) have zero survival (you can't survive to age 5) but a non-zero fecundity (four-year-olds can give birth, and their offspring can survive to become one-year-olds next year)      
+- No individual ever stays the same age - they either transition to the next age or they die (this is how a **Leslie Matrix** model works).   
 
 NOTE: Gotelli uses the term 'age class 1' to refer to individuals in their first year of life (0-year-olds) and 'age class 2' for individuals in their second year of life (one-year-olds), but I think it's easier to think of this as age 0, age 1, etc. That way, our age classes will match the way we usually talk about age in years! 
 
-1a (image upload). Upload an image file of the full transition matrix (25 numbers, arranged in 5 rows and 5 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.   
+1a (image upload). Upload an image file of the full transition matrix (16 numbers, arranged in 4 rows and 4 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.   
 
-1b (short answer). Describe (in words) how you computed the number in row 1, column 3 of your matrix (fecundity of 2-year-olds). 
+1b (short answer). Describe (in words) how you computed the number in row 1, column 3 of your matrix (fecundity of 3-year-olds). 
 
 You will need to use R for the next few questions. Make sure you have the 'popbio' package installed in your R session!
 
@@ -308,39 +309,38 @@ You will need to enter your matrix from 1a into R, using something like the foll
 
 ```{r}
 
-# Construct a five-age matrix:
+# Construct a four-age matrix:
 
 TMat <- matrix(     # 
   c(
-    0.4,     1.9,   1.1,    0.4,   0,  
-    0.4,     0,     0,      0,     0,  
-    0,       0.75,  0,      0,     0, 
-    0,       0,     0.65,   0,     0, 
-    0,       0,     0,      0.22,  0 
+    0,     1.9,   1.1,    0.4,   
+    0.4,     0,     0,      0,    
+    0,       0.75,  0,      0,   
+    0,       0,     0.65,   0  
   )
-  ,nrow=5,ncol=5,byrow=T
+  ,nrow=4,ncol=4,byrow=T
 )
 TMat
 
 ```
 
-1c (short answer- one number). What is the finite rate of growth $\lambda$ for this population? 
+1c (short answer- one number). What is the finite rate of growth $\lambda$ for this population? (HINT: use the 'lambda()' function from the popbio package)
 
-1d (short answer). Based on this result, is this a growing population? A declining population? (HINT: use the 'lambda()' function from the popbio package) 
+1d (short answer). Based on this result, is this a growing population? A declining population?  
 
-1e (short answer- 5 numbers). What is the stable-stage distribution (SSD) for this population (fraction of the population in each age after the simulation stabilizes)? (HINT: use the 'stable.stage()' function from the popbio package) (HINT: a complete answer to this question requires exactly 5 numbers)
+1e (short answer- 4 numbers). What is the stable-stage distribution (SSD) for this population (fraction of the population in each age after the simulation stabilizes)? (HINT: use the 'stable.stage()' function from the popbio package) (HINT: a complete answer to this question requires exactly 4 numbers)
 
-1f (short answer- 5 numbers). Assuming an initial population size of 1000 at stable stage distribution (SSD; see answer from 1d), how many individuals would you have in each of the five ages? (NOTE: you can't have fractional individuals, so please round to the nearest whole numbers).     
+1f (short answer- 4 numbers). Assuming an initial population size of 1000 at stable stage distribution (SSD; see answer from 1e), how many individuals would you have in each of the four ages? (NOTE: you can't have fractional individuals, so please round to the nearest whole numbers).     
 
-Next, use R to project this population for 30 years (you can re-use much of the code supplied above). Initialize your population with 1000 individuals at stable age distribution (your answer from part 1e. 
+Next, use R to project this population for 30 years (you can re-use much of the code supplied above). Initialize your population with 1000 individuals at stable stage distribution (your answer from part 1f. 
 
 1g. (short answer- one number). What is the total number of 3-year-olds in the population after 30 years? 
 
 1h. (short answer- one number). What is the total population abundance (sum of abundances across all ages) after 30 years?
 
-Finally, run your simulation again, this time starting with all 1000 individuals in age-class 0 (all newborns!) instead of distributing them across all ages. This time, run your model for 50 years.
+Finally, run your simulation again, this time starting with all 1000 individuals in age 1 instead of distributing them across all ages. This time, run your model for 50 years.
 
-1i (image upload). Upload an image (plot) of abundance over time for all ages. The x-axis should represent time in years (years 0 to 50), and the y axis should represent abundance. The plot should include 5 lines, one for each age. (HINT: you can re-use the R code above to produce this plot).   
+1i. (image upload). Upload an image (plot) of simulated abundance over time for all four ages. The x-axis should represent time in years (years 0 to 50), and the y axis should represent abundance. The plot should include 4 lines, one for each age. (HINT: you can re-use the R code above to produce this plot).   
 
 ## Exercise 2: translate InsightMaker to age-structured projection matrix!
 
@@ -348,17 +348,23 @@ Return to the InsightMaker model you created in Lab 3 (exercise 3 -- that is, an
 
 ![](IM7.jpg){width=50%}
 
-Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3e). As a reminder, here they are again:
+Make sure the parameters are at the original values specified in Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3 question 3c). As a reminder, here they are again:
 
-- For birth rates, set *Birth rate, age 1* at 1.6 and *Birth rate, age 2* at 2.2.    
-- For transition rates, set *Transition rate, Age 0 to 1* at 0.4 and *Transition rate, Age 1 to 2* at 0.3. NOTE: these transition rates could also be called "survival rates"    
-- For the mortality rates, note that all individuals in the *Age 0* stock must either transition to *Age 1* or die. In addition, all individuals in the *Age 2* stock must die- there is no *Age 3* class! 
+Age 3 birth rate: 12 (12 female offspring per female, assuming a female only model)       
+Age 0 survival: 0.1 (10%)      
+Age 1 survival: 0.9 (90%)     
+Age 2 survival: 0.5 (50%)     
+Age 3 survival: 0 (100% mortality- no individuals survive to age 4)      
+Initial N, Age 1: 100      
+Initial N, Age 2: 100     
+Initial N, Age 3: 50    
+For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die. In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class!     
 
 Translate this InsightMaker model into a projection matrix with three rows and three columns. Pay close attention to the difference between survival (transition to the next stage class) and mortality (mortality is equal to one minus survival). 
 
 2a (image upload). Upload an image file of the full transition matrix (9 numbers, arranged in 3 rows and 3 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.  
 
-Starting with 75 individuals, all in Age 0 (75 newborns, 0 yearlings, 0 2-year-olds), project this population 20 years into the future, using both InsightMaker and R.
+Starting with 75 individuals, all in Age 1 (75 age 1, 0 age 2, 0 age 3), project this population 20 years into the future, using both InsightMaker and R.
 
 2b (image upload). Upload an image (plot) of abundance over time for all ages, produced using R. The x-axis should represent time in years (years 0 to 20), and the y axis should represent abundance. The plot should include 3 lines, one for each age. (HINT: you can re-use the R code above to produce this plot).  
 
@@ -400,42 +406,44 @@ Next, project this population 20 years into the future using both R AND InsightM
 
 HINT: check your answers to 3b and 3c by comparing the two plots: These plots should look essentially identical! 
 
-NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of real populations. Were any of the population models in this lab density-dependent? [Answer: NO!]
+NOTE: In this class we have stressed the importance of density dependence in determining and regulating the dynamics of real populations. Were any of the population models in this lab density-dependent? [Answer: NO! In adding one new type of complexity to our models- age structure- we have temporarily "forgotten" about density-dependence!]
 
 ## Exercise 4. Translate written population description to projection matrix!
 
-As a test of your understanding, try to implement the following passage as a matrix projection model:
+As a test of your understanding, try to build a matrix projection model based on the following written passage:
 
-![](redtail1.jpg){width=30%}
-
-> We assumed that the red-tailed hawk life history could be described in terms of three major life stages: hatchling (first year of life), juvenile (largely individuals in their second year of life), and adult (generally the third year of life and beyond). We assumed that adult females experienced an average of 15% mortality each year. Juvenile female mortality was set at 30% per year. Approximately 10% of juvenile females remain in the juvenile phase each year, and all other survivors transition to the adult stage. Finally, hatchlings had a 21% chance of surviving and transitioning to become juveniles. Adults are the primary reproductive stage, and produce an average of 6 new hatchlings each year, half of which are female. Juveniles that fail to transition to the Adult stage tend to produce only 1.8 new hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, and 50 adults.   
+> We assumed that the tawny rat-hawk life history could be described in terms of four major life stages: juvenile (one-year-olds), subadults (2-year-olds), non-territorial adults, and territorial adults (all individuals 3 years old and beyond are considered adults). We assumed that territorial adult females experienced an average of 10% mortality each year, and non-territorial adults experienced 18% mortality annually. Juvenile female mortality was 25% per year, and subadult mortality was 20%. Hatchlings (newborns) had a 30% chance of surviving their first year of life. We assumed that 90% of surviving subadults would become non-territorial adults, while the remaining 10% would become territorial adults. We assumed that 45% of surviving non-territorial females would successfully transition to the "territorial adult" stage, while 10% of surviving territorial adults would lose their territories, becoming non-territorial adults. Territorial adults are the primary reproductive stage, and produce an average of 2.5 fledged hatchlings each year, half of which are female. Non-territorial adults produce 1.1 new fledged hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, 75 non-territorial adults and 50 territorial adults.   
+   
 
 ```{r eval=FALSE, echo=FALSE}
-
-mymat = matrix(c(0,    0.1*0.5*1.8+0.7*6*0.5,        6*0.5*0.85, 
-                 0.21,  0.1,                 0,
-                 0,    0.7,                 0.85),   nrow=3,byrow = T)
+names <- c("juvenile","subadult","nt_adult","t_adult")
+mymat = matrix(c(0,     0,      1.1*0.5*0.3,      2.5*0.5*0.3, 
+                 0.75,  0,      0,                0,
+                 0,     0.8*0.9,      0.82*(1-0.45),                0.9*(1-0.9),
+                 0,     0.8*(1-0.9),      0.82*0.45,                0.9*0.9
+                 ),   nrow=4,byrow = T)
+rownames(mymat) <- names; colnames(mymat) <- names
 popbio::lambda(mymat)
 mymat
 
 ```
 
-4a (image upload). Upload an image file of the full transition matrix (9 numbers, arranged in 3 rows and 3 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.
+4a (image upload). Upload an image file of the full transition matrix (16 numbers, arranged in 4 rows and 4 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.
 
-4b (short answer: three numbers). How many hatchlings, juveniles and adults would there be in the population at time 0 if you were to initialize the population at S.A.D.? Use the same initial population size as the example above (1000 total individuals at time 0).      
+4b (short answer: four numbers). How many juveniles, subadults, non-territorial adults and territorial adults would there be in the population at time 0 if you were to initialize the population with 1000 individuals at S.S.D.?  (1000 total individuals at time 0).      
 
 4c (one number). What is the finite growth rate, Lambda, for this population?     
 
 
 ##Checklist for Lab 4 completion
 
-* Please submit all responses _using Top Hat_!
+* Please submit all responses using WebCampus!
 
-* As always, URLs for your InsightMaker models should be pasted in your lab submission (in Top Hat). See details below...  
+* As always, URLs for your InsightMaker models should be pasted in your lab submission (in WebCampus). See details below...  
 
-***Due Fri Mar. 10 at 11:59pm***
+***Due Fri Mar. 8 at 11:59pm***
 
-*  Word document with short answers
+*  Webcampus submission
     +  **Exercise 1**
         -  *image upload  (1a.)*    
         -  *short answer (1b.)*  
@@ -457,7 +465,7 @@ mymat
         -  *image upload (3b.)* 
         -  *image upload (3c.)*   
 
-    +  **Exercise 3**
+    +  **Exercise 4**
         -  *image upload (4a.)* 
         -  *short answer (4b.)* 
         -  *short answer (4c.)* 

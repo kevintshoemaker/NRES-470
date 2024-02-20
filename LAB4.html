@@ -14,7 +14,7 @@
 
 <title>Lab 4: Matrix population models</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -345,7 +342,7 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus (Limits to growth)</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
       <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
@@ -366,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -435,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 4: Matrix population models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -521,7 +518,9 @@ matrix must have five rows and five columns.</p>
 of matrix population model where each stage represents one year of life
 (this is an <strong>age-structured</strong> model.</p>
 <p>In this class, we will assume that the first age class represents
-newborns, or age-0 individuals.</p>
+one-year-olds, and that the first row of a transition matrix (i.e., the
+“fecundity row”) represents the entry of new one-year-olds into the
+population.</p>
 <p>In a Leslie matrix, no individuals can ever stay the same age for
 more than one year (obviously). So, terms like <span
 class="math inline">\(P_{2 \rightarrow 2}\)</span>, or <span
@@ -536,38 +535,41 @@ class="math inline">\(P_{3 \rightarrow 4}\)</span></p>
 of zero. Why? Because no individual can survive past the final year of
 life!</p>
 <p>In this class, we will <em>always</em> assume that reproduction
-occurs at the very end of each time step.</p>
+occurs at the very beginning of each time step. This type of matrix
+model is known as a “pre-breeding census” because we assume that
+breeding takes place right after we monitor our population. In this way,
+the youngest age we ever observe are individuals that were born right
+after last year’s survey- meaning, one-year-olds!</p>
 <p>This means that all <strong>fecundity</strong> terms in our
-transition matrices must be computed as the product of survival and
-birth rate (i.e., you must survive to the next year before you can
-reproduce!)</p>
-<p>In a Leslie Matrix, the term <span class="math inline">\(F_0\)</span>
-must be computed as the probability of surviving, <span
-class="math inline">\(P_{0 \rightarrow 1}\)</span> and the per-capita
+transition matrices must be computed as the product of birth rate and
+survival through the first year of life (i.e., all newborns from this
+year must survive for a full year before they can “enter” the study as
+one-year-olds in the following year)</p>
+<p>In a Leslie Matrix (pre-breeding census version), the term <span
+class="math inline">\(F_1\)</span> must be computed as the per-capita
 birth rate associated with one-year-olds, <span
-class="math inline">\(b(1)\)</span>:</p>
-<p><span class="math inline">\(F_0=P_{0 \rightarrow 1}\cdot
-b(1)\)</span></p>
+class="math inline">\(b(1)\)</span>, multiplied by the probability of
+their offspring surviving through the first year of life, <span
+class="math inline">\(P_{0 \rightarrow 1}\)</span>:</p>
+<p><span class="math inline">\(F_1=b(1) \cdot P_{0 \rightarrow
+1}\)</span></p>
 <p>Similarly,</p>
-<p><span class="math inline">\(F_1=P_{1 \rightarrow 2}\cdot
-b(2)\)</span><br />
-<span class="math inline">\(F_2=P_{2 \rightarrow 3}\cdot
-b(3)\)</span><br />
-<span class="math inline">\(F_3=P_{3 \rightarrow 4}\cdot
-b(4)\)</span></p>
+<p><span class="math inline">\(F_2=b(2) \cdot P_{0 \rightarrow
+1}\)</span><br />
+<span class="math inline">\(F_3=b(3) \cdot P_{0 \rightarrow
+1}\)</span></p>
 <p>Here’s an example of an age-structured (Leslie) matrix:</p>
-<p><span class="math inline">\(\begin{bmatrix}N_0\\ N_1\\N_2\\ N3
-\end{bmatrix}_{t+1}=\begin{bmatrix}F_0 &amp; F_1 &amp; F_2 &amp; 0\\
-P_{1 \rightarrow 2} &amp; 0 &amp; 0&amp;0\\ 0 &amp; P_{2 \rightarrow 3}
-&amp; 0 &amp;0\\ 0 &amp; 0 &amp; P_{2 \rightarrow 3} &amp;0\end{bmatrix}
-\cdot \begin{bmatrix}N_0\\ N_1\\N_2\\N3 \end{bmatrix}_{t} \qquad
-\text{(Eq. 3)}\)</span></p>
+<p><span class="math inline">\(\begin{bmatrix}N_1\\N_2\\ N3
+\end{bmatrix}_{t+1}=\begin{bmatrix}F_1 &amp; F_2 &amp; F_3\\ P_{1
+\rightarrow 2} &amp; 0 &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp;
+0\end{bmatrix} \cdot \begin{bmatrix}N_1\\N_2\\N3 \end{bmatrix}_{t}
+\qquad \text{(Eq. 3)}\)</span></p>
 </div>
 <div id="stage-structured-model-lefkovitch-matrix"
 class="section level4">
 <h4>Stage structured model (Lefkovitch matrix)</h4>
 <p>When a matrix is used to represent a stage-structured population, it
-is often called a ’Lefkovitch” Matrix.</p>
+is often called a ’Lefkovitch” (or stage-based) matrix.</p>
 <p>NOTE: <em>survival <em>P</em> in a stage-structured transition matrix
 is NOT necessarily the same thing as survival rate</em> (e.g., g(x) from
 a life table). What’s the difference? The answer is that survivors from
@@ -610,8 +612,8 @@ survival times birth rate</em>.</p>
 obvious one is <em>projection</em>:</p>
 <div id="projection" class="section level4">
 <h4>Projection:</h4>
-<p>This lab demo contains a bunch of R code (R makes it pretty easy to
-run matrix population models!).</p>
+<p>This lab demo contains a bunch of R code (R makes it pretty easy -
+and fast- to run matrix population models!).</p>
 <p>If you want to follow along in R, you can find the R script <a
 href="LAB4.R">here</a>.</p>
 <p>We have already seen the matrix projection equation (Eq. 2, above).
@@ -627,7 +629,7 @@ Here is how we can implement this in R:</p>
 
 TMat &lt;- matrix(     # 
   c(
-    0.4,     1.9,   0,
+    0.25,     1.5,   1.5,
     0.4,   0,     0,
     0,     0.75,   0
   )
@@ -635,9 +637,9 @@ TMat &lt;- matrix(     #
 )
 TMat    # print to the console to check!</code></pre>
 <pre><code>##      [,1] [,2] [,3]
-## [1,]  0.4 1.90    0
-## [2,]  0.4 0.00    0
-## [3,]  0.0 0.75    0</code></pre>
+## [1,] 0.25 1.50  1.5
+## [2,] 0.40 0.00  0.0
+## [3,] 0.00 0.75  0.0</code></pre>
 <p><strong>Q</strong>: is this an age-structured (Leslie) or
 stage-structured (Lefkovitch) matrix?</p>
 <p>Next, let’s build an initial abundance vector:</p>
@@ -655,19 +657,19 @@ transition matrix to compute the abundance vector for year 1!</p>
 Year1 &lt;- TMat %*% InitAbund  # matrix multiplication in R uses the symbol &#39;%*%&#39;
 Year1</code></pre>
 <pre><code>##      [,1]
-## [1,]  400
+## [1,]  250
 ## [2,]  400
 ## [3,]    0</code></pre>
-<p>Now we have 300 individuals in stage 2!</p>
+<p>Now we have 400 individuals in stage 2!</p>
 <p>Let’s project one more year:</p>
 <pre class="r"><code># Project year-2 abundance
 
 Year2 &lt;- TMat %*% Year1  # matrix multiplication!
 Year2</code></pre>
-<pre><code>##      [,1]
-## [1,]  920
-## [2,]  160
-## [3,]  300</code></pre>
+<pre><code>##       [,1]
+## [1,] 662.5
+## [2,] 100.0
+## [3,] 300.0</code></pre>
 <p>Finally, here is some code to project many years into the future! You
 may want to re-use some of this code for the exercises below.</p>
 <pre class="r"><code># Multi-year projection code ----------------------------
@@ -680,7 +682,7 @@ may want to re-use some of this code for the exercises below.</p>
 nYears &lt;- 20                                            # set the number of years to project
 TMat &lt;- matrix(     # 
   c(
-    0.4,     1.9,   0,
+    0.25,     1.5,   1.5,
     0.4,   0,     0,
     0,     0.75,   0
   )
@@ -733,19 +735,19 @@ field in the pop-up window, then click on the “Install” button.</p>
 library(popbio)   # load the &#39;popbio&#39; package in R
 
 lambda(TMat)</code></pre>
-<pre><code>## [1] 1.094427</code></pre>
+<pre><code>## [1] 1.13162</code></pre>
 <p>Pretty easy!</p>
 </div>
 <div id="compute-stable-stage-distribution-s.s.d."
 class="section level4">
 <h4>Compute stable stage distribution (S.S.D.)</h4>
-<p>Clearly the population doesn’t reach a stable age distribution until
-a few years into our simulation. What exactly is the stable age
+<p>Clearly the population doesn’t reach a stable stage distribution
+until a few years into our simulation. What exactly is the stable stage
 distribution here? We can do this in R:</p>
-<pre class="r"><code># Use the &#39;popbio&#39; package to compute the stable age distribution!
+<pre class="r"><code># Use the &#39;popbio&#39; package to compute the stable stage distribution!
 
 stable.stage(TMat)</code></pre>
-<pre><code>## [1] 0.6188298 0.2261749 0.1549954</code></pre>
+<pre><code>## [1] 0.6298233 0.2226270 0.1475497</code></pre>
 <p>Let’s get started with running some matrix-based population
 models!</p>
 </div>
@@ -777,22 +779,22 @@ format</a><br />
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="right">231</td>
-<td align="right">1.1</td>
+<td align="right">350</td>
+<td align="right">0.0</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
-<td align="right">165</td>
+<td align="right">145</td>
 <td align="right">3.9</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="right">45</td>
-<td align="right">3.9</td>
+<td align="right">70</td>
+<td align="right">4.2</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
-<td align="right">9</td>
+<td align="right">19</td>
 <td align="right">0.8</td>
 </tr>
 <tr class="even">
@@ -803,33 +805,36 @@ format</a><br />
 </tbody>
 </table>
 <p>Translate the above <em>life table</em> into an age-structured
-(Leslie) transition matrix with five ages: age 0 (newborns), age 1
-(yearlings), age 2, age 3, and age 4. You don’t need to include age 5
-because no individuals ever make it there!</p>
+(Leslie) transition matrix with four ages: age 1 (yearlings), age 2, age
+3, and age 4. You don’t need to include age 5 because no individuals
+ever make it past age 4.</p>
 <p>Keep the following points in mind:</p>
 <ul>
-<li>Individuals are in the “age 0” stage if they are between the ages of
-0 and 1. They transition to the “age 1” stage (<span
-class="math inline">\(P_{0 \rightarrow 1}\)</span>) if they survive to
-age 1 (thereby entering their second year of life).<br />
+<li>There is no “age 0” (newborn) stage (since this is a “pre-breeding
+census” model). Individuals only “enter” the model if they are born and
+survive to age 1.</li>
+<li>Individuals are in the “age 1” stage if they are between the ages of
+1 and 2 (that is, they are one-year-olds!). They transition to the “age
+2” stage (<span class="math inline">\(P_{1 \rightarrow 2}\)</span>) if
+they survive to age 2.<br />
 </li>
-<li>For individuals of the “age 0” class to contribute new offspring to
+<li>For individuals of the “age 1” class to contribute new offspring to
 the population in the next time step (<span
-class="math inline">\(F_0\)</span>), they have to survive their first
-year of life (<span class="math inline">\(P_{0 \rightarrow 1}\)</span>)
-AND produce offspring when they are exactly 1 year of age (which they do
-at the rate of <span class="math inline">\(b(1)\)</span> – the birth
-rate at age 1).<br />
+class="math inline">\(F_0\)</span>), they have to produce offspring when
+they are exactly 1 year of age (which they do at the rate of <span
+class="math inline">\(b(1)\)</span> – the birth rate at age 1), and
+their offspring must survive their first year of life (<span
+class="math inline">\(P_{0 \rightarrow 1}\)</span>).<br />
 </li>
-<li>Use five age classes for your transition matrix (age class 0 through
-4). Individuals in the final age class (age class 4) have zero survival
-(you can’t survive to age 5) and zero fecundity (if no 4-year-olds
-survive the whole year, how can they reproduce at the end of that
-year?)<br />
+<li>Use four age classes for your transition matrix (age 1 through 4).
+Individuals in the final age class (age 4) have zero survival (you can’t
+survive to age 5) but a non-zero fecundity (four-year-olds can give
+birth, and their offspring can survive to become one-year-olds next
+year)<br />
 </li>
 <li>No individual ever stays the same age - they either transition to
-the next age or they die (this is a <strong>Leslie Matrix</strong>
-model).</li>
+the next age or they die (this is how a <strong>Leslie Matrix</strong>
+model works).</li>
 </ul>
 <p>NOTE: Gotelli uses the term ‘age class 1’ to refer to individuals in
 their first year of life (0-year-olds) and ‘age class 2’ for individuals
@@ -837,64 +842,62 @@ in their second year of life (one-year-olds), but I think it’s easier to
 think of this as age 0, age 1, etc. That way, our age classes will match
 the way we usually talk about age in years!</p>
 <p>1a (image upload). Upload an image file of the full transition matrix
-(25 numbers, arranged in 5 rows and 5 columns) to WebCampus. To maximize
+(16 numbers, arranged in 4 rows and 4 columns) to WebCampus. To maximize
 your chance for partial credit, include all calculations you needed to
 arrive at your final solution.</p>
 <p>1b (short answer). Describe (in words) how you computed the number in
-row 1, column 3 of your matrix (fecundity of 2-year-olds).</p>
+row 1, column 3 of your matrix (fecundity of 3-year-olds).</p>
 <p>You will need to use R for the next few questions. Make sure you have
 the ‘popbio’ package installed in your R session!</p>
 <p>You will need to enter your matrix from 1a into R, using something
 like the following:</p>
-<pre class="r"><code># Construct a five-age matrix:
+<pre class="r"><code># Construct a four-age matrix:
 
 TMat &lt;- matrix(     # 
   c(
-    0.4,     1.9,   1.1,    0.4,   0,  
-    0.4,     0,     0,      0,     0,  
-    0,       0.75,  0,      0,     0, 
-    0,       0,     0.65,   0,     0, 
-    0,       0,     0,      0.22,  0 
+    0,     1.9,   1.1,    0.4,   
+    0.4,     0,     0,      0,    
+    0,       0.75,  0,      0,   
+    0,       0,     0.65,   0  
   )
-  ,nrow=5,ncol=5,byrow=T
+  ,nrow=4,ncol=4,byrow=T
 )
 TMat</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]  0.4 1.90 1.10 0.40    0
-## [2,]  0.4 0.00 0.00 0.00    0
-## [3,]  0.0 0.75 0.00 0.00    0
-## [4,]  0.0 0.00 0.65 0.00    0
-## [5,]  0.0 0.00 0.00 0.22    0</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]  0.0 1.90 1.10  0.4
+## [2,]  0.4 0.00 0.00  0.0
+## [3,]  0.0 0.75 0.00  0.0
+## [4,]  0.0 0.00 0.65  0.0</code></pre>
 <p>1c (short answer- one number). What is the finite rate of growth
-<span class="math inline">\(\lambda\)</span> for this population?</p>
+<span class="math inline">\(\lambda\)</span> for this population? (HINT:
+use the ‘lambda()’ function from the popbio package)</p>
 <p>1d (short answer). Based on this result, is this a growing
-population? A declining population? (HINT: use the ‘lambda()’ function
-from the popbio package)</p>
-<p>1e (short answer- 5 numbers). What is the stable-stage distribution
+population? A declining population?</p>
+<p>1e (short answer- 4 numbers). What is the stable-stage distribution
 (SSD) for this population (fraction of the population in each age after
 the simulation stabilizes)? (HINT: use the ‘stable.stage()’ function
 from the popbio package) (HINT: a complete answer to this question
-requires exactly 5 numbers)</p>
-<p>1f (short answer- 5 numbers). Assuming an initial population size of
-1000 at stable stage distribution (SSD; see answer from 1d), how many
-individuals would you have in each of the five ages? (NOTE: you can’t
+requires exactly 4 numbers)</p>
+<p>1f (short answer- 4 numbers). Assuming an initial population size of
+1000 at stable stage distribution (SSD; see answer from 1e), how many
+individuals would you have in each of the four ages? (NOTE: you can’t
 have fractional individuals, so please round to the nearest whole
 numbers).</p>
 <p>Next, use R to project this population for 30 years (you can re-use
 much of the code supplied above). Initialize your population with 1000
-individuals at stable age distribution (your answer from part 1e.</p>
+individuals at stable stage distribution (your answer from part 1f.</p>
 <p>1g. (short answer- one number). What is the total number of
 3-year-olds in the population after 30 years?</p>
 <p>1h. (short answer- one number). What is the total population
 abundance (sum of abundances across all ages) after 30 years?</p>
 <p>Finally, run your simulation again, this time starting with all 1000
-individuals in age-class 0 (all newborns!) instead of distributing them
-across all ages. This time, run your model for 50 years.</p>
-<p>1i (image upload). Upload an image (plot) of abundance over time for
-all ages. The x-axis should represent time in years (years 0 to 50), and
-the y axis should represent abundance. The plot should include 5 lines,
-one for each age. (HINT: you can re-use the R code above to produce this
-plot).</p>
+individuals in age 1 instead of distributing them across all ages. This
+time, run your model for 50 years.</p>
+<p>1i. (image upload). Upload an image (plot) of simulated abundance
+over time for all four ages. The x-axis should represent time in years
+(years 0 to 50), and the y axis should represent abundance. The plot
+should include 4 lines, one for each age. (HINT: you can re-use the R
+code above to produce this plot).</p>
 </div>
 <div
 id="exercise-2-translate-insightmaker-to-age-structured-projection-matrix"
@@ -907,20 +910,21 @@ something like this:</p>
 <p><img src="IM7.jpg" style="width:50.0%" /></p>
 <p>Make sure the parameters are at the original values specified in
 Exercise 3 of Lab 3 (before altering mortality rates as part of lab 3
-question 3e). As a reminder, here they are again:</p>
-<ul>
-<li>For birth rates, set <em>Birth rate, age 1</em> at 1.6 and <em>Birth
-rate, age 2</em> at 2.2.<br />
-</li>
-<li>For transition rates, set <em>Transition rate, Age 0 to 1</em> at
-0.4 and <em>Transition rate, Age 1 to 2</em> at 0.3. NOTE: these
-transition rates could also be called “survival rates”<br />
-</li>
-<li>For the mortality rates, note that all individuals in the <em>Age
-0</em> stock must either transition to <em>Age 1</em> or die. In
-addition, all individuals in the <em>Age 2</em> stock must die- there is
-no <em>Age 3</em> class!</li>
-</ul>
+question 3c). As a reminder, here they are again:</p>
+<p>Age 3 birth rate: 12 (12 female offspring per female, assuming a
+female only model)<br />
+Age 0 survival: 0.1 (10%)<br />
+Age 1 survival: 0.9 (90%)<br />
+Age 2 survival: 0.5 (50%)<br />
+Age 3 survival: 0 (100% mortality- no individuals survive to age
+4)<br />
+Initial N, Age 1: 100<br />
+Initial N, Age 2: 100<br />
+Initial N, Age 3: 50<br />
+For the mortality rates, note that all individuals in the <em>Age 1</em>
+stock must either transition to <em>Age 2</em> or die. In addition, all
+individuals in the <em>Age 3</em> stock must die- there is no <em>Age
+4</em> class!</p>
 <p>Translate this InsightMaker model into a projection matrix with three
 rows and three columns. Pay close attention to the difference between
 survival (transition to the next stage class) and mortality (mortality
@@ -929,9 +933,9 @@ is equal to one minus survival).</p>
 (9 numbers, arranged in 3 rows and 3 columns) to WebCampus. To maximize
 your chance for partial credit, include all calculations you needed to
 arrive at your final solution.</p>
-<p>Starting with 75 individuals, all in Age 0 (75 newborns, 0 yearlings,
-0 2-year-olds), project this population 20 years into the future, using
-both InsightMaker and R.</p>
+<p>Starting with 75 individuals, all in Age 1 (75 age 1, 0 age 2, 0 age
+3), project this population 20 years into the future, using both
+InsightMaker and R.</p>
 <p>2b (image upload). Upload an image (plot) of abundance over time for
 all ages, produced using R. The x-axis should represent time in years
 (years 0 to 20), and the y axis should represent abundance. The plot
@@ -965,9 +969,9 @@ stmat &lt;- as.matrix(stmat[,-1])
 rownames(stmat) &lt;- colnames(stmat)
 stmat</code></pre>
 <pre><code>##        Stage1 Stage2 Stage3
-## Stage1   0.08   0.40   0.77
-## Stage2   0.39   0.14   0.00
-## Stage3   0.00   0.49   0.81</code></pre>
+## Stage1   0.08   0.50   0.82
+## Stage2   0.35   0.10   0.00
+## Stage3   0.00   0.65   0.80</code></pre>
 <pre class="r"><code># lambda(stmat) </code></pre>
 <p>Build an InsightMaker model that represents the same population as
 the stage-based matrix above. Remember that the top row represents
@@ -993,7 +997,9 @@ These plots should look essentially identical!</p>
 <p>NOTE: In this class we have stressed the importance of density
 dependence in determining and regulating the dynamics of real
 populations. Were any of the population models in this lab
-density-dependent? [Answer: NO!]</p>
+density-dependent? [Answer: NO! In adding one new type of complexity to
+our models- age structure- we have temporarily “forgotten” about
+density-dependence!]</p>
 </div>
 </div>
 <div
@@ -1001,45 +1007,49 @@ id="exercise-4.-translate-written-population-description-to-projection-matrix"
 class="section level2">
 <h2>Exercise 4. Translate written population description to projection
 matrix!</h2>
-<p>As a test of your understanding, try to implement the following
-passage as a matrix projection model:</p>
-<p><img src="redtail1.jpg" style="width:30.0%" /></p>
+<p>As a test of your understanding, try to build a matrix projection
+model based on the following written passage:</p>
 <blockquote>
-<p>We assumed that the red-tailed hawk life history could be described
-in terms of three major life stages: hatchling (first year of life),
-juvenile (largely individuals in their second year of life), and adult
-(generally the third year of life and beyond). We assumed that adult
-females experienced an average of 15% mortality each year. Juvenile
-female mortality was set at 30% per year. Approximately 10% of juvenile
-females remain in the juvenile phase each year, and all other survivors
-transition to the adult stage. Finally, hatchlings had a 21% chance of
-surviving and transitioning to become juveniles. Adults are the primary
-reproductive stage, and produce an average of 6 new hatchlings each
-year, half of which are female. Juveniles that fail to transition to the
-Adult stage tend to produce only 1.8 new hatchlings each year on
+<p>We assumed that the tawny rat-hawk life history could be described in
+terms of four major life stages: juvenile (one-year-olds), subadults
+(2-year-olds), non-territorial adults, and territorial adults (all
+individuals 3 years old and beyond are considered adults). We assumed
+that territorial adult females experienced an average of 10% mortality
+each year, and non-territorial adults experienced 18% mortality
+annually. Juvenile female mortality was 25% per year, and subadult
+mortality was 20%. Hatchlings (newborns) had a 30% chance of surviving
+their first year of life. We assumed that 90% of surviving subadults
+would become non-territorial adults, while the remaining 10% would
+become territorial adults. We assumed that 45% of surviving
+non-territorial females would successfully transition to the
+“territorial adult” stage, while 10% of surviving territorial adults
+would lose their territories, becoming non-territorial adults.
+Territorial adults are the primary reproductive stage, and produce an
+average of 2.5 fledged hatchlings each year, half of which are female.
+Non-territorial adults produce 1.1 new fledged hatchlings each year on
 average, half of which are female. We ran a female-only matrix
 population model, and we initialized the population with 800 hatchlings,
-150 juveniles, and 50 adults.</p>
+150 juveniles, 75 non-territorial adults and 50 territorial adults.</p>
 </blockquote>
 <p>4a (image upload). Upload an image file of the full transition matrix
-(9 numbers, arranged in 3 rows and 3 columns) to WebCampus. To maximize
+(16 numbers, arranged in 4 rows and 4 columns) to WebCampus. To maximize
 your chance for partial credit, include all calculations you needed to
 arrive at your final solution.</p>
-<p>4b (short answer: three numbers). How many hatchlings, juveniles and
-adults would there be in the population at time 0 if you were to
-initialize the population at S.A.D.? Use the same initial population
-size as the example above (1000 total individuals at time 0).</p>
+<p>4b (short answer: four numbers). How many juveniles, subadults,
+non-territorial adults and territorial adults would there be in the
+population at time 0 if you were to initialize the population with 1000
+individuals at S.S.D.? (1000 total individuals at time 0).</p>
 <p>4c (one number). What is the finite growth rate, Lambda, for this
 population?</p>
 <p>##Checklist for Lab 4 completion</p>
 <ul>
-<li><p>Please submit all responses <em>using Top Hat</em>!</p></li>
+<li><p>Please submit all responses using WebCampus!</p></li>
 <li><p>As always, URLs for your InsightMaker models should be pasted in
-your lab submission (in Top Hat). See details below…</p></li>
+your lab submission (in WebCampus). See details below…</p></li>
 </ul>
-<p><strong><em>Due Fri Mar. 10 at 11:59pm</em></strong></p>
+<p><strong><em>Due Fri Mar. 8 at 11:59pm</em></strong></p>
 <ul>
-<li>Word document with short answers
+<li>Webcampus submission
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
@@ -1067,7 +1077,7 @@ your lab submission (in Top Hat). See details below…</p></li>
 <li><em>image upload (3b.)</em></li>
 <li><em>image upload (3c.)</em></li>
 </ul></li>
-<li><strong>Exercise 3</strong>
+<li><strong>Exercise 4</strong>
 <ul>
 <li><em>image upload (4a.)</em></li>
 <li><em>short answer (4b.)</em></li>
