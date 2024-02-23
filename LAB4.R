@@ -81,7 +81,7 @@ for(s in 1:ncol(TMat)){
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 if(AgeStructured){
-  leg <-  paste("Age",seq(0,(ncol(TMat))-1))
+  leg <-  paste("Age",seq(1,(ncol(TMat))))
 }else{
   leg <- paste("Stage",seq(1,ncol(TMat))) 
 }

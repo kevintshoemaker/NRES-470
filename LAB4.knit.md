@@ -9,18 +9,9 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
-```
 
-```{r echo=FALSE}
 
-#  NRES 470, Lab 4 -------------------------------
-#  Kevin Shoemaker                                 
-#  University of Nevada, Reno              
-#  Matrix population models           
 
-```
 
 In this lab we will continue to work with age-structured populations: specifically, we will get familiar with **matrix projection models**! Remember that while matrix population models may look complicated, they are just a modified version of the *discrete* exponential growth model: $N_{t+1}=\lambda \cdot N_t$.
 
@@ -114,22 +105,21 @@ If you want to follow along in R, you can find the R script [here](LAB4.R).
 
 We have already seen the matrix projection equation (Eq. 2, above). Here is how we can implement this in R:
 
-```{r eval=FALSE}
 
+```r
 # Matrix projection in R ---------------------
 
 # Syntax for projecting abundance using a transition matrix (NOTE: this code won't run until we specify the terms on the right)
 
 # Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
-  
 ```
 
 Let's try it:
 
 First, build a projection matrix:
 
-```{r}
 
+```r
 # First, build a simple projection matrix called TMat
 
 TMat <- matrix(     # 
@@ -141,52 +131,73 @@ TMat <- matrix(     #
   ,nrow=3,ncol=3,byrow=T
 )
 TMat    # print to the console to check!
+```
 
+```
+##      [,1] [,2] [,3]
+## [1,] 0.25 1.50  1.5
+## [2,] 0.40 0.00  0.0
+## [3,] 0.00 0.75  0.0
 ```
 
 **Q**: is this an age-structured (Leslie) or stage-structured (Lefkovitch) matrix?
 
 Next, let's build an initial abundance vector:
 
-```{r}
 
+```r
 # Then we specify initial abundances for the three age classes
 
 InitAbund <- c(1000,0,0)    # initial abundance vector
 InitAbund    # print to the console to check!
+```
 
+```
+## [1] 1000    0    0
 ```
 
 Now we can run our first projection- this time, we will use the transition matrix to compute the abundance vector for year 1!
 
-```{r}
 
+```r
 # Now we can run the code for real
 
 # project year-1 abundance:
 
 Year1 <- TMat %*% InitAbund  # matrix multiplication in R uses the symbol '%*%'
 Year1
+```
 
+```
+##      [,1]
+## [1,]  250
+## [2,]  400
+## [3,]    0
 ```
 
 Now we have 400 individuals in stage 2!
 
 Let's project one more year:
 
-```{r}
 
+```r
 # Project year-2 abundance
 
 Year2 <- TMat %*% Year1  # matrix multiplication!
 Year2
+```
 
+```
+##       [,1]
+## [1,] 662.5
+## [2,] 100.0
+## [3,] 300.0
 ```
 
 Finally, here is some code to project many years into the future! You may want to re-use some of this code for the exercises below. 
 
-```{r}
 
+```r
 # Multi-year projection code ----------------------------
 
 #  You may want to modify this code for the examples below:
@@ -228,8 +239,9 @@ if(AgeStructured){
   leg <- paste("Stage",seq(1,ncol(TMat))) 
 }
 legend("topleft",col=cols,lwd=rep(2,ncol(TMat)),legend=leg,bty="n")  # put a legend on the plot
-
 ```
+
+![](LAB4_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
 
 #### Compute lambda
 
@@ -237,8 +249,8 @@ Clearly this is a growing population. But let's see exactly what $\lambda$ is!
 
 NOTE: we are using a "package" in R to make these analyses super easy! So if you don't already have the "popbio" package, go to the "Packages" tab in Rstudio (should be at the top of the lower right panel), click on "Install", and then type "popbio" in the "Packages" field in the pop-up window, then click on the "Install" button. 
 
-```{r}
 
+```r
 # Use 'popbio' package to compute lambda and SSD -----------
 
 # Use the following line of code if you haven't installed 'popbio' yet. Once you've installed it, you can delete the line or comment this line out by adding a pound sign before the "i" in "install.packages"
@@ -250,7 +262,10 @@ NOTE: we are using a "package" in R to make these analyses super easy! So if you
 library(popbio)   # load the 'popbio' package in R
 
 lambda(TMat)
+```
 
+```
+## [1] 1.13162
 ```
 
 Pretty easy!
@@ -260,12 +275,15 @@ Pretty easy!
 
 Clearly the population doesn't reach a stable stage distribution until a few years into our simulation. What exactly is the stable stage distribution here?  We can do this in R:
 
-```{r}
 
+```r
 # Use the 'popbio' package to compute the stable stage distribution!
 
 stable.stage(TMat)
+```
 
+```
+## [1] 0.6298233 0.2226270 0.1475497
 ```
 
 Let's get started with running some matrix-based population models!
@@ -279,12 +297,17 @@ Here is the life table:
     [Excel format](life_table4.xlsx)     
     [CSV format](life_table4.csv)       
 
-```{r echo=FALSE}
 
-lifetable <- read.csv("life_table4.csv")
-knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)"))
-#lifetable
-```
+Table: 
+
+|  x| S(x)| b(x)|
+|--:|----:|----:|
+|  0| 1000|  0.0|
+|  1|  350|  0.0|
+|  2|  145|  3.9|
+|  3|   70|  4.2|
+|  4|   19|  0.8|
+|  5|    0|  0.0|
 
 
 Translate the above *life table* into an age-structured (Leslie) transition matrix with four ages: age 1 (yearlings), age 2, age 3, and age 4. You don't need to include age 5 because no individuals ever make it past age 4. 
@@ -307,8 +330,8 @@ You will need to use R for the next few questions. Make sure you have the 'popbi
 
 You will need to enter your matrix from 1a into R, using something like the following:
 
-```{r}
 
+```r
 # Construct a four-age matrix:
 
 TMat <- matrix(     # 
@@ -321,7 +344,14 @@ TMat <- matrix(     #
   ,nrow=4,ncol=4,byrow=T
 )
 TMat
+```
 
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]  0.0 1.90 1.10  0.4
+## [2,]  0.4 0.00 0.00  0.0
+## [3,]  0.0 0.75 0.00  0.0
+## [4,]  0.0 0.00 0.65  0.0
 ```
 
 1c (short answer- one number). What is the finite rate of growth $\lambda$ for this population? (HINT: use the 'lambda()' function from the popbio package)
@@ -384,14 +414,23 @@ Here is a stage-based matrix to use for building your InsightMaker model:
 Click [here](stage_matrix1.csv) to download the CSV file.      
 Click [here](stage_matrix1.xlsx) to download the same matrix as an Excel file.   
 
-```{r}
+
+```r
 stmat <- read.csv("stage_matrix1.csv")
 stmat <- as.matrix(stmat[,-1])
 rownames(stmat) <- colnames(stmat)
 stmat
+```
 
+```
+##        Stage1 Stage2 Stage3
+## Stage1   0.08   0.50   0.82
+## Stage2   0.35   0.10   0.00
+## Stage3   0.00   0.65   0.80
+```
+
+```r
 # lambda(stmat) 
-
 ```
 
 Build an InsightMaker model that represents the same population as the stage-based matrix above. Remember that the top row represents fecundity terms, while the remaining rows represent transition terms. Also remember how to convert between survival rates and mortality rates (mortality equals one minus survival). Initialize the model with 100 individuals at stable stage distribution (SSD).
@@ -415,18 +454,7 @@ As a test of your understanding, try to build a matrix projection model based on
 > We assumed that the tawny rat-hawk life history could be described in terms of four major life stages: juvenile (one-year-olds), subadults (2-year-olds), non-territorial adults, and territorial adults (all individuals 3 years old and beyond are considered adults). We assumed that territorial adult females experienced an average of 10% mortality each year, and non-territorial adults experienced 18% mortality annually. Juvenile female mortality was 25% per year, and subadult mortality was 20%. Hatchlings (newborns) had a 30% chance of surviving their first year of life. We assumed that 90% of surviving subadults would become non-territorial adults, while the remaining 10% would become territorial adults. We assumed that 45% of surviving non-territorial females would successfully transition to the "territorial adult" stage, while 10% of surviving territorial adults would lose their territories, becoming non-territorial adults. Territorial adults are the primary reproductive stage, and produce an average of 2.5 fledged hatchlings each year, half of which are female. Non-territorial adults produce 1.1 new fledged hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 hatchlings, 150 juveniles, 75 non-territorial adults and 50 territorial adults.   
    
 
-```{r eval=FALSE, echo=FALSE}
-names <- c("juvenile","subadult","nt_adult","t_adult")
-mymat = matrix(c(0,     0,      1.1*0.5*0.3,      2.5*0.5*0.3, 
-                 0.75,  0,      0,                0,
-                 0,     0.8*0.9,      0.82*(1-0.45),                0.9*(1-0.9),
-                 0,     0.8*(1-0.9),      0.82*0.45,                0.9*0.9
-                 ),   nrow=4,byrow = T)
-rownames(mymat) <- names; colnames(mymat) <- names
-popbio::lambda(mymat)
-mymat
 
-```
 
 4a (image upload). Upload an image file of the full transition matrix (16 numbers, arranged in 4 rows and 4 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.
 
