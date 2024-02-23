@@ -91,15 +91,15 @@ NOTE: _survival *P* in a stage-structured transition matrix is NOT necessarily t
 In contrast: in a Leslie matrix, all individuals must either transition to the next stage or die. 
 Always remember that (just like in a Leslie matrix) _fecundity *F* in a stage transition matrix is NOT the same thing as the age-specific per-capita birth rates *b(x)*_ from a life table.
 
-Instead, the Fecundity terms in a stage-transition matrix $F_{S}$ also takes into account the *survival rate* to the next time step (e.g., $P_{S1 \rightarrow S2}$)!! For an adult of stage $S$ to contribute to the next generation, _it must first survive to the next time step_ before it can reproduce!.
+Instead, the Fecundity terms in a stage-transition matrix $F_{S}$ also takes into account the *survival rate* of the offspring (e.g., $P_{S0 \rightarrow S1}$)!! For an adult of stage $S$ to contribute to the next generation, _it must first give birth and their offspring must survive their first year of life_!.
 
-$F_S = P_{this \space year \rightarrow next \space year} \cdot  b(next \space year)    \qquad \text{(Eq. 4)}$
+$F_S = b(this \space year) \cdot  P_{first \space year \space of \space life}     \qquad \text{(Eq. 4)}$
 
-Computation of fecundity can get fairly complicated, but if you start to get confused, always return to this basic principle: *fecundity is survival times birth rate*. 
+Computation of fecundity can get fairly complicated, but if you start to get confused, always return to this basic principle: *fecundity is birth rate times first-year survival*. 
 
-$F_1=P_{1 \rightarrow 1}\cdot b(1) + P_{1 \rightarrow 2}\cdot b(2)$                
-$F_2=P_{2 \rightarrow 2}\cdot b(2) + P_{2 \rightarrow 3}\cdot b(3)$               
-$F_3=P_{3 \rightarrow 3}\cdot b(3) + P_{3 \rightarrow 4}\cdot b(4)$   
+$F_1=b(1) \cdot P_{0 \rightarrow 1}$                
+$F_2=b(2) \cdot P_{0 \rightarrow 1}$                
+$F_3=b(3) \cdot P_{0 \rightarrow 1}$       
 
 
 ### Matrix operations:

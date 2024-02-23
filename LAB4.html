@@ -587,23 +587,22 @@ is NOT the same thing as the age-specific per-capita birth rates
 <em>b(x)</em></em> from a life table.</p>
 <p>Instead, the Fecundity terms in a stage-transition matrix <span
 class="math inline">\(F_{S}\)</span> also takes into account the
-<em>survival rate</em> to the next time step (e.g., <span
-class="math inline">\(P_{S1 \rightarrow S2}\)</span>)!! For an adult of
+<em>survival rate</em> of the offspring (e.g., <span
+class="math inline">\(P_{S0 \rightarrow S1}\)</span>)!! For an adult of
 stage <span class="math inline">\(S\)</span> to contribute to the next
-generation, <em>it must first survive to the next time step</em> before
-it can reproduce!.</p>
-<p><span class="math inline">\(F_S = P_{this \space year \rightarrow
-next \space year} \cdot b(next \space year) \qquad \text{(Eq.
-4)}\)</span></p>
+generation, <em>it must first give birth and their offspring must
+survive their first year of life</em>!.</p>
+<p><span class="math inline">\(F_S = b(this \space year) \cdot P_{first
+\space year \space of \space life} \qquad \text{(Eq. 4)}\)</span></p>
 <p>Computation of fecundity can get fairly complicated, but if you start
 to get confused, always return to this basic principle: <em>fecundity is
-survival times birth rate</em>.</p>
-<p><span class="math inline">\(F_1=P_{1 \rightarrow 1}\cdot b(1) + P_{1
-\rightarrow 2}\cdot b(2)\)</span><br />
-<span class="math inline">\(F_2=P_{2 \rightarrow 2}\cdot b(2) + P_{2
-\rightarrow 3}\cdot b(3)\)</span><br />
-<span class="math inline">\(F_3=P_{3 \rightarrow 3}\cdot b(3) + P_{3
-\rightarrow 4}\cdot b(4)\)</span></p>
+birth rate times first-year survival</em>.</p>
+<p><span class="math inline">\(F_1=b(1) \cdot P_{0 \rightarrow
+1}\)</span><br />
+<span class="math inline">\(F_2=b(2) \cdot P_{0 \rightarrow
+1}\)</span><br />
+<span class="math inline">\(F_3=b(3) \cdot P_{0 \rightarrow
+1}\)</span></p>
 </div>
 </div>
 <div id="matrix-operations" class="section level3">
