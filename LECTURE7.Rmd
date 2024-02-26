@@ -380,7 +380,7 @@ TMat
 
 And the hardest part is usually the top row: the fecundity row. In this case, this year's yearlings don't produce offspring, so they have fecundity of zero.
 
-Subadalts have a birth rate of 3 females per female, and adults have a birth rate of 7 female offspring per female.
+Subadults have a birth rate of 3 females per female, and adults have a birth rate of 7 female offspring per female.
 
 But remember, in order for these offspring to enter the population as yearlings next year, they must survive that first year of life!!
 
@@ -491,14 +491,14 @@ ANSWER: use computer programming (e.g., R or InsightMaker!)
 
 First, please review the introduction to loggerhead sea turtles [here](PVA3_421.html). 
 
-Next, download the Excel document for this example [here](Loggerhead2022.xlsx). We will work through the Excel example in class.
+Next, download the Excel document for this example [here](Loggerhead2024.xlsx). We will work through the Excel example in class.
 
-NOTE: a worked version of the spreadsheet can be found here[](Loggerhead2022_worked.xlsx)
+NOTE: a worked version of the spreadsheet can be found here[](Loggerhead2024_worked.xlsx)
 
 Using your Excel spreadsheet, investigate four management scenarios for the loggerhead turtle population:
 
 1. Improve fecundity (both subadults and adults) via *nest-site protection*!
-    - Increase fecundity terms by 50% (improve to 1.5 times the current value)      
+    - Increase fecundity by 50% (improve to 1.5 times the current value)      
 2. Improve hatchling survival via *nest monitoring*
     - Improve _to_ 100%    
 3. Improve large juvenile survival using *Turtle Excluder Devices (TEDs)*     
