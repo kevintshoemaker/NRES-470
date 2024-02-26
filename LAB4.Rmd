@@ -64,7 +64,7 @@ Each age class is associated with only one survival rate, and this rate involves
 
 For a Leslie matrix, the final year of life must have a survival rate of zero. Why? Because no individual can survive past the final year of life!
 
-In this class, we will *always* assume that reproduction occurs at the very beginning of each time step. This type of matrix model is known as a "pre-breeding census" because we assume that breeding takes place right after we monitor our population. In this way, the youngest age we ever observe are individuals that were born right after last year's survey- meaning, one-year-olds! 
+In this class, we will *always* assume that reproduction occurs at the very beginning of each time step. This type of matrix model is known as a "pre-breeding census" because we assume that breeding takes place right after we monitor our population. In this way, the youngest age we ever observe are individuals that were born right after last year's survey- meaning, one-year-olds (or almost-one-year-olds, as the case may be)! 
 
 This means that all **fecundity** terms in our transition matrices must be computed as the product of birth rate and survival through the first year of life (i.e., all newborns from this year must survive for a full year before they can "enter" the study as one-year-olds in the following year)
 
@@ -89,17 +89,18 @@ When a matrix is used to represent a stage-structured population, it is often ca
 NOTE: _survival *P* in a stage-structured transition matrix is NOT necessarily the same thing as survival rate_ (e.g., g(x) from a life table). What's the difference? The answer is that survivors from one age class may end up in more than one class. For example, some fraction of Stage 2 individuals may survive but remain in Stage 2 next year ($P_{2 \rightarrow 2}$). Another subset of survivors may end up in Stage 3 ($P_{2 \rightarrow 3}$). Together, these two rates (added together) represent the total survival of Stage 2 individuals! 
 
 In contrast: in a Leslie matrix, all individuals must either transition to the next stage or die. 
+
 Always remember that (just like in a Leslie matrix) _fecundity *F* in a stage transition matrix is NOT the same thing as the age-specific per-capita birth rates *b(x)*_ from a life table.
 
-Instead, the Fecundity terms in a stage-transition matrix $F_{S}$ also takes into account the *survival rate* of the offspring (e.g., $P_{S0 \rightarrow S1}$)!! For an adult of stage $S$ to contribute to the next generation, _it must first give birth and their offspring must survive their first year of life_!.
+Instead, the Fecundity (F) terms in a stage-transition matrix $F_{S}$ also take into account the *survival rate* of the offspring (e.g., $surv_{first \space year \space of \space life}$)!! For an adult of stage $S$ to contribute to the next generation, _it must first give birth and their offspring must survive their first year of life_!.
 
-$F_S = b(this \space year) \cdot  P_{first \space year \space of \space life}     \qquad \text{(Eq. 4)}$
+$F_S = b_S \cdot  surv_{first \space year \space of \space life}     \qquad \text{(Eq. 4)}$
 
 Computation of fecundity can get fairly complicated, but if you start to get confused, always return to this basic principle: *fecundity is birth rate times first-year survival*. 
 
-$F_1=b(1) \cdot P_{0 \rightarrow 1}$                
-$F_2=b(2) \cdot P_{0 \rightarrow 1}$                
-$F_3=b(3) \cdot P_{0 \rightarrow 1}$       
+$F_1=b(stage1) \cdot P_{0 \rightarrow 1}$                
+$F_2=b(stage2) \cdot P_{0 \rightarrow 1}$                
+$F_3=b(stage3) \cdot P_{0 \rightarrow 1}$       
 
 
 ### Matrix operations:
@@ -130,7 +131,7 @@ First, build a projection matrix:
 
 ```{r}
 
-# First, build a simple projection matrix called TMat
+# First, build a simple age-structured projection matrix called TMat
 
 TMat <- matrix(     # 
   c(
@@ -293,11 +294,13 @@ Keep the following points in mind:
 
 - There is no "age 0" (newborn) stage (since this is a "pre-breeding census" model). Individuals only "enter" the model if they are born and survive to age 1. 
 - Individuals are in the "age 1" stage if they are between the ages of 1 and 2 (that is, they are one-year-olds!). They transition to the "age 2" stage ($P_{1 \rightarrow 2}$) if they survive to age 2.        
-- For individuals of the "age 1" class to contribute new offspring to the population in the next time step ($F_0$), they have to produce offspring when they are exactly 1 year of age (which they do at the rate of $b(1)$ -- the birth rate at age 1), and their offspring must survive their first year of life ($P_{0 \rightarrow 1}$).    
+- For individuals of the "age 1" class to contribute new offspring to the population in the next time step ($F_1$), they have to produce offspring when they are exactly 1 year of age (which they do at the rate of $b(1)$ -- the birth rate at age 1), and their offspring must survive their first year of life ($P_{0 \rightarrow 1}$).    
 - Use four age classes for your transition matrix (age 1 through 4). Individuals in the final age class (age 4) have zero survival (you can't survive to age 5) but a non-zero fecundity (four-year-olds can give birth, and their offspring can survive to become one-year-olds next year)      
 - No individual ever stays the same age - they either transition to the next age or they die (this is how a **Leslie Matrix** model works).   
 
-NOTE: Gotelli uses the term 'age class 1' to refer to individuals in their first year of life (0-year-olds) and 'age class 2' for individuals in their second year of life (one-year-olds), but I think it's easier to think of this as age 0, age 1, etc. That way, our age classes will match the way we usually talk about age in years! 
+NOTE: Gotelli uses the term 'age class 1' to refer to individuals in their first year of life (0-year-olds) and 'age class 2' for individuals in their second year of life (one-year-olds), but I think it's easier to think of this as age 0, age 1, etc. That way, our age classes will match the way we usually talk about age in years!
+
+NOTE: The Gotelli book focuses on the type of matrix population model known as a "post-breeding census model". This model is more difficult to understand and more prone to mistakes than the pre-breeding census model, so I have chosen to focus on the pre-breeding census model in this course.
 
 1a (image upload). Upload an image file of the full transition matrix (16 numbers, arranged in 4 rows and 4 columns) to WebCampus. To maximize your chance for partial credit, include all calculations you needed to arrive at your final solution.   
 
@@ -328,7 +331,7 @@ TMat
 
 1d (short answer). Based on this result, is this a growing population? A declining population?  
 
-1e (short answer- 4 numbers). What is the stable-stage distribution (SSD) for this population (fraction of the population in each age after the simulation stabilizes)? (HINT: use the 'stable.stage()' function from the popbio package) (HINT: a complete answer to this question requires exactly 4 numbers)
+1e (short answer- 4 numbers). What is the stable-stage distribution (SSD) for this population (fraction of the population in each age after the simulation stabilizes)? (HINT: use the 'stable.stage()' function from the 'popbio' package) (HINT: a complete answer to this question requires exactly 4 numbers)
 
 1f (short answer- 4 numbers). Assuming an initial population size of 1000 at stable stage distribution (SSD; see answer from 1e), how many individuals would you have in each of the four ages? (NOTE: you can't have fractional individuals, so please round to the nearest whole numbers).     
 
@@ -357,7 +360,8 @@ Age 2 survival: 0.5 (50%)
 Age 3 survival: 0 (100% mortality- no individuals survive to age 4)      
 Initial N, Age 1: 100      
 Initial N, Age 2: 100     
-Initial N, Age 3: 50    
+Initial N, Age 3: 50 
+
 For the mortality rates, note that all individuals in the *Age 1* stock must either transition to *Age 2* or die. In addition, all individuals in the *Age 3* stock must die- there is no *Age 4* class!     
 
 Translate this InsightMaker model into a projection matrix with three rows and three columns. Pay close attention to the difference between survival (transition to the next stage class) and mortality (mortality is equal to one minus survival). 

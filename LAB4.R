@@ -12,7 +12,7 @@
 # Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
   
 
-# First, build a simple projection matrix called TMat
+# First, build a simple age-structured projection matrix called TMat
 
 TMat <- matrix(     # 
   c(
