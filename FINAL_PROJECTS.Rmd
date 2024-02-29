@@ -1,7 +1,7 @@
 ---
 title: "Final projects!"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -21,19 +21,19 @@ Students will work in groups of ~3-4 people to perform a population viability an
 
 - Select a species and management question of interest. 
 - Perform a thorough literature review on your species of interest- collect all the information you can about life history (e.g., age at maturity), key vital rates (e.g., stage-structured birth and survival rates), carrying capacity, etc. 
-- Construct a population viability analysis (PVA) model, parameterized using the best information you can find in the literature (using InsightMaker, R, or Vortex as a modeling platform). 
+- Construct a population viability analysis (PVA) model, parameterized using the best information you can find in the literature (using InsightMaker or R as a modeling platform). 
 - Use your PVA model to run **scenario tests** that address a conservation or management question (to test your research question)
-- Use the model results to rank conservation or management actions for your species or population of interest
+- Use the PVA results to rank conservation or management actions for your species or population of interest
 - _Write up the results_ and present your results to the class!
 
-## Timeline (updated)
+## Timeline
 
-- **PROPOSAL:** Due Fri March 10!
-- **INITIAL PVA** Due Wed April 12: description of how your PVA model works and where the parameter estimates come from -- and a link to a working PVA model!     
-- **DRAFT FINAL PAPER:** Due Mon April 24.
-- **PEER REVIEWS:** Fri Apr 28 in lab.
-- **FINAL PRESENTATIONS:** Wed May 3 and Fri May 5!
-- **FINAL FINAL PAPER:** Due Wed May 17
+- **PROPOSAL:** Due Fri March 8!
+- **INITIAL PVA** Due Wed April 10: description of how your PVA model works and where the parameter estimates come from -- and a link to a working PVA model!     
+- **DRAFT FINAL PAPER:** Due Mon April 22.
+- **PEER REVIEWS:** Fri Apr 26 in lab.
+- **FINAL PRESENTATIONS:** Wed May 1 and Fri May 3!
+- **FINAL FINAL PAPER:** Due Wed May 15 (last day of finals period)
 
 Remember that the semester will get crazy at the end (including for your instructors). Plan ahead! 
 
@@ -41,10 +41,10 @@ Remember that the semester will get crazy at the end (including for your instruc
 
 Your project proposal (approx 1 pg) will consist of:  
 
-1. **Title**: should indicate what species you are modeling, and hint at what question(s) will be addressed   
+1. **Title**: should indicate what species you are modeling, and hint at what question(s) will be addressed  
 2. **Project participants**: provide names of all project participants (3-4).   
-3. **Research question(s)**: Provide one or more testable and management-relevant questions that you plan to address using your population model. Putting "too many" questions is okay for now- we will talk them over in our project meetings right before spring break.  
-4. **Project rationale**: Describe your rationale for choosing this species, and explain why your management/conservation question(s) are important to address. Be as specific as possible! Convince your instructor/TA that your project is **interesting**!    
+3. **Research question(s)**: Provide one or more management-relevant questions that you plan to address using your population model. Putting "too many" questions is okay for now- we will talk them over in our project meetings right before spring break.  
+4. **Project rationale**: Describe your species and its current conservation and/or management status, and explain why your management/conservation question(s) are important. Be as specific as possible! Convince your instructors that your project is **interesting and important**! NOTE: you can re-use much of this material in the Introduction section of your final project write-up.   
 5. **Data sources**: Describe one or more information sources you plan to use to guide PVA construction and parameterization (convince your instructor/TA that your project is **doable**!)  
 
 Some key parameters you will likely need for your PVA model (and will be searching the literature for!) are: 
@@ -57,28 +57,28 @@ Some key parameters you will likely need for your PVA model (and will be searchi
 - *stochasticity* (annual variability in survival and birth rates)     
 - *dispersal rates* (for metapopulation models)      
 - *habitat quality* (for metapopulation models)       
-- *response to management** (linkages between management activities and vital rates - for running scenario tests!)       
+- *response to management** (links between management activities and the above population parameters - for running scenario tests!)       
 
 We have gone over many of these concepts in class already- PVA is just a way of putting all the concepts from this class together in a single model! You can get the above information directly from the published literature (or unpublished reports), or you estimate these parameters yourself using raw data (which we haven't yet gone over in class- and which you are not expected to do!!). If all else fails, you can use published records for similar species as a proxy (assuming that the vital rates are approximately the same)!
 
-## Second project-related assignment: the initial PVA!
+## Second project-related assignment: the initial PVA (the Methods section of your final paper)!
 
 Your **initial parameterized PVA model** will consist of:  
 
-1. **A ready-to-run PVA model**, in whatever software framework you are using (InsightMaker or R). This model does not need to be your "final" model, but it should work (e.g., produce results), the parameter estimates should be backed by some evidence or rationale (see below), and it should be capable of running your proposed scenario tests.
+1. **A ready-to-run PVA model**, in whatever software framework you are using (InsightMaker or R). This model does not need to be your "final final" model, but it should work (e.g., produce results), the parameter estimates should be backed by some evidence or rationale (see below), and it should be capable of running your proposed scenario tests.
 
 2. **Written rationale/evidence for all of your parameter estimates** and key modeling decisions.   
-    a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the sources of this information). Decisions include: how many stage or age classes in your model, what are your survival and fecundity rates (transition rates), what is your initial abundance(s), how does population density affect vital rates in your model (density-dependence -- including Allee effects if applicable), how much do birth and death rates vary from year to year (environmental stochasticity), what is the impact and timing of catastrophes (if applicable), etc. etc. Where appropriate, you can paste figures, tables, maps, etc. drawn from your information sources- just make sure you say where you got these images/tables etc.
-    b. What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions? NOTE: you don't need to have run your scenario tests- just state what scenario tests you propose to run! *It must be clear that the working model you submitted is capable of running all of your proposed scenario tests*. 
-    c. Literature cited (format not important, as long as it includes all key information)  
+    a. For each major decision you made in constructing the model, describe the information you used to back up your decision (and the sources of this information). Decisions include: how many stage or age classes in your model, what are the survival and reproductive rates for your species across its life history, what is your initial abundance(s), how does population density affect vital rates in your model (density-dependence -- including Allee effects if applicable), how much do birth and death rates vary from year to year (environmental stochasticity), what is the impact and timing of catastrophes (if applicable), etc. etc. Avoid pasting figures, tables, maps, etc. drawn directly from your information sources- instead, describe the information in words (and cite your source). It can also help to create a table that synthesizes information from multiple sources (i.e., a table in which each row represents a vital rate, and columns that indicate the parameter value, its confidence bounds, and the citation). 
+    b. What scenarios do you plan to test (e.g., management scenarios, climate change, harvest, etc), and how will these scenarios help you to address your research questions? NOTE: you don't need to have run your scenario tests- just state what scenario tests you will run! *It must be clear that the working model you submitted is capable of running all of your proposed scenario tests*. 
+    c. Literature cited (format not important, as long as it includes all key information: authors, year, title, journal/book etc.)  
 
-3. Any questions for your instructor/TA about your model that you'd like to go over during our next project meeting (remember to sign up for a meeting on our shared Google Sheet!).
+3. Feel free to include any lingering questions for your instructor/TA about your model that you'd like to go over during our next project meeting (remember to sign up for a meeting on our shared Google Sheet!).
     
-## Third project-related assignment: the written project (rough draft and final draft)!
+## Third project-related assignment: the written project (applies to rough draft and final draft)!
 
-Your final written paper is expected to be in the style of a **scientific manuscript**. That is, it should have a *title*, *introduction*, *methods*, *results*, *discussion*, *acknowledgements* and *literature cited* sections. Please also include your working PVA model (e.g., InsightMaker link or R code). 
+Your written paper is expected to be in the style of a **scientific manuscript**. That is, it should have a *title*,*author list*, *abstract*, *introduction*, *methods*, *results*, *discussion*, *acknowledgements* and *literature cited* sections. Please also include your working PVA model (e.g., InsightMaker link or R code)- if you built your model using InsightMaker, place the InsightMaker link at the top of your Methods section.  
 
-**There are no formatting guidelines or page limits**. Please be as concise as possible while still covering all the key elements in the grading rubric. You can use any standard format for your references (e.g., APA), all we ask is that you be consistent!
+**There are no formatting guidelines or page limits**. Please be as concise as possible while still covering all the key elements (see instructions and grading rubric below). You can use any standard format for your references (e.g., APA), all we ask is that you be consistent!
 
 ### Abstract
 An abstract is often the most critical part of a scientific manuscript- because it's often the only part that many people read! A good abstract effectively summarizes everything in the paper- what the study is about, why readers should care, what the research questions are, how you answered your questions and what your key findings were, and what the findings mean in a broader context. All in about 250 words or less!   
@@ -89,23 +89,20 @@ A good title should be informative, should have the species name and should at l
 ### Introduction
 This is where you introduce the topic and describe why it's important. You should also include your research questions here, along with any hypotheses that you are testing (this is usually the last paragraph of your introduction). You can recycle and flesh out the material from your proposal! This should be at least 3 paragraphs long.
 
-Remember to cite literature here (and use a consistent format)!
+Remember to cite literature here (and use a consistent format for your in-text citations and literature cited)! Back up every statement with at least one citation! You should cite several references in your introduction (at least 3-5). For intro and all sections: every time you cite a paper/website/report, use the in-text citation format where you include the last name of the first author and the year of the publication: e.g., ```(Smith et al. 2023)```.
 
-The first paragraph(s) of the introduction should provide a clear motivation for your research questions. Once we read your research questions it should make total sense why you are asking these questions!
+The first paragraph(s) of the introduction should provide a clear motivation for your research questions. By the time the reader comes to your research questions (at the end of your introduction) it should make sense why you are asking these questions!
 
-The last sentences of your introduction should state your testable research question(s).
-
-Please try to cite at least 3-5 references in your introduction. For intro and all sections: every time you cite a paper/website/report, use the in-text citation format where you include the last name of the first author and the year of the publication. 
-
+The last paragraph of your introduction should state your testable research question(s) along with any hypothesis you have (educated guesses about your anticipated results).
 
 ### Methods
-This is where you describe your PVA in enough detail that it *could be replicated* by another wildlife researcher! You can recycle much of your "initial PVA" assignment here. 
+This is where you describe your PVA in enough detail that it *could be replicated* by another wildlife researcher! You can re-use much of your "initial PVA" assignment here. But unlike the "Initial PVA" assignment, this time you need to use paragraphs and complete sentences- no bulleted lists please!  
 
-Remember to justify all your decisions. Every parameter value you use (survival rates, abundance, birth rate, carrying capacity, etc.) and every factual statement you make needs to have a citation. It needs to be clear where every single number in your model came from. You also need to justify the time frame for your model- you should not just use a 20-year simulation time frame just because it is the default for InsightMaker (and if you do use a 20-year time frame you need to be very specific about why- otherwise I’ll assume you simply did not change the default!).
+Remember to justify all your decisions. Every parameter value you use (survival rates, abundance, birth rate, carrying capacity, etc.) and every factual statement you make needs to have a **citation**. It needs to be clear where every number in your model came from. You also need to justify the time frame for your model- you should not just use a 20-year simulation time frame just because it is the default for InsightMaker (and if you do use a 20-year time frame you need to be very specific about why- otherwise I’ll assume you were lazy and did not change the default!).
 
-Unlike the "Initial PVA and Methods" assignment, this time you need to use complete sentences- no bulleted lists please! Also, try to avoid using InsightMaker jargon (RandPoisson, stocks, flows, links, ghost primitive, etc.). Instead, try to describe your model using "plain English".    
+Try to avoid using InsightMaker jargon (RandPoisson, stocks, flows, links, ghost primitive, etc.). Instead, try to describe what your model does using "plain English".     
 
-The methods section should detail more than just how you put your model together- it should also detail how you used the model to test your research questions.   
+The methods section should detail more than just how you put your model together and where your parameter values came from- it should also detail how you used the model to test your research questions.   
 
 - What different scenarios did you run?    
 
@@ -113,11 +110,11 @@ The methods section should detail more than just how you put your model together
     - How did you visualize the results?     
     - Did you perform any statistical analyses?  
     
-In general, try to avoid including figures and tables reproduced from other studies. Just describe the key results in words and refer to the original source. Including these figures in your paper implies you created the figure yourself!
+Avoid including figures and tables reproduced from other studies. Just describe the key results in words and refer to the original source. Including these figures in your paper implies you created the figure yourself!
 
 You need to define what you mean by ‘viability’, since there is no standard definition. If you are assessing minimum viable population size (MVP), you need to define your viability criterion- for example, ‘we considered populations with extinction risk less than 5% over 50 years to be viable'.
 
-Try to avoid using acronyms like PVA and MVP without first defining what stand for.
+Define all acronyms (like PVA and MVP) the first time you use the acronym.
 
 Most of you will use female-only models- and if so you should state this explicitly, and describe how you accounted for this in your fecundity estimates (e.g., you assumed a 50% sex ratio, and therefore you multiplied the total birth rate by 50% to estimate the total number of female offspring produced per female).
 
@@ -135,9 +132,7 @@ All figures need figure numbers and captions. Figure captions can be several sen
 
 If you want to include a table from insightmaker, please import your insightmaker table results to excel so you can format nicely (rather than presenting a screenshot of an insightmaker table). Also try to avoid fractional individuals in your tables
 
-Don’t be constrained to insightmaker’s figures! See the ["PVA" lecture](LECTURE12.html) for some examples of the kinds of figures you might make to present your results most effectively. Don't feel like you have to use R to make your figures- Excel is fine!! 
-
-It's okay to include one or two insightmaker figures (abundance over time), but for most of you it will be better (more concise, more informative) to summarize your results in a different way (like illustrating final abundance for each scenario as a bar plot, with each scenario presented side by side). Sometimes it helps to sketch out what you want the figure to look like, and then work "backwards" to try and figure out how to make that figure.
+Don’t be constrained to Insightmaker’s figures! See the ["PVA" lecture](LECTURE12.html) for some examples of the kinds of figures you might make to present your results most effectively. Don't feel like you have to use R to make your figures- Excel is fine!! It's okay to include one or two Insightmaker figures (abundance over time), but for most of you it will be better (more concise, more informative) to summarize your results in a different way (like illustrating final abundance for each scenario as a bar plot, with each scenario presented side by side). Sometimes it helps to sketch out what you want the figure to look like, and then work "backwards" to try and figure out how to make that figure (your TA and instructor can help!!).
 
 ### Discussion
 This is where you describe what your results really tell us with respect to your main questions. The first paragraph in your discussion section should summarize the key results and why they are important. Include citations/references to other studies to indicate where your study fits into a broader context. I expect to see at least 3-4 in-text citations in your Discussion section.
@@ -148,7 +143,7 @@ Also, in your discussion you should:
 - Describe any potential flaws with your PVA and how you might improve this in the future
 - Describe any future research that could be helpful in addressing your main questions 
 
-Limit your discussion of 'flaws' in your study to a single paragraph. And don’t start your discussion section with the ‘flaws’ paragraph. Start it instead with a summary of the important results and why/how those results are important for conservation and management.
+Limit your discussion of 'flaws' or shortcomings in your study to a single paragraph. And don’t start your discussion section with the ‘shortcomings’ paragraph. Start it instead with a summary of the important results and why/how those results are important for conservation and management.
  
 Let me know if you have any questions or would like to go over anything before your final submission.
 
@@ -248,7 +243,7 @@ Note: please don't use fancy backgrounds- keep your slides as clean as possible.
 ## Potentially useful links!
 
 Publicly available datasets, potentially for final project...  
-(many links courtesy Tom Langen) 
+(many links courtesy Tom Langen) (NOTE: some of these links may not work anymore- let me know if any of these links is "dead" so I can remove it!) 
 
 [Google Scholar](https://scholar.google.com/) and Web of Science (access through UNR library services) will likely be your primary tools for finding papers!
 

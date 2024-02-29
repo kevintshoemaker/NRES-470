@@ -14,7 +14,7 @@
 
 <title>Final projects!</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -456,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Final projects!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
@@ -479,28 +476,29 @@ maturity), key vital rates (e.g., stage-structured birth and survival
 rates), carrying capacity, etc.</li>
 <li>Construct a population viability analysis (PVA) model, parameterized
 using the best information you can find in the literature (using
-InsightMaker, R, or Vortex as a modeling platform).</li>
+InsightMaker or R as a modeling platform).</li>
 <li>Use your PVA model to run <strong>scenario tests</strong> that
 address a conservation or management question (to test your research
 question)</li>
-<li>Use the model results to rank conservation or management actions for
+<li>Use the PVA results to rank conservation or management actions for
 your species or population of interest</li>
 <li><em>Write up the results</em> and present your results to the
 class!</li>
 </ul>
 </div>
-<div id="timeline-updated" class="section level2">
-<h2>Timeline (updated)</h2>
+<div id="timeline" class="section level2">
+<h2>Timeline</h2>
 <ul>
-<li><strong>PROPOSAL:</strong> Due Fri March 10!</li>
-<li><strong>INITIAL PVA</strong> Due Wed April 12: description of how
+<li><strong>PROPOSAL:</strong> Due Fri March 8!</li>
+<li><strong>INITIAL PVA</strong> Due Wed April 10: description of how
 your PVA model works and where the parameter estimates come from – and a
 link to a working PVA model!<br />
 </li>
-<li><strong>DRAFT FINAL PAPER:</strong> Due Mon April 24.</li>
-<li><strong>PEER REVIEWS:</strong> Fri Apr 28 in lab.</li>
-<li><strong>FINAL PRESENTATIONS:</strong> Wed May 3 and Fri May 5!</li>
-<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 17</li>
+<li><strong>DRAFT FINAL PAPER:</strong> Due Mon April 22.</li>
+<li><strong>PEER REVIEWS:</strong> Fri Apr 26 in lab.</li>
+<li><strong>FINAL PRESENTATIONS:</strong> Wed May 1 and Fri May 3!</li>
+<li><strong>FINAL FINAL PAPER:</strong> Due Wed May 15 (last day of
+finals period)</li>
 </ul>
 <p>Remember that the semester will get crazy at the end (including for
 your instructors). Plan ahead!</p>
@@ -516,16 +514,18 @@ modeling, and hint at what question(s) will be addressed<br />
 <li><strong>Project participants</strong>: provide names of all project
 participants (3-4).<br />
 </li>
-<li><strong>Research question(s)</strong>: Provide one or more testable
-and management-relevant questions that you plan to address using your
+<li><strong>Research question(s)</strong>: Provide one or more
+management-relevant questions that you plan to address using your
 population model. Putting “too many” questions is okay for now- we will
 talk them over in our project meetings right before spring break.<br />
 </li>
-<li><strong>Project rationale</strong>: Describe your rationale for
-choosing this species, and explain why your management/conservation
-question(s) are important to address. Be as specific as possible!
-Convince your instructor/TA that your project is
-<strong>interesting</strong>!<br />
+<li><strong>Project rationale</strong>: Describe your species and its
+current conservation and/or management status, and explain why your
+management/conservation question(s) are important. Be as specific as
+possible! Convince your instructors that your project is
+<strong>interesting and important</strong>! NOTE: you can re-use much of
+this material in the Introduction section of your final project
+write-up.<br />
 </li>
 <li><strong>Data sources</strong>: Describe one or more information
 sources you plan to use to guide PVA construction and parameterization
@@ -555,8 +555,8 @@ rates)<br />
 </li>
 <li><em>habitat quality</em> (for metapopulation models)<br />
 </li>
-<li>*response to management** (linkages between management activities
-and vital rates - for running scenario tests!)</li>
+<li>*response to management** (links between management activities and
+the above population parameters - for running scenario tests!)</li>
 </ul>
 <p>We have gone over many of these concepts in class already- PVA is
 just a way of putting all the concepts from this class together in a
@@ -567,17 +567,19 @@ class- and which you are not expected to do!!). If all else fails, you
 can use published records for similar species as a proxy (assuming that
 the vital rates are approximately the same)!</p>
 </div>
-<div id="second-project-related-assignment-the-initial-pva"
+<div
+id="second-project-related-assignment-the-initial-pva-the-methods-section-of-your-final-paper"
 class="section level2">
-<h2>Second project-related assignment: the initial PVA!</h2>
+<h2>Second project-related assignment: the initial PVA (the Methods
+section of your final paper)!</h2>
 <p>Your <strong>initial parameterized PVA model</strong> will consist
 of:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>A ready-to-run PVA model</strong>, in whatever software
 framework you are using (InsightMaker or R). This model does not need to
-be your “final” model, but it should work (e.g., produce results), the
-parameter estimates should be backed by some evidence or rationale (see
-below), and it should be capable of running your proposed scenario
+be your “final final” model, but it should work (e.g., produce results),
+the parameter estimates should be backed by some evidence or rationale
+(see below), and it should be capable of running your proposed scenario
 tests.</p></li>
 <li><p><strong>Written rationale/evidence for all of your parameter
 estimates</strong> and key modeling decisions.</p>
@@ -585,43 +587,53 @@ estimates</strong> and key modeling decisions.</p>
 <li>For each major decision you made in constructing the model, describe
 the information you used to back up your decision (and the sources of
 this information). Decisions include: how many stage or age classes in
-your model, what are your survival and fecundity rates (transition
-rates), what is your initial abundance(s), how does population density
-affect vital rates in your model (density-dependence – including Allee
-effects if applicable), how much do birth and death rates vary from year
-to year (environmental stochasticity), what is the impact and timing of
-catastrophes (if applicable), etc. etc. Where appropriate, you can paste
-figures, tables, maps, etc. drawn from your information sources- just
-make sure you say where you got these images/tables etc.</li>
+your model, what are the survival and reproductive rates for your
+species across its life history, what is your initial abundance(s), how
+does population density affect vital rates in your model
+(density-dependence – including Allee effects if applicable), how much
+do birth and death rates vary from year to year (environmental
+stochasticity), what is the impact and timing of catastrophes (if
+applicable), etc. etc. Avoid pasting figures, tables, maps, etc. drawn
+directly from your information sources- instead, describe the
+information in words (and cite your source). It can also help to create
+a table that synthesizes information from multiple sources (i.e., a
+table in which each row represents a vital rate, and columns that
+indicate the parameter value, its confidence bounds, and the
+citation).</li>
 <li>What scenarios do you plan to test (e.g., management scenarios,
 climate change, harvest, etc), and how will these scenarios help you to
 address your research questions? NOTE: you don’t need to have run your
-scenario tests- just state what scenario tests you propose to run!
-<em>It must be clear that the working model you submitted is capable of
-running all of your proposed scenario tests</em>.</li>
+scenario tests- just state what scenario tests you will run! <em>It must
+be clear that the working model you submitted is capable of running all
+of your proposed scenario tests</em>.</li>
 <li>Literature cited (format not important, as long as it includes all
-key information)</li>
+key information: authors, year, title, journal/book etc.)</li>
 </ol></li>
-<li><p>Any questions for your instructor/TA about your model that you’d
-like to go over during our next project meeting (remember to sign up for
-a meeting on our shared Google Sheet!).</p></li>
+<li><p>Feel free to include any lingering questions for your
+instructor/TA about your model that you’d like to go over during our
+next project meeting (remember to sign up for a meeting on our shared
+Google Sheet!).</p></li>
 </ol>
 </div>
 <div
-id="third-project-related-assignment-the-written-project-rough-draft-and-final-draft"
+id="third-project-related-assignment-the-written-project-applies-to-rough-draft-and-final-draft"
 class="section level2">
-<h2>Third project-related assignment: the written project (rough draft
-and final draft)!</h2>
-<p>Your final written paper is expected to be in the style of a
+<h2>Third project-related assignment: the written project (applies to
+rough draft and final draft)!</h2>
+<p>Your written paper is expected to be in the style of a
 <strong>scientific manuscript</strong>. That is, it should have a
-<em>title</em>, <em>introduction</em>, <em>methods</em>,
-<em>results</em>, <em>discussion</em>, <em>acknowledgements</em> and
-<em>literature cited</em> sections. Please also include your working PVA
-model (e.g., InsightMaker link or R code).</p>
+<em>title</em>,<em>author list</em>, <em>abstract</em>,
+<em>introduction</em>, <em>methods</em>, <em>results</em>,
+<em>discussion</em>, <em>acknowledgements</em> and <em>literature
+cited</em> sections. Please also include your working PVA model (e.g.,
+InsightMaker link or R code)- if you built your model using
+InsightMaker, place the InsightMaker link at the top of your Methods
+section.</p>
 <p><strong>There are no formatting guidelines or page limits</strong>.
 Please be as concise as possible while still covering all the key
-elements in the grading rubric. You can use any standard format for your
-references (e.g., APA), all we ask is that you be consistent!</p>
+elements (see instructions and grading rubric below). You can use any
+standard format for your references (e.g., APA), all we ask is that you
+be consistent!</p>
 <div id="abstract" class="section level3">
 <h3>Abstract</h3>
 <p>An abstract is often the most critical part of a scientific
@@ -646,40 +658,43 @@ with any hypotheses that you are testing (this is usually the last
 paragraph of your introduction). You can recycle and flesh out the
 material from your proposal! This should be at least 3 paragraphs
 long.</p>
-<p>Remember to cite literature here (and use a consistent format)!</p>
+<p>Remember to cite literature here (and use a consistent format for
+your in-text citations and literature cited)! Back up every statement
+with at least one citation! You should cite several references in your
+introduction (at least 3-5). For intro and all sections: every time you
+cite a paper/website/report, use the in-text citation format where you
+include the last name of the first author and the year of the
+publication: e.g., <code>(Smith et al. 2023)</code>.</p>
 <p>The first paragraph(s) of the introduction should provide a clear
-motivation for your research questions. Once we read your research
-questions it should make total sense why you are asking these
-questions!</p>
-<p>The last sentences of your introduction should state your testable
-research question(s).</p>
-<p>Please try to cite at least 3-5 references in your introduction. For
-intro and all sections: every time you cite a paper/website/report, use
-the in-text citation format where you include the last name of the first
-author and the year of the publication.</p>
+motivation for your research questions. By the time the reader comes to
+your research questions (at the end of your introduction) it should make
+sense why you are asking these questions!</p>
+<p>The last paragraph of your introduction should state your testable
+research question(s) along with any hypothesis you have (educated
+guesses about your anticipated results).</p>
 </div>
 <div id="methods" class="section level3">
 <h3>Methods</h3>
 <p>This is where you describe your PVA in enough detail that it
 <em>could be replicated</em> by another wildlife researcher! You can
-recycle much of your “initial PVA” assignment here.</p>
+re-use much of your “initial PVA” assignment here. But unlike the
+“Initial PVA” assignment, this time you need to use paragraphs and
+complete sentences- no bulleted lists please!</p>
 <p>Remember to justify all your decisions. Every parameter value you use
 (survival rates, abundance, birth rate, carrying capacity, etc.) and
-every factual statement you make needs to have a citation. It needs to
-be clear where every single number in your model came from. You also
-need to justify the time frame for your model- you should not just use a
-20-year simulation time frame just because it is the default for
-InsightMaker (and if you do use a 20-year time frame you need to be very
-specific about why- otherwise I’ll assume you simply did not change the
-default!).</p>
-<p>Unlike the “Initial PVA and Methods” assignment, this time you need
-to use complete sentences- no bulleted lists please! Also, try to avoid
-using InsightMaker jargon (RandPoisson, stocks, flows, links, ghost
-primitive, etc.). Instead, try to describe your model using “plain
-English”.</p>
+every factual statement you make needs to have a
+<strong>citation</strong>. It needs to be clear where every number in
+your model came from. You also need to justify the time frame for your
+model- you should not just use a 20-year simulation time frame just
+because it is the default for InsightMaker (and if you do use a 20-year
+time frame you need to be very specific about why- otherwise I’ll assume
+you were lazy and did not change the default!).</p>
+<p>Try to avoid using InsightMaker jargon (RandPoisson, stocks, flows,
+links, ghost primitive, etc.). Instead, try to describe what your model
+does using “plain English”.</p>
 <p>The methods section should detail more than just how you put your
-model together- it should also detail how you used the model to test
-your research questions.</p>
+model together and where your parameter values came from- it should also
+detail how you used the model to test your research questions.</p>
 <ul>
 <li><p>What different scenarios did you run?</p></li>
 <li><p>How did you use the simulation results to address your
@@ -690,17 +705,17 @@ questions?</p>
 <li>Did you perform any statistical analyses?</li>
 </ul></li>
 </ul>
-<p>In general, try to avoid including figures and tables reproduced from
-other studies. Just describe the key results in words and refer to the
-original source. Including these figures in your paper implies you
-created the figure yourself!</p>
+<p>Avoid including figures and tables reproduced from other studies.
+Just describe the key results in words and refer to the original source.
+Including these figures in your paper implies you created the figure
+yourself!</p>
 <p>You need to define what you mean by ‘viability’, since there is no
 standard definition. If you are assessing minimum viable population size
 (MVP), you need to define your viability criterion- for example, ‘we
 considered populations with extinction risk less than 5% over 50 years
 to be viable’.</p>
-<p>Try to avoid using acronyms like PVA and MVP without first defining
-what stand for.</p>
+<p>Define all acronyms (like PVA and MVP) the first time you use the
+acronym.</p>
 <p>Most of you will use female-only models- and if so you should state
 this explicitly, and describe how you accounted for this in your
 fecundity estimates (e.g., you assumed a 50% sex ratio, and therefore
@@ -734,18 +749,18 @@ are used. Figure captions should also describe where the data come from
 insightmaker table results to excel so you can format nicely (rather
 than presenting a screenshot of an insightmaker table). Also try to
 avoid fractional individuals in your tables</p>
-<p>Don’t be constrained to insightmaker’s figures! See the <a
+<p>Don’t be constrained to Insightmaker’s figures! See the <a
 href="LECTURE12.html">“PVA” lecture</a> for some examples of the kinds
 of figures you might make to present your results most effectively.
-Don’t feel like you have to use R to make your figures- Excel is
-fine!!</p>
-<p>It’s okay to include one or two insightmaker figures (abundance over
+Don’t feel like you have to use R to make your figures- Excel is fine!!
+It’s okay to include one or two Insightmaker figures (abundance over
 time), but for most of you it will be better (more concise, more
 informative) to summarize your results in a different way (like
 illustrating final abundance for each scenario as a bar plot, with each
 scenario presented side by side). Sometimes it helps to sketch out what
 you want the figure to look like, and then work “backwards” to try and
-figure out how to make that figure.</p>
+figure out how to make that figure (your TA and instructor can
+help!!).</p>
 </div>
 <div id="discussion" class="section level3">
 <h3>Discussion</h3>
@@ -764,10 +779,11 @@ this in the future</li>
 <li>Describe any future research that could be helpful in addressing
 your main questions</li>
 </ul>
-<p>Limit your discussion of ‘flaws’ in your study to a single paragraph.
-And don’t start your discussion section with the ‘flaws’ paragraph.
-Start it instead with a summary of the important results and why/how
-those results are important for conservation and management.</p>
+<p>Limit your discussion of ‘flaws’ or shortcomings in your study to a
+single paragraph. And don’t start your discussion section with the
+‘shortcomings’ paragraph. Start it instead with a summary of the
+important results and why/how those results are important for
+conservation and management.</p>
 <p>Let me know if you have any questions or would like to go over
 anything before your final submission.</p>
 <p>A rubric for the final written presentation can be found <a
@@ -927,7 +943,9 @@ project but who are not listed as a co-author.</li>
 <div id="potentially-useful-links" class="section level2">
 <h2>Potentially useful links!</h2>
 <p>Publicly available datasets, potentially for final project…<br />
-(many links courtesy Tom Langen)</p>
+(many links courtesy Tom Langen) (NOTE: some of these links may not work
+anymore- let me know if any of these links is “dead” so I can remove
+it!)</p>
 <p><a href="https://scholar.google.com/">Google Scholar</a> and Web of
 Science (access through UNR library services) will likely be your
 primary tools for finding papers!</p>
