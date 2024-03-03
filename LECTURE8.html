@@ -468,10 +468,11 @@ whole 50 minute class period to take the exam. The exam will be on paper
 this year.</p>
 <p><strong>what</strong> The exam will cover:</p>
 <ul>
-<li>All material in Chapters 1-3 of the Gotelli book <em>including
-matrix population modeling concepts</em>.<br />
-</li>
-<li>All material covered in lectures, including the following web pages:
+<li><p>Chapters 1-3 of the Gotelli book <em>including matrix population
+modeling concepts</em>. Note that any material in the Gotelli book that
+we did NOT cover in class will NOT be on the exam.</p></li>
+<li><p>All material covered in lectures, including the following
+webpages:</p>
 <ul>
 <li><a href="LECTURE1.html">Systems thinking and modeling</a></li>
 <li><a href="LECTURE2.html">Exponential growth</a></li>
@@ -485,14 +486,14 @@ matrix population modeling concepts</em>.<br />
 use these recordings as review/study materials<br />
 </li>
 </ul></li>
-<li>All material covered in labs 1-4, including:
+<li><p>All material covered in labs 1-4, including:</p>
 <ul>
 <li><a href="LAB1.html">Lab 1: exponential growth</a></li>
 <li><a href="LAB2.html">Lab 2: logistic growth</a></li>
 <li><a href="LAB3.html">Lab 3: age-structured populations</a></li>
 <li><a href="LAB4.html">Lab 4: matrix population models</a></li>
 </ul></li>
-<li>Basic programming concepts:
+<li><p>Basic programming concepts:</p>
 <ul>
 <li>Conditional logic (IF-THEN-ELSE): see examples in Malthus and Allee
 effect lectures</li>
@@ -504,7 +505,8 @@ effect lectures</li>
 <p><em>The exam will consist of a mixture of multiple-choice and
 short-answer questions</em></p>
 <p><em>Please bring a calculator- a regular scientific calculator will
-work fine</em></p>
+work fine</em> [NOTE: it’s not absolutely necessary to bring a
+calculator, but it can help for 1 or 2 of the questions]</p>
 <p>We will hold a review session for the exam during our regular class
 meeting on the Monday prior to the exam (Monday, March 11). Please make
 note of any questions that come up as you study- we can talk these over
@@ -533,15 +535,17 @@ structural uncertainty, and more. <em>In practical terms: if you
 collected more data you could (in principle) make a better model that
 more closely represents reality.</em></p></li>
 <li><p><strong>The system is inherently variable and
-unpredictable</strong>. In population ecology and systems modeling, this
-is also known as <strong>stochasticity</strong>. <em>In practical terms:
-no matter how much we study and understand a natural system, we can not
-predict the future with certainty</em>. Ecological systems are
-inherently variable and unpredictable. We can’t know with certainty
-whether or not an individual will mate, or die. We can’t really even be
-certain whether the environmental conditions (e.g., weather) will be
-favorable or unfavorable for offspring production or mortality!</p></li>
+unpredictable</strong>. In population ecology this is also known as
+<strong>demographic stochasticity</strong> and <strong>environmental
+stochasticity</strong>. <em>In practical terms: no matter how much we
+study and understand a natural system, we can not predict the future
+with certainty</em>.</p></li>
 </ul>
+<p>Ecological systems are inherently variable and unpredictable. We
+can’t know with certainty whether or not an individual will mate, or
+die. We can’t really even be certain whether the environmental
+conditions (e.g., moisture availability, food availability) will be
+favorable or unfavorable for offspring production or survival!</p>
 </div>
 </div>
 <div id="how-to-deal-with-uncertainty" class="section level2">
@@ -560,33 +564,35 @@ parameter (usually a per-capita vital rate- often modeled as [Variables]
 in InsightMaker) we are uncertain about (e.g., adult survival rate could
 be 0.6 or 0.7) and see what happens to our study system (e.g., given the
 uncertainty we have about the true parameter value, is it plausible that
-the population will go extinct? Is it plausible that it will
-decline?).</p>
+the population will go extinct? Is it plausible that it will decline?).
+In this class, we refer to this as the “best-case/worst-case”
+method.</p>
 </div>
 <div id="stochastic-models-demographic-and-environmental-stochasticity"
 class="section level3">
 <h3>Stochastic models (demographic and environmental stochasticity)</h3>
+<p>Here, we “embrace” the concept that populations are inherently
+variable and unpredictable.</p>
 <ol style="list-style-type: decimal">
-<li><p>Second, we usually can’t predict whether an individual will live
-or die, breed or not breed, etc. All we can know is the
-<em>probability</em> of mating, or the <em>probability</em> of dying, or
-the per-capita <em>rate</em> of offspring production, or the probability
-of a given offspring being female. But when it comes to projecting
-exactly which individuals live or die (whether an individual will “get
-lucky” so to speak!), who gives birth and who doesn’t, and how many
-females are born, we <em>just can’t know for sure</em>. This is an
-example of a system being inherently unpredictable. In population
-ecology, this is called <strong>demographic stochasticity</strong>. In
-this case, we <strong>randomly vary total births and deaths</strong>
-(the [Flows] in InsightMaker) to represent the inherent unpredictability
-of individual fates within a population.</p></li>
-<li><p>Third, we usually can’t predict whether next year or the year
-after will be favorable or unfavorable for population growth- that is,
-whether the per-capita vital rates (e.g., <span
-class="math inline">\(b\)</span>, or <span
-class="math inline">\(d\)</span> or <span
+<li><p>We usually can’t predict whether an individual will live or die,
+breed or not breed, etc. All we can know is the <em>probability</em> of
+mating, or the <em>probability</em> of dying, or the per-capita
+<em>rate</em> of offspring production, or the probability of a given
+offspring being female. But when it comes to projecting exactly which
+individuals live or die (whether an individual will be “lucky” so to
+speak!), who gives birth and who doesn’t, and how many females are born,
+we <em>just can’t know for sure</em>. This is an example of a system
+being inherently unpredictable. In population ecology, this is called
+<strong>demographic stochasticity</strong>. In this case, we
+<strong>randomly vary total births and deaths</strong> (the [Flows] in
+InsightMaker) to represent the inherent unpredictability of individual
+fates within a population.</p></li>
+<li><p>We usually can’t predict whether next year or the year after will
+be favorable or unfavorable for population growth- that is, whether the
+per-capita vital rates (e.g., <span class="math inline">\(b\)</span>, or
+<span class="math inline">\(d\)</span> or <span
 class="math inline">\(r\)</span>) will be more or less optimal at a
-future point in time (whether a <em>population</em> will “get lucky”, so
+future point in time (whether a <em>population</em> will be “lucky”, so
 to speak). This is another example of a system being <em>inherently
 unpredictable</em>. In population ecology this is called
 <strong>environmental stochasticity</strong>. In this case, we
@@ -604,9 +610,9 @@ models, we often include <em>stochastic</em> components so that each
 model run (replicate) – or each year of each model run – is different
 from one another (the results are variable). That is, we need to include
 at least one <strong>random number generator</strong> in our models! A
-random number generator is like a lottery ball machine! Each time we
-want a new number we reach in and pull another number out, record the
-number, put it back in and shake it up again.</p>
+random number generator is like a lottery machine! Each time we want a
+new number we reach in and pull another number out, record the number,
+put it back in and shake it up again.</p>
 <p><img src="lottery1.png" style="width:20.0%" /></p>
 <p>Every random-number generator has a <strong>distribution</strong>.
 This is a way of defining what exactly is ‘in the box’. This can be
@@ -638,10 +644,10 @@ that come up again and again, and we should learn them!</p>
 <p>In <em>discrete distributions</em>, each unique outcome has a
 specific probability (like the probability of flipping a coin 10 times
 and getting 4 heads). For practical purposes in this class, discrete
-distributions produce integers and are used to represent demographic
-stochasticity (variation in the total number of births and deaths even
-if per-capita vital rates don’t change). For example, let’s consider a
-<em>binomial distribution</em></p>
+distributions produce <em>integers</em> and are used to represent
+demographic stochasticity (variation in the total number of births and
+deaths even if per-capita vital rates don’t change). For example, let’s
+consider a <em>binomial distribution</em></p>
 <pre class="r"><code># Discrete distributions ----------------------------
 
 # binomial distribution (&#39;coin flipping&#39; distribution)
@@ -660,7 +666,7 @@ distribution be useful for modeling?</p>
 <pre class="r"><code># Poisson distribution
 
 xvals &lt;- seq(0,10,1)
-probs &lt;- dpois(xvals,lambda=2.2)     # POisson distribution
+probs &lt;- dpois(xvals,lambda=2.2)     # Poisson distribution
 names(probs) &lt;- xvals
                
 barplot(probs,ylab=&quot;Probability&quot;,xlab=&quot;Possibilities&quot;,main=&quot;Poisson distribution (discrete)&quot;)</code></pre>
@@ -737,9 +743,9 @@ runif(1,min=1,max=3.5)   # &quot;min&quot; and &quot;max&quot; are pretty obviou
 
 ### Normal random number generator
 rnorm(1,mean=3,sd=4.1)   # normal distribution is defined by &quot;mean&quot; and &quot;sd&quot; (standard deviation).</code></pre>
-<p><strong>PointSolutions</strong> In R, generate one random number from
-a Binomial distribution with 10 trials and probability of success equal
-to 0.3</p>
+<p><strong>Top Hat</strong> In R, generate one random number from a
+Binomial distribution with 10 trials and probability of success equal to
+0.3</p>
 <p>In R, generate random numbers from a Poisson distribution with mean
 of 2.1</p>
 <p>In R, generate random numbers from a Normal distribution with mean of
@@ -769,7 +775,7 @@ hist(hatch_perfem)</code></pre>
 <p><img src="LECTURE8_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><strong>Q</strong>: What type of uncertainty does this set of values
 most likely represent? What random number generator might you use to
-represent this uncertainty? [PointSolutions]</p>
+represent this uncertainty? [Top Hat]</p>
 <p>Now let’s try to fit a distribution to these data! Let’s use a Normal
 distribution. (NOTE: technically speaking we might want to use a
 distribution that can’t produce negative numbers- like the log-normal
@@ -797,15 +803,14 @@ curve(dnorm(x,mean=1.8,sd=0.39),col=&quot;green&quot;,lty=2,lwd=2,add=T)    # tr
 #### Once you find the best-fit parameters, generate 5 random numbers from this distribution using the &quot;rnorm()&quot; function in R
 
 rnorm(5,mean=4,sd=1)    # for example! (remember to change the &quot;mean&quot; and &quot;sd&quot; parameters to the values you identified above!)</code></pre>
-<pre><code>## [1] 4.193708 5.404610 4.304685 2.573512 3.422725</code></pre>
+<pre><code>## [1] 4.855585 4.840236 2.930928 3.421279 3.929372</code></pre>
 <ol style="list-style-type: decimal">
 <li>Use trial-and-error to find appropriate “mean” and “sd” parameters
 for the normal distribution.</li>
 </ol>
-<p><strong>Q</strong>: what is the best-fit value for “mean”?
-[PointSolutions]<br />
-<strong>Q</strong>: what is the best-fit value for “sd”?
-[PointSolutions]</p>
+<p><strong>Q</strong>: what is the best-fit value for “mean”? [Top
+Hat]<br />
+<strong>Q</strong>: what is the best-fit value for “sd”? [Top Hat]</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Use your fitted distribution to predict the per-capita production of
 hatchlings for the next 5 years. To do this, use the “rnorm()” function
@@ -833,7 +838,7 @@ panel). Hit “Simulate”- you should see exponential growth!</p></li>
 <li><p><strong>Parameter uncertainty:</strong> What if we have imperfect
 knowledge about birth rate? The birth rate could be anything from 0.2 to
 0.5. Run the model with the lowest and the highest possible birth rate.
-NOTE: you can give each results plot a title using the gear-shaped
+NOTE: you can give each results plot a title using the pencil-shaped
 symbol at the top of your plot window- that way you can name your
 scenarios – e.g., “min birth rate”.</p></li>
 <li><p>Now use the “Compare Results” tool (under the “Tools” menu in the
@@ -871,7 +876,7 @@ rate).</p>
 <p>For the total births, <span class="math inline">\(B\)</span> we will
 use the <em>Poisson</em> distribution. The Poisson distribution is often
 use to represent births, because it produces whole numbers, can’t go
-negative, AND it has no hard upper limit (unlike the binomial
+negative, AND it has no hard upper limit (unlike the Binomial
 distribution).</p>
 <p>NOTE: there could feasibly be more births than there are individuals
 currently in the population (e.g., if all individuals have two
