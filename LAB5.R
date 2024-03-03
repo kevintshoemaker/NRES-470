@@ -22,6 +22,6 @@ hist(rnorm(10000,mean=1.25,sd=0.15),main="",freq=F,xlab="Possibilities (annual b
 curve(dnorm(x,1.25,0.15),0,3,lwd=3,add=T)
 
 
-hist(rnorm(10000,mean=1.1,sd=0.4),main="",freq=F,xlab="Possibilities (annual birth rates)",ylab="Probability",xlim=c(0,3))
-curve(dnorm(x,1.1,0.4),0,3,add=T,lwd=2)
+hist(rnorm(10000,mean=1.1,sd=0.3),main="",freq=F,xlab="Possibilities (annual birth rates)",ylab="Probability",xlim=c(0,3))
+curve(dnorm(x,1.1,0.3),0,3,add=T,lwd=2)
 
