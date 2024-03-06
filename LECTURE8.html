@@ -554,19 +554,20 @@ favorable or unfavorable for offspring production or survival!</p>
 uncertainty</strong>. we have two major tools to help us manage and
 account for uncertainty in our study systems: <em>uncertainty
 analysis</em> and <em>stochastic models</em></p>
-<div id="uncertainty-analysis" class="section level3">
-<h3>Uncertainty analysis</h3>
+<div id="uncertainty-analysis-dealing-with-lack-of-knowdledge"
+class="section level3">
+<h3>Uncertainty analysis (dealing with lack of knowdledge)</h3>
 <p>What if we simply don’t have enough data to build a perfect model?
 This is an example of <em>lacking sufficient knowledge</em>. In this
 case, the tool we use is called <strong>uncertainty analysis</strong>.
-Basically, we try the “worst case” and “best case” values for a
-parameter (usually a per-capita vital rate- often modeled as [Variables]
-in InsightMaker) we are uncertain about (e.g., adult survival rate could
-be 0.6 or 0.7) and see what happens to our study system (e.g., given the
-uncertainty we have about the true parameter value, is it plausible that
-the population will go extinct? Is it plausible that it will decline?).
-In this class, we refer to this as the “best-case/worst-case”
-method.</p>
+Basically, we run the model using “worst case” and “best case” values
+for a parameter (usually a per-capita vital rate- often modeled as
+[Variables] in InsightMaker) we are uncertain about (e.g., adult
+survival rate could be 0.6 or 0.7) and see what happens to our study
+system (e.g., given the uncertainty we have about the true parameter
+value, is it plausible that the population will go extinct? Is it
+plausible that it will decline?). In this class, we refer to this as the
+“best-case/worst-case” method.</p>
 </div>
 <div id="stochastic-models-demographic-and-environmental-stochasticity"
 class="section level3">
@@ -584,7 +585,7 @@ speak!), who gives birth and who doesn’t, and how many females are born,
 we <em>just can’t know for sure</em>. This is an example of a system
 being inherently unpredictable. In population ecology, this is called
 <strong>demographic stochasticity</strong>. In this case, we
-<strong>randomly vary total births and deaths</strong> (the [Flows] in
+<strong>randomly sample total births and deaths</strong> (the [Flows] in
 InsightMaker) to represent the inherent unpredictability of individual
 fates within a population.</p></li>
 <li><p>We usually can’t predict whether next year or the year after will
@@ -596,7 +597,7 @@ future point in time (whether a <em>population</em> will be “lucky”, so
 to speak). This is another example of a system being <em>inherently
 unpredictable</em>. In population ecology this is called
 <strong>environmental stochasticity</strong>. In this case, we
-<strong>randomly vary per-capita vital rates</strong> (represented as
+<strong>randomly sample per-capita vital rates</strong> (represented as
 [Variables] in InsightMaker) to represent the inherent unpredictability
 of environmental conditions.</p></li>
 </ol>
@@ -643,11 +644,11 @@ that come up again and again, and we should learn them!</p>
 <h3>Discrete vs. continuous</h3>
 <p>In <em>discrete distributions</em>, each unique outcome has a
 specific probability (like the probability of flipping a coin 10 times
-and getting 4 heads). For practical purposes in this class, discrete
-distributions produce <em>integers</em> and are used to represent
-demographic stochasticity (variation in the total number of births and
-deaths even if per-capita vital rates don’t change). For example, let’s
-consider a <em>binomial distribution</em></p>
+and getting 4 heads). In practical terms, discrete distributions produce
+<em>integers</em> and are used to represent demographic stochasticity
+(variation in the total number of births and deaths even if per-capita
+vital rates don’t change). For example, let’s consider a <em>binomial
+distribution</em></p>
 <pre class="r"><code># Discrete distributions ----------------------------
 
 # binomial distribution (&#39;coin flipping&#39; distribution)

@@ -77,17 +77,17 @@ Ecological systems are inherently variable and unpredictable. We can't know with
 ## How to deal with uncertainty
 As applied population ecologists, we must **embrace uncertainty**. we have two major tools to help us manage and account for uncertainty in our study systems: _uncertainty analysis_ and _stochastic models_
 
-### Uncertainty analysis
+### Uncertainty analysis (dealing with lack of knowdledge)
 
-What if we simply don't have enough data to build a perfect model? This is an example of *lacking sufficient knowledge*. In this case, the tool we use is called **uncertainty analysis**. Basically, we try the "worst case" and "best case" values for a parameter (usually a per-capita vital rate- often modeled as [Variables] in InsightMaker) we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?). In this class, we refer to this as the "best-case/worst-case" method.
+What if we simply don't have enough data to build a perfect model? This is an example of *lacking sufficient knowledge*. In this case, the tool we use is called **uncertainty analysis**. Basically, we run the model using "worst case" and "best case" values for a parameter (usually a per-capita vital rate- often modeled as [Variables] in InsightMaker) we are uncertain about (e.g., adult survival rate could be 0.6 or 0.7) and see what happens to our study system (e.g., given the uncertainty we have about the true parameter value, is it plausible that the population will go extinct? Is it plausible that it will decline?). In this class, we refer to this as the "best-case/worst-case" method.
 
 ### Stochastic models (demographic and environmental stochasticity)
 
 Here, we "embrace" the concept that populations are inherently variable and unpredictable.
 
-1. We usually can't predict whether an individual will live or die, breed or not breed, etc. All we can know is the *probability* of mating, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly which individuals live or die (whether an individual will be "lucky" so to speak!), who gives birth and who doesn't, and how many females are born, we _just can't know for sure_. This is an example of a system being inherently unpredictable. In population ecology, this is called **demographic stochasticity**. In this case, we **randomly vary total births and deaths** (the [Flows] in InsightMaker) to represent the inherent unpredictability of individual fates within a population.
+1. We usually can't predict whether an individual will live or die, breed or not breed, etc. All we can know is the *probability* of mating, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly which individuals live or die (whether an individual will be "lucky" so to speak!), who gives birth and who doesn't, and how many females are born, we _just can't know for sure_. This is an example of a system being inherently unpredictable. In population ecology, this is called **demographic stochasticity**. In this case, we **randomly sample total births and deaths** (the [Flows] in InsightMaker) to represent the inherent unpredictability of individual fates within a population.
 
-2. We usually can't predict whether next year or the year after will be favorable or unfavorable for population growth- that is, whether the per-capita vital rates (e.g., $b$, or $d$ or $r$) will be more or less optimal at a future point in time (whether a _population_ will be "lucky", so to speak). This is another example of a system being *inherently unpredictable*. In population ecology this is called **environmental stochasticity**. In this case, we **randomly vary per-capita vital rates** (represented as [Variables] in InsightMaker) to represent the inherent unpredictability of environmental conditions. 
+2. We usually can't predict whether next year or the year after will be favorable or unfavorable for population growth- that is, whether the per-capita vital rates (e.g., $b$, or $d$ or $r$) will be more or less optimal at a future point in time (whether a _population_ will be "lucky", so to speak). This is another example of a system being *inherently unpredictable*. In population ecology this is called **environmental stochasticity**. In this case, we **randomly sample per-capita vital rates** (represented as [Variables] in InsightMaker) to represent the inherent unpredictability of environmental conditions. 
 
 ![](dice1.png){width=15%}
 
@@ -119,7 +119,7 @@ A probability distribution can be pretty much anything you want it to be. Howeve
 ### Probability distributions
 
 ### Discrete vs. continuous
-In *discrete distributions*, each unique outcome has a specific probability (like the probability of flipping a coin 10 times and getting 4 heads). For practical purposes in this class, discrete distributions produce *integers* and are used to represent demographic stochasticity (variation in the total number of births and deaths even if per-capita vital rates don't change). For example, let's consider a *binomial distribution*  
+In *discrete distributions*, each unique outcome has a specific probability (like the probability of flipping a coin 10 times and getting 4 heads). In practical terms, discrete distributions produce *integers* and are used to represent demographic stochasticity (variation in the total number of births and deaths even if per-capita vital rates don't change). For example, let's consider a *binomial distribution*  
 
 ```{r}
 
