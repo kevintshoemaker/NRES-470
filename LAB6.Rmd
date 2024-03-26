@@ -1,7 +1,7 @@
 ---
 title: "Lab 6: Metapopulation modeling"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -26,7 +26,6 @@ In this framework, we are not keeping track of abundance ($N$) - we are instead 
 A patch is composed of individuals, whereas a metapopulation is composed of patches!
 
 **colonization** is when an unoccupied patch becomes occupied! (via **immigration**).  
-
 **extinction** (or extirpation) is when an extant (occupied) patch becomes unoccupied.
 
 **regional (or global) extinction** represents extinction of all patches in the metapopulation. (note that this can't happen in a classical metapopulation- but it certainly CAN happen in real life)
@@ -102,7 +101,7 @@ $p_e = e(1-f)   \qquad \text{(Eq. 6)}$
 
 In this model, the extinction rate approaches 0 as the metapopulation approaches full occupancy [note, this may not be realistic, as it implies a perfectly successful rescue effect!]. 
 
-On the other hand, the extinction rate approaches $e$ as the metapopulation approaches maximum "emptiness", or global extirpation (since there are little to no immigrants from other occupied patches that could 'rescue' an occupied patch from extinction). 
+On the other hand, the extinction rate approaches $e$ as the metapopulation approaches maximum "emptiness", or global extinction (since there are little to no immigrants from other occupied patches that could 'rescue' an occupied patch from extinction). 
 
 All other elements remain unchanged from the island-mainland model.
 
@@ -112,14 +111,15 @@ This one is pretty self-explanatory. But it has some interesting properties!
 
 ## What is a metapopulation?
 
-Finally, the term *metapopulation* is often used to refer to models where we don't care about abundance (we only care about patch occupancy)- as in the 'classical' models described above. Exercises 1-4 in this lab involve building classical metapopulation models. 
+Finally, the term *metapopulation* is often used to refer to models where we don't care about abundance (we only care about patch occupancy)- as in the 'classical' models described above. Exercises 1-3 in this lab involve building classical metapopulation models. 
 
 However, a metapopulation more generally is simply a *collection of interconnected habitat patches*. 
-We can keep track of patch abundance in a metapopulation model if we want. In fact, each patch can contain a stage-structured, density dependent population if we really want. The level of complexity/detail in our models is totally under our control as modelers! 
 
-Just as we can use metapopulation models to study the probability of **global extinction**, we can also study **global abundance** and global abundance trends across the entire metapopulation. Exercise 5 of this lab involves working with a metapopulation model that explicitly considers both abundance dynamics and occupancy dynamics. 
+We can keep track of patch abundance (the number of individuals occupying each patch) in a metapopulation model if we want. In fact, each patch can contain a stage-structured, density dependent population if we really want. The level of complexity/detail in our models is totally under our control as modelers! 
 
-## Exercise 1: 'classical' metapopulation models in InsightMaker
+Just as we can use metapopulation models to study the probability of **global extinction**, we can also study **global abundance** and global abundance trends across the entire metapopulation. Exercise 4 of this lab involves working with a metapopulation model that explicitly considers both abundance dynamics and occupancy dynamics. 
+
+## Exercises 1-3: 'classical' metapopulation models in InsightMaker
 
 NOTE: _you will need the Gotelli book (Chapter 4) to answer several questions_
 
@@ -127,52 +127,58 @@ Your first task is to build an InsightMaker model to represent the basic island-
 
 The total fraction of occupied patches $f$ should be represented as a [Stock]. Make sure this stock can *not* go negative. 
 
-There should be two [Flows]: one for *colonization* (I) and one for *extinction* (E). Initialize $f$ at 0.25 (set the initial value of the stock at year 0 to 25% of patches occupied). 
+There should be two [Flows]: one for *colonization* (I) and one for *extinction* (E). Initialize $f$ at 0.25 (set the initial value of the stock $f$ to 25% of patches occupied). 
 
 The extinction and colonization probabilities ($p_e$ and $p_i$) should be represented as [Variables]. In the island-mainland model, these are constants. 
 
-Set $p_e$ to 0.15 and $p_i$ to 0.45.
+* Set $p_e$ to 0.3 (30% of occupied sites are exterpated each year)      
+* Set $p_i$ to 0.5 (50% of unoccupied sites are colonized each year) 
+* Initialize $f$ at 0.25   
 
-Use the description of the island-mainland model above (and in Gotelli Ch. 4) to complete your model (drawing the appropriate links, and setting appropriate equations for I and E (the Flows). 
+Use the description of the island-mainland model above (also described in Gotelli Ch. 4) to complete your model (drawing the appropriate links, and setting appropriate equations for I and E (the Flows). 
 
 Simulate the metapopulation for 100 years and make sure that $f$ reaches an equilibrium value between 0 and 1.
 
-1a. Clone your Insight and provide a link to your working InsightMaker metapopulation model. 
+1a (Insightmaker URL). Clone your Insight and provide a link (URL) to your working InsightMaker metapopulation model. 
 
-1b. Run the model you submitted above (1a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model? 
+1b (Numeric input). Run the model you submitted above (1a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model? 
 
-1c. Using your Insightmaker model above (submitted in 1a), test to see if the equilibrium state that the model reaches (constant $f$ over time; question 1b) is **stable** or **unstable**? Explain how you got your answer. 
+1c (Text- short answer). Using your Insightmaker model above (submitted in 1a), test to see if the equilibrium state that the model reaches (answer to question 1b) is **stable** or **unstable**? Explain how you got your answer. 
 
-1d. Use equation 4.4 from the Gotelli book to compute the equilibrium value of $f$. Upload an image showing how how you computed your answer using Gotelli's equation 4.4. [NOTE: this should match your answer to 1b] 
+1d (Image upload). Use equation 4.4 from the Gotelli book to compute the equilibrium value of $f$. Upload an image showing how how you computed your answer using Gotelli's equation 4.4. [NOTE: the equilibrium state you computed using eq. 4.4 from Gotelli should match your answer to question 1b] 
 
 Next, working with a clone of the model you submitted in part 1a, please make an InsightMaker model that represents the *internal colonization* model (see description above).
 
-In this model, you will define $p_i$ as a function of a new parameter called $i$. Set the parameter $i$ to 0.3 and run a 100 year simulation. Keep $p_e$ set constant at 0.15. Initialize $f$ at 0.25.
+In this model, you will define $p_i$ as a function of a new parameter called $i$. 
 
-2a. Clone your Insight and provide a link to your working InsightMaker metapopulation model representing internal colonization.
+* Set $p_e$ to 0.3 (30% of occupied sites are exterpated each year)      
+* Set $i$ to 0.5 (colonization rate at very high occupancy)         
+* Set $p_i$ to $i \times f$      
+* Initialize $f$ at 0.25 
 
-2b. Run the model you submitted above (2a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model?
+2a (Insightmaker URL). Clone your Insight and provide a link to your working InsightMaker metapopulation model representing internal colonization.
 
-2c. Use equation 4.6 from the Gotelli book to compute the equilibrium value of $f$ in this model. Upload an image showing how how you computed your answer using Gotelli's equation 4.6. [NOTE: this should match your answer to 2b]. 
+2b (numeric input). Run the model you submitted above (2a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model?
 
-Next, working with a clone of the model you submitted in part 1a, please change your InsightMaker model to reflect the *rescue effect* (see above). In this model, $p_e$ is a function of $f$. Return $p_i$ to its original value of 0.45. Initialize $f$ at 0.25.
+2c (image upload). Use equation 4.6 from the Gotelli book to compute the equilibrium value of $f$ in this model. Upload an image showing how how you computed your answer using Gotelli's equation 4.6. [NOTE: this computed equilibrium value should match your answer to 2b]. 
 
-Set the parameter $e$ in the "rescue effect" model to 0.65. 
+Next, working with a clone of the model you submitted in part 1a, please change your InsightMaker model to reflect the *rescue effect* (see above). In this model, $p_e$ is a function of $f$. 
 
-3a. Clone your Insight and provide a link to your working InsightMaker metapopulation model representing the rescue effect.
+* Set $e$ to 0.9 (extinction rate at very low occupancy)
+* Set $p_e$ to $e \times (1-f)$      
+* Set $p_i$ to 0.5 (50% of unoccupied sites are colonized each year)      
+* Initialize $f$ at 0.25  
 
-3b. Run the model you submitted above (3a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model?
+3a (Insightmaker URL). Clone your Insight and provide a link to your working InsightMaker metapopulation model representing the rescue effect.
 
-3c. Use equation 4.8 from the Gotelli book to compute the equilibrium value of $f$ in this model. Upload an image showing how how you computed your answer using Gotelli's equation 4.8. [NOTE: this should match your answer to 3b]. 
+3b (numeric input). Run the model you submitted above (3a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model?
 
-Finally, working with a clone of one of the models you built above (e.g., 3a), please change your InsightMaker model to reflect the *rescue effect* AND *internal colonization* (both processes operating in the same model). Set the parameter $i$ to 0.3. Set the parameter $e$ to 0.65. Initialize $f$ at 0.25. 
+3c (image upload). Use equation 4.8 from the Gotelli book to compute the equilibrium value of $f$ in this model. Upload an image showing how how you computed your answer using Gotelli's equation 4.8. [NOTE: this computed equilibrium value should match your answer to 3b]. 
 
-4a. Run the model you submitted above (4a) for 100 years. Based on your simulation, what is the equilibrium value for $f$ in this model?
-
-Just for fun, try some alternative values for the e and i parameters in this model and simulate for 100 years. What happens to the equilibrium value for f under different scenarios (optional-no assignment). 
+Just for fun, clone of one of the models you built above (e.g., 3a) and change your InsightMaker model to reflect the *rescue effect* AND *internal colonization* (both processes operating in the same model). Try some alternative values for the e and i parameters in this model and simulate for 100 years. What happens to the equilibrium value for f under different scenarios (optional-no assignment). 
 
 
-## Exercise 5: a spatial metapopulation model!
+## Exercise 4: a spatial metapopulation model!
 
 Agent-based models (agent-based models) are well-suited for considering spatial context. In addition to being a flexible system for stock-flow modeling, Insightmaker also has the capability of running agent-based simulation models. If you want to learn more about agent-based models for modeling populations, check out [this overview](LECTURE10.html) 
 
@@ -184,13 +190,13 @@ The landscape is 200 km by 200 km. Each time a simulation is initiated, patches 
 
 Each patch potentially contains a population of animals. If it has >= 2 individuals living in it, it is considered "occupied".
 
-Each patch has its own carrying capacity (K)- some patches have very low carrying capacity, and some have very high carrying capacity. The distribution of K among patches is approximately *lognormal*. This means that there will usually be a few very large patches in the landscape but most patches are pretty small. The minimum K for any patch is 2. 
+Each patch has its own carrying capacity (K)- some patches have very low carrying capacity, and some have very high carrying capacity. The distribution of K among patches is approximately *Log-normal*. This means that there will usually be a few very large patches in the landscape but most patches are pretty small. The minimum K for any patch is 2. 
 
 Abundance dynamics are density-dependent, and population growth is computed as a function of **r_max**, **local carrying capacity**, and previous-year local abundance using the **Ricker** growth model:
 
 $N_{t+1} = N_t e^{r_{max}(1-\frac{N_t}{K})}$
 
-This is one of the most commonly used models for discrete logistic population growth (very analogous to the logistic growth model we have already seen!).
+This is one of the most commonly used models for discrete logistic population growth (analogous to the logistic growth model we have already seen!).
 
 Population growth in each patch is also driven by migration to and from nearby patches. A fixed proportion of the population in each patch disperses each year (**dispersal rate**, set to 25% initially), and the **maximum dispersal distance** is set initially at 50 kilometers. If no neighboring patch exists within that distance, all dispersers die. Therefore, spatial context matters! 
 
@@ -200,55 +206,51 @@ Graphical summaries are available, which illustrate the spatial configuration of
 
 Take some time to open the model (clone it!) and get familiar with the parameters and model behavior. If you don't understand something, ask your instructor or TA! Make sure you have the following starting parameters:
 
-Metapopulation size: 10 patches         
-r_max: 0.11        
-dispersal rate: 0.25        
-Mean K per population: 10     
-Max dispersal distance: 50 kilometers   
+* Metapopulation size: 10 patches         
+* r_max: 0.11        
+* dispersal rate: 0.25        
+* Mean K per population: 10     
+* Max dispersal distance: 50 kilometers   
 
+4a (numeric response and short answer). Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation occupancy. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? Briefly explain how you got your answer. 
 
-5a. Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation occupancy. What is the approximate risk of regional (global) extinction of this metapopulation over 100 years? Briefly explain how you got your answer. 
-
-5b. Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation abundance. Using the results, briefly describe (i) the abundance trend over time (that is, the trend in overall metapopulation abundance) and (ii) your uncertainty about the total metapopulation abundance at year 100.  
+4b (short answer). Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation abundance. Using the results, briefly describe (i) the abundance trend over time (that is, the trend in overall metapopulation abundance) and (ii) your uncertainty about the total metapopulation abundance at year 100.  
 
 Finally, imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:    
       
-i. Improve the intervening, or "matrix", habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances).         
-ii. Improve existing habitats, doubling the mean per-patch carrying capacity (labeled "Mean K per population").       
-iii. Restore habitat, effectively doubling the number of patches (labeled "metapopulation").           
+i. Improve the intervening, or "matrix", habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances).          
+ii. Improve existing habitats, doubling the mean per-patch carrying capacity (labeled "Mean K per population").         
+iii. Restore habitat, effectively doubling the number of patches (labeled "metapopulation").             
 
-5c. Which management strategy would be most effective for ensuring that the metapopulation does not go extinct? Please justify your answer.   
+4c (short answer). Which management strategy would be most effective for ensuring that the metapopulation does not go extinct? Please justify your answer.   
 
 
 ## Checklist for Lab 6 completion
 
 * Please submit all answers on WebCampus!
 
-***Due Apr. 21 at 11:59pm***
+***Due Apr. 19 at 11:59pm***
 
   +  **Exercise 1**
       -  *InsightMaker link (1a.)*   
-      -  *Short answer (1b.)*   
+      -  *Short answer, numeric (1b.)*   
       -  *Short answer (1c.)*
       -  *Image upload (1d.)*
       
   +  **Exercise 2**
       -  *InsightMaker link (2a.)*   
-      -  *Short answer (2b.)*   
+      -  *Short answer, numeric (2b.)*   
       -  *Image upload (2c.)*
       
   +  **Exercise 3**
       -  *InsightMaker link (3a.)*   
-      -  *Short answer (2b.)*   
-      -  *Image upload (2c.)*
+      -  *Short answer, numeric (3b.)*   
+      -  *Image upload (3c.)*
       
   +  **Exercise 4**
-      -  *Short answer (4a.)*   
-
-  +  **Exercise 5**
-      -  *Short answer (5a.)*
-      -  *Short answer (5b.)*
-      -  *Short answer (5c.)*
+      -  *Short answer and numeric (4a.)*
+      -  *Short answer (4b.)*
+      -  *Short answer (4c.)*
 
         
 

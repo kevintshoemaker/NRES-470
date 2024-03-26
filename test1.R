@@ -11,3 +11,8 @@ lambda(Tmat)
 ssd <- stable.stage(Tmat)
 
 round(ssd*100)
+
+
+c=1000
+A=1:10
+(c/2)*A^2

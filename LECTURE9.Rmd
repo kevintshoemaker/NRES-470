@@ -42,7 +42,7 @@ In small populations, random chance can be the *primary driver* of genetic chang
 
 Let's imagine that the balls in the jars in the above figure are individuals. The black dots indicate how many offspring each individual will have (thereby passing on its genes). The different colored balls represent different genetic variants. Each jar, left to right, represents a different (non-overlapping) generation. 
 
-Does this sound familiar? Just by random chance, some individuals will breed and some will not. Just by random chance, some individuals will have more of their offspring survive. Genetic drift is simply a consequence of **demographic stochasticity**. 
+Does this sound familiar? Just by random chance, some individuals will breed and some will not. Just by random chance, some individuals will have more of their offspring survive. Genetic drift is a consequence of **demographic stochasticity**. 
 
 Finally, let's imagine that the red balls represent individuals that are more resilient to drought (but have no selective advantage or disadvantage under normal circumstances). Just by random chance, the blue individuals happen to successfully mate and reproduce more than the red individuals- the blue variant becomes **fixed** in the population and the red variants go extinct. *There is no natural selection involved in this scenario -- just stochasticity!*
 
@@ -62,6 +62,8 @@ Unless... the two parents are close relatives (which can be more common in small
 
 If you consider that that single common ancestor likely had deleterious recessive alleles embedded in their genome at many unique loci, then the chance of an inbred offspring inheriting two deleterious copies in at least one of those loci becomes fairly high! 
 
+In a way, inbreeding depression and genetic drift represents a kind of **Allee effect**, where population vital rates can deteriorate as the population size is reduced (positive density dependence). Unfortunately, unlike the Allee effects we have studied earlier in this class, this kind of Allee effect can have long-term consequences even if the population size is increased, since the gene pool can remain degraded.   
+
 ## Extinction vortex
 
 ![](vortex1.jpg){width=50%}
@@ -70,9 +72,11 @@ One of the important ideas emerging from the small population paradigm is the co
 
 Once a population gets small enough, it becomes subject to catastrophic declines due to demographic (and environmental) stochasticity, leading to inbreeding and random loss of useful genes (genetic drift), leading to reduced vital rates, leading to smaller population sizes, leading to further genetic degradation, leading to greater influence of demographic stochasticity, leading ultimately to extinction...
 
-Furthermore, once a population falls into the extinction vortex, it can't necessarily be saved by removing the factors that caused the population to become small in the first place. That is, once genetic drift has removed important adaptive variation from the gene pool, and once inbreeding has caused deleterious recessive alleles to start expressing more frequently, the population may not be able to be recovered effectively.  
+Furthermore, once a population falls into the extinction vortex, it can't necessarily be saved by removing the factors that caused the population to become small in the first place. That is, once genetic drift has removed important adaptive variation from the gene pool, and once inbreeding has caused deleterious recessive alleles to start expressing more frequently, the population may not be able to recover effectively.  
 
 Case study: Florida panther genetic rescue.
+
+![](panther1.jpg){width=50%}
 
 In general, extinction is often caused by stochastic processes, but stochastic factors are unlikely to be the reason the population got small in the first place! (that is the topic of the 'declining population paradigm' lecture!)
 
@@ -96,7 +100,7 @@ For example:
 
 Population Viability Analysis (PVA) is often used to model the processes involved in the extinction vortex (the central concept of the small population paradigm). This can include genetic drift and inbreeding depression. However, in this course, we won't get into modeling genetics (unless you really want to- I'm happy to show you how to do this using the Vortex software!)
 
-The most widely-used PVA software, [Vortex](https://www.cpsg.org/our-approach/science-based-tools/vortex), gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.  
+One of the most widely-used PVA software packages, [Vortex](https://scti.tools/vortex/), gets its name from the extinction vortex concept. Vortex does allow explicit modeling of inbreeding and loss of genetic diversity in small populations.  
 
 ![](Vortex10.jpg){width=50%}
 
@@ -111,7 +115,7 @@ The Aruba island rattlesnake, as you might expect, occurs only on the island of 
 
 ![](aruba1.png){width=50%}
 
-The Aruba rattlesnake was listed as *Critically Endangered* by IUCN (it is no longer listed as of 2021 due to lack of information), and has several attributes that make it particularly susceptible to falling into the extinction vortex:
+The Aruba rattlesnake was previously listed as *Critically Endangered* by IUCN (it is no longer listed as of 2021 due to lack of information), and has several attributes that make it particularly susceptible to falling into the extinction vortex:
 
 See [Lab 5](LAB5.html) for the related MVP activity.  
 
