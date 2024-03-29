@@ -1,7 +1,7 @@
 ---
 title: "PVA Short Course, lecture #1"
 author: "NRES 421/621"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -57,7 +57,6 @@ From Charles Krebs (1972):
 ### Exponential growth: the fundamental principle of population ecology
 
 Populations of living things have the ability to grow *exponentially*. This is the "power of life".
-
 
 ```{r echo=FALSE}
 
@@ -129,7 +128,7 @@ This demonstration model is wrong, and not super useful! But it's a start!
 
 ## A more realistic model: exponential growth!
 
-Now let's assume that *per-capita* birth and death rates in the population are constant across time. This way, if the population is bigger, more individuals will be added to the population -- a positive feedback! 
+Now let's assume that *per-capita* birth and death rates in the population are constant across time. This way, if the population is bigger, more individuals will be added to the population in the next time step, making the population even bigger! This is a positive feedback! 
 
 1. Click on [this link](https://insightmaker.com/insight/162299/NRES-421-In-Class-Demo-2) to load up the next population modeling demonstration.
 

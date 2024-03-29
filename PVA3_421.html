@@ -14,7 +14,7 @@
 
 <title>Loggerhead PVA</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -141,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -174,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -183,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -309,7 +310,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -325,7 +326,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -341,13 +342,13 @@ div.tocify {
       <a href="LECTURE2.html">Introduction to population ecology</a>
     </li>
     <li>
-      <a href="LECTURE3.html">Thomas Robert Malthus</a>
+      <a href="LECTURE3.html">Thomas Malthus (Limits to growth)</a>
     </li>
     <li>
-      <a href="LECTURE4.html">Population Regulation</a>
+      <a href="LECTURE4.html">Population Regulation (Logistic growth)</a>
     </li>
     <li>
-      <a href="LECTURE5.html">Passenger Pigeon</a>
+      <a href="LECTURE5.html">Positive density dependence (Allee effect)</a>
     </li>
     <li>
       <a href="LECTURE6.html">Age-structured populations</a>
@@ -362,19 +363,10 @@ div.tocify {
       <a href="LECTURE9.html">Small population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE10.html">Individual-based models</a>
-    </li>
-    <li>
       <a href="LECTURE11.html">Declining population paradigm</a>
     </li>
     <li>
-      <a href="LECTURE12.html">Population Viability Analysis</a>
-    </li>
-    <li>
       <a href="LECTURE13.html">Metapopulations</a>
-    </li>
-    <li>
-      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
     </li>
     <li>
       <a href="LECTURE15.html">Parameter estimation</a>
@@ -400,7 +392,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -431,7 +423,16 @@ div.tocify {
       <a href="FINAL_PROJECTS.html">Final Projects!</a>
     </li>
     <li>
+      <a href="LECTURE12.html">Overview of PVA</a>
+    </li>
+    <li>
+      <a href="LECTURE14.html">PVA example: pdogs and ferrets</a>
+    </li>
+    <li>
       <a href="EXTRA_CREDIT.html">Extra Credit!</a>
+    </li>
+    <li>
+      <a href="LECTURE10.html">Individual-based models</a>
     </li>
   </ul>
 </li>
@@ -452,45 +453,76 @@ div.tocify {
 
 <h1 class="title toc-ignore">Loggerhead PVA</h1>
 <h4 class="author">NRES 421/621</h4>
-<h4 class="date">Spring 2022</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
 
 <div id="pva-for-loggerhead-turtles" class="section level1">
 <h1>PVA for loggerhead turtles!</h1>
-<p>This PVA example, like the grizzly bear example, demonstrates the use of real demographic data in projecting a population into the future. We will use this PVA to do some management-relevant <strong>scenario testing</strong>.</p>
-<p>If you’d like to follow along in R, you can use <a href="PVA3_421.R">this script</a></p>
-<p>If you’d like to follow along in Excel, you can load the base Excel model <a href="Loggerhead2019.xlsx">here</a></p>
-<p>And here is the InsightMaker link we will use: <a href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model</a>.</p>
-<div id="constructing-a-demographic-matrix-model-data-for-loggerhead-turtles" class="section level2">
-<h2>Constructing a demographic (matrix) model data for loggerhead turtles</h2>
-<p>If you would like more background information on loggerhead turtles, visit these websites:</p>
-<p><a href="https://ecos.fws.gov/ecp0/profile/speciesProfile?spcode=C00U">USFWS site</a><br />
-<a href="https://www.fisheries.noaa.gov/species/loggerhead-turtle">NMFS site</a><br />
-<a href="https://tpwd.texas.gov/huntwild/wild/species/logghead/">Texas site</a></p>
-<p>And here is a YouTube video that gives a quick introduction to the Loggerhead and the threats it faces: <a href="https://www.youtube.com/watch?v=yhFCOWMsBZQ&amp;t=266s">https://www.youtube.com/watch?v=yhFCOWMsBZQ&amp;t=266s</a></p>
+<p>This PVA example, like the grizzly bear example, demonstrates the use
+of real demographic data in projecting a population into the future. We
+will use this PVA to do some management-relevant <strong>scenario
+testing</strong>.</p>
+<p>If you’d like to follow along in R, you can use <a
+href="PVA3_421.R">this script</a></p>
+<p>If you’d like to follow along in Excel, you can load the base Excel
+model <a href="Loggerhead2019.xlsx">here</a></p>
+<p>And here is the InsightMaker link we will use: <a
+href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model</a>.</p>
+<div
+id="constructing-a-demographic-matrix-model-data-for-loggerhead-turtles"
+class="section level2">
+<h2>Constructing a demographic (matrix) model data for loggerhead
+turtles</h2>
+<p>If you would like more background information on loggerhead turtles,
+visit these websites:</p>
+<p><a
+href="https://ecos.fws.gov/ecp0/profile/speciesProfile?spcode=C00U">USFWS
+site</a><br />
+<a href="https://www.fisheries.noaa.gov/species/loggerhead-turtle">NMFS
+site</a><br />
+<a href="https://tpwd.texas.gov/huntwild/wild/species/logghead/">Texas
+site</a></p>
+<p>And here is a YouTube video that gives a quick introduction to the
+Loggerhead and the threats it faces: <a
+href="https://www.youtube.com/watch?v=yhFCOWMsBZQ&amp;t=266s">https://www.youtube.com/watch?v=yhFCOWMsBZQ&amp;t=266s</a></p>
 <div id="background" class="section level3">
 <h3>Background</h3>
 <p><img src="loggerhead2.jpg" /></p>
-<p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine turtle with a nearly global distribution. Nesting areas in the USA occur along the Atlantic coast from New Jersey to Texas, although individuals may be observed along the Pacific coast and in Hawaii.</p>
+<p>The loggerhead sea turtle, <em>C. caretta</em>, is a large marine
+turtle with a nearly global distribution. Nesting areas in the USA occur
+along the Atlantic coast from New Jersey to Texas, although individuals
+may be observed along the Pacific coast and in Hawaii.</p>
 <p><img src="loggerhead3.jpg" /></p>
 <p><img src="loggerhead4.jpg" /></p>
-<p>The species has been federally listed since 1978 (some population segments listed as “Threatened”, and others as “Endangered”. When a species is listed, the Endangered Species Act (ESA) requires that a recovery plan be drafted whose goal is to eventually remove the species from the list. In this exercise we will imagine we are part of a team drafting the recovery plan for this species.</p>
-<p>Loggerheads are listed as “Threatened (Vulnerable)” under the IUCN Red List.</p>
+<p>The species has been federally listed since 1978 (some population
+segments listed as “Threatened”, and others as “Endangered”. When a
+species is listed, the Endangered Species Act (ESA) requires that a
+recovery plan be drafted whose goal is to eventually remove the species
+from the list. In this exercise we will imagine we are part of a team
+drafting the recovery plan for this species.</p>
+<p>Loggerheads are listed as “Threatened (Vulnerable)” under the IUCN
+Red List.</p>
 </div>
 <div id="threats" class="section level3">
 <h3>Threats</h3>
-<p>Biologists have identified two major threats facing loggerheads: alteration of nesting beaches and bycatch from commercial fisheries.</p>
+<p>Biologists have identified two major threats facing loggerheads:
+alteration of nesting beaches and bycatch from commercial fisheries.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Threats to nesting beaches</strong></li>
 </ol>
 <p><img src="loggerhead5.jpg" /></p>
-<p>Adult females lay their eggs (ca. three nests every 2-3 years, up to 190 eggs/nest) on sandy beaches between April and September. Eggs incubate under the sand for 2-3 months, and juveniles make a mad scramble for the water upon hatching.<br />
-Because beaches are popular sites for human recreation and development, arriving female turtles and hatchlings face risks including:</p>
+<p>Adult females lay their eggs (ca. three nests every 2-3 years, up to
+190 eggs/nest) on sandy beaches between April and September. Eggs
+incubate under the sand for 2-3 months, and juveniles make a mad
+scramble for the water upon hatching.<br />
+Because beaches are popular sites for human recreation and development,
+arriving female turtles and hatchlings face risks including:</p>
 <ul>
 <li><em>poaching</em> (eggs or adults)</li>
-<li><em>beach erosion</em> or beach fortification to prevent erosion</li>
+<li><em>beach erosion</em> or beach fortification to prevent
+erosion</li>
 <li><em>artificial lighting</em> (disorientation of hatchlings)</li>
 <li><em>recreational vehicles</em></li>
 <li>… and many others.</li>
@@ -498,51 +530,88 @@ Because beaches are popular sites for human recreation and development, arriving
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Incidental mortality due to marine fisheries</strong></li>
 </ol>
-<p>Once hatchlings reach the ocean, they face different threats as they slowly develop to maturity.</p>
+<p>Once hatchlings reach the ocean, they face different threats as they
+slowly develop to maturity.</p>
 <ul>
-<li>After the sargassum-feeding stage, loggerhead turtle juveniles, subadults and adults feed in coastal seagrass mats which are also frequented by inshore shrimp trawling vessels. Hence <em>accidental capture (“bycatch”)</em> and subsequent drowning in the nets and traps used by these vessels is common- especially for juveniles!</li>
+<li>After the sargassum-feeding stage, loggerhead turtle juveniles,
+subadults and adults feed in coastal seagrass mats which are also
+frequented by inshore shrimp trawling vessels. Hence <em>accidental
+capture (“bycatch”)</em> and subsequent drowning in the nets and traps
+used by these vessels is common- especially for juveniles!</li>
 </ul>
 <p><img src="trawl1.png" /></p>
 <ul>
-<li>In addition to these primary threats, sea-going juveniles and adults face mortality due to <em>bycatch</em> in longline, hook-and-line, and trap fisheries targeting tuna and other species.</li>
+<li>In addition to these primary threats, sea-going juveniles and adults
+face mortality due to <em>bycatch</em> in longline, hook-and-line, and
+trap fisheries targeting tuna and other species.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Additional threats</strong></li>
 </ol>
 <ul>
-<li><p>During colder temperatures turtles may go dormant, burying themselves in muddy bays and estuaries. While dormant they can be killed by periodic <em>dredging</em> to maintain bays and waterways.</p></li>
-<li><p>Human-produced debris (styrofoam peanuts, plastic bags, tar balls, and balloons) may cause <em>entanglement</em>, stranding, and drowning.</p></li>
-<li><p>Shallow swimming turtles may also collide with <em>boat propellers</em>.</p></li>
-<li><p>Toxins (<em>pesticides and heavy metals</em>) and oil spills may harm turtle physiology and decrease fecundity, but their impact has not been quantified.</p></li>
-<li><p>Finally, although rare in the US, <em>illegal harvest</em> of eggs as well as subadults and adults for meat, may occur frequently in the coastal Caribbean (Panama, Honduras). Turtle eggs are occasionally seen in open-air markets in Panama.</p></li>
+<li><p>During colder temperatures turtles may go dormant, burying
+themselves in muddy bays and estuaries. While dormant they can be killed
+by periodic <em>dredging</em> to maintain bays and waterways.</p></li>
+<li><p>Human-produced debris (styrofoam peanuts, plastic bags, tar
+balls, and balloons) may cause <em>entanglement</em>, stranding, and
+drowning.</p></li>
+<li><p>Shallow swimming turtles may also collide with <em>boat
+propellers</em>.</p></li>
+<li><p>Toxins (<em>pesticides and heavy metals</em>) and oil spills may
+harm turtle physiology and decrease fecundity, but their impact has not
+been quantified.</p></li>
+<li><p>Finally, although rare in the US, <em>illegal harvest</em> of
+eggs as well as subadults and adults for meat, may occur frequently in
+the coastal Caribbean (Panama, Honduras). Turtle eggs are occasionally
+seen in open-air markets in Panama.</p></li>
 </ul>
-<p>Okay, let’s walk through the five stages of building a PVA model- this time focusing on the loggerhead sea turtle:</p>
+<p>Okay, let’s walk through the five stages of building a PVA model-
+this time focusing on the loggerhead sea turtle:</p>
 </div>
 <div id="step-1-a-stage-structured-model" class="section level3">
 <h3>Step 1: a stage-structured model</h3>
-<p>The loggerhead is a long-lived species – sexual maturity often doesn’t occur until animals are almost 30 years of age! The life cycle of the loggerhead is best described by distinct <strong>stage classes</strong> defined by body size (carapace length).</p>
-<p>Once turtle life-stages with similar vital rates have been identified, three pieces of data (collectively called <em>transition rates</em>) must be collected to construct the stage-structured model:</p>
+<p>The loggerhead is a long-lived species – sexual maturity often
+doesn’t occur until animals are almost 30 years of age! The life cycle
+of the loggerhead is best described by distinct <strong>stage
+classes</strong> defined by body size (carapace length).</p>
+<p>Once turtle life-stages with similar vital rates have been
+identified, three pieces of data (collectively called <em>transition
+rates</em>) must be collected to construct the stage-structured
+model:</p>
 <ol style="list-style-type: decimal">
-<li>fraction of turtles surviving each year but not advancing to the next larger size-class (often just called ‘survival’);</li>
-<li>fraction of turtles surviving each year and advancing to the next larger size-class (often called ‘growth’); and</li>
-<li>average number of hatchlings successfully produced by females of each size-class per year, discounted by the probability of surviving each year (often called ‘fecundity’).</li>
+<li>fraction of turtles surviving each year but not advancing to the
+next larger size-class (often just called ‘survival’);</li>
+<li>fraction of turtles surviving each year and advancing to the next
+larger size-class (often called ‘growth’); and</li>
+<li>average number of hatchlings successfully produced by females of
+each size-class per year, discounted by the probability of surviving
+each year (often called ‘fecundity’).</li>
 </ol>
 </div>
 <div id="step-2-parameterize-the-model" class="section level3">
 <h3>Step 2: parameterize the model</h3>
-<p>Transition rates for turtles and other species are often estimated on the basis of <em>capture-mark-recapture</em> (CMR) data.</p>
-<p>Here are some relevant parameters, from <a href="Crowder1994.pdf">this paper</a> (originally from Crouse et al. 1987):</p>
-<p><em>Transition from stage 1-2 (hatchling to small juvenile)</em>: 0.675<br />
-<em>Transition from stage 2-3 (small to large juvenile)</em>: 0.047<br />
-<em>Transition from stage 3-4 (large juvenile to subadult)</em>: 0.019<br />
+<p>Transition rates for turtles and other species are often estimated on
+the basis of <em>capture-mark-recapture</em> (CMR) data.</p>
+<p>Here are some relevant parameters, from <a
+href="Crowder1994.pdf">this paper</a> (originally from Crouse et
+al. 1987):</p>
+<p><em>Transition from stage 1-2 (hatchling to small juvenile)</em>:
+0.675<br />
+<em>Transition from stage 2-3 (small to large juvenile)</em>:
+0.047<br />
+<em>Transition from stage 3-4 (large juvenile to subadult)</em>:
+0.019<br />
 <em>Transition from stage 4-5 (subadult to adult)</em>: 0.061<br />
 <em>Transition from stage 2-2 (stay small juvenile)</em>: 0.703<br />
 <em>Transition from stage 3-3 (stay large juvenile)</em>: 0.657<br />
 <em>Transition from stage 4-4 (stay subadult)</em>: 0.682<br />
 <em>Transition from stage 5-5 (stay adult)</em>: 0.809<br />
-<em>Transition from stage 4-1 (reproduction by subadults)</em>: 4.67 (reflects transition probability and adult egg production)<br />
-<em>Transition from stage 5-1 (reproduction by adults)</em>: 61.90 (reflects adult survival and adult egg production)</p>
-<p>For this model we will follow Crowder et al. (1994) in assuming no stochasticity or uncertainty in any of these parameters.</p>
+<em>Transition from stage 4-1 (reproduction by subadults)</em>: 4.67
+(reflects transition probability and adult egg production)<br />
+<em>Transition from stage 5-1 (reproduction by adults)</em>: 61.90
+(reflects adult survival and adult egg production)</p>
+<p>For this model we will follow Crowder et al. (1994) in assuming no
+stochasticity or uncertainty in any of these parameters.</p>
 </div>
 <div id="step-3-spatial-structure" class="section level3">
 <h3>Step 3: spatial structure</h3>
@@ -550,13 +619,18 @@ Because beaches are popular sites for human recreation and development, arriving
 </div>
 <div id="step-4-simulate" class="section level3">
 <h3>Step 4: simulate!</h3>
-<p>We can project the loggerhead population into the future using <em>matrix multiplication</em>!</p>
-<p>We can do this using any number of tools- including R, Excel, or Insightmaker.</p>
-<p>See the end of this lecture for a review of matrix population models and how they work.</p>
-<div id="build-the-baseline-loggerhead-projection-matrix" class="section level4">
+<p>We can project the loggerhead population into the future using
+<em>matrix multiplication</em>!</p>
+<p>We can do this using any number of tools- including R, Excel, or
+Insightmaker.</p>
+<p>See the end of this lecture for a review of matrix population models
+and how they work.</p>
+<div id="build-the-baseline-loggerhead-projection-matrix"
+class="section level4">
 <h4>Build the baseline loggerhead projection matrix</h4>
 <ul>
-<li>In Excel, your projection matrix would look something like this:</li>
+<li>In Excel, your projection matrix would look something like
+this:</li>
 </ul>
 <p><img src="loggerhead6.jpg.png" /></p>
 <p>In R, your projection matrix would look like this!</p>
@@ -587,10 +661,13 @@ projection_matrix</code></pre>
 </div>
 </div>
 </div>
-<div id="projecting-the-loggerhead-population-in-insightmaker" class="section level2">
+<div id="projecting-the-loggerhead-population-in-insightmaker"
+class="section level2">
 <h2>Projecting the loggerhead population in InsightMaker</h2>
-<p>First, clone the baseline loggerhead PVA model <a href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">here</a>.</p>
-<p>Hit “Simulate”. Your results should look similar to this (which was done in R):</p>
+<p>First, clone the baseline loggerhead PVA model <a
+href="https://insightmaker.com/insight/77078/Loggerhead-PVA-base-model">here</a>.</p>
+<p>Hit “Simulate”. Your results should look similar to this (which was
+done in R):</p>
 <pre class="r"><code># Run the matrix projection model!
 
 nYears &lt;- 100                                            # set the number of years to project
@@ -612,43 +689,54 @@ for(s in 1:5){
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
 <p><img src="PVA3_421_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>NOTE: here we use the term “survival” to refer to surviving and staying in the same stage class, and “growth” to refer to surviving and moving on to the next life stage.</p>
-<p>Look over the model, and make sure that you understand how it works before you start running conservation scenarios!</p>
-<div id="group-exercise-in-class-loggerhead-management" class="section level3">
+<p>NOTE: here we use the term “survival” to refer to surviving and
+staying in the same stage class, and “growth” to refer to surviving and
+moving on to the next life stage.</p>
+<p>Look over the model, and make sure that you understand how it works
+before you start running conservation scenarios!</p>
+<div id="group-exercise-in-class-loggerhead-management"
+class="section level3">
 <h3>Group exercise (in class!): loggerhead management</h3>
-<p>Working in small groups if possible, investigate the following four management scenarios for the loggerhead turtle population (see below). Remember to revert to the baseline model before trying the next management scenario.</p>
+<p>Working in small groups if possible, investigate the following four
+management scenarios for the loggerhead turtle population (see below).
+Remember to revert to the baseline model before trying the next
+management scenario.</p>
 <ol style="list-style-type: decimal">
-<li>Improve fecundity (labeled “Sub Fecundity” and “Adult Fecundity” in the InsightMaker model) via <em>nest-site protection</em>!
+<li>Improve fecundity (labeled “Sub Fecundity” and “Adult Fecundity” in
+the InsightMaker model) via <em>nest-site protection</em>!
 <ul>
 <li>Improve fecundity to 1.5X the current value<br />
 </li>
 <li>Double fecundity (2X the current value)<br />
 </li>
 </ul></li>
-<li>Improve hatchling survival (labeled “hatchling growth” in the IM model) via <em>nest monitoring</em>
+<li>Improve hatchling survival (labeled “hatchling growth” in the IM
+model) via <em>nest monitoring</em>
 <ul>
 <li>Improve <em>to</em> 0.9 (90%)<br />
 </li>
 <li>Improve <em>to</em> 1 (100%)<br />
 </li>
 </ul></li>
-<li>Improve large juvenile survival (labeled “Lg Juv Surv” in the IM model) using <em>Turtle Excluder Devices (TEDs)</em>
+<li>Improve large juvenile survival (labeled “Lg Juv Surv” in the IM
+model) using <em>Turtle Excluder Devices (TEDs)</em>
 <ul>
 <li>Add 0.15 to the existing large juvenile survival<br />
 </li>
 <li>Add 0.25 to the existing large juvenile survival<br />
 </li>
 </ul></li>
-<li>Improve adult/subadult survival (labeled “Sub Surv” and “Adult Surv” in IM) by <em>restricting longline fisheries</em>.
+<li>Improve adult/subadult survival (labeled “Sub Surv” and “Adult Surv”
+in IM) by <em>restricting longline fisheries</em>.
 <ul>
 <li>Add 0.05 to the existing subadult and adult survival<br />
 </li>
 <li>Add 0.1 to the existing subadult and adult survival</li>
 </ul></li>
 </ol>
-<div class="figure">
-<img src="TED1.jpg" alt="" />
-<p class="caption">turtle excluder device</p>
+<div class="float">
+<img src="ted1.jpg" alt="turtle excluder device" />
+<div class="figcaption">turtle excluder device</div>
 </div>
 <p>For each scenario, consider:</p>
 <ul>
@@ -658,34 +746,70 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quo
 </div>
 <div id="step-5-results" class="section level3">
 <h3>Step 5: results!</h3>
-<p>Now that we have a parameterized model, we can communicate our results to stakeholders!!</p>
-<p><strong>Please write down your responses to the following questions:</strong>:</p>
-<p><strong>Short Answer Question #1</strong>: What is your management recommendation for this population? Why? [please take your time with this one]</p>
-<p><strong>Short Answer Question #2</strong>: In the base model, why does the population always seem to grow during the first few years of the simulation, even if the population ultimately declines over time?</p>
+<p>Now that we have a parameterized model, we can communicate our
+results to stakeholders!!</p>
+<p><strong>Please write down your responses to the following
+questions:</strong>:</p>
+<p><strong>Short Answer Question #1</strong>: What is your management
+recommendation for this population? Why? [please take your time with
+this one]</p>
+<p><strong>Short Answer Question #2</strong>: In the base model, why
+does the population always seem to grow during the first few years of
+the simulation, even if the population ultimately declines over
+time?</p>
 <p>Bonus questions!</p>
-<p><strong>Bonus question #1</strong>: Under your chosen management recommendation, how long would it take the population to increase by one order of magnitude?</p>
-<p><strong>Bonus question #2</strong>: How might this time horizon change if you alter the initial age distribution (i.e., the fraction of the population in each of the stage classes at time 0)?</p>
-<p>And finally, let’s watch this video together: <a href="https://www.youtube.com/watch?v=F7j5yXnZo2Y">https://www.youtube.com/watch?v=F7j5yXnZo2Y</a>!</p>
+<p><strong>Bonus question #1</strong>: Under your chosen management
+recommendation, how long would it take the population to increase by one
+order of magnitude?</p>
+<p><strong>Bonus question #2</strong>: How might this time horizon
+change if you alter the initial age distribution (i.e., the fraction of
+the population in each of the stage classes at time 0)?</p>
+<p>And finally, let’s watch this video together: <a
+href="https://www.youtube.com/watch?v=F7j5yXnZo2Y">https://www.youtube.com/watch?v=F7j5yXnZo2Y</a>!</p>
 <div id="references" class="section level4">
 <h4>References</h4>
-<p>Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J. Citta, D. J. Mattson, and K. Murphy. 1996. Factors Leading to Different Viability Predictions for a Grizzly Bear Data Set. Conservation Biology 10 (3), 863-873. doi: 10.1046/j.1523-1739.1996.10030863.x</p>
-<p>Morris, W. F. and D. F. Doak. 2002. Quantitative conservation biology: Theory and practice of population viability analysis. Sinauer, Sunderland, MA.</p>
-<p>Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L. Gerber, P. Murphy, D. Thomson. 1999. A practical handbook for population viability analysis. The Nature Conservancy, Wash., DC.</p>
-<p><a href="Crowder1994.pdf">Crowder, L. B., Crouse, D. T., Heppell, S. S., &amp; Martin, T. H. (1994). Predicting the impact of turtle excluder devices on loggerhead sea turtle populations. Ecological applications, 4(3), 437-445.</a></p>
-<p>Crouse, D. T., Crowder, L. B., &amp; Caswell, H. (1987). A stage‐based population model for loggerhead sea turtles and implications for conservation. Ecology, 68(5), 1412-1423.</p>
+<p>Mills, L. S., S. G. Hayes, C. Baldwin, M. J. Wisdom, J. Michael, J.
+Citta, D. J. Mattson, and K. Murphy. 1996. Factors Leading to Different
+Viability Predictions for a Grizzly Bear Data Set. Conservation Biology
+10 (3), 863-873. doi: 10.1046/j.1523-1739.1996.10030863.x</p>
+<p>Morris, W. F. and D. F. Doak. 2002. Quantitative conservation
+biology: Theory and practice of population viability analysis. Sinauer,
+Sunderland, MA.</p>
+<p>Morris, W. F., D. F. Doak, M. Groom, P. Kareiva, J Fieberg, L.
+Gerber, P. Murphy, D. Thomson. 1999. A practical handbook for population
+viability analysis. The Nature Conservancy, Wash., DC.</p>
+<p><a href="Crowder1994.pdf">Crowder, L. B., Crouse, D. T., Heppell, S.
+S., &amp; Martin, T. H. (1994). Predicting the impact of turtle excluder
+devices on loggerhead sea turtle populations. Ecological applications,
+4(3), 437-445.</a></p>
+<p>Crouse, D. T., Crowder, L. B., &amp; Caswell, H. (1987). A
+stage‐based population model for loggerhead sea turtles and implications
+for conservation. Ecology, 68(5), 1412-1423.</p>
 </div>
-<div id="optional-forecast-the-population-into-the-future-in-excel" class="section level4">
+<div id="optional-forecast-the-population-into-the-future-in-excel"
+class="section level4">
 <h4>Optional: Forecast the population into the future in Excel</h4>
-<p>Since you probably are most familiar with Excel, let’s do it in Excel first! Or if you’d like to do it in R instead, I’ve provided some code to get you started! You can download the R code <a href="PVA3_421.R">here</a></p>
+<p>Since you probably are most familiar with Excel, let’s do it in Excel
+first! Or if you’d like to do it in R instead, I’ve provided some code
+to get you started! You can download the R code <a
+href="PVA3_421.R">here</a></p>
 </div>
 <div id="population-projection-in-excel" class="section level4">
 <h4>Population projection in Excel</h4>
-<p>You can load the base Excel model <a href="Loggerhead2019.xlsx">here</a></p>
+<p>You can load the base Excel model <a
+href="Loggerhead2019.xlsx">here</a></p>
 <ul>
-<li><p>Note that the transition rates are already provided for you in the spreadsheet – in the form of a transition matrix!</p></li>
-<li><p>NOTE: Wherever a transition is not possible, e.g., from hatchlings to large juveniles, you will see a zero in the transition matrix.</p></li>
+<li><p>Note that the transition rates are already provided for you in
+the spreadsheet – in the form of a transition matrix!</p></li>
+<li><p>NOTE: Wherever a transition is not possible, e.g., from
+hatchlings to large juveniles, you will see a zero in the transition
+matrix.</p></li>
 </ul>
-<p>The projection matrix can be used to project future loggerhead population size assuming the transition probabilities (the <span class="math inline">\(F_i\)</span>, <span class="math inline">\(S_i\)</span>, and <span class="math inline">\(G_i\)</span>) do not change over time.</p>
+<p>The projection matrix can be used to project future loggerhead
+population size assuming the transition probabilities (the <span
+class="math inline">\(F_i\)</span>, <span
+class="math inline">\(S_i\)</span>, and <span
+class="math inline">\(G_i\)</span>) do not change over time.</p>
 <p>Let’s use the following initial densities in our model!</p>
 <ul>
 <li>2000 size-class 1 (Hatchlings)</li>
@@ -700,31 +824,66 @@ Abundance_year0</code></pre>
 <pre><code>## [1] 2000  500  300  300   20</code></pre>
 <p>So your EXCEL file should look something like the one below:</p>
 <p><img src="loggerhead7.png" /></p>
-<p>Using the ‘size-distribution vector’, we can project the population size of each size-class next year using the matrix formula: <span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}\)</span>. (remember to see below for a refresher of matrix multiplication).</p>
-<p>This formula calculates the size distribution next year (i.e., in year <em>t + 1</em>) based on the projection matrix <span class="math inline">\(\mathbf{A}\)</span> and the size distribution this year <span class="math inline">\(\mathbf{N}_{t}\)</span>.</p>
-<p>For example, to calculate the first row of [n]t+1, the number of hatchlings:</p>
-<p><em>hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 + 20x61.896 = 2637.42</em></p>
-<p>We systematically multiply each entry of the first row of the transition matrix [A] by the entries in column [n]0 and sum up these values. The first entry in row 1 is multiplied by the first entry of the column vector. The second entry of row 1 is multiplied by the second entry of the column vector, and so forth, until all 5 entries of row 1 have been accounted for. Let’s do this together!</p>
-<p><strong>Q</strong>: Using actual numbers as for hatchlings above, write out the equation for calculating the number of small juveniles (sm juv) in year 1 based on <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{N}_{0}\)</span>:</p>
+<p>Using the ‘size-distribution vector’, we can project the population
+size of each size-class next year using the matrix formula: <span
+class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot
+\mathbf{N}_{t}\)</span>. (remember to see below for a refresher of
+matrix multiplication).</p>
+<p>This formula calculates the size distribution next year (i.e., in
+year <em>t + 1</em>) based on the projection matrix <span
+class="math inline">\(\mathbf{A}\)</span> and the size distribution this
+year <span class="math inline">\(\mathbf{N}_{t}\)</span>.</p>
+<p>For example, to calculate the first row of [n]t+1, the number of
+hatchlings:</p>
+<p><em>hatchlings in year 1 = 2000x0 + 500x0 + 300x0 + 300x4.665 +
+20x61.896 = 2637.42</em></p>
+<p>We systematically multiply each entry of the first row of the
+transition matrix [A] by the entries in column [n]0 and sum up these
+values. The first entry in row 1 is multiplied by the first entry of the
+column vector. The second entry of row 1 is multiplied by the second
+entry of the column vector, and so forth, until all 5 entries of row 1
+have been accounted for. Let’s do this together!</p>
+<p><strong>Q</strong>: Using actual numbers as for hatchlings above,
+write out the equation for calculating the number of small juveniles (sm
+juv) in year 1 based on <span class="math inline">\(\mathbf{A}\)</span>
+and <span class="math inline">\(\mathbf{N}_{0}\)</span>:</p>
 <p><strong>Number of small juveniles in year 1 = </strong></p>
-<p>Now we can enter formulas in Excel to calculate the stage distribution vector for year 1.</p>
-<p>For example, our formula for computing the number of hatchlings in year 1 might look something like this:</p>
+<p>Now we can enter formulas in Excel to calculate the stage
+distribution vector for year 1.</p>
+<p>For example, our formula for computing the number of hatchlings in
+year 1 might look something like this:</p>
 <pre><code>    = B$4*B12 + C$4*C12 + D$4*D12 + E$4*E12 + F$4*F12
     </code></pre>
-<p>And the projected number of small juveniles (SJ) in year 1 might look like this:</p>
+<p>And the projected number of small juveniles (SJ) in year 1 might look
+like this:</p>
 <pre><code>    = B$5*B12 + C$5*C12 + D$5*D12 + E$5*E12 + F$5*F12</code></pre>
-<p><strong>Q</strong>: What is the formula for the projected number of large juveniles in year 1?</p>
-<p>Finally, create an additional formula in cells H12-H13 which calculates the total population size in a year (the sum of all size-classes):</p>
+<p><strong>Q</strong>: What is the formula for the projected number of
+large juveniles in year 1?</p>
+<p>Finally, create an additional formula in cells H12-H13 which
+calculates the total population size in a year (the sum of all
+size-classes):</p>
 <p>In Excel, this will look something like this:</p>
 <pre><code>=SUM(B12:F12)</code></pre>
 <p>You should note two things about the formulas:</p>
 <ol style="list-style-type: decimal">
-<li><p>The references to the rows of the [A] matrix should be absolute, i.e., have a ‘$’ in front of the row number. This is because when we drag these formulas down, we want them to continue to refer to the correct row of the [A] matrix.</p></li>
-<li><p>The references to the size distribution vector should <em>not</em> be absolute (should not contain the ‘$’).</p></li>
+<li><p>The references to the rows of the [A] matrix should be absolute,
+i.e., have a ‘$’ in front of the row number. This is because when we
+drag these formulas down, we want them to continue to refer to the
+correct row of the [A] matrix.</p></li>
+<li><p>The references to the size distribution vector should
+<em>not</em> be absolute (should not contain the ‘$’).</p></li>
 </ol>
-<p><strong>Q</strong>: Why? (Hint: what are we going to do with this model?)</p>
-<p>ADDITIONAL NOTE: If your data are in different columns and rows than described above, you will not be able to copy the above formulas exactly, as they will not be referring to the proper cells in your file. So make sure your formulas are correct for your particular EXCEL file.</p>
-<p><strong>Q</strong>: Use your [A] matrix and skills in EXCEL to project the loggerhead population 100 years in the future. This will require dragging formulas down. This is equivalent to iterating (i.e., repeating) the matrix multiplication process 100 times.</p>
+<p><strong>Q</strong>: Why? (Hint: what are we going to do with this
+model?)</p>
+<p>ADDITIONAL NOTE: If your data are in different columns and rows than
+described above, you will not be able to copy the above formulas
+exactly, as they will not be referring to the proper cells in your file.
+So make sure your formulas are correct for your particular EXCEL
+file.</p>
+<p><strong>Q</strong>: Use your [A] matrix and skills in EXCEL to
+project the loggerhead population 100 years in the future. This will
+require dragging formulas down. This is equivalent to iterating (i.e.,
+repeating) the matrix multiplication process 100 times.</p>
 <p>Your results should look similar to this (which was done in R):</p>
 <pre class="r"><code># Run the matrix projection model!
 
@@ -746,37 +905,80 @@ for(s in 1:5){
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
 <p><img src="PVA3_421_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p><strong>Q</strong>: Is this model <em>deterministic</em> or <em>stochastic</em>?</p>
+<p><strong>Q</strong>: Is this model <em>deterministic</em> or
+<em>stochastic</em>?</p>
 </div>
 </div>
 <div id="review-matrix-population-models" class="section level3">
 <h3>REVIEW: matrix population models:</h3>
-<p>We can present yearly fecundity and survival probabilities compactly in a <strong>projection matrix</strong> [A] which we use to project the population size year to year.</p>
+<p>We can present yearly fecundity and survival probabilities compactly
+in a <strong>projection matrix</strong> [A] which we use to project the
+population size year to year.</p>
 <p>We all remember the finite-population-growth equation:</p>
-<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad \text{(Eq. 1)}\)</span>,</p>
-<p>where <span class="math inline">\(N\)</span> is abundance (as always), <span class="math inline">\(t\)</span> is time, often in years but could be any time units, and <span class="math inline">\(\lambda\)</span> is the multipicative growth rate over the time period <span class="math inline">\(t \rightarrow t+1\)</span></p>
+<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad
+\text{(Eq. 1)}\)</span>,</p>
+<p>where <span class="math inline">\(N\)</span> is abundance (as
+always), <span class="math inline">\(t\)</span> is time, often in years
+but could be any time units, and <span
+class="math inline">\(\lambda\)</span> is the multipicative growth rate
+over the time period <span class="math inline">\(t \rightarrow
+t+1\)</span></p>
 <p>The matrix population growth equation looks pretty much the same!</p>
-<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
-<p>where <span class="math inline">\(\mathbf{N}\)</span> is a <strong>vector</strong> of abundances (abundance for all stages), and <span class="math inline">\(\mathbf{A}\)</span> is the <strong>transition matrix</strong>, which we have seen before.</p>
-<p>We can be more explicit about this if we re-write the above equation this way:</p>
-<p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot \begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq. 3)}\)</span></p>
-<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the probability of advancing from stage 1 to 2, and <span class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of stage 2.</p>
+<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot
+\mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
+<p>where <span class="math inline">\(\mathbf{N}\)</span> is a
+<strong>vector</strong> of abundances (abundance for all stages), and
+<span class="math inline">\(\mathbf{A}\)</span> is the
+<strong>transition matrix</strong>, which we have seen before.</p>
+<p>We can be more explicit about this if we re-write the above equation
+this way:</p>
+<p><span class="math inline">\(\begin{bmatrix}N_1\\ N_2\\N_3
+\end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1
+\rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2
+\rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot
+\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq.
+3)}\)</span></p>
+<p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the
+probability of advancing from stage 1 to 2, and <span
+class="math inline">\(F_2\)</span> is the <strong>fecundity</strong> of
+stage 2.</p>
 <p>There are three important types of transitions.</p>
 <ul>
-<li><span class="math inline">\(F_i\)</span> = Fecundities, or the number of new turtles (hatchlings) produced by an average individual of size-class <em>i</em> per year. This is the top row of the transition matrix.</li>
-<li><span class="math inline">\(S_i\)</span> = Stage Survival, or fraction of size <em>i</em> turtles surviving and staying in the same size-class per year. These are the diagonal elements of the matrix</li>
-<li><span class="math inline">\(G_i\)</span> = fraction of size <em>i</em> turtles surviving and growing to size-class <em>i + 1</em> per year. These are the subdiagonal elements of the matrix.</li>
+<li><span class="math inline">\(F_i\)</span> = Fecundities, or the
+number of new turtles (hatchlings) produced by an average individual of
+size-class <em>i</em> per year. This is the top row of the transition
+matrix.</li>
+<li><span class="math inline">\(S_i\)</span> = Stage Survival, or
+fraction of size <em>i</em> turtles surviving and staying in the same
+size-class per year. These are the diagonal elements of the matrix</li>
+<li><span class="math inline">\(G_i\)</span> = fraction of size
+<em>i</em> turtles surviving and growing to size-class <em>i + 1</em>
+per year. These are the subdiagonal elements of the matrix.</li>
 </ul>
-<p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span class="math inline">\(b\)</span>. What’s the difference?</p>
-<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the <em>per-capita rate of offspring production</em> for stage <span class="math inline">\(t\)</span></p>
-<p>Fecundity, <span class="math inline">\(F_t\)</span>, is the _per-capita rate by which an individual of stage <span class="math inline">\(t\)</span> contributes new offspring to the population at time <span class="math inline">\(t+1\)</span>. Sounds pretty similar, right? What’s the difference??</p>
-<p>Fecundity also takes into account the survival rate from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span>!! For an adult of stage <span class="math inline">\(t\)</span> to contribute to the next generation, <em>it must both survive and reproduce</em>!.</p>
-<p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1} \qquad \text{(Eq. 4)}\)</span></p>
-<p>There is a lot we can do with matrix population models. The most obvious one is <em>projection</em>:</p>
+<p>NOTE: <em>fecundity is NOT the same thing as birth rate</em>, <span
+class="math inline">\(b\)</span>. What’s the difference?</p>
+<p>Birth rate, <span class="math inline">\(b_t\)</span>, is the
+<em>per-capita rate of offspring production</em> for stage <span
+class="math inline">\(t\)</span></p>
+<p>Fecundity, <span class="math inline">\(F_t\)</span>, is the
+_per-capita rate by which an individual of stage <span
+class="math inline">\(t\)</span> contributes new offspring to the
+population at time <span class="math inline">\(t+1\)</span>. Sounds
+pretty similar, right? What’s the difference??</p>
+<p>Fecundity also takes into account the survival rate from <span
+class="math inline">\(t\)</span> to <span
+class="math inline">\(t+1\)</span>!! For an adult of stage <span
+class="math inline">\(t\)</span> to contribute to the next generation,
+<em>it must both survive and reproduce</em>!.</p>
+<p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1}
+\qquad \text{(Eq. 4)}\)</span></p>
+<p>There is a lot we can do with matrix population models. The most
+obvious one is <em>projection</em>:</p>
 </div>
 <div id="projection" class="section level3">
 <h3>Projection:</h3>
-<p>We have already seen the projection equation (<em>Eq. 2</em>, above). Here is how we can implement this in R:</p>
+<p>We have already seen the projection equation (<em>Eq. 2</em>, above).
+Here is how we can implement this in R:</p>
 <pre class="r"><code>Year1 &lt;- projection_matrix %*% Abundance_year0  # matrix multiplication!</code></pre>
 <p>Let’s try it!:</p>
 <p>First, let’s build a <em>projection matrix</em>:</p>
