@@ -41,8 +41,7 @@ We will use [InsightMaker- a free web-based systems modeling tool](https://insig
 First we will run through the basics of population modeling for wildlife conservation...
 
 Second, we will run through a case study of the use of population models to support the conservation and management of the Rufa Red Knot (*Calidris canutus rufa*) and the Horseshoe Crab (*Limulus polyphemus*), whose eggs provide a key source of food for migrating Red Knots. 
-
-Let's review some basic population ecology theory and mathematics which are the foundation of PVA!
+Let's review some basic population ecology theory - which is the foundation of PVA!
 
 ## What is a population?
 
@@ -76,9 +75,7 @@ text(25,20000000, "intrinsic rate of growth = 0.15")
 
 The takeaway? With sufficient resources (e.g., plenty of food, shelter, nest sites, etc.), populations grow in a **positive feedback** loop. More individuals in the population means greater potential for population growth (e.g., making more babies!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
 
-## Modeling!!
-
-### Systems thinking
+## Systems thinking and computer modeling
 
 Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern ecosystem studies and conservation biology, which deal with understanding complex systems. 
 
@@ -142,7 +139,7 @@ Your model should look something like this:
 
 4. Make sure the initial number of moose is set to 50, the birth rate is set to 0.5, and the death rate is set to 0.4. Now click [Run Simulation]. How would you describe the results?
 
-**Q**: what happens if you set the birth rate equal to the death rate?
+**Q**: what happens if you set the birth rate equal to the death rate? 
 
 **Q**: what happens if you set the birth rate less than the death rate?
 
@@ -218,7 +215,7 @@ The term **stochasticity** just means randomness. A **stochastic population mode
 
 1. Click on [this link](https://insightmaker.com/insight/162301/NRES-421-In-Class-Demo-3) to load up the next population modeling demonstration.
 
-2. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
+2. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker environment and then clicking the "Edit Info" button on the left-hand context menu.
 
 3. Make sure the *Birth rate* is set to 0.5 and *Death rate* is set to 0.4. Set initial abundance to 10. Under the "Settings" menu make sure the model is set to run for 20 years.   
 
@@ -226,7 +223,7 @@ The term **stochasticity** just means randomness. A **stochastic population mode
 
 5. Use the "Sensitivity Testing" tool (in the "Tools" menu, upper right corner) to run the model 100 times. Choose your [Population] (Moose) as the "Monitored Primitive". View the results!
 
-Now, please change the initial abundance to 500 and re-run the "Sensitivity Testing" tool. 
+Now, change the initial abundance to 500 and re-run the "Sensitivity Testing" tool. 
 
 
 **Q**: what key differences do you notice when you initialize the population with 10 individuals vs 500 individuals??
