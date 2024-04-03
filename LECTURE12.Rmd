@@ -1,7 +1,7 @@
 ---
 title: "Overview of population Viability Analysis"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -46,7 +46,7 @@ PVA is used for assessing how stochasticity and inbreeding can lead to extinctio
 
 ### The PVA process (recipe for PVA!)
 
-![](PVAschematic1.png){width=40%}
+![](PVAschematic1.png){width=60%}
 
 The process of building a PVA model is **iterative**. 
 
@@ -105,8 +105,8 @@ Most of your projects will probably not include spatial structure. This is the t
 
 If you want to ask spatial questions, your model needs to be spatially explicit, or at least consider spatial structure in some way. The kinds of questions you might think about include:
 
-- How many discrete populations are there in your metapopulation?  
-- Do different populations have different mean vital rates? Are some populations likely to be sources and others likely to be sinks?   
+- How many discrete populations are there in your metapopulation?
+- Do different populations have different mean vital rates (due to variations in habitat quality for example)? Are some populations likely to be sources and others likely to be sinks?   
 - Is environmental stochasticity **spatially correlated**? (is a bad year in one subpopulation likely to be a bad year in every subpopulation?)
 - At what rate do individuals move among these populations?
 - Can connectivity be enhanced via habitat management?

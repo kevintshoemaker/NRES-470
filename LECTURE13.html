@@ -14,7 +14,7 @@
 
 <title>Metapopulations</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -456,15 +453,15 @@ div.tocify {
 
 <h1 class="title toc-ignore">Metapopulations</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2023</h4>
+<h4 class="date">Spring 2024</h4>
 
 </div>
 
 
-<div id="upcoming-midterm-exam-april-19" class="section level3">
-<h3>Upcoming midterm exam: April 19</h3>
+<div id="upcoming-midterm-exam-april-17" class="section level3">
+<h3>Upcoming midterm exam: April 17</h3>
 <p><strong>when and where</strong> The second midterm exam (out of two)
-is coming up on <strong>Wednesday April 19</strong>. You will have the
+is coming up on <strong>Wednesday April 197</strong>. You will have the
 whole 50 minute class period to take the exam (really, you have the
 whole hour if you need it). We will use the same basic format as we used
 for the first midterm.</p>
@@ -518,7 +515,7 @@ effect lectures</li>
 </ul>
 <p><em>The exam will consist of a mixture of multiple-choice and
 short-answer questions.</em></p>
-<p>We will do a review session in class on Monday April 17. Please make
+<p>We will do a review session in class on Monday April 15. Please make
 note of any questions that come up as you study- we can talk these over
 during the review session!</p>
 </div>
@@ -611,7 +608,7 @@ patch transitioning from occupied to unoccupied.</p>
 <p><strong>global extinction</strong> represents extinction
 (extirpation) of all patches in the metapopulation.</p>
 <p><strong>Q</strong>: what is the analog of demographic stochasticity
-in a metapopulation model? [PointSolutions]</p>
+in a metapopulation model? [Top Hat]</p>
 <p>NOTE: the “individual” in a metapopulation model is a patch. The
 analogy to “death” in a metapopulation is extinction.</p>
 <p>More formally, here are some terms we will consider:</p>
@@ -769,7 +766,7 @@ substantial dispersal, the risk of extinction may be correlated among
 these two patches!</p>
 <p><strong>Q</strong>: What if the extinction of one patch was
 <em>perfectly correlated</em> with the extinction of all other patches.
-If one goes extinct, all go extinct. [PointSolutions]</p>
+If one goes extinct, all go extinct. [Top Hat]</p>
 <p>bonus question: what is the risk of global extinction assuming the
 risk of extinction in each of the two patches is not correlated
 (completely independent of one another)?</p>

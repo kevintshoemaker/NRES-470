@@ -1,7 +1,7 @@
 ---
 title: "Metapopulations"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -14,9 +14,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-### Upcoming midterm exam: April 19
+### Upcoming midterm exam: April 17
 
-**when and where** The second midterm exam (out of two) is coming up on **Wednesday April 19**. You will have the whole 50 minute class period to take the exam (really, you have the whole hour if you need it). We will use the same basic format as we used for the first midterm. 
+**when and where** The second midterm exam (out of two) is coming up on **Wednesday April 197**. You will have the whole 50 minute class period to take the exam (really, you have the whole hour if you need it). We will use the same basic format as we used for the first midterm. 
 
 **what** The exam will cover:
 
@@ -53,7 +53,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 *The exam will consist of a mixture of multiple-choice and short-answer questions.*  
 
-We will do a review session in class on Monday April 17. Please make note of any questions that come up as you study- we can talk these over during the review session! 
+We will do a review session in class on Monday April 15. Please make note of any questions that come up as you study- we can talk these over during the review session! 
 
 ## Metapopulations
 
@@ -110,7 +110,7 @@ How does a metapopulation grow? How does a metapopulation shrink?
 
 **global extinction** represents extinction (extirpation) of all patches in the metapopulation. 
 
-**Q**: what is the analog of demographic stochasticity in a metapopulation model? [PointSolutions]
+**Q**: what is the analog of demographic stochasticity in a metapopulation model? [Top Hat]
 
 NOTE: the "individual" in a metapopulation model is a patch. The analogy to "death" in a metapopulation is extinction.
 
@@ -214,7 +214,7 @@ By the rescue effect, the risk of extinction may be reduced in this scenario.
 
 However, if the patches are close enough geographically to allow for substantial dispersal, the risk of extinction may be correlated among these two patches!
 
-**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. [PointSolutions] 
+**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. [Top Hat] 
 
 bonus question: what is the risk of global extinction assuming the risk of extinction in each of the two patches is not correlated (completely independent of one another)?
 
