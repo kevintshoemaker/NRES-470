@@ -21,12 +21,15 @@ A collection of populations that are connected via dispersal is called a **metap
 
 In classical metapopulation models, we have a **landscape** with a certain number of habitable **patches**. Patches are either **occupied** (coded as 1) or not (coded as 0). 
 
-In this framework, we are not keeping track of abundance ($N$) - we are instead keeping track of whether each patch is occupied or not, and how many total occupied patches we have in our metapopulation. 
+In this framework, we are not keeping track of abundance ($N$) - we are instead keeping track of whether each patch is occupied or not. Therefore, we can summarize our metapopulation status in one of two ways:
+
+1. How many total occupied patches do we have in our metapopulation at time $t$?     
+2. What fraction of the metapopulation is occupied at time $t$?    
 
 A patch is composed of individuals, whereas a metapopulation is composed of patches!
 
-**colonization** is when an unoccupied patch becomes occupied! (via **immigration**).  
-**extinction** (or extirpation) is when an extant (occupied) patch becomes unoccupied.
+**colonization** is when an unoccupied patch becomes occupied! (via **immigration**).    
+**extinction** (or extirpation) is when an extant (occupied) patch becomes unoccupied.   
 
 **regional (or global) extinction** represents extinction of all patches in the metapopulation. (note that this can't happen in a classical metapopulation- but it certainly CAN happen in real life)
 
@@ -229,7 +232,7 @@ iii. Restore habitat, effectively doubling the number of patches (labeled "metap
 
 * Please submit all answers on WebCampus!
 
-***Due Apr. 19 at 11:59pm***
+***Due Apr. 26 at 11:59pm***
 
   +  **Exercise 1**
       -  *InsightMaker link (1a.)*   
