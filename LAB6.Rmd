@@ -258,15 +258,6 @@ iii. Restore habitat, effectively doubling the number of patches (labeled "metap
         
 
 
-```{r eval=FALSE, echo=FALSE}
-
-# 2b. Change the dispersal rate to zero. Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool to examine expected patterns in occupancy and abundance over time. How did the trend in regional abundance change relative to the scenario with 25% dispersal? What about the probability of regional extinction? Include figures. Do these results match with your expectation of what would happen? Why or why not? 
-# 
-# 2c. Change the dispersal rate back to 25% and increase the number of patches to 25. Run a few simulations to examine the model behavior. Re-run the sensitivity testing tool (note that InsightMaker will run slower with more patches!) to examine expected patterns in occupancy and abundance over time. How did the trend in abundance change relative to the scenario with 10 patches? What about the probability of regional extinction? Include figures to justify your answer. Do these results match with your expectation of what would happen? Why or why not?
-
-```
-
-
 
 
 
