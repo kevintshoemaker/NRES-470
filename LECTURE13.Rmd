@@ -59,48 +59,41 @@ We will do a review session in class on Monday April 15. Please make note of any
 
 ### What is a metapopulation?
 
-Broadly speaking, a **metapopulation** is a group of populations (often called **subpopulations**) that occupy spatially distinct habitat **patches** that are close enough to support movement of individuals among patches. 
+Broadly speaking, a **metapopulation** is a group of populations (often called **subpopulations**) that occupy spatially distinct habitat **patches** and where some movement of individuals among patches is possible. 
 
-Now that we're thinking about animals occupying habitat patches within a larger landscape (we are explicitly thinking about spatial locations for the first time in this class!), we need to incorporate information about **movement ecology** in addition to **population ecology**! 
+Now that we're thinking about animals occupying habitat patches within a larger landscape, we need to incorporate information about **movement ecology** (and **spatial ecology**) in addition to **population ecology**! 
 
-Patches in a metapopulation are connected via **dispersal**. If there were no **connectivity** (dispersal among patches), it wouldn't really be a metapopulation, but rather a set of isolated populations that you could model independently.   
+Patches in a metapopulation are connected via **dispersal** of individuals among patches (also known as **connectivity**).  
 
-Including a dispersal process allows us (finally!) to think about the whole "BIDE" equation!      
+In practice, metapopulation ecology covers a broad range of scenarios: as long as we can conceive of subpopulations occupying distinct habitat patches in a landscape, then we can model this set of populations through the lens of metapopulation ecology. 
 
-$\Delta N = B + I - D - E$
-
-Metapopulation ecology covers a broad range of scenarios: as long as we can conceive of subpopulations occupying distinct habitat patches in a landscape, and as long as there is some dispersal among patches, then we can model this set of populations through the lens of metapopulation ecology. 
-
-NOTE: in some definitions (including for 'classical' metapopulations -- see below), a "metapopulation" is more narrowly defined as a set of patches with limited connectivity and with at least some unoccupied patches at some points in time. I prefer the more inclusive definition!
+NOTE: in some definitions, a "metapopulation" is more narrowly defined as a set of similar patches with limited connectivity and with at least some unoccupied patches at each time period (see figure below). I prefer the more inclusive definition!
 
 ![](MP1.jpg)
 
-The term "metapopulation model" is often used to refer to models where we don't keep track of the abundance in each patch ($N$ is no longer our primary unit of interest). Instead, we only consider **patch occupancy** (the number or fraction of patches in the metapopulation that are occupied) - like the models in Gotelli Chapter 4. That is, we only care about whether a patch is occupied (N > 0 in a given patch) or not (N = 0) each year.  
+The term "classical metapopulation model" refers to models where we don't keep track of abundance ($N$ is no longer our primary unit of interest). Instead, we only consider **patch occupancy** (the number or fraction of patches in the metapopulation that are occupied) - like the models in Gotelli Chapter 4. 
 
-![](MP2.jpg){width=50%}
+That is, we only care about whether a patch is occupied ($N > 0$ in a given patch) or not ($N = 0$) each year. 
 
-However, we CAN keep track of patch abundance in a metapopulation model if we really want to! In fact, if we want, each patch can contain a stage-structured, density dependent population (like the more complex metapopulation model in the final part of lab 6!).     
-
-For simplicity, 'classical' metapopulation models assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat).   
+In 'classical' metapopulation models, we assume that all areas outside a patch are completely unsuitable (i.e., they are NOT habitat, although individuals may be able to move between patches via dispersal). 
 
 ![](patch1.jpg){width=40%}
 
+However, we CAN keep track of patch abundance in a metapopulation model if we really want to (like the more complex metapopulation model in the final part of lab 6!).     
 
-Classical metapopulaton models also often assume that all patches are similar (similar habitat quality, area and connectivity to neighboring patches), and therefore are more or less interchangeable. We will relax this assumption when we start to consider 'source and sink' models (below).   
+The simplest classical metapopulation models (like those in Gotelli Ch 4) don't even keep track of the number of occupied patches on the landscape- they only keep track of the fraction of occupied patches in the landscape ($f$)!
 
-The simplest classical metapopulation models (like those in Gotelli Ch 4) only keep track of the fraction of occupied patches in the landscape ($f$)!
+![](MP2.jpg){width=50%}
 
-Instead of keeping track of the number of individuals dispersing among patches, classical metapopulation models only consider the consequences of dispersal, which include *colonization* of unoccupied (empty) patches via immigration ($I$) and the *rescue effect* (immigration preventing extinction of a patch; see below). 
+Instead of keeping track of the number of individuals dispersing among patches, classical metapopulation models only consider the consequences of dispersal, which include *colonization* of unoccupied (empty) patches and the *rescue effect* (immigration preventing extinction of a patch; see below). 
 
 ## "Classical" metapopulation models   
 
-The simplest type of spatially structured population model is the "classical" metapopulation model. 
-
 The metapopulation concept was first introduced by ecologist [Richard Levins](https://en.wikipedia.org/wiki/Richard_Levins) in 1969, and further developed by [Ilkka Hanski](https://en.wikipedia.org/wiki/Ilkka_Hanski) among others.    
 
-In a classical metapopulation, the [Stock] we are studying now is NOT the total number of individuals but instead it is the fraction of patches occupied!
+In a classical metapopulation, the [Stock] we are studying now is NOT the total number of individuals but instead it is the fraction of patches occupied, $f$!
 
-Instead of investigating population dynamics, we are investigating *metapopulation occupancy dynamics* -- that is, how the fraction of occupied patches changes over time.
+Instead of investigating population dynamics, we are investigating *metapopulation occupancy dynamics* -- that is, how the fraction of occupied patches changes over time ($\Delta f$.
 
 How does a metapopulation grow? How does a metapopulation shrink?
 
@@ -108,16 +101,10 @@ How does a metapopulation grow? How does a metapopulation shrink?
 
 **extirpation** (or extinction) is the process of a patch transitioning from occupied to unoccupied.
 
-**global extinction** represents extinction (extirpation) of all patches in the metapopulation. 
-
-**Q**: what is the analog of demographic stochasticity in a metapopulation model? [Top Hat]
-
-NOTE: the "individual" in a metapopulation model is a patch. The analogy to "death" in a metapopulation is extinction.
-
 More formally, here are some terms we will consider:
 
-$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **occupancy fraction**. This is the primary [Stock] we model in a classical metapopulation model.   
-$I$ is the total fraction of patches that are colonized by immigrants per time period (colonization rate, or "immigration" rate).   
+$f_t$ is the fraction, or proportion, of patches that are occupied at time $t$. This is also known as the **fractional occupancy**. This is the primary [Stock] we model in a classical metapopulation model.   
+$I$ is the total fraction of patches that are colonized (by immigrants) per time period (colonization rate).   
 
 $E$ is the total fraction of patches that are extirpated per time period (extirpation rate).    
 
@@ -129,14 +116,16 @@ $p_i$ is the probability of colonization for any non-occupied patch.
 
 $p_e$ is the probability of extinction for any occupied patch.
 
-Now that we have the basic terms defined, we can build a basic model of metapopulation dynamics! We will do this in lab- refer to the [metapopulation lab](LAB6.html) for more details!
+Now that we have the basic terms defined, we can build a basic model of metapopulation dynamics! We will do this in lab 6- refer to the [metapopulation lab](LAB6.html) for more details!
 
 ### Assumptions of the classical metapopulation model:
 
-- Homogeneous patches (all patches are considered equal and interchangeable- they do not differ in size or quality -- any differences in habitat quality or spatial context within patches are ignored).     
-- Extinction and colonization are insensitive to spatial context (spatial context, or "neighborhood effects", do not affect $p_e$ and $p_i$).          
-- No time lags (metapopulation growth responds instantaneously to any changes in $f$).     
-- Very large number of patches (even when the fraction of occupied patches $f$ is very small, the classical metapopulation still persists!). That is, global extinction is not possible!    
+Classical metapopulation models assume:  
+
+- Homogeneous patches (all patches are considered equal and interchangeable- they do not differ in size or quality -- any differences in habitat quality or spatial context within patches are ignored). We will relax this assumption when we start to consider 'source and sink' models (below).          
+- Extinction and colonization are insensitive to spatial context (spatial context, or "neighborhood effects", do not affect $p_e$ and $p_i$).             
+- No time lags (metapopulation growth responds instantaneously to any changes in $f$).        
+- Very large number of patches (even when the fraction of occupied patches $f$ is very small, the classical metapopulation still persists!). That is, global extinction is not possible!       
 
 Clearly this is not a very realistic model, but it is a useful starting place. So.. we will start by making these assumptions, but then we will "relax" some of them!
 
@@ -170,9 +159,17 @@ On the other hand, the extinction rate approaches $e$ as the metapopulation appr
 
 ### 'Dynamic' stability
 
-In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equilibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the size of the metapopulation (total patches occupied) is relatively stable and not at risk of **regional (or global) extinction**!
+In the classical metapopulation model, extinction is not necessarily uncommon. Patches go extinct -- small patches can be highly vulnerable to demographic stochasiticity as we know! -- but as long as patches can get re-colonized, we can reach an equilibrium, where extinctions and colonizations cancel each other out. In a classical metapopulation model, this is often a *stable equilibrium*, and a stable metapopulation in which local extinctions are possible ($p_e > 0$) is called **dynamically stable**. That is, any given patch could be extinct at any given time, but on the whole, the size of the metapopulation (total patches occupied) is relatively stable and not at risk of **regional (or global) extinction**!
 
 The concept of dynamic metapopulation stability- in which extinctions and colonizations balance out - has much in common with the dynamic stability of a single population at carrying capacity - in which any given individual could die at any given time, but deaths and births approximately balance out!
+
+### Global extinction 
+
+**global extinction** represents extinction (extirpation) of all patches in the metapopulation. 
+
+**Q**: what is the analog of demographic stochasticity in a metapopulation model? [Top Hat]
+
+NOTE: the "individual" in a metapopulation model is a patch. The analogy to "death" in a metapopulation is extinction.
 
 ### Spreading the risk!
 
@@ -204,7 +201,7 @@ _This works out to be around 33%_
 
 What if there are 15 independent populations instead of five? Then what is the chance of regional extirpation over 10 years?
 
-$[1-(1-p_e)^{10}]^5$ 
+$[1-(1-p_e)^{10}]^{15}$ 
 
 _This works out to be around 4% -- we have effectively spread out the risk, so that despite a relatively high extinction risk at the patch level, the metapopulation is unlikely to experience global extinction_
 
@@ -214,7 +211,7 @@ By the rescue effect, the risk of extinction may be reduced in this scenario.
 
 However, if the patches are close enough geographically to allow for substantial dispersal, the risk of extinction may be correlated among these two patches!
 
-**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches. If one goes extinct, all go extinct. [Top Hat] 
+**Q**: What if the extinction of one patch was *perfectly correlated* with the extinction of all other patches? If one patch goes extinct, all go extinct. Specifically, what is the risk of global extinction over a 2-year period, given that the annual risk of extinction is 50% for each patch? [Top Hat] 
 
 bonus question: what is the risk of global extinction assuming the risk of extinction in each of the two patches is not correlated (completely independent of one another)?
 
