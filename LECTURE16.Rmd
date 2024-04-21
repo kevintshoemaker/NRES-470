@@ -1,7 +1,7 @@
 ---
 title: "Species interactions: competition!"
 author: "NRES 470/670"
-date: "Spring 2023"
+date: "Spring 2024"
 output: 
   html_document: 
     theme: spacelab
@@ -33,7 +33,7 @@ From a modeling standpoint, this is where things really get interesting -- with 
 
 Species interactions can be classified according to the effect of the interaction on each species: (+,+), (+,-), (+,0), (-,-), (-,0), (0,0)
 
-**Q**: Can you name each of the above interaction classes? Which represents competition? What about predation? Mutualism? Commensalism? Amensalism? 
+**Q**: Can you name each of the above interaction classes? Which represents competition? What about predation? Mutualism? Commensalism? Amensalism? [Top Hat]
 
 ## Competition
 
@@ -99,13 +99,13 @@ Here's a [link to a working competition model](https://insightmaker.com/insight/
 
 **Q**: What happens if one species is a superior competitor? What does it mean to be a superior competitor? Can one species go extinct?
 
-**Q**: what conditions are necessary for coexistence in this model? [PointSolutions]
+**Q**: what conditions are necessary for coexistence in this model? [Top Hat]
 
 **Q**: imagine that species 2 is an exotic species- a possible invader of an ecosystem dominated by species 1 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species? 
 
 ## Phase plane!
 
-In the study of dynamic systems (such as the Lotka-Volterra competition model) it can be very useful to visualize the system on the **phase plane**.
+In the study of dynamical systems (such as the Lotka-Volterra competition model) it can be very useful to visualize the system on the **phase plane**.
 
 To do this, we envision the abundance of each interacting species as a coordinate in a cartesian plane, with one species' abundance as the y axis and the other species' abundance as the x axis. This 2-D surface is called the phase plane. 
 
@@ -766,7 +766,7 @@ abline(K2,-K2/(K2/Beta),col="blue",lwd=3)   # species 2
 
 Follow the trajectories from any point in this phase space. What is the outcome here?
 
-**Q**: Is there a system-wide equilibrium? [tophat]
+**Q**: Is there a system-wide equilibrium? [Top Hat]
 
 **Q**: Is there any point in this phase space where the population growth goes negative for species 1 (K1 used up) and positive for species 2 (some of K2 left unused)? 
 
