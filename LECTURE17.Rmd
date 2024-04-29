@@ -195,13 +195,13 @@ Before we go deeper into predation modeling, let's simulate prey and predator po
 
 **Step 3**: Correctly set up the flow equations for "total prey consumed" and "predator growth", which refer to the the prey lost and the predators gained per time step, respectively.
 
-**Step 4**: In the settings menu, change the simulation length to 200 and make sure that your analysis algorithm is set to "4th order runge-kutta" (this makes InsightMaker behave more like a continuous growth model).
+**Step 4**: In the settings menu, change the simulation length to 100 and make sure that your analysis algorithm is set to "4th order runge-kutta" (this makes InsightMaker behave more like a continuous growth model).
 
-**Step 5**: Set the Initial abundance of prey and predators to 100 and 50, respectively. Set the alpha and beta terms to 0.001, and set the r_prey and q_pred terms to 0.1. Run the model and visualize the time series for prey and predators.
+**Step 5**: Set the Initial abundance of prey and predators to 15 and 20, respectively. Set the alpha and beta terms to 0.01, and set the r_prey and q_pred terms to 0.15. Run the model and visualize the time series for prey and predators.
 
 **Q** What happens if you change the initial abundances?
 
-**Q** What happens if you change initial abundance of both species to 100? Is this an **equilibrium**? If so, is it **stable**?
+**Q** What happens if you change initial abundance of both species to 15? Is this an **equilibrium**? If so, is it **stable**?
 
 **Step 6**: Try some other parameter values for alpha, beta, r, and q...
 
