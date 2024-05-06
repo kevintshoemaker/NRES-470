@@ -69,26 +69,12 @@ In this case, computing survival and fecundity (and variation in these parameter
 - Can estimate survival and fecundity, env. stochasticity, density dependence- pretty much everything we want for a population model!
 
 **CONS**
-- Very rarely (if ever) available!!
-- Ignores **imperfect detection** (assumes no observation errors), which is almost always not realistic.
-
-### Capture-mark-recapture (CMR)
-
-**PROS**
-- Can estimate survival, variation in survival, lambda, recruitment, dispersal rates. 
-- Probably the most widely used source of data for population models!
-
-**CONS**
-- Few downsides, although the analytical techniques can be difficult to master
-- Mounting a proper CMR study can be very costly, and require many years of data. 
-- Estimating landscape-scale movements can require an even more costly and time-consuming study.
-- Emigration and survival can be difficult to tease apart in many cases. 
-
-We will return to CMR data shortly (and in the optional Lab 7), but first...
+- Very rarely available for wild populations!!
+- Ignores **imperfect detection** (assumes no observation errors), which is almost always not realistic (for wild populations).
 
 ### What if there's "no data"?
 
-Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) - even when you think there's no data, there probably is more than there initially appears!
+Recall the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) - even when you think there's no data, there probably is more than there initially appears!
 
 - Use algebra to construct a full age-structured transition matrix from available information
     - E.g., we are missing information on hatchling survival. We only know: 
@@ -127,12 +113,26 @@ Remember the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) -
 - That is often the default in practice   
 - And it is better to use it than to do nothing
 - And it is better to document that expert opinion was used than to proceed with conservation planning in the absence of stating sources and assumptions
-- It is a starting point (and sometimes a reasonable one)
+- It is a starting point (and sometimes the best we have)
 
 
-## Capture-mark-recapture (CMR) analysis
+### Capture-mark-recapture (CMR)
+
+**PROS**
+- Can estimate abundance, survival, variation in survival, lambda, recruitment, dispersal rates. 
+- Probably the most widely used source of data for population models (especially if you consider that telemetry data is a special class of capture-mark-recapture data!
+
+**CONS**
+- Few downsides, although the analytical techniques can be difficult to master
+- Mounting a proper CMR study can be very costly, and require many years of data. 
+- Estimating landscape-scale movements can require an even more costly and time-consuming study.
+- Emigration and survival can be difficult to tease apart in many cases. 
+
+## Statistics and wildlife population ecology
 
 ![](statistics1.png){width=60%}
+
+Capture-recapture analyses are derived from central principles of probability and statistics.
 
 ### PVA Parameters estimable from CMR data
 
@@ -181,14 +181,14 @@ M = the number of individuals marked in the first sample
 C = total number of individuals captured in 2nd sample   
 R = number of individuals in 2nd sample that are marked   
 
-We can use the following formula to estimate abundance (the **lincoln-peterson estimator**): 
+We can use the following formula to estimate abundance (the **Lincoln-Peterson estimator**): 
 
 $N = \frac{M \times C}{R}$
 
 
 #### Open population models
 We assume that the population is open to one or more of the BIDE processes. That is, abundance CAN change! 
-We attempt to estimate the processes driving abundance change (often, survival rates)
+We attempt to estimate the processes driving changes in abundance (often, survival rates)
 
 - Populations open to birth, death, and possibly even migration (abundance can change during the study).
 - Enables estimation of the drivers of population dynamics over extended time periods 

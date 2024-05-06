@@ -529,30 +529,16 @@ straightforward!</p>
 <p><strong>PROS</strong> - Can estimate survival and fecundity, env.
 stochasticity, density dependence- pretty much everything we want for a
 population model!</p>
-<p><strong>CONS</strong> - Very rarely (if ever) available!! - Ignores
-<strong>imperfect detection</strong> (assumes no observation errors),
-which is almost always not realistic.</p>
-</div>
-<div id="capture-mark-recapture-cmr" class="section level3">
-<h3>Capture-mark-recapture (CMR)</h3>
-<p><strong>PROS</strong> - Can estimate survival, variation in survival,
-lambda, recruitment, dispersal rates. - Probably the most widely used
-source of data for population models!</p>
-<p><strong>CONS</strong> - Few downsides, although the analytical
-techniques can be difficult to master - Mounting a proper CMR study can
-be very costly, and require many years of data. - Estimating
-landscape-scale movements can require an even more costly and
-time-consuming study. - Emigration and survival can be difficult to
-tease apart in many cases.</p>
-<p>We will return to CMR data shortly (and in the optional Lab 7), but
-first…</p>
+<p><strong>CONS</strong> - Very rarely available for wild populations!!
+- Ignores <strong>imperfect detection</strong> (assumes no observation
+errors), which is almost always not realistic (for wild
+populations).</p>
 </div>
 <div id="what-if-theres-no-data" class="section level3">
 <h3>What if there’s “no data”?</h3>
-<p>Remember the <a
-href="https://en.wikipedia.org/wiki/Stone_Soup">“Stone Soup”
-analogy!</a> - even when you think there’s no data, there probably is
-more than there initially appears!</p>
+<p>Recall the <a href="https://en.wikipedia.org/wiki/Stone_Soup">“Stone
+Soup” analogy!</a> - even when you think there’s no data, there probably
+is more than there initially appears!</p>
 <ul>
 <li>Use algebra to construct a full age-structured transition matrix
 from available information
@@ -633,12 +619,29 @@ document, but …</li>
 <li>And it is better to document that expert opinion was used than to
 proceed with conservation planning in the absence of stating sources and
 assumptions</li>
-<li>It is a starting point (and sometimes a reasonable one)</li>
+<li>It is a starting point (and sometimes the best we have)</li>
 </ul>
+<div id="capture-mark-recapture-cmr" class="section level3">
+<h3>Capture-mark-recapture (CMR)</h3>
+<p><strong>PROS</strong> - Can estimate abundance, survival, variation
+in survival, lambda, recruitment, dispersal rates. - Probably the most
+widely used source of data for population models (especially if you
+consider that telemetry data is a special class of
+capture-mark-recapture data!</p>
+<p><strong>CONS</strong> - Few downsides, although the analytical
+techniques can be difficult to master - Mounting a proper CMR study can
+be very costly, and require many years of data. - Estimating
+landscape-scale movements can require an even more costly and
+time-consuming study. - Emigration and survival can be difficult to
+tease apart in many cases.</p>
 </div>
-<div id="capture-mark-recapture-cmr-analysis" class="section level2">
-<h2>Capture-mark-recapture (CMR) analysis</h2>
+</div>
+<div id="statistics-and-wildlife-population-ecology"
+class="section level2">
+<h2>Statistics and wildlife population ecology</h2>
 <p><img src="statistics1.png" style="width:60.0%" /></p>
+<p>Capture-recapture analyses are derived from central principles of
+probability and statistics.</p>
 <div id="pva-parameters-estimable-from-cmr-data" class="section level3">
 <h3>PVA Parameters estimable from CMR data</h3>
 <ul>
@@ -691,14 +694,14 @@ is, abundance does not change! We attempt to estimate abundance!</p>
 C = total number of individuals captured in 2nd sample<br />
 R = number of individuals in 2nd sample that are marked</p>
 <p>We can use the following formula to estimate abundance (the
-<strong>lincoln-peterson estimator</strong>):</p>
+<strong>Lincoln-Peterson estimator</strong>):</p>
 <p><span class="math inline">\(N = \frac{M \times C}{R}\)</span></p>
 </div>
 <div id="open-population-models" class="section level4">
 <h4>Open population models</h4>
 <p>We assume that the population is open to one or more of the BIDE
 processes. That is, abundance CAN change! We attempt to estimate the
-processes driving abundance change (often, survival rates)</p>
+processes driving changes in abundance (often, survival rates)</p>
 <ul>
 <li>Populations open to birth, death, and possibly even migration
 (abundance can change during the study).</li>
@@ -739,8 +742,12 @@ example in Lab 7), so the results will look somewhat different!</p>
 Let’s look at it!</p>
 <pre class="r"><code># Cormack-Jolly-Seber (CJS) model in R  --------------------------
 
-library(marked)      # install the &#39;marked&#39; package if you haven&#39;t already done this!
-data(&quot;dipper&quot;)
+library(marked)      # install the &#39;marked&#39; package if you haven&#39;t already done this!</code></pre>
+<pre><code>## Loading required package: lme4</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre><code>## This is marked 1.2.8</code></pre>
+<pre class="r"><code>data(&quot;dipper&quot;)
 head(dipper,10)</code></pre>
 <pre><code>##         ch    sex
 ## 1  0000001 Female
@@ -784,18 +791,18 @@ mod.Phit.pt   # print out model</code></pre>
 ## 
 ## Beta
 ##                    Estimate        se        lcl       ucl
-## Phi.(Intercept)  0.75646636 0.6570806 -0.5314116 2.0443444
-## Phi.time2       -0.99255899 0.7541098 -2.4706142 0.4854962
-## Phi.time3       -0.84151202 0.6991672 -2.2118797 0.5288557
-## Phi.time4       -0.22522075 0.7051952 -1.6074034 1.1569619
-## Phi.time5       -0.36893542 0.6974964 -1.7360284 0.9981576
-## Phi.time6        0.10115137 1.5063624 -2.8513189 3.0536216
-## p.(Intercept)    1.00571207 0.8006508 -0.5635635 2.5749876
-## p.time3          1.49463757 1.3119503 -1.0767850 4.0660601
-## p.time4          1.37853596 1.0927336 -0.7632220 3.5202939
-## p.time5          1.12053506 0.9914942 -0.8227937 3.0638638
-## p.time6          1.57229762 1.0715540 -0.5279483 3.6725435
-## p.time7          0.07823848 1.7821210 -3.4147187 3.5711956</code></pre>
+## Phi.(Intercept)  0.75646636 0.6570806 -0.5314115 2.0443443
+## Phi.time2       -0.99255899 0.7541098 -2.4706141 0.4854961
+## Phi.time3       -0.84151202 0.6991671 -2.2118796 0.5288556
+## Phi.time4       -0.22522075 0.7051952 -1.6074033 1.1569618
+## Phi.time5       -0.36893542 0.6974964 -1.7360283 0.9981575
+## Phi.time6        0.10115137 1.5063612 -2.8513166 3.0536194
+## p.(Intercept)    1.00571207 0.8006507 -0.5635632 2.5749874
+## p.time3          1.49463757 1.3119502 -1.0767848 4.0660600
+## p.time4          1.37853596 1.0927335 -0.7632218 3.5202937
+## p.time5          1.12053506 0.9914942 -0.8227935 3.0638636
+## p.time6          1.57229762 1.0715539 -0.5279481 3.6725434
+## p.time7          0.07823848 1.7821196 -3.4147158 3.5711928</code></pre>
 <pre class="r"><code>mod.Phit.pt$results$AIC       # extract AIC</code></pre>
 <pre><code>## [1] 681.0644</code></pre>
 <pre class="r"><code># fit time-invariant cjs model
@@ -833,11 +840,11 @@ mod.Phisex.psex</code></pre>
 ## AIC  :  674.1518
 ## 
 ## Beta
-##                   Estimate        se         lcl       ucl
-## Phi.(Intercept) 0.22338784 0.1440981 -0.05904451 0.5058202
-## Phi.sexMale     0.04138178 0.2041878 -0.35882631 0.4415899
-## p.(Intercept)   2.01072100 0.4210671  1.18542943 2.8360126
-## p.sexMale       0.47587463 0.6630165 -0.82363774 1.7753870</code></pre>
+##                   Estimate        se        lcl       ucl
+## Phi.(Intercept) 0.22338784 0.1440981 -0.0590445 0.5058202
+## Phi.sexMale     0.04138178 0.2041878 -0.3588263 0.4415899
+## p.(Intercept)   2.01072100 0.4210671  1.1854294 2.8360126
+## p.sexMale       0.47587463 0.6630165 -0.8236377 1.7753870</code></pre>
 <pre class="r"><code>mod.Phisex.psex$results$AIC</code></pre>
 <pre><code>## [1] 674.1518</code></pre>
 <pre class="r"><code># compare all models with AIC   ----------------------------
@@ -924,18 +931,18 @@ allmodels[[1]]</code></pre>
 ## 
 ## Beta
 ##                    Estimate        se        lcl       ucl
-## Phi.(Intercept)  0.75646636 0.6570806 -0.5314116 2.0443444
-## Phi.time2       -0.99255899 0.7541098 -2.4706142 0.4854962
-## Phi.time3       -0.84151202 0.6991672 -2.2118797 0.5288557
-## Phi.time4       -0.22522075 0.7051952 -1.6074034 1.1569619
-## Phi.time5       -0.36893542 0.6974964 -1.7360284 0.9981576
-## Phi.time6        0.10115137 1.5063624 -2.8513189 3.0536216
-## p.(Intercept)    1.00571207 0.8006508 -0.5635635 2.5749876
-## p.time3          1.49463757 1.3119503 -1.0767850 4.0660601
-## p.time4          1.37853596 1.0927336 -0.7632220 3.5202939
-## p.time5          1.12053506 0.9914942 -0.8227937 3.0638638
-## p.time6          1.57229762 1.0715540 -0.5279483 3.6725435
-## p.time7          0.07823848 1.7821210 -3.4147187 3.5711956</code></pre>
+## Phi.(Intercept)  0.75646636 0.6570806 -0.5314115 2.0443443
+## Phi.time2       -0.99255899 0.7541098 -2.4706141 0.4854961
+## Phi.time3       -0.84151202 0.6991671 -2.2118796 0.5288556
+## Phi.time4       -0.22522075 0.7051952 -1.6074033 1.1569618
+## Phi.time5       -0.36893542 0.6974964 -1.7360283 0.9981575
+## Phi.time6        0.10115137 1.5063612 -2.8513166 3.0536194
+## p.(Intercept)    1.00571207 0.8006507 -0.5635632 2.5749874
+## p.time3          1.49463757 1.3119502 -1.0767848 4.0660600
+## p.time4          1.37853596 1.0927335 -0.7632218 3.5202937
+## p.time5          1.12053506 0.9914942 -0.8227935 3.0638636
+## p.time6          1.57229762 1.0715539 -0.5279481 3.6725434
+## p.time7          0.07823848 1.7821196 -3.4147158 3.5711928</code></pre>
 <pre class="r"><code># make predictions and plot them. 
 
 predict(allmodels[[1]])$Phi</code></pre>
@@ -1001,7 +1008,7 @@ being seen at time 4)]</p>
 </blockquote>
 <p>This can be written:</p>
 <p><span class="math inline">\(L_1 = \phi_1(1-p_2) \cdot \phi_2p_3 \cdot
-\left \{(1-\phi_3)+\phi_3(1-p_4) \right \}\)</span></p>
+\left \{(1-\phi_3)+\phi_3(1-p_4)  \right \}\)</span></p>
 <p><strong>Q</strong>: if survival were 100% and capture probability
 were 100%, what is the probability of observing the above capture
 histories?</p>
