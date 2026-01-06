@@ -14,7 +14,7 @@
 
 <title>Lab 1: exponential growth</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 1: exponential growth</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -565,13 +565,13 @@ matter how small the time step, there is always some population growth
 during that time period.</p>
 <p>We can use <em>calculus notation</em> to consider the change in
 population size for a continuously growing population:</p>
-<p><span class="math inline">\(\frac{\partial N}{\partial t} = r \cdot N
-\qquad \text{(Eq. 9)}\)</span></p>
+<p><span class="math inline">\(\frac{\partial N}{\partial t} = r \cdot
+N  \qquad \text{(Eq. 9)}\)</span></p>
 <p>If you <em>integrate</em> this equation over time from the initial
 time (t=0) to time <em>t</em>, you get an equation that describes the
 population size at any given time <span
 class="math inline">\(t\)</span>:</p>
-<p><span class="math inline">\(N_t = N_0 e^{rt} \qquad \text{(Eq.
+<p><span class="math inline">\(N_t = N_0 e^{rt}  \qquad \text{(Eq.
 10)}\)</span></p>
 <p>That is, population size at time <span
 class="math inline">\(t\)</span> is equal to the population size at time
@@ -626,20 +626,20 @@ is this year to what it will be next year, Lambda is a representation of
 <em>discrete population growth</em> (it implicitly represents a
 “stair-step” model of population growth.</p>
 <p>We can derive Lambda using the following logic:</p>
-<p><span class="math inline">\(N_{t+1}=N_t + B - D \qquad \text{(Eq.
+<p><span class="math inline">\(N_{t+1}=N_t + B - D  \qquad \text{(Eq.
 11)}\)</span></p>
 <p><span class="math inline">\(N_{t+1}=N_t + b_d \cdot N_t - d_d \cdot
-N_t \qquad \text{(Eq. 12)}\)</span></p>
+N_t  \qquad \text{(Eq. 12)}\)</span></p>
 <p>I am using the <em>d</em> subscript to indicate that the per-capita
 birth and death rates now represent <strong>discrete growth</strong>
 (births and deaths only occur once in each time step)</p>
 <p><span class="math inline">\(N_{t+1}=N_t + (b_d - d_d) \cdot N_t
 \qquad \text{(Eq. 13)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=N_t + r_d \cdot N_t \qquad
+<p><span class="math inline">\(N_{t+1}=N_t + r_d \cdot N_t  \qquad
 \text{(Eq. 14)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=N_t \cdot (1 + r_d) \qquad
+<p><span class="math inline">\(N_{t+1}=N_t \cdot (1 + r_d)  \qquad
 \text{(Eq. 15)}\)</span></p>
-<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad
+<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t  \qquad
 \text{(Eq. 16)}\)</span></p>
 <p>A Lambda above 1 implies that births exceed deaths each year, and the
 population is growing:</p>
@@ -651,8 +651,8 @@ population\)</span></p>
 <p>Finally, if you want to compute the population size after <span
 class="math inline">\(t\)</span> time-steps of discrete population
 growth (analogous to eq. 10) you can use the following equation:</p>
-<p><span class="math inline">\(N_t = N_0 * \lambda^{t} \qquad \text{(Eq.
-17)}\)</span></p>
+<p><span class="math inline">\(N_t = N_0 * \lambda^{t}    \qquad
+\text{(Eq. 17)}\)</span></p>
 </div>
 <div id="difference-between-discrete-and-continuous-growth"
 class="section level3">
