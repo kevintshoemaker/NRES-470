@@ -1,6 +1,6 @@
 ---
 title: "Welcome to NRES 470/670"
-author: "Applied Population Ecology, Spring 2024"
+author: "Applied Population Ecology, Spring 2026"
 output:
   html_document: 
     theme: spacelab
@@ -20,16 +20,16 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 **Office hours**: Wednesdays from 11am to noon in FA 220e         
 **Course Website**: [https://kevintshoemaker.github.io/NRES-470/](https://kevintshoemaker.github.io/NRES-470/) 	    
  
-**Teaching Assistant** Colton Irons (cirons_at_nevada_dot_unr_dot_edu)        
-**TA Office hours**: Mondays at 4pm in FA 235       
+**Teaching Assistant** Jerrod Merrell (jmerrell_at_unr_dot_edu)        
+**TA Office hours**: TBD       
 
 ### Course Meeting Times
 
-**Lecture & Discussion**: M, W at 10am (50 mins) in OB (Orvis Building) 203         
+**Lecture & Discussion**: M, W at 10am (50 mins) in FA 301 (Fleischmann Ag Building)         
 **Lab**: F at 1pm (2 hrs 45 mins) in FA 301      
     
 ### Course description  
-This class explores how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management using simulation models and inferential statistics. Topics include Population Viability Analysis (PVA), limits to population growth, metapopulation ecology, species interactions (competition and predation), threats to wild populations, wildlife management and more. Laboratory exercises provide students with hands-on experience with wildlife population models and their practical applications in wildlife ecology and management.
+This class explores how concepts of population ecology can be used to inform the conservation and management of natural populations and ecosystems. We emphasize practical approaches to problem-solving in ecology, conservation, and wildlife management using simulation models and statistics. Topics include Population Viability Analysis (PVA), limits to population growth, metapopulation ecology, species interactions (competition and predation), threats to wild populations, wildlife management and more. Laboratory exercises provide students with hands-on experience with wildlife population models and their practical applications in wildlife ecology and management.
 
 ### Prerequisites    
 - BIOL 314 or NRES 217 (Ecology)  
@@ -89,44 +89,32 @@ We will be using the [Top Hat](https://tophat.com/) interactive learning platfor
 
 Top Hat is free of charge for UNR students this year! You should all have received an invitation via email. You can also enroll using the join code 632462. 
 
+## University Policies
+
 ### Statement on Academic Dishonesty
-The University Academic Standards Policy defines academic dishonesty, and mandates specific sanctions for violations. See the University Academic Standards policy: [UAM 6,502](https://www.unr.edu/administrative-manual/6000-6999-curricula-teaching-research/instruction-research-procedures/6502-academic-standards).
+The University Academic Standards Policy defines academic dishonesty, and mandates specific sanctions for violations. See the University Academic Standards policy: [UAM 6,502](https://www.unr.edu/administrative-manual/6000-6999-curricula-teaching-research/6502-academic-standards) 
 
-### Statment on Disabilities Services
-Any student with a disability needing academic adjustments or accommodations is requested to speak with me or the [Disability Resource Center](http://www.unr.edu/drc) (Pennington Achievement Center Suite 230) as soon as possible to arrange for appropriate accommodations.
-
-### Statement on Student Compliance with University Policies
-In accordance with section 6,502 of the University Administrative Manual, a student may receive academic and disciplinary sanctions for failure to comply with policy, including this syllabus, for failure to comply with the directions of a University Official, for disruptive behavior in the classroom, or any other prohibited action. “Disruptive behavior" is defined in part as behavior, including but not limited to failure to follow course, laboratory or safety rules, or endangering the health of others. A student may be dropped from class at any time for misconduct or disruptive behavior in the classroom upon recommendation of the instructor and with approval of the college dean. A student may also receive disciplinary sanctions through the Office of Student Conduct for misconduct or disruptive behavior, including endangering the health of others, in the classroom. The student shall not receive a refund for course fees or tuition.
+### Statement of Disability Services
+Any student with a disability needing academic adjustments or accommodations is requested to speak with the instructor or the [Disability Resource Center](https://www.unr.edu/drc) (Pennington Achievement Center Suite 230) as soon as possible to arrange for appropriate accommodations. This course may leverage 3rd party web/multimedia content, if you experience any issues accessing this content, please notify your instructor.
 
 ### Statement on Audio and Video Recording
-#### Student-created Recordings
-Surreptitious or covert video-taping of class or unauthorized audio recording of class is prohibited by law and by Board of Regents policy. This class may be videotaped, or audio recorded only with the written permission of the instructor. In order to accommodate students with disabilities, some students may have been given permission to record class lectures and discussions. Therefore, students should understand that their comments during class may be recorded.
+Surreptitious or covert video-taping of class or unauthorized audio recording of class is prohibited by law and by Board of Regents policy. This class may be videotaped or audio recorded only with the written permission of the instructor. In order to accommodate students with disabilities, some students may have been given permission to record class lectures and discussions. Therefore, students should understand that their comments during class may be recorded. 
 
-#### Instructor-created Recordings
-Class sessions may be audio-visually recorded for students in the class to review and for enrolled students who are unable to attend live to view. Students who participate with their camera on or who use a profile image are consenting to have their video or image recorded.  If you do not consent to have your profile or video image recorded, keep your camera off and do not use a profile image. Students who un-mute during class and participate orally are consenting to have their voices recorded.  If you do not consent to have your voice recorded during class, keep your mute button activated and only communicate by using the "chat" feature, which allows you to type questions and comments live.
+Class sessions may be audio-visually recorded for students in the class to review and for enrolled students who are unable to attend live to view. Students who participate with their camera on or who use a profile image are consenting to have their video or image recorded. If you do not consent to have your profile or video image recorded, keep your camera off and do not use a profile image. Students who un-mute during class and participate orally are consenting to have their voices recorded. If you do not consent to have your voice recorded during class, keep your mute button activated and only communicate by using the "chat" feature, which allows you to type questions and comments live.
 
-### Statement for Academic Success Services
-Your student fees cover usage of the University Math Center [(775) 784-4433], University Tutoring Center [(775) 784-6801], and [University Writing Center (775) 784-6030]. These centers support your classroom learning; it is your responsibility to take advantage of their services.
+### This is a safe space
+The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the University's Equal Opportunity & Title IX office at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit the Equal Opportunity and Title IX page. 
 
-### Statement on Maintaining a Safe Learning and Work Environment
-The University of Nevada, Reno is committed to providing a safe learning and work environment for all. If you believe you have experienced discrimination, sexual harassment, sexual assault, domestic/dating violence, or stalking, whether on or off campus, or need information related to immigration concerns, please contact the [University's Equal Opportunity & Title IX office](https://www.unr.edu/equal-opportunity-title-ix) at 775-784-1547. Resources and interim measures are available to assist you. For more information, please visit the Equal Opportunity and Title IX page. 
+### Statement on Campus Closures or Delays
 
-### Statement on COVID-19 Policies
+In the event of class cancellations or delays caused by inclement weather conditions, fire/smoke
+conditions, or other unforeseen emergencies, the safety and well-being of students are the
+University’s top priority. Official notifications will be disseminated through the University website and other official channels with details related to any campus delays or closures.
+In the event of a campus closure, you will be informed as to whether the class will be offered
+remotely or if it will be canceled. If the class is cancelled, you will receive information on how to address any missed course content. Students facing significant impacts due to these events are encouraged to communicate with their instructor for potential accommodations.
 
-#### Face Coverings
-Pursuant to Nevada law, NSHE employees, students and members of the public are not required to wear face coverings while inside NSHE buildings irrespective of vaccination status. However, students may elect wear face coverings if they choose. 
-
-#### Disinfecting Your Learning Space
-Disinfecting supplies are provided for your convenience to disinfect your learning space. You may also use your own disinfecting supplies. 
-
-#### Testing Positive for COVID-19 or Exhibiting COVID-19 Symptoms
-Students testing positive for COVID 19 or exhibiting COVID 19 symptoms will not be allowed to attend in-person instructional activities and must leave the venue immediately. Students should contact the Student Health Center or their health care provider to receive care and information pertaining to the latest COVID 19 quarantine and self-isolation protocols. If you are required to quarantine or self-isolate, you must contact your instructor immediately to make instructional and learning arrangements.  
-
-#### Accommodations for COVID 19 Quarantined Students
-For students who are required to quarantine or self-isolate due to testing positive for COVID or exhibiting COVID 19 symptoms, instructors must provide opportunities to make-up missed course work, including assignments, quizzes or exams. In courses with mandatory attendance policies, instructors shall not penalize students for missing classes while quarantined.
-
-### Statement for Academic Success Services
-Your student fees cover usage of the [University Math Center](https://www.unr.edu/university-math-center), (775) 784-4433; [University Tutoring Center](https://www.unr.edu/tutoring-center), (775) 784-6801; and [University Writing & Speaking Center](https://www.unr.edu/writing-speaking-center), (775) 784-6030. These centers support your classroom learning; it is your responsibility to take advantage of their services. Keep in mind that seeking help outside of class is the sign of a responsible and successful student.
+### Statement on Failure to Comply with Policy (including as outlined in this Syllabus) or Directives of a University Employee:
+In accordance with section 6,502 of the University Administrative Manual, a student may receive academic and disciplinary sanctions for failure to comply with policy, including this syllabus, for failure to comply with the directions of a University Official, for disruptive behavior in the classroom, or any other prohibited action. “Disruptive behavior" is defined in part as behavior, including but not limited to failure to follow course, laboratory or safety rules, or endangering the health of others. A student may be dropped from class at any time for misconduct or disruptive behavior in the classroom upon recommendation of the instructor and with approval of the college dean. A student may also receive disciplinary sanctions through the Office of Student Conduct for misconduct or disruptive behavior, including endangering the health of others, in the classroom. The student shall not receive a refund for course fees or tuition.
 
 
 ```{r echo=FALSE, eval=FALSE}
