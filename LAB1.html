@@ -565,10 +565,11 @@ matter how small the time step, there is always some population growth
 during that time period.</p>
 <p>We can use <em>calculus notation</em> to consider the change in
 population size for a continuously growing population:</p>
-<p><span class="math inline">\(\frac{\partial N}{\partial t} = r \cdot
-N  \qquad \text{(Eq. 9)}\)</span></p>
-<p>If you <em>integrate</em> this equation over time from the initial
-time (t=0) to time <em>t</em>, you get an equation that describes the
+<p><span class="math inline">\(\frac{dN}{dt} = r \cdot N  \qquad
+\text{(Eq. 9)}\)</span></p>
+<p>If you follow the rules of calculus to “solve” this differential
+equation (<em>integrate</em> this equation over time from the initial
+condition to time <em>t</em>), you get an equation that describes the
 population size at any given time <span
 class="math inline">\(t\)</span>:</p>
 <p><span class="math inline">\(N_t = N_0 e^{rt}  \qquad \text{(Eq.
@@ -789,7 +790,7 @@ automatically adjust.</li>
 spreadsheet</strong>).</p>
 <ul>
 <li><p><strong><em>Short answer (1a.)</em></strong> [numeric response]
-Change the per-capita growth rate to 0.07 in cell D3. Based on what we
+Change the per-capita growth rate to 0.06 in cell D3. Based on what we
 did together in the demo, this should change the value of abundance in
 year 30 (cell B32) automatically. <em>What is the new final abundance at
 year 30?</em> assuming discrete annual population growth?</p></li>
@@ -810,7 +811,7 @@ don’t over-think this one. You may use a scientific calculator instead
 of Excel if you’d like.</p>
 <p>HINT: use the EXP function in Excel to raise <em>e</em> (the base of
 the natural logarithm) to any power: for example, to compute <span
-class="math inline">\(e^{0.07}\)</span> you type “=EXP(0.07)” in
+class="math inline">\(e^{0.06}\)</span> you type “=EXP(0.06)” in
 Excel.</p>
 <p>In general, if you don’t know the syntax for a function in Excel,
 click on the button labeled “fx” and you can search for functions using
@@ -831,28 +832,28 @@ population growth (i.e., the “stair-step” model where the population
 grows in bursts), but this time we will assume the growth occurs in
 half-years instead of whole years (semi-annual growth). To do this, you
 will first need to divide the annual per-capita growth rate in half: so,
-if the annual growth rate is 0.07 (7% growth), the semi-annual growth
-rate would be 0.035 (3.5% percent growth each 6 months). Also, you need
-to change your number of time steps to 60 (60 half-years is equal to 30
+if the annual growth rate is 0.06 (6% growth), the semi-annual growth
+rate would be 0.03 (3% percent growth each 6 months). Also, you need to
+change your number of time steps to 60 (60 half-years is equal to 30
 whole-years). Try it in Excel!</p>
 <ul>
 <li><p><strong><em>Short answer (1d.)</em></strong> [numeric and short
 text responses] What is the final abundance after 30 years (60
-half-years) assuming semi-annual discrete growth of 3.5% per half-year
-(which implies 7% annual growth, just like your previous calculations
+half-years) assuming semi-annual discrete growth of 3% per half-year
+(which implies 6% annual growth, just like your previous calculations
 assumed) (see more detailed instructions above)? Is this value different
-from your answer in question 1a (annual discrete growth of 7% per year)?
+from your answer in question 1a (annual discrete growth of 6% per year)?
 If so, is your new estimate (semi-annual discrete growth) larger or
 smaller than your answer for question 1a (annual discrete
 growth)?</p></li>
 <li><p><strong><em>Short answer (1e.)</em></strong> [numeric and short
 text responses] Assuming a <em>continuously growing population</em> with
-a 3.5% semi-annual rate of growth (equivalent to a 7% continuous annual
+a 3% semi-annual rate of growth (equivalent to a 6% continuous annual
 rate of growth, like question 1b), apply equation 10 (continuous-growth
 model) to compute the expected population size at time step 60 (60
 half-years = 30 full years, equivalent to question 1b). <em>What is the
 new final abundance estimate at year 30 (60 half-years), assuming
-continuous 3.5% semi-annual growth?</em>. Is this value different from
+continuous 3% semi-annual growth?</em>. Is this value different from
 your answer in question 1b (continuous annual growth)? If so, is your
 new estimate larger or smaller than your answer from q1b?</p></li>
 <li><p><strong><em>Short answer (1f.)</em></strong> [short text
@@ -860,7 +861,7 @@ response] Imagine you modeled this population using a <em>discrete
 monthly</em> growth model instead of a discrete annual model (like q1a).
 Based on your above results (q1a-e), do you think the resulting estimate
 of population size after 30 years (360 months, using a monthly growth
-rate of 7/12 = 0.583% monthly growth rate, which is equivalent to a 7%
+rate of 6/12 = 0.5% monthly growth rate, which is equivalent to a 6%
 annual growth rate) would be closer to the continuous-time estimate
 (answer to 1b) than your answer from 1a (discrete annual growth) and 1d
 (discrete semi-annual growth)? Feel free to test this using Excel (and
@@ -877,7 +878,8 @@ realistic model than continuous growth (eq. 10)? Justify your
 answer.</p></li>
 <li><p><strong><em>Excel submission (1i.)</em></strong> [upload your
 Excel workbook] Please submit your final Excel workbook. If you used
-Google Sheets, please export as “.xslx” file.</p></li>
+Google Sheets, please export as “.xslx” file to upload to
+WebCampus.</p></li>
 </ul>
 </div>
 </div>
@@ -1021,29 +1023,29 @@ round(N30)</code></pre>
 also be asked to <strong>provide your R code via WebCampus to back up
 your answers</strong>.</p>
 <p>Modify the above code to change <span
-class="math inline">\(r_d\)</span> to 0.07 (7% discrete annual growth)
+class="math inline">\(r_d\)</span> to 0.06 (6% discrete annual growth)
 instead of 0.1, and run this model for 85 years instead of 30 years. Use
 this model to answer questions 2a and 2b:</p>
 <ul>
 <li><p><strong><em>Short answer (2a.)</em></strong> [numeric response]
 What is the final population size at year 85 (with starting abundance of
-100 and r=0.07)?</p></li>
+100 and r=0.06)?</p></li>
 <li><p><strong><em>Plot Upload (2b.)</em></strong> [image upload] Upload
 your plot (produced using R) of abundance vs time, illustrating
-population growth across the entire 85 year time span with 7% discrete
+population growth across the entire 85 year time span with 6% discrete
 annual growth.</p></li>
 </ul>
 <p>Modify the code again, this time change <span
-class="math inline">\(r_d\)</span> to 0.25 (25% annual discrete growth
-rate) instead of 0.07, and run this model again for 85 years. Use this
+class="math inline">\(r_d\)</span> to 0.2 (20% annual discrete growth
+rate) instead of 0.06, and run this model again for 85 years. Use this
 model to answer questions 2c and 2d:</p>
 <ul>
 <li><p><strong><em>Short answer (2c.)</em></strong> [numeric response]
 What is the final population size at year 85 (with starting abundance of
-100 and 25% discrete annual growth)?</p></li>
+100 and 20% discrete annual growth)?</p></li>
 <li><p><strong><em>Plot Upload (2d.)</em></strong> [image upload] Upload
 your plot (produced using R) of abundance vs time, illustrating
-population growth across the entire 85 year time span at 25% discrete
+population growth across the entire 85 year time span at 20% discrete
 annual growth.</p></li>
 <li><p><strong><em>Short answer (2e.)</em></strong> [numeric response]
 Use trial and error to modify the value of <span
@@ -1060,8 +1062,8 @@ virtual scratch pad) to make your calculations (showing all your work as
 clearly as possible), take a photo (or screenshot) and upload the image
 in WebCampus.</p></li>
 <li><p><strong><em>Short answer (2g.)</em></strong> [numeric response]
-Change the value of <span class="math inline">\(r_d\)</span> to -0.07
-(7% discrete annual population <em>decline</em>). How long until the
+Change the value of <span class="math inline">\(r_d\)</span> to -0.06
+(6% discrete annual population <em>decline</em>). How long until the
 population goes extinct? NOTE: we will define extinction in this
 exercise as &lt;1 individual in the population- a fraction of an
 individual is not much of a population!</p></li>
@@ -1177,7 +1179,7 @@ here.</p></li>
 Starting with a growing population (where birth rate exceeds death
 rate), can you come up with two different scenarios in which
 <em>Population</em> is neither growing nor declining, by only changing
-one of the sliders from the starting conditions (ie, starting with the
+one of the sliders from the starting conditions (i.e., starting with the
 version you just submitted in 3a)? Explain your answer.</p></li>
 </ul>
 </div>
@@ -1190,7 +1192,7 @@ script as text pasted into WebCampus) and responses via WebCampus. The
 InsightMaker models should be shared by saving your Insights as “public”
 and sharing the URL link with your instructors in Top Hat.</li>
 </ul>
-<p><strong><em>Due Feb. 9</em></strong></p>
+<p>See webcampus for submission deadline</p>
 <ul>
 <li>WebCampus short answers and file submissions
 <ul>
@@ -1226,13 +1228,13 @@ you were able to:
 <li>adapt the given code to run for 85 years, and can display a plot of
 the results;<br />
 </li>
-<li>change <span class="math inline">\(r\)</span> to 0.25 and run for 85
+<li>change <span class="math inline">\(r\)</span> to 0.2 and run for 85
 years and plot the results;<br />
 </li>
 <li>identify a value of <span class="math inline">\(r\)</span> that
 gives a population size of 2000 after 85 years; and<br />
 </li>
-<li>change <span class="math inline">\(r\)</span> to -0.07 and run until
+<li>change <span class="math inline">\(r\)</span> to -0.06 and run until
 the population goes extinct- and plot the results.</li>
 </ol></li>
 </ul></li>

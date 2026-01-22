@@ -99,9 +99,9 @@ A continuously growing population is always growing over time- no matter how sma
 
 We can use *calculus notation* to consider the change in population size for a continuously growing population:
 
-$\frac{\partial N}{\partial t} = r \cdot N  \qquad \text{(Eq. 9)}$ 
+$\frac{dN}{dt} = r \cdot N  \qquad \text{(Eq. 9)}$ 
 
-If you *integrate* this equation over time from the initial time (t=0) to time *t*, you get an equation that describes the population size at any given time $t$:
+If you follow the rules of calculus to "solve" this differential equation (*integrate* this equation over time from the initial condition to time *t*), you get an equation that describes the population size at any given time $t$:
 
 $N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$      
 
@@ -229,13 +229,13 @@ NOTE: you can format the cells in column B to be whole numbers using the context
 ### Exercise 1
 Please provide short answers to the following questions on WebCampus (you will be asked to **provide your Excel spreadsheet**).  
 
-*  ***Short answer (1a.)*** [numeric response] Change the per-capita growth rate to 0.07 in cell D3. Based on what we did together in the demo, this should change the value of abundance in year 30 (cell B32) automatically. *What is the new final abundance at year 30?* assuming discrete annual population growth? 
+*  ***Short answer (1a.)*** [numeric response] Change the per-capita growth rate to 0.06 in cell D3. Based on what we did together in the demo, this should change the value of abundance in year 30 (cell B32) automatically. *What is the new final abundance at year 30?* assuming discrete annual population growth? 
 
 *  ***Short answer (1b.)*** [numeric AND short text response] Assuming that the per-capita rate of growth $r$ in this model represents *continuous* and not *discrete* growth, apply equation 10 (continuous-growth model- see above) to compute the expected population size in year 30. *What is the new final abundance at year 30, assuming continuous growth?*. Is this new value different from your answer in question 1a (discrete growth model)? If so, did the continuous model produce a larger or smaller population estimate (for year 30) than the discrete growth model? 
 
 HINT: computing abundance at year 30 in the continuous-time model can be performed as a *single calculation* (using eq. 10, above)- don't over-think this one. You may use a scientific calculator instead of Excel if you'd like.
 
-HINT: use the EXP function in Excel to raise *e* (the base of the natural logarithm) to any power: for example, to compute $e^{0.07}$ you type "=EXP(0.07)" in Excel. 
+HINT: use the EXP function in Excel to raise *e* (the base of the natural logarithm) to any power: for example, to compute $e^{0.06}$ you type "=EXP(0.06)" in Excel. 
 
 In general, if you don't know the syntax for a function in Excel, click on the button labeled "fx" and you can search for functions using search terms!  
 
@@ -245,19 +245,19 @@ HINT: The answer is in the Gotelli book. Note that abundance N is in units of *i
 
 NOTE: The answer is the same for discrete and continuous-growth models.
 
-For the following problem (1d.) we will again assume discrete population growth (i.e., the "stair-step" model where the population grows in bursts), but this time we will assume the growth occurs in half-years instead of whole years (semi-annual growth). To do this, you will first need to divide the annual per-capita growth rate in half: so, if the annual growth rate is 0.07 (7% growth), the semi-annual growth rate would be 0.035 (3.5% percent growth each 6 months). Also, you need to change your number of time steps to 60 (60 half-years is equal to 30 whole-years). Try it in Excel! 
+For the following problem (1d.) we will again assume discrete population growth (i.e., the "stair-step" model where the population grows in bursts), but this time we will assume the growth occurs in half-years instead of whole years (semi-annual growth). To do this, you will first need to divide the annual per-capita growth rate in half: so, if the annual growth rate is 0.06 (6% growth), the semi-annual growth rate would be 0.03 (3% percent growth each 6 months). Also, you need to change your number of time steps to 60 (60 half-years is equal to 30 whole-years). Try it in Excel! 
 
-* ***Short answer (1d.)*** [numeric and short text responses] What is the final abundance after 30 years (60 half-years) assuming semi-annual discrete growth of 3.5% per half-year (which implies 7% annual growth, just like your previous calculations assumed) (see more detailed instructions above)? Is this value different from your answer in question 1a (annual discrete growth of 7% per year)? If so, is your new estimate (semi-annual discrete growth) larger or smaller than your answer for question 1a (annual discrete growth)?
+* ***Short answer (1d.)*** [numeric and short text responses] What is the final abundance after 30 years (60 half-years) assuming semi-annual discrete growth of 3% per half-year (which implies 6% annual growth, just like your previous calculations assumed) (see more detailed instructions above)? Is this value different from your answer in question 1a (annual discrete growth of 6% per year)? If so, is your new estimate (semi-annual discrete growth) larger or smaller than your answer for question 1a (annual discrete growth)?
 
-* ***Short answer (1e.)*** [numeric and short text responses] Assuming a *continuously growing population* with a 3.5% semi-annual rate of growth (equivalent to a 7% continuous annual rate of growth, like question 1b), apply equation 10 (continuous-growth model) to compute the expected population size at time step 60 (60 half-years = 30 full years, equivalent to question 1b). *What is the new final abundance estimate at year 30 (60 half-years), assuming continuous 3.5% semi-annual growth?*. Is this value different from your answer in question 1b (continuous annual growth)? If so, is your new estimate larger or smaller than your answer from q1b? 
+* ***Short answer (1e.)*** [numeric and short text responses] Assuming a *continuously growing population* with a 3% semi-annual rate of growth (equivalent to a 6% continuous annual rate of growth, like question 1b), apply equation 10 (continuous-growth model) to compute the expected population size at time step 60 (60 half-years = 30 full years, equivalent to question 1b). *What is the new final abundance estimate at year 30 (60 half-years), assuming continuous 3% semi-annual growth?*. Is this value different from your answer in question 1b (continuous annual growth)? If so, is your new estimate larger or smaller than your answer from q1b? 
 
-* ***Short answer (1f.)*** [short text response] Imagine you modeled this population using a *discrete monthly* growth model instead of a discrete annual model (like q1a). Based on your above results (q1a-e), do you think the resulting estimate of population size after 30 years (360 months, using a monthly growth rate of 7/12 = 0.583% monthly growth rate, which is equivalent to a 7% annual growth rate) would be closer to the continuous-time estimate (answer to 1b) than your answer from 1a (discrete annual growth) and 1d (discrete semi-annual growth)? Feel free to test this using Excel (and explain how you did this), or use your intuition and explain your rationale? 
+* ***Short answer (1f.)*** [short text response] Imagine you modeled this population using a *discrete monthly* growth model instead of a discrete annual model (like q1a). Based on your above results (q1a-e), do you think the resulting estimate of population size after 30 years (360 months, using a monthly growth rate of 6/12 = 0.5% monthly growth rate, which is equivalent to a 6% annual growth rate) would be closer to the continuous-time estimate (answer to 1b) than your answer from 1a (discrete annual growth) and 1d (discrete semi-annual growth)? Feel free to test this using Excel (and explain how you did this), or use your intuition and explain your rationale? 
 
 *  ***Short answer (1g.)*** [short text response] Can you think of at least one real-world example where continuous growth (eq. 10) would be a more biologically realistic model than discrete growth (eq. 16)? Justify your answer.
 
 *  ***Short answer (1h.)*** [short text response] Can you think of at least one real-world example where discrete population growth (eq. 16) would be a more biologically realistic model than continuous growth (eq. 10)? Justify your answer.
 
-*  ***Excel submission (1i.)*** [upload your Excel workbook] Please submit your final Excel workbook. If you used Google Sheets, please export as ".xslx" file. 
+*  ***Excel submission (1i.)*** [upload your Excel workbook] Please submit your final Excel workbook. If you used Google Sheets, please export as ".xslx" file to upload to WebCampus. 
 
 
 ## Exponential growth in R
@@ -372,23 +372,23 @@ plot(N~year)   #This plot() function tells R to plot the y variable by the x var
 
 Please provide short answers to the following questions. You will also be asked to **provide your R code via WebCampus to back up your answers**.
 
-Modify the above code to change $r_d$ to 0.07 (7% discrete annual growth) instead of 0.1, and run this model for 85 years instead of 30 years. Use this model to answer questions 2a and 2b: 
+Modify the above code to change $r_d$ to 0.06 (6% discrete annual growth) instead of 0.1, and run this model for 85 years instead of 30 years. Use this model to answer questions 2a and 2b: 
 
-*  ***Short answer (2a.)*** [numeric response] What is the final population size at year 85 (with starting abundance of 100 and r=0.07)? 
+*  ***Short answer (2a.)*** [numeric response] What is the final population size at year 85 (with starting abundance of 100 and r=0.06)? 
 
-*  ***Plot Upload (2b.)*** [image upload] Upload your plot (produced using R) of abundance vs time, illustrating population growth across the entire 85 year time span with 7% discrete annual growth. 
+*  ***Plot Upload (2b.)*** [image upload] Upload your plot (produced using R) of abundance vs time, illustrating population growth across the entire 85 year time span with 6% discrete annual growth. 
 
-Modify the code again, this time change $r_d$ to 0.25 (25% annual discrete growth rate) instead of 0.07, and run this model again for 85 years. Use this model to answer questions 2c and 2d: 
+Modify the code again, this time change $r_d$ to 0.2 (20% annual discrete growth rate) instead of 0.06, and run this model again for 85 years. Use this model to answer questions 2c and 2d: 
 
-*  ***Short answer (2c.)*** [numeric response] What is the final population size at year 85 (with starting abundance of 100 and 25% discrete annual growth)? 
+*  ***Short answer (2c.)*** [numeric response] What is the final population size at year 85 (with starting abundance of 100 and 20% discrete annual growth)? 
 
-*  ***Plot Upload (2d.)*** [image upload] Upload your plot (produced using R) of abundance vs time, illustrating population growth across the entire 85 year time span at 25% discrete annual growth. 
+*  ***Plot Upload (2d.)*** [image upload] Upload your plot (produced using R) of abundance vs time, illustrating population growth across the entire 85 year time span at 20% discrete annual growth. 
 
 *  ***Short answer (2e.)*** [numeric response] Use trial and error to modify the value of $r_d$ (discrete annual rate of growth) such that the final population size after 85 years is as close as possible to 2000 (initial population is still 100). What is the value of $r_d$ you identified by trial and error? 
 
 *  ***Image upload (2f.)*** [image upload] After you solve this problem by trial and error (2e), try to solve this problem analytically (solve for $r_d$) using Eq. 17. Use scratch paper (or virtual scratch pad) to make your calculations (showing all your work as clearly as possible), take a photo (or screenshot) and upload the image in WebCampus.  
 
-*  ***Short answer (2g.)*** [numeric response] Change the value of $r_d$ to -0.07 (7% discrete annual population *decline*). How long until the population goes extinct? NOTE: we will define extinction in this exercise as <1 individual in the population- a fraction of an individual is not much of a population! 
+*  ***Short answer (2g.)*** [numeric response] Change the value of $r_d$ to -0.06 (6% discrete annual population *decline*). How long until the population goes extinct? NOTE: we will define extinction in this exercise as <1 individual in the population- a fraction of an individual is not much of a population! 
 
 *  ***Short answer (2h.)*** [short text response] In 2g above, we defined extinction as <1 individual in the population. Propose one alternative definition of extinction and justify why your definition might make more sense than the definition used in 2g (feel free to use a real-world example).
 
@@ -441,13 +441,13 @@ Now click on the white space of your model; you should now see the Birth Rate, P
 
 *  ***Short answer (3a.)*** [Text input: InsightMaker URL] Submit the link for your InsightMaker model here.
 
-*  ***Short answer (3b.)*** [Short text input] Starting with a growing population (where birth rate exceeds death rate), can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions (ie, starting with the version you just submitted in 3a)? Explain your answer. 
+*  ***Short answer (3b.)*** [Short text input] Starting with a growing population (where birth rate exceeds death rate), can you come up with two different scenarios in which *Population* is neither growing nor declining, by only changing one of the sliders from the starting conditions (i.e., starting with the version you just submitted in 3a)? Explain your answer. 
 
 
 ## Checklist for Lab 1 completion
 * Please submit all files (Excel file as attachment in WebCampus and R script as text pasted into WebCampus) and responses via WebCampus. The InsightMaker models should be shared by saving your Insights as "public" and sharing the URL link with your instructors in Top Hat.
 
-***Due Feb. 9***
+See webcampus for submission deadline
 
 *  WebCampus short answers and file submissions
     +  **Exercise 1**
@@ -472,9 +472,9 @@ Now click on the white space of your model; you should now see the Birth Rate, P
         -  *Short answer (2h.)*
         -  *Copy and paste R code (2i.)*  Your R code should show that you were able to:        
             a. adapt the given code to run for 85 years, and can display a plot of the results;     
-            b. change $r$ to 0.25 and run for 85 years and plot the results;     
+            b. change $r$ to 0.2 and run for 85 years and plot the results;     
             c. identify a value of $r$ that gives a population size of 2000 after 85 years; and     
-            d. change $r$ to -0.07 and run until the population goes extinct- and plot the results.    
+            d. change $r$ to -0.06 and run until the population goes extinct- and plot the results.    
 
     +  **Exercise 3**
         -  *Submit InsightMaker link (3a.)*
