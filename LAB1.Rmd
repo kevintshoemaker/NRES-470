@@ -25,7 +25,7 @@ $\Delta N$ represents the change in population size, ${N_{t+1}}-{N_t}$
 
 The famous "BIDE" equation is a way to break down $\Delta N$ into components. 
 
-$\Delta N = B + I - D - E \qquad \text{(Eq. 1)}$
+$$\Delta N = B + I - D - E \qquad \text{(Eq. 1)}$$
 
 where $B$ represents the number of births, $I$ represents the number of immigrants, $D$ represents the number of deaths, and $E$ represents the number of emigrants. 
 
@@ -53,33 +53,33 @@ The population vital rates (per-capita demographic rates) are often expressed as
 
 To compute the per-capita birth rate $b$, for example, we can divide the total number of births (B) by the population size N:
 
-$b = \frac {B_t}{N_t} \qquad \text{(Eq. 2)}$
+$$b = \frac {B_t}{N_t} \qquad \text{(Eq. 2)}$$
 
 --or, re-factored in terms of B (total births)--
 
-$B_t = b \cdot N_t \qquad \text{(Eq. 3)}$
+$$B_t = b \cdot N_t \qquad \text{(Eq. 3)}$$
 
 The letter $t$ represents time (usually in years). So the above equation could be described as follows: "the number of births in a given year is equal to the per-capita birth rate times the total population size that year"
 
 Similarly, 
 
-$D_t = d \cdot N_t \qquad \text{(Eq. 4)}$
+$$D_t = d \cdot N_t \qquad \text{(Eq. 4)}$$
 
 Okay, we're almost there.
 
-If $\Delta N = B - D \qquad \text{(Eq. 5)}$ 
+If $$\Delta N = B - D \qquad \text{(Eq. 5)}$$ 
 
 then
 
-$\Delta N = b \cdot N_t - d \cdot N_t\qquad \text{(Eq. 6)}$
+$$\Delta N = b \cdot N_t - d \cdot N_t\qquad \text{(Eq. 6)}$$
 
 which is equal to:
 
-$\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 7)}$
+$$\Delta N = (b - d) \cdot N_t \qquad \text{(Eq. 7)}$$
 
 which could also be written:
 
-$\Delta N = r \cdot N_t\qquad \text{(Eq. 8)}$
+$$\Delta N = r \cdot N_t\qquad \text{(Eq. 8)}$$
 
 Where $r$ represents the difference between the per-capita birth and death and death rates. 
 
@@ -87,11 +87,11 @@ This is probably the most fundamental equation of population ecology.
 
 If $r$ is positive, then births are greater than deaths and the population grows. 
 
-$r>0 \implies growing \space population$
+$$r>0 \implies growing \space population$$
 
 If $r$ is negative then deaths exceed births and the population declines. 
 
-$r<0 \implies declining \space population$
+$$r<0 \implies declining \space population$$
 
 ### Continuous population growth
 
@@ -99,11 +99,11 @@ A continuously growing population is always growing over time- no matter how sma
 
 We can use *calculus notation* to consider the change in population size for a continuously growing population:
 
-$\frac{dN}{dt} = r \cdot N  \qquad \text{(Eq. 9)}$ 
+$$\frac{dN}{dt} = r \cdot N  \qquad \text{(Eq. 9)}$$ 
 
 If you follow the rules of calculus to "solve" this differential equation (*integrate* this equation over time from the initial condition to time *t*), you get an equation that describes the population size at any given time $t$:
 
-$N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$      
+$$N_t = N_0 e^{rt}  \qquad \text{(Eq. 10)}$$      
 
 That is, population size at time $t$ is equal to the population size at time zero (initial abundance, $N_0$) multiplied by the base of the natural logarithm (*e*) to the $rt$ power. 
 
@@ -149,31 +149,31 @@ Since Lambda is what we use to "bump" population size up from what it is this ye
 
 We can derive Lambda using the following logic:
 
-$N_{t+1}=N_t + B - D  \qquad \text{(Eq. 11)}$         
+$$N_{t+1}=N_t + B - D  \qquad \text{(Eq. 11)}$$         
 
-$N_{t+1}=N_t + b_d \cdot N_t - d_d \cdot N_t  \qquad \text{(Eq. 12)}$ 
+$$N_{t+1}=N_t + b_d \cdot N_t - d_d \cdot N_t  \qquad \text{(Eq. 12)}$$ 
 
 I am using the *d* subscript to indicate that the per-capita birth and death rates now represent **discrete growth** (births and deaths only occur once in each time step)
 
-$N_{t+1}=N_t + (b_d - d_d) \cdot N_t \qquad \text{(Eq. 13)}$       
+$$N_{t+1}=N_t + (b_d - d_d) \cdot N_t \qquad \text{(Eq. 13)}$$       
 
-$N_{t+1}=N_t + r_d \cdot N_t  \qquad \text{(Eq. 14)}$   
+$$N_{t+1}=N_t + r_d \cdot N_t  \qquad \text{(Eq. 14)}$$   
 
-$N_{t+1}=N_t \cdot (1 + r_d)  \qquad \text{(Eq. 15)}$         
+$$N_{t+1}=N_t \cdot (1 + r_d)  \qquad \text{(Eq. 15)}$$         
 
-$N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 16)}$
+$$N_{t+1}=\lambda \cdot N_t  \qquad \text{(Eq. 16)}$$
 
 A Lambda above 1 implies that births exceed deaths each year, and the population is growing:
 
-$\lambda>1 \implies growing \space population$
+$$\lambda>1 \implies growing \space population$$
 
 And...
 
-$\lambda<1 \implies growing \space population$
+$$\lambda<1 \implies declining \space population$$
 
 Finally, if you want to compute the population size after $t$ time-steps of discrete population growth (analogous to eq. 10) you can use the following equation:
 
-$N_t = N_0 * \lambda^{t}    \qquad \text{(Eq. 17)}$
+$$N_t = N_0 * \lambda^{t}    \qquad \text{(Eq. 17)}$$
 
 
 ### Difference between discrete and continuous growth
