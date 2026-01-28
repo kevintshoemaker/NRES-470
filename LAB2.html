@@ -14,7 +14,7 @@
 
 <title>Lab 2: Density-dependence and more!</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 2: Density-dependence and more!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -496,15 +496,15 @@ case?</p>
 <p>Using some tricks of algebra (see the Gotelli book), we can simplify
 this to:</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t \left [ 1 -
-\frac{a+c}{b-d} \cdot N_t \right ] \qquad \text{(Eq. 5)}\)</span></p>
+\frac{a+c}{b-d} \cdot N_t  \right ]  \qquad \text{(Eq. 5)}\)</span></p>
 <p>Which, if we define <span
 class="math inline">\(\frac{b-d}{a+c}\)</span> as a constant, <span
 class="math inline">\(K\)</span>, we can re-write like this!</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 -
-\frac{N}{K} \right ) \qquad \text{(Eq. 6)}\)</span></p>
+\frac{N}{K}  \right )  \qquad \text{(Eq. 6)}\)</span></p>
 <p>You should be aware that this equation is equivalent to <span
-class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( \frac{K-N}{K}
-\right )\)</span>. You will see both versions used in the
+class="math inline">\(\Delta N = r \cdot N_t \cdot \left (
+\frac{K-N}{K}  \right )\)</span>. You will see both versions used in the
 literature!</p>
 <p>This is called the <strong>Logistic population growth
 equation</strong>. This lab will give us an opportunity to get to know
@@ -570,17 +570,17 @@ step without causing the population to crash!</p>
 <ol style="list-style-type: decimal">
 <li>In InsightMaker, open your basic exponential growth model (with
 explicit terms for birth and death rates, like you did in lab 1) and
-choose “Clone Insight” in the upper right corner to create a new copy
-that you can edit for this exercise. It should look something like this
-(see below; except for anchovies, not rabbits!). Note that it is not
-strictly necessary to have [Links] going from [Stocks] (e.g.,
-<em>Population</em>) to connected [Flows] (e.g., <em>Total Births</em>
-and <em>Total Deaths</em>; InsightMaker assumes that flows may depend on
-the stocks they connect to).</li>
+choose “Clone Insight” to create a new copy that you can edit for this
+exercise. It should look something like this (see below; except for
+anchovies, not rabbits!). Note that it is not strictly necessary to have
+[Links] going from [Stocks] (e.g., <em>Population</em>) to connected
+[Flows] (e.g., <em>Total Births</em> and <em>Total Deaths</em>;
+InsightMaker assumes that flows may depend on the stocks they connect
+to).</li>
 </ol>
 <p><img src="basicexp1.png" /></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Now add the density-dependence components! Remember, the
+<li>Now add the density-dependence components. Remember, the
 density-dependent birth and death rates in the logistic growth model can
 be expressed as the following:</li>
 </ol>
@@ -724,30 +724,34 @@ at the maximum ‘sustainable’ rate? Consider that population vital rates
 (random fluctuations) and that we never know population parameters
 (e.g., the intrinsic rate of growth, birth and death rates, density
 dependence parameters) with complete certainty.</p>
-<p>2g (image upload). Using equation 6 as a starting point, try to
-analytically solve for <strong>Maximum Sustainable Yield</strong>
-(maximum number of individuals that can be harvested sustainably each
-time step)? Upload an image file to WebCampus showing your calculations
-(you can use a drawing app, a “web whiteboard” application, or upload a
-photo of your work).</p>
-<p>HINT: <span class="math inline">\(r_{max}\)</span> is the difference
-between the maximum birth rate and the minimum death rate!</p>
-<p>HINT: the population should have its highest growth potential
-(potentially sustainable yield) at exactly one-half of K [e.g.,
-K/2]).</p>
+<p>2g (image upload). Using equation 6 as a starting point, analytically
+solve for <strong>Maximum Sustainable Yield</strong> (maximum number of
+individuals that can be harvested sustainably each time step)? Upload an
+image file to WebCampus showing your calculations (you can use a drawing
+app, a “web whiteboard” application, or upload a photo of your
+work).</p>
+<p>HINT: <span class="math inline">\(r_{max}\)</span> (maximum per
+capita growth rate) is the difference between the maximum birth rate and
+the minimum death rate!</p>
+<p>HINT: under the logistic growth model, the population has its highest
+growth potential (and therefore the highest potential sustainable yield)
+at exactly one-half of K [e.g., K/2]).</p>
 <p>HINT: at MSY, the net number of new individuals produced by the
-population per time step is equal to the number harvested. That is,
-<span class="math inline">\(\Delta N\)</span> at MSY is equal to the
-harvest rate at MSY! (at any equilibrium point, the inputs flows are
-equal to the output flows)</p>
+population per time step (i.e., <span class="math inline">\(\Delta
+N\)</span>) is equal to the number harvested (this is by definition- at
+any equilibrium point, the inputs flows are equal to the output
+flows).</p>
 <p>NOTE: Your analytical solution for MSY (maximum sustainable harvest
 rate) should closely match the answer you found by trial-and-error in
-2a.</p>
+2a. If it doesn’t one or both of your above models is wrong- that means
+you should go back and try again!</p>
 </div>
 </div>
-<div id="exercise-3-simpler-logistic-growth-model"
+<div
+id="exercise-3-basic-logistic-growth-model-single-stock-single-flow"
 class="section level2">
-<h2>Exercise 3: simpler logistic growth model</h2>
+<h2>Exercise 3: basic logistic growth model (single stock, single
+flow)</h2>
 <p>For this exercise we will set up a simpler density-dependent growth
 model in InsightMaker- this time, we will replicate <strong>Eq.
 6</strong> (above) in InsightMaker. Unlike the anchovy model, which
@@ -797,10 +801,10 @@ specified.</p></li>
 equilibrium</strong>? Explain your reasoning.</p>
 <p>HINT: remember, when testing if an equilibrium is stable or not,
 first initialize the population at the equilibrium point and verify that
-the population neither grows or declines. Next, alter the system by
-changing the initial abundance above and below the equilibrium, each
-time running the model to test whether or not it returns to the same
-equilibrium state!</p>
+the population neither grows or declines. Next, alter (perturb) the
+system by changing the initial abundance above and below the
+equilibrium, each time running the model to test whether or not it
+returns to the same equilibrium state!</p>
 <p>Next, return the initial abundance to 10. Now start adjusting the
 value of <em>Max Growth Rate</em>. What do you notice as the maximum
 growth rate increases? Focus on the time series of population abundance
@@ -857,10 +861,11 @@ which you observe this pattern).</p>
 </ul>
 </div>
 <div
-id="optional-exercise-4-delayed-density-dependence-optional--not-part-of-the-official-lab"
+id="optional-exercise-4-delayed-density-dependence-optional--not-part-of-the-official-lab-and-does-not-count-towards-your-lab-2-grade"
 class="section level2">
 <h2>OPTIONAL: Exercise 4: delayed density-dependence! [optional- not
-part of the ‘official’ lab]</h2>
+part of the ‘official’ lab and does not count towards your Lab 2
+grade]</h2>
 <p>What happens when the effects of resource competition are delayed? In
 this case, the effects of competition (reduction in fitness) will not
 manifest immediately- but will emerge later down the road!</p>

@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Density-dependence and more!"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -77,11 +77,11 @@ As you develop the logistic growth model for the Peruvian anchovy stock in Insig
 
 **The Goal**: identify the maximum sustainable yield! That is, we want to identify the maximum amount we can harvest each time step without causing the population to crash!
 
-1.   In InsightMaker, open your basic exponential growth model (with explicit terms for birth and death rates, like you did in lab 1) and choose "Clone Insight" in the upper right corner to create a new copy that you can edit for this exercise. It should look something like this (see below; except for anchovies, not rabbits!). Note that it is not strictly necessary to have [Links] going from [Stocks] (e.g., *Population*) to connected [Flows] (e.g., *Total Births* and *Total Deaths*; InsightMaker assumes that flows may depend on the stocks they connect to).
+1.   In InsightMaker, open your basic exponential growth model (with explicit terms for birth and death rates, like you did in lab 1) and choose "Clone Insight" to create a new copy that you can edit for this exercise. It should look something like this (see below; except for anchovies, not rabbits!). Note that it is not strictly necessary to have [Links] going from [Stocks] (e.g., *Population*) to connected [Flows] (e.g., *Total Births* and *Total Deaths*; InsightMaker assumes that flows may depend on the stocks they connect to).
 
 ![](basicexp1.png)
 
-2.  Now add the density-dependence components! Remember, the density-dependent birth and death rates in the logistic growth model can be expressed as the following: 
+2.  Now add the density-dependence components. Remember, the density-dependent birth and death rates in the logistic growth model can be expressed as the following: 
 
 $b = b_{max} - aN$, *aka* density-dependent birth rate = most favorable (maximum) birth rate - (strength of density dependence * N)
 
@@ -158,18 +158,18 @@ HINT: start with initial abundance set to the equilibrium abundance at MSY (answ
 
 2f (short answer). You are a fisheries manager in charge of managing this Peruvian anchovy stock. Do you recommend allowing harvest to occur at the maximum sustainable rate you determined in part 2a? Why or why not? More generally, is it *sustainable* to harvest a population at the maximum 'sustainable' rate? Consider that population vital rates (birth and death rates) in real systems exhibit *stochasticity* (random fluctuations) and that we never know population parameters (e.g., the intrinsic rate of growth, birth and death rates, density dependence parameters) with complete certainty.  
 
-2g (image upload). Using equation 6 as a starting point, try to analytically solve for **Maximum Sustainable Yield** (maximum number of individuals that can be harvested sustainably each time step)? Upload an image file to WebCampus showing your calculations (you can use a drawing app, a "web whiteboard" application, or upload a photo of your work).
+2g (image upload). Using equation 6 as a starting point, analytically solve for **Maximum Sustainable Yield** (maximum number of individuals that can be harvested sustainably each time step)? Upload an image file to WebCampus showing your calculations (you can use a drawing app, a "web whiteboard" application, or upload a photo of your work).
 
-HINT: $r_{max}$ is the difference between the maximum birth rate and the minimum death rate! 
+HINT: $r_{max}$ (maximum per capita growth rate) is the difference between the maximum birth rate and the minimum death rate! 
 
-HINT: the population should have its highest growth potential (potentially sustainable yield) at exactly one-half of K [e.g., K/2]). 
+HINT: under the logistic growth model, the population has its highest growth potential (and therefore the highest potential sustainable yield) at exactly one-half of K [e.g., K/2]). 
 
-HINT: at MSY, the net number of new individuals produced by the population per time step is equal to the number harvested. That is, $\Delta N$ at MSY is equal to the harvest rate at MSY! (at any equilibrium point, the inputs flows are equal to the output flows)
+HINT: at MSY, the net number of new individuals produced by the population per time step (i.e., $\Delta N$) is equal to the number harvested (this is by definition- at any equilibrium point, the inputs flows are equal to the output flows). 
 
-NOTE: Your analytical solution for MSY (maximum sustainable harvest rate) should closely match the answer you found by trial-and-error in 2a. 
+NOTE: Your analytical solution for MSY (maximum sustainable harvest rate) should closely match the answer you found by trial-and-error in 2a. If it doesn't one or both of your above models is wrong- that means you should go back and try again!
 
 
-## Exercise 3: simpler logistic growth model
+## Exercise 3: basic logistic growth model (single stock, single flow)
 
 For this exercise we will set up a simpler density-dependent growth model in InsightMaker- this time, we will replicate **Eq. 6** (above) in InsightMaker. Unlike the anchovy model, which modeled the population vital rates $b$ and $d$ explicitly, this  "r formulation" of logistic growth will treat $r$ (difference between $b$ and $d$) as a single population vital rate.  
 
@@ -190,7 +190,7 @@ For this exercise we will set up a simpler density-dependent growth model in Ins
 
 3a (short answer). Is carrying capacity a **stable equilibrium**? Explain your reasoning. 
 
-HINT: remember, when testing if an equilibrium is stable or not, first initialize the population at the equilibrium point and verify that the population neither grows or declines. Next, alter the system by changing the initial abundance above and below the equilibrium, each time running the model to test whether or not it returns to the same equilibrium state! 
+HINT: remember, when testing if an equilibrium is stable or not, first initialize the population at the equilibrium point and verify that the population neither grows or declines. Next, alter (perturb) the system by changing the initial abundance above and below the equilibrium, each time running the model to test whether or not it returns to the same equilibrium state! 
 
 Next, return the initial abundance to 10. Now start adjusting the value of *Max Growth Rate*. What do you notice as the maximum growth rate increases? Focus on the time series of population abundance over time. Can you identify different major changes in your 'abundance over time' plots as the growth rate increases from 1 to 5? You should be able to identify _at least_ three unique patterns of population dynamics! 
 
@@ -231,7 +231,7 @@ Your lab answers and pertinent figures should be submitted in the Lab 2 quiz in 
       -  *Short answer (3e.)*
         
 
-## OPTIONAL: Exercise 4: delayed density-dependence! [optional- not part of the 'official' lab]
+## OPTIONAL: Exercise 4: delayed density-dependence! [optional- not part of the 'official' lab and does not count towards your Lab 2 grade]
 
 What happens when the effects of resource competition are delayed? In this case, the effects of competition (reduction in fitness) will not manifest immediately- but will emerge later down the road!
 
