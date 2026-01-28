@@ -14,7 +14,7 @@
 
 <title>Population regulation</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Population regulation</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -474,8 +474,8 @@ own species, the less favorable your <strong>vital rates</strong> become
 rate, <em>b</em>, decreases)! As <em>N</em> goes up, vital rates take a
 turn for the worse.</p>
 <p>If vital rates become less favorable to growth as population density
-increases, this is known as <strong>negative density
-dependence</strong>.</p>
+increases, this is known as <strong>negative density dependence</strong>
+(as abundance goes up, the per capita growth rate does down!).</p>
 </div>
 <div id="regulation" class="section level2">
 <h2>Regulation!</h2>
@@ -502,20 +502,20 @@ of nature”?</p>
 <p>Logistic growth can be described mathematically by the following
 equation:</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t \cdot \left ( 1 -
-\frac{N}{K} \right )\)</span></p>
-<p>This is the <em>second most important equation of population
-ecology</em> (after basic exponential growth!).</p>
+\frac{N}{K}  \right )\)</span></p>
+<p>This is the second most important equation of population ecology
+(after basic exponential growth!).</p>
 <p>We will go into more detail in lab, but let’s break this equation
 down a bit.</p>
 <p>The first part of this equation looks familiar, right?</p>
 <p><span class="math inline">\(\Delta N = r \cdot N_t\)</span></p>
 <p>What about the second part,</p>
-<p><span class="math inline">\(\left ( 1 - \frac{N}{K} \right
+<p><span class="math inline">\(\left ( 1 - \frac{N}{K}  \right
 )\)</span></p>
 <p>You can think about <span class="math inline">\(\frac{N}{K}\)</span>
 as the <em>used portion of carrying capacity</em></p>
 <p>By the same token, you can think about <span
-class="math inline">\(\left ( 1 - \frac{N}{K} \right )\)</span> as the
+class="math inline">\(\left ( 1 - \frac{N}{K}  \right )\)</span> as the
 <em>unused portion of carrying capacity</em> (or the relative
 ‘un-crowded-ness’ of the habitat).</p>
 <p>When carrying capacity is mostly unused, <em>population growth
@@ -542,9 +542,10 @@ ideal, per-capita birth rate and <span class="math inline">\(a\)</span>
 is the density dependence term.</p>
 <p>Similarly,</p>
 <p><span class="math inline">\(d=d_{min}+c*[Density]\)</span></p>
-<p>where <span class="math inline">\(d_{min}\)</span> is the minimum, or
-ideal, per-capita death rate (1-maximum survival rate) and <span
-class="math inline">\(c\)</span> is the density dependence term.</p>
+<p>where <span class="math inline">\(d_{min}\)</span> is the minimum
+(most favorable) per-capita death rate (1-maximum survival rate) and
+<span class="math inline">\(c\)</span> is the density dependence
+term.</p>
 <p>We can plot these equations out in R:</p>
 <pre class="r"><code>Density &lt;- seq(0,500,1)  # create a sequence of numbers from 0 to 500, representing a range of population densities
 
@@ -576,6 +577,9 @@ understand.</p>
 </div>
 <div id="stable-and-non-stable-equilibria" class="section level2">
 <h2>Stable and non-stable equilibria</h2>
+<p>First, when we add or subtract a small number of individuals to a
+population that is at an equilibrium point, we say we have ‘perturbed’
+the system.</p>
 <p>A <strong>stable equilibrium</strong>, when perturbed, returns to the
 equilibrium point</p>
 <p>A <strong>non-stable equilibrium</strong>, when perturbed, does NOT
@@ -591,9 +595,9 @@ capacity</strong>?</p>
 <h2>In-class exercise: logistic growth</h2>
 <p>First of all, remember to save your working InsightMaker models,
 since we will often be building from previous models (so we don’t have
-to start from scratch every class!). To build off of a previous Insight,
-open a previous Insight (e.g., your basic exponential growth model– or
-clone <a
+to start from scratch every class!).</p>
+<p>To build off of a previous Insight, open a previous Insight (e.g.,
+your basic exponential growth model– or clone <a
 href="https://insightmaker.com/insight/68236/Basic-population">this
 model</a>) and choose “Clone Insight” in the upper right corner to
 create a copy that you can edit.</p>
@@ -611,17 +615,19 @@ the R code and figure above- this time in InsightMaker!</p>
 <p>How can we do this in InsightMaker?</p>
 <ol style="list-style-type: decimal">
 <li><p>Load a basic exponential-growth model. Rename the main [Stock]
-<em>Turtles</em>. This [Stock] should have two [Flows], one [Flow In]
-named <em>Births</em> and one [Flow Out] named <em>Deaths</em>. Both
-<em>Births</em> and <em>Deaths</em> should be defined as the product of
-<em>Turtles</em> and per-capita rates, respectively called <em>Births
-per capita</em> and <em>Deaths per capita</em> (each defined on the
-canvas as [Variables]). This model should be very familiar by
-now!!</p></li>
-<li><p>Initialize the population of <em>Turtles</em> to 5 (way below
-carrying capacity).</p></li>
+<em>Turtles</em> (or your favorite animal!). This [Stock] should have
+two [Flows], one [Flow In] named <em>Births</em> and one [Flow Out]
+named <em>Deaths</em>. Both <em>Births</em> and <em>Deaths</em> should
+be defined as the product of <em>Turtles</em> and per-capita rates,
+respectively called <em>Births per capita</em> and <em>Deaths per
+capita</em> (each defined on the canvas as [Variables]). This model
+should be very familiar by now!!</p></li>
+<li><p>Initialize the population to 5 (way below carrying
+capacity).</p></li>
 <li><p>Make four new [Variables] on the canvas, to represent the four
-constants in our model.</p></li>
+key rates in our model (max. birth rate, dropoff in birth rate with each
+new individual added to the population, min. death rate, slope of death
+rate with increasing abundance).</p></li>
 <li><p>Set the <em>Maximum per-capita birth rate</em> to 0.8 (turtles
 produced per turtle per year). Set the <em>Minimum per-capita Death
 rate</em> to 0.3. Set the <em>Density dependence on fecundity</em> to
@@ -653,7 +659,7 @@ stable? Is it an equilibrium point?</p>
 <li>Consider the basic logistic growth equation:</li>
 </ol>
 <p><span class="math inline">\(\Delta N = r_{max} \cdot N_t \cdot \left
-( 1 - \frac{N}{K} \right )\)</span></p>
+( 1 - \frac{N}{K}  \right )\)</span></p>
 <p><strong>Q:</strong> What happens if <span
 class="math inline">\(r_{max}\)</span> is zero? What happens to carrying
 capacity?<br />

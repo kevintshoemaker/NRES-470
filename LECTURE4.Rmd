@@ -1,7 +1,7 @@
 ---
 title: "Population regulation"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -19,7 +19,7 @@ As part of Lab 1 we went through the mathematics of exponential growth. This wee
 
 **Density**: In D-D, *density* basically refers to the number of conspecific individuals that you are competing with for food and/or other resources. The more you compete with others of your own species, the less favorable your **vital rates** become (e.g., per-capita death rate, *d*, increases or per-capita birth rate, *b*, decreases)! As *N* goes up, vital rates take a turn for the worse. 
 
-If vital rates become less favorable to growth as population density increases, this is known as **negative density dependence**. 
+If vital rates become less favorable to growth as population density increases, this is known as **negative density dependence** (as abundance goes up, the per capita growth rate does down!). 
 
 ## Regulation!
 
@@ -37,7 +37,7 @@ Logistic growth can be described mathematically by the following equation:
 
 $\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
 
-This is the *second most important equation of population ecology* (after basic exponential growth!). 
+This is the second most important equation of population ecology (after basic exponential growth!). 
 
 We will go into more detail in lab, but let's break this equation down a bit. 
 
@@ -73,7 +73,7 @@ Similarly,
 
 $d=d_{min}+c*[Density]$
 
-where $d_{min}$ is the minimum, or ideal, per-capita death rate (1-maximum survival rate) and $c$ is the density dependence term.
+where $d_{min}$ is the minimum (most favorable) per-capita death rate (1-maximum survival rate) and $c$ is the density dependence term.
 
 We can plot these equations out in R:
 
@@ -111,6 +111,8 @@ Equilibria can be stable or unstable (see below). This distinction is critical f
 
 ## Stable and non-stable equilibria
 
+First, when we add or subtract a small number of individuals to a population that is at an equilibrium point, we say we have 'perturbed' the system. 
+
 A **stable equilibrium**, when perturbed, returns to the equilibrium point
 
 A **non-stable equilibrium**, when perturbed, does NOT return to the equilibrium point 
@@ -127,7 +129,9 @@ Let's find out!
 
 ## In-class exercise: logistic growth
 
-First of all, remember to save your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!). To build off of a previous Insight, open a previous Insight (e.g., your basic exponential growth model-- or clone [this model](https://insightmaker.com/insight/68236/Basic-population)) and choose "Clone Insight" in the upper right corner to create a copy that you can edit. 
+First of all, remember to save your working InsightMaker models, since we will often be building from previous models (so we don't have to start from scratch every class!). 
+
+To build off of a previous Insight, open a previous Insight (e.g., your basic exponential growth model-- or clone [this model](https://insightmaker.com/insight/68236/Basic-population)) and choose "Clone Insight" in the upper right corner to create a copy that you can edit. 
 
 Here is the scenario we will model: both *b* and *d* are **density-dependent**. We will replicate the model from the R code and figure above- this time in InsightMaker! 
 
@@ -147,11 +151,11 @@ EQUATIONS
 
 How can we do this in InsightMaker? 
 
-1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles*. This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar by now!! 
+1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles* (or your favorite animal!). This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar by now!! 
 
-2. Initialize the population of *Turtles* to 5 (way below carrying capacity).   
+2. Initialize the population to 5 (way below carrying capacity).   
 
-3. Make four new [Variables] on the canvas, to represent the four constants in our model.   
+3. Make four new [Variables] on the canvas, to represent the four key rates in our model (max. birth rate, dropoff in birth rate with each new individual added to the population, min. death rate, slope of death rate with increasing abundance).   
 
 4. Set the *Maximum per-capita birth rate* to 0.8 (turtles produced per turtle per year). Set the *Minimum per-capita Death rate* to 0.3. Set the *Density dependence on fecundity* to 0.001.  Set the *Density dependence on mortality* to 0.0005.  
 
