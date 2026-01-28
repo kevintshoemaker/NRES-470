@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-[Thomas Robert Malthus (1766 – 1834)](https://en.wikipedia.org/wiki/Thomas_Robert_Malthus) was an English cleric who penned one of the most important and influential essays ever written: ***An Essay on the Principle of Population***
+[Thomas Robert Malthus (1766 – 1834)](https://en.wikipedia.org/wiki/Thomas_Robert_Malthus) was an English cleric who penned one of the most important and influential essays in history: ***An Essay on the Principle of Population***
 
 ![](malthus1.jpg){width=30%}
 
@@ -27,9 +27,9 @@ Or in a more verbose form...
 
 Finally, his argument can be summed up as follows:
 
-1. There are always hard limits to (human) population growth, and these limits have to do with food availability,
-2. When there is more food available, humans will tend to apply that toward increased reproduction, 
-3. Which will only temporarily forestall a crisis when we inevitably reach the limits to growth, leading to:
+1. There are always limits to (human) population growth, and these limits have to do with food availability,
+2. When there is more food available, humans will tend to apply that toward increased reproduction 
+3. So any increase in food production will only temporarily forestall a crisis when we inevitably reach the limits to growth, leading to:
 4. Widespread famine, disease etc. - especially among poor and disadvantaged populations.
 
 > "If they would rather die they had better do it, and decrease the surplus population" - Ebenezer Scrooge
@@ -96,7 +96,7 @@ You don't actually need to type this all in, you can just click on "Programming 
 
 7. Run the model and describe what happens.  
 
-**Discussion Question** is this population *regulated*?   
+**Discussion Question** is this population *regulated*? What about equilibria- are there any equilibrium points in this model?
 
 **CHALLENGE:** Malthus said that "Population, when unchecked, increases in a *geometrical ratio*. Subsistence increases only in an *arithmetical ratio*." By this he meant that populations grow exponentially, whereas the population limits (food production capacity) grows linearly.   
 
@@ -106,7 +106,8 @@ What happens if the limit were allowed to increase arithmetically? Try to implem
 
 Just for fun, here is a [Video](https://www.youtube.com/watch?v=QAkW_i0bDpQ) made by [John Green](https://en.wikipedia.org/wiki/John_Green_(author)) about Malthus and world history!      
 
-... And here's another [video](https://www.youtube.com/watch?v=U7Z6h-U4CmI) about the influential 1972 book, "[Limits to Growth](https://www.amazon.com/Limits-Growth-Donella-H-Meadows/dp/193149858X)", which made the argument that growth is not sustainable- the earth has limits! Does this argument sound familiar? Interestingly, the "World3" Insightmaker model that some of you may have pulled up on our first week of class is the basis for the dire predictions in the "Limits to Growth" book!       
+... And here's another [video](https://www.youtube.com/watch?v=U7Z6h-U4CmI) about the influential 1972 book, "[Limits to Growth](https://www.amazon.com/Limits-Growth-Donella-H-Meadows/dp/193149858X)", which made the argument that growth is not sustainable- the earth has limits! Does this argument sound familiar? Here is an InsightMaker model represending the "World3" model from this book: [https://insightmaker.com/insight/2pCL5ePy8wWgr4SN8BQ4DD/The-World3-Model-Classic-World-Simulation](https://insightmaker.com/insight/2pCL5ePy8wWgr4SN8BQ4DD/The-World3-Model-Classic-World-Simulation)
+
 
 [--go to next lecture--](LECTURE4.html)   
 
