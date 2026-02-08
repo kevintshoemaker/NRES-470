@@ -1,7 +1,7 @@
 ---
 title: "Age-structured populations"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -13,9 +13,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-When we began modeling wildlife populations, we treated $b$ and $d$ (per-capita birth rate and fractional death rate) as constants. This resulted in exponential growth.
+When we began modeling wildlife populations, we treated $b$ and $d$ (per-capita birth rate and fractional death rate) as constants. This assumption led to unrestrained exponential growth.
 
-Then we allowed $b$ and $d$ to change (becoming less favorable to growth) as population density increased- this resulted in logistic (S-shaped) population dynamics. 
+Then we allowed $b$ and $d$ to change (becoming less favorable for growth) as population abundance/density increased- this resulted in logistic (S-shaped) population dynamics. 
 
 Here we ask: what if population vital rates ($b$ and $d$) change as individuals get older (i.e., what if $b$ and $d$ are 'age-structured')? 
 
@@ -23,7 +23,7 @@ How can we model *age-structured* population vital rates? How might this affect 
 
 ![](elephant1.jpg){width=40%}
 
-Take this Indian elephant for example. How does the per-capita birth rate (b) depend on age for this species?
+Take this Indian elephant for example. How does the per-capita birth rate (b) depend on age for this species (i.e., what is the **birth schedule**?
 
 We might imagine it looks something like this!
 
@@ -40,12 +40,12 @@ barplot(Birth_rate,xlab="Age (years)",ylab="b, per-capita birth rate",col="blue"
 
 ![](tortoise1.jpg){width=40%}
 
-What about per-capita death rates for a tortoise? We might imagine something that looks like this...
+What about per-capita death rates for a tortoise (the so-called *mortality schedule*)? We might imagine something that looks like this...
 
 ```{r echo=F}
 Tortoise_age <- seq(0,120,by=5)
 
-Death_rate <- c(seq(0.5,0.05,length=5),seq(0.02,0.02,length=16),seq(0.02,0.2,length=4))
+Death_rate <- c(seq(0.5,0.05,length=5),seq(0.02,0.02,length=10),seq(0.02,0.2,length=11))
 
 names(Death_rate) <- Tortoise_age
 
@@ -71,7 +71,7 @@ So, for many species per-capita birth rates and death rates are fundamentally de
 
 ## Life table!
 
-Age-structured populations are often represented by a table called a **life table**. A life table typically represents a single **cohort** (group of organisms of the same species that are born during the same year) and whose survival and birth rates are tracked across time. 
+Age-structured populations are often represented by a table called a **life table**. A life table tracks a single **cohort** (group of organisms of the same species that are born during the same year) across time. 
 
 Here's an example:
 
@@ -86,27 +86,27 @@ knitr::kable(lifetable,caption="",col.names = c("x","S(x)","b(x)","l(x)","g(x)")
 
 ### Reproductive schedule
 
-The reproduction component of the life table is called the reproductive schedule (or sometimes, the "fecundity schedule")! The term $b(x)$ represents the per-capita birth rate for females of age x. The reproductive schedule describes how birth rate changes with age.   
+The reproduction component of the life table is called the reproductive schedule (or sometimes, the "fecundity schedule" or "birth schedule")! The term $b(x)$ represents the per-capita birth rate for females of age x. The reproductive schedule describes how birth rate changes with age.   
 
 ### Survivorship schedule
 
-Fecundity is only half the story! The survival component of the life table is called the "survivorship schedule"! 
+Fecundity/reproduction is only half the story! The survival component of the life table is called the "survivorship schedule"! 
 
-The term **cohort** represents a bunch of individuals in a population that were all born at the same time. 
+The term **cohort** represents a collection of individuals that were born into a population at the same time. 
 
 In a life table, the term S(x) refers to the number of individuals from a particular cohort that are _still alive x years after the cohort was born_. 
 
 From this raw data, we compute two terms, called **survivorship** and **survival rate**
 
-The term $l(x)$ represents the _proportion of the cohort surviving from age 0 to age x_. This is known as **survivorship**.
+The term $l(x)$ represents the _proportion of the cohort surviving from age 0 to age x_. This is known as **survivorship**.     
 
-The term $g(x)$ represents the _proportion surviving from age x to age x+1_. This is called the **survival rate** (contrast this with survivorship!).
+The term $g(x)$ represents the _proportion of the cohort surviving from age x to age x+1_. This is called the **survival rate** (contrast this with survivorship!).
 
 The survivorship schedule describes how survivorship drops off with age. The survivorship schedule is typically visualized as a **survivorship curve**.
 
-### Types of survivorship curves...
+*Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with increasing age. 
 
-*Survivorship curves* describe how the logarithm of survivorship ($log(l(x))$) drops off with age. 
+### Types of survivorship curves...
 
 There are three main types of survivorship curve, and these curves are classified as **Type I**, **Type II**, and **Type III**.
 
@@ -129,11 +129,11 @@ These three types of **life history** pattern can be illustrated with three real
 
 ## In-class exercise: age-structured population growth
 
-In this exercise we will explore some facets of **age-structured populations**. 
+In this exercise we will explore **age-structured populations**. 
 
 1. Load up the life table from earlier in this lecture, by clicking [here](life_table.csv). Use this table to compute the **net reproductive rate, $R_0$**. This represents the expected number of female offspring produced per female over her lifetime. This is also known as *lifetime reproductive potential*! This can be computed as:
 
-$R_0 = \sum_{x=0}^k l(x)\cdot b(x)$
+$$R_0 = \sum_{x=0}^k l(x)\cdot b(x)$$
 
 Where $k$ is the maximum age. 
 
@@ -141,11 +141,12 @@ Try to implement this formula in Excel. What's the answer?
 
 2. If the net reproductive rate, $R_0$ is above one, then the population is above the **replacement rate** of 1, and therefore the population will grow. If $R_0$ is less than 1, then the population will decline. This sounds familiar, right? Just like the finite rate of growth, $\lambda$ (the multiplier needed to increment abundance from one time step to the next). 
 
-BUT, what is the time frame of $R_0$? What is the time frame of $\lambda$? They are different right? The difference is that $R_0$ describes growth per **generation**!. 
+BUT, what is the time frame of $R_0$? What is the time frame of $\lambda$? They are different- the difference is that $R_0$ describes growth per **generation** and lambda describes growth per time step. 
 
-What is a **generation**? The most common definition (for generation time) is the _Average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is the average age of their parents?). This can be computed from the life table as:
+What is a **generation**? The most common definition (for generation time) is the _average age at which individuals in a cohort produce offspring_ (consider all the offspring produced by the cohort- what is the average age of their parents at their time of birth?). This can be computed from the life table as:
 
-$G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$
+$$G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}$$    
+This represents the average age at which members of the cohort produce offspring. 
 
 Try to implement this in Excel (or another spreadsheet software).
 
@@ -155,7 +156,7 @@ Try to implement this in Excel (or another spreadsheet software).
 
 To a first-order approximation, you can use this equation:
 
-$r = \frac{ln(R_0)}{G}$ [Top Hat]
+$r = \frac{ln(R_0)}{G}$ [Top Hat]         
 
 Just looking at this equation, you see that organisms with longer generation times ($G$) have slower intrinsic rates of growth, all else being equal. 
 
@@ -168,11 +169,11 @@ $\lambda = e^{r}$
 
     4a. Initialize the population like the spadefoot toad example from above- with only juveniles in the population at time 0. What population dynamics occur at the beginning of the simulation? What about the end of the simulation?
     
-    4b. Can you modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three stage classes (and the population as a whole)? This is called **Stable Stage Distribution (SSD)**
+    4b. Modify the initial abundance of juveniles, subadults and adults so that the population exhibits smooth exponential growth for all three stage classes (and the population as a whole)? This is called **Stable Stage Distribution (SSD)**
     
     4d. Now change the adult survival rate to 0.35. What happens? Is this a growing population? How many yearlings would need to be added to the population each year (population supplementation) to maintain a stable or growing population of >20 adults?  [Top Hat]
 
-What do you think? Is supplementation the best strategy for conserving this population?    
+What do you think? Is supplementation the best strategy for conserving this population?       
 
 [--go to next lecture--](LECTURE7.html)
 

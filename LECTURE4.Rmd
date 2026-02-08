@@ -17,17 +17,17 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 As part of Lab 1 we went through the mathematics of exponential growth. This week we will explore basic models of **density dependence**. Exponential growth, as you have seen, leads to a runaway 'snowball effect'. It is not **sustainable**. As Malthus noted, resources are finite, and sooner or later exponentially growing populations will find their limits. 
 
-**Density**: In D-D, *density* basically refers to the number of conspecific individuals that you are competing with for food and/or other resources. The more you compete with others of your own species, the less favorable your **vital rates** become (e.g., per-capita death rate, *d*, increases or per-capita birth rate, *b*, decreases)! As *N* goes up, vital rates take a turn for the worse. 
+**Density**: In D-D, *density* refers to the number of conspecifics that you are competing with for food and/or other resources. The more you compete with others of your own species, the less favorable your **vital rates** become (e.g., per-capita death rate, *d*, increases or per-capita birth rate, *b*, decreases)! As *N* goes up, vital rates take a turn for the worse. 
 
-If vital rates become less favorable to growth as population density increases, this is known as **negative density dependence** (as abundance goes up, the per capita growth rate does down!). 
+If vital rates become less favorable to growth as population density increases, this is known as **negative density dependence** (as abundance goes up, the per capita growth rate does down!). This is a kind of *negative feedback*. 
 
 ## Regulation!
 
-First of all, we have already established that positive feedbacks are not sustainable, because increases mean faster increases, mean faster increases, etc. (i.e., the vicious circle of exponential growth). Density dependence is a kind of feedback, but it is NOT a positive feedback. Instead, it is a *negative feedback*! Which is also known as a *stabilizing feedback*. As we discussed before, negative feedbacks are essential for well-regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa. 
+First of all, we have already established that positive feedbacks are not sustainable: increases in some stock lead to faster increases, leading to faster increases, etc. (i.e., the vicious circle of exponential growth). Density dependence is also a feedback, but it is a *negative feedback*! Which is also known as a *stabilizing feedback*. As we discussed before, negative feedbacks are essential for regulated systems. Recall the example of homeostasis in organismal biology. If blood sugar goes up, the body will work to lower it, and vice versa. 
 
 Same with populations. In a regulated population, an increase in abundance will cause a decrease in the population growth rate, and a decrease in abundance will cause an increase in the population growth rate (*compensatory growth*). 
 
-You can't have a regulated system without some kind of negative feedback. 
+You can't have a self-regulated system without some kind of negative feedback. 
 
 **Q**: Is density-dependent population regulation a "law of nature"?
 
@@ -35,7 +35,7 @@ You can't have a regulated system without some kind of negative feedback.
 
 Logistic growth can be described mathematically by the following equation: 
 
-$\Delta N = r \cdot N_t \cdot \left ( 1 - \frac{N}{K}  \right )$
+$$\Delta N = r_{max}  N_t \left ( 1 - \frac{N}{K}  \right )$$
 
 This is the second most important equation of population ecology (after basic exponential growth!). 
 
@@ -43,11 +43,11 @@ We will go into more detail in lab, but let's break this equation down a bit.
 
 The first part of this equation looks familiar, right?
 
-$\Delta N = r \cdot N_t$
+$$\Delta N = r \cdot N_t$$
 
 What about the second part,
 
-$\left ( 1 - \frac{N}{K}  \right )$
+$$\left ( 1 - \frac{N}{K}  \right )$$
 
 You can think about $\frac{N}{K}$ as the *used portion of carrying capacity*
 
@@ -57,23 +57,23 @@ When carrying capacity is mostly unused, _population growth resembles exponentia
 
 When carrying capacity is mostly used up, _population growth resembles_, well..., _no growth at all_!
 
-**Q:** Given the two above statements, can you figure out what population dynamics should look like under logistic growth, starting with a very small population?
+**Q:** Given the two above statements, can you figure out what population dynamics (that is, abundance vs. time) should look like under logistic growth, starting with a very small population?
 
-## Carrying capacity is an equilibrium point!
+## Carrying capacity is an equilibrium!
 
-A stock-flow system is at an **equilibrium** point when [Flows In] are equal to [Flows Out]. That is, if opposing forces cancel each other out.   
+A stock-flow system is at **equilibrium** when [Flows In] are equal to [Flows Out]. That is, if opposing forces cancel each other out.   
 
-As Gotelli shows, and we will go over in detail in lab 2, you can derive the logistic growth equation by making *b* and *d* (from the standard population growth equation) both linear functions of population size $N$:
+As Gotelli shows, and we will go over in detail in lab 2, you can derive the logistic growth equation by making *b* and *d* (from the standard population growth equation) both linear functions of population size (density) $N$:
 
-$b=b_{max}-a*[Density]$
+$$b=b_{max}-aN$$
 
-where $b_{max}$ is the maximum, or ideal, per-capita birth rate and $a$ is the density dependence term.
+where $b_{max}$ is the maximum, or ideal, per-capita birth rate and $a$ is the density dependence term (amount by which birth rate declines with each new individual added to the population).
 
 Similarly,
 
-$d=d_{min}+c*[Density]$
+$$d=d_{min}+cN$$
 
-where $d_{min}$ is the minimum (most favorable) per-capita death rate (1-maximum survival rate) and $c$ is the density dependence term.
+where $d_{min}$ is the minimum (most favorable) per-capita death rate (1-maximum survival rate) and $c$ is the density dependence term (amount by which death rate increases with each new individual added to the population).
 
 We can plot these equations out in R:
 
@@ -98,8 +98,6 @@ axis(4,at=seq(0,1,0.2))
 legend("bottomleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate","per-capita mortality"),bty="n")
 
   
-  
-  
 ```
 
 What is the equilibrium point in this system? That is, what is the (non-zero) abundance/density at which population growth is equal to zero??
@@ -111,7 +109,7 @@ Equilibria can be stable or unstable (see below). This distinction is critical f
 
 ## Stable and non-stable equilibria
 
-First, when we add or subtract a small number of individuals to a population that is at an equilibrium point, we say we have 'perturbed' the system. 
+First, when we add or subtract a small number of individuals to a population that is at an equilibrium, we say we have 'perturbed' the system. 
 
 A **stable equilibrium**, when perturbed, returns to the equilibrium point
 
@@ -151,7 +149,7 @@ EQUATIONS
 
 How can we do this in InsightMaker? 
 
-1. Load a basic exponential-growth model. Rename the main [Stock] *Turtles* (or your favorite animal!). This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar by now!! 
+1. Load a basic exponential growth model. Rename the main [Stock] *Turtles* (or your favorite animal!). This [Stock] should have two [Flows], one [Flow In] named *Births* and one [Flow Out] named *Deaths*. Both *Births* and *Deaths* should be defined as the product of *Turtles* and per-capita rates, respectively called *Births per capita* and *Deaths per capita* (each defined on the canvas as [Variables]). This model should be very familiar by now!! 
 
 2. Initialize the population to 5 (way below carrying capacity).   
 

@@ -17,13 +17,15 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ![](prairie_dogs3.jpg){width=40%}
 
-In the last lecture, we talked about how density-dependent feedbacks can regulate population densities over time. In the logistic growth model, we saw that a negative feedback (a decline in population growth rate as density increased) could result in the population stabilizing at its carrying capacity. In population ecology, this type of negative feedback is called 'negative density dependence'. 
+In the last lecture, we talked about how density-dependent feedbacks can lead to self-regulated populations. In the logistic growth model, we saw that a negative feedback (a decline in population growth rate as density increased) could result in a stable equilibrium (carrying capacity). In population ecology, this type of negative feedback is called *negative density dependence*. 
 
-What happens if density dependence goes the other way? What if an increase in population density were to induce an *increase* in population growth rate *r*? This would be a positive feedback: increased population density results in faster growth, which produces a bigger population, which results in faster population growth, etc.
+But remember, density dependence just means that the realized rate of growth changes as some function of density ($r = f(N)$. There is nothing saying the relationship has to be negative.
 
-Imagine a social species, like the prairie dogs pictured above. If the density of prairie dogs is high, they can warn each other about predators. If the density is low, there may not be enough neighbors around to warn each other of approaching danger, and the predation rate might go up, resulting in higher *d*. This is a positive feedback, and can result in, well, let's simulate it and find out! 
+What happens if density dependence goes the other way? What if an increase in population density were to induce an *increase* in population growth rate *r*? This would be a **positive feedback*: increased population density results in faster growth, which produces a bigger population, which results in faster population growth, etc.
 
-This effect -- whereby population growth rate may **decrease** when population size decreases -- is called an **Allee effect**, named after ecologist [Warder Clyde Allee](https://en.wikipedia.org/wiki/Warder_Clyde_Allee) (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.
+Imagine a social species, like the prairie dogs pictured above. If the density of prairie dogs is high, they can warn each other about predators. If the density is low, there may not be enough neighbors around to warn each other of approaching danger, and predation rates might go up, resulting in higher *d*. This is a positive feedback, and can result in -- well, let's simulate it and find out! 
+
+This effect -- where population growth rate may **increase** when population size increases and population growth rate may **decrease** when population size decreases -- is called an **Allee effect**, named after ecologist [Warder Clyde Allee](https://en.wikipedia.org/wiki/Warder_Clyde_Allee) (1885-1955). Allee specialized in social behavior and aggregations, and recognized the benefits of social aggregations to individual fitness.
 
 Interestingly, Dr. Allee's interest in cooperation and the benefits of social aggregations spilled over into his life in other ways. He was a devout Quaker, an anti-war activist and an advocate of human social cooperation! From the Wikipedia article: "Allee saw ecologists as 'social healers' who were able to provide a naturalistic foundation for ethics through their research"
 
@@ -58,7 +60,7 @@ Passenger pigeons were an extremely gregarious (social) species. Once their numb
 
 In this exercise we will explore the implications of **positive density dependence** (Allee effect) on population dynamics. 
 
-1. In InsightMaker, load up the logistic population growth model with explicit birth and death rate -- that is, where $b$ and $d$ both decline linearly with increasing population density.  It should look something like this (or if you don't already have this, clone it from [here](https://insightmaker.com/insight/2ewOk7vSFlpEGxdu4Hvx9G/logistic-bd)):
+1. In InsightMaker, load up the logistic population growth model with explicit birth and death rate -- that is, where $b$ and $d$ both decline linearly with increasing population density. It should look something like this (or if you don't already have this, clone it from [here](https://insightmaker.com/insight/2ewOk7vSFlpEGxdu4Hvx9G/logistic-bd)):
 
 It should be structured something like this:
 
@@ -68,7 +70,7 @@ It should be structured something like this:
 
 3. As for the other parameters, set them as follows:    
 
-- Initial abundance: 201 (just above the optimum) 
+- Initial abundance: 150 (just below the optimum) 
 - Density dependence on birth rate: 0.004    
 - Density dependence on mortality: 0.001   
 - Max birth rate: 0.8   
@@ -96,7 +98,7 @@ Else
 End If
 ```
 
-NOTE: you could accomplish the same task using the absolute value. For example, you could define the per-capita birth rate this way:
+NOTE: you could accomplish the same task using the absolute value operator. For example, you could define the per-capita birth rate this way:
 
 ```
 [Max fecundity]-[Density dependence on fecundity]*Abs([Pigeons]-[Allee threshold])
@@ -110,11 +112,11 @@ Now you can try to answer the following questions:
 
 **Q**: What is carrying capacity (K) for this model?
 
-**Q**: Carrying capacity (K) represents one equilibrium point in this model. Try to find another equilibrium point- that is, a point where the population neither grows nor declines [Top Hat] 
+**Q**: Carrying capacity (K) represents one equilibrium in this model. Try to find another equilibrium - that is, a value of abundance (N) where the population neither grows nor declines [Top Hat] 
 
-**Q**: is this equilibrium a *stable equilibrium* or an *unstable equilibrium*? [Top Hat]
+**Q**: is this equilibrium *stable* or *unstable*? [Top Hat]
 
-Hopefully it is clear why Allee effects can spell bad news for rare species that were once abundant!  
+Hopefully it is clear why Allee effects can have devastating effects on small populations!  
 
 And just for fun, here is some information about [the passenger pigeon and its possible "de-extinction"](https://reviverestore.org/about-the-passenger-pigeon/)
 

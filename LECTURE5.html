@@ -462,25 +462,30 @@ div.tocify {
 <h2>Allee Effect</h2>
 <p><img src="prairie_dogs3.jpg" style="width:40.0%" /></p>
 <p>In the last lecture, we talked about how density-dependent feedbacks
-can regulate population densities over time. In the logistic growth
-model, we saw that a negative feedback (a decline in population growth
-rate as density increased) could result in the population stabilizing at
-its carrying capacity. In population ecology, this type of negative
-feedback is called ‘negative density dependence’.</p>
+can lead to self-regulated populations. In the logistic growth model, we
+saw that a negative feedback (a decline in population growth rate as
+density increased) could result in a stable equilibrium (carrying
+capacity). In population ecology, this type of negative feedback is
+called <em>negative density dependence</em>.</p>
+<p>But remember, density dependence just means that the realized rate of
+growth changes as some function of density (<span
+class="math inline">\(r = f(N)\)</span>. There is nothing saying the
+relationship has to be negative.</p>
 <p>What happens if density dependence goes the other way? What if an
 increase in population density were to induce an <em>increase</em> in
-population growth rate <em>r</em>? This would be a positive feedback:
+population growth rate <em>r</em>? This would be a **positive feedback*:
 increased population density results in faster growth, which produces a
 bigger population, which results in faster population growth, etc.</p>
 <p>Imagine a social species, like the prairie dogs pictured above. If
 the density of prairie dogs is high, they can warn each other about
 predators. If the density is low, there may not be enough neighbors
-around to warn each other of approaching danger, and the predation rate
+around to warn each other of approaching danger, and predation rates
 might go up, resulting in higher <em>d</em>. This is a positive
-feedback, and can result in, well, let’s simulate it and find out!</p>
-<p>This effect – whereby population growth rate may
-<strong>decrease</strong> when population size decreases – is called an
-<strong>Allee effect</strong>, named after ecologist <a
+feedback, and can result in – well, let’s simulate it and find out!</p>
+<p>This effect – where population growth rate may
+<strong>increase</strong> when population size increases and population
+growth rate may <strong>decrease</strong> when population size decreases
+– is called an <strong>Allee effect</strong>, named after ecologist <a
 href="https://en.wikipedia.org/wiki/Warder_Clyde_Allee">Warder Clyde
 Allee</a> (1885-1955). Allee specialized in social behavior and
 aggregations, and recognized the benefits of social aggregations to
@@ -550,7 +555,7 @@ through the simulation).</p></li>
 <li><p>As for the other parameters, set them as follows:</p></li>
 </ol>
 <ul>
-<li>Initial abundance: 201 (just above the optimum)</li>
+<li>Initial abundance: 150 (just below the optimum)</li>
 <li>Density dependence on birth rate: 0.004<br />
 </li>
 <li>Density dependence on mortality: 0.001<br />
@@ -584,8 +589,9 @@ syntax (or equivalent):</p>
 Else
   [Min mortality]+[Density dependence on survival]*([Pigeons]-[Allee threshold])
 End If</code></pre>
-<p>NOTE: you could accomplish the same task using the absolute value.
-For example, you could define the per-capita birth rate this way:</p>
+<p>NOTE: you could accomplish the same task using the absolute value
+operator. For example, you could define the per-capita birth rate this
+way:</p>
 <pre><code>[Max fecundity]-[Density dependence on fecundity]*Abs([Pigeons]-[Allee threshold])</code></pre>
 <p>Think about it- does it make sense that this is the same model?</p>
 <ol start="5" style="list-style-type: decimal">
@@ -597,12 +603,13 @@ link</a>!</li>
 <p>Now you can try to answer the following questions:</p>
 <p><strong>Q</strong>: What is carrying capacity (K) for this model?</p>
 <p><strong>Q</strong>: Carrying capacity (K) represents one equilibrium
-point in this model. Try to find another equilibrium point- that is, a
-point where the population neither grows nor declines [Top Hat]</p>
-<p><strong>Q</strong>: is this equilibrium a <em>stable equilibrium</em>
-or an <em>unstable equilibrium</em>? [Top Hat]</p>
-<p>Hopefully it is clear why Allee effects can spell bad news for rare
-species that were once abundant!</p>
+in this model. Try to find another equilibrium - that is, a value of
+abundance (N) where the population neither grows nor declines [Top
+Hat]</p>
+<p><strong>Q</strong>: is this equilibrium <em>stable</em> or
+<em>unstable</em>? [Top Hat]</p>
+<p>Hopefully it is clear why Allee effects can have devastating effects
+on small populations!</p>
 <p>And just for fun, here is some information about <a
 href="https://reviverestore.org/about-the-passenger-pigeon/">the
 passenger pigeon and its possible “de-extinction”</a></p>

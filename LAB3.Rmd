@@ -1,7 +1,7 @@
 ---
 title: "Lab 3: Age-structured populations"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -19,37 +19,59 @@ In this lab we will have an opportunity to build more complex population models 
 
 ### Life tables
 
-Let's start with some definitions- population ecology, and life tables in particular, are full of terms and equations. We should at least be aware of the meaning of the major terms involved in life table analysis!
+Let's start with some definitions- population ecology is full of terms and equations. We should be aware of the meaning of the major terms involved in life table analysis!
 
-**Cohort:** A group of organisms of the same species that are born during the same year or the same breeding season
+**Cohort:** A collection of organisms born in a population at the same time (i.e., during the same year or breeding season)
 
-**x:** Age, or time elapsed since the birth date of the cohort (usually in years).       
+**x:** Age, or time since the birth of the cohort (usually in units of years).       
 
-**S(x):** Survivors, or Census size -- the number of individuals in the cohort who survived to time x. 
+**S(x):** Total survivors, or census size -- the number of individuals in the cohort that survived to age x. 
 
-**D(x):** Deaths -- the number of age x individuals in the cohort who died before reaching age x+1
+**D(x):** Total deaths -- the number of age-x individuals in the cohort that died before reaching age x+1 (i.e., that died sometime in the interval between x and x+1)
 
-**Birth rate, b(x):** Average number of offspring produced by an individual in age category x (per-capita birth rate for individuals of age x).
+**Birth rate, b(x):** Average number of offspring produced by individuals in age x (per-capita birth rate for individuals of age x).
 
-**Survivorship, l(x):** $l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$. Survivorship represents the fraction of the cohort that is expected to survive to a given age.        
+**Survivorship, l(x):** 
 
-**Survival rate, g(x):** $g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$ , where $S_x$ is the number of survivors from the original cohort at year $x$ (per-capita survival rate at age x). Survival rate is the probability of survival from age x to age (x+1).
+$$l(x) = \frac{S_x}{S_0}  \qquad \text{(Eq. 1)}$$ 
+,where $S_x$ is the number of survivors from the original cohort at year $x$. Survivorship represents the fraction of the cohort that is expected to survive to a given age.        
 
-**Lifetime reproductive potential:** $R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$, where $k$ is the maximum possible age. Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.     
+**Survival rate, g(x):**     
+$$g(x) = \frac{S_{x+1}}{S_x}  \qquad \text{(Eq. 2)}$$ 
 
-**Life Expectancy (for a newborn)** can be *approximated* as: $LE_0 = \frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)}  \qquad \text{(Eq. 4)}$     
+,where $S_x$ is the number of survivors from the original cohort at year $x$ (per-capita survival rate at age x). Survival rate is the fraction of individuals in the cohort that survive from age x to age x+1. Another way of thinking of this is as the survival rate for age x individuals conditional on having survived to age x. 
 
-**Q**: why is the above estimate for life expectancy (LE) *approximate* and not exact? Is it likely to be biased or unbiased?          
+**Maximum lifespan, k:** the age after which all members of the cohort have died.        
 
-**Generation time** is defined as the _Average age of individuals in the cohort when they produce offspring_ (for all offspring born to the cohort, record the age of the mom at the time she gave birth, and then take the average of all these ages!). This can be computed as: $G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$
+**Lifetime reproductive potential:**    
+$$R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad \text{(Eq. 3)}$$
 
-**Intrinsic rate of growth,** $r$ is defined (approximately) as: $r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$
+Lifetime reproductive potential is the average number of female offspring produced per female over her entire lifetime.     
+
+**Life Expectancy (for a newborn)** can be *approximated* as: 
+
+$$LE_0 = \frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)}  \qquad \text{(Eq. 4)}$$       
+
+**Q**: why is the above estimate for life expectancy (LE) *approximate* and not exact?               
+
+**Generation time** is defined as the _Average age of individuals in the cohort when they produce offspring_ (for all offspring born to the cohort, record the age of the mom at the time she gave birth, and then take the average of all these ages!). This can be computed as: 
+
+$$G = \frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq. 5)}$$
+
+**Intrinsic rate of growth,** $r$ is defined (approximately) as: 
+
+$$r = \frac{ln(R_0)}{G}  \qquad \text{(Eq. 6)}$$   
 
 **lambda,** $\lambda$ is defined (to a first-order approximation) as: $\lambda = e^{r}$
 
-NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the *Euler method*. You are not required to know how to use the Euler method in this class.      
+NOTE: the Gotelli book describes a more exact way to compute the intrinsic rate of growth from life tables, called the *Euler method*. You are not required to know how to use the Euler method in this class, but I recommend playing around with it, because it is widely used in population ecology.      
 
-One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected future reproductive output of an individual of age x, *adjusted for the intrinsic rate of growth*: $V(x) = \frac{e^{rx}}{l_x} \cdot \sum_{y=x+1}^{k}e^{-ry}l_yb_y   \qquad \text{(Eq. 7)}$.  Different individuals in a population tend to have different "value" in terms of contributing to future generations. Caswell (2001) said "The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class". Knowing something about the relative "value" of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, Reproductive Value is critical for applied population ecology! Reproductive Value also factors heavily in evolutionary studies and life history theory.  
+One more concept I want to introduce here is **reproductive value**, or V(x). This represents the expected future reproductive output of an individual of age x, *adjusted for the intrinsic rate of growth*: 
+
+$$V(x) = \frac{e^{rx}}{l(x)} \sum_{y=x+1}^{k}e^{-ry}l(y)b(y)   \qquad \text{(Eq. 7)}$$   
+Different individuals in a population tend to have different "value" in terms of contributing to future generations. Caswell (2001) said "The amount of future reproduction, the probability of surviving to realize it, and the time required for the offspring to be produced all enter into the reproductive value of an age-class". Knowing something about the relative "value" of different individuals in a population can help managers decide which individuals to translocate, or to harvest, or cull from a population. Therefore, Reproductive Value is critical for applied population ecology! Reproductive Value also factors heavily in evolutionary studies and life history theory.  
+
+Generally, reproductive value is maximized around the age of first reproduction. This concept is also very important in evolutionary biology, since alleles that affect individuals of high reproductive value are likely to be more heavily influenced by natural selection. Conversely, deleterious alleles that affect elderly individuals are not necessarily going to be swept from a population- one possible explanation for senescence!
 
 **Q:** Why is the reproductive value adjusted by the population growth rate??  
 
@@ -63,9 +85,9 @@ And here is a more complex life table- for even more practice! This one is based
 
 Let's imagine that we are following a *cohort* of reintroduced Chatham Island robins on a small island through time. 
 
-- First, we establish artificial nests and place 400 captive-laid eggs in them.      
-- All individuals are given a unique marking as soon as they hatch (hatching is 100% successful!). These markings are permanent and not affected by tag loss!        
-- We visit the island once per year, and count all the female individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!     
+- First, we establish artificial nests and place 400 captive-laid eggs in them.       
+- All individuals are given a unique marking as soon as they hatch (hatching is 100% successful!). These markings are permanent and not affected by tag loss!         
+- We visit the island once per year, and count all the female individuals with tags who still exist in the population. We can assume that if the individual is alive then we will observe it (perfect detection!). If we do not see the individual we know with certainty that it is dead!       
 - Of the original robins released on the island, we record the following numbers over 5 years revisiting the island (starting with 400 at year 0): 175 (year 1), 103 (year 2), 45 (year 3), 19 (year 4), and 0 (year 5).
 - We record the following per-capita reproductive rates for each age: 0, 0.8, 2.4, 2.9, 0.4, and 0        
 
@@ -148,7 +170,7 @@ Let's first build an age-structured model from scratch in InsightMaker. To do th
 
 *But wait, where are the newborns (Age 0 individuals)???* 
 
-In this model, we assume that this population has a breeding pulse once per year, and that we survey the population *right before* the birth pulse each year. Therefore, we can't keep track of the number of newborns (Age 0 individuals) in the population because we can't observe them. All we can observe are the new one-year-olds in the population- these are the individuals that were born right after our last survey (and who are now nearly one year of age). This is known as a "pre-breeding census" model. One consequence of this is that the *Reproduction* flow in this model should only represent those individuals that were born last year *and survived to this year*!  
+In this model, we assume that this population has a breeding pulse once per year, and that we survey the population *right before* the birth pulse each year. Therefore, we can't keep track of the number of newborns (Age 0 individuals) in the population because we can't observe them. All we can observe are the new one-year-olds in the population- these are the individuals that were born right after our last survey (and who are now nearly one year of age). This is known as a **pre-breeding census** model. One consequence of this is that the *Reproduction* flow in this model should only represent those individuals that were born last year *and survived to this year*!  
 
 NOTE: this is one of the trickier concepts in population ecology. We will revisit this in more detail in Lab 4 (matrix population models).
 
@@ -205,9 +227,7 @@ NOTE: this should be a declining population!
 
 ## Checklist for Lab 3 completion
 
-* Please type your responses into one Word document and submit _using WebCampus_!
-
-***Due Feb 23 at 11:59pm.***
+* Please type your responses into one Word document and submit _using WebCampus_! See submission deadline on WebCampus.
 
   +  **Exercise 1**
       -  *Image upload (1a.)*   

@@ -14,7 +14,7 @@
 
 <title>Lab 3: Age-structured populations</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 3: Age-structured populations</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -467,80 +467,95 @@ class="section level2">
 <h2>Mathematics of age-structured populations</h2>
 <div id="life-tables" class="section level3">
 <h3>Life tables</h3>
-<p>Let’s start with some definitions- population ecology, and life
-tables in particular, are full of terms and equations. We should at
-least be aware of the meaning of the major terms involved in life table
-analysis!</p>
-<p><strong>Cohort:</strong> A group of organisms of the same species
-that are born during the same year or the same breeding season</p>
-<p><strong>x:</strong> Age, or time elapsed since the birth date of the
-cohort (usually in years).</p>
-<p><strong>S(x):</strong> Survivors, or Census size – the number of
-individuals in the cohort who survived to time x.</p>
-<p><strong>D(x):</strong> Deaths – the number of age x individuals in
-the cohort who died before reaching age x+1</p>
+<p>Let’s start with some definitions- population ecology is full of
+terms and equations. We should be aware of the meaning of the major
+terms involved in life table analysis!</p>
+<p><strong>Cohort:</strong> A collection of organisms born in a
+population at the same time (i.e., during the same year or breeding
+season)</p>
+<p><strong>x:</strong> Age, or time since the birth of the cohort
+(usually in units of years).</p>
+<p><strong>S(x):</strong> Total survivors, or census size – the number
+of individuals in the cohort that survived to age x.</p>
+<p><strong>D(x):</strong> Total deaths – the number of age-x individuals
+in the cohort that died before reaching age x+1 (i.e., that died
+sometime in the interval between x and x+1)</p>
 <p><strong>Birth rate, b(x):</strong> Average number of offspring
-produced by an individual in age category x (per-capita birth rate for
-individuals of age x).</p>
-<p><strong>Survivorship, l(x):</strong> <span class="math inline">\(l(x)
-= \frac{S_x}{S_0} \qquad \text{(Eq. 1)}\)</span> , where <span
-class="math inline">\(S_x\)</span> is the number of survivors from the
-original cohort at year <span class="math inline">\(x\)</span>.
-Survivorship represents the fraction of the cohort that is expected to
-survive to a given age.</p>
-<p><strong>Survival rate, g(x):</strong> <span
-class="math inline">\(g(x) = \frac{S_{x+1}}{S_x} \qquad \text{(Eq.
-2)}\)</span> , where <span class="math inline">\(S_x\)</span> is the
-number of survivors from the original cohort at year <span
+produced by individuals in age x (per-capita birth rate for individuals
+of age x).</p>
+<p><strong>Survivorship, l(x):</strong></p>
+<p><span class="math display">\[l(x) = \frac{S_x}{S_0}  \qquad
+\text{(Eq. 1)}\]</span> ,where <span class="math inline">\(S_x\)</span>
+is the number of survivors from the original cohort at year <span
+class="math inline">\(x\)</span>. Survivorship represents the fraction
+of the cohort that is expected to survive to a given age.</p>
+<p><strong>Survival rate, g(x):</strong><br />
+<span class="math display">\[g(x) = \frac{S_{x+1}}{S_x}  \qquad
+\text{(Eq. 2)}\]</span></p>
+<p>,where <span class="math inline">\(S_x\)</span> is the number of
+survivors from the original cohort at year <span
 class="math inline">\(x\)</span> (per-capita survival rate at age x).
-Survival rate is the probability of survival from age x to age
-(x+1).</p>
-<p><strong>Lifetime reproductive potential:</strong> <span
-class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot b(x) \qquad
-\text{(Eq. 3)}\)</span>, where <span class="math inline">\(k\)</span> is
-the maximum possible age. Lifetime reproductive potential is the average
-number of female offspring produced per female over her entire
-lifetime.</p>
+Survival rate is the fraction of individuals in the cohort that survive
+from age x to age x+1. Another way of thinking of this is as the
+survival rate for age x individuals conditional on having survived to
+age x.</p>
+<p><strong>Maximum lifespan, k:</strong> the age after which all members
+of the cohort have died.</p>
+<p><strong>Lifetime reproductive potential:</strong><br />
+<span class="math display">\[R_0 = \sum_{x=0}^k l(x)\cdot b(x)  \qquad
+\text{(Eq. 3)}\]</span></p>
+<p>Lifetime reproductive potential is the average number of female
+offspring produced per female over her entire lifetime.</p>
 <p><strong>Life Expectancy (for a newborn)</strong> can be
-<em>approximated</em> as: <span class="math inline">\(LE_0 =
-\frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)} \qquad \text{(Eq.
-4)}\)</span></p>
+<em>approximated</em> as:</p>
+<p><span class="math display">\[LE_0 =
+\frac{\sum_{x=0}^{k}S(x+1)+0.5*D(x)}{S(0)}  \qquad \text{(Eq.
+4)}\]</span></p>
 <p><strong>Q</strong>: why is the above estimate for life expectancy
-(LE) <em>approximate</em> and not exact? Is it likely to be biased or
-unbiased?</p>
+(LE) <em>approximate</em> and not exact?</p>
 <p><strong>Generation time</strong> is defined as the <em>Average age of
 individuals in the cohort when they produce offspring</em> (for all
 offspring born to the cohort, record the age of the mom at the time she
 gave birth, and then take the average of all these ages!). This can be
-computed as: <span class="math inline">\(G =
-\frac{\sum_{x=0}^{k}l(x)\cdot b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}
-\qquad \text{(Eq. 5)}\)</span></p>
+computed as:</p>
+<p><span class="math display">\[G = \frac{\sum_{x=0}^{k}l(x)\cdot
+b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}  \qquad \text{(Eq.
+5)}\]</span></p>
 <p><strong>Intrinsic rate of growth,</strong> <span
-class="math inline">\(r\)</span> is defined (approximately) as: <span
-class="math inline">\(r = \frac{ln(R_0)}{G} \qquad \text{(Eq.
-6)}\)</span></p>
+class="math inline">\(r\)</span> is defined (approximately) as:</p>
+<p><span class="math display">\[r = \frac{ln(R_0)}{G}  \qquad \text{(Eq.
+6)}\]</span></p>
 <p><strong>lambda,</strong> <span class="math inline">\(\lambda\)</span>
 is defined (to a first-order approximation) as: <span
 class="math inline">\(\lambda = e^{r}\)</span></p>
 <p>NOTE: the Gotelli book describes a more exact way to compute the
 intrinsic rate of growth from life tables, called the <em>Euler
 method</em>. You are not required to know how to use the Euler method in
-this class.</p>
+this class, but I recommend playing around with it, because it is widely
+used in population ecology.</p>
 <p>One more concept I want to introduce here is <strong>reproductive
 value</strong>, or V(x). This represents the expected future
 reproductive output of an individual of age x, <em>adjusted for the
-intrinsic rate of growth</em>: <span class="math inline">\(V(x) =
-\frac{e^{rx}}{l_x} \cdot \sum_{y=x+1}^{k}e^{-ry}l_yb_y \qquad \text{(Eq.
-7)}\)</span>. Different individuals in a population tend to have
-different “value” in terms of contributing to future generations.
-Caswell (2001) said “The amount of future reproduction, the probability
-of surviving to realize it, and the time required for the offspring to
-be produced all enter into the reproductive value of an age-class”.
-Knowing something about the relative “value” of different individuals in
-a population can help managers decide which individuals to translocate,
-or to harvest, or cull from a population. Therefore, Reproductive Value
-is critical for applied population ecology! Reproductive Value also
-factors heavily in evolutionary studies and life history theory.</p>
+intrinsic rate of growth</em>:</p>
+<p><span class="math display">\[V(x) = \frac{e^{rx}}{l(x)}
+\sum_{y=x+1}^{k}e^{-ry}l(y)b(y)   \qquad \text{(Eq. 7)}\]</span><br />
+Different individuals in a population tend to have different “value” in
+terms of contributing to future generations. Caswell (2001) said “The
+amount of future reproduction, the probability of surviving to realize
+it, and the time required for the offspring to be produced all enter
+into the reproductive value of an age-class”. Knowing something about
+the relative “value” of different individuals in a population can help
+managers decide which individuals to translocate, or to harvest, or cull
+from a population. Therefore, Reproductive Value is critical for applied
+population ecology! Reproductive Value also factors heavily in
+evolutionary studies and life history theory.</p>
+<p>Generally, reproductive value is maximized around the age of first
+reproduction. This concept is also very important in evolutionary
+biology, since alleles that affect individuals of high reproductive
+value are likely to be more heavily influenced by natural selection.
+Conversely, deleterious alleles that affect elderly individuals are not
+necessarily going to be swept from a population- one possible
+explanation for senescence!</p>
 <p><strong>Q:</strong> Why is the reproductive value adjusted by the
 population growth rate??</p>
 <p>Here is a sample life table for practice!! <a
@@ -758,9 +773,9 @@ of newborns (Age 0 individuals) in the population because we can’t
 observe them. All we can observe are the new one-year-olds in the
 population- these are the individuals that were born right after our
 last survey (and who are now nearly one year of age). This is known as a
-“pre-breeding census” model. One consequence of this is that the
-<em>Reproduction</em> flow in this model should only represent those
-individuals that were born last year <em>and survived to this
+<strong>pre-breeding census</strong> model. One consequence of this is
+that the <em>Reproduction</em> flow in this model should only represent
+those individuals that were born last year <em>and survived to this
 year</em>!</p>
 <p>NOTE: this is one of the trickier concepts in population ecology. We
 will revisit this in more detail in Lab 4 (matrix population
@@ -866,10 +881,8 @@ making changes)!</p>
 <div id="checklist-for-lab-3-completion" class="section level2">
 <h2>Checklist for Lab 3 completion</h2>
 <ul>
-<li>Please type your responses into one Word document and submit
-<em>using WebCampus</em>!</li>
-</ul>
-<p><strong><em>Due Feb 23 at 11:59pm.</em></strong></p>
+<li><p>Please type your responses into one Word document and submit
+<em>using WebCampus</em>! See submission deadline on WebCampus.</p>
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
@@ -895,6 +908,7 @@ making changes)!</p>
 <li><em>Image upload (3b.)</em></li>
 <li><em>Short answer (3c.)</em></li>
 <li><em>InsightMaker URL (3d.)</em></li>
+</ul></li>
 </ul></li>
 </ul>
 </div>

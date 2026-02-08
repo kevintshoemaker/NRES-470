@@ -98,7 +98,7 @@ You don't actually need to type this all in, you can just click on "Programming 
 
 **Discussion Question** is this population *regulated*? What about equilibria- are there any equilibrium points in this model?
 
-**CHALLENGE:** Malthus said that "Population, when unchecked, increases in a *geometrical ratio*. Subsistence increases only in an *arithmetical ratio*." By this he meant that populations grow exponentially, whereas the population limits (food production capacity) grows linearly.   
+**CHALLENGE:** Malthus said that "Population, when unchecked, increases in a *geometrical ratio*. Subsistence increases only in an *arithmetical ratio*." By this he meant that populations grow multiplicatively ($N_{t+1} = \lambda N_t$), whereas the population limits (food production capacity) grows linearly ($R_{t+1} = R_t + c$).   
 
 What happens if the limit were allowed to increase arithmetically? Try to implement this in InsightMaker. That is, can you change the model so that the population limit increases linearly- say, by 1000 per year? What happens then? HINT: you can add a [Flow] to represent increase in agricultural production!
 

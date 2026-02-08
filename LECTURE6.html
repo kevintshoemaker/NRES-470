@@ -14,7 +14,7 @@
 
 <title>Age-structured populations</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Age-structured populations</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -461,11 +461,12 @@ div.tocify {
 <p>When we began modeling wildlife populations, we treated <span
 class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span> (per-capita birth rate and fractional
-death rate) as constants. This resulted in exponential growth.</p>
+death rate) as constants. This assumption led to unrestrained
+exponential growth.</p>
 <p>Then we allowed <span class="math inline">\(b\)</span> and <span
-class="math inline">\(d\)</span> to change (becoming less favorable to
-growth) as population density increased- this resulted in logistic
-(S-shaped) population dynamics.</p>
+class="math inline">\(d\)</span> to change (becoming less favorable for
+growth) as population abundance/density increased- this resulted in
+logistic (S-shaped) population dynamics.</p>
 <p>Here we ask: what if population vital rates (<span
 class="math inline">\(b\)</span> and <span
 class="math inline">\(d\)</span>) change as individuals get older (i.e.,
@@ -475,12 +476,14 @@ class="math inline">\(d\)</span> are ‘age-structured’)?</p>
 might this affect population dynamics?</p>
 <p><img src="elephant1.jpg" style="width:40.0%" /></p>
 <p>Take this Indian elephant for example. How does the per-capita birth
-rate (b) depend on age for this species?</p>
+rate (b) depend on age for this species (i.e., what is the <strong>birth
+schedule</strong>?</p>
 <p>We might imagine it looks something like this!</p>
 <p><img src="LECTURE6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p><img src="tortoise1.jpg" style="width:40.0%" /></p>
-<p>What about per-capita death rates for a tortoise? We might imagine
-something that looks like this…</p>
+<p>What about per-capita death rates for a tortoise (the so-called
+<em>mortality schedule</em>)? We might imagine something that looks like
+this…</p>
 <p><img src="LECTURE6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>So, for many species per-capita birth rates and death rates are
 fundamentally dependent on age!</p>
@@ -507,10 +510,9 @@ status of this population?</p>
 <div id="life-table" class="section level2">
 <h2>Life table!</h2>
 <p>Age-structured populations are often represented by a table called a
-<strong>life table</strong>. A life table typically represents a single
+<strong>life table</strong>. A life table tracks a single
 <strong>cohort</strong> (group of organisms of the same species that are
-born during the same year) and whose survival and birth rates are
-tracked across time.</p>
+born during the same year) across time.</p>
 <p>Here’s an example:</p>
 <table>
 <thead>
@@ -563,17 +565,17 @@ tracked across time.</p>
 <div id="reproductive-schedule" class="section level3">
 <h3>Reproductive schedule</h3>
 <p>The reproduction component of the life table is called the
-reproductive schedule (or sometimes, the “fecundity schedule”)! The term
-<span class="math inline">\(b(x)\)</span> represents the per-capita
-birth rate for females of age x. The reproductive schedule describes how
-birth rate changes with age.</p>
+reproductive schedule (or sometimes, the “fecundity schedule” or “birth
+schedule”)! The term <span class="math inline">\(b(x)\)</span>
+represents the per-capita birth rate for females of age x. The
+reproductive schedule describes how birth rate changes with age.</p>
 </div>
 <div id="survivorship-schedule" class="section level3">
 <h3>Survivorship schedule</h3>
-<p>Fecundity is only half the story! The survival component of the life
-table is called the “survivorship schedule”!</p>
-<p>The term <strong>cohort</strong> represents a bunch of individuals in
-a population that were all born at the same time.</p>
+<p>Fecundity/reproduction is only half the story! The survival component
+of the life table is called the “survivorship schedule”!</p>
+<p>The term <strong>cohort</strong> represents a collection of
+individuals that were born into a population at the same time.</p>
 <p>In a life table, the term S(x) refers to the number of individuals
 from a particular cohort that are <em>still alive x years after the
 cohort was born</em>.</p>
@@ -583,17 +585,18 @@ cohort was born</em>.</p>
 <em>proportion of the cohort surviving from age 0 to age x</em>. This is
 known as <strong>survivorship</strong>.</p>
 <p>The term <span class="math inline">\(g(x)\)</span> represents the
-<em>proportion surviving from age x to age x+1</em>. This is called the
-<strong>survival rate</strong> (contrast this with survivorship!).</p>
+<em>proportion of the cohort surviving from age x to age x+1</em>. This
+is called the <strong>survival rate</strong> (contrast this with
+survivorship!).</p>
 <p>The survivorship schedule describes how survivorship drops off with
 age. The survivorship schedule is typically visualized as a
 <strong>survivorship curve</strong>.</p>
+<p><em>Survivorship curves</em> describe how the logarithm of
+survivorship (<span class="math inline">\(log(l(x))\)</span>) drops off
+with increasing age.</p>
 </div>
 <div id="types-of-survivorship-curves" class="section level3">
 <h3>Types of survivorship curves…</h3>
-<p><em>Survivorship curves</em> describe how the logarithm of
-survivorship (<span class="math inline">\(log(l(x))\)</span>) drops off
-with age.</p>
 <p>There are three main types of survivorship curve, and these curves
 are classified as <strong>Type I</strong>, <strong>Type II</strong>, and
 <strong>Type III</strong>.</p>
@@ -622,8 +625,8 @@ take a guess if you’re not sure!)</p>
 <div id="in-class-exercise-age-structured-population-growth"
 class="section level2">
 <h2>In-class exercise: age-structured population growth</h2>
-<p>In this exercise we will explore some facets of
-<strong>age-structured populations</strong>.</p>
+<p>In this exercise we will explore <strong>age-structured
+populations</strong>.</p>
 <ol style="list-style-type: decimal">
 <li>Load up the life table from earlier in this lecture, by clicking <a
 href="life_table.csv">here</a>. Use this table to compute the
@@ -633,8 +636,8 @@ expected number of female offspring produced per female over her
 lifetime. This is also known as <em>lifetime reproductive
 potential</em>! This can be computed as:</li>
 </ol>
-<p><span class="math inline">\(R_0 = \sum_{x=0}^k l(x)\cdot
-b(x)\)</span></p>
+<p><span class="math display">\[R_0 = \sum_{x=0}^k l(x)\cdot
+b(x)\]</span></p>
 <p>Where <span class="math inline">\(k\)</span> is the maximum age.</p>
 <p>Try to implement this formula in Excel. What’s the answer?</p>
 <ol start="2" style="list-style-type: decimal">
@@ -649,16 +652,19 @@ increment abundance from one time step to the next).</li>
 </ol>
 <p>BUT, what is the time frame of <span
 class="math inline">\(R_0\)</span>? What is the time frame of <span
-class="math inline">\(\lambda\)</span>? They are different right? The
+class="math inline">\(\lambda\)</span>? They are different- the
 difference is that <span class="math inline">\(R_0\)</span> describes
-growth per <strong>generation</strong>!.</p>
+growth per <strong>generation</strong> and lambda describes growth per
+time step.</p>
 <p>What is a <strong>generation</strong>? The most common definition
-(for generation time) is the <em>Average age at which individuals in a
+(for generation time) is the <em>average age at which individuals in a
 cohort produce offspring</em> (consider all the offspring produced by
-the cohort- what is the average age of their parents?). This can be
-computed from the life table as:</p>
-<p><span class="math inline">\(G = \frac{\sum_{x=0}^{k}l(x)\cdot
-b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}\)</span></p>
+the cohort- what is the average age of their parents at their time of
+birth?). This can be computed from the life table as:</p>
+<p><span class="math display">\[G = \frac{\sum_{x=0}^{k}l(x)\cdot
+b(x)\cdot x}{\sum_{x=0}^{k}l(x)\cdot b(x)}\]</span><br />
+This represents the average age at which members of the cohort produce
+offspring.</p>
 <p>Try to implement this in Excel (or another spreadsheet software).</p>
 <p><strong>Q:</strong> What is the <em>generation time</em> of the
 population in the table?</p>
@@ -686,9 +692,9 @@ one, here</a>.</p>
 above- with only juveniles in the population at time 0. What population
 dynamics occur at the beginning of the simulation? What about the end of
 the simulation?</p>
-<p>4b. Can you modify the initial abundance of juveniles, subadults and
-adults so that the population exhibits smooth exponential growth for all
-three stage classes (and the population as a whole)? This is called
+<p>4b. Modify the initial abundance of juveniles, subadults and adults
+so that the population exhibits smooth exponential growth for all three
+stage classes (and the population as a whole)? This is called
 <strong>Stable Stage Distribution (SSD)</strong></p>
 <p>4d. Now change the adult survival rate to 0.35. What happens? Is this
 a growing population? How many yearlings would need to be added to the

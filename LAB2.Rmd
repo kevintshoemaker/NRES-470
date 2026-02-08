@@ -43,7 +43,7 @@ $\Delta N = ((b_{max}-a*N_t) - (d_{min}+c*N_t)) \cdot N_t \qquad \text{(Eq. 4)}$
 
 **Q**: what is the maximum rate of growth in this case? 
 
-Using some tricks of algebra (see the Gotelli book), we can simplify this to:
+Using some algebra (see the Gotelli book), we can simplify this to:
 
 $\Delta N = r \cdot N_t \left [ 1 - \frac{a+c}{b-d} \cdot N_t  \right ]  \qquad \text{(Eq. 5)}$
 
@@ -127,7 +127,7 @@ legend("topleft",col=c("green","red"),lty=c(1,1),legend=c("per-capita birth rate
 
 5.  Use the **Settings** button to change the **Simulation Length** to 360 and the timescale to "Months" (run the model for 30 years, in time increments of 1 month). Click **Simulate**. You may need to click **Configure** in order to clean up your plot to just show **Time** on the x-axis and **Anchovy Population** on the y-axis. Run the model to see if it is working. You should see an S-shaped (logistic) curve when you visualize abundance over time
 
-6. Set initial abundance equal to carrying capacity K (should be 18,750). _Since the abundance is now initialized at carrying capacity (K), abundance should not change over time_ when you run the model. 
+6. Set initial abundance equal to carrying capacity (K). _Since the abundance is now initialized at carrying capacity (K), abundance should not change over time_ when you run the model. 
 
 7.  Next, let's add an additional source of mortality (right now, we have natural baseline mortality and density-dependent effects). This new source of mortality is commercial fishing! To add this source of mortality, create a new [Flow Out] from the Anchovy population. For now, let's assume harvest is constant -- that is, a constant number harvested each year, regardless of the size of the population.
 
