@@ -1,7 +1,7 @@
 ---
 title: "Matrix population models"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -42,7 +42,7 @@ Consider the teasel example from our textbook. It's possible to implement this m
 
 ![](gotelli3_6.jpg){width=50%}
 
-The population vital rates for pretty much any age-structured or stage-structured population can be represented as a **transition matrix** (or, projection matrix), which summarizes all the information about survival, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality of this concept!)
+The population vital rates for pretty much any age-structured or stage-structured population can be represented as a **transition matrix** (or, projection matrix), which summarizes all the information about survival, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality and usefulness of this concept!)
 
 For example, the teasel vital rates can be summarized in [this matrix](teaselmatrix1.csv):
 
@@ -86,11 +86,12 @@ Age 18+: adult
 
 By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still accurately representing how vital rates change with age (i.e., the model is still *biologically realistic*). 
 
+For many species, vital rates may vary by size and not by age per se. For these species, stage-based models with stages defined by size may be much more realistic than age-based models. 
+
 Matrix population models can represent age-structured and stage-structured models with equal simplicity and elegance. 
+The term **Leslie Matrix** refers to an age-structured matrix population model (names after Patrick H. Leslie). 
 
-The term 'Leslie Matrix' refers to an age-structured matrix population model. 
-
-When a matrix is used to represent a stage-structured population, it is often called a "Lefkovitch" (or stage-based) Matrix. 
+When a matrix is used to represent a stage-structured population, it is often called a **Lefkovitch Matrix** (or stage-based matrix). 
 
 ### Reason 2: modeling age-structured population dynamics!
 
@@ -134,7 +135,7 @@ Year1
 
 Pretty simple!
 
-To compute teasel abundance in year 2 of our simulation, we can simply repeat:
+To compute teasel abundance in year 2 of our simulation, we can repeat this:
 
 ```{r}
 
@@ -205,7 +206,7 @@ where $N$ is abundance (as always), $t$ is time, often in years but could be any
 
 ... and the matrix population growth equation:
 
-$\mathbf{N}_{t+1} = \mathbf{A} \cdot \mathbf{N}_{t}$,
+$\mathbf{N}_{t+1} = \mathbf{A} \mathbf{N}_{t}$,
 
 where $\mathbf{N}$ is a **vector** of abundances (abundance for all stages), and $\mathbf{A}$ is the **transition matrix**, which we have seen before.
 

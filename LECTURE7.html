@@ -14,7 +14,7 @@
 
 <title>Matrix population models</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Matrix population models</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -490,7 +490,8 @@ stage-structured population can be represented as a <strong>transition
 matrix</strong> (or, projection matrix), which summarizes all the
 information about survival, birth rates, and transitions between stages!
 (and the fact that a life history like teasel can be represented by a
-transition matrix illustrates the generality of this concept!)</p>
+transition matrix illustrates the generality and usefulness of this
+concept!)</p>
 <p>For example, the teasel vital rates can be summarized in <a
 href="teaselmatrix1.csv">this matrix</a>:</p>
 <pre class="r"><code># Teasel example -------------------------------
@@ -540,12 +541,16 @@ Age 18+: adult</p>
 (with even more associated flows/transitions) to a model with only 5
 stocks- and we are still accurately representing how vital rates change
 with age (i.e., the model is still <em>biologically realistic</em>).</p>
+<p>For many species, vital rates may vary by size and not by age per se.
+For these species, stage-based models with stages defined by size may be
+much more realistic than age-based models.</p>
 <p>Matrix population models can represent age-structured and
-stage-structured models with equal simplicity and elegance.</p>
-<p>The term ‘Leslie Matrix’ refers to an age-structured matrix
-population model.</p>
+stage-structured models with equal simplicity and elegance. The term
+<strong>Leslie Matrix</strong> refers to an age-structured matrix
+population model (names after Patrick H. Leslie).</p>
 <p>When a matrix is used to represent a stage-structured population, it
-is often called a “Lefkovitch” (or stage-based) Matrix.</p>
+is often called a <strong>Lefkovitch Matrix</strong> (or stage-based
+matrix).</p>
 </div>
 </div>
 <div id="reason-2-modeling-age-structured-population-dynamics"
@@ -599,7 +604,7 @@ Year1</code></pre>
 ## flowering    456.90</code></pre>
 <p>Pretty simple!</p>
 <p>To compute teasel abundance in year 2 of our simulation, we can
-simply repeat:</p>
+repeat this:</p>
 <pre class="r"><code># Project the population at time 2
 
 thisYear &lt;- Year1
@@ -673,7 +678,7 @@ class="math inline">\(\lambda\)</span> is the multiplicative growth rate
 over the time period <span class="math inline">\(t \rightarrow
 t+1\)</span></p>
 <p>… and the matrix population growth equation:</p>
-<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot
+<p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A}
 \mathbf{N}_{t}\)</span>,</p>
 <p>where <span class="math inline">\(\mathbf{N}\)</span> is a
 <strong>vector</strong> of abundances (abundance for all stages), and
