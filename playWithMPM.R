@@ -172,9 +172,9 @@ Ndf_3D = doProj(N0_3D,A_3D,t=nyears)
 
 # draw population as vectors in space/plane
 
-drawNvec2D(Ndf_2D,5)
+drawNvec2D(Ndf_2D,10)
 
-drawNvec3D(Ndf_3D,10)
+drawNvec3D(Ndf_3D,3)
   
   
 # animate population growth -------
