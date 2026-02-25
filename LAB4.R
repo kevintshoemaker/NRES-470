@@ -12,9 +12,9 @@
 # Year1 <- projection_matrix %*% Abundance_year0  # matrix multiplication!
   
 
-# First, build a simple age-structured projection matrix called TMat
+# First, build a simple age-structured projection matrix called pop_matrix
 
-TMat <- matrix(     # 
+pop_matrix <- matrix(     # 
   c(
     0.25,     1.5,   1.5,
     0.4,   0,     0,
@@ -22,26 +22,26 @@ TMat <- matrix(     #
   )
   ,nrow=3,ncol=3,byrow=T
 )
-TMat    # print to the console to check!
+pop_matrix    # print to the console to check!
 
 
 # Then we specify initial abundances for the three age classes
 
-InitAbund <- c(1000,0,0)    # initial abundance vector
-InitAbund    # print to the console to check!
+init_abund <- c(1000,0,0)    # initial abundance vector
+init_abund    # print to the console to check!
 
 
 # Now we can run the code for real
 
 # project year-1 abundance:
 
-Year1 <- TMat %*% InitAbund  # matrix multiplication in R uses the symbol '%*%'
+Year1 <- pop_matrix %*% init_abund  # matrix multiplication in R uses the symbol '%*%'
 Year1
 
 
 # Project year-2 abundance
 
-Year2 <- TMat %*% Year1  # matrix multiplication!
+Year2 <- pop_matrix %*% Year1  # matrix multiplication!
 Year2
 
 
@@ -52,8 +52,8 @@ Year2
 
 # Set key parameters -----------------------
 
-nYears <- 20                                            # set the number of years to project
-TMat <- matrix(     # 
+n_years <- 20                                            # set the number of years to project
+pop_matrix <- matrix(     # 
   c(
     0.25,     1.5,   1.5,
     0.4,   0,     0,
@@ -61,31 +61,34 @@ TMat <- matrix(     #
   )
   ,nrow=3,ncol=3,byrow=T
 )
-InitAbund <- c(1000,0,0)                                # initial abundance vector
-AgeStructured <- TRUE          # set to TRUE for Leslie matrix and FALSE for Lefkovitch 
+init_abund <- c(1000,0,0)                                # initial abundance vector
+age_structured <- TRUE          # set to TRUE for Leslie matrix and FALSE for Lefkovitch 
 
 
 # Use a FOR loop for multi-year projection  -------------
 
    # NOTE: the code below can be re-used without modification:
 
-allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all stages and all years!
-allYears[,1] <- InitAbund  # set the year 0 abundance                                    
-for(t in 2:(nYears+1)){   # loop through all years
-  allYears[,t] <-  TMat %*% allYears[,t-1]
+all_years = 0:n_years
+n_stages = nrow(pop_matrix)
+
+Nmat <- matrix(0,nrow=n_stages,ncol=length(all_years))     # build a storage array for all stages and all years!
+Nmat[,1] <- init_abund  # set the year 0 abundance                                    
+for(t in 2:(n_years+1)){   # loop through all years
+  Nmat[,t] <-  pop_matrix %*% Nmat[,t-1]
 }
-plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
-cols <- rainbow(ncol(TMat))    # set up colors to use
-for(s in 1:ncol(TMat)){
-  points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
+plot(1,1,pch="",ylim=c(0,max(Nmat)),xlim=c(0,length(all_years)),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+cols <- rainbow(ncol(pop_matrix))    # set up colors to use
+for(s in 1:ncol(pop_matrix)){
+  points(Nmat[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
 }
-axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
-if(AgeStructured){
-  leg <-  paste("Age",seq(1,(ncol(TMat))))
+axis(1,at=seq(1,n_years+1),labels = seq(0,n_years))   # label the axis
+if(age_structured){
+  leg <-  paste("Age",seq(1,(ncol(pop_matrix))))
 }else{
-  leg <- paste("Stage",seq(1,ncol(TMat))) 
+  leg <- paste("Stage",seq(1,ncol(pop_matrix))) 
 }
-legend("topleft",col=cols,lwd=rep(2,ncol(TMat)),legend=leg,bty="n")  # put a legend on the plot
+legend("topleft",col=cols,lwd=rep(2,ncol(pop_matrix)),legend=leg,bty="n")  # put a legend on the plot
 
 
 # Use 'popbio' package to compute lambda and SSD -----------
@@ -98,26 +101,26 @@ legend("topleft",col=cols,lwd=rep(2,ncol(TMat)),legend=leg,bty="n")  # put a leg
 
 library(popbio)   # load the 'popbio' package in R
 
-lambda(TMat)
+lambda(pop_matrix)
 
 
 # Use the 'popbio' package to compute the stable stage distribution!
 
-stable.stage(TMat)
+stable.stage(pop_matrix)
 
 
 # Construct a four-age matrix:
 
-TMat <- matrix(     # 
+pop_matrix <- matrix(     # 
   c(
-    0,     1.9,   1.1,    0.4,   
-    0.4,     0,     0,      0,    
-    0,       0.75,  0,      0,   
-    0,       0,     0.65,   0  
+    0,     2.5,   1.2,    0.5,   
+    0.3,     0,     0,      0,    
+    0,       0.8,  0,      0,   
+    0,       0,     0.55,   0  
   )
   ,nrow=4,ncol=4,byrow=T
 )
-TMat
+pop_matrix
 
 stmat <- read.csv("stage_matrix1.csv")
 stmat <- as.matrix(stmat[,-1])

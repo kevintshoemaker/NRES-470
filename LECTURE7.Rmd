@@ -520,22 +520,22 @@ If we have time, we may review the final question from Lab 4:
 
 Translate the following paragraph into a matrix population model. Remember a matrix population model has two components- an **initial abundance vector** and a **transition matrix**.  
 
-
 ![](redtail1.jpg)
 
-> We assumed that the tawny rat-hawk life history could be described in terms of four major life stages: juvenile (one-year-olds), subadults (2-year-olds), non-territorial adults, and territorial adults (all individuals 3 years old and beyond are considered adults). We assumed that territorial adult females experienced an average of 10% mortality each year, and non-territorial adults experienced 18% mortality annually. Juvenile female mortality was 25% per year, and subadult mortality was 20%. Hatchlings (newborns) had a 30% chance of surviving their first year of life. We assumed that 90% of surviving subadults would become non-territorial adults, while the remaining 10% would become territorial adults. We assumed that 45% of surviving non-territorial females would successfully transition to the "territorial adult" stage, while 10% of surviving territorial adults would lose their territories, becoming non-territorial adults. Territorial adults are the primary reproductive stage, and produce an average of 2.5 fledged hatchlings each year, half of which are female. Non-territorial adults produce 1.1 new fledged hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 juveniles, 150 subadults, 75 non-territorial adults and 50 territorial adults.   
+> We assumed that the buff-breasted rat-hawk life history could be described in terms of four life stages: juvenile (one-year-olds), subadults (2-year-olds), non-territorial adults, and territorial adults (all individuals 3 years old and beyond are considered adults). We assumed that territorial adult females experienced an average of 12% mortality each year, and non-territorial adults experienced 25% mortality annually. Juvenile female mortality was 20% per year, and subadult mortality was 15%. Fledglings had a 30% chance of surviving their first year of life. We assumed that 90% of surviving subadults would become non-territorial adults, while the remaining 10% would become territorial adults. We assumed that 55% of surviving non-territorial females would successfully transition to the "territorial adult" stage, while 8% of surviving territorial adults would lose their territories, becoming non-territorial adults. Territorial adults are the primary reproductive stage, and produce an average of 3.4 fledged hatchlings each year, half of which are female. Non-territorial adults produce 0.6 new fledged hatchlings each year on average, half of which are female. We ran a female-only matrix population model, and we initialized the population with 800 juveniles, 150 subadults, 75 non-territorial adults and 50 territorial adults.   
 
 
 ```{r eval=FALSE, echo=FALSE}
-names <- c("juvenile","subadult","nt_adult","t_adult")
-mymat = matrix(c(0,     0,      1.1*0.5*0.3,      2.5*0.5*0.3, 
-                 0.75,  0,      0,                0,
-                 0,     0.8*0.9,      0.82*(1-0.45),                0.9*(1-0.9),
-                 0,     0.8*(1-0.9),      0.82*0.45,                0.9*0.9
-                 ),   nrow=4,byrow = T)
-rownames(mymat) <- names; colnames(mymat) <- names
-popbio::lambda(mymat)
-mymat
+    # need to update this with new numbers...
+# names <- c("juvenile","subadult","nt_adult","t_adult")
+# mymat = matrix(c(0,     0,      1.1*0.5*0.3,      2.5*0.5*0.3, 
+#                  0.75,  0,      0,                0,
+#                  0,     0.8*0.9,      0.82*(1-0.45),                0.9*(1-0.9),
+#                  0,     0.8*(1-0.9),      0.82*0.45,                0.9*0.9
+#                  ),   nrow=4,byrow = T)
+# rownames(mymat) <- names; colnames(mymat) <- names
+# popbio::lambda(mymat)
+# mymat
 
 ```
 
