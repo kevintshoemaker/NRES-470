@@ -27,7 +27,7 @@ barplot(probs,ylab="Probability",xlab="Possibilities",main="Binomial distributio
 # Poisson distribution
 
 xvals <- seq(0,10,1)
-probs <- dpois(xvals,lambda=2.2)     # POisson distribution
+probs <- dpois(xvals,lambda=2.2)     # Poisson distribution
 names(probs) <- xvals
                
 barplot(probs,ylab="Probability",xlab="Possibilities",main="Poisson distribution (discrete)")
