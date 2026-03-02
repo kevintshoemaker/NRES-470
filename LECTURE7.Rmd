@@ -34,15 +34,17 @@ First of all, this lecture is full of R code (R makes it easy to run matrix popu
 
 ![](IM7.jpg)
 
-You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5? Or from stage 5 back to stage 3? How many lines would you have to draw, how many equations would you have to put in all the different flows? It would be tedious, and you could easily run into errors that would be hard to uncover! 
+You might recognize this InsightMaker model from Lab 3. This represents an age-structured population with only three age classes. Imagine if there were five age classes, or 10? What if you could jump from (e.g.) stage 3 to stage 5? Or from stage 5 back to stage 3? How many flows would you need, and how many equations would you have to put in all the different flows? The more complex a model gets, the more time it takes to assemble, and the more errors can accumulate. 
 
 ![](teasel1.jpg){width=30%}
 
-Consider the teasel example from our textbook. It's possible to implement this model in InsightMaker, but it would be tedious and potentially prone to error. And this is far from the most complicated populations out there (although notice that plants can do some things that vertebrate animals can't do- for instance go backwards in developmental stage. With matrix models, there is an easier way!
+Consider the teasel example from our textbook. It's absolutely possible to implement this model in InsightMaker, but it would take time, and would be prone to error. And this is far from the most complicated populations out there (although notice that plants can do some things that vertebrate animals can't do- for instance go backwards in developmental stage). 
+
+With matrix models, there is an easier way!
 
 ![](gotelli3_6.jpg){width=50%}
 
-The population vital rates for pretty much any age-structured or stage-structured population can be represented as a **transition matrix** (or, projection matrix), which summarizes all the information about survival, birth rates, and transitions between stages! (and the fact that a life history like teasel can be represented by a transition matrix illustrates the generality and usefulness of this concept!)
+The population vital rates for pretty much any age-structured or stage-structured population can be represented as a **matrix** (often called a projection matrix, or transition matrix), which summarizes all the information about survival, birth rates, and transitions between stages! (and the fact that a complex life history like teasel can be easily represented by a standard population matrix illustrates the generality and usefulness of this concept!)
 
 For example, the teasel vital rates can be summarized in [this matrix](teaselmatrix1.csv):
 
@@ -63,20 +65,20 @@ teasel_matrix                                          # print the matrix
 
 #### Stage-structure vs age-structure
 
-In the previous module, we talked about 'age-structured populations'. What we meant by that is that the population vital rates (e.g., $b$ and $d$) varied by age. 
+In the previous module, we talked about 'age-structured populations'. What we meant by that is that the population vital rates (e.g., $b$ and $d$) varied in a predictable way with age. This can be represented as a survivorship and/or fecundity schedule, like in the life tables lecture (vital rate on the y axis, age on the x axis). 
 
-Sometimes, it's convenient to classify individuals within a certain age range as belonging to a particular life-history stage. For example, we might classify the life history of a grizzly bear like this:
+Sometimes, it's convenient to classify individuals within a certain age range as belonging to a particular life-history 'stage'. For example, we might classify the life history of a grizzly bear like this:
 
 Age 0-1: newborn     
 Age 1-2: yearling     
 Age 2-5: subadult     
 Age 6+: adult     
 
-This can simplify our models considerably. For example, consider a species like a sea turtle, with up to 75 or 100 years of life. You could build a model in which you have 100 [Stocks], one for each year of life. 
+This can simplify our models considerably. For example, consider a species like a sea turtle, that can live up to 75 or 100 years. You could build a model in which you have 100 [Stocks], one for each year of life. 
 
 --OR--
 
-You could have 5 [Stocks] representing age ranges over which sea turtles tend to have similar vital rates. For example, we might divide the sea turtle life history into the following stages:
+You could have 5 [Stocks] representing age ranges over which sea turtles tend to have similar per capita survival and reproduction rates. For example, we might divide the sea turtle life history into the following stages:
 
 Age 0-1: hatchling      
 Age 1-5: young juvenile     
@@ -84,16 +86,17 @@ Age 5-10: older juvenile
 Age 10-17: subadult      
 Age 18+: adult      
 
-By using stages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still accurately representing how vital rates change with age (i.e., the model is still *biologically realistic*). 
+By using stages instead of ages, we have simplified our model from having 100 stocks (with even more associated flows/transitions) to a model with only 5 stocks- and we are still accurately representing how vital rates change with age (i.e., the model is still biologically realistic). 
 
-For many species, vital rates may vary by size and not by age per se. For these species, stage-based models with stages defined by size may be much more realistic than age-based models. 
+For many other species, vital rates may vary by size and not by age per se. That is, the survivorship and fecundity 'schedules' are best represented with body size on the x axis instead of age. For these species, stage-based models with **stages defined by size** can be much more realistic than age-based models.
 
 Matrix population models can represent age-structured and stage-structured models with equal simplicity and elegance. 
+
 The term **Leslie Matrix** refers to an age-structured matrix population model (names after Patrick H. Leslie). 
 
-When a matrix is used to represent a stage-structured population, it is often called a **Lefkovitch Matrix** (or stage-based matrix). 
+When a matrix is used to represent a stage-structured population (often size based), it is often called a **Lefkovitch Matrix** (or stage-based matrix). 
 
-### Reason 2: modeling age-structured population dynamics!
+### Reason 2: projecting populations forward in time!
 
 In one of the questions in Lab 3, you were asked to use a life table to predict the number of births in a population one time step into the future. As you probably realized, this is not as straightforward as it sounds!
 
@@ -103,9 +106,9 @@ You know what *is* great for projecting age-structured abundance into the future
 
 MATRICES of course!  
 
-For example, let's project a teasel population 1 year into the future:
+For example, let's project the teasel population from above 1 year into the future:
 
-First of all, we need to begin with a teasel population **vector**...
+First of all, we need to begin with an **initial abundance vector** for the teasel population...
 
 ```{r}
 
@@ -118,7 +121,7 @@ Initial_teasel
 
 ```
 
-Then all we need to do is 'matrix-multiply' this **vector** of abundances by the **transition matrix** from above! Each time we do this multiplication step, we advance one year! It's that easy!
+Then all we need to do is 'matrix-multiply' this **vector** of abundances by the **transition matrix** from above! Each time we do this multiplication step, we advance the population one year! It's that easy!
 
 NOTE: matrix multiplication (percent-asterisk-percent in R) is not the same as standard multiplication (asterisk in R).
 
@@ -132,8 +135,6 @@ Year1 <- teasel_matrix %*% Initial_teasel   # note: the '%*%' denotes 'matrix mu
 Year1
   
 ```
-
-Pretty simple!
 
 To compute teasel abundance in year 2 of our simulation, we can repeat this:
 
@@ -156,18 +157,18 @@ Notice the use of a **for loop** here!
 # Use a FOR loop to project the population dynamics for the next 10 years!
 
 nYears <- 10
-tenYears <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
-rownames(tenYears) <- rownames(Initial_teasel)      # assign row and column names
-colnames(tenYears) <- seq(0,10)
-tenYears[,1] <- Initial_teasel                      # initialize the simulated abundances
+Narray <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
+rownames(Narray) <- rownames(Initial_teasel)      # assign row and column names
+colnames(Narray) <- seq(0,10)
+Narray[,1] <- Initial_teasel                      # initialize the simulated abundances
 
 # run the for loop!
 
 for(t in 2:(nYears+1)){    # here we use 't' as our looping variable, but we could choose any name we want
-  tenYears[,t] <-  teasel_matrix %*% tenYears[,t-1]     # perform matrix multiplication for each year of the simulation!
+  Narray[,t] <-  teasel_matrix %*% Narray[,t-1]     # perform matrix multiplication for each year of the simulation!
 }
 
-tenYears
+Narray
 
 ```
 
@@ -180,10 +181,10 @@ Finally, we can plot out the abundance of each stage over 10 years!
 plot(1,1,pch="",ylim=c(0,60000000),xlim=c(0,11),xlab="Years",ylab="Abundance",xaxt="n")    # make empty plot
 cols <- rainbow(6)        # set colors for each stage
 for(s in 1:6){
-  points(tenYears[s,],col=cols[s],type="l",lwd=2)       # plot out each stage
+  points(Narray[s,],col=cols[s],type="l",lwd=2)       # plot out each stage
 }
 axis(1,at=seq(1,11),labels = seq(0,10))      # add x axis labels
-legend("topleft",col=cols,lwd=rep(2,6),legend=rownames(tenYears))      # add legend
+legend("topleft",col=cols,lwd=rep(2,6),legend=rownames(Narray))      # add legend
 
 ```
 
@@ -191,16 +192,18 @@ So projection is easy with matrices! What more reason do we need to convince our
 
 ### Reason 3: Matrix algebra 'tricks'!
 
-Fortunately, we can compute two key population properties from the transition matrix using some mathematical tricks: 
+We can compute two key population properties from the transition matrix using some tricks from linear algebra: 
 
 1. We can compute **Lambda** from the transition matrix in one step
 2. We can compute **Stable Stage Distribution (SSD) from the transition matrix in one step
+
+ASIDE: population ecologists would do well to learn a little linear algebra. A good place to start is [this excellent video series by 3blue1brown](https://www.3blue1brown.com/topics/linear-algebra). 
 
 #### Lambda
   
 There is a clear similarity between the finite population growth equation:
 
-$N_{t+1}=\lambda \cdot N_t$,
+$$N_{t+1}=\lambda \cdot N_t$$,
 
 where $N$ is abundance (as always), $t$ is time, often in years but could be any time units, and $\lambda$ is the multiplicative growth rate over the time period $t \rightarrow t+1$
 
@@ -224,7 +227,7 @@ In fact, the concept of **Lambda**, or the multiplier used to model discrete pop
 
 As you may have noticed from our age-structured InsightMaker model from class (or from Lab 3), age-structured models sometimes exhibit "messy" dynamics at first, when the population is jumping up and down a lot. However, after some time, the population growth becomes smooth- this is when the population has achieved *stable stage distribution (SSD)*. At SSD, the population grows in a discrete exponential growth pattern- this rate of exponential growth can be described by a single parameter -- **Lambda**!  
 
-$\mathbf{A}$ is a **matrix (a bundle of numbers organized in rows and columns)** known as the transition matrix in Population Ecology.   
+$\mathbf{A}$ is a **matrix (a bundle of numbers organized in rows and columns)**.   
 
 In one step, you can compute $\lambda$ from $\mathbf{A}$!!     
 
@@ -242,7 +245,7 @@ library(popbio)      # load the 'popbio' package in R!
 Lambda <- lambda(teasel_matrix) 
 Lambda
 
-#   as.numeric(round(eigen(teasel_matrix)$values[1],2))  # this is an alternative method- if you don't want to use the 'popbio' package
+#   as.numeric(round(eigen(teasel_matrix)$values[1],2))  # this is an alternative method using base R
 
 ```
 
@@ -277,6 +280,100 @@ This vector represents the _relative abundances in each age class at the stable 
 **Q:** Does a stage-structured population grow at the rate of $\lambda$ per time step if it is NOT at stable stage distribution (SSD)? [Top Hat]   
 
 To answer this question, you may find it helps to load an stage-structured model in InsightMaker like [this one](https://insightmaker.com/insight/6vZsNuzGIbisYsFVCSLWZK/Stage-structured-population). 
+
+## Geometry of matrix population models
+
+As an in-class demo, we will explore what stage-structured population model looks like geometrically. 
+
+It takes a little mental gynmastics, but we need to think of each stage in the population as an axis in a multidimensional space. It's easiest to start with a 2-stage population, which we can visualize in 2 dimensions. 
+
+The abundance vector each year can be viewed as an arrow beginning at the origin (zero vector: {0,0}) and ending at the abundance that year (abundance of stage 1 on the x axis, and abundance of stage 2 on the y axis). 
+
+Over time, you see that the population eventually points in a particular direction (the dominant eigenvector) and grows/declines at a constant rate (the dominant eigenvalue). 
+
+Here's an [R script](playWithMPM.R) in case you want to follow along. 
+
+```{r echo=FALSE}
+
+library(plotly)
+
+
+# load functions -------
+# N0=N0_2D;A=A_2D
+doProj <- function(N0,A,t){
+  N=list() 
+  N[paste0("y",0:t)]=lapply(0:t,\(x) matrix(rep(0,length(N0)),ncol=1))
+  N[[1]][,1] = N0 
+  for(y in 1:t) N[[y+1]] = A%*%N[[y]] 
+  lim= max(sapply(N,max))
+  Ndf = as.data.frame(t(do.call("cbind",N))); names(Ndf) = paste0("N",1:length(N0))
+  Ndf$label = paste0("year",0:t)
+  Ndf
+}
+
+drawNvec2D <- function(Ndf,t=0){
+  nstages=length(which(grepl("N",names(Ndf))))
+  lim=max(sapply(Ndf[,1:nstages],max))
+  thisdf = Ndf[Ndf$label%in%paste0("year",0:t),]
+  alphas <- seq(0.4, 1, length.out = nrow(thisdf))
+  if(nrow(thisdf)==1) alphas=1
+  # Convert to rgba color strings
+  arrow_colors <- sprintf("rgba(70, 130, 180, %.2f)", alphas)  # steelblue with varying alpha
+  plot_ly() |> 
+    config(
+      scrollZoom = TRUE,    # enables scroll-to-zoom
+      displayModeBar = TRUE # ensures toolbar is visible
+    ) |> 
+    add_trace(
+      type = "scatter",
+      mode = "text",
+      x = thisdf$N1,
+      y = thisdf$N2,
+      text = thisdf$label,
+      textposition = "top right"
+    ) |>
+    add_annotations(
+      x    = thisdf$N1,
+      y    = thisdf$N2,
+      ax   = 0,
+      ay   = 0,
+      xref = "x",  axref = "x",
+      yref = "y",  ayref = "y",
+      text = "",
+      showarrow = TRUE,
+      arrowhead = 2,
+      arrowsize = 1,
+      arrowwidth = 2,
+      arrowcolor = arrow_colors
+    )|> 
+    layout(
+      xaxis = list(range = c(0, lim),fixedrange = FALSE),
+      yaxis = list(range = c(0, lim),fixedrange = FALSE)
+    ) |> 
+    print()
+}
+
+
+N0_2D = c(100,0)   # 2D pop vector
+A_2D = matrix(c(0.1,0.5,1.1,0.8),ncol=2)
+
+# popbio::lambda(A_2D)
+
+nyears=10
+allyears = 0:nyears
+
+# simulate stage abundance over time using matrix ------ 
+
+Ndf_2D = doProj(N0_2D,A_2D,t=nyears)
+
+# Ndf_3D = doProj(N0_3D,A_3D,t=nyears)
+
+# draw population as vectors in space/plane
+
+drawNvec2D(Ndf_2D,10)
+
+```
+
 
 ## Mechanics of matrix population models
 
@@ -313,7 +410,7 @@ These matrix elements account for both the birth rate (per-capita birth rate thi
 
 In life table terms:
 
-$f_t = b(t) * g(0)$
+$$f_t = b(t) * g(0)$$
 
 Now we can start filling in this matrix. Let's begin with the top left **element** of the matrix (a **fecundity** term, since it's part of the top row). This represents the per-capita production of yearlings (col) next year by yearlings (row) this year. What is the value of this element? 
 
@@ -436,16 +533,16 @@ So we are starting with only Juveniles...
 # Run the model for 50 years (using for loop)
 
 nYears <- 50
-allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
-rownames(allYears) <- rownames(TMat)
-colnames(allYears) <- seq(0,nYears)
-allYears[,1] <- InitAbund 
+Narray <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
+rownames(Narray) <- rownames(TMat)
+colnames(Narray) <- seq(0,nYears)
+Narray[,1] <- InitAbund 
 
 for(t in 2:(nYears+1)){
-  allYears[,t] <-  TMat %*% allYears[,t-1]    # matrix multiplication!
+  Narray[,t] <-  TMat %*% Narray[,t-1]    # matrix multiplication!
 }
 
-allYears
+Narray
 
 ```
 
@@ -459,10 +556,10 @@ Now let's plot it out!
 plot(1,1,pch="",ylim=c(0,100),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
 cols <- rainbow(3)
 for(s in 1:3){
-  points(allYears[s,],col=cols[s],type="l",lwd=2)
+  points(Narray[s,],col=cols[s],type="l",lwd=2)
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
-legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(allYears),bty="n")
+legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(Narray),bty="n")
 
 ```
 
@@ -480,13 +577,11 @@ Which vital rates are density-dependent? All? Some? It depends? Are the data ava
 
 How do you incorporate density-dependence into a matrix population model?  
 
-How do you incorporate predator-prey dynamics into a matrix population model?      
-
-ANSWER: use computer programming (e.g., R or InsightMaker!) 
+How do you incorporate predator-prey dynamics into a matrix population model?
 
 ### Overview of matrix multiplication
 
-(we will do this on the whiteboard!)
+(we will do this on the whiteboard- either in lab or in class!)
 
 ### In-class exercise: loggerhead conservation!
 
