@@ -41,18 +41,18 @@ nextYear  # now we get the (age structured) population size at time 2!
 # Use a FOR loop to project the population dynamics for the next 10 years!
 
 nYears <- 10
-tenYears <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
-rownames(tenYears) <- rownames(Initial_teasel)      # assign row and column names
-colnames(tenYears) <- seq(0,10)
-tenYears[,1] <- Initial_teasel                      # initialize the simulated abundances
+Narray <- matrix(0,nrow=6,ncol=nYears+1)          # initialize storage array for recording age structured abundances for the next 10 years. 
+rownames(Narray) <- rownames(Initial_teasel)      # assign row and column names
+colnames(Narray) <- seq(0,10)
+Narray[,1] <- Initial_teasel                      # initialize the simulated abundances
 
 # run the for loop!
 
 for(t in 2:(nYears+1)){    # here we use 't' as our looping variable, but we could choose any name we want
-  tenYears[,t] <-  teasel_matrix %*% tenYears[,t-1]     # perform matrix multiplication for each year of the simulation!
+  Narray[,t] <-  teasel_matrix %*% Narray[,t-1]     # perform matrix multiplication for each year of the simulation!
 }
 
-tenYears
+Narray
 
 
 # Matrix "tricks" for population ecology ---------------------------
@@ -63,7 +63,7 @@ library(popbio)      # load the 'popbio' package in R!
 Lambda <- lambda(teasel_matrix) 
 Lambda
 
-#   as.numeric(round(eigen(teasel_matrix)$values[1],2))  # this is an alternative method- if you don't want to use the 'popbio' package
+#   as.numeric(round(eigen(teasel_matrix)$values[1],2))  # this is an alternative method using base R
 
 
 # Compute stable age distribution from the transition matrix!
@@ -151,16 +151,16 @@ InitAbund
 # Run the model for 50 years (using for loop)
 
 nYears <- 50
-allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
-rownames(allYears) <- rownames(TMat)
-colnames(allYears) <- seq(0,nYears)
-allYears[,1] <- InitAbund 
+Narray <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)
+rownames(Narray) <- rownames(TMat)
+colnames(Narray) <- seq(0,nYears)
+Narray[,1] <- InitAbund 
 
 for(t in 2:(nYears+1)){
-  allYears[,t] <-  TMat %*% allYears[,t-1]    # matrix multiplication!
+  Narray[,t] <-  TMat %*% Narray[,t-1]    # matrix multiplication!
 }
 
-allYears
+Narray
 
 
 # and plot out the results!
@@ -168,8 +168,8 @@ allYears
 plot(1,1,pch="",ylim=c(0,100),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")
 cols <- rainbow(3)
 for(s in 1:3){
-  points(allYears[s,],col=cols[s],type="l",lwd=2)
+  points(Narray[s,],col=cols[s],type="l",lwd=2)
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))
-legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(allYears),bty="n")
+legend("topleft",col=cols,lwd=rep(2,3),legend=rownames(Narray),bty="n")
 

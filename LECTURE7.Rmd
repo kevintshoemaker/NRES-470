@@ -293,10 +293,9 @@ Over time, you see that the population eventually points in a particular directi
 
 Here's an [R script](playWithMPM.R) in case you want to follow along. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 library(plotly)
-
 
 # load functions -------
 # N0=N0_2D;A=A_2D
@@ -319,7 +318,7 @@ drawNvec2D <- function(Ndf,t=0){
   if(nrow(thisdf)==1) alphas=1
   # Convert to rgba color strings
   arrow_colors <- sprintf("rgba(70, 130, 180, %.2f)", alphas)  # steelblue with varying alpha
-  plot_ly() |> 
+  thisplot = plot_ly() |> 
     config(
       scrollZoom = TRUE,    # enables scroll-to-zoom
       displayModeBar = TRUE # ensures toolbar is visible
@@ -349,8 +348,10 @@ drawNvec2D <- function(Ndf,t=0){
     layout(
       xaxis = list(range = c(0, lim),fixedrange = FALSE),
       yaxis = list(range = c(0, lim),fixedrange = FALSE)
-    ) |> 
-    print()
+    ) 
+  # |> 
+  #   print()
+  return(thisplot)
 }
 
 
@@ -370,7 +371,8 @@ Ndf_2D = doProj(N0_2D,A_2D,t=nyears)
 
 # draw population as vectors in space/plane
 
-drawNvec2D(Ndf_2D,10)
+p=drawNvec2D(Ndf_2D,10)
+p
 
 ```
 

@@ -36,6 +36,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -788,18 +796,8 @@ particular direction (the dominant eigenvector) and grows/declines at a
 constant rate (the dominant eigenvalue).</p>
 <p>Here’s an <a href="playWithMPM.R">R script</a> in case you want to
 follow along.</p>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;plotly&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     last_plot</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     layout</code></pre>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-650ad08a21d9ec15d3ba" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-650ad08a21d9ec15d3ba">{"x":{"visdat":{"93c875042473":["function () ","plotlyVisDat"]},"cur_data":"93c875042473","attrs":{"93c875042473":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"text","x":[100,10,56.000000000000007,55.100000000000009,75.910000000000011,94.216000000000008,120.47210000000003,152.70641000000003,194.05765600000007,246.42390310000008,312.98861111000008],"y":[0,50,45,64,78.75,100.95500000000001,127.87200000000001,162.53365000000002,206.38012500000002,262.13292800000005,332.91829395000008],"text":["year0","year1","year2","year3","year4","year5","year6","year7","year8","year9","year10"],"textposition":"top right","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"annotations":[{"text":"","x":100,"y":0,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.40)"},{"text":"","x":10,"y":50,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.46)"},{"text":"","x":56.000000000000007,"y":45,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.52)"},{"text":"","x":55.100000000000009,"y":64,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.58)"},{"text":"","x":75.910000000000011,"y":78.75,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.64)"},{"text":"","x":94.216000000000008,"y":100.95500000000001,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.70)"},{"text":"","x":120.47210000000003,"y":127.87200000000001,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.76)"},{"text":"","x":152.70641000000003,"y":162.53365000000002,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.82)"},{"text":"","x":194.05765600000007,"y":206.38012500000002,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.88)"},{"text":"","x":246.42390310000008,"y":262.13292800000005,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 0.94)"},{"text":"","x":312.98861111000008,"y":332.91829395000008,"ax":0,"ay":0,"xref":"x","axref":"x","yref":"y","ayref":"y","showarrow":true,"arrowhead":2,"arrowsize":1,"arrowwidth":2,"arrowcolor":"rgba(70, 130, 180, 1.00)"}],"xaxis":{"domain":[0,1],"automargin":true,"range":[0,332.91829395000008],"fixedrange":false,"title":[]},"yaxis":{"domain":[0,1],"automargin":true,"range":[0,332.91829395000008],"fixedrange":false,"title":[]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"scrollZoom":true,"displayModeBar":true},"data":[{"type":"scatter","mode":"text","x":[100,10,56.000000000000007,55.100000000000009,75.910000000000011,94.216000000000008,120.47210000000003,152.70641000000003,194.05765600000007,246.42390310000008,312.98861111000008],"y":[0,50,45,64,78.75,100.95500000000001,127.87200000000001,162.53365000000002,206.38012500000002,262.13292800000005,332.91829395000008],"text":["year0","year1","year2","year3","year4","year5","year6","year7","year8","year9","year10"],"textposition":["top right","top right","top right","top right","top right","top right","top right","top right","top right","top right","top right"],"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="mechanics-of-matrix-population-models" class="section level2">
 <h2>Mechanics of matrix population models</h2>
