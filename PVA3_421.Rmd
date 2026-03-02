@@ -1,7 +1,7 @@
 ---
 title: "Loggerhead PVA"
-author: "NRES 421/621"
-date: "Spring 2024"
+author: "NRES 470/670"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -16,19 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 ```{r echo=FALSE}
 
-############################################################
-####                                                    ####  
-####  NRES 421, PVA                                     ####
-####                                                    ####
-####  Kevin Shoemaker                                   #### 
-####  University of Nevada, Reno                        ####
-####                                                    #### 
-############################################################
-
-
-############################################################
-####  Loggerhead example                                ####
-############################################################
+#  Loggerhead example   ------------
+#     NRES 470/670 
 
 
 ```
@@ -46,8 +35,7 @@ And here is the InsightMaker link we will use: [https://insightmaker.com/insight
 ## Constructing a demographic (matrix) model data for loggerhead turtles
 
 If you would like more background information on loggerhead turtles, visit these websites:     
-
-[USFWS site](https://ecos.fws.gov/ecp0/profile/speciesProfile?spcode=C00U)       
+[USFWS site](https://ecos.fws.gov/ecp/species/1110)       
 [NMFS site](https://www.fisheries.noaa.gov/species/loggerhead-turtle)       
 [Texas site](https://tpwd.texas.gov/huntwild/wild/species/logghead/)       
 
@@ -198,15 +186,15 @@ Abundance_year0 <- c(2000,500,300,300,20)   # vector of initial abundances
 InitAbund <- Abundance_year0                            # define the initial abundance
 
   ## NOTE: the code below can be re-used without modification:
-allYears <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
-allYears[,1] <- InitAbund  # set the year 0 abundance                                    
+Narray <- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+Narray[,1] <- InitAbund  # set the year 0 abundance                                    
 for(t in 2:(nYears+1)){   # loop through all years
-  allYears[,t] <-  TMat %*% allYears[,t-1]
+  Narray[,t] <-  TMat %*% Narray[,t-1]
 }
-plot(1,1,pch="",ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
+plot(1,1,pch="",ylim=c(0,max(Narray)),xlim=c(0,nYears+1),xlab="Years",ylab="Abundance",xaxt="n")  # set up blank plot
 cols <- rainbow(5)    # set up colors to use
 for(s in 1:5){
-  points(allYears[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
+  points(Narray[s,],col=cols[s],type="l",lwd=2)     # plot out each life stage abundance, one at a time
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend("topright",col=cols,lwd=rep(2,3),legend=rownames(TMat),bty="n")  # put a legend on the plot

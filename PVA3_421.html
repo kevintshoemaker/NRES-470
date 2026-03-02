@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="NRES 421/621" />
+<meta name="author" content="NRES 470/670" />
 
 
 <title>Loggerhead PVA</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -452,8 +452,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Loggerhead PVA</h1>
-<h4 class="author">NRES 421/621</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="author">NRES 470/670</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -476,10 +476,8 @@ class="section level2">
 <h2>Constructing a demographic (matrix) model data for loggerhead
 turtles</h2>
 <p>If you would like more background information on loggerhead turtles,
-visit these websites:</p>
-<p><a
-href="https://ecos.fws.gov/ecp0/profile/speciesProfile?spcode=C00U">USFWS
-site</a><br />
+visit these websites:<br />
+<a href="https://ecos.fws.gov/ecp/species/1110">USFWS site</a><br />
 <a href="https://www.fisheries.noaa.gov/species/loggerhead-turtle">NMFS
 site</a><br />
 <a href="https://tpwd.texas.gov/huntwild/wild/species/logghead/">Texas
@@ -676,15 +674,15 @@ Abundance_year0 &lt;- c(2000,500,300,300,20)   # vector of initial abundances
 InitAbund &lt;- Abundance_year0                            # define the initial abundance
 
   ## NOTE: the code below can be re-used without modification:
-allYears &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
-allYears[,1] &lt;- InitAbund  # set the year 0 abundance                                    
+Narray &lt;- matrix(0,nrow=nrow(TMat),ncol=nYears+1)     # build a storage array for all abundances!
+Narray[,1] &lt;- InitAbund  # set the year 0 abundance                                    
 for(t in 2:(nYears+1)){   # loop through all years
-  allYears[,t] &lt;-  TMat %*% allYears[,t-1]
+  Narray[,t] &lt;-  TMat %*% Narray[,t-1]
 }
-plot(1,1,pch=&quot;&quot;,ylim=c(0,max(allYears)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)  # set up blank plot
+plot(1,1,pch=&quot;&quot;,ylim=c(0,max(Narray)),xlim=c(0,nYears+1),xlab=&quot;Years&quot;,ylab=&quot;Abundance&quot;,xaxt=&quot;n&quot;)  # set up blank plot
 cols &lt;- rainbow(5)    # set up colors to use
 for(s in 1:5){
-  points(allYears[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
+  points(Narray[s,],col=cols[s],type=&quot;l&quot;,lwd=2)     # plot out each life stage abundance, one at a time
 }
 axis(1,at=seq(1,nYears+1),labels = seq(0,nYears))   # label the axis
 legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quot;n&quot;)  # put a legend on the plot</code></pre>
@@ -915,7 +913,7 @@ legend(&quot;topright&quot;,col=cols,lwd=rep(2,3),legend=rownames(TMat),bty=&quo
 in a <strong>projection matrix</strong> [A] which we use to project the
 population size year to year.</p>
 <p>We all remember the finite-population-growth equation:</p>
-<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t \qquad
+<p><span class="math inline">\(N_{t+1}=\lambda \cdot N_t   \qquad
 \text{(Eq. 1)}\)</span>,</p>
 <p>where <span class="math inline">\(N\)</span> is abundance (as
 always), <span class="math inline">\(t\)</span> is time, often in years
@@ -925,7 +923,7 @@ over the time period <span class="math inline">\(t \rightarrow
 t+1\)</span></p>
 <p>The matrix population growth equation looks pretty much the same!</p>
 <p><span class="math inline">\(\mathbf{N}_{t+1} = \mathbf{A} \cdot
-\mathbf{N}_{t} \qquad \text{(Eq. 2)}\)</span>,</p>
+\mathbf{N}_{t}   \qquad \text{(Eq. 2)}\)</span>,</p>
 <p>where <span class="math inline">\(\mathbf{N}\)</span> is a
 <strong>vector</strong> of abundances (abundance for all stages), and
 <span class="math inline">\(\mathbf{A}\)</span> is the
@@ -936,7 +934,7 @@ this way:</p>
 \end{bmatrix}_{t+1}=\begin{bmatrix}0 &amp; F_2 &amp; F_3\\ P_{1
 \rightarrow 2} &amp; P_{2 \rightarrow 2} &amp; 0\\ 0 &amp; P_{2
 \rightarrow 3} &amp; P_{3 \rightarrow 3}\end{bmatrix} \cdot
-\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t} \qquad \text{(Eq.
+\begin{bmatrix}N_1\\ N_2\\N_3 \end{bmatrix}_{t}    \qquad \text{(Eq.
 3)}\)</span></p>
 <p>Where <span class="math inline">\(P_{1 \rightarrow 2}\)</span> is the
 probability of advancing from stage 1 to 2, and <span
@@ -970,8 +968,8 @@ class="math inline">\(t\)</span> to <span
 class="math inline">\(t+1\)</span>!! For an adult of stage <span
 class="math inline">\(t\)</span> to contribute to the next generation,
 <em>it must both survive and reproduce</em>!.</p>
-<p><span class="math inline">\(F_t = P_{1 \rightarrow 2} \cdot b_{t+1}
-\qquad \text{(Eq. 4)}\)</span></p>
+<p><span class="math inline">\(F_t = P_{1 \rightarrow 2}
+\cdot  b_{t+1}    \qquad \text{(Eq. 4)}\)</span></p>
 <p>There is a lot we can do with matrix population models. The most
 obvious one is <em>projection</em>:</p>
 </div>
