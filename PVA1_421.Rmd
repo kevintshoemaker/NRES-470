@@ -1,7 +1,7 @@
 ---
 title: "PVA Short Course, lecture #1"
 author: "NRES 421/621"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -17,30 +17,21 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 #  NRES 421, PVA 
 #   University of Nevada, Reno
-#   PVA basics  ------------------------------
+#   Population Viability Analysis  ------------------------------
 
 ```
 
 
-[Red Knot model](https://insightmaker.com/insight/hoWpE5JlD9x5AaPHujVg4/Red-Knot-Matrix-Model)
-
-[Horseshoe Crab model](https://insightmaker.com/insight/gim35Z9XDbmFy7gcQy2JD/Horseshoe-crab-model)
-
-[Key PPT slides for exercises](REKN.pptx)
-
-
-
 ## Population Viability Analysis (PVA)
 
-In this short course, we will explore the use of **population simulation models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
+In this 2-period short course, we will explore the use of **population simulation models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
 
 PVA is a set of practical approaches to problem-solving in conservation and wildlife management via creative application of *population ecology theory*, *simulation models* and *statistics*. 
 
-We will use [InsightMaker- a free web-based systems modeling tool](https://insightmaker.com/) for running hands-on simulation models. 
+In the first period we will talk through the basics of population modeling for wildlife conservation, and I'll give some examples of how this method is used to advance wildlife conservation.
 
-First we will run through the basics of population modeling for wildlife conservation...
+Second, we will run through a case study involving the piping plover, where we will use a population model to address questions about the benefits of nest protection (predator exclosures placed around nests) for this species. 
 
-Second, we will run through a case study of the use of population models to support the conservation and management of the Rufa Red Knot (*Calidris canutus rufa*) and the Horseshoe Crab (*Limulus polyphemus*), whose eggs provide a key source of food for migrating Red Knots. 
 Let's review some basic population ecology theory - which is the foundation of PVA!
 
 ## What is a population?
@@ -57,6 +48,8 @@ From Charles Krebs (1972):
 
 Populations of living things have the ability to grow *exponentially*. This is the "power of life".
 
+The following figure illustrates the growth of a population starting from 10 individuals and with an annual growth rate of 15% per year.
+
 ```{r echo=FALSE}
 
 options(scipen=10)
@@ -69,25 +62,29 @@ text(25,20000000, "intrinsic rate of growth = 0.15")
 ```
 
 
-![](Human_population_growth_from_1800_to_2000.png){width=30%}
+![](Human_population_growth_from_1800_to_2000.png){width=40%}
 
-![](positivefeedback1.png){width=30%}
+![](positivefeedback1.png){width=40%}
 
 The takeaway? With sufficient resources (e.g., plenty of food, shelter, nest sites, etc.), populations grow in a **positive feedback** loop. More individuals in the population means greater potential for population growth (e.g., making more babies!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
 
-## Systems thinking and computer modeling
+## Systems thinking, mathematics and computer modeling 
 
-Modern computers have reduced or eliminated many of the barriers to understanding how complex systems behave, and as a result **specialized software and computer programming** are a critical component to modern ecosystem studies and conservation biology, which deal with understanding complex systems. 
+Populations operate within a broader ecosystem, interacting with their environment (e.g., resources) and with other species. These interactions result in positive and negative feedback loops, which in turn can lead to unexpected outcomes known as **emergent properties**, which in turn can help explain large-scale properties -- like the range of a species or the presence of a stable population equilibrium (like carrying capacity)! 
 
-Armed with basic facility with computer programming, ecologists and natural resource professionals can *formalize their understanding* of the natural systems in which they work, building models that account for complex ecological realities. 
+Mathematics gives us a language for unambiguously describing and modeling the **functional relationships** between system components and the processes driving system dynamics.   
 
-In addition, we can run experiments, or **scenario tests** using these models, asking questions that wouldn't otherwise be addressable through science. **In this short-course, we will use computer simulations for understanding and performing scenario tests with natural populations**.   
+Computers have reduced or eliminated many of the barriers to modeling highly complex systems and understanding how these complex systems behave. As a result **computer programming** is a critical component to modern ecosystem studies and conservation biology, which is fundamentally concerned with understanding and managing complex systems. 
 
-### *InsightMaker*: a simulation modeling framework for dynamic systems!
+Armed with basic facility with mathematics and computer programming, ecologists and natural resource professionals can *formalize their understanding* of the natural systems in which they work, building models that account for complex ecological realities. 
+
+In addition, we can run virtual "experiments", or **scenario tests** using these models, asking questions that wouldn't otherwise be addressable through science. For example, to assess which conservation or management actions are most likely to succeed! 
+
+### A simple population simulation model
 
 [InsightMaker](insightmaker.com) is a web-based visual programming language for modeling the dynamics of inter-connected systems.
 
-Any **dynamic system** (like a wildlife population) essentially consists of [Stocks] and [Flows].
+Any **dynamical system** (like a wildlife population) essentially consists of [Stocks] and [Flows].
 
 A [Stock] simply represents a quantity of something. The [Stock] changes over time ONLY via [Flows In] or [Flows Out]. 
 
@@ -99,7 +96,7 @@ A [Stock] of stuff decreases over time via what [Flows] out. For example, *Moose
 
 ![](IM13.jpg)
 
-If the [Flow] into the stock is larger than the [Flow] out of the stock, then the [Stock] increases over time. 
+If the [Flow] into the stock is larger than the [Flow] out of the stock, then the [Stock] increases over time.
 
 If the [Flow] out is larger than the [Flow] in, then the [Stock] decreases over time.
 
@@ -109,7 +106,7 @@ If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not c
 
 It is often stated that "all models are wrong, some are useful" (attributed to statistician George Box). 
 
-This demonstration model is wrong, and not super useful! But it's a start!
+This demonstration model is wrong, and not super useful! But at least it's a start!
 
 ### Simple stock and flow model! 
 
@@ -117,11 +114,10 @@ This demonstration model is wrong, and not super useful! But it's a start!
 
 2. Click on [this link](https://insightmaker.com/insight/162300/NRES-421-In-Class-Demo-1) to load up the first population modeling demo.
 
-3. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the white space anywhere in the workspace and then clicking the "Edit Info" button on the left-hand context menu.  
+3. In the upper left corner of the screen, click on the "Clone" link at the top so you can make your own copy of the model (that you can edit). If you want, you can change the name of the model by clicking on the white space anywhere in the workspace and then clicking the "Edit Info" button on the left-hand context menu.  
 
 4. Now click **Run Simulation**. You have run your first population simulation!
 
-**Q**: What is the first thing you would like to change to make the model more realistic?
 
 ## A more realistic model: exponential growth!
 
@@ -129,7 +125,7 @@ Now let's assume that *per-capita* birth and death rates in the population are c
 
 1. Click on [this link](https://insightmaker.com/insight/162299/NRES-421-In-Class-Demo-2) to load up the next population modeling demonstration.
 
-2. In the upper right-hand corner of the screen, click on the "Clone Insight" link at the top and click on the "Clone" button on the following screen (so you can make edits to this model!). If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
+2. In the upper left corner of the screen, click on the "Clone" link at the top so you can make your own copy of the model. If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
 
 Your model should look something like this:
 
@@ -143,9 +139,9 @@ Your model should look something like this:
 
 **Q**: what happens if you set the birth rate less than the death rate?
 
-One of the most fundamental quantities in population ecology is called the "intrinsic rate of growth", or *r*. R is simply the difference between birth and death rate:
+One of the most fundamental quantities in population ecology is called the "intrinsic rate of growth", or *r*. R is simply the difference between the per-capita birth and death rate:
 
-$r=birth\ rate-death\ rate$
+$$r=birth\ rate-death\ rate$$
 
 **Q**: What is the intrinsic rate of growth for this population (when birth rate is set to 0.5 and the death rate is set to 0.4)? 
 
@@ -153,6 +149,27 @@ $r=birth\ rate-death\ rate$
 
 
 ## An even more realistic model!!
+
+Next, we have several options. We might decide that the next thing we would add to make this model more realistic is some negative feedback process that slows population growth as the population gets larger. For example, something like this:
+
+https://insightmaker.com/insight/5iMKBqMtkz5e2WcJM3YQWN/Logistic-Growth-1-NRES-421-621
+
+
+## Case study: Red Knots and Horseshoe Crabs
+
+[Red Knot model](https://insightmaker.com/insight/hoWpE5JlD9x5AaPHujVg4/Red-Knot-Matrix-Model)
+
+[Horseshoe Crab model](https://insightmaker.com/insight/gim35Z9XDbmFy7gcQy2JD/Horseshoe-crab-model)
+
+[Key PPT slides for exercises](REKN.pptx)
+
+
+
+
+
+
+## And finally, some optional extra materials!
+
 
 Which one of these figures is most likely to be from a real wildlife population??
 
@@ -227,26 +244,6 @@ Now, change the initial abundance to 500 and re-run the "Sensitivity Testing" to
 
 
 **Q**: what key differences do you notice when you initialize the population with 10 individuals vs 500 individuals??
-
-
-## Case study: Red Knots and Horseshoe Crabs
-
-
-[Red Knot model](https://insightmaker.com/insight/hoWpE5JlD9x5AaPHujVg4/Red-Knot-Matrix-Model)
-
-[Horseshoe Crab model](https://insightmaker.com/insight/gim35Z9XDbmFy7gcQy2JD/Horseshoe-crab-model)
-
-[Key PPT slides for exercises](REKN.html)
-
-
-
-
-
-
-
-
-
-## And finally, some optional extra materials!
 
 
 ### Add _Environmental Stochasticity_  
@@ -916,7 +913,27 @@ Okay, now let's build a PVA model together!
 # [pause and record your answers on WebCampus]
 
 
+# [Red Knot model](https://insightmaker.com/insight/hoWpE5JlD9x5AaPHujVg4/Red-Knot-Matrix-Model)
+# 
+# [Horseshoe Crab model](https://insightmaker.com/insight/gim35Z9XDbmFy7gcQy2JD/Horseshoe-crab-model)
+# 
+# [Key PPT slides for exercises](REKN.pptx)
+
+
 # [--go to grizzly PVA!--](PVA2_421.html)
+
+# We will use [InsightMaker- a free web-based systems modeling tool](https://insightmaker.com/) for running hands-on simulation models. 
+
+# the use of population models to support the conservation and management of the *rufa* Red Knot (*Calidris canutus rufa*) and the Horseshoe Crab (*Limulus polyphemus*), whose eggs provide a key source of food for migrating Red Knots.
+
+## Case study: Red Knots and Horseshoe Crabs
+
+
+# [Red Knot model](https://insightmaker.com/insight/hoWpE5JlD9x5AaPHujVg4/Red-Knot-Matrix-Model)
+# 
+# [Horseshoe Crab model](https://insightmaker.com/insight/gim35Z9XDbmFy7gcQy2JD/Horseshoe-crab-model)
+# 
+# [Key PPT slides for exercises](REKN.html)
 
 ```
 
