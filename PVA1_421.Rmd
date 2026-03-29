@@ -22,17 +22,21 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
+[Click here for Excel workbook link](NRES421_2026.xlsx)          
+
+
+
 ## Population Viability Analysis (PVA)
 
 In this 2-period short course, we will explore the use of **population simulation models** to address conservation questions-- a process often called **population viability analysis (PVA)** 
 
 PVA is a set of practical approaches to problem-solving in conservation and wildlife management via creative application of *population ecology theory*, *simulation models* and *statistics*. 
 
-In the first period we will talk through the basics of population modeling for wildlife conservation, and I'll give some examples of how this method is used to advance wildlife conservation.
+In the first period we will talk through the basics of population modeling for wildlife conservation, and I'll give some examples of how this method is used in biological conservation.
 
-Second, we will run through a case study involving the piping plover, where we will use a population model to address questions about the benefits of nest protection (predator exclosures placed around nests) for this species. 
+In the second period, we will run through a case study involving the piping plover, where we will use a population model to address practical questions about the benefits of nest protection (predator exclosures placed around nests). 
 
-Let's review some basic population ecology theory - which is the foundation of PVA!
+Let's review some population ecology theory first.
 
 ## What is a population?
 
@@ -40,11 +44,11 @@ From Charles Krebs (1972):
 
 > “A group of organisms of the same species occupying a particular space at a particular time, with the potential to breed with each other"
 
-*Defining a population is not always straightforward...*. Spatial boundaries defining populations sometimes are easily defined, but other times are vague and difficult to determine. Where does one population begin and another one end?
+Defining a population is not always straightforward. For example, spatial boundaries defining populations sometimes are easily defined, but other times are vague and difficult to determine. Where does one population begin and another one end?
 
 ## How do populations change over time?
 
-### Exponential growth: the fundamental principle of population ecology
+### Exponential growth
 
 Populations of living things have the ability to grow *exponentially*. This is the "power of life".
 
@@ -66,33 +70,35 @@ text(25,20000000, "intrinsic rate of growth = 0.15")
 
 ![](positivefeedback1.png){width=40%}
 
-The takeaway? With sufficient resources (e.g., plenty of food, shelter, nest sites, etc.), populations grow in a **positive feedback** loop. More individuals in the population means greater potential for population growth (e.g., making more babies!), which means more individuals enter the population, which means EVEN GREATER potential for population growth.  
+The takeaway? With sufficient resources (e.g., plenty of food, shelter, nest sites, etc.), collections of living things grow in a **positive feedback** loop. More individuals in the population means greater potential for growth (e.g., more babies entering the population!), which means EVEN GREATER potential for population growth.  
 
 ## Systems thinking, mathematics and computer modeling 
 
-Populations operate within a broader ecosystem, interacting with their environment (e.g., resources) and with other species. These interactions result in positive and negative feedback loops, which in turn can lead to unexpected outcomes known as **emergent properties**, which in turn can help explain large-scale properties -- like the range of a species or the presence of a stable population equilibrium (like carrying capacity)! 
+Populations operate within an ecosystem, interacting with their environment (e.g., resources) and with other species (competitos, predators). These interactions result in positive and negative feedback loops, which in turn leads to large-scale **emergent properties** -- like the realized range of a species or the presence of an unstable population equilibrium (a tipping point) -- which are often difficult to predict based on the set of feedbacks considered individually! 
 
-Mathematics gives us a language for unambiguously describing and modeling the **functional relationships** between system components and the processes driving system dynamics.   
+Mathematics gives us a language for unambiguously describing and modeling each functional relationship and feedback in the system. However, as systems get more complicated, closed-form mathematical solutions (e.g., finding mathematical expressions that 'solve' a set differential equations) become very difficult, and often impossible. That's where computers come in.   
 
 Computers have reduced or eliminated many of the barriers to modeling highly complex systems and understanding how these complex systems behave. As a result **computer programming** is a critical component to modern ecosystem studies and conservation biology, which is fundamentally concerned with understanding and managing complex systems. 
 
-Armed with basic facility with mathematics and computer programming, ecologists and natural resource professionals can *formalize their understanding* of the natural systems in which they work, building models that account for complex ecological realities. 
+Armed with skills in mathematics and computer programming, ecologists and natural resource professionals can *formalize their understanding* of the natural systems in which they work. That is, we can use formal models to account for complex ecological realities and that allow us to advance and test new theories and better understand these natural systems. 
 
-In addition, we can run virtual "experiments", or **scenario tests** using these models, asking questions that wouldn't otherwise be addressable through science. For example, to assess which conservation or management actions are most likely to succeed! 
+In conservation biology, these formal models allow us to run virtual "experiments", or **scenario tests** using these models, asking questions that wouldn't otherwise be addressable. For example, to compare what the future might look like if we were to make a specific set of conservation or management decisions -- and to assess which strategies have the best chance of success! 
 
-### A simple population simulation model
+This is what PVA is all about.
+
+### A (too) simple population model
 
 [InsightMaker](insightmaker.com) is a web-based visual programming language for modeling the dynamics of inter-connected systems.
 
-Any **dynamical system** (like a wildlife population) essentially consists of [Stocks] and [Flows].
+Any **dynamical system** (like a wildlife population) consists of [Stocks] (the quantities of interest) and [Flows] (the inputs and outputs to these quantities).
 
-A [Stock] simply represents a quantity of something. The [Stock] changes over time ONLY via [Flows In] or [Flows Out]. 
+A [Stock] represents a collection of something- like individuals in a population. 
 
-A [Stock] of stuff increases over time via what [Flows] in. Imagine our stock represents *Moose*! 
+The [Stock] changes over time ONLY via [Flows In] or [Flows Out]. 
 
-*Moose Births* would then be the input [Flow] to the population of *Moose* over time. 
+Imagine our stock represents *Moose*! 
 
-A [Stock] of stuff decreases over time via what [Flows] out. For example, *Moose Deaths* could represent the [Flow] out of the population of *Moose*.
+*Moose Births* would then be the input [Flow] to the population of *Moose* over time (number entering each year). Similarly, *Moose Deaths* would represent the output [Flow] (number exiting each year).
 
 ![](IM13.jpg)
 
@@ -102,30 +108,23 @@ If the [Flow] out is larger than the [Flow] in, then the [Stock] decreases over 
 
 If the [Flow] in equals the [Flow] out then the amount in the [Stock] will not change over time. In this case, the system is in **equilibrium**.
 
-## A basic simulation model
-
 It is often stated that "all models are wrong, some are useful" (attributed to statistician George Box). 
 
-This demonstration model is wrong, and not super useful! But at least it's a start!
+This next demonstration model is wrong, and not useful! But it's a start!
 
 ### Simple stock and flow model! 
 
-1. Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. *InsightMaker is free!*
+Open up [InsightMaker](https://insightmaker.com/). If you have never used it before you need to sign up first with a username and password. InsightMaker is free and web-based.
 
-2. Click on [this link](https://insightmaker.com/insight/162300/NRES-421-In-Class-Demo-1) to load up the first population modeling demo.
+Click on [this link](https://insightmaker.com/insight/162300/NRES-421-In-Class-Demo-1) to load up the first population modeling demo.
 
-3. In the upper left corner of the screen, click on the "Clone" link at the top so you can make your own copy of the model (that you can edit). If you want, you can change the name of the model by clicking on the white space anywhere in the workspace and then clicking the "Edit Info" button on the left-hand context menu.  
-
-4. Now click **Run Simulation**. You have run your first population simulation!
-
+Now click **Run Simulation**. You have run your first population simulation!
 
 ## A more realistic model: exponential growth!
 
 Now let's assume that *per-capita* birth and death rates in the population are constant across time. This way, if the population is bigger, more individuals will be added to the population in the next time step, making the population even bigger! This is a positive feedback! 
 
-1. Click on [this link](https://insightmaker.com/insight/162299/NRES-421-In-Class-Demo-2) to load up the next population modeling demonstration.
-
-2. In the upper left corner of the screen, click on the "Clone" link at the top so you can make your own copy of the model. If you want, you can change the name of the model by clicking on the whitespace anywhere in your InsightMaker workspace and then clicking the "Edit Info" button on the left-hand context menu.
+Click on [this link](https://insightmaker.com/insight/162299/NRES-421-In-Class-Demo-2) to load up the next population modeling demonstration.
 
 Your model should look something like this:
 
@@ -147,13 +146,11 @@ $$r=birth\ rate-death\ rate$$
 
 **Q**: What is the next thing you would like to change to make the model more realistic?
 
-
 ## An even more realistic model!!
 
 Next, we have several options. We might decide that the next thing we would add to make this model more realistic is some negative feedback process that slows population growth as the population gets larger. For example, something like this:
 
 https://insightmaker.com/insight/5iMKBqMtkz5e2WcJM3YQWN/Logistic-Growth-1-NRES-421-621
-
 
 We could keep on adding more and more realism and complexity, but hopefully you get the picture!
 
@@ -163,7 +160,16 @@ We could keep on adding more and more realism and complexity, but hopefully you 
 
 ## Case study: Red Knots and Horseshoe Crabs
 
-[Key PPT slides for exercises](REKN2.pptx)
+[PPT slides](REKN2.pptx)
+
+
+## Case study: Piping Plover nest protection
+
+[Plover slides](Plover1.pptx)
+
+
+
+
 
 
 
