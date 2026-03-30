@@ -62,7 +62,7 @@ Since each cell of a Leslie matrix represents the transition from one age to the
 
 For a Leslie matrix, the final year of life (maximum age- 'age k-1' in life table terminology) must have a survival rate of zero. Why? Because no individual can survive past the final year of life (age 'k' for maximum lifespan)!
 
-Since we use a pre-breeding census model in this class (individual enter the population at one year of age) all **fecundity** terms in our transition matrices must be computed as the product of birth rate and survival through the first year of life (i.e., all newborns from this year must survive for a full year before they can "enter" the study as one-year-olds in the following year).
+Since we use a pre-breeding census model in this class (individuals enter the population at one year of age) all **fecundity** terms in our transition matrices must be computed as the product of birth rate and survival through the first year of life (i.e., all newborns from this year must survive for a full year before they can "enter" the study as one-year-olds in the following year).
 
 In a Leslie Matrix (pre-breeding census version), the term $F_1$ must be computed as the per-capita birth rate associated with one-year-olds, $b(1)$, multiplied by the probability of their offspring surviving through the first year of life, $P_{0 \rightarrow 1}$:
 

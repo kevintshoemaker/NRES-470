@@ -1,7 +1,7 @@
 ---
 title: "Lab 6: Metapopulation modeling"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -43,13 +43,13 @@ $E$ is the total fraction of patches in the metapopulation that go extinct (beco
 
 Therefore, the absolute change in metapopulation occupancy can be expressed as:
 
-$\Delta f = I - E  \qquad \text{(Eq. 1)}$
+$$\Delta f = I - E  \qquad \text{(Eq. 1)}$$
 
 The rates I and E can be expressed as per-patch rates (just like B and D can be expressed in terms of per-capita vital rates, b and d)
 
-$p_i$ is the probability of colonization *for any unoccupied patch*.
+$p_i$ is the probability of colonization *for any unoccupied patch*.    
 
-$p_e$ is the probability of extinction *for any occupied patch*.
+$p_e$ is the probability of extinction *for any occupied patch*.     
 
 If most patches in the landscape are unoccupied, then the majority of the metapopulation is available for colonization. 
 
@@ -59,13 +59,13 @@ The emptier the metapopulation, the higher the colonization rate (all else equal
 
 We can express this mathematically:
 
-$I = p_i\cdot (1-f)  \qquad \text{(Eq. 2)}$  
+$$I = p_i\cdot (1-f)  \qquad \text{(Eq. 2)}$$ 
 
 Similarly, if most patches in the landscape are occupied, then the majority of the metapopulation can potentially go extinct. 
 
 If most patches in the landscape are unoccupied, then most of the metapopulation is unavailable for extinction. We can express this mathematically:
 
-$E = p_e\cdot f  \qquad \text{(Eq. 3)}$
+$$E = p_e\cdot f  \qquad \text{(Eq. 3)}$$
 
 Finally, all classical metapopulation models assume the following:   
 
@@ -84,13 +84,13 @@ This model (and only this model) assumes that per-patch extinction and colonizat
 
 Combining equations 1, 2, and 3, we get the island-mainland metapopulation model:
 
-$\Delta f = p_i(1-f)-p_ef  \qquad \text{(Eq. 4)}$
+$$\Delta f = p_i(1-f)-p_ef  \qquad \text{(Eq. 4)}$$
 
 ### Variant #2: internal colonization
 
 In this scenario, colonization can only happen via immigration from within the metapopulation itself. So when few patches are colonized, colonization of "empty" patches is low because of a lack of potential colonizers. 
 
-$p_i = i \cdot f   \qquad \text{(Eq. 5)}$
+$$p_i = i \cdot f   \qquad \text{(Eq. 5)}$$
 
 In this model, the per-patch colonization rate $p_i$ approaches $i$ as nearly all patches become occupied, and approaches zero as the metapopulation approaches global extinction
 
@@ -100,7 +100,7 @@ All other elements remain unchanged from the island-mainland model.
 
 Under the rescue effect model, the per-patch extinction rate $p_e$ can be reduced by immigration from other patches in the metapopulation!
 
-$p_e = e(1-f)   \qquad \text{(Eq. 6)}$
+$$p_e = e(1-f)   \qquad \text{(Eq. 6)}$$
 
 In this model, the extinction rate approaches 0 as the metapopulation approaches full occupancy [note, this may not be realistic, as it implies a perfectly successful rescue effect!]. 
 
@@ -197,7 +197,7 @@ Each patch has its own carrying capacity (K)- some patches have very low carryin
 
 Abundance dynamics are density-dependent, and population growth is computed as a function of **r_max**, **local carrying capacity**, and previous-year local abundance using the **Ricker** growth model:
 
-$N_{t+1} = N_t e^{r_{max}(1-\frac{N_t}{K})}$
+$$N_{t+1} = N_t e^{r_{max}(1-\frac{N_t}{K})}$$
 
 This is one of the most commonly used models for discrete logistic population growth (analogous to the logistic growth model we have already seen!).
 
@@ -219,7 +219,7 @@ Take some time to open the model (clone it!) and get familiar with the parameter
 
 4b (short answer). Use InsightMaker's *sensitivity testing tool* to run the model 100 times (or 50 times, if your browser crashes!), monitoring the total metapopulation abundance. Using the results, briefly describe (i) the abundance trend over time (that is, the trend in overall metapopulation abundance) and (ii) your uncertainty about the total metapopulation abundance at year 100.  
 
-Finally, imagine that this metapopulation represents the last remaining patches of habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:    
+Finally, imagine that this metapopulation represents the last remaining habitat for an endangered butterfly. You have identified three possible management strategies: Starting from the initial conditions specified at the beginning of this exercise, you could:    
       
 i. Improve the intervening, or "matrix", habitat, effectively doubling the maximum dispersal distance (individuals are able to disperse more effectively over longer distances).          
 ii. Improve existing habitats, doubling the mean per-patch carrying capacity (labeled "Mean K per population").         
@@ -232,7 +232,7 @@ iii. Restore habitat, effectively doubling the number of patches (labeled "metap
 
 * Please submit all answers on WebCampus!
 
-***Due Apr. 26 at 11:59pm***
+***See WebCampus for due date***
 
   +  **Exercise 1**
       -  *InsightMaker link (1a.)*   

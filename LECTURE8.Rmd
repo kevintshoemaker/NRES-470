@@ -83,7 +83,7 @@ What if we simply don't have enough data to build a perfect model? This is an ex
 
 ### Stochastic models (demographic and environmental stochasticity)
 
-Here, we "embrace" the concept that populations are inherently variable and unpredictable.
+Here, we embrace the concept that populations are inherently variable and unpredictable.
 
 1. We usually can't predict whether an individual will live or die, breed or not breed, etc. All we can know is the *probability* of mating, or the *probability* of dying, or the per-capita *rate* of offspring production, or the probability of a given offspring being female. But when it comes to projecting exactly which individuals live or die (whether an individual will be "lucky" so to speak!), who gives birth and who doesn't, and how many females are born, we _just can't know for sure_. This is an example of a system being inherently unpredictable. In population ecology, this is called **demographic stochasticity**. In this case, we **randomly sample total births and deaths** (the [Flows] in InsightMaker) to represent the inherent unpredictability of individual fates within a population.
 

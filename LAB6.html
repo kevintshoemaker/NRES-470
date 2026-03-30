@@ -14,7 +14,7 @@
 
 <title>Lab 6: Metapopulation modeling</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Lab 6: Metapopulation modeling</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -503,8 +503,8 @@ patches in the metapopulation that go extinct (become extirpated) per
 time period (extirpation rate)</p>
 <p>Therefore, the absolute change in metapopulation occupancy can be
 expressed as:</p>
-<p><span class="math inline">\(\Delta f = I - E \qquad \text{(Eq.
-1)}\)</span></p>
+<p><span class="math display">\[\Delta f = I - E  \qquad \text{(Eq.
+1)}\]</span></p>
 <p>The rates I and E can be expressed as per-patch rates (just like B
 and D can be expressed in terms of per-capita vital rates, b and d)</p>
 <p><span class="math inline">\(p_i\)</span> is the probability of
@@ -518,15 +518,15 @@ the metapopulation is unavailable for colonization.</p>
 <p>The emptier the metapopulation, the higher the colonization rate (all
 else equal).</p>
 <p>We can express this mathematically:</p>
-<p><span class="math inline">\(I = p_i\cdot (1-f) \qquad \text{(Eq.
-2)}\)</span></p>
+<p><span class="math display">\[I = p_i\cdot (1-f)  \qquad \text{(Eq.
+2)}\]</span></p>
 <p>Similarly, if most patches in the landscape are occupied, then the
 majority of the metapopulation can potentially go extinct.</p>
 <p>If most patches in the landscape are unoccupied, then most of the
 metapopulation is unavailable for extinction. We can express this
 mathematically:</p>
-<p><span class="math inline">\(E = p_e\cdot f \qquad \text{(Eq.
-3)}\)</span></p>
+<p><span class="math display">\[E = p_e\cdot f  \qquad \text{(Eq.
+3)}\]</span></p>
 <p>Finally, all classical metapopulation models assume the
 following:</p>
 <ul>
@@ -554,8 +554,8 @@ class="math inline">\(p_e\)</span> are constants (unchanging over time
 regardless of the status of the metapopulation).</p>
 <p>Combining equations 1, 2, and 3, we get the island-mainland
 metapopulation model:</p>
-<p><span class="math inline">\(\Delta f = p_i(1-f)-p_ef \qquad
-\text{(Eq. 4)}\)</span></p>
+<p><span class="math display">\[\Delta f = p_i(1-f)-p_ef  \qquad
+\text{(Eq. 4)}\]</span></p>
 </div>
 <div id="variant-2-internal-colonization" class="section level3">
 <h3>Variant #2: internal colonization</h3>
@@ -563,8 +563,8 @@ metapopulation model:</p>
 within the metapopulation itself. So when few patches are colonized,
 colonization of “empty” patches is low because of a lack of potential
 colonizers.</p>
-<p><span class="math inline">\(p_i = i \cdot f \qquad \text{(Eq.
-5)}\)</span></p>
+<p><span class="math display">\[p_i = i \cdot f   \qquad \text{(Eq.
+5)}\]</span></p>
 <p>In this model, the per-patch colonization rate <span
 class="math inline">\(p_i\)</span> approaches <span
 class="math inline">\(i\)</span> as nearly all patches become occupied,
@@ -578,8 +578,8 @@ model.</p>
 <p>Under the rescue effect model, the per-patch extinction rate <span
 class="math inline">\(p_e\)</span> can be reduced by immigration from
 other patches in the metapopulation!</p>
-<p><span class="math inline">\(p_e = e(1-f) \qquad \text{(Eq.
-6)}\)</span></p>
+<p><span class="math display">\[p_e = e(1-f)   \qquad \text{(Eq.
+6)}\]</span></p>
 <p>In this model, the extinction rate approaches 0 as the metapopulation
 approaches full occupancy [note, this may not be realistic, as it
 implies a perfectly successful rescue effect!].</p>
@@ -763,8 +763,8 @@ is 2.</p>
 computed as a function of <strong>r_max</strong>, <strong>local carrying
 capacity</strong>, and previous-year local abundance using the
 <strong>Ricker</strong> growth model:</p>
-<p><span class="math inline">\(N_{t+1} = N_t
-e^{r_{max}(1-\frac{N_t}{K})}\)</span></p>
+<p><span class="math display">\[N_{t+1} = N_t
+e^{r_{max}(1-\frac{N_t}{K})}\]</span></p>
 <p>This is one of the most commonly used models for discrete logistic
 population growth (analogous to the logistic growth model we have
 already seen!).</p>
@@ -807,10 +807,9 @@ results, briefly describe (i) the abundance trend over time (that is,
 the trend in overall metapopulation abundance) and (ii) your uncertainty
 about the total metapopulation abundance at year 100.</p>
 <p>Finally, imagine that this metapopulation represents the last
-remaining patches of habitat for an endangered butterfly. You have
-identified three possible management strategies: Starting from the
-initial conditions specified at the beginning of this exercise, you
-could:</p>
+remaining habitat for an endangered butterfly. You have identified three
+possible management strategies: Starting from the initial conditions
+specified at the beginning of this exercise, you could:</p>
 <ol style="list-style-type: lower-roman">
 <li>Improve the intervening, or “matrix”, habitat, effectively doubling
 the maximum dispersal distance (individuals are able to disperse more
@@ -831,7 +830,7 @@ your answer.</p>
 <ul>
 <li>Please submit all answers on WebCampus!</li>
 </ul>
-<p><strong><em>Due Apr. 26 at 11:59pm</em></strong></p>
+<p><strong><em>See WebCampus for due date</em></strong></p>
 <ul>
 <li><strong>Exercise 1</strong>
 <ul>
