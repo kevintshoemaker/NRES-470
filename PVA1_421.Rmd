@@ -1,12 +1,12 @@
 ---
-title: "PVA Short Course, lecture #1"
+title: "PVA Short Course"
 author: "NRES 421/621"
 date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
-    toc: yes
-    toc_float: yes
+    toc: no
+    toc_float: no
 ---
 
 ```{r setup, include=FALSE}
@@ -22,8 +22,9 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-[Click here for Excel workbook link](NRES421_2026.xlsx)          
+[Click here for Excel workbook link](NRES421_2026.xlsx)  
 
+If you don't have Excel, try loading this file up using Google Drive and opening in Sheets.    
 
 
 ## Population Viability Analysis (PVA)
@@ -32,9 +33,9 @@ In this 2-period short course, we will explore the use of **population simulatio
 
 PVA is a set of practical approaches to problem-solving in conservation and wildlife management via creative application of *population ecology theory*, *simulation models* and *statistics*. 
 
-In the first period we will talk through the basics of population modeling for wildlife conservation, and I'll give some examples of how this method is used in biological conservation.
+In the first period we will talk through the basics of population modeling for wildlife conservation, and I'll give some examples of how this method is used in conservation biology.
 
-In the second period, we will run through a case study involving the piping plover, where we will use a population model to address practical questions about the benefits of nest protection (predator exclosures placed around nests). 
+In the second period, we will work through a case study involving the piping plover, where we will use a population model to address practical questions about the benefits of nest protection (predator exclosures placed around nests). 
 
 Let's review some population ecology theory first.
 
@@ -74,17 +75,84 @@ The takeaway? With sufficient resources (e.g., plenty of food, shelter, nest sit
 
 ## Systems thinking, mathematics and computer modeling 
 
-Populations operate within an ecosystem, interacting with their environment (e.g., resources) and with other species (competitos, predators). These interactions result in positive and negative feedback loops, which in turn leads to large-scale **emergent properties** -- like the realized range of a species or the presence of an unstable population equilibrium (a tipping point) -- which are often difficult to predict based on the set of feedbacks considered individually! 
+Populations operate within an ecosystem, interacting with their environment (e.g., resources) and with other species (competitors, predators). These interactions result in positive and negative feedback loops, which in turn leads to large-scale **emergent properties** -- like the realized range of a species or the presence of an unstable population equilibrium (a tipping point) -- which are often difficult to predict based on the components of the model considered individually! 
 
-Mathematics gives us a language for unambiguously describing and modeling each functional relationship and feedback in the system. However, as systems get more complicated, closed-form mathematical solutions (e.g., finding mathematical expressions that 'solve' a set differential equations) become very difficult, and often impossible. That's where computers come in.   
+Mathematics gives us a language for unambiguously describing and modeling each functional relationship and feedback in the system -- often via a system of difference (or differential) equations. However, as systems get more complicated, closed-form mathematical solutions (e.g., finding mathematical expressions that exactly 'solve' a system of differential equations) become very difficult, and often impossible. That's where computers come in.   
 
 Computers have reduced or eliminated many of the barriers to modeling highly complex systems and understanding how these complex systems behave. As a result **computer programming** is a critical component to modern ecosystem studies and conservation biology, which is fundamentally concerned with understanding and managing complex systems. 
 
-Armed with skills in mathematics and computer programming, ecologists and natural resource professionals can *formalize their understanding* of the natural systems in which they work. That is, we can use formal models to account for complex ecological realities and that allow us to advance and test new theories and better understand these natural systems. 
+Armed with skills in ecology, mathematics and computer programming, ecologists and natural resource professionals can *formalize their understanding* of their study systems. That is, we can assemble formal mathematical representations of complex ecosystems one component at a time, based on our understanding of how the individual parts work and interact. And by putting the pieces together into a single framework, we can understand the implications of the interactions and feedbacks-- allowing us to advance new theories, test existing theories, and better understand how complex natural systems function. 
 
-In conservation biology, these formal models allow us to run virtual "experiments", or **scenario tests** using these models, asking questions that wouldn't otherwise be addressable. For example, to compare what the future might look like if we were to make a specific set of conservation or management decisions -- and to assess which strategies have the best chance of success! 
+In conservation biology, these formal models allow us to run virtual "experiments", or **scenario tests** using these models, asking questions that we wouldn't otherwise be able to address. For example, to compare what the future might look like if we were to make a specific set of conservation or management decisions -- and to assess which strategies have the best chance of success! 
 
-This is what PVA is all about.
+This is what PVA is all about. It is the applied side of ecosystem and population modeling- where the rarefied world of quantitative ecology escapes the walls of the ivory tower to impact natural resources policy decisions in the real world!  
+
+## Modeling exponential growth!
+
+Now let's assume that *per-capita* birth and death rates in the population are constant across time, such that per-capita birth rates exceed death rates by a certain fixed constant (known as the intrinsic rate of growth, $r$. If the population gets bigger, more net individuals will be added to the population in the next time step, making the population even bigger! This is a positive feedback! 
+
+Open up the first workbook in our Excel spreadsheet. Take a minute to play around with the green-shaded cells (under "your scenario": birth rate, death rate initial abundance) and see how the growth of the population size (y axis) changes over time (x axis) in the embedded plot. 
+
+Look at how the following two derived parameters change as you change the three parameters: intrinsic growth rate (r) and Lambda. 
+
+Intrinsic rate of growth is simply the per-capita birth rate minus the per-capita death rate.
+
+Lambda is the multiplier that converts this years abundance to next years abundance ($N_{t+1} = N_t\lambda$).
+
+### Quick exercise
+
+Can you come up with the 'rules' of population growth relative to r and lambda? What values of r and lambda correspond to a growing population? What values of r and lambda correspond to a declining population? 
+
+## An even more realistic model!!
+
+Next, let's add some negative feedback process that slows population growth as the population gets larger. For example, see the second worksheet in our Excel workbook. 
+
+We won't do any exercise, but take a minute to play around with this slightly more realistic model- again, only altering the green-highlighted cells. 
+
+We could keep on adding more and more realism and complexity, but hopefully you get the picture!
+
+## Case study: Gopher tortoise conservation status
+
+[PPT slides](GT1.pptx)
+
+### Quick exercise
+
+Before moving on, pick any parameter and try varying the parameter from the minimum to the maximum value indicated in the spreadsheet (only change the cells highlighted in green). 
+
+Based on the results of your tests: (1) was the population growth rate sensitive to this parameter- and was the effect greatest in the original model or the corrected model? (2) what are the implications for the conservation of gopher tortoises??
+
+## Case study: Red Knots and Horseshoe Crabs
+
+[PPT slides](REKN2.pptx)
+
+### Quick exercise
+
+Before moving on, try changing the abundance of horseshoe crabs using the guidelines in the Excel spreadsheet -- that is, try running the model with "average" horseshoe crab abundance, "highest observed" abundance, "lowest observed" abundance, and a scenario of a collapsed horseshoe crab population. 
+
+How do the two models (original and reanalysis) differ in terms of the sensitivity of the population growth to the abundance of horseshoe crabs? If you were involved in managing the harvest of horseshoe crabs in Delaware bay, what would you do when presented with these alternative models of the system? 
+
+## Case study: Piping Plover nest protection
+
+[Plover slides](Plover1.pptx)
+
+### Exercise
+
+See the slides for details!
+
+
+---END PVA MINI-COURSE---
+
+##
+##
+##
+##
+##
+##
+##
+##
+
+## And finally, some optional extra materials!
+
 
 ### A (too) simple population model
 
@@ -154,27 +222,8 @@ https://insightmaker.com/insight/5iMKBqMtkz5e2WcJM3YQWN/Logistic-Growth-1-NRES-4
 
 We could keep on adding more and more realism and complexity, but hopefully you get the picture!
 
-## Case study: Gopher tortoise conservation status
 
-[PPT slides](GT1.pptx)
-
-## Case study: Red Knots and Horseshoe Crabs
-
-[PPT slides](REKN2.pptx)
-
-
-## Case study: Piping Plover nest protection
-
-[Plover slides](Plover1.pptx)
-
-
-
-
-
-
-
-## And finally, some optional extra materials!
-
+## More realism: stochastic models
 
 Which one of these figures is most likely to be from a real wildlife population??
 

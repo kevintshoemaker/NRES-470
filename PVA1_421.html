@@ -12,7 +12,7 @@
 <meta name="author" content="NRES 421/621" />
 
 
-<title>PVA Short Course, lecture #1</title>
+<title>PVA Short Course</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -30,9 +30,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -223,69 +220,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -293,16 +227,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -451,7 +375,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">PVA Short Course, lecture #1</h1>
+<h1 class="title toc-ignore">PVA Short Course</h1>
 <h4 class="author">NRES 421/621</h4>
 <h4 class="date">Spring 2026</h4>
 
@@ -460,6 +384,8 @@ div.tocify {
 
 <p><a href="NRES421_2026.xlsx">Click here for Excel workbook
 link</a></p>
+<p>If you don’t have Excel, try loading this file up using Google Drive
+and opening in Sheets.</p>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
 <p>In this 2-period short course, we will explore the use of
@@ -472,8 +398,8 @@ conservation and wildlife management via creative application of
 <em>statistics</em>.</p>
 <p>In the first period we will talk through the basics of population
 modeling for wildlife conservation, and I’ll give some examples of how
-this method is used in biological conservation.</p>
-<p>In the second period, we will run through a case study involving the
+this method is used in conservation biology.</p>
+<p>In the second period, we will work through a case study involving the
 piping plover, where we will use a population model to address practical
 questions about the benefits of nest protection (predator exclosures
 placed around nests).</p>
@@ -516,17 +442,18 @@ population growth.</p>
 class="section level2">
 <h2>Systems thinking, mathematics and computer modeling</h2>
 <p>Populations operate within an ecosystem, interacting with their
-environment (e.g., resources) and with other species (competitos,
+environment (e.g., resources) and with other species (competitors,
 predators). These interactions result in positive and negative feedback
 loops, which in turn leads to large-scale <strong>emergent
 properties</strong> – like the realized range of a species or the
 presence of an unstable population equilibrium (a tipping point) – which
-are often difficult to predict based on the set of feedbacks considered
-individually!</p>
+are often difficult to predict based on the components of the model
+considered individually!</p>
 <p>Mathematics gives us a language for unambiguously describing and
-modeling each functional relationship and feedback in the system.
-However, as systems get more complicated, closed-form mathematical
-solutions (e.g., finding mathematical expressions that ‘solve’ a set
+modeling each functional relationship and feedback in the system – often
+via a system of difference (or differential) equations. However, as
+systems get more complicated, closed-form mathematical solutions (e.g.,
+finding mathematical expressions that exactly ‘solve’ a system of
 differential equations) become very difficult, and often impossible.
 That’s where computers come in.</p>
 <p>Computers have reduced or eliminated many of the barriers to modeling
@@ -535,19 +462,136 @@ behave. As a result <strong>computer programming</strong> is a critical
 component to modern ecosystem studies and conservation biology, which is
 fundamentally concerned with understanding and managing complex
 systems.</p>
-<p>Armed with skills in mathematics and computer programming, ecologists
-and natural resource professionals can <em>formalize their
-understanding</em> of the natural systems in which they work. That is,
-we can use formal models to account for complex ecological realities and
-that allow us to advance and test new theories and better understand
-these natural systems.</p>
+<p>Armed with skills in ecology, mathematics and computer programming,
+ecologists and natural resource professionals can <em>formalize their
+understanding</em> of their study systems. That is, we can assemble
+formal mathematical representations of complex ecosystems one component
+at a time, based on our understanding of how the individual parts work
+and interact. And by putting the pieces together into a single
+framework, we can understand the implications of the interactions and
+feedbacks– allowing us to advance new theories, test existing theories,
+and better understand how complex natural systems function.</p>
 <p>In conservation biology, these formal models allow us to run virtual
 “experiments”, or <strong>scenario tests</strong> using these models,
-asking questions that wouldn’t otherwise be addressable. For example, to
-compare what the future might look like if we were to make a specific
-set of conservation or management decisions – and to assess which
-strategies have the best chance of success!</p>
-<p>This is what PVA is all about.</p>
+asking questions that we wouldn’t otherwise be able to address. For
+example, to compare what the future might look like if we were to make a
+specific set of conservation or management decisions – and to assess
+which strategies have the best chance of success!</p>
+<p>This is what PVA is all about. It is the applied side of ecosystem
+and population modeling- where the rarefied world of quantitative
+ecology escapes the walls of the ivory tower to impact natural resources
+policy decisions in the real world!</p>
+</div>
+<div id="modeling-exponential-growth" class="section level2">
+<h2>Modeling exponential growth!</h2>
+<p>Now let’s assume that <em>per-capita</em> birth and death rates in
+the population are constant across time, such that per-capita birth
+rates exceed death rates by a certain fixed constant (known as the
+intrinsic rate of growth, <span class="math inline">\(r\)</span>. If the
+population gets bigger, more net individuals will be added to the
+population in the next time step, making the population even bigger!
+This is a positive feedback!</p>
+<p>Open up the first workbook in our Excel spreadsheet. Take a minute to
+play around with the green-shaded cells (under “your scenario”: birth
+rate, death rate initial abundance) and see how the growth of the
+population size (y axis) changes over time (x axis) in the embedded
+plot.</p>
+<p>Look at how the following two derived parameters change as you change
+the three parameters: intrinsic growth rate (r) and Lambda.</p>
+<p>Intrinsic rate of growth is simply the per-capita birth rate minus
+the per-capita death rate.</p>
+<p>Lambda is the multiplier that converts this years abundance to next
+years abundance (<span class="math inline">\(N_{t+1} =
+N_t\lambda\)</span>).</p>
+<div id="quick-exercise" class="section level3">
+<h3>Quick exercise</h3>
+<p>Can you come up with the ‘rules’ of population growth relative to r
+and lambda? What values of r and lambda correspond to a growing
+population? What values of r and lambda correspond to a declining
+population?</p>
+</div>
+</div>
+<div id="an-even-more-realistic-model" class="section level2">
+<h2>An even more realistic model!!</h2>
+<p>Next, let’s add some negative feedback process that slows population
+growth as the population gets larger. For example, see the second
+worksheet in our Excel workbook.</p>
+<p>We won’t do any exercise, but take a minute to play around with this
+slightly more realistic model- again, only altering the
+green-highlighted cells.</p>
+<p>We could keep on adding more and more realism and complexity, but
+hopefully you get the picture!</p>
+</div>
+<div id="case-study-gopher-tortoise-conservation-status"
+class="section level2">
+<h2>Case study: Gopher tortoise conservation status</h2>
+<p><a href="GT1.pptx">PPT slides</a></p>
+<div id="quick-exercise-1" class="section level3">
+<h3>Quick exercise</h3>
+<p>Before moving on, pick any parameter and try varying the parameter
+from the minimum to the maximum value indicated in the spreadsheet (only
+change the cells highlighted in green).</p>
+<p>Based on the results of your tests: (1) was the population growth
+rate sensitive to this parameter- and was the effect greatest in the
+original model or the corrected model? (2) what are the implications for
+the conservation of gopher tortoises??</p>
+</div>
+</div>
+<div id="case-study-red-knots-and-horseshoe-crabs"
+class="section level2">
+<h2>Case study: Red Knots and Horseshoe Crabs</h2>
+<p><a href="REKN2.pptx">PPT slides</a></p>
+<div id="quick-exercise-2" class="section level3">
+<h3>Quick exercise</h3>
+<p>Before moving on, try changing the abundance of horseshoe crabs using
+the guidelines in the Excel spreadsheet – that is, try running the model
+with “average” horseshoe crab abundance, “highest observed” abundance,
+“lowest observed” abundance, and a scenario of a collapsed horseshoe
+crab population.</p>
+<p>How do the two models (original and reanalysis) differ in terms of
+the sensitivity of the population growth to the abundance of horseshoe
+crabs? If you were involved in managing the harvest of horseshoe crabs
+in Delaware bay, what would you do when presented with these alternative
+models of the system?</p>
+</div>
+</div>
+<div id="case-study-piping-plover-nest-protection"
+class="section level2">
+<h2>Case study: Piping Plover nest protection</h2>
+<p><a href="Plover1.pptx">Plover slides</a></p>
+<div id="exercise" class="section level3">
+<h3>Exercise</h3>
+<p>See the slides for details!</p>
+<p>—END PVA MINI-COURSE—</p>
+</div>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+</div>
+<div id="section-2" class="section level2">
+<h2></h2>
+</div>
+<div id="section-3" class="section level2">
+<h2></h2>
+</div>
+<div id="section-4" class="section level2">
+<h2></h2>
+</div>
+<div id="section-5" class="section level2">
+<h2></h2>
+</div>
+<div id="section-6" class="section level2">
+<h2></h2>
+</div>
+<div id="section-7" class="section level2">
+<h2></h2>
+</div>
+<div id="and-finally-some-optional-extra-materials"
+class="section level2">
+<h2>And finally, some optional extra materials!</h2>
 <div id="a-too-simple-population-model" class="section level3">
 <h3>A (too) simple population model</h3>
 <p><a href="insightmaker.com">InsightMaker</a> is a web-based visual
@@ -624,7 +668,7 @@ population (when birth rate is set to 0.5 and the death rate is set to
 <p><strong>Q</strong>: What is the next thing you would like to change
 to make the model more realistic?</p>
 </div>
-<div id="an-even-more-realistic-model" class="section level2">
+<div id="an-even-more-realistic-model-1" class="section level2">
 <h2>An even more realistic model!!</h2>
 <p>Next, we have several options. We might decide that the next thing we
 would add to make this model more realistic is some negative feedback
@@ -636,24 +680,8 @@ class="uri">https://insightmaker.com/insight/5iMKBqMtkz5e2WcJM3YQWN/Logistic-Gro
 <p>We could keep on adding more and more realism and complexity, but
 hopefully you get the picture!</p>
 </div>
-<div id="case-study-gopher-tortoise-conservation-status"
-class="section level2">
-<h2>Case study: Gopher tortoise conservation status</h2>
-<p><a href="GT1.pptx">PPT slides</a></p>
-</div>
-<div id="case-study-red-knots-and-horseshoe-crabs"
-class="section level2">
-<h2>Case study: Red Knots and Horseshoe Crabs</h2>
-<p><a href="REKN2.pptx">PPT slides</a></p>
-</div>
-<div id="case-study-piping-plover-nest-protection"
-class="section level2">
-<h2>Case study: Piping Plover nest protection</h2>
-<p><a href="Plover1.pptx">Plover slides</a></p>
-</div>
-<div id="and-finally-some-optional-extra-materials"
-class="section level2">
-<h2>And finally, some optional extra materials!</h2>
+<div id="more-realism-stochastic-models" class="section level2">
+<h2>More realism: stochastic models</h2>
 <p>Which one of these figures is most likely to be from a real wildlife
 population??</p>
 <p><img src="fluct1.jpg" /></p>
@@ -1459,8 +1487,6 @@ more realistic (step 2).</p>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -1493,35 +1519,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
