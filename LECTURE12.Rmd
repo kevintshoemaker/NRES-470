@@ -1,7 +1,7 @@
 ---
 title: "Overview of population Viability Analysis"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -24,17 +24,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 R code for this lecture can be found [here](LECTURE12.R)
 
-### Final projects:
-
-Just a heads up about [final projects](FINAL_PROJECTS.html). Your working PVA and a document justifying your modeling decisions is *due Wed, April 10*!
-
 ## Population Viability Analysis (PVA)
 
 Population Viability Analysis (PVA) integrates everything we have studied so far and more. 
 
 At its most basic level, PVA is the _process of building and running a formal predictive population model for the purpose of gaining insight about present and future conservation status, or ranking alternative management options_.
 
-PVA is used for assessing how stochasticity and inbreeding can lead to extinction (small-population paradigm) and for assessing how to reverse population declines (declining population paradigm).
+PVA is used for assessing how stochasticity and inbreeding can lead to extinction (small-population paradigm) and for assessing how to effectively reverse population declines and promote recovery (declining population paradigm).
 
 **Q:** Are PVA models always stochastic?
 
@@ -351,7 +347,7 @@ abline(h=0.05,col="red",lwd=2)
 ```
 
 
-
+[--go to next lecture--](LECTURE13.html)
 
 
 

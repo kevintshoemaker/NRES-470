@@ -14,7 +14,7 @@
 
 <title>Overview of population Viability Analysis</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -454,19 +454,13 @@ div.tocify {
 <h1 class="title toc-ignore">Overview of population Viability
 Analysis</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
 
 <p>R code for this lecture can be found <a
 href="LECTURE12.R">here</a></p>
-<div id="final-projects" class="section level3">
-<h3>Final projects:</h3>
-<p>Just a heads up about <a href="FINAL_PROJECTS.html">final
-projects</a>. Your working PVA and a document justifying your modeling
-decisions is <em>due Wed, April 10</em>!</p>
-</div>
 <div id="population-viability-analysis-pva" class="section level2">
 <h2>Population Viability Analysis (PVA)</h2>
 <p>Population Viability Analysis (PVA) integrates everything we have
@@ -477,7 +471,8 @@ insight about present and future conservation status, or ranking
 alternative management options</em>.</p>
 <p>PVA is used for assessing how stochasticity and inbreeding can lead
 to extinction (small-population paradigm) and for assessing how to
-reverse population declines (declining population paradigm).</p>
+effectively reverse population declines and promote recovery (declining
+population paradigm).</p>
 <p><strong>Q:</strong> Are PVA models always stochastic?</p>
 <p><strong>Q:</strong> Are PVA models always density-dependent?</p>
 <p><strong>Q:</strong> Are PVA models always age-structured?</p>
@@ -794,6 +789,7 @@ for(scenario in 1:length(flood_lambdas)){
 plot(1-flood_lambdas,all_scenarios,type=&quot;p&quot;,cex=2,xlab=&quot;flood impact (mortality in flood year)&quot;,ylab=&quot;extinction risk&quot;)
 abline(h=0.05,col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="LECTURE12_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><a href="LECTURE13.html">–go to next lecture–</a></p>
 </div>
 </div>
 </div>
