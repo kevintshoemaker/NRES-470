@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 
-### Upcoming midterm exam: April 22
+### Upcoming midterm exam
 
 **when and where** The second midterm exam (out of two) is coming up on **Wednesday April 22**. You will have the whole class period to take the exam. We will use the same basic format as we used for the first midterm. 
 
@@ -233,11 +233,13 @@ A **source population** is defined as a patch with a positive intrinsic growth r
 
 A **sink population** is defined as a patch with a negative intrinsic growth rate (r<0). A sink population *would go extinct* if it were not for the constant input of immigrants from nearby **source populations**. Sink populations can not persist in isolation. 
 
-A **pseudo-sink population** is defined as a patch with intrinsic rate of growth above zero (r>0) whose abundance is *artifically augmented* above its own carrying capacity by immigrants from nearby source populations. In isolation (in the absence of immigration from a nearby source population) a pseudo-sink would not go extinct (a true sink would go extinct!), but would settle down at a lower equilibrium abundance (i.e., its own carrying capacity). That is, a pseudo-sink *maintains an equilibrium abundance above its carrying capacity due to the influx of immigrants from one or more nearby source populations*.
+A **pseudo-sink population** is defined as a patch with intrinsic rate of growth above zero (r>0) whose abundance is *artifically augmented* by immigrants from nearby source populations. In isolation (in the absence of immigration from a nearby source population) a pseudo-sink would not go extinct (a true sink would go extinct!), but would settle at a lower equilibrium abundance (i.e., its own carrying capacity). That is, a pseudo-sink *maintains an equilibrium abundance above its carrying capacity due to the influx of immigrants from one or more nearby source populations*.
 
 One final definition:
 
-If a sink habitat is also very attractive to a species, this can be considered a form of **ecological trap** (or **evolutionary trap**). This can happen when human land use practices (to which a species is not evolved) transforms what a focal species *perceives* as good habitat into a "death trap". For instance, some birds are evolved to nest in open fields. To these species, hayfields may seem like a good place to nest- but then the mowers and balers come through and destroy all the nests. Such habitat is an especially dangerous type of sink!! 
+If a sink habitat is also very attractive to a species, this can be considered a form of **ecological trap** (or **evolutionary trap**). This can happen when human land use practices (to which a species is not evolved) transforms what a focal species *perceives* as good habitat (following signals that have indicated high-quality habitat over evolutionary time) into a "death trap". For instance, some birds are evolved to nest in open fields. To these species, hayfields may seem like a good place to nest- but then the mowers and balers come through and destroy all the nests. Such habitat is an especially dangerous type of sink habitat for conservation!! 
+
+On the flip side, the ecological traps can be used to help manage pest species. For example, Napier grass (Pennisetum purpureum) is planted as a border around maize fields in east Africa. Stem borer moths (Busseola fusca, Chilo partellus) are strongly attracted to Napier grass for oviposition (they prefer it over maize) but Napier grass produces a sticky substance that physically traps neonate larvae after hatching, killing them before they can establish.
 
 ## In-class exercise: sources and sinks!
 
