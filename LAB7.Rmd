@@ -1,7 +1,7 @@
 ---
 title: "Lab 7: Parameter estimation: mark-recapture analysis!"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -96,11 +96,11 @@ This formula technically represents *Sampling Variance*, which is a common way t
 
 The standard deviation of the sampling variance (usually called "standard error" of the statistic) is just the square root of the sampling variance:
 
-$StDev(\hat N) = \sqrt[]{Var(\hat N)}    \qquad \text{(Eq. 4)}$
+$$StDev(\hat N) = \sqrt[]{Var(\hat N)}    \qquad \text{(Eq. 4)}$$
 
 Finally, the 95% confidence interval for $\hat N$ is approximately 2 "standard error" units from the value of $\hat N$.
 
-$\hat N \pm 1.965 * StDev(\hat N)   \qquad \text{(Eq. 5)}$
+$$\hat N \pm 1.965 * StDev(\hat N)   \qquad \text{(Eq. 5)}$$
 
 #### Fundamental Assumptions of Lincoln-Petersen estimator:
 

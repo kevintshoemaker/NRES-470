@@ -14,7 +14,7 @@
 
 <title>Parameter estimation</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Parameter estimation</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -552,7 +552,7 @@ know:
 </li>
 <li>Population growth (lambda) is 1.09<br />
 </li>
-<li>Now we can solve for hatchling survival!<br />
+<li>Now we can solve for the unknown – hatchling survival!<br />
 </li>
 <li>For an example of this, see <a
 href="congdon%20et%20al%201993.pdf">Congdon et al 1993</a><br />
@@ -628,12 +628,11 @@ in survival, lambda, recruitment, dispersal rates. - Probably the most
 widely used source of data for population models (especially if you
 consider that telemetry data is a special class of
 capture-mark-recapture data!</p>
-<p><strong>CONS</strong> - Few downsides, although the analytical
-techniques can be difficult to master - Mounting a proper CMR study can
-be very costly, and require many years of data. - Estimating
-landscape-scale movements can require an even more costly and
-time-consuming study. - Emigration and survival can be difficult to
-tease apart in many cases.</p>
+<p><strong>CONS</strong> - Cost: mounting a proper CMR study can be very
+costly, and require many years of data. - Estimating landscape-scale
+movements can require an even more costly and time-consuming study. -
+Emigration and survival can be difficult to tease apart in many cases. -
+The analytical techniques can be difficult to master</p>
 </div>
 </div>
 <div id="statistics-and-wildlife-population-ecology"
@@ -695,7 +694,8 @@ C = total number of individuals captured in 2nd sample<br />
 R = number of individuals in 2nd sample that are marked</p>
 <p>We can use the following formula to estimate abundance (the
 <strong>Lincoln-Peterson estimator</strong>):</p>
-<p><span class="math inline">\(N = \frac{M \times C}{R}\)</span></p>
+<p><span class="math display">\[\hat N = \frac{M \times
+C}{R}\]</span></p>
 </div>
 <div id="open-population-models" class="section level4">
 <h4>Open population models</h4>

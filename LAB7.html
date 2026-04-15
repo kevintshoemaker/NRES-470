@@ -14,7 +14,7 @@
 
 <title>Lab 7: Parameter estimation: mark-recapture analysis!</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -454,7 +454,7 @@ div.tocify {
 <h1 class="title toc-ignore">Lab 7: Parameter estimation: mark-recapture
 analysis!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -531,7 +531,7 @@ that:</p>
 <p>where <span class="math inline">\(N\)</span> is the total population
 size. Solving for <span class="math inline">\(N\)</span> yields the
 estimator:</p>
-<p><span class="math inline">\(\hat N=\frac{C\cdot M}{R} \qquad
+<p><span class="math inline">\(\hat N=\frac{C\cdot M}{R}  \qquad
 \text{(Eq. 1)}\)</span></p>
 <p>Imagine we were to capture 10 individuals during our first visit
 (<span class="math inline">\(M=10\)</span>) and 8 individuals during our
@@ -557,7 +557,7 @@ sample is zero?</p>
 <p>A modified version with less bias was originally developed by Chapman
 (1951) and is commonly called the <em>modified Petersen estimate</em> or
 the <em>Chapman estimator</em>:</p>
-<p><span class="math inline">\(\hat N=\frac{(M+1)(C+1)}{R+1}-1 \qquad
+<p><span class="math inline">\(\hat N=\frac{(M+1)(C+1)}{R+1}-1   \qquad
 \text{(Eq. 2)}\)</span></p>
 <p>This formula is a <strong>statistic</strong> estimating total
 population size on the basis of a <strong>sample</strong> (see <a
@@ -577,20 +577,20 @@ is the sampling uncertainty.</p>
 <p>For the Lincoln-Peterson estimator, our uncertainty about this
 estimate (sampling variance) can be computed as:</p>
 <p><span class="math inline">\(Var(\hat
-N)=\frac{(M+1)(C+1)(M-R)(C-R)}{(R+1)^2(R+2)} \qquad \text{(Eq.
+N)=\frac{(M+1)(C+1)(M-R)(C-R)}{(R+1)^2(R+2)}   \qquad \text{(Eq.
 3)}\)</span></p>
 <p>This formula technically represents <em>Sampling Variance</em>, which
 is a common way to represent parameter uncertainty in statistics.</p>
 <p>The standard deviation of the sampling variance (usually called
 “standard error” of the statistic) is just the square root of the
 sampling variance:</p>
-<p><span class="math inline">\(StDev(\hat N) = \sqrt[]{Var(\hat N)}
-\qquad \text{(Eq. 4)}\)</span></p>
+<p><span class="math inline">\(StDev(\hat N) = \sqrt[]{Var(\hat
+N)}    \qquad \text{(Eq. 4)}\)</span></p>
 <p>Finally, the 95% confidence interval for <span
 class="math inline">\(\hat N\)</span> is approximately 2 “standard
 error” units from the value of <span class="math inline">\(\hat
 N\)</span>.</p>
-<p><span class="math inline">\(\hat N \pm 1.965 * StDev(\hat N) \qquad
+<p><span class="math inline">\(\hat N \pm 1.965 * StDev(\hat N)   \qquad
 \text{(Eq. 5)}\)</span></p>
 </div>
 <div id="fundamental-assumptions-of-lincoln-petersen-estimator"
@@ -636,7 +636,7 @@ of the L-P estimates:</p>
 \qquad \text{(Eq. 6)}\)</span></p>
 <p>What about the sampling variance? It can be computed as:</p>
 <p><span class="math inline">\(Var(\frac{1}{\hat
-N})=\frac{\sum{R_t}}{(\sum{(C_tM_t))^2}} \qquad \text{(Eq.
+N})=\frac{\sum{R_t}}{(\sum{(C_tM_t))^2}}   \qquad \text{(Eq.
 7)}\)</span></p>
 <p>Note that this formula gives you the sampling uncertainty (variance)
 for the <em>inverse</em> of N (<span
@@ -647,7 +647,7 @@ class="math inline">\(\hat N\)</span>??</p>
 <em>inverse of N</em> using the same method described above (take square
 root of the variance):</p>
 <p><span class="math inline">\(\frac{1}{\hat N} \pm 1.965 *
-\sqrt[](Var(\frac{1}{\hat N})) \qquad \text{(Eq. 8)}\)</span></p>
+\sqrt[](Var(\frac{1}{\hat N}))   \qquad \text{(Eq. 8)}\)</span></p>
 <p>To compute the confidence interval for N, take the inverse of the
 lower and upper bounds (limits) of the confidence interval computed
 above!</p>
@@ -906,66 +906,9 @@ dipper.proc=process.data(dipper.male,model=&quot;cjs&quot;,begin.time=1)  # Help
 mod.Phit.pt &lt;- crm(dipper.proc,dipper.ddl,model.parameters=list(Phi=list(formula=~time),p=list(formula=~time)),method=&quot;Nelder-Mead&quot;,hessian = T)</code></pre>
 <pre><code>## Computing initial parameter estimates</code></pre>
 <pre><code>## Starting optimization for 12 parameters...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl:  352.390871
- Number of evaluations:  200  -2lnl: 329.3590213
- Number of evaluations:  300  -2lnl: 321.3664886
- Number of evaluations:  400  -2lnl: 317.1142841
- Number of evaluations:  500  -2lnl: 316.2055371
- Number of evaluations:  600  -2lnl: 316.0677887
- Number of evaluations:  700  -2lnl: 315.8890344
- Number of evaluations:  800  -2lnl: 315.6884902
- Number of evaluations:  900  -2lnl: 315.6684003
- Number of evaluations:  1000  -2lnl: 315.6597409
- Number of evaluations:  1100  -2lnl: 315.6381675
- Number of evaluations:  1200  -2lnl: 315.6287795
- Number of evaluations:  1300  -2lnl: 315.6189911
- Number of evaluations:  1400  -2lnl: 315.6126529
- Number of evaluations:  1500  -2lnl: 315.6027174
- Number of evaluations:  1600  -2lnl:  315.586477
- Number of evaluations:  1700  -2lnl: 315.5547475
- Number of evaluations:  1800  -2lnl: 315.5139539
- Number of evaluations:  1900  -2lnl: 315.5012071
- Number of evaluations:  2000  -2lnl: 315.5004352
- Number of evaluations:  2100  -2lnl: 315.5000445
- Number of evaluations:  2200  -2lnl: 315.4999397
- Number of evaluations:  2300  -2lnl: 315.4998837
- Number of evaluations:  2400  -2lnl:  315.499803
- Number of evaluations:  2500  -2lnl: 315.4996289
- Number of evaluations:  2600  -2lnl:  315.499061
- Number of evaluations:  2700  -2lnl: 315.4980904
- Number of evaluations:  2800  -2lnl: 315.4967962
- Number of evaluations:  2900  -2lnl: 315.4947377
- Number of evaluations:  3000  -2lnl: 315.4867421
- Number of evaluations:  3100  -2lnl: 315.4810043
- Number of evaluations:  3200  -2lnl: 315.4739272
- Number of evaluations:  3300  -2lnl: 315.4724909
- Number of evaluations:  3400  -2lnl: 315.4718453
- Number of evaluations:  3500  -2lnl: 315.4708776
- Number of evaluations:  3600  -2lnl: 315.4692398
- Number of evaluations:  3700  -2lnl: 315.4667979
- Number of evaluations:  3800  -2lnl: 315.4652691
- Number of evaluations:  3900  -2lnl: 315.4645755
- Number of evaluations:  4000  -2lnl: 315.4634148
- Number of evaluations:  4100  -2lnl: 315.4625663
- Number of evaluations:  4200  -2lnl: 315.4620345
- Number of evaluations:  4300  -2lnl: 315.4617224
- Number of evaluations:  4400  -2lnl: 315.4616406
- Number of evaluations:  4500  -2lnl: 315.4632859
- Number of evaluations:  4600  -2lnl: 315.5085803
- Number of evaluations:  4700  -2lnl: 315.4843468
- Number of evaluations:  4800  -2lnl: 315.8280508
- Number of evaluations:  4900  -2lnl: 315.4667336
- Number of evaluations:  5000  -2lnl: 315.7700012
- Number of evaluations:  5100  -2lnl: 315.4616224</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl:  352.390871 Number of evaluations:  200  -2lnl: 329.3590213 Number of evaluations:  300  -2lnl: 321.3664886 Number of evaluations:  400  -2lnl: 317.1142841 Number of evaluations:  500  -2lnl: 316.2055371 Number of evaluations:  600  -2lnl: 316.0677887 Number of evaluations:  700  -2lnl: 315.8890344 Number of evaluations:  800  -2lnl: 315.6884902 Number of evaluations:  900  -2lnl: 315.6684003 Number of evaluations:  1000  -2lnl: 315.6597409 Number of evaluations:  1100  -2lnl: 315.6381675 Number of evaluations:  1200  -2lnl: 315.6287795 Number of evaluations:  1300  -2lnl: 315.6189911 Number of evaluations:  1400  -2lnl: 315.6126529 Number of evaluations:  1500  -2lnl: 315.6027174 Number of evaluations:  1600  -2lnl:  315.586477 Number of evaluations:  1700  -2lnl: 315.5547475 Number of evaluations:  1800  -2lnl: 315.5139539 Number of evaluations:  1900  -2lnl: 315.5012071 Number of evaluations:  2000  -2lnl: 315.5004352 Number of evaluations:  2100  -2lnl: 315.5000445 Number of evaluations:  2200  -2lnl: 315.4999397 Number of evaluations:  2300  -2lnl: 315.4998837 Number of evaluations:  2400  -2lnl:  315.499803 Number of evaluations:  2500  -2lnl: 315.4996289 Number of evaluations:  2600  -2lnl:  315.499061 Number of evaluations:  2700  -2lnl: 315.4980904 Number of evaluations:  2800  -2lnl: 315.4967962 Number of evaluations:  2900  -2lnl: 315.4947377 Number of evaluations:  3000  -2lnl: 315.4867421 Number of evaluations:  3100  -2lnl: 315.4810043 Number of evaluations:  3200  -2lnl: 315.4739272 Number of evaluations:  3300  -2lnl: 315.4724909 Number of evaluations:  3400  -2lnl: 315.4718453 Number of evaluations:  3500  -2lnl: 315.4708776 Number of evaluations:  3600  -2lnl: 315.4692398 Number of evaluations:  3700  -2lnl: 315.4667979 Number of evaluations:  3800  -2lnl: 315.4652691 Number of evaluations:  3900  -2lnl: 315.4645755 Number of evaluations:  4000  -2lnl: 315.4634148 Number of evaluations:  4100  -2lnl: 315.4625663 Number of evaluations:  4200  -2lnl: 315.4620345 Number of evaluations:  4300  -2lnl: 315.4617224 Number of evaluations:  4400  -2lnl: 315.4616406 Number of evaluations:  4500  -2lnl: 315.4632859 Number of evaluations:  4600  -2lnl: 315.5085803 Number of evaluations:  4700  -2lnl: 315.4843468 Number of evaluations:  4800  -2lnl: 315.8280508 Number of evaluations:  4900  -2lnl: 315.4667336 Number of evaluations:  5000  -2lnl: 315.7700012 Number of evaluations:  5100  -2lnl: 315.4616224</code></pre>
 <pre><code>## Computing hessian...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl: 315.9317117
- Number of evaluations:  200  -2lnl:  315.482982
- Number of evaluations:  300  -2lnl:  315.560414
- Number of evaluations:  400  -2lnl: 315.4597501
- Number of evaluations:  500  -2lnl: 315.4938468
- Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl: 315.9317117 Number of evaluations:  200  -2lnl:  315.482982 Number of evaluations:  300  -2lnl:  315.560414 Number of evaluations:  400  -2lnl: 315.4597501 Number of evaluations:  500  -2lnl: 315.4938468 Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
 <pre><code>## 
 ## Elapsed time in minutes:  0.011</code></pre>
 <pre class="r"><code>mod.Phit.pt   # print out model</code></pre>
@@ -1041,119 +984,26 @@ allmodels &lt;- crm.wrapper(cml,data=dipper.proc, ddl=dipper.ddl,external=FALSE,
 <pre><code>## Phi.dot.p.time</code></pre>
 <pre><code>## Computing initial parameter estimates</code></pre>
 <pre><code>## Starting optimization for 7 parameters...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl: 339.3932231
- Number of evaluations:  200  -2lnl: 320.8680856
- Number of evaluations:  300  -2lnl: 318.7504926
- Number of evaluations:  400  -2lnl: 317.5914298
- Number of evaluations:  500  -2lnl: 317.5901142
- Number of evaluations:  600  -2lnl: 317.5864386
- Number of evaluations:  700  -2lnl: 317.5831841
- Number of evaluations:  800  -2lnl: 317.5783913
- Number of evaluations:  900  -2lnl:  317.566475
- Number of evaluations:  1000  -2lnl: 317.3901654
- Number of evaluations:  1100  -2lnl: 316.9823423
- Number of evaluations:  1200  -2lnl: 316.2811304
- Number of evaluations:  1300  -2lnl: 316.1853346
- Number of evaluations:  1400  -2lnl: 316.1845581
- Number of evaluations:  1500  -2lnl: 316.1821717
- Number of evaluations:  1600  -2lnl: 316.1717552
- Number of evaluations:  1700  -2lnl: 316.1620764
- Number of evaluations:  1800  -2lnl:  316.119147
- Number of evaluations:  1900  -2lnl: 316.1169034
- Number of evaluations:  2000  -2lnl: 316.1517872
- Number of evaluations:  2100  -2lnl: 316.1190395</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl: 339.3932231 Number of evaluations:  200  -2lnl: 320.8680856 Number of evaluations:  300  -2lnl: 318.7504926 Number of evaluations:  400  -2lnl: 317.5914298 Number of evaluations:  500  -2lnl: 317.5901142 Number of evaluations:  600  -2lnl: 317.5864386 Number of evaluations:  700  -2lnl: 317.5831841 Number of evaluations:  800  -2lnl: 317.5783913 Number of evaluations:  900  -2lnl:  317.566475 Number of evaluations:  1000  -2lnl: 317.3901654 Number of evaluations:  1100  -2lnl: 316.9823423 Number of evaluations:  1200  -2lnl: 316.2811304 Number of evaluations:  1300  -2lnl: 316.1853346 Number of evaluations:  1400  -2lnl: 316.1845581 Number of evaluations:  1500  -2lnl: 316.1821717 Number of evaluations:  1600  -2lnl: 316.1717552 Number of evaluations:  1700  -2lnl: 316.1620764 Number of evaluations:  1800  -2lnl:  316.119147 Number of evaluations:  1900  -2lnl: 316.1169034 Number of evaluations:  2000  -2lnl: 316.1517872 Number of evaluations:  2100  -2lnl: 316.1190395</code></pre>
 <pre><code>## Computing hessian...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl: 316.1220471
- Number of evaluations:  200  -2lnl: 316.1169636</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl: 316.1220471 Number of evaluations:  200  -2lnl: 316.1169636</code></pre>
 <pre><code>## 
 ## Elapsed time in minutes:  0.005</code></pre>
 <pre><code>## Phi.time.p.dot</code></pre>
 <pre><code>## Computing initial parameter estimates
 ## 
 ## Starting optimization for 7 parameters...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl: 315.5021097
- Number of evaluations:  200  -2lnl: 315.5014817
- Number of evaluations:  300  -2lnl: 315.5008036
- Number of evaluations:  400  -2lnl: 315.5004163
- Number of evaluations:  500  -2lnl: 315.5000228
- Number of evaluations:  600  -2lnl: 315.4997163
- Number of evaluations:  700  -2lnl: 315.4990839
- Number of evaluations:  800  -2lnl: 315.4989262
- Number of evaluations:  900  -2lnl: 315.6317777
- Number of evaluations:  1000  -2lnl: 315.4986868
- Number of evaluations:  1100  -2lnl: 315.4989119</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl: 315.5021097 Number of evaluations:  200  -2lnl: 315.5014817 Number of evaluations:  300  -2lnl: 315.5008036 Number of evaluations:  400  -2lnl: 315.5004163 Number of evaluations:  500  -2lnl: 315.5000228 Number of evaluations:  600  -2lnl: 315.4997163 Number of evaluations:  700  -2lnl: 315.4990839 Number of evaluations:  800  -2lnl: 315.4989262 Number of evaluations:  900  -2lnl: 315.6317777 Number of evaluations:  1000  -2lnl: 315.4986868 Number of evaluations:  1100  -2lnl: 315.4989119</code></pre>
 <pre><code>## Computing hessian...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl: 315.5145048
- Number of evaluations:  200  -2lnl: 315.5153169</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl: 315.5145048 Number of evaluations:  200  -2lnl: 315.5153169</code></pre>
 <pre><code>## 
 ## Elapsed time in minutes:  0.0043</code></pre>
 <pre><code>## Phi.time.p.time</code></pre>
 <pre><code>## Computing initial parameter estimates</code></pre>
 <pre><code>## Starting optimization for 12 parameters...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl:  352.390871
- Number of evaluations:  200  -2lnl: 329.3590213
- Number of evaluations:  300  -2lnl: 321.3664886
- Number of evaluations:  400  -2lnl: 317.1142841
- Number of evaluations:  500  -2lnl: 316.2055371
- Number of evaluations:  600  -2lnl: 316.0677887
- Number of evaluations:  700  -2lnl: 315.8890344
- Number of evaluations:  800  -2lnl: 315.6884902
- Number of evaluations:  900  -2lnl: 315.6684003
- Number of evaluations:  1000  -2lnl: 315.6597409
- Number of evaluations:  1100  -2lnl: 315.6381675
- Number of evaluations:  1200  -2lnl: 315.6287795
- Number of evaluations:  1300  -2lnl: 315.6189911
- Number of evaluations:  1400  -2lnl: 315.6126529
- Number of evaluations:  1500  -2lnl: 315.6027174
- Number of evaluations:  1600  -2lnl:  315.586477
- Number of evaluations:  1700  -2lnl: 315.5547475
- Number of evaluations:  1800  -2lnl: 315.5139539
- Number of evaluations:  1900  -2lnl: 315.5012071
- Number of evaluations:  2000  -2lnl: 315.5004352
- Number of evaluations:  2100  -2lnl: 315.5000445
- Number of evaluations:  2200  -2lnl: 315.4999397
- Number of evaluations:  2300  -2lnl: 315.4998837
- Number of evaluations:  2400  -2lnl:  315.499803
- Number of evaluations:  2500  -2lnl: 315.4996289
- Number of evaluations:  2600  -2lnl:  315.499061
- Number of evaluations:  2700  -2lnl: 315.4980904
- Number of evaluations:  2800  -2lnl: 315.4967962
- Number of evaluations:  2900  -2lnl: 315.4947377
- Number of evaluations:  3000  -2lnl: 315.4867421
- Number of evaluations:  3100  -2lnl: 315.4810043
- Number of evaluations:  3200  -2lnl: 315.4739272
- Number of evaluations:  3300  -2lnl: 315.4724909
- Number of evaluations:  3400  -2lnl: 315.4718453
- Number of evaluations:  3500  -2lnl: 315.4708776
- Number of evaluations:  3600  -2lnl: 315.4692398
- Number of evaluations:  3700  -2lnl: 315.4667979
- Number of evaluations:  3800  -2lnl: 315.4652691
- Number of evaluations:  3900  -2lnl: 315.4645755
- Number of evaluations:  4000  -2lnl: 315.4634148
- Number of evaluations:  4100  -2lnl: 315.4625663
- Number of evaluations:  4200  -2lnl: 315.4620345
- Number of evaluations:  4300  -2lnl: 315.4617224
- Number of evaluations:  4400  -2lnl: 315.4616406
- Number of evaluations:  4500  -2lnl: 315.4632859
- Number of evaluations:  4600  -2lnl: 315.5085803
- Number of evaluations:  4700  -2lnl: 315.4843468
- Number of evaluations:  4800  -2lnl: 315.8280508
- Number of evaluations:  4900  -2lnl: 315.4667336
- Number of evaluations:  5000  -2lnl: 315.7700012
- Number of evaluations:  5100  -2lnl: 315.4616224</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl:  352.390871 Number of evaluations:  200  -2lnl: 329.3590213 Number of evaluations:  300  -2lnl: 321.3664886 Number of evaluations:  400  -2lnl: 317.1142841 Number of evaluations:  500  -2lnl: 316.2055371 Number of evaluations:  600  -2lnl: 316.0677887 Number of evaluations:  700  -2lnl: 315.8890344 Number of evaluations:  800  -2lnl: 315.6884902 Number of evaluations:  900  -2lnl: 315.6684003 Number of evaluations:  1000  -2lnl: 315.6597409 Number of evaluations:  1100  -2lnl: 315.6381675 Number of evaluations:  1200  -2lnl: 315.6287795 Number of evaluations:  1300  -2lnl: 315.6189911 Number of evaluations:  1400  -2lnl: 315.6126529 Number of evaluations:  1500  -2lnl: 315.6027174 Number of evaluations:  1600  -2lnl:  315.586477 Number of evaluations:  1700  -2lnl: 315.5547475 Number of evaluations:  1800  -2lnl: 315.5139539 Number of evaluations:  1900  -2lnl: 315.5012071 Number of evaluations:  2000  -2lnl: 315.5004352 Number of evaluations:  2100  -2lnl: 315.5000445 Number of evaluations:  2200  -2lnl: 315.4999397 Number of evaluations:  2300  -2lnl: 315.4998837 Number of evaluations:  2400  -2lnl:  315.499803 Number of evaluations:  2500  -2lnl: 315.4996289 Number of evaluations:  2600  -2lnl:  315.499061 Number of evaluations:  2700  -2lnl: 315.4980904 Number of evaluations:  2800  -2lnl: 315.4967962 Number of evaluations:  2900  -2lnl: 315.4947377 Number of evaluations:  3000  -2lnl: 315.4867421 Number of evaluations:  3100  -2lnl: 315.4810043 Number of evaluations:  3200  -2lnl: 315.4739272 Number of evaluations:  3300  -2lnl: 315.4724909 Number of evaluations:  3400  -2lnl: 315.4718453 Number of evaluations:  3500  -2lnl: 315.4708776 Number of evaluations:  3600  -2lnl: 315.4692398 Number of evaluations:  3700  -2lnl: 315.4667979 Number of evaluations:  3800  -2lnl: 315.4652691 Number of evaluations:  3900  -2lnl: 315.4645755 Number of evaluations:  4000  -2lnl: 315.4634148 Number of evaluations:  4100  -2lnl: 315.4625663 Number of evaluations:  4200  -2lnl: 315.4620345 Number of evaluations:  4300  -2lnl: 315.4617224 Number of evaluations:  4400  -2lnl: 315.4616406 Number of evaluations:  4500  -2lnl: 315.4632859 Number of evaluations:  4600  -2lnl: 315.5085803 Number of evaluations:  4700  -2lnl: 315.4843468 Number of evaluations:  4800  -2lnl: 315.8280508 Number of evaluations:  4900  -2lnl: 315.4667336 Number of evaluations:  5000  -2lnl: 315.7700012 Number of evaluations:  5100  -2lnl: 315.4616224</code></pre>
 <pre><code>## Computing hessian...</code></pre>
-<pre><code>## 
- Number of evaluations:  100  -2lnl: 315.9317117
- Number of evaluations:  200  -2lnl:  315.482982
- Number of evaluations:  300  -2lnl:  315.560414
- Number of evaluations:  400  -2lnl: 315.4597501
- Number of evaluations:  500  -2lnl: 315.4938468
- Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
+<pre><code>##  Number of evaluations:  100  -2lnl: 315.9317117 Number of evaluations:  200  -2lnl:  315.482982 Number of evaluations:  300  -2lnl:  315.560414 Number of evaluations:  400  -2lnl: 315.4597501 Number of evaluations:  500  -2lnl: 315.4938468 Number of evaluations:  600  -2lnl: 315.4685878</code></pre>
 <pre><code>## 
 ## Elapsed time in minutes:  0.0083</code></pre>
 <pre class="r"><code>allmodels</code></pre>

@@ -1,7 +1,7 @@
 ---
 title: "Parameter estimation"
 author: "NRES 470/670"
-date: "Spring 2024"
+date: "Spring 2026"
 output: 
   html_document: 
     theme: spacelab
@@ -81,7 +81,7 @@ Recall the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) - e
         - Juvenile and adult survival rates      
         - Nesting success     
         - Population growth (lambda) is 1.09     
-        - Now we can solve for hatchling survival!    
+        - Now we can solve for the unknown -- hatchling survival!    
         - For an example of this, see [Congdon et al 1993](congdon et al 1993.pdf)     
 - Simplify! (Models are always simplified representations of reality)    
     - Ignore age structure? (i.e., use scalar model)    
@@ -123,10 +123,10 @@ Recall the ["Stone Soup" analogy!](https://en.wikipedia.org/wiki/Stone_Soup) - e
 - Probably the most widely used source of data for population models (especially if you consider that telemetry data is a special class of capture-mark-recapture data!
 
 **CONS**
-- Few downsides, although the analytical techniques can be difficult to master
-- Mounting a proper CMR study can be very costly, and require many years of data. 
+- Cost: mounting a proper CMR study can be very costly, and require many years of data. 
 - Estimating landscape-scale movements can require an even more costly and time-consuming study.
-- Emigration and survival can be difficult to tease apart in many cases. 
+- Emigration and survival can be difficult to tease apart in many cases.
+- The analytical techniques can be difficult to master
 
 ## Statistics and wildlife population ecology
 
@@ -183,7 +183,7 @@ R = number of individuals in 2nd sample that are marked
 
 We can use the following formula to estimate abundance (the **Lincoln-Peterson estimator**): 
 
-$N = \frac{M \times C}{R}$
+$$\hat N = \frac{M \times C}{R}$$
 
 
 #### Open population models
