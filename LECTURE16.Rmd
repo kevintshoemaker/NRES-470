@@ -49,9 +49,11 @@ This is the kind of competition we probably think about first- individuals from 
 Competition for resources within species is often the mechanism behind the density-dependent processes that we have already discussed this class. Within a single species, this is often called "*scramble competition*".  
 
 #### Interference competition
-Sometimes the negative effect of one actor (individual of the same or another species) on another actor is due to direct behavioral exclusion. This is the case with birds that maintain territories and keep other birds off their territory. 
+Sometimes the negative effect of one actor (individual of the same or another species) on another actor is due to direct exclusion. This is the case with birds that maintain territories and keep other birds off their territory. 
 
 Some plants engage in interference competition in a process called *allelopathy*.
+
+Interference competition is sometimes classified as a form of amensalism, since the brunt of the negative effect is experienced by only one of the two actors. 
 
 ![](allelopathy.jpg){width=50%}
 
@@ -61,19 +63,19 @@ If *intra-species competition* and *inter-species competition* are essentially t
 
 1. Recall the logistic growth equation!
 
-$$\Delta N = r\cdot N_t \cdot (1-\frac{N}{K})$$
+$$\frac{\mathrm{d}N}{\mathrm{d}t} = r N  (1-\frac{N}{K})$$
 
 2. Now consider the case where we have two species whose dynamics can be described by logistic growth equations:
 
-Species 1: $\Delta N_1 = r\cdot N_{1_t} \cdot (1-\frac{N_1}{K_1})$      
+Species 1: $\frac{\mathrm{d}N_1}{\mathrm{d}t} = r_1 N_{1} (1-\frac{N_1}{K_1})$      
 
-Species 2: $\Delta N_2 = r\cdot N_{2_t} \cdot (1-\frac{N_2}{K_2})$
+Species 2: $\frac{\mathrm{d}N_2}{\mathrm{d}t} = r_2 N_{2} (1-\frac{N_2}{K_2})$
 
 3. Now imagine that population growth for each species is further depressed by the presence of the other! We can envision a scenario where (e.g.,) the presence of one species helps to *fill up* the carrying capacity for the other species, and vice-versa!
 
-Species 1: $\Delta N1 = r\cdot N1_t \cdot (1-\frac{N1+\alpha N2}{K1})$      
+Species 1: $\frac{\mathrm{d}N_1}{\mathrm{d}t} = r_1 N_1  (1-\frac{N_1+\alpha N_2}{K_1})$      
 
-Species 2: $\Delta N2 = r\cdot N2_t \cdot (1-\frac{N2+\beta N1}{K2})$
+Species 2: $\frac{\mathrm{d}N_2}{\mathrm{d}t} = r_2 N_2  (1-\frac{N_2+\beta N_1}{K_2})$ 
 
 The constants $\alpha$ and $\beta$ are measures of the effect of one species on the growth of the other species. 
 
@@ -101,7 +103,9 @@ Here's a [link to a working competition model](https://insightmaker.com/insight/
 
 **Q**: what conditions are necessary for coexistence in this model?
 
-**Q**: imagine that species 2 is an exotic species- a possible invader of an ecosystem dominated by species 1 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species? 
+**Q**: imagine that species 2 is an exotic species- a possible invader of an ecosystem dominated by species 1 (which is at carrying capacity). Under what conditions is species 1 successful in invading? Under what conditions does the invader cause the extinction of the native species?
+
+**Q**: What happens when there are more than 2 species competing?
 
 ## Phase plane!
 

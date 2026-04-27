@@ -14,7 +14,7 @@
 
 <title>Species interactions: competition!</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Species interactions: competition!</h1>
 <h4 class="author">NRES 470/670</h4>
-<h4 class="date">Spring 2024</h4>
+<h4 class="date">Spring 2026</h4>
 
 </div>
 
@@ -500,11 +500,14 @@ competition</em>”.</p>
 <div id="interference-competition" class="section level4">
 <h4>Interference competition</h4>
 <p>Sometimes the negative effect of one actor (individual of the same or
-another species) on another actor is due to direct behavioral exclusion.
-This is the case with birds that maintain territories and keep other
-birds off their territory.</p>
+another species) on another actor is due to direct exclusion. This is
+the case with birds that maintain territories and keep other birds off
+their territory.</p>
 <p>Some plants engage in interference competition in a process called
 <em>allelopathy</em>.</p>
+<p>Interference competition is sometimes classified as a form of
+amensalism, since the brunt of the negative effect is experienced by
+only one of the two actors.</p>
 <p><img src="allelopathy.jpg" style="width:50.0%" /></p>
 </div>
 </div>
@@ -515,30 +518,34 @@ class="section level3">
 more than one species!</h3>
 <p>If <em>intra-species competition</em> and <em>inter-species
 competition</em> are essentially the same, maybe we can model these
-processes the same!!</p>
+processes in the same way!</p>
 <ol style="list-style-type: decimal">
 <li>Recall the logistic growth equation!</li>
 </ol>
-<p><span class="math inline">\(\Delta N = r\cdot N_t \cdot
-(1-\frac{N}{K})\)</span></p>
+<p><span class="math display">\[\frac{\mathrm{d}N}{\mathrm{d}t} = r
+N  (1-\frac{N}{K})\]</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Now consider the case where we have two species whose dynamics can
 be described by logistic growth equations:</li>
 </ol>
-<p>Species 1: <span class="math inline">\(\Delta N_1 = r\cdot N_{1_t}
-\cdot (1-\frac{N_1}{K_1})\)</span></p>
-<p>Species 2: <span class="math inline">\(\Delta N_2 = r\cdot N_{2_t}
-\cdot (1-\frac{N_2}{K_2})\)</span></p>
+<p>Species 1: <span
+class="math inline">\(\frac{\mathrm{d}N_1}{\mathrm{d}t} = r_1 N_{1}
+(1-\frac{N_1}{K_1})\)</span></p>
+<p>Species 2: <span
+class="math inline">\(\frac{\mathrm{d}N_2}{\mathrm{d}t} = r_2 N_{2}
+(1-\frac{N_2}{K_2})\)</span></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Now imagine that population growth for each species is further
 depressed by the presence of the other! We can envision a scenario where
 (e.g.,) the presence of one species helps to <em>fill up</em> the
-carrying capacity for the other species, and vice versa!</li>
+carrying capacity for the other species, and vice-versa!</li>
 </ol>
-<p>Species 1: <span class="math inline">\(\Delta N1 = r\cdot N1_t \cdot
-(1-\frac{N1+\alpha N2}{K1})\)</span></p>
-<p>Species 2: <span class="math inline">\(\Delta N2 = r\cdot N2_t \cdot
-(1-\frac{N2+\beta N1}{K2})\)</span></p>
+<p>Species 1: <span
+class="math inline">\(\frac{\mathrm{d}N_1}{\mathrm{d}t} = r_1
+N_1  (1-\frac{N_1+\alpha N_2}{K_1})\)</span></p>
+<p>Species 2: <span
+class="math inline">\(\frac{\mathrm{d}N_2}{\mathrm{d}t} = r_2
+N_2  (1-\frac{N_2+\beta N_1}{K_2})\)</span></p>
 <p>The constants <span class="math inline">\(\alpha\)</span> and <span
 class="math inline">\(\beta\)</span> are measures of the effect of one
 species on the growth of the other species.</p>
@@ -581,6 +588,8 @@ possible invader of an ecosystem dominated by species 1 (which is at
 carrying capacity). Under what conditions is species 1 successful in
 invading? Under what conditions does the invader cause the extinction of
 the native species?</p>
+<p><strong>Q</strong>: What happens when there are more than 2 species
+competing?</p>
 </div>
 </div>
 <div id="phase-plane" class="section level2">
